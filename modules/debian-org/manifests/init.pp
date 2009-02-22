@@ -15,8 +15,8 @@ class debian-org {
              "less": ensure => latest;
              "ed": ensure => latest;
              "puppet": ensure => latest;
-
+             "mtr-tiny": ensure => latest;
+             "nload": ensure => latest;
    }
-
 }
 
