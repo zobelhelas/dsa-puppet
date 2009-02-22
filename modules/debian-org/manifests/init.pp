@@ -1,4 +1,4 @@
-class debian_org {
+class debian-org {
    package { "userdir-ldap": ensure => latest;
              "zsh": ensure => latest;
              "tcsh": ensure => latest;
