@@ -1,6 +1,6 @@
 class exim {
 
-    package { exim4-heavy: ensure => latest }
+    package { exim4-daemon-heavy: ensure => latest }
 
     file { 
         "/etc/exim4/exim4.conf":
@@ -9,14 +9,14 @@ class exim {
           mode    => 664,
           source  => [ "puppet:///exim/per-host/$fqdn/exim4.conf",
                        "puppet:///exim/common/exim4.conf" ],
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           notify  => Exec["exim4 reload"]
           ;
         "/etc/exim4/blacklist":
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/blacklist",
                        "puppet:///exim/common/" ]
           ;
@@ -24,7 +24,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/callout_users",
                        "puppet:///exim/common/" ]
           ;
@@ -32,7 +32,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/grey_users",
                        "puppet:///exim/common/" ]
           ;
@@ -40,7 +40,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/helo-check",
                        "puppet:///exim/common/" ]
           ;
@@ -48,7 +48,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/localusers",
                        "puppet:///exim/common/" ]
           ;
@@ -56,7 +56,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rbllist",
                        "puppet:///exim/common/" ]
           ;
@@ -64,7 +64,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rcpthosts",
                        "puppet:///exim/common/" ]
           ;
@@ -72,7 +72,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rhsbllist",
                        "puppet:///exim/common/" ]
           ;
@@ -80,7 +80,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/virtualdomains",
                        "puppet:///exim/common/" ]
           ;
@@ -88,7 +88,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
-          require => Package["exim4-heavy"],
+          require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/whitelist",
                        "puppet:///exim/common/" ]
           ;
