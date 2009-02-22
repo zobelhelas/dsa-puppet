@@ -1,0 +1,4 @@
+# This file lists the virtual domains that this host should handle. The
+# format is
+#  host: user=user group=group directory=dir
+puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail
