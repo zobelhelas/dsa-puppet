@@ -26,7 +26,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/blacklist",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/blacklist" ]
           ;
         "/etc/exim4/callout_users":
           owner   => root,
@@ -35,7 +35,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/callout_users",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/callout_users" ]
           ;
         "/etc/exim4/grey_users":
           owner   => root,
@@ -44,7 +44,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/grey_users",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/grey_users" ]
           ;
         "/etc/exim4/helo-check":
           owner   => root,
@@ -53,7 +53,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/helo-check",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/helo-check" ]
           ;
         "/etc/exim4/localusers":
           owner   => root,
@@ -62,7 +62,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/localusers",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/localusers" ]
           ;
         "/etc/exim4/rbllist":
           owner   => root,
@@ -71,7 +71,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rbllist",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/rbllist" ]
           ;
         "/etc/exim4/rcpthosts":
           owner   => root,
@@ -80,7 +80,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rcpthosts",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/rcpthosts" ]
           ;
         "/etc/exim4/rhsbllist":
           owner   => root,
@@ -89,7 +89,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rhsbllist",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/rhsbllist" ]
           ;
         "/etc/exim4/virtualdomains":
           owner   => root,
@@ -98,7 +98,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/virtualdomains",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/virtualdomains" ]
           ;
         "/etc/exim4/whitelist":
           owner   => root,
@@ -107,7 +107,7 @@ class exim {
           ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/whitelist",
-                       "puppet:///exim/common/" ]
+                       "puppet:///exim/common/whitelist" ]
           ;
     }
 
