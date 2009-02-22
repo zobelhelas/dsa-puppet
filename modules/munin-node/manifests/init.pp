@@ -6,7 +6,8 @@ class munin-node {
         owner   => root,
         group   => root,
         mode    => 664,
-        source  => "puppet:///munin-node/munin-node.conf",
+        source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.conf",
+                     "puppet:///munin-node/common/munin-node.conf" ],
         require => Package["munin-node"],
         notify  => Exec["munin-node restart"],
     }
