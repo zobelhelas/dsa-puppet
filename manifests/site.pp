@@ -1,5 +1,5 @@
 node default {
-    include ntp
     include munin-node
+    include samhain
 }
 
