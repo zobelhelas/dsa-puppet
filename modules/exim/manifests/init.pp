@@ -13,6 +13,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           source  => [ "puppet:///exim/per-host/$fqdn/exim4.conf",
                        "puppet:///exim/common/exim4.conf" ],
           require => Package["exim4-daemon-heavy"],
@@ -22,6 +23,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/blacklist",
                        "puppet:///exim/common/" ]
@@ -30,6 +32,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/callout_users",
                        "puppet:///exim/common/" ]
@@ -38,6 +41,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/grey_users",
                        "puppet:///exim/common/" ]
@@ -46,6 +50,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/helo-check",
                        "puppet:///exim/common/" ]
@@ -54,6 +59,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/localusers",
                        "puppet:///exim/common/" ]
@@ -62,6 +68,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rbllist",
                        "puppet:///exim/common/" ]
@@ -70,6 +77,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rcpthosts",
                        "puppet:///exim/common/" ]
@@ -78,6 +86,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rhsbllist",
                        "puppet:///exim/common/" ]
@@ -86,6 +95,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/virtualdomains",
                        "puppet:///exim/common/" ]
@@ -94,6 +104,7 @@ class exim {
           owner   => root,
           group   => root,
           mode    => 664,
+          ensure  => file,
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/whitelist",
                        "puppet:///exim/common/" ]
