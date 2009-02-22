@@ -28,14 +28,6 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/callout_users",
                        "puppet:///exim/common/" ]
           ;
-        "/etc/exim4/exim4.conf":
-          owner   => root,
-          group   => root,
-          mode    => 664,
-          require => Package["exim4-heavy"],
-          source  => [ "puppet:///exim/per-host/$fqdn/exim4.conf",
-                       "puppet:///exim/common/" ]
-          ;
         "/etc/exim4/grey_users":
           owner   => root,
           group   => root,
