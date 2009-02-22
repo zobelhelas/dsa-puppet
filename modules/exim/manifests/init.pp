@@ -3,6 +3,12 @@ class exim {
     package { exim4-daemon-heavy: ensure => latest }
 
     file { 
+        "/etc/exim4/":
+          ensure  => directory,
+          owner   => root,
+          group   => root,
+          mode    => 775
+        ;
         "/etc/exim4/exim4.conf":
           owner   => root,
           group   => root,
