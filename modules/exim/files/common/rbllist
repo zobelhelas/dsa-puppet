@@ -1,0 +1,25 @@
+admin : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+books : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+cdvendors : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+consultants : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+da-manager : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+ftpmaster : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+ftp-master : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+gandi-discount : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+hardware-donations : sbl-xbl.spamhaus.org
+hostmaster : sbl-xbl.spamhaus.org : cbl.abuseat.org
+keyring-maint : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+leader : sbl-xbl.spamhaus.org
+mailer-daemon : sbl-xbl.spamhaus.org : cbl.abuseat.org
+merchandise : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+mia : sbl-xbl.spamhaus.org
+mirrors : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+new-maintainer : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+override-change : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+partners : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+planet : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+preinstallvendors : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+rmurray : sbl-xbl.spamhaus.org
+treasurer : sbl-xbl.spamhaus.org
+wbadm : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+webmaster : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net

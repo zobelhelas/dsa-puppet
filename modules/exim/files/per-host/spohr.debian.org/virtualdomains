@@ -1,0 +1,4 @@
+# This file lists the virtual domains that this host should handle. The
+# format is
+#  host: user=user group=group directory=dir
+rt.debian.org: user=rt group=rt directory=/srv/rt.debian.org/mail

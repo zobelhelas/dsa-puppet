@@ -1,0 +1,24 @@
+#  virtualdomains - This is a list of all virtual domains. A virtual domain
+#           is much like a local domain, execpt that the delivery location
+#           and allowed set of users is controlled by a virtual domain
+#           alias file and not /etc/passwd. Wildcards are permitted
+
+# This file lists the virtual domains that this host should handle. The
+# format is 
+#  host: user=user group=group directory=dir
+# Host may be a wildcard.
+# User/Group are the symbolic names of the uid/gid to operate under when
+#    performing deliveries for this name. These should not be root!
+# Directory is the directory to look in for data files. The directory and
+#    files may be group writable. The first file to lookup is DIR/aliases
+#    which is a traditional exim/sendmail alias file. You can specify
+#    users, patterns, pipes and filenames. If that fails then 
+#    .forward-foo is tried, should that fail then .forward-default is tried.
+#    Finally the email will bounce.
+
+ddtp.debian.org: user=grisu group=Debian directory=/org/ddtp.debian.org/mail
+admin.debian.org: user=mail_admin group=mail_admin directory=/org/admin.debian.org/mail/
+popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/
+
+debian.com: user=nobody group=Debian directory=/org/misc/star.debian.org/
+debian.net: user=nobody group=Debian directory=/org/misc/star.debian.org/

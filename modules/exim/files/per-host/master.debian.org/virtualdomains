@@ -1,0 +1,7 @@
+# This file lists the virtual domains that this host should handle. The
+# format is 
+#  host: user=user group=group directory=dir
+
+vote.debian.org: user=secretary group=debvote directory=/org/vote.debian.org/mail
+packages.qa.debian.org: user=qa group=qa directory=/org/packages.qa.debian.org/mail
+bugs.qa.debian.org: user=cjwatson group=qa directory=/org/bugs.qa.debian.org/mail

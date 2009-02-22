@@ -1,0 +1,5 @@
+#  rcpthosts - recipient hosts or relay domains. This is a list of
+#           all hosts that we mail exchange for. All domains that list
+#           this host in their MX records should be listed here. Wildcards
+#           are permitted.
+*.debian.net
