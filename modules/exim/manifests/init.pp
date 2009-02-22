@@ -8,9 +8,9 @@ class exim {
           group   => root,
           mode    => 664,
           source  => [ "puppet:///exim/per-host/$fqdn/exim4.conf",
-                       "puppet:///exim/common/exim4.conf" ]
+                       "puppet:///exim/common/exim4.conf" ],
           require => Package["exim4-heavy"],
-          notify  => Exec["exim4 reload"],
+          notify  => Exec["exim4 reload"]
           ;
         "/etc/exim4/blacklist":
           owner   => root,
