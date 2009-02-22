@@ -10,7 +10,6 @@ class debian-org {
              "sudo": ensure => latest;
              "libpam-pwdfile": ensure => latest;
              "vim": ensure => latest;
-             "munin-node": ensure => latest;
              "gnupg": ensure => latest;
              "bzip2": ensure => latest;
              "less": ensure => latest;
