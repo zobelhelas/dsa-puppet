@@ -86,6 +86,18 @@ file=/etc/exim4/bsmtp
 # We handle these files with puppet - please to not be bothering us
 file=/etc/samhain/samhainrc
 file=/etc/munin/munin-node.conf
+file=/etc/exim4/blacklist
+file=/etc/exim4/callout_users
+file=/etc/exim4/exim4.conf
+file=/etc/exim4/grey_users
+file=/etc/exim4/helo-check
+file=/etc/exim4/locals
+file=/etc/exim4/localusers
+file=/etc/exim4/rbllist
+file=/etc/exim4/rcpthosts
+file=/etc/exim4/rhsbllist
+file=/etc/exim4/virtualdomains
+file=/etc/exim4/whitelist
 
 #
 # There are files in /etc that might change, thus changing the directory
@@ -97,8 +109,9 @@ file=/etc/network/run
 file=/etc/bind
 
 # These are the directories for the files we handle with puppet
-file=/etc/samhain/
-file=/etc/munin/
+file=/etc/samhain
+file=/etc/munin
+file=/etc/exim4
 
 [LogFiles]
 ##
