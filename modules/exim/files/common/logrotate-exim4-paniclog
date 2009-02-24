@@ -1,0 +1,9 @@
+/var/log/exim4/paniclog {
+        daily
+        missingok
+        rotate 90
+        compress
+        delaycompress
+        notifempty
+        create 640 Debian-exim maillog
+}

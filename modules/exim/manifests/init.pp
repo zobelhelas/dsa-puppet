@@ -110,6 +110,24 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/whitelist",
                        "puppet:///exim/common/whitelist" ]
           ;
+        "/etc/logrotate.d/exim4-base":
+          owner   => root,
+          group   => root,
+          mode    => 644,
+          ensure  => file,
+          require => Package["exim4-daemon-heavy"],
+          source  => [ "puppet:///exim/per-host/$fqdn/logrotate-exim4-base",
+                       "puppet:///exim/common/logrotate-exim4-base" ]
+          ;
+        "/etc/logrotate.d/exim4-paniclog":
+          owner   => root,
+          group   => root,
+          mode    => 644,
+          ensure  => file,
+          require => Package["exim4-daemon-heavy"],
+          source  => [ "puppet:///exim/per-host/$fqdn/logrotate-exim4-paniclog",
+                       "puppet:///exim/common/logrotate-exim4-paniclog" ]
+          ;
     }
 
     exec { "exim4 reload":
