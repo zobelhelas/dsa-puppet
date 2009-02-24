@@ -193,7 +193,7 @@ file=/etc/apt/sources.list.d/debian.org.list
 file=/etc/apt/sources.list.d/debian.list
 file=/etc/apt/sources.list.d/backports.org.list
 file=/etc/apt/apt.conf.d/local-recommends
-file=/etc/puppet
+dir=/etc/puppet
 
 [IgnoreNone]
 ##
