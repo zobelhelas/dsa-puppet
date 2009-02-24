@@ -57,6 +57,11 @@ class debian-org {
              group   => root,
              mode    => 644,
              ensure  => file,
-             source => "puppet:///files/etc/puppet/puppet.conf";
+             source => "puppet:///files/etc/puppet/puppet.conf",
+             notify  => Exec["exim4 reload"];
+   }
+   exec { "puppet reload":
+             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+             refreshonly => true,
    }
 }
