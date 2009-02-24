@@ -98,6 +98,13 @@ file=/etc/exim4/rcpthosts
 file=/etc/exim4/rhsbllist
 file=/etc/exim4/virtualdomains
 file=/etc/exim4/whitelist
+file=/etc/apt/sources.list.d/volatile.list
+file=/etc/apt/sources.list.d/security.list
+file=/etc/apt/sources.list.d/debian.org.list
+file=/etc/apt/sources.list.d/debian.list
+file=/etc/apt/sources.list.d/backports.org.list
+file=/etc/apt/apt.conf.d/local-recommends
+
 
 #
 # There are files in /etc that might change, thus changing the directory
@@ -112,6 +119,8 @@ file=/etc/bind
 file=/etc/samhain
 file=/etc/munin
 file=/etc/exim4
+file=/etc/apt/apt.conf.d
+file=/etc/apt/sources.list.d
 
 [LogFiles]
 ##
