@@ -6,7 +6,8 @@ class samhain {
         owner   => root,
         group   => root,
         mode    => 444,
-        source  => "puppet:///samhain/samhainrc",
+        source  => [ "puppet:///samhain/per-host/$fqdn/samhainrc",
+                     "puppet:///samhain/common/samhainrc" ],
         require => Package["samhain"],
         notify  => Exec["samhain reload"],
     }
