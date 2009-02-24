@@ -99,7 +99,6 @@ file=/etc/munin
 file=/etc/exim4
 file=/etc/apt/apt.conf.d
 file=/etc/apt/sources.list.d
-file=/etc/puppet
 
 [LogFiles]
 ##
@@ -193,7 +192,7 @@ file=/etc/apt/sources.list.d/debian.org.list
 file=/etc/apt/sources.list.d/debian.list
 file=/etc/apt/sources.list.d/backports.org.list
 file=/etc/apt/apt.conf.d/local-recommends
-dir=/etc/puppet
+dir=4/etc/puppet
 
 [IgnoreNone]
 ##
