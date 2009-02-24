@@ -83,28 +83,6 @@ file=/var/state/samhain/samhain_file
 file=/etc/bind/db.debian.net
 file=/etc/exim4/bsmtp
 
-# We handle these files with puppet - please to not be bothering us
-file=/etc/samhain/samhainrc
-file=/etc/munin/munin-node.conf
-file=/etc/exim4/blacklist
-file=/etc/exim4/callout_users
-file=/etc/exim4/exim4.conf
-file=/etc/exim4/grey_users
-file=/etc/exim4/helo-check
-file=/etc/exim4/locals
-file=/etc/exim4/localusers
-file=/etc/exim4/rbllist
-file=/etc/exim4/rcpthosts
-file=/etc/exim4/rhsbllist
-file=/etc/exim4/virtualdomains
-file=/etc/exim4/whitelist
-file=/etc/apt/sources.list.d/volatile.list
-file=/etc/apt/sources.list.d/security.list
-file=/etc/apt/sources.list.d/debian.org.list
-file=/etc/apt/sources.list.d/debian.list
-file=/etc/apt/sources.list.d/backports.org.list
-file=/etc/apt/apt.conf.d/local-recommends
-
 
 #
 # There are files in /etc that might change, thus changing the directory
@@ -192,6 +170,28 @@ file=/var/lib/misc/ssh-rsa-shadow
 file=/etc/.da-backup.trace
 file=/etc/postfix/debianhosts
 file=/etc/postfix/debianhosts.db
+
+# We handle these files with puppet - please to not be bothering us
+file=/etc/samhain/samhainrc
+file=/etc/munin/munin-node.conf
+file=/etc/exim4/blacklist
+file=/etc/exim4/callout_users
+file=/etc/exim4/exim4.conf
+file=/etc/exim4/grey_users
+file=/etc/exim4/helo-check
+file=/etc/exim4/locals
+file=/etc/exim4/localusers
+file=/etc/exim4/rbllist
+file=/etc/exim4/rcpthosts
+file=/etc/exim4/rhsbllist
+file=/etc/exim4/virtualdomains
+file=/etc/exim4/whitelist
+file=/etc/apt/sources.list.d/volatile.list
+file=/etc/apt/sources.list.d/security.list
+file=/etc/apt/sources.list.d/debian.org.list
+file=/etc/apt/sources.list.d/debian.list
+file=/etc/apt/sources.list.d/backports.org.list
+file=/etc/apt/apt.conf.d/local-recommends
 
 [IgnoreNone]
 ##
