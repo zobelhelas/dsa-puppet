@@ -52,5 +52,11 @@ class debian-org {
              mode    => 644,
              ensure  => file,
              source => "puppet:///files/etc/apt/apt.conf.d/local-recommends";
+      "/etc/puppet/puppet.conf":
+             owner   => root,
+             group   => root,
+             mode    => 644,
+             ensure  => file,
+             source => "puppet:///files/etc/puppet/puppet.conf";
    }
 }
