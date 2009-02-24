@@ -7,7 +7,8 @@ class exim {
           ensure  => directory,
           owner   => root,
           group   => root,
-          mode    => 755
+          mode    => 755,
+          purge   => true
         ;
         "/etc/exim4/exim4.conf":
           owner   => root,
