@@ -1,2 +1,1 @@
 deb     http://db.debian.org/debian-admin          lenny            main
-deb     http://db.debian.org/debian-admin          lenny-restricted non-free

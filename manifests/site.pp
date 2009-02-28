@@ -7,5 +7,9 @@ node default {
     include samhain
     include debian-org
     include exim
+
+    if $raidcontroller == "true" {
+        include debian-proliant
+    }
 }
 
