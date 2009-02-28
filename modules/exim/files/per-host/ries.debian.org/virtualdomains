@@ -2,3 +2,4 @@
 # format is
 #  host: user=user group=group directory=dir
 release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
+ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp.debian.org/mail group_writable=true
