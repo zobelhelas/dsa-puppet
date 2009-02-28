@@ -65,9 +65,13 @@ class debian-org {
              mode    => 644,
              ensure  => file,
              source => "puppet:///files/etc/default/puppet",
-             notify  => Exec["puppet reload"];
+             notify  => Exec["puppet restart"];
    }
    exec { "puppet reload":
+             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+             refreshonly => true,
+   }
+   exec { "puppet restart":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
    }
