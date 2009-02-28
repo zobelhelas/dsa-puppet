@@ -8,8 +8,9 @@ node default {
     include debian-org
     include exim
 
-    if $raidcontroller == "true" {
-        include debian-proliant
+    case $raidcontroller {
+        true:    { include debian-proliant }
+        default: {}
     }
 }
 
