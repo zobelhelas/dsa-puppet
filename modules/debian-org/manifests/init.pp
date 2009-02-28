@@ -59,9 +59,26 @@ class debian-org {
              ensure  => file,
              source => "puppet:///files/etc/puppet/puppet.conf",
              notify  => Exec["puppet reload"];
+      "/var/lib/puppet/facter":
+             ensure  => directory,
+             owner   => root,
+             group   => root,
+             mode    => 755,
+             purge   => true;
    }
    exec { "puppet reload":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
+   }
+}
+
+class debian-proliant inherits debian-org {
+   file {
+      "/etc/apt/sources.list.d/debian.restricted.list":
+             owner   => root,
+             group   => root,
+             mode    => 644,
+             ensure  => file,
+             source => "puppet:///files/etc/apt/sources.list.d/debian.restricted.list";
    }
 }
