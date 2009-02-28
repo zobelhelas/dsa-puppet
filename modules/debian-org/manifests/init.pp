@@ -59,7 +59,7 @@ class debian-org {
              ensure  => file,
              source => "puppet:///files/etc/puppet/puppet.conf",
              notify  => Exec["puppet reload"];
-      "/var/lib/puppet/facter":
+      "/var/lib/puppet/facts":
              ensure  => directory,
              owner   => root,
              group   => root,
