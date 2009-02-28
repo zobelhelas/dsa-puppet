@@ -59,12 +59,13 @@ class debian-org {
              ensure  => file,
              source => "puppet:///files/etc/puppet/puppet.conf",
              notify  => Exec["puppet reload"];
-      "/var/lib/puppet/facts":
-             ensure  => directory,
+      "/etc/default/puppet":
              owner   => root,
              group   => root,
-             mode    => 755,
-             purge   => true;
+             mode    => 644,
+             ensure  => file,
+             source => "puppet:///files/etc/default/puppet",
+             notify  => Exec["puppet reload"];
    }
    exec { "puppet reload":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
