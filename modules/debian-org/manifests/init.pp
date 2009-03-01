@@ -17,6 +17,7 @@ class debian-org {
              "puppet": ensure => latest;
              "mtr-tiny": ensure => latest;
              "nload": ensure => latest;
+             "dsa-nagios-nrpe-config": ensure => latest;
    }
    file {
       "/etc/apt/sources.list.d/backports.org.list":
