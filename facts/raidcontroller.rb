@@ -14,8 +14,7 @@ Facter.add("raidcontroller") do
 end
 Facter.add("mptcontroller") do
         confine :kernel => :linux
-        ENV["PATH"]="/bin:/sbin:/usr/bin:/usr/sbin"
         setcode do
-                FileTest.exist?("/proc/mpt/info")
+                FileTest.exist?("/proc/mpt/summary")
         end
 end
