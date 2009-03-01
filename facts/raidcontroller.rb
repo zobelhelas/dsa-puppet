@@ -12,3 +12,10 @@ Facter.add("raidcontroller") do
                 ishp
         end
 end
+Facter.add("mptcontroller") do
+        confine :kernel => :linux
+        ENV["PATH"]="/bin:/sbin:/usr/bin:/usr/sbin"
+        setcode do
+                FileTest.exist?("/proc/mpt/info")
+        end
+end
