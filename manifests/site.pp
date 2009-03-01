@@ -9,7 +9,7 @@ node default {
     include exim
 
     case $raidcontroller {
-        true:    { include debian-proliant }
+        "true":    { include debian-proliant }
         default: {}
     }
 }
