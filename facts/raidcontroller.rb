@@ -1,4 +1,4 @@
-Facter.add("raidcontroller") do
+Facter.add("smartarraycontroller") do
 	confine :kernel => :linux
 	ENV["PATH"]="/bin:/sbin:/usr/bin:/usr/sbin"
 	setcode do

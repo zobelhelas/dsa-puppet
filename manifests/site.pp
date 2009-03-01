@@ -8,7 +8,7 @@ node default {
     include debian-org
     include exim
 
-    case $raidcontroller {
+    case $smartarraycontroller {
         "true":    { include debian-proliant }
         default: {}
     }
