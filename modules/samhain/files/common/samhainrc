@@ -190,10 +190,12 @@ file=/etc/exim4/whitelist
 file=/etc/apt/sources.list.d/volatile.list
 file=/etc/apt/sources.list.d/security.list
 file=/etc/apt/sources.list.d/debian.org.list
+file=/etc/apt/sources.list.d/debian.restricted.list
 file=/etc/apt/sources.list.d/debian.list
 file=/etc/apt/sources.list.d/backports.org.list
 file=/etc/apt/apt.conf.d/local-recommends
 file=/etc/puppet/puppet.conf
+file=/etc/default/puppet
 
 [IgnoreNone]
 ##
