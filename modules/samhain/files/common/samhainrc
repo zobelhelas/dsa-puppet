@@ -100,6 +100,7 @@ file=/etc/exim4
 file=/etc/apt/apt.conf.d
 file=/etc/apt/sources.list.d
 file=/etc/puppet
+file=/etc/default
 
 [LogFiles]
 ##
