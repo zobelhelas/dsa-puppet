@@ -78,6 +78,9 @@ class debian-org {
 }
 
 class debian-proliant inherits debian-org {
+   package {
+      "hpacucli": ensure => latest;
+   }
    file {
       "/etc/apt/sources.list.d/debian.restricted.list":
              owner   => root,
