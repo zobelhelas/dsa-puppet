@@ -210,6 +210,7 @@ file=/etc/default/puppet
 file=/etc/logrotate.d/exim4-paniclog
 file=/etc/logrotate.d/exim4-base
 file=/usr/sbin/dsa-update-apt-status
+file=/etc/nagios/nrpe_dsa.cfg
 file=/usr/lib/nagios/plugins/dsa-check-packages
 file=/usr/lib/nagios/plugins/dsa-check-soas
 file=/usr/lib/nagios/plugins/dsa-check-mirrorsync
