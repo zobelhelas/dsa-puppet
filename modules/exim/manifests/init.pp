@@ -56,6 +56,15 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/helo-check",
                        "puppet:///exim/common/helo-check" ]
           ;
+        "/etc/exim4/locals":
+          owner   => root,
+          group   => root,
+          mode    => 644,
+          ensure  => file,
+          require => Package["exim4-daemon-heavy"],
+          source  => [ "puppet:///exim/per-host/$fqdn/locals",
+                       "puppet:///exim/common/locals" ]
+          ;
         "/etc/exim4/localusers":
           owner   => root,
           group   => root,
