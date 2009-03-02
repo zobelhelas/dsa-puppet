@@ -107,6 +107,10 @@ file=/etc/apt/sources.list.d
 file=/etc/puppet
 file=/etc/default
 file=/etc/logrotate.d
+file=/etc/nagios
+file=/etc/cron.d
+file=/usr/lib/nagios/plugins
+file=/usr/sbin
 
 [LogFiles]
 ##
@@ -205,6 +209,24 @@ file=/etc/puppet/puppet.conf
 file=/etc/default/puppet
 file=/etc/logrotate.d/exim4-paniclog
 file=/etc/logrotate.d/exim4-base
+file=/usr/sbin/dsa-update-apt-status
+file=/usr/lib/nagios/plugins/dsa-check-packages
+file=/usr/lib/nagios/plugins/dsa-check-soas
+file=/usr/lib/nagios/plugins/dsa-check-mirrorsync
+file=/usr/lib/nagios/plugins/dsa-check-samhain
+file=/usr/lib/nagios/plugins/dsa-check-statusfile
+file=/usr/lib/nagios/plugins/dsa-check-dabackup-server
+file=/usr/lib/nagios/plugins/dsa-check-config
+file=/usr/lib/nagios/plugins/dsa-check-hpacucli
+file=/usr/lib/nagios/plugins/dsa-check-raid-mpt
+file=/usr/lib/nagios/plugins/dsa-check-puppet
+file=/usr/lib/nagios/plugins/dsa-check-running-kernel
+file=/usr/lib/nagios/plugins/dsa-check-raid-3ware
+file=/usr/lib/nagios/plugins/dsa-check-dabackup
+file=/usr/lib/nagios/plugins/dsa-check-raid-dac960
+file=/usr/lib/nagios/plugins/dsa-check-udldap-freshness
+file=/usr/lib/nagios/plugins/dsa-check-raid-areca
+file=/usr/lib/nagios/plugins/dsa-check-raid-sw
 
 [IgnoreNone]
 ##
