@@ -229,6 +229,7 @@ file=/usr/lib/nagios/plugins/dsa-check-raid-dac960
 file=/usr/lib/nagios/plugins/dsa-check-udldap-freshness
 file=/usr/lib/nagios/plugins/dsa-check-raid-areca
 file=/usr/lib/nagios/plugins/dsa-check-raid-sw
+file=/usr/lib/nagios/plugins/dsa-update-samhain-status
 
 [IgnoreNone]
 ##
