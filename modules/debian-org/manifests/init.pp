@@ -17,6 +17,8 @@ class debian-org {
              "puppet": ensure => latest;
              "mtr-tiny": ensure => latest;
              "nload": ensure => latest;
+             "pciutils": ensure => latest;
+             "bash-completion": ensure => latest;
              "dsa-nagios-nrpe-config": ensure => latest;
    }
    file {
