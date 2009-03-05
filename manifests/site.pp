@@ -6,11 +6,14 @@ node default {
     include munin-node
     include samhain
     include debian-org
-    include exim
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
         default: {}
+    }
+    case $mta {
+        "exim4":   { include exim }
+        default:   {}
     }
 }
 
