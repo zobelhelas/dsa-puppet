@@ -3,4 +3,4 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-deb     http://security.us.debian.org/             lenny/updates    main
+deb     http://security.debian.org/             lenny/updates    main
