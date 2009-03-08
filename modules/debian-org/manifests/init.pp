@@ -31,47 +31,47 @@ class debian-org {
       "/etc/apt/sources.list.d/backports.org.list":
              owner   => root,
              group   => root,
-             mode    => 644,
+             mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/apt/sources.list.d/backports.org.list";
 
       "/etc/apt/sources.list.d/debian.org.list":
              owner   => root,
              group   => root,
-             mode    => 644,
+             mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/apt/sources.list.d/debian.org.list";
 
       "/etc/apt/sources.list.d/security.list":
              owner   => root,
              group   => root,
-             mode    => 644,
+             mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/apt/sources.list.d/security.list";
 
       "/etc/apt/sources.list.d/volatile.list":
              owner   => root,
              group   => root,
-             mode    => 644,
+             mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/apt/sources.list.d/volatile.list";
       "/etc/apt/apt.conf.d/local-recommends":
              owner   => root,
              group   => root,
-             mode    => 644,
+             mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/apt/apt.conf.d/local-recommends";
       "/etc/puppet/puppet.conf":
              owner   => root,
              group   => root,
-             mode    => 644,
+             mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/puppet/puppet.conf",
              notify  => Exec["puppet reload"];
       "/etc/default/puppet":
              owner   => root,
              group   => root,
-             mode    => 644,
+             mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/default/puppet",
              notify  => Exec["puppet restart"];
@@ -96,7 +96,7 @@ class debian-proliant inherits debian-org {
       "/etc/apt/sources.list.d/debian.restricted.list":
              owner   => root,
              group   => root,
-             mode    => 644,
+             mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/apt/sources.list.d/debian.restricted.list";
    }
