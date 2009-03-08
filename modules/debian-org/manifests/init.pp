@@ -22,6 +22,12 @@ class debian-org {
              "dsa-nagios-nrpe-config": ensure => latest;
    }
    file {
+      "/etc/apt/preferences":
+             owner   => root,
+             group   => root,
+             mode    => 444,
+             ensure  => file,
+             source => "puppet:///files/etc/apt/preferences";
       "/etc/apt/sources.list.d/backports.org.list":
              owner   => root,
              group   => root,
