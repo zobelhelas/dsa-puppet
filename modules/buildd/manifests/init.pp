@@ -1,4 +1,4 @@
-class debian-org {
+class buildd {
    package { "sbuild": ensure => latest;
 # is there a way to wait until the version from buildd.d.o is available?
    }
