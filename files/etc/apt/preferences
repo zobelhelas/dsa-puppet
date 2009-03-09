@@ -5,3 +5,14 @@ Explanation:
 Package: *
 Pin: release o=Backports.org archive
 Pin-Priority: 200
+
+Pin: release o=buildd.debian.org
+Pin-Priority: 400
+
+Package: buildd
+Pin: release o=buildd.debian.org
+Pin-Priority: 400
+
+Package: *
+Pin: release o=buildd.debian.org
+Pin-Priority: -1
