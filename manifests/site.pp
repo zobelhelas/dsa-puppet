@@ -7,9 +7,10 @@ node default {
     include samhain
     include debian-org
 
-    if $smartarraycontroller {
-        include debian-proliant
-    }
+    case $smartarraycontroller {
+        "true":    { include debian-proliant }
+        default: {}
+
     case $mta {
         "exim4":   { include exim }
         default:   {}
