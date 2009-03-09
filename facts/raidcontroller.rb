@@ -32,3 +32,17 @@ Facter.add("3warecontroller") do
 		is3w
 	end
 end
+
+Facter.add("swraid") do
+	confine :kernel => :linux
+	setcode do
+                swraid = "false"
+		if FileTest.exist?("/proc/mdstat") && FileTest.exist?("/sbin/mdadm")
+                        IO.foreach("/proc/mdstat") { |x|
+                                swraid = "true" if x =~ /md[0-9]+ : active/
+                        }
+                end
+                swraid
+	end
+end
+
