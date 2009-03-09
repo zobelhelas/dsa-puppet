@@ -10,6 +10,7 @@ node default {
     case $smartarraycontroller {
         "true":    { include debian-proliant }
         default: {}
+    }
 
     case $mta {
         "exim4":   { include exim }
