@@ -3,4 +3,5 @@
 // USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 //
 
+Acquire::PDiffs "false";
 APT::Install-Recommends 0;
