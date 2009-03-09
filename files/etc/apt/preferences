@@ -6,6 +6,7 @@ Package: *
 Pin: release o=Backports.org archive
 Pin-Priority: 200
 
+Package: sbuild
 Pin: release o=buildd.debian.org
 Pin-Priority: 500
 
