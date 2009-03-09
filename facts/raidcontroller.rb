@@ -9,7 +9,7 @@ Facter.add("smartarraycontroller") do
 				ishp = "true" if s =~ /RAID bus controller: (.*) Smart Array/
 			}
 		end
-		ishp
+		ishp == "true"
 	end
 end
 
@@ -29,7 +29,7 @@ Facter.add("3warecontroller") do
 				is3w = "true" if x =~ /Vendor: 3ware/
 			}
 		end
-		is3w
+		is3w == "true"
 	end
 end
 
@@ -42,7 +42,7 @@ Facter.add("swraid") do
                                 swraid = "true" if x =~ /md[0-9]+ : active/
                         }
                 end
-                swraid
+                swraid == "true"
 	end
 end
 
