@@ -18,7 +18,7 @@ class debian-org {
              "mtr-tiny": ensure => latest;
              "nload": ensure => latest;
              "pciutils": ensure => latest;
-             "dnsutils:": ensure => latest;
+             "dnsutils": ensure => latest;
              "bash-completion": ensure => latest;
              "dsa-nagios-nrpe-config": ensure => latest;
    }
