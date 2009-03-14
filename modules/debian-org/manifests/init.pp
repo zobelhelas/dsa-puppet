@@ -21,6 +21,7 @@ class debian-org {
              "dnsutils": ensure => latest;
              "bash-completion": ensure => latest;
              "dsa-nagios-nrpe-config": ensure => latest;
+             "libfilesystem-ruby1.8": ensure => latest;
    }
    file {
       "/etc/apt/preferences":
