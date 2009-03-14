@@ -1,7 +1,7 @@
 begin
   require 'filesystem'
 rescue Exception => e
-  exit 0
+  return 0
 end
 
 Facter.add("mounts") do
