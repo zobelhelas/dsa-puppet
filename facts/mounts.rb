@@ -10,7 +10,7 @@ Facter.add("mounts") do
 		    "mfs", "shfs", "sysfs", "cifs", "lustre_lite", "tmpfs", "usbfs", "udf"]
 	mountpoints = []
 	FileSystem.mounts.each do |m|
-		if not ignorefs.include?(m.fstype) && m.options !~ /bind/
+                if ((not ignorefs.include?(m.fstype)) && (m.options !~ /bind/))
 			mountpoints << m.mount
 		end
 	end
