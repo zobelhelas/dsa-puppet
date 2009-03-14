@@ -1,4 +1,8 @@
-require 'filesystem'
+begin
+  require 'filesystem'
+rescue Exception => e
+  exit 0
+end
 
 Facter.add("mounts") do
 	ignorefs = ["NFS", "nfs", "nfs4", "afs", "binfmt_misc", "proc", "smbfs", 
