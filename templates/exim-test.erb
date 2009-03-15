@@ -1,4 +1,4 @@
-<% if has_variable?("clamd") && clamd == "$true" -%>
+<% if has_variable?("clamd") && clamd == "true" -%>
 CLAMAV = clamd:/var/run/clamav/clamd.ctl
 <% else -%>
 # CLAMAV is undefined
