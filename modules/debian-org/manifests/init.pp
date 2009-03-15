@@ -63,6 +63,12 @@ class debian-org {
              mode    => 444,
              ensure  => file,
              source => "puppet:///files/etc/apt/apt.conf.d/local-recommends";
+      "/etc/apt/apt.conf.d/local-pdiffs":
+             owner   => root,
+             group   => root,
+             mode    => 444,
+             ensure  => file,
+             source => "puppet:///files/etc/apt/apt.conf.d/local-pdiffs";
       "/etc/puppet/puppet.conf":
              owner   => root,
              group   => root,
