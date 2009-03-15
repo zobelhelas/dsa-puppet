@@ -22,12 +22,12 @@ HAVE_POLICYD = 1
 # HAVE_POLICYD is undefined
 <% end -%>
 <% if has_variable?("bugs_host") && bugs_host == "true" -%>
-HAS_USER_DEBBUGS = 1
+HAVE_USER_DEBBUGS = 1
 <% else -%>
-# HAS_USER_DEBBUGS is undefined
+# HAVE_USER_DEBBUGS is undefined
 <% end -%>
 <% if has_variable?("qa_host") && qa_host == "true" -%>
-HAS_USER_QA = 1
+HAVE_USER_QA = 1
 <% else -%>
-# HAS_USER_QA is undefined
+# HAVE_USER_QA is undefined
 <% end -%>
