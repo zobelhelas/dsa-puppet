@@ -1,13 +1,13 @@
-<% if has_variable?("clamd") && clamd == "$true" then %>
+<% if has_variable?("clamd") && clamd == "$true" -%>
 CLAMAV = clamd:/var/run/clamav/clamd.ctl
-<% else %>
+<% else -%>
 # CLAMAV is undefined
 <% end -%>
-<% if has_variable?("postgrey") && postgrey == "true" then %>
+<% if has_variable?("postgrey") && postgrey == "true" -%>
 USE_GREYLISTING = 1
 # HAVE_GREYLIST is undefined
 HAVE_POSTGREY = 1
-<% else if has_variable?("greylistd") && greylistd == "true" then %>
+<% elsif has_variable?("greylistd") && greylistd == "true" -%>
 USE_GREYLISTING = 1
 HAVE_GREYLIST = 1
 # HAVE_POSTGREY is undefined
@@ -16,13 +16,13 @@ HAVE_GREYLIST = 1
 # HAVE_GREYLIST is undefined
 # USE_GREYLISTING is undefined
 <% end -%>
-<% if has_variable?("bugs_host") && bugs_host == "true" then %>
+<% if has_variable?("bugs_host") && bugs_host == "true" -%>
 HAS_USER_DEBBUGS = 1
-<% else %>
+<% else -%>
 # HAS_USER_DEBBUGS is undefind
 <% end -%>
-<% if has_variable?("qa_host") && qa_host == "true" then %>
+<% if has_variable?("qa_host") && qa_host == "true" -%>
 HAS_USER_QA = 1
-<% else %>
+<% else -%>
 # HAS_USER_QA is undefined
 <% end -%>
