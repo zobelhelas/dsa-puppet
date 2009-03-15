@@ -25,3 +25,6 @@ node default {
     }
 }
 
+node master.debian.org inherits default {
+    include exim-extended
+}

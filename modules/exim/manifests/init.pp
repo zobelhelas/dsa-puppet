@@ -89,3 +89,11 @@ class exim {
     }
 }
 
+class exim-extended inherits exim {
+    file {
+        "/etc/exim4/test":
+          require => Package["exim4-daemon-heavy"],
+          content => template("exim-test.erb")
+          ;
+    }
+}
