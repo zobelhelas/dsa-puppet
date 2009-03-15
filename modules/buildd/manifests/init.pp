@@ -4,10 +4,6 @@ class buildd {
    }
    file {
       "/etc/apt/sources.list.d/buildd.list":
-             owner   => root,
-             group   => root,
-             mode    => 444,
-             ensure  => file,
              source => "puppet:///files/etc/apt/sources.list.d/buildd.list";
              require => Package["apt-transport-https"],
    }

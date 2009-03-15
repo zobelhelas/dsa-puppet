@@ -3,9 +3,6 @@ class samhain {
     package { samhain: ensure => latest }
 
     file { "/etc/samhain/samhainrc":
-        owner   => root,
-        group   => root,
-        mode    => 444,
         source  => [ "puppet:///samhain/per-host/$fqdn/samhainrc",
                      "puppet:///samhain/common/samhainrc" ],
         require => Package["samhain"],
