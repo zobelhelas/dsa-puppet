@@ -38,7 +38,7 @@ Facter.add("greylistd") do
 		FileTest.exist?("/usr/sbin/greylistd")
 	end
 end
-Facter.add("policyd-weight") do
+Facter.add("policydweight") do
 	setcode do
 		FileTest.exist?("/usr/sbin/policyd-weight")
 	end
