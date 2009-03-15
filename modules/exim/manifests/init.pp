@@ -81,19 +81,14 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/logrotate-exim4-paniclog",
                        "puppet:///exim/common/logrotate-exim4-paniclog" ]
           ;
+        "/etc/exim4/local-auto.conf":
+          require => Package["exim4-daemon-heavy"],
+          content => template("exim-local-auto.erb")
+          ;
     }
 
     exec { "exim4 reload":
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
-    }
-}
-
-class exim-extended inherits exim {
-    file {
-        "/etc/exim4/test":
-          require => Package["exim4-daemon-heavy"],
-          content => template("exim-test.erb")
-          ;
     }
 }

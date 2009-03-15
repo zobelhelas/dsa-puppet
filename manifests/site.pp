@@ -24,7 +24,3 @@ node default {
         default:   {}
     }
 }
-
-node master inherits default {
-    include exim-extended
-}
