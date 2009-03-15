@@ -199,6 +199,7 @@ file=/etc/exim4/rcpthosts
 file=/etc/exim4/rhsbllist
 file=/etc/exim4/virtualdomains
 file=/etc/exim4/whitelist
+file=/etc/exim4/local-auto.conf
 file=/etc/apt/preferences
 file=/etc/apt/sources.list.d/volatile.list
 file=/etc/apt/sources.list.d/security.list
