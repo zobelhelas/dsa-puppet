@@ -28,3 +28,18 @@ Facter.add("postgres83") do
 		FileTest.exist?("/usr/lib/postgresql/8.3/bin/postgres")
 	end
 end
+Facter.add("postgrey") do
+	setcode do
+		FileTest.exist?("/usr/sbin/postgrey")
+	end
+end
+Facter.add("greylistd") do
+	setcode do
+		FileTest.exist?("/usr/sbin/greylistd")
+	end
+end
+Facter.add("policyd-weight") do
+	setcode do
+		FileTest.exist?("/usr/sbin/policyd-weight")
+	end
+end
