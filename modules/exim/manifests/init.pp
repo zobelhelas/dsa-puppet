@@ -2,7 +2,7 @@ class exim {
 
     package { exim4-daemon-heavy: ensure => latest }
 
-    file { 
+    file {
         "/etc/exim4/":
           ensure  => directory,
           owner   => root,
