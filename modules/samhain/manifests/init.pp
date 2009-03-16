@@ -1,6 +1,6 @@
 class samhain {
 
-    package { samhain: ensure => latest }
+    package { samhain: ensure => installed }
 
     file { "/etc/samhain/samhainrc":
         source  => [ "puppet:///samhain/per-host/$fqdn/samhainrc",

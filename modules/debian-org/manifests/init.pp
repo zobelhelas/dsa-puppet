@@ -1,27 +1,27 @@
 class debian-org {
    package { "userdir-ldap": ensure => latest;
-             "zsh": ensure => latest;
-             "tcsh": ensure => latest;
-             "pdksh": ensure => latest;
-             "ksh": ensure => latest;
-             "csh": ensure => latest;
-             "ntp": ensure => latest;
-             "locales-all": ensure => latest;
-             "sudo": ensure => latest;
-             "libpam-pwdfile": ensure => latest;
-             "vim": ensure => latest;
-             "gnupg": ensure => latest;
-             "bzip2": ensure => latest;
-             "less": ensure => latest;
-             "ed": ensure => latest;
-             "puppet": ensure => latest;
-             "mtr-tiny": ensure => latest;
-             "nload": ensure => latest;
-             "pciutils": ensure => latest;
-             "dnsutils": ensure => latest;
-             "bash-completion": ensure => latest;
+             "zsh": ensure => installed;
+             "tcsh": ensure => installed;
+             "pdksh": ensure => installed;
+             "ksh": ensure => installed;
+             "csh": ensure => installed;
+             "ntp": ensure => installed;
+             "locales-all": ensure => installed;
+             "sudo": ensure => installed;
+             "libpam-pwdfile": ensure => installed;
+             "vim": ensure => installed;
+             "gnupg": ensure => installed;
+             "bzip2": ensure => installed;
+             "less": ensure => installed;
+             "ed": ensure => installed;
+             "puppet": ensure => installed;
+             "mtr-tiny": ensure => installed;
+             "nload": ensure => installed;
+             "pciutils": ensure => installed;
+             "dnsutils": ensure => installed;
+             "bash-completion": ensure => installed;
              "dsa-nagios-nrpe-config": ensure => latest;
-             "libfilesystem-ruby1.8": ensure => latest;
+             "libfilesystem-ruby1.8": ensure => installed;
    }
    file {
       "/etc/apt/preferences":
@@ -57,9 +57,9 @@ class debian-org {
 
 class debian-proliant inherits debian-org {
    package {
-      "hpacucli": ensure => latest;
-      "cpqarrayd": ensure => latest;
-      "arrayprobe": ensure => latest;
+      "hpacucli": ensure => installed;
+      "cpqarrayd": ensure => installed;
+      "arrayprobe": ensure => installed;
    }
    file {
       "/etc/apt/sources.list.d/debian.restricted.list":

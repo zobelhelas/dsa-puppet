@@ -1,6 +1,6 @@
 class exim {
 
-    package { exim4-daemon-heavy: ensure => latest }
+    package { exim4-daemon-heavy: ensure => installed }
 
     file {
         "/etc/exim4/":

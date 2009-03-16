@@ -1,6 +1,6 @@
 class munin-node {
 
-    package { munin-node: ensure => latest }
+    package { munin-node: ensure => installed }
 
     file { "/etc/munin/munin-node.conf":
         source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.conf",
