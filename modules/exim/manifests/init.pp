@@ -92,3 +92,31 @@ class exim {
         refreshonly => true,
     }
 }
+
+class eximmx inherits exim {
+    package { "clamav-daemon": ensure => latest;
+              "postgrey": ensure => installed;
+    }
+
+    file {
+        "/etc/default/postgrey":
+          source  => "puppet:///exim/common/postgrey-default",
+          require => Package["postgrey"],
+          notify  => Exec["postgrey restart"]
+          ;
+        "/etc/clamav/clamd.conf":
+          source  => "puppet:///exim/common/clamd.conf",
+          require => Package["clamav-daemon"],
+          notify  => Exec["clamav-daemon restart"]
+          ;
+    }
+
+    exec { "clamav-daemon restart":
+        path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+        refreshonly => true,
+    }
+    exec { "postgrey restart":
+        path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+        refreshonly => true,
+    }
+}
