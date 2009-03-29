@@ -94,6 +94,6 @@ class exim {
 }
 
 class eximmx inherits exim {
-    include clamav;
-    include postgrey;
+    include clamav
+    include postgrey
 }
