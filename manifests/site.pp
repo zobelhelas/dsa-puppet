@@ -24,3 +24,7 @@ node default {
         default:   {}
     }
 }
+
+node penalosa.debian.org inherits default {
+    include hosts
+}
