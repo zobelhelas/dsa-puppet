@@ -25,6 +25,6 @@ node default {
     }
 }
 
-node penalosa.debian.org inherits default {
+node penalosa inherits default {
     include hosts
 }
