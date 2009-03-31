@@ -32,6 +32,15 @@ node default {
                    }
         default:   {}
     }
+
+
+    case $hostname {
+        spohr      {
+                      import "nagios"
+                      include nagios-server
+                   }
+        default:   {}
+    }
 }
 
 node penalosa inherits default {
