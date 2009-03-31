@@ -102,8 +102,8 @@ class nagios-server {
 			source  => [ "puppet:///nagios/dsa-nagios/generated/auto-serviceextinfo.cfg" ],
 			require => Package["nagios3"],
 			notify  => Exec["nagios3 reload"];
-		"/etc/nagios3/puppetconf.d/auto-servicesgroups.cfg":
-			source  => [ "puppet:///nagios/dsa-nagios/generated/auto-servicesgroups.cfg" ],
+		"/etc/nagios3/puppetconf.d/auto-servicegroups.cfg":
+			source  => [ "puppet:///nagios/dsa-nagios/generated/auto-servicegroups.cfg" ],
 			require => Package["nagios3"],
 			notify  => Exec["nagios3 reload"];
 		"/etc/nagios3/puppetconf.d/auto-services.cfg":
