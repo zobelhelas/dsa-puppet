@@ -18,14 +18,14 @@ class nagiosclient {
 			             "puppet:///nagios/common/nrpe.cfg" ],
 			require => Package["nagios-nrpe-server"],
 			notify  => Exec["nagios-nrpe-server restart"];
-		"/etc/nagios/nrpe.cfg":
-			source  => [ "puppet:///nagios/per-host/$fqdn/nrpe.cfg",
-			             "puppet:///nagios/common/nrpe.cfg" ],
-			require => Package["nagios-nrpe-server"],
-			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d":
 			mode    => 755,
 			ensure  => directory;
+		"/etc/nagios/nrpe.d/debianorg.cfg":
+			source  => [ "puppet:///nagios/per-host/$fqdn/inc-debian.org",
+			             "puppet:///nagios/common/inc-debian.org" ],
+			require => Package["nagios-nrpe-server"],
+			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d/nrpe_dsa.cfg":
 			source  => [ "puppet:///nagios/dsa-nagios/generated/nrpe_dsa.cfg" ],
 			require => Package["nagios-nrpe-server"],
