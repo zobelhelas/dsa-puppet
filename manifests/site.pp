@@ -25,7 +25,7 @@ node default {
     }
 
     case $hostname {
-        spohr:     { include nagios-client }
+        spohr:     { include nagiosclient }
         default:   {}
     }
 }
