@@ -21,7 +21,6 @@ class debian-org {
              "pciutils": ensure => installed;
              "dnsutils": ensure => installed;
              "bash-completion": ensure => installed;
-             "dsa-nagios-nrpe-config": ensure => latest;
              "libfilesystem-ruby1.8": ensure => installed;
    }
    file {
