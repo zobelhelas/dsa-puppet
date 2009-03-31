@@ -24,15 +24,8 @@ node default {
         default:   {}
     }
 
-    case $hostname {
-        spohr,bartok,geo1:
-                   {
-                      import "nagios"
-                      include nagios-client
-                   }
-        default:   {}
-    }
-
+    import "nagios"
+    include nagios-client
 
     case $hostname {
         spohr:     {
