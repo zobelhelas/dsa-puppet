@@ -44,6 +44,7 @@ class nagios-server {
 		nagios3: ensure => installed;
 		nagios-nrpe-plugin: ensure => installed;
 		nagios-plugins: ensure => installed;
+		nagios-images: ensure => installed;
 	}
 
 	file {
