@@ -1,7 +1,7 @@
 class nagiosclient {
 	package {
-		nagios-nrpe-server: ensure => installed,
-		dsa-nagios-checks: ensure => installed
+		nagios-nrpe-server: ensure => installed;
+		dsa-nagios-checks: ensure => installed;
 	}
 
 	file {
