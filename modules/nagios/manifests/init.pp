@@ -29,7 +29,7 @@ class nagios-client {
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d/nrpe_dsa.cfg":
 			source  => [ "puppet:///nagios/dsa-nagios/generated/nrpe_dsa.cfg" ],
-			require => Package["nagios-nrpe-server"],
+			require => Package["dsa-nagios-checks"],
 			notify  => Exec["nagios-nrpe-server restart"];
 	}
 
