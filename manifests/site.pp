@@ -35,7 +35,7 @@ node default {
 
 
     case $hostname {
-        spohr      {
+        spohr:     {
                       import "nagios"
                       include nagios-server
                    }
