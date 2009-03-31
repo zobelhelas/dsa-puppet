@@ -61,6 +61,10 @@ class nagios-server {
 			require => Package["nagios3"],
 			notify  => Exec["nagios3 reload"];
 
+		"/etc/nagios3/puppetconf.d":
+			mode    => 755,
+			ensure  => directory;
+
 		"/etc/nagios3/puppetconf.d/contacts.cfg":
 			source  => [ "puppet:///nagios/dsa-nagios/static/conf.d/contacts.cfg" ],
 			require => Package["nagios3"],
