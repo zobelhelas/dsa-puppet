@@ -23,6 +23,11 @@ node default {
         "exim4":   { include exim }
         default:   {}
     }
+
+    case $hostname {
+        spohr:     { include nagios-client }
+        default:   {}
+    }
 }
 
 node penalosa inherits default {
