@@ -31,6 +31,11 @@ class nagios-client {
 			source  => [ "puppet:///nagios/dsa-nagios/generated/nrpe_dsa.cfg" ],
 			require => Package["dsa-nagios-checks"],
 			notify  => Exec["nagios-nrpe-server restart"];
+
+		"/etc/nagios/obsolete-packages-ignore":
+			source  => [ "puppet:///nagios/per-host/$fqdn/obsolete-packages-ignore",
+			             "puppet:///nagios/common/obsolete-packages-ignore" ],
+			require => Package["dsa-nagios-checks"];
 	}
 
 	exec { "nagios-nrpe-server restart":
