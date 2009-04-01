@@ -218,6 +218,7 @@ file=/etc/logrotate.d/exim4-base
 file=/usr/sbin/dsa-update-apt-status
 file=/usr/sbin/dsa-update-samhain-status
 file=/etc/nagios/nrpe.d/nrpe_dsa.cfg
+file=/etc/nagios/obsolete-packages-ignore
 file=/usr/lib/nagios/plugins/dsa-check-packages
 file=/usr/lib/nagios/plugins/dsa-check-soas
 file=/usr/lib/nagios/plugins/dsa-check-mirrorsync
