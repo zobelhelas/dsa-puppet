@@ -10,6 +10,13 @@ class exim {
           mode    => 755,
           purge   => true
         ;
+        "/etc/exim4/ssl":
+          ensure  => directory,
+          owner   => root,
+          group   => Debian-exim,
+          mode    => 750,
+          purge   => true
+        ;
         "/etc/exim4/exim4.conf":
           source  => [ "puppet:///exim/per-host/$fqdn/exim4.conf",
                        "puppet:///exim/common/exim4.conf" ],
@@ -84,6 +91,20 @@ class exim {
         "/etc/exim4/local-auto.conf":
           require => Package["exim4-daemon-heavy"],
           content => template("exim-local-auto.erb")
+          ;
+        "/etc/exim4/ssl/thishost.crt":
+          require => Package["exim4-daemon-heavy"],
+          source  => "puppet:///exim/certs/$fqdn.crt"
+          owner   => root,
+          group   => Debian-exim,
+          mode    => 640,
+          ;
+        "/etc/exim4/ssl/thishost.key":
+          require => Package["exim4-daemon-heavy"],
+          source  => "puppet:///exim/certs/$fqdn.key"
+          owner   => root,
+          group   => Debian-exim,
+          mode    => 640,
           ;
     }
 
