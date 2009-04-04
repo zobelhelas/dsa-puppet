@@ -106,6 +106,20 @@ class exim {
           group   => Debian-exim,
           mode    => 640
           ;
+        "/etc/exim4/ssl/ca.crt":
+          require => Package["exim4-daemon-heavy"],
+          source  => "puppet:///exim/certs/ca.crt",
+          owner   => root,
+          group   => Debian-exim,
+          mode    => 640
+          ;
+        "/etc/exim4/ssl/ca.crl":
+          require => Package["exim4-daemon-heavy"],
+          source  => "puppet:///exim/certs/ca.crl",
+          owner   => root,
+          group   => Debian-exim,
+          mode    => 640
+          ;
     }
 
     exec { "exim4 reload":
