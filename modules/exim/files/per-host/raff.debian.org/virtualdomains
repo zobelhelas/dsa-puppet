@@ -7,3 +7,4 @@
 # format is
 #  host: user=user group=group directory=dir
 buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail
+logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail
