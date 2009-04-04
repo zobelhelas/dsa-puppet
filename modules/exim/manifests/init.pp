@@ -94,14 +94,14 @@ class exim {
           ;
         "/etc/exim4/ssl/thishost.crt":
           require => Package["exim4-daemon-heavy"],
-          source  => "puppet:///exim/certs/$fqdn.crt"
+          source  => "puppet:///exim/certs/$fqdn.crt",
           owner   => root,
           group   => Debian-exim,
           mode    => 640
           ;
         "/etc/exim4/ssl/thishost.key":
           require => Package["exim4-daemon-heavy"],
-          source  => "puppet:///exim/certs/$fqdn.key"
+          source  => "puppet:///exim/certs/$fqdn.key",
           owner   => root,
           group   => Debian-exim,
           mode    => 640
