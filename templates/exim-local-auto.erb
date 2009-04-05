@@ -3,6 +3,7 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+# Various bits of software
 <% if has_variable?("clamd") && clamd == "true" -%>
 CLAMAV = clamd:/var/run/clamav/clamd.ctl
 <% else -%>
@@ -26,6 +27,8 @@ HAVE_POLICYD = 1
 <% else -%>
 # HAVE_POLICYD is undefined
 <% end -%>
+
+# user settings (controls some mail routing)
 <% if has_variable?("bugs_host") && bugs_host == "true" -%>
 HAVE_USER_DEBBUGS = 1
 <% else -%>
@@ -36,6 +39,8 @@ HAVE_USER_QA = 1
 <% else -%>
 # HAVE_USER_QA is undefined
 <% end -%>
+
+# SSL stuff for mail relays
 <% if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" -%>
 USE_TLS = 1
 <% else -%>
