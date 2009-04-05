@@ -36,3 +36,8 @@ HAVE_USER_QA = 1
 <% else -%>
 # HAVE_USER_QA is undefined
 <% end -%>
+<% if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" -%>
+USE_TLS = 1
+<% else -%>
+# USE_TLS is undefined
+<% end -%>
