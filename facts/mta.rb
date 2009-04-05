@@ -8,7 +8,7 @@ Facter.add("mta") do
 	end
 end
 
-facter.add("exim_ssl_certs") do
+Facter.add("exim_ssl_certs") do
 	setcode do
 		FileTest.exist?("/etc/exim4/ssl/") &&
 		FileTest.exist?("/etc/exim4/ssl/ca.crl") &&
