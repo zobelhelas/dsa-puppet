@@ -38,6 +38,8 @@ class debian-org {
              source => "puppet:///files/etc/apt/apt.conf.d/local-recommends";
       "/etc/apt/apt.conf.d/local-pdiffs":
              source => "puppet:///files/etc/apt/apt.conf.d/local-pdiffs";
+      "/etc/timezone":
+             source => "puppet:///files/etc/timezone";
       "/etc/puppet/puppet.conf":
              source => "puppet:///files/etc/puppet/puppet.conf",
              notify  => Exec["puppet reload"];
