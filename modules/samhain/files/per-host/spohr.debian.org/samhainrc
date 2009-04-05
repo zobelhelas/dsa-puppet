@@ -91,6 +91,7 @@ file=/etc/bind/db.debian.net
 file=/etc/exim4/bsmtp
 
 
+
 #
 # There are files in /etc that might change, thus changing the directory
 # timestamps. Put it here as 'file', and in the ReadOnly section as 'dir'.
@@ -104,6 +105,7 @@ file=/etc/bind
 file=/etc/samhain
 file=/etc/munin
 file=/etc/exim4
+file=/etc/exim4/ssl
 file=/etc/apt
 file=/etc/apt/apt.conf.d
 file=/etc/apt/sources.list.d
@@ -204,6 +206,10 @@ file=/etc/exim4/rhsbllist
 file=/etc/exim4/virtualdomains
 file=/etc/exim4/whitelist
 file=/etc/exim4/local-auto.conf
+file=/etc/exim4/ssl/ca.crt
+file=/etc/exim4/ssl/ca.crl
+file=/etc/exim4/ssl/thishost.crt
+file=/etc/exim4/ssl/thishost.key
 file=/etc/apt/preferences
 file=/etc/apt/sources.list.d/volatile.list
 file=/etc/apt/sources.list.d/security.list
