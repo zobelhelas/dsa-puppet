@@ -23,6 +23,11 @@ class exim {
           require => Package["exim4-daemon-heavy"],
           notify  => Exec["exim4 reload"]
           ;
+        "/etc/exim4/manualroute":
+          require => Package["exim4-daemon-heavy"],
+          source  => [ "puppet:///exim/per-host/$fqdn/manualroute",
+                       "puppet:///exim/common/manualroute" ]
+          ;
         "/etc/exim4/blacklist":
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/blacklist",
