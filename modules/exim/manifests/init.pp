@@ -95,7 +95,7 @@ class exim {
           ;
         "/etc/exim4/local-auto.conf":
           require => Package["exim4-daemon-heavy"],
-          content => template("exim-local-auto.erb")
+          content => template("exim-local-auto.erb"),
           notify  => Exec["exim4 reload"]
           ;
         "/etc/exim4/ssl/thishost.crt":
