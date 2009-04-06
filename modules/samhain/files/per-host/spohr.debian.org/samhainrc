@@ -194,6 +194,7 @@ file=/etc/postfix/debianhosts.db
 file=/etc/timezone
 file=/etc/samhain/samhainrc
 file=/etc/munin/munin-node.conf
+file=/etc/userdir-ldap.confc
 file=/etc/exim4/blacklist
 file=/etc/exim4/callout_users
 file=/etc/exim4/exim4.conf
