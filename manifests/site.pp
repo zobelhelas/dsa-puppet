@@ -37,7 +37,7 @@ node default {
 
     case $apache2 {
         "true":    { case $hostname {
-                        "carver":  { import "apache2" }
+                        "carver":  { include apache2 }
                         default:   {}
                    } }
         default: {}
