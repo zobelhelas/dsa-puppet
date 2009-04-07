@@ -16,9 +16,9 @@ class apache2 {
 			require => Package["apache2"],
 			notify  => Exec["apache2 reload"];
 
-		"/etc/logroate.d/apache2":
-			source  => [ "puppet:///apache2/per-host/$fqdn/etc/logroate.d/apache2",
-			             "puppet:///apache2/common/etc/logroate.d/apache2" ];
+		"/etc/logrotate.d/apache2":
+			source  => [ "puppet:///apache2/per-host/$fqdn/etc/logrotate.d/apache2",
+			             "puppet:///apache2/common/etc/logrotate.d/apache2" ];
 
 		"/srv/www":
 			mode    => 755,
