@@ -7,4 +7,4 @@
 ## example:
 ## buildd.debian.org: raff.debian.org::587 byname
 
-lafayette.debian.org: lafayette.debian.org:587
+lafayette.debian.org: lafayette.debian.org::587
