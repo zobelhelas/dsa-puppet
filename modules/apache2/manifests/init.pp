@@ -15,6 +15,12 @@ class apache2 {
 			             "puppet:///apache2/common/etc/apache2/sites-available/default-debian.org" ],
 			require => Package["apache2"],
 			notify  => Exec["apache2 reload"];
+		"/srv/www":
+			mode    => 755,
+			ensure  => directory;
+		"/srv/www/default.debian.org":
+			mode    => 755,
+			ensure  => directory;
 		"/srv/www/default.debian.org/htdocs":
 			mode    => 755,
 			ensure  => directory;
