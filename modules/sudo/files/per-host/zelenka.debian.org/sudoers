@@ -1,0 +1,32 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# /etc/sudoers
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# See the man page for details on how to write a sudoers file.
+#
+
+Defaults env_reset
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL) ALL
+
+# local folks
+%zivit-admins	ALL= NOPASSWD: ALL
+
+%adm    ALL=(ALL) ALL
+%adm    ALL=(ALL) NOPASSWD: /usr/bin/apt-get update, /usr/bin/apt-get dist-upgrade, /usr/bin/apt-get clean, /usr/sbin/samhain -t check -i -p err -s none -l none -m none
+%adm    ALL=(ALL) NOPASSWD: /usr/sbin/upgrade-porter-chroots
+
+nagios  ALL=(ALL) NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
+nagios ALL=(ALL) NOPASSWD: /usr/sbin/samhain -t check --foreground -p err -s none -l none -m none

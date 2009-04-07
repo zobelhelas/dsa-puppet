@@ -1,0 +1,42 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# sudoers file.
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# See the man page for details on how to write a sudoers file.
+#
+
+# hack to fix Jan. 06 sudo breakage 20060126 MSch
+Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root   	  ALL=(ALL) ALL
+doko      ALL = NOPASSWD: ALL
+gotom     ALL = NOPASSWD: ALL
+joey      ALL = NOPASSWD: ALL
+
+# m68k buildd admins
+adconrad  ALL = NOPASSWD: ALL
+buildd    ALL = NOPASSWD: ALL
+cts       ALL = NOPASSWD: ALL
+schmitz   ALL = NOPASSWD: ALL
+smarenka  ALL =(ALL) NOPASSWD: ALL
+smurf     ALL = NOPASSWD: ALL
+wouter    ALL = NOPASSWD: ALL
+younie    ALL = NOPASSWD: ALL
+luk       ALL = NOPASSWD: ALL
+
+# Debian Administration
+%adm   	  ALL=(ALL) ALL
+%adm    ALL=(ALL) NOPASSWD: /usr/bin/apt-get update, /usr/bin/apt-get dist-upgrade, /usr/bin/apt-get clean, /usr/sbin/samhain -t check -i -p err -s none -l none -m none
+%adm    ALL=(ALL) NOPASSWD: /usr/sbin/upgrade-porter-chroots
