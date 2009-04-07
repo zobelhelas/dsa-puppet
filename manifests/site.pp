@@ -42,6 +42,12 @@ node default {
                    } }
         default: {}
     }
+
+    # test here first
+    case $hostname {
+        handel:    { include sudo }
+        default:   {}
+    }
 }
 
 node penalosa inherits default {
