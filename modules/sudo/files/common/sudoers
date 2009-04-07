@@ -1,14 +1,21 @@
+# /etc/sudoers
 ##
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-# /etc/sudoers
-#
-# This file MUST be edited with the 'visudo' command as root.
-#
-# See the man page for details on how to write a sudoers file.
-#
+###################################################################
+###################################################################
+###################################################################
+##
+## PLEASE EDIT THIS FILE WITH THE visud COMMAND TO ENSURE IT
+## IS SYNTACTICALLY VALID.
+##
+##  /usr/sbin/visudo -f sudoers
+##
+###################################################################
+###################################################################
+###################################################################
 
 Defaults	env_reset
 
