@@ -93,6 +93,12 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/logrotate-exim4-paniclog",
                        "puppet:///exim/common/logrotate-exim4-paniclog" ]
           ;
+        "/etc/exim4/local-settings.conf":
+          require => Package["exim4-daemon-heavy"],
+          source  => [ "puppet:///exim/per-host/$fqdn/local-settings.conf",
+                       "puppet:///exim/common/local-settings.conf" ]
+          notify  => Exec["exim4 reload"]
+          ;
         "/etc/exim4/local-auto.conf":
           require => Package["exim4-daemon-heavy"],
           content => template("exim-local-auto.erb"),
