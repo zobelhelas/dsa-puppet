@@ -8,7 +8,6 @@ class debian-org {
              "csh": ensure => installed;
              "ntp": ensure => installed;
              "locales-all": ensure => installed;
-             "sudo": ensure => installed;
              "libpam-pwdfile": ensure => installed;
              "vim": ensure => installed;
              "gnupg": ensure => installed;
