@@ -96,7 +96,7 @@ class exim {
         "/etc/exim4/local-settings.conf":
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/local-settings.conf",
-                       "puppet:///exim/common/local-settings.conf" ]
+                       "puppet:///exim/common/local-settings.conf" ],
           notify  => Exec["exim4 reload"]
           ;
         "/etc/exim4/local-auto.conf":
