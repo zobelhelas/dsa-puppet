@@ -47,10 +47,3 @@ USE_TLS = 1
 # USE_TLS is undefined
 <% end -%>
 
-# Firewall stuff
-<% if has_variable?("fqdn") && fqdn == "lafayette.debian.org" -%>
-STUPID_FIREWALL = 1
-<% else -%>
-# STUPID_FIREWALL is undefined
-<% end -%>
-
