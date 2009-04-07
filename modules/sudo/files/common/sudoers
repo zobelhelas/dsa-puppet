@@ -38,3 +38,8 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 
 # groups and their role accounts
 %mirroradm	ALL=(archvsync)	ALL
+
+# buildd
+Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
+buildd		ALL=(ALL)	NOPASSWD: ALL
+%buildd		ALL=(buildd)	ALL
