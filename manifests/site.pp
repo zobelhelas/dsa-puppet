@@ -45,7 +45,7 @@ node default {
 
     # test here first
     case $hostname {
-        handel,geo1,geo2,geo3,wieck:    { include sudo }
+        handel,geo1,geo2,geo3,wieck,brahms,bartok,spohr,sperger,carver,rore,malo:    { include sudo }
         default:   {}
     }
 }
