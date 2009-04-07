@@ -1,4 +1,8 @@
 class apache2 {
+	package {
+		apache2: ensure => installed;
+	}
+
 	file {
 		"/etc/apache2/conf.d/security":
 			source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/security",
