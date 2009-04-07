@@ -34,6 +34,14 @@ node default {
                    }
         default:   {}
     }
+
+    case $apache2 {
+        "true":    { case $hostname {
+                        carver:     { import "apache2" }
+                        default:   {}
+                   }
+        default: {}
+    }
 }
 
 node penalosa inherits default {
