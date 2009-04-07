@@ -39,7 +39,7 @@ node default {
         "true":    { case $hostname {
                         carver:     { import "apache2" }
                         default:   {}
-                   }
+                   } }
         default: {}
     }
 }
