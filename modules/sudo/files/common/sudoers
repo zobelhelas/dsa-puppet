@@ -35,3 +35,6 @@ root	ALL=(ALL) ALL
 
 # nagios
 nagios  ALL=(ALL) NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
+
+# groups and their role accounts
+%mirroradm ALL=(archvsync) ALL
