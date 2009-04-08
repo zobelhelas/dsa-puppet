@@ -43,6 +43,12 @@ node default {
                    } }
         default: {}
     }
+
+    case $hostname {
+        malo:      { include buildd }
+        default:   {}
+    }
+
 }
 
 node penalosa inherits default {
