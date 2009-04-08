@@ -42,10 +42,10 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 # with smartarray controllers
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller all show
-nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd all show
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[02 pd all show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd [0-9]\:[0-9] show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd [0-9]I\:[0-9]\:[0-9] show
-nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[02] show status
 # other raid controllers
 nagios		master=(ALL)	NOPASSWD: /usr/sbin/mpt-status -s
 nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
