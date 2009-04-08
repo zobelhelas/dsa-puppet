@@ -45,6 +45,8 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd all show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd [0-9]\:[0-9] show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd [0-9]I\:[0-9]\:[0-9] show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
+# other raid controllers
+nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
 
 # groups and their role accounts
 %buildd		ALL=(buildd)	ALL
