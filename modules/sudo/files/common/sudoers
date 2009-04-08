@@ -51,6 +51,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 %mirroradm	ALL=(archvsync)	ALL
 %piuparts	ALL=(piupartsm)	ALL
 %piuparts	ALL=(piupartss)	ALL
+%pkg_maint	ALL=(pkg_user)	ALL
 %uddadm		ALL=(udd)	ALL
 %wikiadm	ALL=(wiki)	ALL
 
@@ -63,3 +64,5 @@ buildd		ALL=(ALL)	NOPASSWD: ALL
 %buildd		ALL=(buildd)	ALL
 # The piuparts slave needs to handle chroots
 piupartss	piatti=(ALL)	NOPASSWD: ALL
+# trigger of mirror run for packages
+pkg_user	powell=(archvsync) NOPASSWD: /home/archvsync/bin/pushpdo
