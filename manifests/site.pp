@@ -45,7 +45,7 @@ node default {
 
     # test here first
     case $hostname {
-        handel,geo1,geo2,geo3,wieck,brahms,bartok,spohr,sperger,carver,rore,malo,peri,penalosa,praetorius,schein,villa,lobos,steffani,kassia,pergolesi,lafayette,rem,albeniz,goetz,smetana,allegri,puccini,ball,argento,arcadelt,dijkstra,schumann,caballero,voltaire,pescetti,mundy,agricola,goedel,lebrun,mayer,mayr,merulo,morales,murphy,paer,saens,schroeder,spontini,widor,zelenka,agnesi,piatti,powell,samosa,gluck:    { include sudo }
+        handel,geo1,geo2,geo3,wieck,brahms,bartok,spohr,sperger,carver,rore,malo,peri,penalosa,praetorius,schein,villa,lobos,steffani,kassia,pergolesi,lafayette,rem,albeniz,goetz,smetana,allegri,puccini,ball,argento,arcadelt,dijkstra,schumann,caballero,voltaire,pescetti,mundy,agricola,goedel,lebrun,mayer,mayr,merulo,morales,murphy,paer,saens,schroeder,spontini,widor,zelenka,agnesi,piatti,powell,samosa,gluck,rietz:    { include sudo }
         default:   {}
     }
 }
