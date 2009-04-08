@@ -48,9 +48,11 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 
 # groups and their role accounts
 %buildd		ALL=(buildd)	ALL
+%debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
 %debwww		ALL=(debwww)	ALL
 %forums		ALL=(forums)	ALL
+%keyring	ALL=(keyring)	ALL
 %lintian	ALL=(lintian)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %piuparts	ALL=(piupartsm)	ALL
@@ -60,6 +62,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 %popcon		ALL=(popcon)	ALL
 %snapshot	ALL=(snapshot)	ALL
 %uddadm		ALL=(udd)	ALL
+%wbadm		ALL=(wbadm)	ALL
 %wikiadm	ALL=(wiki)	ALL
 
 # some groups are in apachectrl on "their" hosts so they can reload apache and update their vhost
@@ -69,6 +72,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 # FIXME: change that ALL for hosts to a hostlist of buildds?
 Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
+
 # The piuparts slave needs to handle chroots
 piupartss	piatti=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
@@ -77,3 +81,4 @@ pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 %adm		ALL=(root)		NOPASSWD: /etc/init.d/bind9 reload
 # remote power to babylon5 in the same rack:
 joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
+%wbadm		raff=(root)		/usr/local/bin/update-buildd-sshkeys
