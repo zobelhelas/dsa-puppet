@@ -74,3 +74,5 @@ piupartss	piatti=(ALL)		NOPASSWD: ALL
 pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # on samosa, the domains git thing will run bind9 reload afterwards
 %adm		ALL=(root)		NOPASSWD: /etc/init.d/bind9 reload
+# remote power to babylon5 in the same rack:
+joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
