@@ -54,6 +54,7 @@ nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 # groups and their role accounts
 %buildd		ALL=(buildd)	ALL
 %d-i		ALL=(d-i)	ALL
+%dde		ALL=(dde)	ALL
 %debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
 %debian-release	ALL=(release)	ALL
@@ -62,6 +63,7 @@ nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 %keyring	ALL=(keyring)	ALL
 %lintian	ALL=(lintian)	ALL
 %mirroradm	ALL=(archvsync)	ALL
+%nm		ALL=(nm)	ALL
 %piuparts	ALL=(piupartsm)	ALL
 %piuparts	ALL=(piupartss)	ALL
 %pkg_maint	ALL=(pkg_user)	ALL
