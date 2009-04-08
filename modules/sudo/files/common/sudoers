@@ -48,6 +48,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 
 # groups and their role accounts
 %debbugs	ALL=(debbugs)	ALL
+%buildd		ALL=(buildd)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %piuparts	ALL=(piupartsm)	ALL
 %piuparts	ALL=(piupartss)	ALL
@@ -59,10 +60,10 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 %apachectrl	ALL=(root)	/usr/sbin/apache2-vhost-update
 
 # buildd
+# FIXME: change that ALL for hosts to a hostlist of buildds?
 Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
-buildd		ALL=(ALL)	NOPASSWD: ALL
-%buildd		ALL=(buildd)	ALL
+buildd		ALL=(ALL)		NOPASSWD: ALL
 # The piuparts slave needs to handle chroots
-piupartss	piatti=(ALL)	NOPASSWD: ALL
+piupartss	piatti=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
-pkg_user	powell=(archvsync) NOPASSWD: /home/archvsync/bin/pushpdo
+pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
