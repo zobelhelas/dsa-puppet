@@ -47,12 +47,17 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd [0-9]I\:[0-9
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 
 # groups and their role accounts
-%debbugs	ALL=(debbugs)	ALL
 %buildd		ALL=(buildd)	ALL
+%debbugs	ALL=(debbugs)	ALL
+%debwww		ALL=(debwww)	ALL
+%lintian	ALL=(lintian)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %piuparts	ALL=(piupartsm)	ALL
 %piuparts	ALL=(piupartss)	ALL
 %pkg_maint	ALL=(pkg_user)	ALL
+%planet		ALL=(planet)	ALL
+%popcon		ALL=(popcon)	ALL
+%snapshot	ALL=(snapshot)	ALL
 %uddadm		ALL=(udd)	ALL
 %wikiadm	ALL=(wiki)	ALL
 
