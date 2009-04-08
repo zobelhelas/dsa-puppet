@@ -99,3 +99,10 @@ dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 # dak stuff
 %debian-release	ries=(dak)		/usr/local/bin/dak transitions --import *
 %ftpteam	ries=(dak)		/usr/local/bin/dak transitions --import *
+# security
+%security	klecker=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
+%sec_public	klecker=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
+%sec_data	klecker=(archvsync)	NOPASSWD: /home/archvsync/security/signal ""
+dak		klecker=(archvsync)	NOPASSWD: /home/archvsync/signal_security
+# web stuff
+debwww		klecker=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
