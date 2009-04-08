@@ -47,7 +47,11 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd [0-9]I\:[0-9
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 
 # groups and their role accounts
+%debbugs	ALL=(debbugs)	ALL
 %mirroradm	ALL=(archvsync)	ALL
+%piuparts	ALL=(piupartsm)	ALL
+%piuparts	ALL=(piupartss)	ALL
+%uddadm		ALL=(udd)	ALL
 %wikiadm	ALL=(wiki)	ALL
 
 # some groups are in apachectrl on "their" hosts so they can reload apache and update their vhost
@@ -57,3 +61,5 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)	NOPASSWD: ALL
 %buildd		ALL=(buildd)	ALL
+# The piuparts slave needs to handle chroots
+piupartss	piatti=(ALL)	NOPASSWD: ALL
