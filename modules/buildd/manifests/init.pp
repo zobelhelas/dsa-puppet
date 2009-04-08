@@ -7,7 +7,7 @@ class buildd {
 
    file {
       "/etc/apt/sources.list.d/buildd.list":
-             source => "puppet:///files/etc/apt/sources.list.d/buildd.list";
+             source => "puppet:///files/etc/apt/sources.list.d/buildd.list",
              require => Package["apt-transport-https"],
    }
 
