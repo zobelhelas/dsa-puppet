@@ -20,8 +20,9 @@
 Defaults	env_reset
 
 # Host alias specification
-
+Host_Alias	QAHOSTS		= master, merkel
 # User alias specification
+User_Alias	QACORE		= aba, djpig, hertzog, jeroen, joerg, lucas, luk, myon, tbm, weasel, zack
 
 # Cmnd alias specification
 
@@ -46,6 +47,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd [0-9]\:[0-9]
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 pd [0-9]I\:[0-9]\:[0-9] show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 # other raid controllers
+nagios		master=(ALL)	NOPASSWD: /usr/sbin/mpt-status -s
 nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
 nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 
@@ -65,10 +67,12 @@ nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 %pkg_maint	ALL=(pkg_user)	ALL
 %planet		ALL=(planet)	ALL
 %popcon		ALL=(popcon)	ALL
+%secretary	ALL=(secretary)	ALL
 %snapshot	ALL=(snapshot)	ALL
 %uddadm		ALL=(udd)	ALL
 %wbadm		ALL=(wbadm)	ALL
 %wikiadm	ALL=(wiki)	ALL
+QACORE		QAHOSTS=(qa)	ALL
 
 # some groups are in apachectrl on "their" hosts so they can reload apache and update their vhost
 %apachectrl	ALL=(root)	/usr/sbin/apache2-vhost-update
