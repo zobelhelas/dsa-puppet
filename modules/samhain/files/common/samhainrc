@@ -216,6 +216,7 @@ file=/etc/exim4/ssl/thishost.key
 file=/etc/apt/preferences
 file=/etc/apt/sources.list.d/volatile.list
 file=/etc/apt/sources.list.d/security.list
+file=/etc/apt/sources.list.d/buildd.list
 file=/etc/apt/sources.list.d/debian.org.list
 file=/etc/apt/sources.list.d/debian.restricted.list
 file=/etc/apt/sources.list.d/debian.list
