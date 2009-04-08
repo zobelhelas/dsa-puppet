@@ -45,6 +45,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 
 # groups and their role accounts
 %mirroradm	ALL=(archvsync)	ALL
+%wikiadm	ALL=(wiki)	ALL
 
 # some groups are in apachectrl on "their" hosts so they can reload apache and update their vhost
 %apachectrl	ALL=(root)	/usr/sbin/apache2-vhost-update
