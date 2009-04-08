@@ -1,12 +1,16 @@
 class buildd {
-   package { "sbuild": ensure => latest;
-# is there a way to wait until the version from buildd.d.o is available?
+   package {
+     "sbuild": ensure => installed;
+     "buildd": ensure => installed;
+     "apt-transport-https": ensure => installed;
    }
+
    file {
       "/etc/apt/sources.list.d/buildd.list":
              source => "puppet:///files/etc/apt/sources.list.d/buildd.list";
              require => Package["apt-transport-https"],
    }
+
 # THIS IS NOT READY YET
 # also needs:
 #  apt key on the system:
