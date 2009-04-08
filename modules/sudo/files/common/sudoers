@@ -54,6 +54,7 @@ nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 %d-i		ALL=(d-i)	ALL
 %debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
+%debian-release	ALL=(release)	ALL
 %debwww		ALL=(debwww)	ALL
 %forums		ALL=(forums)	ALL
 %keyring	ALL=(keyring)	ALL
@@ -87,3 +88,8 @@ pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		raff=(root)		/usr/local/bin/update-buildd-sshkeys
+# mirror push
+dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
+# dak stuff
+%debian-release	ries=(dak)		/usr/local/bin/dak transitions --import *
+%ftpteam	ries=(dak)		/usr/local/bin/dak transitions --import *
