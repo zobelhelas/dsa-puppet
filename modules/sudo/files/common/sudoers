@@ -48,6 +48,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=0 show status
 
 # groups and their role accounts
 %buildd		ALL=(buildd)	ALL
+%d-i		ALL=(d-i)	ALL
 %debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
 %debwww		ALL=(debwww)	ALL
