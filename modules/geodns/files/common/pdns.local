@@ -1,8 +1,13 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
 # pdns.local
 
 geo-zone=geo.debian.org
 geo-soa-values=samosa.debian.org,hostmaster.debian.org
-geo-ns-records=geo1.debian.org,geo2.debian.org
+geo-ns-records=geo1.debian.org,geo2.debian.org,geo3.debian.org
 geo-ttl=3600
 geo-ns-ttl=1800
 geo-ip-map-zonefile=/etc/powerdns/ip2iso
