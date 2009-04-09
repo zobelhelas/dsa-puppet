@@ -47,6 +47,8 @@ node default {
     case $hostname {
         brahms,goetz,lafayette,malo,praetorius,puccini:
                    { include buildd }
+	goe1,geo2,geo3:
+		   { include geodns }
         default:   {}
     }
 

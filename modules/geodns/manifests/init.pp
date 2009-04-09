@@ -7,12 +7,19 @@ class geodns {
                      "puppet:///geodns/common/pdns.conf" ],
         require => Package["pdns-backend-geo"],
         notify  => Exec["pdns restart"],
+        owner   => root,
+        group   => root,
+        mode    => 600,
+
     }
     file { "/etc/powerdns/pdns.d/pdns.local":
         source  => [ "puppet:///geodns/per-host/$fqdn/pdns.local",
                      "puppet:///geodns/common/pdns.local" ],
         require => Package["pdns-backend-geo"],
         notify  => Exec["pdns restart"],
+        owner   => root,
+        group   => root,
+        mode    => 600,
     }
     file { "/etc/powerdns/ip2iso":
         source  => [ "puppet:///geodns/per-host/$fqdn/ip2iso",
