@@ -1,0 +1,2 @@
+set alert samhain-reports@debian.org
+set mail-format { from: monit@debian.org }

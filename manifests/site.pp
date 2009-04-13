@@ -54,6 +54,11 @@ node default {
 		   { include geodns }
         default:   {}
     }
+    case $hostname {
+	argento:
+		   { include monit }
+        default:   {}
+    }
 
 }
 
