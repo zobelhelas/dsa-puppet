@@ -5,7 +5,7 @@ class monit {
         "/etc/monit/monitrc":
           source  => "puppet:///monit/monitrc",
           require => Package["monit"],
-          notify  => Exec["monit restart"]
+          notify  => Exec["monit restart"],
           mode    => 440
           ;
 
@@ -20,14 +20,14 @@ class monit {
         "/etc/monit/monit.d/01puppet":
           source  => "puppet:///monit/puppet",
           require => Package["monit"],
-          notify  => Exec["monit restart"]
+          notify  => Exec["monit restart"],
           mode    => 440
           ;
 
         "/etc/monit/monit.d/00debian.org":
           source  => "puppet:///monit/debianorg",
           require => Package["monit"],
-          notify  => Exec["monit restart"]
+          notify  => Exec["monit restart"],
           mode    => 440
           ;
 
