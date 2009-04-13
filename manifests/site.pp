@@ -14,6 +14,7 @@ node default {
     include samhain
     include sudo
     include debian-org
+    include monit
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
@@ -54,12 +55,6 @@ node default {
 		   { include geodns }
         default:   {}
     }
-    case $hostname {
-	argento:
-		   { include monit }
-        default:   {}
-    }
-
 }
 
 node penalosa inherits default {
