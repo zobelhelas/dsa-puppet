@@ -1,3 +1,8 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
 # Defaults for monit initscript
 # sourced by /etc/init.d/monit
 # installed at /etc/default/monit by maintainer scripts

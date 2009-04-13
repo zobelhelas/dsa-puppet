@@ -14,7 +14,7 @@ class monit {
           source  => "puppet:///monit/monitrc",
           require => Package["monit"],
           notify  => Exec["monit restart"],
-          mode    => 440
+          mode    => 400
           ;
 
         "/etc/monit/monit.d":
