@@ -2,6 +2,14 @@ class monit {
     package { "monit": ensure => installed }
 
     file {
+        "/etc/monit/":
+          ensure  => directory,
+          owner   => root,
+          group   => root,
+          mode    => 755,
+          purge   => true
+          ;
+
         "/etc/monit/monitrc":
           source  => "puppet:///monit/monitrc",
           require => Package["monit"],
