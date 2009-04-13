@@ -1,8 +1,8 @@
 class buildd {
    package {
-     "sbuild": ensure => installed;
-     "buildd": ensure => installed;
-     "buildd-builder-meta": ensure => installed;
+     "sbuild": ensure => latest;
+     "buildd": ensure => latest;
+     "buildd-builder-meta": ensure => latest;
      "apt-transport-https": ensure => installed;
    }
 
