@@ -118,6 +118,8 @@ file=/etc/nagios3/puppetconf.d
 file=/etc/cron.d
 file=/usr/lib/nagios/plugins
 file=/usr/sbin
+file=/etc/monit
+file=/etc/monit/monit.d
 
 [LogFiles]
 ##
@@ -259,6 +261,9 @@ file=/usr/lib/nagios/plugins/dsa-update-samhain-status
 file=/etc/sudoers
 file=/etc/blkid.tab
 file=/etc/blkid.tab.old
+file=/etc/monit/monitrc
+file=/etc/monit/monit.d/01puppet
+file=/etc/monit/monit.d/00debian.org
 
 [IgnoreNone]
 ##
