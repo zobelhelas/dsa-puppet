@@ -259,6 +259,7 @@ file=/etc/blkid.tab.old
 file=/etc/monit/monitrc
 file=/etc/monit/monit.d/01puppet
 file=/etc/monit/monit.d/00debian.org
+file=/etc/resolv.conf.dhclient-new
 
 [IgnoreNone]
 ##
