@@ -11,6 +11,6 @@ check process puppetd with pidfile /var/run/puppet/puppetd.pid
 
 check file puppetstate
     with path /var/lib/puppet/state/state.yaml
-    if timestamp > 45 minutes for 3 cycles then exec "/etc/init.d/puppet stop"
+    if timestamp > 90 minutes for 9 cycles then exec "/etc/init.d/puppet stop"
     depends on puppetd
 
