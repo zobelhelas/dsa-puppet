@@ -39,7 +39,7 @@ class debian-org {
              source => "puppet:///files/etc/apt/apt.conf.d/local-pdiffs";
       "/etc/timezone":
              source => "puppet:///files/etc/timezone",
-             notify => Exec["dpkg-reconfigure tzdata -pcritical"];
+             notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
       "/etc/puppet/puppet.conf":
              source => "puppet:///files/etc/puppet/puppet.conf",
              notify  => Exec["puppet reload"];
@@ -55,7 +55,7 @@ class debian-org {
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
    }
-   exec { "dpkg-reconfigure tzdata -pcritical":
+   exec { "dpkg-reconfigure tzdata -pcritical -fnoninteractive":
            path        => "/usr/bin:/usr/sbin:/bin:/sbin",
            refreshonly => true,
         }
