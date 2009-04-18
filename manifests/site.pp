@@ -46,7 +46,7 @@ node default {
     }
 
     case $hostname {
-        brahms,goedel,goetz,lafayette,malo,praetorius,puccini:
+        ancina,brahms,goedel,goetz,lafayette,malo,praetorius,puccini:
                    { include buildd }
         default:   {}
     }
