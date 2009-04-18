@@ -51,8 +51,8 @@ node default {
         default:   {}
     }
     case $hostname {
-	geo1,geo2,geo3:
-		   { include geodns }
+        geo1,geo2,geo3:
+                   { include geodns }
         default:   {}
     }
 }
