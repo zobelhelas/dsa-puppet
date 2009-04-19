@@ -11,7 +11,6 @@ File {
 
 node default {
     include munin-node
-    include samhain
     include sudo
     include debian-org
     include monit
@@ -28,6 +27,11 @@ node default {
 
     import "nagios"
     include nagios-client
+
+    case $hostname {
+        morales:   {}
+        default:   { include samhain }
+    }
 
     case $hostname {
         spohr:     {
