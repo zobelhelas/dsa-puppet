@@ -3,5 +3,5 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-set alert samhain-reports@debian.org
+set alert monit-alerts@debian.org
 set mail-format { from: monit@debian.org }
