@@ -7,6 +7,13 @@ class sudo {
 		mode    => 440,
 		source  => [ "puppet:///sudo/per-host/$fqdn/sudoers",
 		             "puppet:///sudo/common/sudoers" ],
-		require => Package["sudo"],
+		require => Package["sudo"]
+                ;
+	       "/etc/pam.d/sudo":
+		source  => [ "puppet:///sudo/per-host/$fqdn/pam",
+		             "puppet:///sudo/common/pam" ],
+		require => Package["sudo"]
+                ;
+
 	}
 }

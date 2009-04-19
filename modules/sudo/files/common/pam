@@ -1,0 +1,12 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+#%PAM-1.0
+
+auth [authinfo_unavail=ignore success=done ignore=ignore default=die] pam_pwdfile.so pwdfile=/var/lib/misc/thishost/sudo-passwd
+auth required pam_unix.so nullok_secure try_first_pass
+@include common-account
+
+session required pam_permit.so
+session required pam_limits.so
