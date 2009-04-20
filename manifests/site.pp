@@ -43,7 +43,7 @@ node default {
 
     case $apache2 {
         "true":    { case $hostname {
-                        carver,rore:  { include apache2 }
+                        carver,rore,tartini:  { include apache2 }
                         default:   {}
                    } }
         default: {}
