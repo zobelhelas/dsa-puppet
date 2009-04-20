@@ -4,6 +4,7 @@ class buildd {
      "buildd": ensure => latest;
      "buildd-builder-meta": ensure => latest;
      "apt-transport-https": ensure => installed;
+     "debootstrap": ensure => installed;
    }
 
    file {
