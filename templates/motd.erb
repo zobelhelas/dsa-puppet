@@ -1,0 +1,6 @@
+This device is for authorized users only.  All traffic on this device
+is monitored and will be used as evidence for prosecutions.
+
+<% if File.exists?("/etc/puppet/modules/motd/files/$fqdn/motd-footer -%>
+<% File.open("/etc/puppet/modules/motd/files/$fqdn/motd-footer").read -%>
+<% end -%>
