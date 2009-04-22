@@ -63,5 +63,4 @@ node default {
 
 node penalosa inherits default {
     include hosts
-    include motd
 }
