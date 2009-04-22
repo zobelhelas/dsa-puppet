@@ -1,0 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+** IMPORTANT WARNING **
+In April 2005 this machine suffered a drastic hardware RAID failure and the
+partition with /home and /org suffered extensive filesystem corruption.
+
+Please see:
+  http://lists.debian.org/debian-devel-announce/2005/04/msg00008.html
+for more details.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

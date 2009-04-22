@@ -1,0 +1,4 @@
+lebrun -- Francesca Lebrun (1756-1791), German singer and composer
+
+ - This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}
+

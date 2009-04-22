@@ -1,0 +1,20 @@
+
+20050413 flo	- Finally the machine is up and running in its final destination
+		- Reachability problems should be solved - bogus objects
+		  in firewall
+		- Added user joey
+20060401 flo	- Reduced ram to 512MB as the 1GB setup was producing
+ 		  random hicups ...
+20070411 flo	- Maschine was dead - no connect, nothing on the console
+		  rebooted.
+20071008 flo	- Planned but unannounced power-outage from 0:00-03:00 CEST 
+		  Machine didnt power up itself - needed a powerbutton
+20080127 flo	- Maschine died - rebooted by helping hands on site
+20080222 flo	- Put in a promise controller and a PATA 120GB Disk
+20080302 flo	- Create 2G swap on the UDMA capable disk and remove swap files
+20080313 flo	- rsynced /home to new disk and mounted it instead of /home
+		  (old content in /home.backup.20080313)
+		- Installed smartmontools
+20080819 weasel	- moved this host under DSA control.  account passwords, sudo
+		  passwords and ssh keys are taken from ldap (db.debian.org).
+20090221 weasel	- moved to lenny.

@@ -1,0 +1,9 @@
+                                   Dedicated to Joel 'Espy' Klecker (1979-2000)
+
+This device is for authorized users only.  All traffic on this device
+is monitored and will be used as evidence for prosecutions.
+
+weasel 20080513:
+	~/.ssh/authorized_keys disabled, there's an /ssh-keys/ tho.
+	 /etc/ssh/sshd_config for how that's done.
+

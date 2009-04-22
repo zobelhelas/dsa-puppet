@@ -1,0 +1,3 @@
+
+20080517: moved firewall config into ferm. see /etc/ferm/ferm.conf -- weasel
+
