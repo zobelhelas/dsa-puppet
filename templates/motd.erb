@@ -3,6 +3,6 @@ is monitored and will be used as evidence for prosecutions.
 
 <% if File.exists?("/etc/puppet/modules/motd/files/" + fqdn + "/motd.tail") -%>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-<% print File.open("/etc/puppet/modules/motd/files/" + fqdn + "/motd.tail").read -%>
+<%= File.open("/etc/puppet/modules/motd/files/" + fqdn + "/motd.tail").read -%>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 <% end -%>
