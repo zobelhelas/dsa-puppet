@@ -13,8 +13,11 @@ when you can login" section.
 
 <% if File.exists?("/etc/puppet/modules/motd/files/" + fqdn + "/motd.tail") -%>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 <% f = File.open("/etc/puppet/modules/motd/files/" + fqdn + "/motd.tail") -%>
 <%= f.read -%>
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 <% f.close -%>
 <% end -%>
