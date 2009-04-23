@@ -14,6 +14,7 @@ node default {
     include sudo
     include debian-org
     include monit
+    include motd
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
@@ -63,5 +64,4 @@ node default {
 
 node penalosa inherits default {
     include hosts
-    include motd
 }
