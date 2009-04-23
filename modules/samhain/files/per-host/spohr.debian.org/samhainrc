@@ -195,6 +195,7 @@ file=/etc/postfix/debianhosts.db
 
 # We handle these files with puppet - please to not be bothering us
 file=/etc/timezone
+file=/etc/motd.tail
 file=/etc/samhain/samhainrc
 file=/etc/munin/munin-node.conf
 file=/etc/userdir-ldap.confc
