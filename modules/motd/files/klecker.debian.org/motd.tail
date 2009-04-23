@@ -1,9 +1,4 @@
-                                   Dedicated to Joel 'Espy' Klecker (1979-2000)
+Dedicated to Joel 'Espy' Klecker (1979 - July 11, 2000)
 
-This device is for authorized users only.  All traffic on this device
-is monitored and will be used as evidence for prosecutions.
-
-weasel 20080513:
-	~/.ssh/authorized_keys disabled, there's an /ssh-keys/ tho.
-	 /etc/ssh/sshd_config for how that's done.
-
+ Welcome to klecker.debian.org, serving archive.debian.org,
+ non-US.debian.org, www.debian.org

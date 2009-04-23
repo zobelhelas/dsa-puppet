@@ -1,4 +1,6 @@
-lebrun -- Francesca Lebrun (1756-1791), German singer and composer
+Francesca Lebrun (March 24, 1756 - May 14, 1791)
 
  - This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}
 
+ Welcome to lebrun.debian.org, the Debian sparc build daemon
+ Please use smetana.debian.org for test builds, debugging etc.
