@@ -9,6 +9,10 @@ File {
     ensure  => file,
 }
 
+Exec {
+    path => "/usr/bin:/usr/sbin:/bin:/sbin"
+}
+
 node default {
     include munin-node
     include sudo
