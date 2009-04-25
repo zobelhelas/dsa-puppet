@@ -31,8 +31,6 @@ node default {
         default:   {}
     }
 
-    import "nagios"
-    include nagios-client
 
     case $hostname {
         spohr: {
