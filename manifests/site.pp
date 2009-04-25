@@ -19,6 +19,7 @@ node default {
     include debian-org
     include monit
     include motd
+    include samhain
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
@@ -34,16 +35,12 @@ node default {
     include nagios-client
 
     case $hostname {
-        morales:   {}
-        default:   { include samhain }
-    }
-
-    case $hostname {
-        spohr:     {
-                      import "nagios"
-                      include nagios-server
-                   }
-        default:   {}
+        spohr: {
+                      include nagios::server
+        }
+        default: {
+		      include nagios::client
+	}
     }
 
     case $apache2 {
