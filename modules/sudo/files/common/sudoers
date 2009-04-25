@@ -8,7 +8,7 @@
 ###################################################################
 ###################################################################
 ##
-## PLEASE EDIT THIS FILE WITH THE visud COMMAND TO ENSURE IT
+## PLEASE EDIT THIS FILE WITH THE visudo COMMAND TO ENSURE IT
 ## IS SYNTACTICALLY VALID.
 ##
 ##  /usr/sbin/visudo -f sudoers
