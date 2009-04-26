@@ -18,7 +18,6 @@ node default {
     include sudo
     include debian-org
     include monit
-    include motd
     include samhain
 
     $nodeinfo = nodeinfo($fqdn, "/home/sgran/local.yaml")
@@ -37,9 +36,11 @@ node default {
     case $hostname {
         spohr: {
                       include nagios::server
+                      include motd-new
         }
         default: {
 		      include nagios::client
+                      include motd
 	}
     }
 
