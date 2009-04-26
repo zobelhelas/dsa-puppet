@@ -19,6 +19,7 @@ node default {
     include debian-org
     include monit
     include samhain
+    include apt-keys
 
     $nodeinfo = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
 
@@ -60,11 +61,6 @@ node default {
     case $hostname {
         geo1,geo2,geo3:
                    { include geodns }
-        default:   {}
-    }
-
-    case $hostname {
-        bartok:    { include apt-keys }
         default:   {}
     }
 }
