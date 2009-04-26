@@ -62,6 +62,11 @@ node default {
                    { include geodns }
         default:   {}
     }
+
+    case $hostname {
+        bartok:    { include apt-keys }
+        default:   {}
+    }
 }
 
 node penalosa inherits default {
