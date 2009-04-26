@@ -20,7 +20,7 @@ node default {
     include monit
     include samhain
 
-    $nodeinfo = nodeinfo($fqdn, "/home/sgran/local.yaml")
+    $nodeinfo = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
