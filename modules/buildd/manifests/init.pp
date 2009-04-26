@@ -16,7 +16,7 @@ class buildd {
         "/etc/apt/trusted-keys.d/buildd.debian.org.asc":
           source  => "puppet:///buildd/buildd.debian.org.asc",
           mode    => 664,
-          notify  => Exec["updatekeys"],
+          notify  => Exec["apt-keys-update"],
           ;
    }
 }
