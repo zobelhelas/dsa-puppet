@@ -14,27 +14,27 @@ when you can login" section.
 
 <%=
 purp = ''
-if $nodeinfo.has_key?('nameinfo')
-  purp += $nodeinfo['nameinfo'] + "\n\n"
+if nodeinfo.has_key?('nameinfo')
+  purp += nodeinfo['nameinfo'] + "\n\n"
 end
 
 purp += 'Welcome to ' + host
-if ($nodeinfo['ldap'].at(0)) and ($nodeinfo['ldap'][0].has_key?('purpose'))
-  if $nodeinfo['ldap'][0]['purpose'].include?('buildd')
+if (nodeinfo['ldap'].at(0)) and (nodeinfo['ldap'][0].has_key?('purpose'))
+  if nodeinfo['ldap'][0]['purpose'].include?('buildd')
     purp += ", the Debian "
-    if $nodeinfo['ldap'][0].has_key?('architecture')
-      purp += $nodeinfo['ldap'][0]['architecture'][0]
+    if nodeinfo['ldap'][0].has_key?('architecture')
+      purp += nodeinfo['ldap'][0]['architecture'][0]
     end
     purp += " build daemon\n"
-  elsif $nodeinfo['ldap'][0]['purpose'].include?('porterbox')
+  elsif nodeinfo['ldap'][0]['purpose'].include?('porterbox')
     purp += ", the Debian "
-    if $nodeinfo['ldap'][0].has_key?('architecture')
-      purp += $nodeinfo['ldap'][0]['architecture'][0]
+    if nodeinfo['ldap'][0].has_key?('architecture')
+      purp += nodeinfo['ldap'][0]['architecture'][0]
     end
     purp += " porterbox\n"
   else
     purp += ", used for the following services:\n"
-    $nodeinfo['ldap'][0]['purpose'].each do |l|
+    nodeinfo['ldap'][0]['purpose'].each do |l|
       if l =~ /\[\[(\*|-)?(.*?)\]\]/
         l = $2
       end
@@ -46,8 +46,8 @@ if ($nodeinfo['ldap'].at(0)) and ($nodeinfo['ldap'][0].has_key?('purpose'))
   end
 end
 
-if $nodeinfo.has_key?('footer')
-  purp += "\n" + $nodeinfo['footer'] + "\n"
+if nodeinfo.has_key?('footer')
+  purp += "\n" + nodeinfo['footer'] + "\n"
 end
 purp
 -%>
