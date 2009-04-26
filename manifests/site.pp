@@ -21,8 +21,6 @@ node default {
     include samhain
 
     $nodeinfo = nodeinfo($fqdn, "/home/sgran/local.yaml")
-    notice($nodeinfo.class)
-    notice($nodeinfo)
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
