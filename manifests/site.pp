@@ -21,8 +21,6 @@ node default {
     include motd
     include samhain
 
-    $nodeinfo = nodeinfo($fqdn)
-
     case $smartarraycontroller {
         "true":    { include debian-proliant }
         default: {}
