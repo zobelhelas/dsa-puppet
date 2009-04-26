@@ -1,4 +1,3 @@
-
 This device is for authorized users only.  All traffic on this device
 is monitored and will be used as evidence for prosecutions.
 
@@ -11,13 +10,46 @@ http://lists.debian.org/debian-devel-announce/2003/debian-devel-announce-200312/
 before doing anything on these machines - especially the "What to do
 when you can login" section.
 
-<% if File.exists?("/etc/puppet/modules/motd/files/" + fqdn + "/motd.tail") -%>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-<% f = File.open("/etc/puppet/modules/motd/files/" + fqdn + "/motd.tail") -%>
-<%= f.read -%>
+<%=
+purp = ''
+if nodeinfo.has_key?('nameinfo')
+  purp += nodeinfo['nameinfo'] + "\n\n"
+end
+
+purp += 'Welcome to ' + fqdn
+if (nodeinfo['ldap'].at(0)) and (nodeinfo['ldap'][0].has_key?('purpose'))
+  if nodeinfo['ldap'][0]['purpose'].include?('buildd')
+    purp += ", the Debian "
+    if nodeinfo['ldap'][0].has_key?('architecture')
+      purp += nodeinfo['ldap'][0]['architecture'][0]
+    end
+    purp += " build daemon\n"
+  elsif nodeinfo['ldap'][0]['purpose'].include?('porterbox')
+    purp += ", the Debian "
+    if nodeinfo['ldap'][0].has_key?('architecture')
+      purp += nodeinfo['ldap'][0]['architecture'][0]
+    end
+    purp += " porterbox\n"
+  else
+    purp += ", used for the following services:\n"
+    nodeinfo['ldap'][0]['purpose'].each do |l|
+      if l =~ /\[\[(\*|-)?(.*?)\]\]/
+        l = $2
+      end
+      if l =~ /\[\[(.*?)\|(.*?)\]\]/
+        l = $2
+      end
+      purp += "\t" + l + "\n"
+    end
+  end
+end
+
+if nodeinfo.has_key?('footer')
+  purp += "\n" + nodeinfo['footer'] + "\n"
+end
+purp
+-%>
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-<% f.close -%>
-<% end -%>

@@ -19,6 +19,7 @@ node default {
     include debian-org
     include monit
     include samhain
+    include motd
 
     $nodeinfo = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
 
@@ -36,11 +37,9 @@ node default {
     case $hostname {
         spohr: {
                       include nagios::server
-                      include motd::new
         }
         default: {
 		      include nagios::client
-                      include motd
 	}
     }
 

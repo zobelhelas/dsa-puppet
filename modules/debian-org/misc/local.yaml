@@ -31,5 +31,9 @@ nameinfo:
   schroeder.debian.org: Hermann Schroeder (1904-1984), German composer and conductor
 footer:
   bartok.debian.org: "Documentation: gluck:/org/admin.debian.org/doc/backup.debian.org"
+  lebrun.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
+  schroeder.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
+  verdi.debian.org: "- This host is using an iptables firewall.  See /etc/ferm/ferm.conf"
+  zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 ---
 
