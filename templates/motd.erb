@@ -34,7 +34,7 @@ if (nodeinfo['ldap'].at(0)) and (nodeinfo['ldap'][0].has_key?('purpose'))
     purp += " porterbox\n"
   else
     purp += ", used for the following services:\n"
-    nodeinfo['ldap'][0]['purpose'].each do |l|
+    nodeinfo['ldap'][0]['purpose'].sort.each do |l|
       if l =~ /\[\[(\*|-)?(.*?)\]\]/
         l = $2
       end
