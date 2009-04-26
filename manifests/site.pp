@@ -36,7 +36,7 @@ node default {
     case $hostname {
         spohr: {
                       include nagios::server
-                      include motd-new
+                      include motd::new
         }
         default: {
 		      include nagios::client
