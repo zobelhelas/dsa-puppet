@@ -1,4 +1,4 @@
-class motdnew inherits motd {
+class motd::new inherits motd {
 	file { "/etc/motd.tail":
                 notify  => Exec["updatemotd"],
                 content => template("motd-new.erb") ;
