@@ -18,7 +18,7 @@ if nodeinfo.has_key?('nameinfo')
   purp += nodeinfo['nameinfo'] + "\n\n"
 end
 
-purp += 'Welcome to ' + host
+purp += 'Welcome to ' + fqdn
 if (nodeinfo['ldap'].at(0)) and (nodeinfo['ldap'][0].has_key?('purpose'))
   if nodeinfo['ldap'][0]['purpose'].include?('buildd')
     purp += ", the Debian "
