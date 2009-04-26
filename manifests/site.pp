@@ -19,9 +19,10 @@ node default {
     include debian-org
     include monit
     include samhain
-    include motd
 
     $nodeinfo = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
+
+    include motd
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
