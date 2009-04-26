@@ -44,6 +44,8 @@ if (nodeinfo['ldap'].at(0)) and (nodeinfo['ldap'][0].has_key?('purpose'))
       purp += "\t" + l + "\n"
     end
   end
+else
+  purp += "\n"
 end
 
 if nodeinfo.has_key?('footer')
