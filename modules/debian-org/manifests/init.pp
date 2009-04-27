@@ -46,8 +46,23 @@ class debian-org {
       "/etc/default/puppet":
              source => "puppet:///files/etc/default/puppet",
              notify  => Exec["puppet restart"];
+      case $hostname {
+           spohr: {
+      "/etc/puppet/lib":
+             ensure  => directory,
+             source => "puppet:///files/etc/puppet/lib",
+             recurse => true,
+             notify  => Exec["puppetmaster restart"];
+           }
+           default: {}
+      }
    }
+
    exec { "puppet reload":
+             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+             refreshonly => true,
+   }
+   exec { "puppetmaster restart":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
    }
