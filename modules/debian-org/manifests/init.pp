@@ -46,16 +46,18 @@ class debian-org {
       "/etc/default/puppet":
              source => "puppet:///files/etc/default/puppet",
              notify  => Exec["puppet restart"];
-      case $hostname {
-           spohr: {
-      "/etc/puppet/lib":
-             ensure  => directory,
-             source => "puppet:///files/etc/puppet/lib",
-             recurse => true,
-             notify  => Exec["puppetmaster restart"];
-           }
-           default: {}
-      }
+   }
+   case $hostname {
+        spohr: {
+            file {
+               "/etc/puppet/lib":
+                      ensure  => directory,
+                      source => "puppet:///files/etc/puppet/lib",
+                      recurse => true,
+                      notify  => Exec["puppetmaster restart"];
+            }
+        }
+        default: {}
    }
 
    exec { "puppet reload":
