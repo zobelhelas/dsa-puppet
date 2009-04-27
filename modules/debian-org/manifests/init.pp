@@ -48,7 +48,7 @@ class debian-org {
              notify  => Exec["puppet restart"];
    }
    case $hostname {
-        spohr: {
+        handel: {
             file {
                "/etc/puppet/lib":
                       ensure  => directory,
