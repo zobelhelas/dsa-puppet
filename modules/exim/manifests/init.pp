@@ -75,8 +75,7 @@ class exim {
           ;
         "/etc/exim4/virtualdomains":
           require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/per-host/$fqdn/virtualdomains",
-                       "puppet:///exim/common/virtualdomains" ]
+          content => template("exim/virtualdomains.erb")
           ;
         "/etc/exim4/whitelist":
           require => Package["exim4-daemon-heavy"],
