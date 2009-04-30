@@ -1,3 +1,4 @@
+
 This device is for authorized users only.  All traffic on this device
 is monitored and will be used as evidence for prosecutions.
 
@@ -44,6 +45,8 @@ if (nodeinfo['ldap'].at(0)) and (nodeinfo['ldap'][0].has_key?('purpose'))
       purp += "\t" + l + "\n"
     end
   end
+else
+  purp += "\n"
 end
 
 if nodeinfo.has_key?('footer')
@@ -53,3 +56,4 @@ purp
 -%>
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
