@@ -1,5 +1,5 @@
 class debian-org {
-   package { "userdir-ldap": ensure => latest;
+   package { "userdir-ldap": ensure => installed;
              "zsh": ensure => installed;
              "apt-utils": ensure => installed;
              "tcsh": ensure => installed;
