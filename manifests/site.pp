@@ -47,14 +47,14 @@ node default {
 
     case $apache2 {
         "true":    { case $hostname {
-                        carver,rore,tartini:  { include apache2 }
+                        carver,rore,draghi,tartini:  { include apache2 }
                         default:   {}
                    } }
         default: {}
     }
 
     case $hostname {
-        ancina,brahms,goedel,goetz,lafayette,malo,praetorius,puccini:
+        ancina,arcadelt,argento,brahms,goedel,goetz,lafayette,malo,murphy,praetorius,puccini:
                    { include buildd }
         default:   {}
     }
