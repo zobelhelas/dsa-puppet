@@ -50,8 +50,7 @@ class exim {
           ;
         "/etc/exim4/locals":
           require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/per-host/$fqdn/locals",
-                       "puppet:///exim/common/locals" ]
+          content => template("exim/locals.erb")
           ;
         "/etc/exim4/localusers":
           require => Package["exim4-daemon-heavy"],
@@ -75,8 +74,7 @@ class exim {
           ;
         "/etc/exim4/virtualdomains":
           require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/per-host/$fqdn/virtualdomains",
-                       "puppet:///exim/common/virtualdomains" ]
+          content => template("exim/virtualdomains.erb")
           ;
         "/etc/exim4/whitelist":
           require => Package["exim4-daemon-heavy"],

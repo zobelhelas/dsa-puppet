@@ -1,5 +1,5 @@
 class debian-org {
-   package { "userdir-ldap": ensure => latest;
+   package { "userdir-ldap": ensure => installed;
              "zsh": ensure => installed;
              "apt-utils": ensure => installed;
              "tcsh": ensure => installed;
@@ -47,7 +47,24 @@ class debian-org {
              source => "puppet:///files/etc/default/puppet",
              notify  => Exec["puppet restart"];
    }
+   case $hostname {
+        handel: {
+            file {
+               "/etc/puppet/lib":
+                      ensure  => directory,
+                      source => "puppet:///files/etc/puppet/lib",
+                      recurse => true,
+                      notify  => Exec["puppetmaster restart"];
+            }
+        }
+        default: {}
+   }
+
    exec { "puppet reload":
+             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+             refreshonly => true,
+   }
+   exec { "puppetmaster restart":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
    }

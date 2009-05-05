@@ -1,0 +1,62 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# This file lists the virtual domains that this host should handle. The
+# format is
+#  host: user=user group=group directory=dir
+# Host may be a wildcard.
+# User/Group are the symbolic names of the uid/gid to operate under when
+#    performing deliveries for this name. These should not be root!
+# Directory is the directory to look in for data files. The directory and
+#    files may be group writable. The first file to lookup is DIR/aliases
+#    which is a traditional exim/sendmail alias file. You can specify
+#    users, patterns, pipes and filenames. If that fails then
+#    .forward-foo is tried, should that fail then .forward-default is tried.
+#    Finally the email will bounce.
+
+<%=
+vdoms = case fqdn
+
+        when "gluck.debian.org" then "ddtp.debian.org: user=grisu group=Debian directory=/org/ddtp.debian.org/mail
+admin.debian.org: user=mail_admin group=mail_admin directory=/org/admin.debian.org/mail/
+popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/
+
+debian.com: user=nobody group=Debian directory=/org/misc/star.debian.org/
+debian.net: user=nobody group=Debian directory=/org/misc/star.debian.org/"
+
+        when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
+
+        when "klecker.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/org/security.debian.org/mail/
+non-us.debian.org: user=katie group=debadmin directory=/org/non-us.debian.org/mail/
+www-master.debian.org: user=debwww group=debwww directory=/org/www.debian.org/mail/"
+
+        when "master.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/org/vote.debian.org/mail
+packages.qa.debian.org: user=qa group=qa directory=/org/packages.qa.debian.org/mail
+bugs.qa.debian.org: user=cjwatson group=qa directory=/org/bugs.qa.debian.org/mail"
+
+        when "merkel.debian.org" then "qa.debian.org: user=qa group=qa directory=/org/qa.debian.org/mail/
+bugs.qa.debian.org: user=nobody group=nogroup directory=/org/bugs.qa.debian.org/mail/
+nm.debian.org: user=nm group=nm directory=/org/nm.debian.org/mail/"
+
+        when "powell.debian.org" then "packages.debian.org: user=nobody group=Debian directory=/org/packages.debian.org/mail/"
+
+        when "raff.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail
+logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail"
+
+        when "ries.debian.org" then "release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
+ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp.debian.org/mail group_writable=true"
+
+        when "rietz.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
+
+        when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
+
+        when "spohr.debian.org" then "rt.debian.org: user=rt group=rt directory=/srv/rt.debian.org/mail"
+
+        when "tartini.debian.org" then "forums.debian.net: user=forums group=forums directory=/srv/forums.debian.net/mail"
+
+        when "widor.debian.org" then "wiki.debian.org: user=wiki group=wikiadm directory=/org/wiki.debian.org/mail"
+end
+vdoms
+%>

@@ -88,8 +88,8 @@ buildd		ALL=(ALL)		NOPASSWD: ALL
 piupartss	piatti=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
 pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
-# on samosa, the domains git thing will run bind9 reload afterwards
-%adm		samosa=(root)		NOPASSWD: /etc/init.d/bind9 reload
+# on draghi, the domains git thing will run bind9 reload afterwards
+%adm		draghi=(root)		NOPASSWD: /etc/init.d/bind9 reload
 # remote power to babylon5 in the same rack:
 joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
 # wbadm can update all buildd* users' keys on buildd.d.o

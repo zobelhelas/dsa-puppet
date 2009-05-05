@@ -1,6 +1,6 @@
 class clamav {
-    package { "clamav-daemon": ensure => latest;
-              "clamav-freshclam": ensure => latest;
+    package { "clamav-daemon": ensure => installed;
+              "clamav-freshclam": ensure => installed;
     }
 
     file {

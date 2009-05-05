@@ -1,4 +1,0 @@
-weasel 20080513:
-	~/.ssh/authorized_keys disabled, there's an /ssh-keys/ tho.
-	see /etc/ssh/sshd_config for how that's done.
-
