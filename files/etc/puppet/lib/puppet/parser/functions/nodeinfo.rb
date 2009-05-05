@@ -21,7 +21,7 @@ module Puppet::Parser::Functions
       end
     end
 
-    ldap = LDAP::Conn.new('samosa.debian.org')
+    ldap = LDAP::Conn.new('db.debian.org')
 
     results['ldap'] = []
     filter = '(hostname=' + host +')'
