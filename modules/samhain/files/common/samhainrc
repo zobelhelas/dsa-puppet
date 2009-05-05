@@ -87,7 +87,7 @@ file=/etc/lvm/cache
 file=/etc/lvm/cache/.cache
 file=/etc/network/run/ifstate
 file=/var/state/samhain/samhain_file
-file=/etc/bind/db.debian.net
+file=/etc/bind/zones/db.debian.net
 file=/etc/exim4/bsmtp
 
 
