@@ -21,6 +21,11 @@ module Puppet::Parser::Functions
       end
     end
 
+    results['bugsmaster']     = host == 'rietz.debian.org'
+    results['qamaster']       = host == 'merkel.debian.org'
+    results['rtmaster']       = host == 'spohr.debian.org'
+    results['packagesmaster'] = host == 'powell.debian.org'
+
     ldap = LDAP::Conn.new('db.debian.org')
 
     results['ldap'] = []
