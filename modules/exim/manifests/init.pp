@@ -2,6 +2,27 @@ class exim {
 
     package { exim4-daemon-heavy: ensure => installed }
 
+    case $hostname {
+         handel: {
+             file {
+                "/etc/exim4/exim4.conf":
+                  content => template("exim/eximconf.erb"),
+                  require => Package["exim4-daemon-heavy"],
+                  notify  => Exec["exim4 reload"]
+                  ;
+             }
+         }
+         default: {
+             file {
+                "/etc/exim4/exim4.conf":
+                  source  => [ "puppet:///exim/per-host/$fqdn/exim4.conf",
+                               "puppet:///exim/common/exim4.conf" ],
+                  require => Package["exim4-daemon-heavy"],
+                  notify  => Exec["exim4 reload"]
+                  ;
+             }
+         }
+    }
     file {
         "/etc/exim4/":
           ensure  => directory,
