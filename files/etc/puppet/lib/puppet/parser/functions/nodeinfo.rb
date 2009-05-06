@@ -29,19 +29,21 @@ module Puppet::Parser::Functions
       end
     end
 
-    if yaml.has_key?('need_smarthost') and yaml['need_smarthost'].include?(host)
-      results['smarthost']      = "mailout.debian.org"
-      results['smarthost_port'] = 587
-    else
-      results['smarthost']      = ''
-      results['smarthost_port'] = ''
+    results['mail_port'] = ''
+    results['smarthost']      = ''
+    results['smarthost_port'] = 587
+    results['reservedaddrs'] = '0.0.0.0/8 : 127.0.0.0/8 : 10.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5'
+
+    if yaml.has_key?('mail_port') and yaml['mail_port'].has_key?(host)
+      results['mail_port'] = yaml['mail_port'][host]
     end
 
-    results['reservedaddrs'] = case host
-      when "ball.debian.org"
-        '0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5'
-      else
-        '0.0.0.0/8 : 127.0.0.0/8 : 10.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5'
+    if yaml.has_key?('need_smarthost') and yaml['need_smarthost'].include?(host)
+      results['smarthost']      = "mailout.debian.org"
+    end
+
+    if yaml.has_key?('reservedaddrs') and yaml['reservedaddrs'].has_key?(host)
+      results['reservedaddrs'] = yaml['reservedaddrs'][host]
     end
 
     ldap = LDAP::Conn.new('db.debian.org')
