@@ -64,5 +64,15 @@ footer:
   schroeder.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
   verdi.debian.org: "- This host is using an iptables firewall.  See /etc/ferm/ferm.conf"
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
+need_smarthost:
+  - ancina.debian.org
+  - allegri.debian.org
+  - piatti.debian.org
+services:
+  bugsmaster: rietz.debian.org
+  qamaster: merkel.debian.org
+  mailrelay: spohr.debian.org
+  rtmaster: spohr.debian.org
+  packagesmaster: powell.debian.org
 ---
 
