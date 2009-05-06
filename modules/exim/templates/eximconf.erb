@@ -190,16 +190,16 @@ ports = []
 out = "daemon_smtp_ports = "
 ports << 25
 
-if results['bugsmaster']
+if nodeinfo['bugsmaster']
   ports << 587
 end
 
-if not results['mail_port'].empty?
-  ports << results['mail_port']
+if not nodeinfo['mail_port'].empty?
+  ports << nodeinfo['mail_port']
 end
 
-if results['mailrelay']
-  ports << results['smarthost_port']
+if nodeinfo['mailrelay']
+  ports << nodeinfo['smarthost_port']
 end
 
 out += ports.uniq.sort.join(" : ")
@@ -254,7 +254,7 @@ check_helo:
 
 <%= 
 out = ""
-if results['mailrelay']
+if nodeinfo['mailrelay']
   out = "  accept  verify   = certificate"
 end
 out
@@ -347,7 +347,7 @@ check_submission:
 
 <%= 
 out = ""
-if results['mailrelay']
+if nodeinfo['mailrelay']
   out = "  accept  verify   = certificate"
 end
 out
@@ -388,7 +388,7 @@ check_recipient:
 
 <%= 
 out = ""
-if results['mailrelay']
+if nodeinfo['mailrelay']
   out = "  accept  verify   = certificate"
 end
 out
@@ -810,7 +810,7 @@ begin routers
 
 <%=
 out = ""
-if results['mailrelay']
+if nodeinfo['mailrelay']
   out = '
 relay_manualroute:
   driver = manualroute
@@ -845,7 +845,7 @@ ipliteral:
 
 <%=
 out = ""
-if not results['smarthost'].empty?
+if not nodeinfo['smarthost'].empty?
 out = '
 smarthost:
   debug_print = "R: smarthost for $local_part@$domain"
@@ -1011,7 +1011,7 @@ localuser:
 # the virts, and delivering to them.  blah.
 <%=
 out = ""
-if results['packagesmaster']
+if nodeinfo['packagesmaster']
   out = '
 # This router delivers for packages.d.o
 packages:
@@ -1035,7 +1035,7 @@ out
 
 <%=
 out = ""
-if results['bugsmaster']
+if nodeinfo['bugsmaster']
   out = '
 # This router delivers for bugs.d.o
 bugs:
@@ -1058,7 +1058,7 @@ out
 
 <%=
 out = ""
-if results['rtmaster']
+if nodeinfo['rtmaster']
   out = '
 # This router delivers for rt.d.o
 rt_force_new_verbose:
@@ -1297,8 +1297,8 @@ remote_smtp_smarthost:
   driver = smtp
 <%=
 out = ""
-if not results['smarthost'].empty?
-  out += "  port = " + results['smarthost_port'] + "\n"
+if not nodeinfo['smarthost'].empty?
+  out += "  port = " + nodeinfo['smarthost_port'] + "\n"
 end
 
 if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
@@ -1331,7 +1331,7 @@ bsmtp:
 
 <%=
 out = ""
-if results['bugsmaster']
+if nodeinfo['bugsmaster']
   out = '
 bugs_pipe:
   driver = pipe
@@ -1350,7 +1350,7 @@ out
 
 <%=
 out = ""
-if results['rtmaster']
+if nodeinfo['rtmaster']
   out = '
 rt_pipe:
   debug_print = "T: rt_pipe for $local_part${local_part_suffix}@$domain"
