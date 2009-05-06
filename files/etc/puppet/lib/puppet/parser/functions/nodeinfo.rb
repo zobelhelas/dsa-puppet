@@ -21,11 +21,21 @@ module Puppet::Parser::Functions
       end
     end
 
-    results['bugsmaster']     = host == 'rietz.debian.org'
-    results['qamaster']       = host == 'merkel.debian.org'
-    results['mailrelay']      = host == 'spohr.debian.org'
-    results['rtmaster']       = host == 'spohr.debian.org'
-    results['packagesmaster'] = host == 'powell.debian.org'
+    if yaml.has_key?('services')
+      ['bugsmaster', 'qamaster', 'mailrelay', 'rtmaster', 'packagesmaster'].each do |service|
+        if yaml['services'].has_key?(service)
+          results[service] = host == yaml['services'][service]
+        end
+      end
+    end
+
+    if yaml.has_key?('need_smarthost') and yaml['need_smarthost'].include?(host)
+      results['smarthost']      = "mailout.debian.org"
+      results['smarthost_port'] = 587
+    else
+      results['smarthost']      = ''
+      results['smarthost_port'] = ''
+    end
 
     results['reservedaddrs'] = case host
       when "ball.debian.org"
