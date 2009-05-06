@@ -643,6 +643,7 @@ elsif has_variable?("postgrey") && postgrey == "true"
     condition      = ${if eq{${uc:${substr_0_7:$acl_m3}}}{PREPEND}}
     message        = ${sg{$acl_m3}{^\\w+\\s*}{}}
 '
+end
 out
 %>
 
