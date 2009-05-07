@@ -2,27 +2,6 @@ class exim {
 
     package { exim4-daemon-heavy: ensure => installed }
 
-    case $hostname {
-         handel, kassia, piatti, spohr, ancina, allegri, powell: {
-             file {
-                "/etc/exim4/exim4.conf":
-                  content => template("exim/eximconf.erb"),
-                  require => Package["exim4-daemon-heavy"],
-                  notify  => Exec["exim4 reload"]
-                  ;
-             }
-         }
-         default: {
-             file {
-                "/etc/exim4/exim4.conf":
-                  source  => [ "puppet:///exim/per-host/$fqdn/exim4.conf",
-                               "puppet:///exim/common/exim4.conf" ],
-                  require => Package["exim4-daemon-heavy"],
-                  notify  => Exec["exim4 reload"]
-                  ;
-             }
-         }
-    }
     file {
         "/etc/exim4/":
           ensure  => directory,
@@ -37,6 +16,11 @@ class exim {
           group   => Debian-exim,
           mode    => 750,
           purge   => true
+        ;
+        "/etc/exim4/exim4.conf":
+          content => template("exim/eximconf.erb"),
+          require => Package["exim4-daemon-heavy"],
+          notify  => Exec["exim4 reload"]
         ;
         "/etc/exim4/manualroute":
           require => Package["exim4-daemon-heavy"],
