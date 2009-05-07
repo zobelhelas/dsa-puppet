@@ -629,7 +629,7 @@ elsif has_variable?("postgrey") && postgrey == "true"
                          ${readsocket{/var/run/postgrey/socket}{$acl_m3}\
                                {5s}{}{action=DUNNO}}\
                      }{action=}{}}
-    message        = ${sg{$acl_m3}{^\\w+\\s*}{}}
+    message        = ${sg{$acl_m3}{^\\\\w+\\\\s*}{}}
     log_message    = greylisted.
     condition      = ${if eq{${uc:${substr{0}{5}{$acl_m3}}}}{DEFER}}
 
@@ -641,7 +641,7 @@ elsif has_variable?("postgrey") && postgrey == "true"
     domains        = +handled_domains : +rcpthosts
     local_parts    = GREYLIST_LOCAL_PARTS
     condition      = ${if eq{${uc:${substr_0_7:$acl_m3}}}{PREPEND}}
-    message        = ${sg{$acl_m3}{^\\w+\\s*}{}}
+    message        = ${sg{$acl_m3}{^\\\\w+\\\\s*}{}}
 '
 end
 out
