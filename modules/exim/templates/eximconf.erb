@@ -1292,20 +1292,21 @@ end
 out
 %>
 
-remote_smtp_smarthost:
-  debug_print = "T: remote_smtp_smarthost for $local_part@$domain"
-  driver = smtp
 <%=
 out = ""
 if not nodeinfo['smarthost'].empty?
-  out += "  port = " + nodeinfo['smarthost_port'].to_s + "\n"
-end
-
-if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
-  out += '  tls_tempfail_tryclear = false
+out = '
+remote_smtp_smarthost:
+  debug_print = "T: remote_smtp_smarthost for $local_part@$domain"
+  driver = smtp
+  port = '
+  out += nodeinfo['smarthost_port'].to_s + "\n"
+  if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
+    out += '  tls_tempfail_tryclear = false
   tls_certificate = /etc/exim4/ssl/thishost.crt
   tls_privatekey = /etc/exim4/ssl/thishost.key
 '
+  end
 end
 out
 %>
