@@ -852,7 +852,7 @@ smarthost:
   driver = manualroute
   domains = !+handled_domains
   transport = remote_smtp_smarthost
-  route_list = * ' + smarthost + '
+  route_list = * ' + nodeinfo['smarthost'] + '
   host_find_failed = defer
   same_domain_copy_routing = yes
   no_more
