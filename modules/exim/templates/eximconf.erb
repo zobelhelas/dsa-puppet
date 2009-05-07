@@ -119,7 +119,7 @@ domainlist mailhubdomains = lsearch;/etc/exim4/manualroute
 hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
 
 <%= out = ""
-if exim_ssl_certs == true
+if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
 out = "tls_certificate = /etc/exim4/ssl/thishost.crt
 tls_privatekey = /etc/exim4/ssl/thishost.key
 tls_try_verify_hosts = *
@@ -211,7 +211,7 @@ remote_sort_domains = *.debian.org:*.debian.net
 
 pipelining_advertise_hosts = !*
 <%= out = ""
-if has_variable?("exim_ssl_certs") && exim_ssl_certs == true
+if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
 out = 'tls_advertise_hosts = *'
 end
 out
