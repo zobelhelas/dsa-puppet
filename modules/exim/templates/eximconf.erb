@@ -194,7 +194,7 @@ if nodeinfo['bugsmaster']
   ports << 587
 end
 
-if not nodeinfo['mail_port'].empty?
+if not nodeinfo['mail_port'].to_s.empty?
   ports << nodeinfo['mail_port']
 end
 
