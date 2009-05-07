@@ -1298,7 +1298,7 @@ remote_smtp_smarthost:
 <%=
 out = ""
 if not nodeinfo['smarthost'].empty?
-  out += "  port = " + nodeinfo['smarthost_port'] + "\n"
+  out += "  port = " + nodeinfo['smarthost_port'].to_s + "\n"
 end
 
 if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
