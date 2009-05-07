@@ -3,7 +3,7 @@ class exim {
     package { exim4-daemon-heavy: ensure => installed }
 
     case $hostname {
-         handel: {
+         handel, kassia: {
              file {
                 "/etc/exim4/exim4.conf":
                   content => template("exim/eximconf.erb"),
