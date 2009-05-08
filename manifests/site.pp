@@ -47,7 +47,7 @@ node default {
 
     case $apache2 {
         "true":    { case $hostname {
-                        carver,rore,draghi,tartini:  { include apache2 }
+                        carver,rore,draghi,tartini,samosa:  { include apache2 }
                         default:   {}
                    } }
         default: {}
