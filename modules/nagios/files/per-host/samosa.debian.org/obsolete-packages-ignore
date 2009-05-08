@@ -8,9 +8,11 @@
 buildd
 sbuild
 
-zabbix-agent
-libgnutls13
-libldap2
-liblzo1
-libopencdk8
-librrd2
+postgresql-client-common
+postgresql-client-8.4
+postgresql-server-dev-8.4
+postgresql-8.4
+libpq5
+postgresql-common
+libpq-dev
+postgresql-8.4-debversion
