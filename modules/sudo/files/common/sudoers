@@ -8,7 +8,7 @@
 ###################################################################
 ###################################################################
 ##
-## PLEASE EDIT THIS FILE WITH THE visud COMMAND TO ENSURE IT
+## PLEASE EDIT THIS FILE WITH THE visudo COMMAND TO ENSURE IT
 ## IS SYNTACTICALLY VALID.
 ##
 ##  /usr/sbin/visudo -f sudoers
@@ -108,7 +108,7 @@ dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 dak		klecker=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		klecker=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
-# more list stuff:
+# more list stuff
 %list		liszt=(root)		/usr/sbin/postfix reload
 %list		liszt=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
 %list		liszt=(root)		/etc/init.d/spamassassin, /etc/init.d/amavis
