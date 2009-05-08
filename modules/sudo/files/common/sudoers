@@ -62,6 +62,8 @@ nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 %forums		ALL=(forums)	ALL
 %keyring	ALL=(keyring)	ALL
 %lintian	ALL=(lintian)	ALL
+%listweb	ALL=(listweb)	ALL
+%list		liszt=(list)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %nm		ALL=(nm)	ALL
 %piuparts	ALL=(piupartsm)	ALL
@@ -106,3 +108,9 @@ dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 dak		klecker=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		klecker=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
+# more list stuff:
+%list		liszt=(root)		/usr/sbin/postfix reload
+%list		liszt=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
+%list		liszt=(root)		/etc/init.d/spamassassin, /etc/init.d/amavis
+%list		liszt=(amavis)		NOPASSWD: /usr/bin/sa-learn
+%list		liszt=(amavis)		ALL
