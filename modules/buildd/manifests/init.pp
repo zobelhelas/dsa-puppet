@@ -11,7 +11,7 @@ class buildd {
       "/etc/apt/sources.list.d/buildd.list":
              source => "puppet:///files/etc/apt/sources.list.d/buildd.list",
              require => Package["apt-transport-https"],
-             notify  => Exec["apt-get update"];
+             notify  => Exec["apt-get update"],
              ;
 
         "/etc/apt/trusted-keys.d/buildd.debian.org.asc":
