@@ -26,13 +26,17 @@ class debian-org {
       "/etc/apt/preferences":
              source => "puppet:///files/etc/apt/preferences";
       "/etc/apt/sources.list.d/backports.org.list":
-             source => "puppet:///files/etc/apt/sources.list.d/backports.org.list";
+             source => "puppet:///files/etc/apt/sources.list.d/backports.org.list",
+             notify  => Exec["apt-get update"];
       "/etc/apt/sources.list.d/debian.org.list":
-             source => "puppet:///files/etc/apt/sources.list.d/debian.org.list";
+             source => "puppet:///files/etc/apt/sources.list.d/debian.org.list",
+             notify  => Exec["apt-get update"];
       "/etc/apt/sources.list.d/security.list":
-             source => "puppet:///files/etc/apt/sources.list.d/security.list";
+             source => "puppet:///files/etc/apt/sources.list.d/security.list",
+             notify  => Exec["apt-get update"];
       "/etc/apt/sources.list.d/volatile.list":
-             source => "puppet:///files/etc/apt/sources.list.d/volatile.list";
+             source => "puppet:///files/etc/apt/sources.list.d/volatile.list",
+             notify  => Exec["apt-get update"];
       "/etc/apt/apt.conf.d/local-recommends":
              source => "puppet:///files/etc/apt/apt.conf.d/local-recommends";
       "/etc/apt/apt.conf.d/local-pdiffs":
@@ -75,7 +79,12 @@ class debian-org {
    exec { "dpkg-reconfigure tzdata -pcritical -fnoninteractive":
            path        => "/usr/bin:/usr/sbin:/bin:/sbin",
            refreshonly => true,
-        }
+   }
+   exec { "apt-get update":
+             command => 'apt-get update',
+             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+             refreshonly => true
+   }
 }
 
 class debian-proliant inherits debian-org {
@@ -86,6 +95,7 @@ class debian-proliant inherits debian-org {
    }
    file {
       "/etc/apt/sources.list.d/debian.restricted.list":
-             source => "puppet:///files/etc/apt/sources.list.d/debian.restricted.list";
+             source => "puppet:///files/etc/apt/sources.list.d/debian.restricted.list",
+             notify  => Exec["apt-get update"];
    }
 }
