@@ -58,6 +58,14 @@ node default {
                    { include buildd }
         default:   {}
     }
+
+# maybe wait for rietz to be upgraded to lenny
+#    case $hostname {
+#        rietz,raff,klecker:
+#                   { include named-secondary }
+#        default:   {}
+#    }
+
     case $hostname {
         geo1,geo2,geo3:
                    { include geodns }
