@@ -118,8 +118,8 @@ file=/etc/nagios/nrpe.d
 case fqdn 
 when "spohr.debian.org": extradir="file=/etc/nagios3/puppetconf.d
 file=/etc/puppet"
-when "handel.debian.org": extrafiles="dir=8/etc/puppet"
-default: extrafiles="file=/etc/puppet"
+when "handel.debian.org": extradir="dir=8/etc/puppet"
+default: extradir="file=/etc/puppet"
 end
 extradir
 %>
