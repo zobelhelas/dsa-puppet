@@ -114,7 +114,7 @@ file=/etc/default
 file=/etc/logrotate.d
 file=/etc/nagios
 file=/etc/nagios/nrpe.d
-<% extradir=""
+<%= extradir=""
 case fqdn 
 when "spohr.debian.org": extradir="file=/etc/nagios3/puppetconf.d
 file=/etc/puppet"
@@ -272,7 +272,7 @@ file=/etc/monit/monitrc
 file=/etc/monit/monit.d/01puppet
 file=/etc/monit/monit.d/00debian.org
 file=/etc/resolv.conf.dhclient-new
-<% extrafiles=""
+<%= extrafiles=""
 case fqdn 
 when "spohr.debian.org": extrafiles="file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
 file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
@@ -728,7 +728,8 @@ SetMailNum = 10
 SetMailAddress=samhain-reports@debian.org
 
 ## Mail relay (IP address)
-<%out=""
+<%=
+out=""
 if not nodeinfo['smarthost'].empty?
   out = '
 SetMailRelay = localhost
