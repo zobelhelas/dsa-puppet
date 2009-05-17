@@ -21,6 +21,10 @@ class debian-org {
              "dnsutils": ensure => installed;
              "bash-completion": ensure => installed;
              "libfilesystem-ruby1.8": ensure => installed;
+             "syslog-ng": ensure => installed;
+             "sysklogd": ensure => purged;
+             "klogd": ensure => purged;
+             "rsyslog": ensure => purged;
    }
    file {
       "/etc/apt/preferences":
