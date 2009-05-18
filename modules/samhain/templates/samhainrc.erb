@@ -199,6 +199,9 @@ file=/var/lib/misc/ssh-rsa-shadow
 file=/etc/.da-backup.trace
 file=/etc/postfix/debianhosts
 file=/etc/postfix/debianhosts.db
+file=/etc/blkid.tab
+file=/etc/blkid.tab.old
+file=/etc/resolv.conf.dhclient-new
 
 # We handle these files with puppet - please to not be bothering us
 file=/etc/timezone
@@ -264,12 +267,9 @@ file=/usr/lib/nagios/plugins/dsa-check-raid-sw
 file=/usr/lib/nagios/plugins/dsa-update-samhain-status
 file=/etc/sudoers
 file=/etc/pam.d/sudo
-file=/etc/blkid.tab
-file=/etc/blkid.tab.old
 file=/etc/monit/monitrc
 file=/etc/monit/monit.d/01puppet
 file=/etc/monit/monit.d/00debian.org
-file=/etc/resolv.conf.dhclient-new
 <%= extrafiles=""
 case fqdn 
 when "spohr.debian.org": extrafiles="file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
