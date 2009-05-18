@@ -54,6 +54,14 @@ class debian-org {
       "/etc/default/puppet":
              source => "puppet:///files/etc/default/puppet",
              notify  => Exec["puppet restart"];
+
+      "/etc/syslog-ng/syslog-ng.conf":
+             source => "puppet:///files/etc/syslog-ng/syslog-ng.conf",
+             notify  => Exec["syslog-ng reload"],
+             ;
+      "/etc/logrotate.d/syslog-ng":
+             source => "puppet:///files/etc/logrotate.d/syslog-ng",
+             ;
    }
    case $hostname {
         handel: {
@@ -77,6 +85,10 @@ class debian-org {
              refreshonly => true,
    }
    exec { "puppet restart":
+             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+             refreshonly => true,
+   }
+   exec { "syslog-ng reload":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
    }
