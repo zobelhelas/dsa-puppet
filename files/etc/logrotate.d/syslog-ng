@@ -71,6 +71,8 @@
    missingok
    notifempty
    compress
+   # listmaster asked for this one
+   delaycompress
 }
 
 /var/log/mail.warn {
