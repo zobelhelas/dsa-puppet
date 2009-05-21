@@ -35,13 +35,20 @@
 #           us. This is primarily only usefull for emergancy 'queue
 #           flushing' operations, but should be populated with a list
 #           of trusted machines. Wildcards are not permitted
+<%=
+out = ""
+if nodeinfo['mailrelay']
+  out = '
 #  mailhubdomains - Domains for which we are the MX, but the mail is relayed
 #           elsewhere.  This is designed for use with small volume or
 #           restricted machines that need to use a smarthost for mail
 #           traffic.  We will relay for them based on ssl cert validation
 #           but we need to teach exim how to route the mail to them.  This is
 #           that list.
-
+'
+end
+out
+%>
 # Exim's wildcard mechanism is a bit odd in that to say "any address in
 # debian.org including debian.org" you must use two patterns,
 #   *.debian.org
@@ -114,7 +121,15 @@ localpartlist local_only_users = lsearch;/etc/exim4/localusers
 # accept mail for them.
 domainlist rcpthosts = partial-lsearch;/etc/exim4/rcpthosts
 hostlist debianhosts = 127.0.0.1 : net-lsearch;/var/lib/misc/thishost/debianhosts
+<%=
+out = ""
+if nodeinfo['mailrelay']
+  out = '
 domainlist mailhubdomains = lsearch;/etc/exim4/manualroute
+'
+end
+out
+%>
 
 hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
 
@@ -371,10 +386,18 @@ out
 	  message  = unknown user
 	  verify   = recipient
 
+<%=
+out = ""
+if nodeinfo['mailrelay']
+  out = '
   accept  domains  = +mailhubdomains
           endpass
 	  message  = unknown user
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
+'
+end
+out
+%>
 
   accept  domains  = +submission_domains
           endpass
@@ -386,7 +409,7 @@ out
 #!!# ACL that is used after the RCPT command
 check_recipient:
 
-<%= 
+<%=
 out = ""
 if nodeinfo['mailrelay']
   out = "  accept  verify   = certificate"
@@ -554,23 +577,37 @@ out
   warn    recipients = survey@popcon.debian.org
           set acl_m1 = PopconMail
 
+<%=
+out=''
+if nodeinfo['rtmaster']
+  out='
   warn    domains  = rt.debian.org
           set acl_m1 = RTMail
           set acl_m12 = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{[^+]+\\+\\d+}}{match{$local_part}{[^+]+\\+new}}} {RTMailRecipientHasSubaddress}}}}
-
+'
+end
+out
+%>
+<%=
+out=''
+if nodeinfo['packagesmaster']
+  out='
   warn    domains  = packages.qa.debian.org
           set acl_m1 = PTSMail
 
   warn    recipients = owner@packages.qa.debian.org : postmaster@packages.qa.debian.org
           set acl_m1 = PTSOwner
 
-  warn    recipients = change@db.debian.org : changes@db.debian.org : chpasswd@db.debian.org : ping@db.debian.org : recommend@nm.debian.org
-          set acl_m1 = DBSignedMail
-
   warn    senders  = :
           domains  = packages.qa.debian.org
           condition = ${if match{$local_part}{\N^bounces+\N}}
           set acl_m1 = PTSListBounce
+'
+end
+out
+%>
+  warn    recipients = change@db.debian.org : changes@db.debian.org : chpasswd@db.debian.org : ping@db.debian.org : recommend@nm.debian.org
+          set acl_m1 = DBSignedMail
 
 <%=
 out = ""
@@ -681,11 +718,18 @@ out
           !hosts   = +debianhosts : WHITELIST
 	  !verify  = sender/callout
 
+<%=
+out = ""
+if nodeinfo['mailrelay']
+  out = '
   accept  domains  = +mailhubdomains
           endpass
 	  message  = unknown user
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
-
+'
+end
+out
+%>
   accept  domains  = +handled_domains
           endpass
 	  message  = unknown user
@@ -707,17 +751,31 @@ check_message:
   require verify = header_syntax
           message = Invalid syntax in the header
 
+<%=
+out=''
+if nodeinfo['rtmaster']
+  out='
   deny    condition = ${if eq {$acl_m1}{RTMail}}
           condition = ${if and{{!match {${lc:$rh_Subject:}} {debian rt}} \
                                {!match {${lc:$rh_Subject:]}} {\\[rt.debian.org }} \
                                {!match {$acl_m12}{RTMailRecipientHasSubaddress}}}}
           message  = messages to the Request Tracker system require a subject tag or a subaddress
-
+'
+end
+out
+%>
+<%=
+out=''
+if nodeinfo['packagesmaster']
+  out='
   deny    !hosts  = +debianhosts : 217.196.43.134
           condition = ${if eq {$acl_m1}{PTSMail}}
           condition = ${if def:h_X-PTS-Approved:{false}{true}}
           message   = messages to the PTS require an X-PTS-Approved header
-
+'
+end
+out
+%>
   deny    condition      = ${if match {$message_body}{\Nhttp:\/\/[a-z\.-]+\/video1?.exe\N}}
           message        = Blackisted URI found in body
 
