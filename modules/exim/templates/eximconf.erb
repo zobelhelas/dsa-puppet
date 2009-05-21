@@ -1303,6 +1303,7 @@ remote_smtp_smarthost:
   out += nodeinfo['smarthost_port'].to_s + "\n"
   if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
     out += '  tls_tempfail_tryclear = false
+  hosts_require_tls = ' + nodeinfo['smarthost'] + '
   tls_certificate = /etc/exim4/ssl/thishost.crt
   tls_privatekey = /etc/exim4/ssl/thishost.key
 '
