@@ -136,20 +136,3 @@ class exim {
         refreshonly => true,
     }
 }
-
-class eximmx inherits exim {
-    file {
-        "/etc/exim4/ccTLD.txt":
-          require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/common/ccTLD.txt" ]
-          ;
-        "/etc/exim4/surbl_whitelist.txt":
-          require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/common/surbl_whitelist.txt" ]
-          ;
-        "/etc/exim4/exim_surbl.pl":
-          require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/common/exim_surbl.pl" ]
-          ;
-    }
-}
