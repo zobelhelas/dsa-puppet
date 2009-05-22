@@ -68,6 +68,8 @@ need_smarthost:
   - ancina.debian.org
   - allegri.debian.org
   - piatti.debian.org
+heavy_exim:
+  - powell.debian.org
 services:
   bugsmaster: rietz.debian.org
   qamaster: merkel.debian.org

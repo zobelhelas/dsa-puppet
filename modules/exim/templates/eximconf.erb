@@ -84,6 +84,16 @@ out
 #                    MAIN CONFIGURATION SETTINGS                     #
 ######################################################################
 
+<%=
+out=''
+if not nodeinfo['heavy_exim'].empty?
+  out = "
+perl_startup = do '/etc/exim4/exim_surbl.pl'
+"
+end
+out
+%>
+
 # These options specify the Access Control Lists (ACLs) that
 # are used for incoming SMTP messages - after the RCPT and DATA
 # commands, respectively.
@@ -824,6 +834,18 @@ out
 			     {${lookup{$local_part@$domain}nwildlsearch{/etc/exim4/sa_users}{$local_part}{}}}\
 			     {${lookup{$local_part}lsearch{/etc/exim4/sa_users}{$local_part}{}}}}}}
 
+<%=
+out=''
+if not nodeinfo['heavy_exim'].empty?
+out='
+  deny   condition     = ${if <{$message_size}{256000}}
+         set acl_m5    = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m5}{false}{no}{yes}}
+         log_message   = $acl_m5
+'
+end
+out
+%>
   # Check header_sender except for survey@popcon.d.o
   deny    condition = ${if eq{$acl_m1}{PopconMail}{false}{true}}
           !verify = header_sender
