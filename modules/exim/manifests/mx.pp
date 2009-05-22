@@ -10,7 +10,7 @@ class exim::mx inherits exim {
           ;
         "/etc/exim4/exim_surbl.pl":
           require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/common/exim_surbl.pl" ]
+          source  => [ "puppet:///exim/common/exim_surbl.pl" ],
           notify  => Exec["exim4 restart"]
           ;
     }
