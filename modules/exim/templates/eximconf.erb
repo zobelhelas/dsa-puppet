@@ -86,7 +86,7 @@ out
 
 <%=
 out=''
-if not nodeinfo['heavy_exim'].empty?
+if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
   out = "
 perl_startup = do '/etc/exim4/exim_surbl.pl'
 "
@@ -836,7 +836,7 @@ out
 
 <%=
 out=''
-if not nodeinfo['heavy_exim'].empty?
+if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
 out='
   deny   condition     = ${if <{$message_size}{256000}}
          set acl_m5    = ${perl{surblspamcheck}}
