@@ -518,9 +518,17 @@ out
           hosts         = !+debianhosts
 	  message       = mail for $local_part is only accepted internally
 
+<%=
+out=''
+if 0 == 1:
+out='
   deny    message  = address $sender_host_address is listed in $dnslist_domain; $dnslist_text
 	  hosts    = !+debianhosts
           dnslists = rbl.debian.net : rbl.debian.net/$sender_address_domain
+'
+end
+out
+%>
 
   deny    !recipients = survey@popcon.debian.org
           !verify = sender
@@ -529,7 +537,6 @@ out
           condition      = ${if >{${eval:$acl_c1}}{0}}
           ratelimit      = 10 / 60m / per_rcpt / $sender_host_address
           message        = slow down (no reverse dns, mismatched ehlo, dialup, or in blacklists)
-
 <%=
 out = ""
 if has_variable?("policydweight") && policydweight == "true"
