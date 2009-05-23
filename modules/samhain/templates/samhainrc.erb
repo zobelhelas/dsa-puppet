@@ -231,7 +231,7 @@ file=/etc/exim4/ssl/thishost.crt
 file=/etc/exim4/ssl/thishost.key
 <%=
 out=""
-if not nodeinfo['exim_heavy'].empty?
+if not nodeinfo['heavy_exim'].empty?
   out = '
 file=/etc/exim4/surbl_whitelist.txt
 file=/etc/exim4/exim_surbl.pl
