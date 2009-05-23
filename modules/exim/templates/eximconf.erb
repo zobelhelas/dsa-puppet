@@ -607,7 +607,7 @@ if nodeinfo['rtmaster']
   out='
   warn    domains  = rt.debian.org
           set acl_m1 = RTMail
-          set acl_m12 = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{[^+]+\\+\\d+}}{match{$local_part}{[^+]+\\+new}}} {RTMailRecipientHasSubaddress}}}}
+          set acl_m12 = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}} {RTMailRecipientHasSubaddress}}}}
 '
 end
 out
@@ -799,7 +799,7 @@ if nodeinfo['rtmaster']
   out='
   deny    condition = ${if eq {$acl_m1}{RTMail}}
           condition = ${if and{{!match {${lc:$rh_Subject:}} {debian rt}} \
-                               {!match {${lc:$rh_Subject:]}} {\\\\[rt.debian.org }} \
+                               {!match {${lc:$rh_Subject:]}} {\N\[rt.debian.org \N }} \
                                {!match {$acl_m12}{RTMailRecipientHasSubaddress}}}}
           message  = messages to the Request Tracker system require a subject tag or a subaddress
 '
