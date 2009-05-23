@@ -781,6 +781,8 @@ acl_check_mime:
          condition     = ${if eq{$acl_m5}{false}{no}{yes}}
          log_message   = $acl_m5
          message       = $acl_m5
+
+  accept
 '
 end
 out
