@@ -32,8 +32,8 @@ node default {
 
     case $mta {
         "exim4":   {
-             case $hostname {
-                  raff,gluck,merkel,spohr,draghi,master,ries,rietz,klecker,powell:  { include exim::mx }
+             case extractnodeinfo($nodeinfo, 'heavy_exim') {
+                  "true":  { include exim::mx }
                   default: { include exim }
              }
         }
