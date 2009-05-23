@@ -101,6 +101,13 @@ out
 acl_smtp_helo = check_helo
 acl_smtp_rcpt = ${if ={$interface_port}{587} {check_submission}{check_recipient}}
 acl_smtp_data = check_message
+<%=
+out=''
+if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
+  out = "acl_smtp_mime = acl_check_mime"
+end
+out
+%>
 
 # accept domain literal syntax in e-mail addresses. To actually make use of
 # this a router is also required
@@ -762,6 +769,22 @@ out
   accept  authenticated = *
 
   deny    message = relay not permitted
+
+<%=
+out=''
+if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
+out='
+acl_check_mime:
+
+  deny   condition     = ${if <{$message_size}{256000}}
+         set acl_m5    = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m5}{false}{no}{yes}}
+         log_message   = $acl_m5
+         message       = $acl_m5
+'
+end
+out
+%>
 
 #!!# ACL that is used after the DATA command
 check_message:
