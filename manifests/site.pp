@@ -32,8 +32,8 @@ node default {
 
     case $mta {
         "exim4":   {
-             case $nodeinfo['heavy_exim'] {
-                  "true":  { include eximmx }
+             case $hostname {
+                  powell:  { include exim::mx }
                   default: { include exim }
              }
         }
