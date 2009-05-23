@@ -69,6 +69,15 @@ need_smarthost:
   - allegri.debian.org
   - piatti.debian.org
 heavy_exim:
+  - raff.debian.org
+  - gluck.debian.org
+  - merkel.debian.org
+  - spohr.debian.org
+  - draghi.debian.org
+  - master.debian.org
+  - ries.debian.org
+  - rietz.debian.org
+  - klecker.debian.org
   - powell.debian.org
 services:
   bugsmaster: rietz.debian.org

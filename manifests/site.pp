@@ -33,7 +33,7 @@ node default {
     case $mta {
         "exim4":   {
              case $hostname {
-                  powell:  { include exim::mx }
+                  raff,gluck,merkel,spohr,draghi,master,ries,rietz,klecker,powell:  { include exim::mx }
                   default: { include exim }
              }
         }
