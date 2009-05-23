@@ -780,6 +780,7 @@ acl_check_mime:
          set acl_m5    = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m5}{false}{no}{yes}}
          log_message   = $acl_m5
+         message       = $acl_m5
 '
 end
 out
