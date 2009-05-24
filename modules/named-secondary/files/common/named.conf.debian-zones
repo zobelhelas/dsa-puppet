@@ -1,0 +1,130 @@
+//
+// THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+// USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+//
+
+// Slave domains, includ in bind.conf
+
+zone "debian.org" {
+	type slave;
+	notify no;
+	file "db.debian.org";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+zone "debian.net" {
+	type slave;
+	notify no;
+	file "db.debian.net";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+zone "mirror.debian.net" {
+	type slave;
+	notify no;
+	file "db.mirror.debian.net";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+zone "rbl.debian.net" {
+	type slave;
+	notify no;
+	file "db.rbl.debian.net";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+zone "debian.com" {
+	type slave;
+	notify no;
+	file "db.debian.com";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+zone "alioth.debian.org" {
+	type slave;
+	notify no;
+	file "db.alioth.debian.org";
+	masters {
+		217.196.43.134;
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+
+// debian rack with sil.at
+zone "144-28.118.59.86.in-addr.arpa" {
+	type slave;
+	notify no;
+	file "db.86.59.118.144";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+// ipv6 at 1&1 - powell: 2001:08d8:0081:1520::/60
+zone "2.5.1.1.8.0.0.8.d.8.0.1.0.0.2.ip6.arpa" {
+	type slave;
+	notify no;
+	file "db.2001:08d8:0081:1520";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+// ipv6 at 1&1 - puccini 2001:08d8:0081:15a0::/60
+zone "a.5.1.1.8.0.0.8.d.8.0.1.0.0.2.ip6.arpa" {
+	type slave;
+	notify no;
+	file "db.2001:08d8:0081:15a0";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+// ipv6 at xs4all - klecker 2001:888:2000:12::/64
+zone "2.1.0.0.0.0.0.2.8.8.8.0.1.0.0.2.ip6.arpa" {
+	type slave;
+	notify no;
+	file "db.2001:888:2000:12";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+// vim:set syn=named:

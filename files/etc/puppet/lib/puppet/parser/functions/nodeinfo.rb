@@ -21,7 +21,37 @@ module Puppet::Parser::Functions
       end
     end
 
-    ldap = LDAP::Conn.new('samosa.debian.org')
+    if yaml.has_key?('services')
+      ['bugsmaster', 'qamaster', 'mailrelay', 'rtmaster', 'packagesmaster'].each do |service|
+        if yaml['services'].has_key?(service)
+          results[service] = host == yaml['services'][service]
+        end
+      end
+    end
+
+    results['mail_port']      = ''
+    results['smarthost']      = ''
+    results['heavy_exim']     = ''
+    results['smarthost_port'] = 587
+    results['reservedaddrs']  = '0.0.0.0/8 : 127.0.0.0/8 : 10.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5'
+
+    if yaml.has_key?('mail_port') and yaml['mail_port'].has_key?(host)
+      results['mail_port'] = yaml['mail_port'][host]
+    end
+
+    if yaml.has_key?('need_smarthost') and yaml['need_smarthost'].include?(host)
+      results['smarthost']     = "mailout.debian.org"
+    end
+
+    if yaml.has_key?('reservedaddrs') and yaml['reservedaddrs'].has_key?(host)
+      results['reservedaddrs'] = yaml['reservedaddrs'][host]
+    end
+
+    if yaml.has_key?('heavy_exim') and yaml['heavy_exim'].include?(host)
+      results['heavy_exim']    = "true"
+    end
+
+    ldap = LDAP::Conn.new('db.debian.org')
 
     results['ldap'] = []
     filter = '(hostname=' + host +')'

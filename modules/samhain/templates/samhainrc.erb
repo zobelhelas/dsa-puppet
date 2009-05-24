@@ -87,7 +87,7 @@ file=/etc/lvm/cache
 file=/etc/lvm/cache/.cache
 file=/etc/network/run/ifstate
 file=/var/state/samhain/samhain_file
-file=/etc/bind/db.debian.net
+file=/etc/bind/zones/db.debian.net
 file=/etc/exim4/bsmtp
 
 
@@ -99,7 +99,7 @@ file=/etc/exim4/bsmtp
 file=/etc
 file=/etc/ssh
 file=/etc/network/run
-file=/etc/bind
+file=/etc/bind/zones
 
 # These are the directories for the files we handle with puppet
 file=/etc/samhain
@@ -109,18 +109,26 @@ file=/etc/exim4/ssl
 file=/etc/apt
 file=/etc/apt/apt.conf.d
 file=/etc/apt/sources.list.d
-file=/etc/puppet
 file=/etc/default
 file=/etc/logrotate.d
 file=/etc/nagios
 file=/etc/nagios/nrpe.d
-file=/etc/nagios3/puppetconf.d
+<%= extradir=""
+case fqdn 
+when "spohr.debian.org": extradir="file=/etc/nagios3/puppetconf.d
+file=/etc/puppet"
+else extradir="file=/etc/puppet"
+end
+extradir
+%>
 file=/etc/cron.d
 file=/usr/lib/nagios/plugins
 file=/usr/sbin
 file=/etc/monit
 file=/etc/monit/monit.d
 file=/etc/pam.d
+file=/etc/syslog-ng
+
 
 [LogFiles]
 ##
@@ -192,6 +200,9 @@ file=/var/lib/misc/ssh-rsa-shadow
 file=/etc/.da-backup.trace
 file=/etc/postfix/debianhosts
 file=/etc/postfix/debianhosts.db
+file=/etc/blkid.tab
+file=/etc/blkid.tab.old
+file=/etc/resolv.conf.dhclient-new
 
 # We handle these files with puppet - please to not be bothering us
 file=/etc/timezone
@@ -218,9 +229,21 @@ file=/etc/exim4/ssl/ca.crt
 file=/etc/exim4/ssl/ca.crl
 file=/etc/exim4/ssl/thishost.crt
 file=/etc/exim4/ssl/thishost.key
+<%=
+out=""
+if not nodeinfo['heavy_exim'].empty?
+  out = '
+file=/etc/exim4/surbl_whitelist.txt
+file=/etc/exim4/exim_surbl.pl
+file=/etc/exim4/ccTLD.txt
+'
+end
+out
+%>
 file=/etc/apt/preferences
 file=/etc/apt/sources.list.d/volatile.list
 file=/etc/apt/sources.list.d/security.list
+file=/etc/apt/sources.list.d/buildd.list
 file=/etc/apt/sources.list.d/debian.org.list
 file=/etc/apt/sources.list.d/debian.restricted.list
 file=/etc/apt/sources.list.d/debian.list
@@ -231,17 +254,13 @@ file=/etc/puppet/puppet.conf
 file=/etc/default/puppet
 file=/etc/logrotate.d/exim4-paniclog
 file=/etc/logrotate.d/exim4-base
+file=/etc/logrotate.d/syslog-ng
+file=/etc/syslog-ng/syslog-ng.conf
 file=/usr/sbin/dsa-update-apt-status
 file=/usr/sbin/dsa-update-samhain-status
 file=/etc/nagios/nrpe.d/nrpe_dsa.cfg
 file=/etc/nagios/nrpe.d/debianorg.cfg
 file=/etc/nagios/obsolete-packages-ignore
-file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
-file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
-file=/etc/nagios3/puppetconf.d/auto-services.cfg
-file=/etc/nagios3/puppetconf.d/auto-dependencies.cfg
-file=/etc/nagios3/puppetconf.d/auto-hostextinfo.cfg
-file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg
 file=/usr/lib/nagios/plugins/dsa-check-packages
 file=/usr/lib/nagios/plugins/dsa-check-soas
 file=/usr/lib/nagios/plugins/dsa-check-mirrorsync
@@ -262,11 +281,21 @@ file=/usr/lib/nagios/plugins/dsa-check-raid-sw
 file=/usr/lib/nagios/plugins/dsa-update-samhain-status
 file=/etc/sudoers
 file=/etc/pam.d/sudo
-file=/etc/blkid.tab
-file=/etc/blkid.tab.old
 file=/etc/monit/monitrc
 file=/etc/monit/monit.d/01puppet
 file=/etc/monit/monit.d/00debian.org
+<%= extrafiles=""
+case fqdn 
+when "spohr.debian.org": extrafiles="file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
+file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
+file=/etc/nagios3/puppetconf.d/auto-services.cfg
+file=/etc/nagios3/puppetconf.d/auto-dependencies.cfg
+file=/etc/nagios3/puppetconf.d/auto-hostextinfo.cfg
+file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg"
+when "handel.debian.org": extrafiles="dir=8/etc/puppet"
+end
+extrafiles
+%>
 
 [IgnoreNone]
 ##
@@ -711,9 +740,19 @@ SetMailNum = 10
 SetMailAddress=samhain-reports@debian.org
 
 ## Mail relay (IP address)
-#
+<%=
+out=""
+if not nodeinfo['smarthost'].empty?
+  out = '
+SetMailRelay = localhost
+'
+else
+out = '
 SetMailRelay = master.debian.org
-
+'
+end
+out
+%>
 ## Custom subject format
 #
 MailSubject = [Samhain at %H] %T: %S

@@ -18,11 +18,10 @@ class exim {
           purge   => true
         ;
         "/etc/exim4/exim4.conf":
-          source  => [ "puppet:///exim/per-host/$fqdn/exim4.conf",
-                       "puppet:///exim/common/exim4.conf" ],
+          content => template("exim/eximconf.erb"),
           require => Package["exim4-daemon-heavy"],
           notify  => Exec["exim4 reload"]
-          ;
+        ;
         "/etc/exim4/manualroute":
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/manualroute",
@@ -136,9 +135,4 @@ class exim {
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
     }
-}
-
-class eximmx inherits exim {
-    include clamav
-    include postgrey
 }

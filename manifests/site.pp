@@ -18,12 +18,12 @@ node default {
     include sudo
     include debian-org
     include monit
-    include samhain
     include apt-keys
 
     $nodeinfo = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
 
     include motd
+    include samhain
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
@@ -31,7 +31,12 @@ node default {
     }
 
     case $mta {
-        "exim4":   { include exim }
+        "exim4":   {
+             case extractnodeinfo($nodeinfo, 'heavy_exim') {
+                  "true":  { include exim::mx }
+                  default: { include exim }
+             }
+        }
         default:   {}
     }
 
@@ -47,17 +52,25 @@ node default {
 
     case $apache2 {
         "true":    { case $hostname {
-                        carver,rore,draghi,tartini:  { include apache2 }
+                        carver,rore,draghi,tartini,samosa,duarte,piatti:  { include apache2 }
                         default:   {}
                    } }
         default: {}
     }
 
     case $hostname {
-        ancina,arcadelt,argento,brahms,goedel,goetz,lafayette,malo,murphy,praetorius,puccini:
+        ancina,arcadelt,argento,brahms,goedel,goetz,lafayette,malo,murphy,praetorius,puccini,paer:
                    { include buildd }
         default:   {}
     }
+
+# maybe wait for rietz to be upgraded to lenny
+#    case $hostname {
+#        rietz,raff,klecker:
+#                   { include named-secondary }
+#        default:   {}
+#    }
+
     case $hostname {
         geo1,geo2,geo3:
                    { include geodns }

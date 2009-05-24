@@ -3,8 +3,7 @@ class samhain {
     package { samhain: ensure => installed }
 
     file { "/etc/samhain/samhainrc":
-        source  => [ "puppet:///samhain/per-host/$fqdn/samhainrc",
-                     "puppet:///samhain/common/samhainrc" ],
+        content => template("samhain/samhainrc.erb"),
         require => Package["samhain"],
         notify  => Exec["samhain reload"],
     }

@@ -1,0 +1,119 @@
+/var/log/auth.log {
+   rotate 4
+   missingok
+   notifempty
+   weekly
+   compress
+}
+
+/var/log/cron.log {
+   rotate 4
+   weekly
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/daemon.log {
+   rotate 7
+   weekly
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/debug {
+   rotate 4
+   weekly
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/kern.log {
+   rotate 4
+   weekly
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/lpr.log {
+   rotate 4
+   weekly
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/mail.err {
+   rotate 30
+   daily
+   dateext
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/mail.info {
+   rotate 30
+   daily
+   dateext
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/mail.log {
+   rotate 30
+   daily
+   dateext
+   missingok
+   notifempty
+   compress
+   # listmaster asked for this one
+   delaycompress
+}
+
+/var/log/mail.warn {
+   rotate 30
+   daily
+   dateext
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/messages {
+   rotate 4
+   weekly
+   missingok
+   notifempty
+   compress
+}
+
+
+/var/log/user.log {
+   rotate 4
+   weekly
+   missingok
+   notifempty
+   compress
+}
+
+/var/log/uucp.log {
+   rotate 4
+   missingok
+   notifempty
+   weekly
+   compress
+}
+
+/var/log/syslog {
+   rotate 7
+   daily
+   compress
+   postrotate
+      /usr/sbin/invoke-rc.d syslog-ng reload >/dev/null
+   endscript
+}

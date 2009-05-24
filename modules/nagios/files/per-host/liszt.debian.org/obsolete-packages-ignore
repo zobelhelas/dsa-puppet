@@ -8,9 +8,4 @@
 buildd
 sbuild
 
-zabbix-agent
-libgnutls13
-libldap2
-liblzo1
-libopencdk8
-librrd2
+amavisd-new
