@@ -1,4 +1,8 @@
 #
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+#
 # Copyright (c) 2006-2007 Erik Mugele.  All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without

@@ -85,6 +85,7 @@ services:
   mailrelay: spohr.debian.org
   rtmaster: spohr.debian.org
   packagesmaster: powell.debian.org
+  packagesqamaster: master.debian.org
 mail_port:
   ancina.debian.org: 2025
   allegri.debian.org: 2025

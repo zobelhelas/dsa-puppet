@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
     end
 
     if yaml.has_key?('services')
-      ['bugsmaster', 'qamaster', 'mailrelay', 'rtmaster', 'packagesmaster'].each do |service|
+      ['bugsmaster', 'qamaster', 'mailrelay', 'rtmaster', 'packagesmaster', 'packagesqamaster'].each do |service|
         if yaml['services'].has_key?(service)
           results[service] = host == yaml['services'][service]
         end

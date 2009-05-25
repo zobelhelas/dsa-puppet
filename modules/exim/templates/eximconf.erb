@@ -614,7 +614,7 @@ out
 %>
 <%=
 out=''
-if nodeinfo['packagesmaster']
+if nodeinfo['packagesqamaster']
   out='
   warn    domains  = packages.qa.debian.org
           set acl_m1 = PTSMail
@@ -808,7 +808,7 @@ out
 %>
 <%=
 out=''
-if nodeinfo['packagesmaster']
+if nodeinfo['packagesqamaster']
   out='
   deny    !hosts  = +debianhosts : 217.196.43.134
           condition = ${if eq {$acl_m1}{PTSMail}}
