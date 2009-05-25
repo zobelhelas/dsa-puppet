@@ -1,3 +1,8 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+#
 # postgrey startup options, created for Debian
 # (c)2004 Adrian von Bidder <avbidder@fortytwo.ch>
 # Distribute and/or modify at will.
