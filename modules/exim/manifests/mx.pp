@@ -1,4 +1,7 @@
 class exim::mx inherits exim {
+    include clamav
+    include postgrey
+
     file {
         "/etc/exim4/ccTLD.txt":
           require => Package["exim4-daemon-heavy"],

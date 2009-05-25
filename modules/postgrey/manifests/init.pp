@@ -3,7 +3,7 @@ class postgrey {
 
     file {
         "/etc/default/postgrey":
-          source  => "puppet:///exim/common/postgrey-default",
+          source  => "puppet:///postgrey/default",
           require => Package["postgrey"],
           notify  => Exec["postgrey restart"]
           ;
