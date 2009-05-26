@@ -30,7 +30,7 @@ logging {
 		print-time yes;
 		print-category yes;
 	};
-	category queries { queries };
+	category queries { queries; };
 	category lame-servers { null; };
 
 };
