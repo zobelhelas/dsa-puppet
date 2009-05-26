@@ -3,4 +3,5 @@
 // USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 //
 
+include "/etc/bind/named.conf.acl";
 include "/etc/bind/named.conf.geo";
