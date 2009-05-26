@@ -71,11 +71,11 @@ node default {
 #        default:   {}
 #    }
 
-#     case $hostname {
-#         geo1,geo2,geo3:
-#                    { include geodns }
-#         default:   {}
-#     }
+     case $hostname {
+         geo1,geo2,geo3:
+                    { include geodns }
+         default:   {}
+     }
 }
 
 node penalosa inherits default {

@@ -1,46 +1,51 @@
 class geodns {
 
-    package { pdns-backend-geo: ensure => installed }
+    package { bind9: ensure => installed }
 
-    file { "/etc/powerdns/pdns.conf":
-        source  => [ "puppet:///geodns/per-host/$fqdn/pdns.conf",
-                     "puppet:///geodns/common/pdns.conf" ],
-        require => Package["pdns-backend-geo"],
-        notify  => Exec["pdns restart"],
+    file {
+      "/etc/apt/sources.list.d/geoip.list":
+             source => "puppet:///files/etc/apt/sources.list.d/geoip.list",
+             notify  => Exec["apt-get update"],
+             ;
+    }
+    file { "/etc/bind/named.conf.local":
+        source  => [ "puppet:///geodns/per-host/$fqdn/named.conf.local",
+                     "puppet:///geodns/common/named.conf.local" ],
+        require => Package["bind9"],
+        notify  => Exec["bind9 restart"],
         owner   => root,
         group   => root,
-        mode    => 600,
 
     }
-    file { "/etc/powerdns/pdns.d/pdns.local":
-        source  => [ "puppet:///geodns/per-host/$fqdn/pdns.local",
-                     "puppet:///geodns/common/pdns.local" ],
-        require => Package["pdns-backend-geo"],
-        notify  => Exec["pdns restart"],
+    file { "/etc/bind/named.conf.geo":
+        source  => [ "puppet:///geodns/per-host/$fqdn/named.conf.geo",
+                     "puppet:///geodns/common/named.conf.geo" ],
+        require => Package["bind9"],
+        notify  => Exec["bind9 restart"],
         owner   => root,
         group   => root,
-        mode    => 600,
+
     }
-    file { "/etc/powerdns/ip2iso":
-        source  => [ "puppet:///geodns/per-host/$fqdn/ip2iso",
-                     "puppet:///geodns/common/ip2iso" ],
-        require => Package["pdns-backend-geo"],
-        notify  => Exec["pdns restart"],
+    file { "/etc/bind/named.conf.acl":
+        source  => [ "puppet:///geodns/per-host/$fqdn/named.conf.acl",
+                     "puppet:///geodns/common/named.conf.acl" ],
+        require => Package["bind9"],
+        notify  => Exec["bind9 restart"],
+        owner   => root,
+        group   => root,
+
     }
-    file { "/etc/powerdns/iso2ga/security":
-        source  => [ "puppet:///geodns/per-host/$fqdn/security",
-                     "puppet:///geodns/common/security" ],
-        require => Package["pdns-backend-geo"],
-        notify  => Exec["pdns restart"],
-    }
-    file { "/etc/powerdns/iso2ga/security6":
-        source  => [ "puppet:///geodns/per-host/$fqdn/security6",
-                     "puppet:///geodns/common/security6" ],
-        require => Package["pdns-backend-geo"],
-        notify  => Exec["pdns restart"],
+    file { "/etc/bind/named.conf.options":
+        source  => [ "puppet:///geodns/per-host/$fqdn/named.conf.options",
+                     "puppet:///geodns/common/named.conf.options" ],
+        require => Package["bind9"],
+        notify  => Exec["bind9 restart"],
+        owner   => root,
+        group   => root,
+
     }
 
-    exec { "pdns restart":
+    exec { "bind9 restart":
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
     }
