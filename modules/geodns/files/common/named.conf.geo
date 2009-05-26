@@ -11,10 +11,12 @@ view 'Africa' {
         zone "security.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.AF";
+		notify no;
         };
         zone "security.geo.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.AF";
+		notify no;
         };
 };
 
@@ -26,10 +28,12 @@ view 'Asia' {
         zone "security.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.AS";
+		notify no;
         };
         zone "security.geo.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.AS";
+		notify no;
         };
 };
 
@@ -41,10 +45,12 @@ view 'Europe' {
         zone "security.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.EU";
+		notify no;
         };
         zone "security.geo.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.EU";
+		notify no;
         };
 };
 
@@ -56,10 +62,12 @@ view 'NorthAmerica' {
         zone "security.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.NA";
+		notify no;
         };
         zone "security.geo.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.NA";
+		notify no;
         };
 };
 view 'SouthAmerica' {
@@ -70,10 +78,12 @@ view 'SouthAmerica' {
         zone "security.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.SA";
+		notify no;
         };
         zone "security.geo.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.SA";
+		notify no;
         };
 };
 view 'Oceania' {
@@ -84,10 +94,12 @@ view 'Oceania' {
         zone "security.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.OC";
+		notify no;
         };
         zone "security.geo.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.OC";
+		notify no;
         };
 };
 view 'Antarctica' {
@@ -98,10 +110,12 @@ view 'Antarctica' {
         zone "security.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.AN";
+		notify no;
         };
         zone "security.geo.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org.AN";
+		notify no;
         };
 };
 view "other" {
@@ -110,9 +124,11 @@ view "other" {
         zone "security.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org";
+		notify no;
         };
         zone "security.geo.debian.org" {
                 type master;
                 file "/etc/bind/db.security.debian.org";
+		notify no;
         };
 };
