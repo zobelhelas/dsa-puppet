@@ -80,6 +80,14 @@ heavy_exim:
   - rietz.debian.org
   - klecker.debian.org
   - powell.debian.org
+apache2_defaultconfig:
+  - carver.debian.org
+  - draghi.debian.org
+  - duarte.debian.org
+  - piatti.debian.org
+  - rore.debian.org
+  - samosa.debian.org
+  - tartini.debian.org
 services:
   bugsmaster: rietz.debian.org
   qamaster: merkel.debian.org

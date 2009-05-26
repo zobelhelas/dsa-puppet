@@ -50,13 +50,10 @@ node default {
 	}
     }
 
-    case $apache2 {
-        "true":    { case $hostname {
-                        carver,rore,draghi,tartini,samosa,duarte,piatti:  { include apache2 }
-                        default:   {}
-                   } }
-        default: {}
-    }
+     case extractnodeinfo($nodeinfo, 'apache2_defaultconfig') {
+          "true":  { include apache2 }
+           default: { }
+     }
 
     case $hostname {
         ancina,arcadelt,argento,brahms,goedel,goetz,lafayette,malo,murphy,praetorius,puccini,paer:

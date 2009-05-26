@@ -51,6 +51,10 @@ module Puppet::Parser::Functions
       results['heavy_exim']    = "true"
     end
 
+    if yaml.has_key?('apache2_defaultconfig') and yaml['apache2_defaultconfig'].include?(host)
+      results['apache2_defaultconfig']    = "true"
+    end
+
     ldap = LDAP::Conn.new('db.debian.org')
 
     results['ldap'] = []
