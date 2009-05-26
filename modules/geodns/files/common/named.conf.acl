@@ -5,7 +5,7 @@
 
 
 // Africa
-acl 'Africa' {
+acl Africa {
 	country_AO;
 	country_BF;
 	country_BI;
@@ -66,7 +66,7 @@ acl 'Africa' {
 };
 
 // Asia
-acl 'Asia' {
+acl Asia {
 	country_AE;
 	country_AF;
 	country_AM;
@@ -179,7 +179,7 @@ acl Europe {
 };
 
 // North America
-acl 'NorthAmerica' {
+acl NorthAmerica {
 	country_AG;
 	country_AI;
 	country_AN;
@@ -222,7 +222,7 @@ acl 'NorthAmerica' {
 };
 
 // South America
-acl 'SouthAmerica' {
+acl SouthAmerica {
 	country_AR;
 	country_BO;
 	country_BR;
@@ -240,7 +240,7 @@ acl 'SouthAmerica' {
 };
 
 // Oceania
-view 'Oceania' {
+acl Oceania {
 	country_AS;
 	country_AU;
 	country_CK;
@@ -270,7 +270,7 @@ view 'Oceania' {
 };
 
 // Antarctica
-view 'Antarctica' {
+acl Antarctica {
 	country_AQ;
 	country_BV;
 	country_GS;
