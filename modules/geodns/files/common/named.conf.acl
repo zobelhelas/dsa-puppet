@@ -124,7 +124,7 @@ acl 'Asia' {
 };
 
 // Europe
-acl Europe {
+acl 'Europe' {
 	country_AD;
 	country_AL;
 	country_AT;
