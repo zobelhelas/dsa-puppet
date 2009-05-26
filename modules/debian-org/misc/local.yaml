@@ -86,6 +86,7 @@ apache2_defaultconfig:
   - duarte.debian.org
   - piatti.debian.org
   - rore.debian.org
+  - saens.debian.org
   - samosa.debian.org
   - tartini.debian.org
 services:
