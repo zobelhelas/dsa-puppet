@@ -240,7 +240,7 @@ acl 'SouthAmerica' {
 };
 
 // Oceania
-view 'Oceania' {
+acl 'Oceania' {
 	country_AS;
 	country_AU;
 	country_CK;
@@ -270,7 +270,7 @@ view 'Oceania' {
 };
 
 // Antarctica
-view 'Antarctica' {
+acl 'Antarctica' {
 	country_AQ;
 	country_BV;
 	country_GS;
