@@ -34,24 +34,14 @@ module Puppet::Parser::Functions
     results['smarthost_port'] = 587
     results['reservedaddrs']  = '0.0.0.0/8 : 127.0.0.0/8 : 10.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5'
 
-    if yaml.has_key?('mail_port') and yaml['mail_port'].has_key?(host)
-      results['mail_port'] = yaml['mail_port'][host]
-    end
-
-    if yaml.has_key?('need_smarthost') and yaml['need_smarthost'].include?(host)
-      results['smarthost']     = "mailout.debian.org"
-    end
-
-    if yaml.has_key?('reservedaddrs') and yaml['reservedaddrs'].has_key?(host)
-      results['reservedaddrs'] = yaml['reservedaddrs'][host]
-    end
-
-    if yaml.has_key?('heavy_exim') and yaml['heavy_exim'].include?(host)
-      results['heavy_exim']    = "true"
-    end
-
-    if yaml.has_key?('apache2_defaultconfig') and yaml['apache2_defaultconfig'].include?(host)
-      results['apache2_defaultconfig']    = "true"
+    if yaml['host_settings'].kind_of?(Hash)
+      yaml['host_settings'].each_key do |property, values|
+        if values.kind_of?(Hash)
+          results[property] = values[host] if values.has_key?(host)
+        elsif values.kind_of?(Array)
+          results[property] = "true" if values.include?(host)
+        end
+      end
     end
 
     ldap = LDAP::Conn.new('db.debian.org')
