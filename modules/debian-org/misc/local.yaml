@@ -93,6 +93,19 @@ host_settings:
     - saens.debian.org
     - samosa.debian.org
     - tartini.debian.org
+  buildd:
+    - ancina.debian.org
+    - arcadelt.debian.org
+    - argento.debian.org
+    - brahms.debian.org
+    - goedel.debian.org
+    - goetz.debian.org
+    - lafayette.debian.org
+    - malo.debian.org
+    - murphy.debian.org
+    - praetorius.debian.org
+    - puccini.debian.org
+    - paer.debian.org
   smarthost:
     ancina.debian.org: mailout.debian.org
     allegri.debian.org: mailout.debian.org

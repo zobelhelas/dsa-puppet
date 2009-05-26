@@ -55,11 +55,10 @@ node default {
            default: { }
      }
 
-    case $hostname {
-        ancina,arcadelt,argento,brahms,goedel,goetz,lafayette,malo,murphy,praetorius,puccini,paer:
-                   { include buildd }
-        default:   {}
-    }
+     case extractnodeinfo($nodeinfo, 'buildd') {
+          "true":  { include buildd }
+           default: { }
+     }
 
 # maybe wait for rietz to be upgraded to lenny
 #    case $hostname {
