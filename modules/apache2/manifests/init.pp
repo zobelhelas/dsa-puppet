@@ -31,7 +31,7 @@ class apache2 {
 			mode    => 755,
 			ensure  => directory;
 		"/srv/www/default.debian.org/htdocs/index.html":
-			content => template("default-index.html");
+			content => template("apache2/default-index.html");
 
 		"/var/log/apache2":
 			mode    => 755,
