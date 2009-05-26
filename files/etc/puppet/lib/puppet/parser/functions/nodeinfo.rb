@@ -71,3 +71,5 @@ module Puppet::Parser::Functions
     return(results)
   end
 end
+
+# vim: set fdm=marker ts=2 sw=2 et:
