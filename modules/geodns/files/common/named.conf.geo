@@ -3,7 +3,7 @@
 // USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 //
 
-view 'Africa' {
+view "Africa" {
 	match-clients {
 		Africa;
         };
@@ -20,7 +20,7 @@ view 'Africa' {
         };
 };
 
-view 'Asia' {
+view "Asia" {
 	match-clients {
 		Asia;
         };
@@ -37,7 +37,7 @@ view 'Asia' {
         };
 };
 
-view 'Europe' {
+view "Europe" {
 	match-clients { 
 		Europe; 
 	};
@@ -54,7 +54,7 @@ view 'Europe' {
         };
 };
 
-view 'NorthAmerica' {
+view "NorthAmerica" {
 	match-clients {
 		NorthAmerica;
         };
@@ -70,7 +70,7 @@ view 'NorthAmerica' {
 		notify no;
         };
 };
-view 'SouthAmerica' {
+view "SouthAmerica" {
 	match-clients {
 		SouthAmerica;
         };
@@ -86,7 +86,7 @@ view 'SouthAmerica' {
 		notify no;
         };
 };
-view 'Oceania' {
+view "Oceania" {
 	match-clients {
 		Oceania;
         };
@@ -102,7 +102,7 @@ view 'Oceania' {
 		notify no;
         };
 };
-view 'Antarctica' {
+view "Antarctica" {
 	match-clients {
 		Antarctica;
         };
