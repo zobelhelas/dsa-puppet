@@ -18,6 +18,8 @@ FILELIST="$1"
 
 printf "\nrecvconf on %s processing:\n" "$(hostname -s)"
 
+umask 077
+
 temptar="$(mktemp)"
 chmod 0600 "$temptar"
 
