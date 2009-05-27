@@ -113,7 +113,6 @@ file=/etc/default
 file=/etc/logrotate.d
 file=/etc/nagios
 file=/etc/nagios/nrpe.d
-file=/etc/powerdns
 <%= extradir=""
 case fqdn 
 when "spohr.debian.org": extradir="file=/etc/nagios3/puppetconf.d
@@ -286,7 +285,6 @@ file=/etc/pam.d/sudo
 file=/etc/monit/monitrc
 file=/etc/monit/monit.d/01puppet
 file=/etc/monit/monit.d/00debian.org
-file=/etc/powerdns/ip2iso
 <%= extrafiles=""
 case fqdn 
 when "spohr.debian.org": extrafiles="file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
