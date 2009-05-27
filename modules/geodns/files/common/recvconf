@@ -1,4 +1,6 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -e
 
 ## Copyright (c) 2005 David B. Harris <dbharris@eelf.ddts.net>
 ## Copyright (c) 2005 Peter Palfrader <peter@palfrader.org>
