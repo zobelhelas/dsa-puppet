@@ -94,7 +94,14 @@ copy_and_runcommands() {
 
 IN=0
 linenum=0
+file=""
 nextfile=""
+
+clear_vars() {
+	perms=""; user=""; group=""; precommand=""; postcommand=""
+}
+clear_vars
+
 while read line; do
     linenum="$(($linenum + 1))"
 
@@ -120,7 +127,7 @@ while read line; do
 	## the file, then set a $file to the new value and continue parsing.
 	[ -n "$file" ] && copy_and_runcommands "$file" "$perms" "$user" "$group" "$precommand" "$postcommand"
 	file="$(printf "%s" "$line" | sed -e 's/[[:space:]]*file[[:space:]]\+\([^[:space:]#]*\).*/\1/')"
-	perms=""; user=""; group=""; precommand=""; postcommand=""
+	clear_vars
 	continue
     fi
 
