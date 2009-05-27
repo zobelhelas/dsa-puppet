@@ -1,1 +1,5 @@
+#
+# THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+# USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+#
 from="82.195.75.106,2001:41b8:202:deb:216:36ff:fe40:3906",command="/etc/bind/geodns/recvconf /etc/bind/geodns/recvconf.files",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA2cJCkmggW6TD0UPJP9lelDno8qbYGXPeYE4+QmkqJv8mslcHxmx5tA2TvpJ9qbAUMPOdZf9ihomwPmFzz9UNZH4eDA8F126UUP5DXsh7FC7yVGSBUNdJdYS7m2wtVs8ddhrVdI+8c39D7NVGGjtUCJCWA/3fE65O183Gm+vER65SYR6LfHlEiC2FBROs6qwnjQ0yw194MnU7Jxl/GsTdZ72ArkmcPjuWsVHWtkSTt0hPfgBOyL4vSfBgl2p2eQBXCEPOaPTa1Yr5qfur1+Cj+iwadEmPfRap6rBO3wfIjbXt/KncM2uFrCXuF1TOqQxrs5LSe8dz16vf9Ckf9Ae5wQ== geodnssync@draghi (20090527)
