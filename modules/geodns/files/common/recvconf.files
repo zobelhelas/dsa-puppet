@@ -1,0 +1,40 @@
+file etc/bind/geodns/db.security.debian.org
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /etc/init.d/bind9 reload
+file etc/bind/geodns/db.security.debian.org.AF
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /etc/init.d/bind9 reload
+file etc/bind/geodns/db.security.debian.org.AN
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /etc/init.d/bind9 reload
+file etc/bind/geodns/db.security.debian.org.AS
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /etc/init.d/bind9 reload
+file etc/bind/geodns/db.security.debian.org.EU
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /etc/init.d/bind9 reload
+file etc/bind/geodns/db.security.debian.org.NA
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /etc/init.d/bind9 reload
+file etc/bind/geodns/db.security.debian.org.OC
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /etc/init.d/bind9 reload
+file etc/bind/geodns/db.security.debian.org.SA
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /etc/init.d/bind9 reload
