@@ -114,3 +114,5 @@ debwww		klecker=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %list		liszt=(root)		/etc/init.d/spamassassin, /etc/init.d/amavis
 %list		liszt=(amavis)		NOPASSWD: /usr/bin/sa-learn
 %list		liszt=(amavis)		ALL
+# geodns may reload bind
+geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
