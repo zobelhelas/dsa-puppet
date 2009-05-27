@@ -9,8 +9,14 @@ set -u
 ## This text is released under the "three-clause BSD license".
 ## The full text of the license is available at the end of this file.
 
+if [ "$#" != 1 ]; then
+	echo "Usage: $0 <recvconf.files>" >&2
+	exit 1
+fi
+
+FILELIST="$1"
+
 printf "\nrecvconf on %s processing:\n" "$(hostname -s)"
-FILELIST=/etc/NOREPLY/recvconf.files
 
 temptar="$(mktemp)"
 chmod 0600 "$temptar"
