@@ -3,6 +3,23 @@
 // USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 //
 
+view "Nagios" {
+	match-clients {
+		Nagios;
+        };
+        recursion yes;
+        zone "security.debian.org" {
+                type master;
+                file "/etc/bind/db.security.debian.org.NA";
+		notify no;
+        };
+        zone "security.geo.debian.org" {
+                type master;
+                file "/etc/bind/db.security.debian.org.NA";
+		notify no;
+        };
+};
+
 view "Africa" {
 	match-clients {
 		Africa;
