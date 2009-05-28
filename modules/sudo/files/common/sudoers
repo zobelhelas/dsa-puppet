@@ -92,6 +92,7 @@ piupartss	piatti=(ALL)		NOPASSWD: ALL
 pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # on draghi, the domains git thing will run bind9 reload afterwards
 %adm		draghi=(root)		NOPASSWD: /etc/init.d/bind9 reload
+%adm		draghi=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/db.debian.org/dns
 # remote power to babylon5 in the same rack:
 joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
 # wbadm can update all buildd* users' keys on buildd.d.o
