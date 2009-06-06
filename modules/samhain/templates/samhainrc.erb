@@ -244,6 +244,15 @@ file=/etc/exim4/ssl/thishost.crt
 file=/etc/exim4/ssl/thishost.key
 <%=
 out=""
+if not nodeinfo['buildd'].empty?
+  out = '
+file=/etc/schroot/mount-defaults
+'
+end
+out
+%>
+<%=
+out=""
 if not nodeinfo['heavy_exim'].empty?
   out = '
 file=/etc/exim4/surbl_whitelist.txt
