@@ -117,3 +117,4 @@ debwww		klecker=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %list		liszt=(amavis)		ALL
 # geodns may reload bind
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
+geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
