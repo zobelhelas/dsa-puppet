@@ -43,3 +43,8 @@ file etc/bind/geodns/db.security.debian.org.SA
     user geodnssync
     group geodnssync
     postcommand /etc/init.d/bind9 reload
+file etc/bind/geodns/named.conf.geo.security.debian.org
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /usr/sbin/rndc reconfig
