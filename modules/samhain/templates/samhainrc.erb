@@ -134,6 +134,15 @@ else extradir="file=/etc/puppet"
 end
 extradir
 %>
+<%=
+out=""
+if not nodeinfo['buildd'].empty?
+  out = '
+file=/etc/schroot
+'
+end
+out
+%>
 file=/etc/cron.d
 file=/usr/lib/nagios/plugins
 file=/usr/sbin
