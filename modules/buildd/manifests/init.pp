@@ -14,10 +14,14 @@ class buildd {
              notify  => Exec["apt-get update"],
              ;
 
-        "/etc/apt/trusted-keys.d/buildd.debian.org.asc":
-          source  => "puppet:///buildd/buildd.debian.org.asc",
-          mode    => 664,
-          notify  => Exec["apt-keys-update"],
-          ;
+      "/etc/apt/trusted-keys.d/buildd.debian.org.asc":
+            source  => "puppet:///buildd/buildd.debian.org.asc",
+            mode    => 664,
+            notify  => Exec["apt-keys-update"],
+            ;
+      "/etc/schroot/mount-defaults":
+            source  => "puppet:///buildd/mount-defaults",
+            require => Package["sbuild"]
+            ;
    }
 }
