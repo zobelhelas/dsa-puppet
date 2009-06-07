@@ -92,6 +92,7 @@ host_settings:
     - rore.debian.org
     - saens.debian.org
     - samosa.debian.org
+    - senfl.debian.org
     - tartini.debian.org
   buildd:
     - ancina.debian.org
