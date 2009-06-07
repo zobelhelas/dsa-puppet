@@ -4,4 +4,4 @@
 //
 
 include "/etc/bind/named.conf.acl";
-include "/etc/bind/named.conf.geo";
+include "/etc/bind/geodns/named.conf.geo.security.debian.org";
