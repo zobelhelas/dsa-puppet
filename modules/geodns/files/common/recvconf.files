@@ -3,6 +3,11 @@
 # USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 #
 
+file etc/bind/geodns/named.conf.geo.security.debian.org
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /usr/sbin/named-checkconf /etc/bind/named.conf && sudo /usr/sbin/rndc reconfig
 file etc/bind/geodns/db.security.debian.org
     perms 0644
     user geodnssync
@@ -51,8 +56,3 @@ file etc/bind/geodns/db.security.debian.org.SA
     group geodnssync
     precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.SA
     postcommand /etc/init.d/bind9 reload
-file etc/bind/geodns/named.conf.geo.security.debian.org
-    perms 0644
-    user geodnssync
-    group geodnssync
-    postcommand /usr/sbin/named-checkconf /etc/bind/named.conf && sudo /usr/sbin/rndc reconfig
