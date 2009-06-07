@@ -7,7 +7,7 @@ file etc/bind/geodns/named.conf.geo.security.debian.org
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /usr/sbin/named-checkconf /etc/bind/named.conf && sudo /usr/sbin/rndc reconfig && sleep 5
+    postcommand /usr/sbin/named-checkconf /etc/bind/named.conf && sudo /usr/sbin/rndc reconfig
 file etc/bind/geodns/db.security.debian.org
     perms 0644
     user geodnssync
