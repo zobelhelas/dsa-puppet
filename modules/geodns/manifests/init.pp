@@ -17,14 +17,6 @@ class geodns {
                         owner   => root,
                         group   => root,
                         ;
-                "/etc/bind/named.conf.geo":
-                        source  => [ "puppet:///geodns/per-host/$fqdn/named.conf.geo",
-                                      "puppet:///geodns/common/named.conf.geo" ],
-                        require => Package["bind9"],
-                        notify  => Exec["bind9 restart"],
-                        owner   => root,
-                        group   => root,
-                        ;
                 "/etc/bind/named.conf.acl":
                         source  => [ "puppet:///geodns/per-host/$fqdn/named.conf.acl",
                                      "puppet:///geodns/common/named.conf.acl" ],

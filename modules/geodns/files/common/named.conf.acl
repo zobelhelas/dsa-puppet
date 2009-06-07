@@ -8,7 +8,7 @@ acl Nagios {
 };
 
 // Africa
-acl Africa {
+acl AF {
 	country_AO;
 	country_BF;
 	country_BI;
@@ -69,7 +69,7 @@ acl Africa {
 };
 
 // Asia
-acl Asia {
+acl AS {
 	country_AE;
 	country_AF;
 	country_AM;
@@ -127,7 +127,7 @@ acl Asia {
 };
 
 // Europe
-acl Europe {
+acl EU {
 	country_AD;
 	country_AL;
 	country_AT;
@@ -182,7 +182,7 @@ acl Europe {
 };
 
 // North America
-acl NorthAmerica {
+acl NA {
 	country_AG;
 	country_AI;
 	country_AN;
@@ -225,7 +225,7 @@ acl NorthAmerica {
 };
 
 // South America
-acl SouthAmerica {
+acl SA {
 	country_AR;
 	country_BO;
 	country_BR;
@@ -243,7 +243,7 @@ acl SouthAmerica {
 };
 
 // Oceania
-acl Oceania {
+acl OC {
 	country_AS;
 	country_AU;
 	country_CK;
@@ -273,7 +273,7 @@ acl Oceania {
 };
 
 // Antarctica
-acl Antarctica {
+acl AN {
 	country_AQ;
 	country_BV;
 	country_GS;

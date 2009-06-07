@@ -3,43 +3,56 @@
 # USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 #
 
+file etc/bind/geodns/named.conf.geo.security.debian.org
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /usr/sbin/named-checkconf /etc/bind/named.conf && sudo /usr/sbin/rndc reconfig
 file etc/bind/geodns/db.security.debian.org
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /etc/init.d/bind9 reload
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.security.debian.org.AF
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /etc/init.d/bind9 reload
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.AF
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.security.debian.org.AN
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /etc/init.d/bind9 reload
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.AN
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.security.debian.org.AS
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /etc/init.d/bind9 reload
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.AS
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.security.debian.org.EU
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /etc/init.d/bind9 reload
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.EU
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.security.debian.org.NA
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /etc/init.d/bind9 reload
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.NA
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.security.debian.org.OC
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /etc/init.d/bind9 reload
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.OC
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.security.debian.org.SA
     perms 0644
     user geodnssync
     group geodnssync
-    postcommand /etc/init.d/bind9 reload
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.SA
+    postcommand sudo /etc/init.d/bind9 reload
