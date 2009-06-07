@@ -810,7 +810,7 @@ out
 
 acl_check_predata:
   deny   condition     = ${if eq{$acl_m6}{localonly}}
-         message       = $acl_m7 does not send mail; nondelivery reports are rejected as fakes.
+         message       = mail for $acl_m7 is only accepted internally
 
   accept
 
