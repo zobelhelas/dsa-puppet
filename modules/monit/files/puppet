@@ -22,4 +22,4 @@ check process cron with pidfile /var/run/crond.pid
 check file cronalive
     with path /var/cache/dsa/cron.alive
     if timestamp > 120 minutes for 5 cycles then exec "/etc/init.d/cron stop"
-    depends on crond
+    depends on cron
