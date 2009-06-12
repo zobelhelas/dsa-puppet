@@ -299,6 +299,7 @@ file=/etc/pam.d/sudo
 file=/etc/monit/monitrc
 file=/etc/monit/monit.d/01puppet
 file=/etc/monit/monit.d/00debian.org
+file=/etc/cron.d/dsa-puppet-stuff
 <%= extrafiles=""
 case fqdn 
 when "spohr.debian.org": extrafiles="file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg

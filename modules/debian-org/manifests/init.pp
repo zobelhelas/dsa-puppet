@@ -1,6 +1,7 @@
 class debian-org {
    package { "userdir-ldap": ensure => installed;
              "zsh": ensure => installed;
+             "cron": ensure => installed;
              "apt-utils": ensure => installed;
              "tcsh": ensure => installed;
              "pdksh": ensure => installed;
@@ -61,6 +62,10 @@ class debian-org {
              ;
       "/etc/logrotate.d/syslog-ng":
              source => "puppet:///files/etc/logrotate.d/syslog-ng",
+             ;
+      "/etc/cron.d/dsa-puppet-stuff":
+             source => "puppet:///files/etc/cron.d/dsa-puppet-stuff",
+             require => Package["cron"]
              ;
    }
    case $hostname {

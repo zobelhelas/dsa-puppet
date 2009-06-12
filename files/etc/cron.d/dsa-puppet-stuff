@@ -1,0 +1,1 @@
+@hourly  root [ ! -d /var/cache/dsa ] || touch /var/cache/dsa/cron.alive

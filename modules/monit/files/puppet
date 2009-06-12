@@ -14,3 +14,12 @@ check file puppetstate
     if timestamp > 90 minutes for 9 cycles then exec "/etc/init.d/puppet stop"
     depends on puppetd
 
+check process cron with pidfile /var/run/crond.pid
+    start program = "/etc/init.d/cron start"
+    stop program  = "/etc/init.d/cron stop"
+    if 5 restarts within 5 cycles then timeout
+
+check file cronalive
+    with path /var/cache/dsa/cron.alive
+    if timestamp > 120 minutes for 5 cycles then exec "/etc/init.d/cron stop"
+    depends on crond
