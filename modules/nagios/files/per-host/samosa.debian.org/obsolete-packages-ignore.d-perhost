@@ -3,11 +3,6 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-/linux-image-.*/
-/kernel-image-.*/
-buildd
-sbuild
-
 postgresql-client-common
 postgresql-client-8.4
 postgresql-server-dev-8.4

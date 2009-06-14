@@ -3,9 +3,4 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-/linux-image-.*/
-/kernel-image-.*/
-buildd
-sbuild
-
-xfsprogs
+# this fine intentially kept empty

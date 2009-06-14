@@ -35,6 +35,11 @@ class nagios::client inherits nagios {
 			source  => [ "puppet:///nagios/per-host/$fqdn/obsolete-packages-ignore",
 			             "puppet:///nagios/common/obsolete-packages-ignore" ],
 			require => Package["dsa-nagios-checks"];
+
+		"/etc/nagios/obsolete-packages-ignore.d/perhost":
+			source  => [ "puppet:///nagios/per-host/$fqdn/obsolete-packages-ignore.d-perhost",
+			             "puppet:///nagios/common/obsolete-packages-ignore.d-perhost" ],
+			require => Package["dsa-nagios-checks"];
 	}
 
 	exec { "nagios-nrpe-server restart":
