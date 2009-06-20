@@ -1422,6 +1422,7 @@ address_reply:
 remote_smtp:
   driver = smtp
   connect_timeout = 1m
+  delay_after_cutoff = false
 <%=
 out = ""
 if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
@@ -1438,6 +1439,7 @@ out = '
 remote_smtp_smarthost:
   debug_print = "T: remote_smtp_smarthost for $local_part@$domain"
   driver = smtp
+  delay_after_cutoff = false
   port = '
   out += nodeinfo['smarthost_port'].to_s + "\n"
   if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
