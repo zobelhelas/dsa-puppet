@@ -47,6 +47,10 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/helo-check",
                        "puppet:///exim/common/helo-check" ]
           ;
+        "/etc/exim4/bsmtp":
+          require => Package["exim4-daemon-heavy"],
+          content => template("exim/bsmtp.erb")
+          ;
         "/etc/exim4/locals":
           require => Package["exim4-daemon-heavy"],
           content => template("exim/locals.erb")
