@@ -948,8 +948,8 @@ if nodeinfo['packagesmaster']
         !verify        = certificate
         !hosts         = +debianhosts
         condition      = ${if <{$message_size}{256000}}
-        condition      = ${if >{$spam_score_int}{65}}
         spam           = pkg_user : true
+        condition      = ${if >{$spam_score_int}{65}}
 '
 end
 out
