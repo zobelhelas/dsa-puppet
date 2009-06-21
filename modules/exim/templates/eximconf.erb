@@ -683,12 +683,12 @@ if has_variable?("greylistd") && greylistd == "true"
 elsif has_variable?("postgrey") && postgrey == "true"
   out = '
   # next three are greylisting, inspired by http://www.bebt.de/blog/debian/archives/2006/07/30/T06_12_27/index.html
-  # this adds acl_m4 if there isn\'t one (so unique per message)
+  # this adds acl_m_grey if there isn\'t one (so unique per message)
   warn
     !senders       = :
     !hosts         = : +debianhosts : WHITELIST
-    condition      = ${if def:acl_m4 {no}{yes}}
-    set acl_m4     = $pid.$tod_epoch.$sender_host_port
+    condition      = ${if def:acl_m_grey {no}{yes}}
+    set acl_m_grey = $pid.$tod_epoch.$sender_host_port
 
   # and defers the message if postgrey thinks it should be defered ...
   defer
@@ -697,22 +697,22 @@ elsif has_variable?("postgrey") && postgrey == "true"
     !authenticated = *
     domains        = +handled_domains : +rcpthosts
     local_parts    = GREYLIST_LOCAL_PARTS
-    set acl_m3     = request=smtpd_access_policy\n\
+    set acl_m_pgr  = request=smtpd_access_policy\n\
                      protocol_state=RCPT\n\
                      protocol_name=${uc:$received_protocol}\n\
-                     instance=${acl_m4}\n\
+                     instance=${acl_m_grey}\n\
                      helo_name=${sender_helo_name}\n\
                      client_address=${substr_-3:${mask:$sender_host_address/24}}\n\
                      client_name=${sender_host_name}\n\
                      sender=${sender_address}\n\
                      recipient=$local_part@$domain\n\n
-    set acl_m3     = ${sg{\
-                         ${readsocket{/var/run/postgrey/socket}{$acl_m3}\
+    set acl_m_pgr  = ${sg{\
+                         ${readsocket{/var/run/postgrey/socket}{$acl_m_pgr}\
                                {5s}{}{action=DUNNO}}\
                      }{action=}{}}
-    message        = ${sg{$acl_m3}{^\\\\w+\\\\s*}{}}
+    message        = ${sg{$acl_m_pgr}{^\\\\w+\\\\s*}{}}
     log_message    = greylisted.
-    condition      = ${if eq{${uc:${substr{0}{5}{$acl_m3}}}}{DEFER}}
+    condition      = ${if eq{${uc:${substr{0}{5}{$acl_m_pgr}}}}{DEFER}}
 
  # ... or adds a header with information about how long the delay was
  warn
@@ -721,8 +721,8 @@ elsif has_variable?("postgrey") && postgrey == "true"
     !authenticated = *
     domains        = +handled_domains : +rcpthosts
     local_parts    = GREYLIST_LOCAL_PARTS
-    condition      = ${if eq{${uc:${substr_0_7:$acl_m3}}}{PREPEND}}
-    message        = ${sg{$acl_m3}{^\\\\w+\\\\s*}{}}
+    condition      = ${if eq{${uc:${substr_0_7:$acl_m_pgr}}}{PREPEND}}
+    message        = ${sg{$acl_m_pgr}{^\\\\w+\\\\s*}{}}
 '
 end
 out
