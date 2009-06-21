@@ -281,12 +281,67 @@ RT_QUEUE_MAP = /srv/rt.debian.org/mail/rt_queue_map
 ######################################################################
 begin acl
 
-acl_localonly:
-  accept  local_parts   = +local_only_users
-          domains       = +local_domains
-          hosts         = !+debianhosts
+acl_getprofile:
+  # This is a bad hack to reset the variable, by defining it be something
+  # never referenced.
 
-  deny
+  warn    set acl_m_rprf = $acl_m_undefined
+
+  warn    recipients     = survey@popcon.debian.org
+          set acl_m_rprf = PopconMail
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    local_parts    = +local_only_users
+          domains        = +local_domains
+          hosts          = !+debianhosts
+          set acl_m_rprf = localonly
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+<%=
+out=''
+if nodeinfo['rtmaster']
+  out='
+  warn    domains        = rt.debian.org
+          set acl_m_rprf = RTMail
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+'
+end
+out
+%>
+<%=
+if nodeinfo['packagesqamaster']
+  out='
+  warn    recipients     = owner@packages.qa.debian.org : postmaster@packages.qa.debian.org
+          set acl_m_rprf = PTSOwner
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    senders        = :
+          domains        = packages.qa.debian.org
+          condition      = ${if match{$local_part}{\N^bounces+\N}}
+          set acl_m_rprf = PTSListBounce
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    domains        = packages.qa.debian.org
+          set acl_m_rprf = PTSMail
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+'
+end
+out
+%>
+  warn    recipients     = change@db.debian.org : changes@db.debian.org : chpasswd@db.debian.org : ping@db.debian.org : recommend@nm.debian.org
+          set acl_m_rprf = DBSignedMail
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    set acl_m_rprf = normal
+
+  accept
 
 check_helo:
 
@@ -521,22 +576,15 @@ out
           condition     = ${if match_local_part {$sender_address_local_part}{${extract{directory}{VDOMAINDATA}{${value}/neversenders}}}{1}{0}}
 	  message       = no mail should ever come from <$sender_address>
 
-  warn    condition     = ${if eq{$acl_m_lcl}{}}
-          acl           = acl_localonly
-          set acl_m_lcl = localonly
+  warn    acl           = acl_getprofile
+          condition     = ${if eq{$acl_m_prf}{}}
+          set acl_m_prf = $acl_m_rprf
+
+  defer   condition     = ${if eq{$acl_m_prf}{$acl_m_rprf}{no}{yes}}
+          log_message   = Only one profile at a time, please
+
+  warn    condition     = ${if eq{$acl_m_prf}{localonly}}
           set acl_m_lrc = ${if eq{$acl_m_lrc}{}{$local_part@$domain}{$acl_m_lrc, $local_part@$domain}}
-
-  warn    condition     = ${if eq{$acl_m_lcl}{}}
-          !acl          = acl_localonly
-          set acl_m_lcl = normal
-
-  defer   condition     = ${if eq{$acl_m_lcl}{localonly}}
-          !acl          = acl_localonly
-          log_message   = Only one profile at a time, please
-
-  defer   condition     = ${if eq{$acl_m_lcl}{normal}}
-          acl           = acl_localonly
-          log_message   = Only one profile at a time, please
 
 <%=
 out=''
@@ -550,8 +598,8 @@ end
 out
 %>
 
-  deny    !recipients = survey@popcon.debian.org
-          !verify = sender
+  deny    condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+          !verify        = sender
 
   defer   !hosts         = +debianhosts
           condition      = ${if >{${eval:$acl_c_scr}}{0}}
@@ -618,41 +666,16 @@ out = '
 end
 out
 %>
-  warn    recipients = survey@popcon.debian.org
-          set acl_m1 = PopconMail
-
 <%=
 out=''
 if nodeinfo['rtmaster']
   out='
-  warn    domains  = rt.debian.org
-          set acl_m1 = RTMail
-          set acl_m12 = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}} {RTMailRecipientHasSubaddress}}}}
+  warn    condition     = ${if eq{$acl_m_prf}{RTMail}}
+          set acl_m12   = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}} {RTMailRecipientHasSubaddress}}}}
 '
 end
 out
 %>
-<%=
-out=''
-if nodeinfo['packagesqamaster']
-  out='
-  warn    domains  = packages.qa.debian.org
-          set acl_m1 = PTSMail
-
-  warn    recipients = owner@packages.qa.debian.org : postmaster@packages.qa.debian.org
-          set acl_m1 = PTSOwner
-
-  warn    senders  = :
-          domains  = packages.qa.debian.org
-          condition = ${if match{$local_part}{\N^bounces+\N}}
-          set acl_m1 = PTSListBounce
-'
-end
-out
-%>
-  warn    recipients = change@db.debian.org : changes@db.debian.org : chpasswd@db.debian.org : ping@db.debian.org : recommend@nm.debian.org
-          set acl_m1 = DBSignedMail
-
 <%=
 out = ""
 if has_variable?("greylistd") && greylistd == "true"
@@ -824,7 +847,7 @@ check_message:
 out=''
 if nodeinfo['rtmaster']
   out='
-  deny    condition = ${if eq {$acl_m1}{RTMail}}
+  deny    condition = ${if eq {$acl_m_prf}{RTMail}}
           condition = ${if and{{!match {${lc:$rh_Subject:}} {debian rt}} \
                                {!match {${lc:$rh_Subject:]}} {\N\[rt.debian.org \N}} \
                                {!match {$acl_m12}{RTMailRecipientHasSubaddress}}}}
@@ -838,7 +861,7 @@ out=''
 if nodeinfo['packagesqamaster']
   out='
   deny    !hosts  = +debianhosts : 217.196.43.134
-          condition = ${if eq {$acl_m1}{PTSMail}}
+          condition = ${if eq {$acl_m_prf}{PTSMail}}
           condition = ${if def:h_X-PTS-Approved:{false}{true}}
           message   = messages to the PTS require an X-PTS-Approved header
 '
@@ -848,7 +871,7 @@ out
   deny    condition      = ${if match {$message_body}{\Nhttp:\/\/[a-z\.-]+\/video1?.exe\N}}
           message        = Blackisted URI found in body
 
-  deny    condition      = ${if eq {$acl_m1}{DBSignedMail}}
+  deny    condition      = ${if eq {$acl_m_prf}{DBSignedMail}}
           condition      = ${if and {{!match {$message_body}{PGP MESSAGE}}              \
                                      {!match {$message_body}{PGP SIGNED MESSAGE}}       \
                                      {!match {$message_body}{PGP SIGNATURE}}            \
@@ -898,9 +921,9 @@ end
 out
 %>
   # Check header_sender except for survey@popcon.d.o
-  deny    condition = ${if eq{$acl_m1}{PopconMail}{false}{true}}
-          !verify = header_sender
-          message = No valid sender found in the From:, Sender: and Reply-to: headers
+  deny    condition    = ${if eq{$acl_m_prf}{PopconMail}{false}{true}}
+          !verify      = header_sender
+          message      = No valid sender found in the From:, Sender: and Reply-to: headers
 
   accept
 
