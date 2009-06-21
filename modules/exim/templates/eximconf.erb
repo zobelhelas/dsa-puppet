@@ -570,7 +570,7 @@ out = '
   # closure, but I\'m fairly sure it\'s now worth it, since the backport of
   # policyd-weight is trivial.
   warn  !hosts         = +debianhosts
-        set acl_m9     = ${readsocket{inet:127.0.0.1:12525}\
+        set acl_m_pw   = ${readsocket{inet:127.0.0.1:12525}\
                           {request=smtpd_access_policy\n\
                            protocol_state=RCPT\n\
                            protocol_name=${uc:$received_protocol}\n\
@@ -587,33 +587,33 @@ out = '
 
   # Defer on socket error
   defer !hosts         = +debianhosts
-        condition      = ${if eq{$acl_m9}{socket failure}{yes}{no}}
+        condition      = ${if eq{$acl_m_pw}{socket failure}{yes}{no}}
         message        = Cannot connect to policyd-weight. Please try again later.
 
-  # Set proposed action to $acl_m8 and message to $acl_m7
+  # Set proposed action to $acl_m_act and message to $acl_m_mes
   warn  !hosts         = +debianhosts
-        set acl_m8     = ${extract{action}{$acl_m9}}
-        set acl_m7     = ${sg{$acl_m9}{\Naction=[^ ]+ (.*)\n\n\N}{\$1}}
+        set acl_m_mes  = ${extract{action}{$acl_m_pw}}
+        set acl_m_act  = ${sg{$acl_m_pw}{\Naction=[^ ]+ (.*)\n\n\N}{\$1}}
 
   # Add X-policyd-weight header line to message
   warn  !hosts         = +debianhosts
-        message        = $acl_m7
-        condition      = ${if eq{$acl_m8}{PREPEND}{yes}{no}}
+        message        = $acl_m_mes
+        condition      = ${if eq{$acl_m_act}{PREPEND}{yes}{no}}
 
   # Write log message, if policyd-weight can\'t run checks
   warn  !hosts         = +debianhosts
-        log_message    = policyd-weight message: $acl_m7
-        condition      = ${if eq{$acl_m8}{DUNNO}{yes}{no}}
+        log_message    = policyd-weight message: $acl_m_mes
+        condition      = ${if eq{$acl_m_act}{DUNNO}{yes}{no}}
 
   # Deny mails which policyd-weight thinks are spam
   deny  !hosts         = +debianhosts
-        message        = policyd-weight said: $acl_m7
-        condition      = ${if eq{$acl_m8}{550}{yes}{no}}
+        message        = policyd-weight said: $acl_m_mes
+        condition      = ${if eq{$acl_m_act}{550}{yes}{no}}
 
   # Defer messages when policyd-weight suggests so.
   defer  !hosts         = +debianhosts
-         message        = policyd-weight said: $acl_m7
-         condition      = ${if eq{$acl_m8}{450}{yes}{no}}
+         message        = policyd-weight said: $acl_m_mes
+         condition      = ${if eq{$acl_m_act}{450}{yes}{no}}
 '
 end
 out
