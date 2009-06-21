@@ -521,20 +521,20 @@ out
           condition     = ${if match_local_part {$sender_address_local_part}{${extract{directory}{VDOMAINDATA}{${value}/neversenders}}}{1}{0}}
 	  message       = no mail should ever come from <$sender_address>
 
-  warn    condition     = ${if eq{$acl_m6}{}}
+  warn    condition     = ${if eq{$acl_m_lcl}{}}
           acl           = acl_localonly
-          set acl_m6    = localonly
-          set acl_m7    = ${if eq{$acl_m7}{}{$local_part@$domain}{$acl_m7, $local_part@$domain}}
+          set acl_m_lcl = localonly
+          set acl_m_lrc = ${if eq{$acl_m_lrc}{}{$local_part@$domain}{$acl_m_lrc, $local_part@$domain}}
 
-  warn    condition     = ${if eq{$acl_m6}{}}
+  warn    condition     = ${if eq{$acl_m_lcl}{}}
           !acl          = acl_localonly
-          set acl_m6    = normal
+          set acl_m_lcl = normal
 
-  defer   condition     = ${if eq{$acl_m6}{localonly}}
+  defer   condition     = ${if eq{$acl_m_lcl}{localonly}}
           !acl          = acl_localonly
           log_message   = Only one profile at a time, please
 
-  defer   condition     = ${if eq{$acl_m6}{normal}}
+  defer   condition     = ${if eq{$acl_m_lcl}{normal}}
           acl           = acl_localonly
           log_message   = Only one profile at a time, please
 
@@ -809,8 +809,8 @@ out
 %>
 
 acl_check_predata:
-  deny   condition     = ${if eq{$acl_m6}{localonly}}
-         message       = mail for $acl_m7 is only accepted internally
+  deny   condition     = ${if eq{$acl_m_lcl}{localonly}}
+         message       = mail for $acl_m_lrc is only accepted internally
 
   accept
 
