@@ -312,6 +312,18 @@ end
 out
 %>
 <%=
+out = ""
+if nodeinfo['packagesmaster']
+  out = '
+  warn    domains        = packages.debian.org
+          set acl_m_rprf = PackagesMail
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+'
+end
+out
+%>
+<%=
 if nodeinfo['packagesqamaster']
   out='
   warn    recipients     = owner@packages.qa.debian.org : postmaster@packages.qa.debian.org
@@ -925,6 +937,23 @@ out
           !verify      = header_sender
           message      = No valid sender found in the From:, Sender: and Reply-to: headers
 
+<%=
+out = ""
+if nodeinfo['packagesmaster']
+  out = '
+  deny  message        = Congratulations, you scored $spam_score points.
+        log_message    = spam: $spam_score points.
+        condition      = ${if eq {$acl_m_prf}{PackagesMail}}
+        !authenticated = *
+        !verify        = certificate
+        !hosts         = +debianhosts
+        condition      = ${if <{$message_size}{256000}}
+        condition      = ${if >{$spam_score_int}{65}}
+        spam           = pkg_user : true
+'
+end
+out
+%>
   accept
 
 
