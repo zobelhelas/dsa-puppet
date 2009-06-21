@@ -465,7 +465,7 @@ out
 
   # This logic gives you a list of commonly forged domains in helo to reject against
 
-  warn set acl_m2      = ${lookup{$sender_helo_name} \
+  warn set acl_m_frg   = ${lookup{$sender_helo_name} \
                            nwildlsearch{/etc/exim4/helo-check} \
                           {${if eq{$value}{}{$sender_helo_name}{$value}}}{}}
 
@@ -473,15 +473,15 @@ out
   # say helo as a name in the list but we can't look them up
 
   defer !hosts         = +debianhosts
-        condition      = ${if eq{$acl_m2}{}{no}{yes}}
+        condition      = ${if eq{$acl_m_frg}{}{no}{yes}}
         condition      = ${if eq{$sender_host_name}{}{yes}{no}}
         condition      = ${if eq{$host_lookup_failed}{1}{no}{yes}}
         message        = Access temporarily denied. Resolve failed PTR for $sender_host_address
 
   # If DNS works, go ahead and reject them
 
-  drop !hosts          = +debianhosts
-       condition       = ${if and { {!eq{$acl_m2}{}}{!match{$sender_host_name}{${rxquote:$acl_m2}\N$\N}}}{yes}{no}}
+  drop  !hosts         = +debianhosts
+        condition      = ${if and { {!eq{$acl_m_frg}{}}{!match{$sender_host_name}{${rxquote:$acl_m_frg}\N$\N}}}{yes}{no}}
         message        = HELO mismatch Forged HELO for ($sender_helo_name)
 
   # disabled accounts don't even get local mail.
