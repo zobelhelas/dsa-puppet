@@ -78,7 +78,7 @@ out
 # will trigger things like rcpt to rate limiting or possibly a reject if
 # enough hits are triggered.
 #
-# value is stored in acl_c1
+# value is stored in acl_c_scr
 
 ######################################################################
 #                    MAIN CONFIGURATION SETTINGS                     #
@@ -290,7 +290,7 @@ acl_localonly:
 
 check_helo:
 
-  warn    set acl_c1    = 0
+  warn    set acl_c_scr    = 0
 
 <%= 
 out = ""
@@ -305,36 +305,36 @@ out
 
   warn    dnslists       = list.dnswl.org&0.0.0.3
           log_message    = Hit on list.dnswl.org for $sender_host_address
-          set acl_c1     = ${eval:$acl_c1-30}
+          set acl_c_scr  = ${eval:$acl_c_scr-30}
 
   warn    dnslists       = list.dnswl.org&0.0.0.2
           log_message    = Hit on list.dnswl.org for $sender_host_address
-          set acl_c1     = ${eval:$acl_c1-20}
+          set acl_c_scr  = ${eval:$acl_c_scr-20}
 
   warn    dnslists       = list.dnswl.org
           log_message    = Hit on list.dnswl.org for $sender_host_address
-          set acl_c1     = ${eval:$acl_c1-10}
+          set acl_c_scr  = ${eval:$acl_c_scr-10}
 
   warn    condition      = ${if isip {$sender_helo_name}{true}{false}}
           log_message    = remote host used IP address in HELO/EHLO greeting
-          set acl_c1     = ${eval:$acl_c1+20}
+          set acl_c_scr  = ${eval:$acl_c_scr+20}
 
   warn    !hosts         = +debianhosts
           condition      = ${if eq{$host_lookup_failed}{1}}
-          set acl_c1     = ${eval:$acl_c1+20}
+          set acl_c_scr  = ${eval:$acl_c_scr+20}
 
   warn    !hosts         = +debianhosts
           condition      = ${if eq{$host_lookup_failed}{0}}
           condition      = ${if match{$sender_host_name}{\N(^[^\.]*[0-9]\-+[0-9]|^[^\.]*[0-9]{5,}[^\.]|^([^\.]+\.)?[0-9][^ \.]*\.[^\.]+\..+\.[a-z]|^[^\.]*[0-9]\.[^\.]*[0-9]-[0-9]|^(dyn|cable|dhcp|dialup|ppp|adsl)[^\.]*[0-9])\N}}
-          set acl_c1     = ${eval:$acl_c1+20}
+          set acl_c_scr  = ${eval:$acl_c_scr+20}
 
   warn    !hosts         = +debianhosts
           condition      = ${if match{$sender_helo_name}{\N(^[^\.]*[0-9]\-+[0-9]|^[^\.]*[0-9]{5,}[^\.]|^([^\.]+\.)?[0-9][^ \.]*\.[^\.]+\..+\.[a-z]|^[^\.]*[0-9]\.[^\.]*[0-9]-[0-9]|^(dyn|cable|dhcp|dialup|ppp|adsl)[^\.]*[0-9])\N}}
-          set acl_c1     = ${eval:$acl_c1+20}
+          set acl_c_scr  = ${eval:$acl_c_scr+20}
 
   warn    !hosts         = +debianhosts
           dnslists       = dul.dnsbl.sorbs.net
-          set acl_c1     = ${eval:$acl_c1+15}
+          set acl_c_scr  = ${eval:$acl_c_scr+15}
 
   # If the sender's helo name is empty, the message will be rejected later
   # because the helo is empty.  If the rDNS lookup failed, we are already
@@ -346,7 +346,7 @@ out
           condition      = ${if def:sender_helo_name {yes}{no}}
           condition      = ${if eq {${lc:$sender_helo_name}}{${lc:$sender_host_name}}{no}{yes}}
           log_message    = HELO doesn't match rDNS
-          set acl_c1     = ${eval:$acl_c1+8}
+          set acl_c_scr  = ${eval:$acl_c_scr+8}
 
   # Regexes of doom
   # matches 098325879 - looks fishy
@@ -357,13 +357,13 @@ out
                                     } \
                             }
        log_message      = non-FQDN HELO
-       set acl_c1       = ${eval:$acl_c1+12}
+       set acl_c_scr    = ${eval:$acl_c_scr+12}
 
   # Matches DOMAIN99.com - looks bad
 
   warn condition       = ${if match {$sender_helo_name}{\N^[A-Z]+[A-Z0-9\-]+\.[A-Za-z0-9]+$\N}}
        log_message     = SHOUTING HELO
-       set acl_c1      = ${eval:$acl_c1+7}
+       set acl_c_scr   = ${eval:$acl_c_scr+7}
 
   # Random HELO (run of 7 consonants) (constructed by viruses).  We purposefully
   # skip matching on machines named .*smtp.*, since that's 4 already.  This is a fairly
@@ -373,7 +373,7 @@ out
        condition       = ${if match {${lc:$sender_helo_name}}{\N^[a-z0-9]+\.[a-z]+$\N}}
        condition       = ${if match {${lc:$sender_helo_name}}{\N.*[bcdfghjklmnpqrstvwxz]{7,}.*\.[a-z]+$\N}}
        log_message     = random HELO
-       set acl_c1      = ${eval:$acl_c1+5}
+       set acl_c_scr   = ${eval:$acl_c_scr+5}
 
   # Implicit, but simpler to just say it
   accept
@@ -554,7 +554,7 @@ out
           !verify = sender
 
   defer   !hosts         = +debianhosts
-          condition      = ${if >{${eval:$acl_c1}}{0}}
+          condition      = ${if >{${eval:$acl_c_scr}}{0}}
           ratelimit      = 10 / 60m / per_rcpt / $sender_host_address
           message        = slow down (no reverse dns, mismatched ehlo, dialup, or in blacklists)
 <%=
