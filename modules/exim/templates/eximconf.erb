@@ -884,15 +884,6 @@ out = '
 end
 out
 %>
-
-  deny    spam            = $value/defer_ok
-          domains         = +handled_domains : +rcpthosts
-          message         = message got a spam score of $spam_score
-          local_parts     = ${if exists {/etc/exim4/sa_users}\
-			     {${if match_domain{$domain}{+virtual_domains}\
-			     {${lookup{$local_part@$domain}nwildlsearch{/etc/exim4/sa_users}{$local_part}{}}}\
-			     {${lookup{$local_part}lsearch{/etc/exim4/sa_users}{$local_part}{}}}}}}
-
 <%=
 out=''
 if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
@@ -1422,6 +1413,7 @@ address_reply:
 remote_smtp:
   driver = smtp
   connect_timeout = 1m
+  delay_after_cutoff = false
 <%=
 out = ""
 if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
@@ -1438,6 +1430,7 @@ out = '
 remote_smtp_smarthost:
   debug_print = "T: remote_smtp_smarthost for $local_part@$domain"
   driver = smtp
+  delay_after_cutoff = false
   port = '
   out += nodeinfo['smarthost_port'].to_s + "\n"
   if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
