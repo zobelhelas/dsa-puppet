@@ -312,7 +312,7 @@ end
 out
 %>
 <%=
-out = ""
+out = ''
 if nodeinfo['packagesmaster']
   out = '
   warn    domains        = packages.debian.org
@@ -611,7 +611,7 @@ out
 %>
 <%=
 out=''
-if nodeinfo['packagesqamaster']
+if nodeinfo['packagesmaster']
   out='
   warn    condition      = ${if eq {$acl_m_prf}{PackagesMail}}
           condition      = ${if eq {$sender_address}{$local_part@$domain}}
