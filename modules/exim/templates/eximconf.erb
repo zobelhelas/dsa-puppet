@@ -609,7 +609,17 @@ out='
 end
 out
 %>
-
+<%=
+out=''
+if nodeinfo['packagesqamaster']
+  out='
+  warn    condition      = ${if eq {$acl_m_prf}{PackagesMail}}
+          condition      = ${if eq {$sender_address}{$local_part@$domain}}
+          message        = X-Packages-FromTo-Same: yes
+'
+end
+out
+%>
   deny    condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
           !verify        = sender
 
