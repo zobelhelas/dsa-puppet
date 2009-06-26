@@ -101,6 +101,7 @@ host_settings:
     - saens.debian.org
     - samosa.debian.org
     - senfl.debian.org
+    - spohr.debian.org
     - tartini.debian.org
   buildd:
     - ancina.debian.org
