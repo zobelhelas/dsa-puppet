@@ -94,6 +94,7 @@ host_settings:
     - klecker.debian.org
     - powell.debian.org
   apache2_defaultconfig:
+    - bellini.debian.org
     - carver.debian.org
     - draghi.debian.org
     - duarte.debian.org
