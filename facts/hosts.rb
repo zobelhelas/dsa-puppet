@@ -4,7 +4,7 @@ Facter.add("brokenhosts") do
 	if FileTest.exist?("/etc/hosts")
 		IO.foreach("/etc/hosts") do |x|
 			x.split.each do |y|
-				if y == fqdn
+				if y == Facter.value("fqdn")
 					brokenhosts = "false"
 					break
 				end
