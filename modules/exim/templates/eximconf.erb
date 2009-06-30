@@ -193,10 +193,16 @@ timeout_frozen_after=14d
 
 message_size_limit = 100M
 message_logs = false
-smtp_accept_max = 300
 smtp_accept_max_per_host = ${if match_ip {$sender_host_address}{+debianhosts}{0}{7}}
+<% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
+smtp_accept_max = 300
 smtp_accept_queue = 200
 smtp_accept_queue_per_connection = 50
+<% else %>
+smtp_accept_max = 30
+smtp_accept_queue = 20
+smtp_accept_queue_per_connection = 10
+<% end %>
 smtp_accept_reserve = 25
 smtp_reserve_hosts = +debianhosts
 
@@ -206,9 +212,15 @@ check_spool_space  = 20M
 
 delay_warning =
 
+<% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
 queue_run_max = 50
 deliver_queue_load_max = 50
 queue_only_load = 15
+<% else %>
+queue_run_max = 5
+deliver_queue_load_max = 10
+queue_only_load = 5
+<% end %>
 queue_list_requires_admin = false
 
 <%= out  = ""
@@ -1578,7 +1590,6 @@ out
 begin retry
 
 debian.org	       *	   F,2h,10m; G,16h,2h,1.5; F,14d,8h
-*                      * senders=: F,2h,10m
 *                      rcpt_4xx    F,2h,5m;  F,4h,10m; F,4d,15m
 *                      *           F,2h,15m; G,16h,2h,1.5; F,4d,8h
 

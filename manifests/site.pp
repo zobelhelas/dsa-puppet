@@ -72,8 +72,8 @@ node default {
                     { include geodns }
          default:   {}
      }
-}
-
-node penalosa inherits default {
-    include hosts
+     case $brokenhosts {
+         "true":    { include hosts }
+         default:   {}
+     }
 }
