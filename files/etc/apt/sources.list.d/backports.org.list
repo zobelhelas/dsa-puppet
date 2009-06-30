@@ -4,4 +4,4 @@
 ##
 
 #deb     http://debian.sil.at/backports.org/        lenny-backports main
-deb     http://ftp.nl.debian.org/backports.org/    lenny-backports main
+deb	http://mirror.netcologne.de/debian-backports/	lenny-backports main 
