@@ -111,7 +111,6 @@ file=/etc/bind/geodns/db.security.debian.org.AS
 file=/etc/bind/geodns/db.security.debian.org.AN
 file=/etc/bind/geodns/db.security.debian.org.AF
 file=/etc/bind/geodns/db.security.debian.org
-file=/usr/share/GeoIP/GeoIPv6.dat
 <% end -%>
 
 
@@ -138,7 +137,6 @@ file=/etc/nagios
 file=/etc/nagios/nrpe.d
 file=/etc/nagios/obsolete-packages-ignore.d
 file=/etc/bind/geodns
-file=/usr/share/GeoIP/
 <%= extradir=""
 case fqdn 
 when "spohr.debian.org": extradir="file=/etc/nagios3/puppetconf.d
