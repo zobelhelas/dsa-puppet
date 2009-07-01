@@ -35,6 +35,7 @@
 #           us. This is primarily only usefull for emergancy 'queue
 #           flushing' operations, but should be populated with a list
 #           of trusted machines. Wildcards are not permitted
+#  bsmtp_domains - Domains that we deliver locally via bsmtp
 <%=
 out = ""
 if nodeinfo['mailrelay']
@@ -131,7 +132,9 @@ domainlist virtual_domains = partial-lsearch;/etc/exim4/virtualdomains
 
 domainlist submission_domains = ${if exists {/etc/exim4/submission-domains}{/etc/exim4/submission-domains}{}}
 
-domainlist handled_domains = +local_domains : +virtual_domains
+domainlist bsmtp_domains = ${if exists {/etc/exim4/bsmtp}{partial-lsearch;/etc/exim4/bsmtp}{}}
+
+domainlist handled_domains = +local_domains : +virtual_domains : +bsmtp_domains
 
 localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
@@ -1032,7 +1035,7 @@ out
 bsmtp:
   debug_print = "R: bsmtp for $local_part@$domain"
   driver = manualroute
-  domains = !+local_domains
+  domains = +bsmtp_domains
   require_files = /etc/exim4/bsmtp
   route_list = * ${extract{file}{\
                    ${lookup{$domain}partial-lsearch{/etc/exim4/bsmtp}\
