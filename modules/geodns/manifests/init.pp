@@ -63,6 +63,14 @@ class geodns {
                         mode    => 444,
                         ;
 
+                "/usr/share/GeoIP/GeoIPv6.dat":
+                        source  => [ "puppet:///geodns/per-host/$fqdn/GeoIPv6.dat",
+                                     "puppet:///geodns/common/GeoIPv6.dat" ],
+                        owner   => root,
+                        group   => root,
+                        mode    => 444,
+                        ;
+
                 "/etc/ssh/userkeys/geodnssync":
                         source  => [ "puppet:///geodns/per-host/$fqdn/authorized_keys",
                                      "puppet:///geodns/common/authorized_keys" ],
