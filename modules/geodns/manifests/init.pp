@@ -40,6 +40,14 @@ class geodns {
                         group   => geodnssync,
                         mode    => 775,
                         ;
+                "/etc/bind/geodns/named.conf.geo":
+                        source  => [ "puppet:///geodns/per-host/$fqdn/named.conf.geo",
+                                     "puppet:///geodns/common/named.conf.geo" ],
+                        require => Package["bind9"],
+                        notify  => Exec["bind9 restart"],
+                        owner   => root,
+                        group   => root,
+                        ;
                 "/etc/bind/geodns/recvconf":
                         source  => [ "puppet:///geodns/per-host/$fqdn/recvconf",
                                      "puppet:///geodns/common/recvconf" ],
@@ -50,6 +58,14 @@ class geodns {
                 "/etc/bind/geodns/recvconf.files":
                         source  => [ "puppet:///geodns/per-host/$fqdn/recvconf.files",
                                      "puppet:///geodns/common/recvconf.files" ],
+                        owner   => root,
+                        group   => root,
+                        mode    => 444,
+                        ;
+
+                "/usr/share/GeoIP/GeoIPv6.dat":
+                        source  => [ "puppet:///geodns/per-host/$fqdn/GeoIPv6.dat",
+                                     "puppet:///geodns/common/GeoIPv6.dat" ],
                         owner   => root,
                         group   => root,
                         mode    => 444,
