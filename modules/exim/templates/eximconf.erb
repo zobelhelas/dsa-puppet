@@ -640,7 +640,7 @@ out
           !verify        = sender
 
   defer   !hosts         = +debianhosts
-          condition      = ${if >{${eval:$acl_c_scr}}{0}}
+          condition      = ${if >{${eval:$acl_c_scr+0}}{0}}
           ratelimit      = 10 / 60m / per_rcpt / $sender_host_address
           message        = slow down (no reverse dns, mismatched ehlo, dialup, or in blacklists)
 <%=
