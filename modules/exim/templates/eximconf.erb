@@ -838,12 +838,12 @@ out
   accept  domains  = +handled_domains
           endpass
 	  message  = unknown user
-	  verify   = recipient/callout=30s,use_sender
+	  verify   = recipient/defer_ok
 
   accept  domains  = +rcpthosts
           endpass
 	  message  = unrouteable address
-	  verify   = recipient/callout=30s,use_sender
+	  verify   = recipient
 
   accept  hosts         = +debianhosts
 
