@@ -23,10 +23,6 @@ vdoms = case fqdn
         
 	when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
 
-        when "gluck.debian.org" then "popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/
-debian.com: user=nobody group=Debian directory=/org/misc/star.debian.org/
-debian.net: user=nobody group=Debian directory=/org/misc/star.debian.org/"
-
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
 
         when "klecker.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/org/security.debian.org/mail/
@@ -35,7 +31,9 @@ www-master.debian.org: user=debwww group=debwww directory=/org/www.debian.org/ma
 
         when "master.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/org/vote.debian.org/mail
 packages.qa.debian.org: user=qa group=qa directory=/org/packages.qa.debian.org/mail
-bugs.qa.debian.org: user=cjwatson group=qa directory=/org/bugs.qa.debian.org/mail"
+bugs.qa.debian.org: user=cjwatson group=qa directory=/org/bugs.qa.debian.org/mail
+debian.com: user=nobody group=Debian directory=/org/star.debian.star/
+debian.net: user=nobody group=Debian directory=/org/star.debian.star/"
 
         when "merkel.debian.org" then "qa.debian.org: user=qa group=qa directory=/org/qa.debian.org/mail/
 bugs.qa.debian.org: user=nobody group=nogroup directory=/org/bugs.qa.debian.org/mail/
