@@ -99,6 +99,7 @@ host_settings:
     - draghi.debian.org
     - duarte.debian.org
     - kaufmann.debian.org
+    - klecker.debian.org
     - piatti.debian.org
     - raff.debian.org
     - ravel.debian.org
