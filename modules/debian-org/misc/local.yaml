@@ -107,6 +107,7 @@ host_settings:
     - rore.debian.org
     - saens.debian.org
     - samosa.debian.org
+    - schein.debian.org
     - senfl.debian.org
     - spohr.debian.org
     - tartini.debian.org
