@@ -35,6 +35,7 @@
 #           us. This is primarily only usefull for emergancy 'queue
 #           flushing' operations, but should be populated with a list
 #           of trusted machines. Wildcards are not permitted
+#  bsmtp_domains - Domains that we deliver locally via bsmtp
 <%=
 out = ""
 if nodeinfo['mailrelay']
@@ -131,7 +132,9 @@ domainlist virtual_domains = partial-lsearch;/etc/exim4/virtualdomains
 
 domainlist submission_domains = ${if exists {/etc/exim4/submission-domains}{/etc/exim4/submission-domains}{}}
 
-domainlist handled_domains = +local_domains : +virtual_domains
+domainlist bsmtp_domains = ${if exists {/etc/exim4/bsmtp}{partial-lsearch;/etc/exim4/bsmtp}{}}
+
+domainlist handled_domains = +local_domains : +virtual_domains : +bsmtp_domains
 
 localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
@@ -193,10 +196,16 @@ timeout_frozen_after=14d
 
 message_size_limit = 100M
 message_logs = false
-smtp_accept_max = 300
 smtp_accept_max_per_host = ${if match_ip {$sender_host_address}{+debianhosts}{0}{7}}
+<% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
+smtp_accept_max = 300
 smtp_accept_queue = 200
 smtp_accept_queue_per_connection = 50
+<% else %>
+smtp_accept_max = 30
+smtp_accept_queue = 20
+smtp_accept_queue_per_connection = 10
+<% end %>
 smtp_accept_reserve = 25
 smtp_reserve_hosts = +debianhosts
 
@@ -206,9 +215,15 @@ check_spool_space  = 20M
 
 delay_warning =
 
+<% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
 queue_run_max = 50
 deliver_queue_load_max = 50
 queue_only_load = 15
+<% else %>
+queue_run_max = 5
+deliver_queue_load_max = 10
+queue_only_load = 5
+<% end %>
 queue_list_requires_admin = false
 
 <%= out  = ""
@@ -312,6 +327,19 @@ end
 out
 %>
 <%=
+out = ''
+if nodeinfo['packagesmaster']
+  out = '
+  warn    domains        = packages.debian.org
+          set acl_m_rprf = PackagesMail
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+'
+end
+out
+%>
+<%=
+out = ''
 if nodeinfo['packagesqamaster']
   out='
   warn    recipients     = owner@packages.qa.debian.org : postmaster@packages.qa.debian.org
@@ -597,12 +625,22 @@ out='
 end
 out
 %>
-
+<%=
+out=''
+if nodeinfo['packagesmaster']
+  out='
+  warn    condition      = ${if eq {$acl_m_prf}{PackagesMail}}
+          condition      = ${if eq {$sender_address}{$local_part@$domain}}
+          message        = X-Packages-FromTo-Same: yes
+'
+end
+out
+%>
   deny    condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
           !verify        = sender
 
   defer   !hosts         = +debianhosts
-          condition      = ${if >{${eval:$acl_c_scr}}{0}}
+          condition      = ${if >{${eval:$acl_c_scr+0}}{0}}
           ratelimit      = 10 / 60m / per_rcpt / $sender_host_address
           message        = slow down (no reverse dns, mismatched ehlo, dialup, or in blacklists)
 <%=
@@ -925,6 +963,23 @@ out
           !verify      = header_sender
           message      = No valid sender found in the From:, Sender: and Reply-to: headers
 
+<%=
+out = ""
+if nodeinfo['packagesmaster']
+  out = '
+  deny  message        = Congratulations, you scored $spam_score points.
+        log_message    = spam: $spam_score points.
+        condition      = ${if eq {$acl_m_prf}{PackagesMail}}
+        !authenticated = *
+        !verify        = certificate
+        !hosts         = +debianhosts
+        condition      = ${if <{$message_size}{256000}}
+        spam           = pkg_user : true
+        condition      = ${if >{$spam_score_int}{59}}
+'
+end
+out
+%>
   accept
 
 
@@ -980,7 +1035,7 @@ out
 bsmtp:
   debug_print = "R: bsmtp for $local_part@$domain"
   driver = manualroute
-  domains = !+local_domains
+  domains = +bsmtp_domains
   require_files = /etc/exim4/bsmtp
   route_list = * ${extract{file}{\
                    ${lookup{$domain}partial-lsearch{/etc/exim4/bsmtp}\
@@ -1538,7 +1593,6 @@ out
 begin retry
 
 debian.org	       *	   F,2h,10m; G,16h,2h,1.5; F,14d,8h
-*                      * senders=: F,2h,10m
 *                      rcpt_4xx    F,2h,5m;  F,4h,10m; F,4d,15m
 *                      *           F,2h,15m; G,16h,2h,1.5; F,4d,8h
 

@@ -67,6 +67,12 @@ class debian-org {
              source => "puppet:///files/etc/cron.d/dsa-puppet-stuff",
              require => Package["cron"]
              ;
+      "/etc/ldap/ldap.conf":
+             source => "puppet:///files/etc/ldap/ldap.conf",
+             ;
+      "/etc/pam.d/common-session":
+             source => "puppet:///files/etc/pam.d/common-session",
+             ;
    }
    case $hostname {
         handel: {
