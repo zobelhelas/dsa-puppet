@@ -98,6 +98,7 @@ host_settings:
     - carver.debian.org
     - draghi.debian.org
     - duarte.debian.org
+    - gluck.debian.org
     - kaufmann.debian.org
     - klecker.debian.org
     - piatti.debian.org
@@ -107,7 +108,6 @@ host_settings:
     - saens.debian.org
     - samosa.debian.org
     - senfl.debian.org
-    - gluck.debian.org
     - spohr.debian.org
     - tartini.debian.org
   buildd:
