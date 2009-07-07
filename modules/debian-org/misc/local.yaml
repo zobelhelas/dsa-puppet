@@ -84,7 +84,6 @@ services:
 host_settings:
   heavy_exim:
     - raff.debian.org
-    - gluck.debian.org
     - merkel.debian.org
     - spohr.debian.org
     - draghi.debian.org
