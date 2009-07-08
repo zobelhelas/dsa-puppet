@@ -67,6 +67,7 @@ nameinfo:
   wagner.debian.org: Wilhelm Richard Wagner (22 May 1813 - 13 February 1883)
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21, 1844 - March 12, 1937)
   wieck.debian.org: Clara Josephine Wieck (September 13, 1819 - May 20, 1896)
+  wolkenstein.debian.org: Oswald von Wolkenstein (1377 - August 2nd, 1445)
   zelenka.debian.org: Jan Dismas Zelenka (16 October 1679 - 23 December 1745)
 footer:
   bartok.debian.org: "Documentation: gluck:/org/admin.debian.org/doc/backup.debian.org"
@@ -115,6 +116,7 @@ host_settings:
     - tartini.debian.org
     - villa.debian.org
     - wieck.debian.org
+    - wolkenstein.debian.org
   buildd:
     - ancina.debian.org
     - arcadelt.debian.org
