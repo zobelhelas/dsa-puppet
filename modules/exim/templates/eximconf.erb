@@ -906,9 +906,6 @@ if nodeinfo['packagesqamaster']
 end
 out
 %>
-  deny    condition      = ${if match {$message_body}{\Nhttp:\/\/[a-z\.-]+\/video1?.exe\N}}
-          message        = Blackisted URI found in body
-
   deny    condition      = ${if eq {$acl_m_prf}{DBSignedMail}}
           condition      = ${if and {{!match {$message_body}{PGP MESSAGE}}              \
                                      {!match {$message_body}{PGP SIGNED MESSAGE}}       \
