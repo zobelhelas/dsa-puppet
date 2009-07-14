@@ -16,4 +16,3 @@ piatti.debian.org:          piatti.debian.org::2025
 # postfix:
 verdi.debian.org:           verdi.debian.org::2025
 volatile.debian.org:        verdi.debian.org::2025
-volatile-master.debian.org: verdi.debian.org::2025
