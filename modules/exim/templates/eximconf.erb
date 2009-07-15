@@ -367,12 +367,12 @@ out
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
-  warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}fail}}{markup}}
+  warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{markup}}
           set acl_m_rprf = markup
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
-  warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}fail}}{blackhole}}
+  warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{blackhole}}
           set acl_m_rprf = blackhole
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
