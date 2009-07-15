@@ -885,7 +885,7 @@ acl_check_mime:
          condition     = ${if eq {$acl_m_prf}{markup}}
          set acl_m_srb = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-         message       = X-Surbl-Hit: $acl_m_srb
+         message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
 
   accept condition     = ${if eq {$acl_m_prf}{markup}}
 
@@ -988,7 +988,7 @@ out='
          condition     = ${if eq {$acl_m_prf}{markup}}
          set acl_m_srb = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-         message       = X-Surbl-Hit: $acl_m_srb
+         message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
 
   accept condition     = ${if eq {$acl_m_prf}{markup}}
 
