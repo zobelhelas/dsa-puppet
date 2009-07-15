@@ -368,8 +368,8 @@ out
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
   warn    domains        = +virtual_domains
-          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/mail-contentinspectionaction}}}}
-          condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/mail-contentinspectionaction}}}{$value}{}}}{markup}}
+          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}}
+          condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}{$value}{}}}{markup}}
           set acl_m_rprf = markup
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
@@ -385,8 +385,8 @@ out
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
   warn    domains        = +virtual_domains
-          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/mail-contentinspectionaction}}}}
-          condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/mail-contentinspectionaction}}}{$value}{}}}{blackhole}}
+          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}}
+          condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}{$value}{}}}{blackhole}}
           set acl_m_rprf = blackhole
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
