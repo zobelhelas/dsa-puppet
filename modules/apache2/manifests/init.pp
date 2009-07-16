@@ -33,9 +33,10 @@ class apache2 {
 		"/srv/www/default.debian.org/htdocs/index.html":
 			content => template("apache2/default-index.html");
 
-		"/var/log/apache2":
-			mode    => 755,
-			ensure  => directory;
+		# sometimes this is a symlink
+		#"/var/log/apache2":
+		#	mode    => 755,
+		#	ensure  => directory;
 	}
 
 	exec { "apache2 reload":
