@@ -367,6 +367,30 @@ out
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
+  warn    domains        = +virtual_domains
+          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}}
+          condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}{$value}{}}}{markup}}
+          set acl_m_rprf = markup
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{markup}}
+          set acl_m_rprf = markup
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{blackhole}}
+          set acl_m_rprf = blackhole
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    domains        = +virtual_domains
+          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}}
+          condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}{$value}{}}}{blackhole}}
+          set acl_m_rprf = blackhole
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
   warn    set acl_m_rprf = normal
 
   accept
@@ -857,6 +881,14 @@ if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
 out='
 acl_check_mime:
 
+  warn   condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{markup}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
+
+  accept condition     = ${if eq {$acl_m_prf}{markup}}
+
   deny   condition     = ${if <{$message_size}{256000}}
          set acl_m_srb = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
@@ -934,10 +966,16 @@ out
 out = ""
 if has_variable?("clamd") && clamd == "true"
 out = '
-  deny    
+  # FIXME: make blackhole work
+  deny    condition       = ${if eq {$acl_m_prf}{markup}{no}{yes}}
   	  demime          = *
           malware         = */defer_ok
           message         = malware detected: $malware_name: message rejected
+
+  warn    condition       = ${if eq {$acl_m_prf}{markup}}
+  	  demime          = *
+          malware         = */defer_ok
+          message         = X-malware detected: $malware_name
 '
 end
 out
@@ -946,6 +984,14 @@ out
 out=''
 if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
 out='
+  warn   condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{markup}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
+
+  accept condition     = ${if eq {$acl_m_prf}{markup}}
+
   deny   condition     = ${if <{$message_size}{256000}}
          set acl_m_srb = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}

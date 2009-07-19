@@ -75,6 +75,7 @@ nagios		bellini,cimarosa=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, 
 %secretary	ALL=(secretary)	ALL
 %snapshot	ALL=(snapshot)	ALL
 %uddadm		ALL=(udd)	ALL
+%volatile	ALL=(volatile)	ALL
 %wbadm		ALL=(wbadm)	ALL
 %wikiadm	ALL=(wiki)	ALL
 QACORE		QAHOSTS=(qa)	ALL

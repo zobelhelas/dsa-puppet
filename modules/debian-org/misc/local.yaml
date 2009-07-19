@@ -77,22 +77,22 @@ footer:
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
   bugsmaster: rietz.debian.org
-  qamaster: merkel.debian.org
   mailrelay: spohr.debian.org
-  rtmaster: spohr.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
+  qamaster: merkel.debian.org
+  rtmaster: spohr.debian.org
 host_settings:
   heavy_exim:
-    - raff.debian.org
-    - merkel.debian.org
-    - spohr.debian.org
     - draghi.debian.org
+    - klecker.debian.org
     - master.debian.org
+    - merkel.debian.org
+    - powell.debian.org
+    - raff.debian.org
     - ries.debian.org
     - rietz.debian.org
-    - klecker.debian.org
-    - powell.debian.org
+    - spohr.debian.org
   apache2_defaultconfig:
     - bellini.debian.org
     - carver.debian.org
@@ -126,18 +126,18 @@ host_settings:
     - lafayette.debian.org
     - malo.debian.org
     - murphy.debian.org
+    - paer.debian.org
     - praetorius.debian.org
     - puccini.debian.org
-    - paer.debian.org
   smarthost:
-    ancina.debian.org: mailout.debian.org
     allegri.debian.org: mailout.debian.org
+    ancina.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
   mail_port:
-    ancina.debian.org: 2025
     allegri.debian.org: 2025
-    piatti.debian.org: 2025
+    ancina.debian.org: 2025
     kassia.debian.org: 587
+    piatti.debian.org: 2025
   reservedaddrs:
     ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 10.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"
 ---
