@@ -3,6 +3,10 @@
 # USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 #
 
+###
+# security.debian.org
+###
+
 file etc/bind/geodns/named.conf.geo.security.debian.org
     perms 0644
     user geodnssync
@@ -56,6 +60,11 @@ file etc/bind/geodns/db.security.debian.org.SA
     group geodnssync
     precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail security.debian.org etc/bind/geodns/db.security.debian.org.SA
     postcommand sudo /etc/init.d/bind9 reload
+
+###
+# www.debian.org
+###
+
 file etc/bind/geodns/named.conf.geo.www.debian.org
     perms 0644
     user geodnssync
@@ -108,4 +117,62 @@ file etc/bind/geodns/db.www.debian.org.SA
     user geodnssync
     group geodnssync
     precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail www.debian.org etc/bind/geodns/db.www.debian.org.SA
+    postcommand sudo /etc/init.d/bind9 reload
+
+###
+# video.debconf.debian.org
+###
+
+file etc/bind/geodns/named.conf.geo.video.debconf.debian.org
+    perms 0644
+    user geodnssync
+    group geodnssync
+    postcommand /usr/sbin/named-checkconf /etc/bind/named.conf && sudo /usr/sbin/rndc reconfig
+file etc/bind/geodns/db.video.debconf.debian.org
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail video.debconf.debian.org etc/bind/geodns/db.video.debconf.debian.org
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.video.debconf.debian.org.AF
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail video.debconf.debian.org etc/bind/geodns/db.video.debconf.debian.org.AF
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.video.debconf.debian.org.AN
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail video.debconf.debian.org etc/bind/geodns/db.video.debconf.debian.org.AN
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.video.debconf.debian.org.AS
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail video.debconf.debian.org etc/bind/geodns/db.video.debconf.debian.org.AS
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.video.debconf.debian.org.EU
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail video.debconf.debian.org etc/bind/geodns/db.video.debconf.debian.org.EU
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.video.debconf.debian.org.NA
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail video.debconf.debian.org etc/bind/geodns/db.video.debconf.debian.org.NA
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.video.debconf.debian.org.OC
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail video.debconf.debian.org etc/bind/geodns/db.video.debconf.debian.org.OC
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.video.debconf.debian.org.SA
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail video.debconf.debian.org etc/bind/geodns/db.video.debconf.debian.org.SA
     postcommand sudo /etc/init.d/bind9 reload

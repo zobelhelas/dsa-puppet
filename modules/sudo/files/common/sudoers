@@ -21,6 +21,7 @@ Defaults	env_reset
 
 # Host alias specification
 Host_Alias	QAHOSTS		= master, merkel
+Host_Alias	WEBHOSTS	= klecker, wolkenstein
 # User alias specification
 User_Alias	QACORE		= aba, djpig, hertzog, jeroen, joerg, lucas, luk, myon, tbm, weasel, zack
 
@@ -110,7 +111,7 @@ dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 %sec_data	klecker=(archvsync)	NOPASSWD: /home/archvsync/security/signal ""
 dak		klecker=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
-debwww		klecker=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
+debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 # more list stuff
 %list		liszt=(root)		/usr/sbin/postfix reload
 %list		liszt=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
