@@ -24,7 +24,7 @@ view "AF" {
         };
         zone "video.debconf.debian.org" {
                 type master;
-                file "/etc/bind/geodns/db.security.debian.org.AF";
+                file "/etc/bind/geodns/db.video.debconf.debian.org.AF";
                 notify no;
         };
 };
@@ -55,7 +55,7 @@ view "AN" {
         };
         zone "video.debconf.debian.org" {
                 type master;
-                file "/etc/bind/geodns/db.security.debian.org.AN";
+                file "/etc/bind/geodns/db.video.debconf.debian.org.AN";
                 notify no;
         };
 };
@@ -86,7 +86,7 @@ view "AS" {
         };
         zone "video.debconf.debian.org" {
                 type master;
-                file "/etc/bind/geodns/db.security.debian.org.AS";
+                file "/etc/bind/geodns/db.video.debconf.debian.org.AS";
                 notify no;
         };
 };
@@ -117,7 +117,7 @@ view "EU" {
         };
         zone "video.debconf.debian.org" {
                 type master;
-                file "/etc/bind/geodns/db.security.debian.org.EU";
+                file "/etc/bind/geodns/db.video.debconf.debian.org.EU";
                 notify no;
         };
 };
@@ -148,7 +148,7 @@ view "NA" {
         };
         zone "video.debconf.debian.org" {
                 type master;
-                file "/etc/bind/geodns/db.security.debian.org.NA";
+                file "/etc/bind/geodns/db.video.debconf.debian.org.NA";
                 notify no;
         };
 };
@@ -179,7 +179,7 @@ view "OC" {
         };
         zone "video.debconf.debian.org" {
                 type master;
-                file "/etc/bind/geodns/db.security.debian.org.OC";
+                file "/etc/bind/geodns/db.video.debconf.debian.org.OC";
                 notify no;
         };
 };
@@ -210,7 +210,7 @@ view "SA" {
         };
         zone "video.debconf.debian.org" {
                 type master;
-                file "/etc/bind/geodns/db.security.debian.org.SA";
+                file "/etc/bind/geodns/db.video.debconf.debian.org.SA";
                 notify no;
         };
 };
@@ -241,7 +241,7 @@ view "default" {
         };
         zone "video.debconf.debian.org" {
                 type master;
-                file "/etc/bind/geodns/db.security.debian.org";
+                file "/etc/bind/geodns/db.video.debconf.debian.org";
                 notify no;
         };
 };
