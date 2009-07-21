@@ -1,2 +1,3 @@
+SHELL=/bin/bash
 @hourly  root [ ! -d /var/cache/dsa ] || touch /var/cache/dsa/cron.alive
-34 */4 * * * root [ ! -x /usr/sbin/puppet ] || /usr/sbin/puppet -w 5 --factsync -t
+34 */4 * * * root [ ! -x /usr/sbin/puppet ] || ( sleep $(( $RANDOM % 3600 )) && /usr/sbin/puppet -w 5 --factsync -t )
