@@ -96,6 +96,7 @@ host_settings:
   apache2_defaultconfig:
     - bellini.debian.org
     - carver.debian.org
+    - cimarosa.debian.org
     - draghi.debian.org
     - duarte.debian.org
     - gluck.debian.org
