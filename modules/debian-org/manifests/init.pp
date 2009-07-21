@@ -50,9 +50,11 @@ class debian-org {
              source => "puppet:///files/etc/timezone",
              notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
       "/etc/puppet/puppet.conf":
-             source => "puppet:///files/etc/puppet/puppet.conf",
+             source => "puppet:///files/etc/puppet/puppet.conf"
+             ;
       "/etc/default/puppet":
-             source => "puppet:///files/etc/default/puppet",
+             source => "puppet:///files/etc/default/puppet"
+             ;
 
       "/etc/syslog-ng/syslog-ng.conf":
              source => "puppet:///files/etc/syslog-ng/syslog-ng.conf",
