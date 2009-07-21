@@ -102,6 +102,9 @@ joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
 %wbadm		raff=(root)		/usr/local/bin/update-buildd-sshkeys
 # mirror push
 dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
+planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
+# archvsync triggers snapshot
+archvsync	stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
 # dak stuff
 %debian-release	ries=(dak)		/usr/local/bin/dak transitions --import *
 %ftpteam	ries=(dak)		/usr/local/bin/dak transitions --import *
@@ -121,5 +124,3 @@ debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 # geodns may reload bind
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
-# archvsync triggers snapshot
-archvsync	stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
