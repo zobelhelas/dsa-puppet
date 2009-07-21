@@ -2,17 +2,6 @@
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
-check process puppetd with pidfile /var/run/puppet/puppetd.pid
-    start program = "/etc/init.d/puppet start"
-    stop program  = "/etc/init.d/puppet stop"
-    if cpu is greater than 80% for 3 cycles then alert
-    if cpu > 60% for 5 cycles then restart
-    if 5 restarts within 5 cycles then timeout
-
-check file puppetstate
-    with path /var/lib/puppet/state/state.yaml
-    if timestamp > 90 minutes for 9 cycles then exec "/etc/init.d/puppet stop"
-    depends on puppetd
 
 check file cronalive
     with path /var/cache/dsa/cron.alive

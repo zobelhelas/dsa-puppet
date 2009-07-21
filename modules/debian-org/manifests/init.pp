@@ -54,7 +54,7 @@ class debian-org {
              notify  => Exec["puppet reload"];
       "/etc/default/puppet":
              source => "puppet:///files/etc/default/puppet",
-             notify  => Exec["puppet restart"];
+             require => Exec["puppet stop"];
 
       "/etc/syslog-ng/syslog-ng.conf":
              source => "puppet:///files/etc/syslog-ng/syslog-ng.conf",
@@ -95,7 +95,7 @@ class debian-org {
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
    }
-   exec { "puppet restart":
+   exec { "puppet stop":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
    }
