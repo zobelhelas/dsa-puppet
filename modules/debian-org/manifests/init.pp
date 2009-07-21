@@ -51,10 +51,8 @@ class debian-org {
              notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
       "/etc/puppet/puppet.conf":
              source => "puppet:///files/etc/puppet/puppet.conf",
-             notify  => Exec["puppet reload"];
       "/etc/default/puppet":
              source => "puppet:///files/etc/default/puppet",
-             require => Exec["puppet stop"];
 
       "/etc/syslog-ng/syslog-ng.conf":
              source => "puppet:///files/etc/syslog-ng/syslog-ng.conf",
@@ -87,18 +85,6 @@ class debian-org {
         default: {}
    }
 
-   exec { "puppet reload":
-             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-             refreshonly => true,
-   }
-   exec { "puppetmaster restart":
-             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-             refreshonly => true,
-   }
-   exec { "puppet stop":
-             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-             refreshonly => true,
-   }
    exec { "syslog-ng reload":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
