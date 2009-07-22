@@ -100,6 +100,7 @@ pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		raff=(root)		/usr/local/bin/update-buildd-sshkeys
+%wbadm		cimarosa=(root)		/usr/local/bin/update-buildd-sshkeys
 # mirror push
 dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
