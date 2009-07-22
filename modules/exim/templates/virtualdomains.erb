@@ -18,13 +18,13 @@
 
 <%=
 vdoms = case fqdn
-	
-	when "bellini.debian.org" then "popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/"
+
+        when "bellini.debian.org" then "popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/"
 
         when "cimarosa.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail
 logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail"
-        
-	when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
+
+        when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
 
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
 
