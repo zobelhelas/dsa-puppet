@@ -100,6 +100,10 @@ class debian-org {
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true
    }
+   exec { "puppetmaster restart":
+             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+             refreshonly => true,
+   }
 }
 
 class debian-proliant inherits debian-org {
