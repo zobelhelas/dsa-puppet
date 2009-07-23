@@ -891,6 +891,7 @@ acl_check_mime:
          condition     = ${if eq {$acl_m_prf}{blackhole}}
          set acl_m_srb = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = discarded surbl message for $recipients
 
   warn   condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{markup}}
@@ -980,6 +981,7 @@ out = '
   discard condition       = ${if eq {$acl_m_prf}{blackhole}{no}{yes}}
           demime          = *
           malware         = */defer_ok
+          log_message     = discarded malware message for $recipients
 
   deny    condition       = ${if eq {$acl_m_prf}{markup}{no}{yes}}
   	  demime          = *
@@ -1002,6 +1004,7 @@ out='
          condition     = ${if eq {$acl_m_prf}{blackhole}}
          set acl_m_srb = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = discarded surbl message for $recipients
 
   warn   condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{markup}}
