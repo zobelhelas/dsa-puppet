@@ -138,6 +138,8 @@ domainlist handled_domains = +local_domains : +virtual_domains : +bsmtp_domains
 
 localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
+localpartlist postmasterish = postmaster : abuse : hostmaster : root
+
 # Domains we relay for; that is domains that aren't considered local but we 
 # accept mail for them.
 domainlist rcpthosts = partial-lsearch;/etc/exim4/rcpthosts
@@ -370,16 +372,19 @@ out
   warn    domains        = +virtual_domains
           condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}}
           condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}{$value}{}}}{markup}}
+          log_message    = $local_part@$domain: markup
           set acl_m_rprf = markup
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
   warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{markup}}
+          log_message    = $local_part@$domain: markup
           set acl_m_rprf = markup
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
   warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{blackhole}}
+          log_message    = $local_part@$domain: blackhole
           set acl_m_rprf = blackhole
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
@@ -387,6 +392,7 @@ out
   warn    domains        = +virtual_domains
           condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}}
           condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}{$value}{}}}{blackhole}}
+          log_message    = $local_part@$domain: blackhole
           set acl_m_rprf = blackhole
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
@@ -813,8 +819,12 @@ end
 out
 %>
 
-  accept  local_parts   = postmaster
+  accept  local_parts   = +postmasterish
           domains       = +handled_domains : +rcpthosts
+
+  deny    hosts        = ${if exists{/etc/exim4/host_blacklist}{/etc/exim4/host_blacklist}{}}
+          message      = I'm terribly sorry, but it seems you have been blacklisted
+          log_message  = blacklisted IP
 
   deny   log_message   = <$sender_address> is blacklisted
          senders       = ${if exists{/etc/exim4/blacklist}{/etc/exim4/blacklist}{}}
@@ -880,6 +890,12 @@ out=''
 if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
 out='
 acl_check_mime:
+
+ discard condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{blackhole}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = discarded surbl message for $recipients
 
   warn   condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{markup}}
@@ -966,7 +982,11 @@ out
 out = ""
 if has_variable?("clamd") && clamd == "true"
 out = '
-  # FIXME: make blackhole work
+  discard condition       = ${if eq {$acl_m_prf}{blackhole}{no}{yes}}
+          demime          = *
+          malware         = */defer_ok
+          log_message     = discarded malware message for $recipients
+
   deny    condition       = ${if eq {$acl_m_prf}{markup}{no}{yes}}
   	  demime          = *
           malware         = */defer_ok
@@ -984,6 +1004,12 @@ out
 out=''
 if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
 out='
+ discard condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{blackhole}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = discarded surbl message for $recipients
+
   warn   condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{markup}}
          set acl_m_srb = ${perl{surblspamcheck}}
@@ -1122,6 +1148,17 @@ dnslookup:
   transport = remote_smtp
   ignore_target_hosts = +reservedaddrs
   no_more
+
+postmasterish:
+  debug_print = "R: postmasterish for $local_part@$domain"
+  driver = redirect
+  verify = false
+  unseen = true
+  expn = true
+  local_parts = +postmasterish
+  domains = +handled_domains
+  data = debian-admin@debian.org
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
 
 # This router handles aliasing using a traditional /etc/aliases file.
 # If any of your aliases expand to pipes or files, you will need to set
