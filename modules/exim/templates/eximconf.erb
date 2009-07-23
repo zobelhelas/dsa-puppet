@@ -881,6 +881,11 @@ if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
 out='
 acl_check_mime:
 
+ discard condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{blackhole}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+
   warn   condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{markup}}
          set acl_m_srb = ${perl{surblspamcheck}}
@@ -966,7 +971,10 @@ out
 out = ""
 if has_variable?("clamd") && clamd == "true"
 out = '
-  # FIXME: make blackhole work
+  discard condition       = ${if eq {$acl_m_prf}{blackhole}{no}{yes}}
+          demime          = *
+          malware         = */defer_ok
+
   deny    condition       = ${if eq {$acl_m_prf}{markup}{no}{yes}}
   	  demime          = *
           malware         = */defer_ok
@@ -984,6 +992,11 @@ out
 out=''
 if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
 out='
+ discard condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{blackhole}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+
   warn   condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{markup}}
          set acl_m_srb = ${perl{surblspamcheck}}
