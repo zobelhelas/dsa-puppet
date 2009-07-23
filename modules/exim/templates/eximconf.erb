@@ -816,6 +816,10 @@ out
   accept  local_parts   = postmaster
           domains       = +handled_domains : +rcpthosts
 
+  deny    hosts        = ${if exists{/etc/exim4/host_blacklist}{/etc/exim4/host_blacklist}{}}
+          message      = I'm terribly sorry, but it seems you have been blacklisted
+          log_message  = blacklisted IP
+
   deny   log_message   = <$sender_address> is blacklisted
          senders       = ${if exists{/etc/exim4/blacklist}{/etc/exim4/blacklist}{}}
          message       = We have blacklisted <$sender_address>.  Please stop mailing us
