@@ -982,7 +982,7 @@ out
 out = ""
 if has_variable?("clamd") && clamd == "true"
 out = '
-  discard condition       = ${if eq {$acl_m_prf}{blackhole}{no}{yes}}
+  discard condition       = ${if eq {$acl_m_prf}{blackhole}}
           demime          = *
           malware         = */defer_ok
           log_message     = discarded malware message for $recipients
