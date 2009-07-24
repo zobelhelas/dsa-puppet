@@ -27,6 +27,11 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/manualroute",
                        "puppet:///exim/common/manualroute" ]
           ;
+        "/etc/exim4/host_blacklist":
+          require => Package["exim4-daemon-heavy"],
+          source  => [ "puppet:///exim/per-host/$fqdn/host_blacklist",
+                       "puppet:///exim/common/host_blacklist" ]
+          ;
         "/etc/exim4/blacklist":
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/blacklist",
