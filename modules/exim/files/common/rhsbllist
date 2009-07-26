@@ -8,6 +8,7 @@ books : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$
 cdvendors : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 consultants : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 da-manager : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
+events : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 ftp-master : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 ftpmaster : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 gandi-discount : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
@@ -20,5 +21,6 @@ new-maintainer : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignor
 override-change : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 partners : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 preinstallvendors : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
+press : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 wbadm : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
 webmaster : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
