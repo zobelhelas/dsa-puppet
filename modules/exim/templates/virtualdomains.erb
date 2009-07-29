@@ -42,6 +42,8 @@ debian.net: user=nobody group=Debian directory=/org/star.debian.star/"
 bugs.qa.debian.org: user=nobody group=nogroup directory=/org/bugs.qa.debian.org/mail/
 nm.debian.org: user=nm group=nm directory=/org/nm.debian.org/mail/"
 
+        when "morricone.debian.org" then "backports.debian.org: user=dak group=backports directory=/srv/backports-master.debian.org/mail/"
+
         when "powell.debian.org" then "packages.debian.org: user=nobody group=Debian directory=/org/packages.debian.org/mail/"
 
         when "raff.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail
