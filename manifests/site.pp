@@ -60,7 +60,7 @@ node default {
            default: { }
      }
      case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-          "true":  { include security_mirror }
+          "true":  { include apache2::security_mirror }
            default: { }
      }
 
