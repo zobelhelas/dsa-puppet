@@ -16,6 +16,7 @@ Exec {
 node default {
     include munin-node
     include sudo
+    include ssh
     include debian-org
     include monit
     include apt-keys
