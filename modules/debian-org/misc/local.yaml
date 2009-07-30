@@ -121,7 +121,11 @@ host_settings:
     - wolkenstein.debian.org
   apache2_security_mirror:
     - gluck.debian.org
+    - kassia.debian.org
     - lobos.debian.org
+    - saens.debian.org
+    - schein.debian.org
+    - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
   buildd:
