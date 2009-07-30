@@ -121,6 +121,7 @@ host_settings:
     - wolkenstein.debian.org
   apache2_security_mirror:
     - gluck.debian.org
+    - wieck.debian.org
   buildd:
     - ancina.debian.org
     - arcadelt.debian.org
