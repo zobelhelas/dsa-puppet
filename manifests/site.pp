@@ -59,6 +59,11 @@ node default {
           "true":  { include buildd }
            default: { }
      }
+     case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
+          "true":  { include security_mirror }
+           default: { }
+     }
+
 
 # maybe wait for rietz to be upgraded to lenny
 #    case $hostname {

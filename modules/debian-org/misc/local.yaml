@@ -119,6 +119,8 @@ host_settings:
     - villa.debian.org
     - wieck.debian.org
     - wolkenstein.debian.org
+  apache2_security_mirror:
+    - gluck.debian.org
   buildd:
     - ancina.debian.org
     - arcadelt.debian.org

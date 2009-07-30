@@ -1,0 +1,33 @@
+<Directory /org/security.debian.org/ftp>
+   IndexOptions NameWidth=* +SuppressDescription
+   Options +FollowSymLinks
+   Options +Indexes
+   FileETag MTime Size
+</Directory>
+
+<VirtualHost *:80>
+   ServerAdmin debian-admin@debian.org
+   DocumentRoot /org/security.debian.org/ftp
+   ServerPath /debian-security
+   ServerName security.debian.org
+   ServerAlias security.ipv6.debian.org
+   ServerAlias security.eu.debian.org
+   ServerAlias security.us.debian.org
+   ServerAlias security.na.debian.org
+   ServerAlias security.geo.debian.org
+   ServerAlias security-nagios.debian.org
+
+   Alias /debian-security /org/security.debian.org/ftp
+
+   RewriteEngine on
+   RewriteRule ^/$      http://www.debian.org/security/
+
+   # Possible values include: debug, info, notice, warn, error, crit,
+   # alert, emerg.
+   LogLevel warn
+
+   CustomLog /var/log/apache2/security.debian.org-access.log combined
+   ServerSignature On
+
+</VirtualHost>
+
