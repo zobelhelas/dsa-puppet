@@ -32,6 +32,7 @@ nameinfo:
   merkel.debian.org: Gustav (Adolf) Merkel (November 12, 1827 - October 30, 1885)
   merulo.debian.org: Claudio Merulo (8 April 1533 - 4 May 1604)
   morales.debian.org: Cristóbal de Morales (c. 1500 - between September 4 and October 7, 1553)
+  morricone.debian.org: Ennio Morricone (November 10, 1928 - )
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   paer.debian.org: Ferdinando Paër (July 1, 1771 - May 3, 1839)
   penalosa.debian.org: Francisco de Peñalosa (c. 1470 - April 1, 1528)
@@ -118,6 +119,15 @@ host_settings:
     - villa.debian.org
     - wieck.debian.org
     - wolkenstein.debian.org
+  apache2_security_mirror:
+    - gluck.debian.org
+    - kassia.debian.org
+    - lobos.debian.org
+    - saens.debian.org
+    - schein.debian.org
+    - steffani.debian.org
+    - villa.debian.org
+    - wieck.debian.org
   buildd:
     - ancina.debian.org
     - arcadelt.debian.org
