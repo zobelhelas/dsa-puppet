@@ -3,7 +3,7 @@
 
 # What ports, IPs and protocols we listen for
 Port 22
-<%- extraports = case fqdn
+<%= extraports = case fqdn
                         when "ravel.debian.org" then "Port 443"
                         when "gluck.debian.org" then "Port 443"
                         when "agnesi.debian.org" then "Port 2260"
