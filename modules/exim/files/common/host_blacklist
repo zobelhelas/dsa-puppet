@@ -3,3 +3,4 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 193.146.156.252
+*.bp06.net
