@@ -3,9 +3,8 @@ Facter.add("smartarraycontroller") do
 	ENV["PATH"]="/bin:/sbin:/usr/bin:/usr/sbin"
 	setcode do
 		ishp = "false"
-		lspciexists = system "/bin/bash -c 'which lspci >&/dev//null'"
-		if (lspciexists && (FileTest.exist?("/proc/bus/pci")))
-			%x{lspci 2>&1}.each { |s|
+		if ((FileTest.executable?("/usr/bin/lspci")) && (FileTest.exist?("/proc/bus/pci")))
+			%x{lspci}.each { |s|
 				ishp = "true" if s =~ /RAID bus controller: (.*) Smart Array/
 			}
 		end
