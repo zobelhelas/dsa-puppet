@@ -1,14 +1,7 @@
 Facter.add("smartarraycontroller") do
 	confine :kernel => :linux
-	ENV["PATH"]="/bin:/sbin:/usr/bin:/usr/sbin"
 	setcode do
-		ishp = "false"
-		if ((FileTest.executable?("/usr/bin/lspci")) && (FileTest.exist?("/proc/bus/pci")))
-			%x{lspci}.each { |s|
-				ishp = "true" if s =~ /RAID bus controller: (.*) Smart Array/
-			}
-		end
-		ishp == "true"
+		FileTest.exist?("/dev/cciss/")
 	end
 end
 
