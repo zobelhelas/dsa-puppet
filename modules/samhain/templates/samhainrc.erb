@@ -90,6 +90,7 @@ file=/var/state/samhain/samhain_file
 file=/etc/bind/zones/db.debian.net
 file=/etc/exim4/bsmtp
 <% if hostname == "geo1" || hostname == "geo2" || hostname == "geo3" -%>
+file=/etc/bind
 file=/etc/bind/named.conf.acl
 file=/etc/bind/named.conf.options
 file=/etc/bind/named.conf.local
