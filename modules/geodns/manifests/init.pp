@@ -78,6 +78,12 @@ class geodns {
                         group   => geodnssync,
                         mode    => 440,
                         ;
+                "/var/log/bind9":
+                        ensure  => directory,
+                        owner   => bind,
+                        group   => bind,
+                        mode    => 775,
+                        ;
         }
 
         exec {

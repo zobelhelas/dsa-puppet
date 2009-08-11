@@ -30,7 +30,7 @@ options {
 logging {
 
 	channel queries {
-		file "/var/log/geoip-query.log" versions 4 size 40m;
+		file "/var/log/bind9/geoip-query.log" versions 4 size 40m;
 		print-time yes;
 		print-category yes;
 	};
