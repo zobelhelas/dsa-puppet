@@ -104,6 +104,7 @@ host_settings:
     - gluck.debian.org
     - kaufmann.debian.org
     - klecker.debian.org
+    - liszt.debian.org
     - lobos.debian.org
     - piatti.debian.org
     - raff.debian.org
