@@ -118,6 +118,7 @@ host_settings:
     - steffani.debian.org
     - tartini.debian.org
     - villa.debian.org
+    - widor.debian.org
     - wieck.debian.org
     - wolkenstein.debian.org
   apache2_security_mirror:
