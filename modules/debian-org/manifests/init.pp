@@ -1,3 +1,14 @@
+define sysctl($key, $value, $ensure=present) {
+    file { "/etc/sysctl.d/$name.conf":
+        ensure  => $ensure,
+        owner   => root,
+        group   => root,
+        mode    => 0644,
+        content => "$key = $value\n",
+        notify  => Exec["procps restart"],
+    }
+}
+
 class debian-org {
    package { "userdir-ldap": ensure => installed;
              "zsh": ensure => installed;
@@ -87,6 +98,13 @@ class debian-org {
         default: {}
    }
 
+   # set mmap_min_addr to 4096 to mitigate
+   # Linux NULL-pointer dereference exploits
+   sysctl { "mmap_min_addr" :
+             key         => "vm.mmap_min_addr",
+             value       => 4096,
+   }
+
    exec { "syslog-ng reload":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
@@ -101,6 +119,10 @@ class debian-org {
              refreshonly => true
    }
    exec { "puppetmaster restart":
+             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+             refreshonly => true,
+   }
+   exec { "procps restart":
              path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
              refreshonly => true,
    }
