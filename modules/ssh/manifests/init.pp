@@ -14,7 +14,7 @@ class ssh {
                 notify  => Exec["ssh restart"]
                 ;
               "/etc/ssh/userkeys/root":
-                content => template("ssh/authorized_keys.erb" ],
+                content => template("ssh/authorized_keys.erb"),
                 mode    => 444,
                 require => Package["openssh-server"]
                 ;
