@@ -13,11 +13,11 @@ class ssh {
 		require => Package["openssh-server"],
                 notify  => Exec["ssh restart"]
                 ;
-#              "/etc/ssh/userkeys/root":
-#               content => template("ssh/authorized_keys.erb" ],
-#               mode    => 444,
-#               require => Package["openssh-server"]
-#               ;
+              "/etc/ssh/userkeys/root":
+                content => template("ssh/authorized_keys.erb" ],
+                mode    => 444,
+                require => Package["openssh-server"]
+                ;
 	}
 
         exec { "ssh restart":
