@@ -143,6 +143,11 @@ host_settings:
     - paer.debian.org
     - praetorius.debian.org
     - puccini.debian.org
+    - lebrun.debian.org
+    - spontini.debian.org
+    - schroeder.debian.org
+    - mayer.debian.org
+    - rem.debian.org
   smarthost:
     allegri.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
