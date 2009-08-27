@@ -9,6 +9,13 @@ define sysctl($key, $value, $ensure=present) {
     }
 }
 
+define set_alternatives($linkto) {
+        exec { "/usr/sbin/update-alternatives --set $name $linkto":
+            unless => "/bin/sh -c '! [ -e $linkto ] || ! [ -e /etc/alternatives/$name ] || ([ -L /etc/alternatives/$name ] && [ /etc/alternatives/$name -ef $linkto ])'"
+        }
+}
+
+
 class debian-org {
    package { "userdir-ldap": ensure => installed;
              "zsh": ensure => installed;
@@ -103,6 +110,10 @@ class debian-org {
    sysctl { "mmap_min_addr" :
              key         => "vm.mmap_min_addr",
              value       => 4096,
+   }
+
+   set_alternatives { "editor":
+           linkto => "/usr/bin/vim.basic",
    }
 
    exec { "syslog-ng reload":
