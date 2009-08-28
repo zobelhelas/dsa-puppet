@@ -17,7 +17,7 @@ class ssh {
 		ensure  => directory,
 		owner   => root,
 		group   => root,
-		mode    => 775,
+		mode    => 755,
                 ;
               "/etc/ssh/userkeys/root":
                 content => template("ssh/authorized_keys.erb"),
