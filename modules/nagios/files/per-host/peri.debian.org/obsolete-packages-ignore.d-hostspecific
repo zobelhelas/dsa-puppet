@@ -3,5 +3,5 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-ilibvolume-id0
+libvolume-id0
 udev
