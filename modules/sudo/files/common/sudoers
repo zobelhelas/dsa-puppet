@@ -68,6 +68,7 @@ nagios		bellini,cimarosa,morricone,paganini,respighi,vivaldi=(ALL)	NOPASSWD: /us
 %list		liszt=(list)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %nm		ALL=(nm)	ALL
+%patch-tracker	ALL=(patch-tracker)	ALL
 %piuparts	ALL=(piupartsm)	ALL
 %piuparts	ALL=(piupartss)	ALL
 %pkg_maint	ALL=(pkg_user)	ALL
