@@ -6,7 +6,7 @@ class apache2 {
 
 	file {
 		"/etc/apache2/conf.d/ressource-limits":
-			template("apache2/ressource-limits.erb"),
+			content => template("apache2/ressource-limits.erb"),
 			require => Package["apache2"],
 			notify  => Exec["apache2 reload"];
 		"/etc/apache2/conf.d/security":
