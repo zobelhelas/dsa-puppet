@@ -4,5 +4,13 @@
 ##
 
 RLimitCPU 180
-RLimitMEM 67108864
+<%=
+case fqdn
+	when "cimarosa.debian.org" then
+		# buildd.debian.org
+		"RLimitMEM 96m"
+	else
+		"RLimitMEM 32m"
+end
+%>
 RLimitNPROC 128
