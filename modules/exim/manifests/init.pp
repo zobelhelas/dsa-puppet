@@ -17,6 +17,9 @@ class exim {
           mode    => 750,
           purge   => true
         ;
+        "/etc/mailname":
+          content => template("exim/mailname.erb"),
+        ;
         "/etc/exim4/exim4.conf":
           content => template("exim/eximconf.erb"),
           require => Package["exim4-daemon-heavy"],
