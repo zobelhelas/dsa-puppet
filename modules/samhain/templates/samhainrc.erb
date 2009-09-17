@@ -96,30 +96,6 @@ file=/etc/bind/named.conf.options
 file=/etc/bind/named.conf.local
 file=/etc/bind/geodns/named.conf.geo
 file=/etc/bind/geodns/recvconf.files
-file=/etc/bind/geodns/db.www.debian.org.SA
-file=/etc/bind/geodns/db.www.debian.org.OC
-file=/etc/bind/geodns/db.www.debian.org.NA
-file=/etc/bind/geodns/db.www.debian.org.EU
-file=/etc/bind/geodns/db.www.debian.org.AS
-file=/etc/bind/geodns/db.www.debian.org.AN
-file=/etc/bind/geodns/db.www.debian.org.AF
-file=/etc/bind/geodns/db.www.debian.org
-file=/etc/bind/geodns/db.security.debian.org.SA
-file=/etc/bind/geodns/db.security.debian.org.OC
-file=/etc/bind/geodns/db.security.debian.org.NA
-file=/etc/bind/geodns/db.security.debian.org.EU
-file=/etc/bind/geodns/db.security.debian.org.AS
-file=/etc/bind/geodns/db.security.debian.org.AN
-file=/etc/bind/geodns/db.security.debian.org.AF
-file=/etc/bind/geodns/db.security.debian.org
-file=/etc/bind/geodns/db.video.debconf.debian.org.EU
-file=/etc/bind/geodns/db.video.debconf.debian.org.AF
-file=/etc/bind/geodns/db.video.debconf.debian.org.OC
-file=/etc/bind/geodns/db.video.debconf.debian.org.SA
-file=/etc/bind/geodns/db.video.debconf.debian.org.AS
-file=/etc/bind/geodns/db.video.debconf.debian.org.NA
-file=/etc/bind/geodns/db.video.debconf.debian.org.AN
-file=/etc/bind/geodns/db.video.debconf.debian.org
 <% end -%>
 
 
@@ -340,6 +316,7 @@ file=/etc/nagios3/puppetconf.d/auto-hostextinfo.cfg
 file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg"
 when "handel.debian.org": extrafiles="dir=8/etc/puppet"
 when "dijkstra.debian.org": extrafiles="dir=4/etc/dsa-kvm"
+when /geo[123].debian.org/: extrafiles="dir=1/etc/bind/geodns"
 end
 extrafiles
 %>
