@@ -9,6 +9,7 @@ view "AF" {
   zone "security.debian.org" { type master; file "/etc/bind/geodns/db.security.debian.org.AF"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.geo.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.AF"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.AF"; notify no; allow-query { any; }; allow-transfer { }; };
+  zone "packages.debian.org" { type master; file "/etc/bind/geodns/db.packages.debian.org.AF"; notify no; allow-query { any; }; allow-transfer { }; };
 };
 view "AN" {
   match-clients { AN; };
@@ -16,6 +17,7 @@ view "AN" {
   zone "security.debian.org" { type master; file "/etc/bind/geodns/db.security.debian.org.AN"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.geo.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.AN"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.AN"; notify no; allow-query { any; }; allow-transfer { }; };
+  zone "packages.debian.org" { type master; file "/etc/bind/geodns/db.packages.debian.org.AN"; notify no; allow-query { any; }; allow-transfer { }; };
 };
 view "AS" {
   match-clients { AS; };
@@ -23,6 +25,7 @@ view "AS" {
   zone "security.debian.org" { type master; file "/etc/bind/geodns/db.security.debian.org.AS"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.geo.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.AS"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.AS"; notify no; allow-query { any; }; allow-transfer { }; };
+  zone "packages.debian.org" { type master; file "/etc/bind/geodns/db.packages.debian.org.AS"; notify no; allow-query { any; }; allow-transfer { }; };
 };
 view "EU" {
   match-clients { EU; };
@@ -30,6 +33,7 @@ view "EU" {
   zone "security.debian.org" { type master; file "/etc/bind/geodns/db.security.debian.org.EU"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.geo.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.EU"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.EU"; notify no; allow-query { any; }; allow-transfer { }; };
+  zone "packages.debian.org" { type master; file "/etc/bind/geodns/db.packages.debian.org.EU"; notify no; allow-query { any; }; allow-transfer { }; };
 };
 view "NA" {
   match-clients { NA; };
@@ -37,6 +41,7 @@ view "NA" {
   zone "security.debian.org" { type master; file "/etc/bind/geodns/db.security.debian.org.NA"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.geo.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.NA"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.NA"; notify no; allow-query { any; }; allow-transfer { }; };
+  zone "packages.debian.org" { type master; file "/etc/bind/geodns/db.packages.debian.org.NA"; notify no; allow-query { any; }; allow-transfer { }; };
 };
 view "OC" {
   match-clients { OC; };
@@ -44,6 +49,7 @@ view "OC" {
   zone "security.debian.org" { type master; file "/etc/bind/geodns/db.security.debian.org.OC"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.geo.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.OC"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.OC"; notify no; allow-query { any; }; allow-transfer { }; };
+  zone "packages.debian.org" { type master; file "/etc/bind/geodns/db.packages.debian.org.OC"; notify no; allow-query { any; }; allow-transfer { }; };
 };
 view "SA" {
   match-clients { SA; };
@@ -51,6 +57,7 @@ view "SA" {
   zone "security.debian.org" { type master; file "/etc/bind/geodns/db.security.debian.org.SA"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.geo.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.SA"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org.SA"; notify no; allow-query { any; }; allow-transfer { }; };
+  zone "packages.debian.org" { type master; file "/etc/bind/geodns/db.packages.debian.org.SA"; notify no; allow-query { any; }; allow-transfer { }; };
 };
 view "default" {
   match-clients { any; };
@@ -58,4 +65,5 @@ view "default" {
   zone "security.debian.org" { type master; file "/etc/bind/geodns/db.security.debian.org"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.geo.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org"; notify no; allow-query { any; }; allow-transfer { }; };
   zone "www.debian.org" { type master; file "/etc/bind/geodns/db.www.debian.org"; notify no; allow-query { any; }; allow-transfer { }; };
+  zone "packages.debian.org" { type master; file "/etc/bind/geodns/db.packages.debian.org"; notify no; allow-query { any; }; allow-transfer { }; };
 };
