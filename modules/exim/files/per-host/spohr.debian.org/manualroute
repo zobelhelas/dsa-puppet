@@ -8,7 +8,6 @@
 ## buildd.debian.org: raff.debian.org::587 byname
 
 #exim:
-allegri.debian.org:         allegri.debian.org::2025
 ancina.debian.org:          ancina.debian.org::2025
 kassia.debian.org:          kassia.debian.org::587
 piatti.debian.org:          piatti.debian.org::2025
