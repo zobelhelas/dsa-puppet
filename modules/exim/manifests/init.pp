@@ -15,6 +15,7 @@ class exim {
           owner   => root,
           group   => Debian-exim,
           mode    => 750,
+          require => Package["exim4-daemon-heavy"],
           purge   => true
         ;
         "/etc/mailname":
