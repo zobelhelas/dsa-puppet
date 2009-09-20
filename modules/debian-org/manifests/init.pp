@@ -68,17 +68,21 @@ class debian-org {
              source => "puppet:///files/etc/timezone",
              notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
       "/etc/puppet/puppet.conf":
+             require => Package["puppet"],
              source => "puppet:///files/etc/puppet/puppet.conf"
              ;
       "/etc/default/puppet":
+             require => Package["puppet"],
              source => "puppet:///files/etc/default/puppet"
              ;
 
       "/etc/syslog-ng/syslog-ng.conf":
              source => "puppet:///files/etc/syslog-ng/syslog-ng.conf",
+             require => Package["syslog-ng"],
              notify  => Exec["syslog-ng reload"],
              ;
       "/etc/logrotate.d/syslog-ng":
+             require => Package["syslog-ng"],
              source => "puppet:///files/etc/logrotate.d/syslog-ng",
              ;
       "/etc/cron.d/dsa-puppet-stuff":
@@ -86,9 +90,11 @@ class debian-org {
              require => Package["cron"]
              ;
       "/etc/ldap/ldap.conf":
+             require => Package["userdir-ldap"],
              source => "puppet:///files/etc/ldap/ldap.conf",
              ;
       "/etc/pam.d/common-session":
+             require => Package["libpam-pwdfile"],
              source => "puppet:///files/etc/pam.d/common-session",
              ;
    }

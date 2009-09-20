@@ -20,6 +20,7 @@ class nagios::client inherits nagios {
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d":
 			mode    => 755,
+			require => Package["nagios-nrpe-server"],
 			ensure  => directory;
 		"/etc/nagios/nrpe.d/debianorg.cfg":
 			source  => [ "puppet:///nagios/per-host/$fqdn/inc-debian.org",

@@ -23,6 +23,7 @@ class nagios::server inherits nagios::client {
 
 		"/etc/nagios3/puppetconf.d":
 			mode    => 755,
+			require => Package["nagios3"],
 			ensure  => directory;
 
 		"/etc/nagios3/puppetconf.d/contacts.cfg":
