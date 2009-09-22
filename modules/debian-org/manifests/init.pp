@@ -49,16 +49,16 @@ class debian-org {
       "/etc/apt/preferences":
              source => "puppet:///files/etc/apt/preferences";
       "/etc/apt/sources.list.d/backports.org.list":
-             source => "puppet:///files/etc/apt/sources.list.d/backports.org.list",
+             content => template("debian-org/etc/apt/sources.list.d/backports.org.list.erb"),
              notify  => Exec["apt-get update"];
       "/etc/apt/sources.list.d/debian.org.list":
-             source => "puppet:///files/etc/apt/sources.list.d/debian.org.list",
+             content => template("debian-org/etc/apt/sources.list.d/debian.org.list.erb"),
              notify  => Exec["apt-get update"];
       "/etc/apt/sources.list.d/security.list":
-             source => "puppet:///files/etc/apt/sources.list.d/security.list",
+             content => template("debian-org/etc/apt/sources.list.d/security.list.erb"),
              notify  => Exec["apt-get update"];
       "/etc/apt/sources.list.d/volatile.list":
-             source => "puppet:///files/etc/apt/sources.list.d/volatile.list",
+             content => template("debian-org/etc/apt/sources.list.d/volatile.list.erb"),
              notify  => Exec["apt-get update"];
       "/etc/apt/apt.conf.d/local-recommends":
              source => "puppet:///files/etc/apt/apt.conf.d/local-recommends";
@@ -153,7 +153,7 @@ class debian-proliant inherits debian-org {
    }
    file {
       "/etc/apt/sources.list.d/debian.restricted.list":
-             source => "puppet:///files/etc/apt/sources.list.d/debian.restricted.list",
+             content => template("debian-org/etc/apt/sources.list.d/debian.restricted.list.erb"),
              notify  => Exec["apt-get update"];
    }
 }
