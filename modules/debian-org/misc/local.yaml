@@ -17,6 +17,8 @@ nameinfo:
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - 16 January  1700)
   duarte.debian.org: Leonora Duarte (28 July  1610 - 1678)
+  fano.debian.org: Guido Alberto Fano (18 March 1875 - 14 August 1961)
+  finzi.debian.org: Gerald Raphael Finzi (14 July 1901 - 27 September 1956)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (2 July 1714 - 15 November 1787)
   goedel.debian.org: Kurt Gödel (April 28, 1906 - January 14, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7, 1840 - December 3, 1876)
@@ -139,6 +141,8 @@ host_settings:
     - arcadelt.debian.org
     - argento.debian.org
     - brahms.debian.org
+    - fano.debian.org
+    - finzi.debian.org
     - goedel.debian.org
     - goetz.debian.org
     - lafayette.debian.org
@@ -152,10 +156,15 @@ host_settings:
     - schroeder.debian.org
     - mayer.debian.org
     - rem.debian.org
+  squeeze:
+    - fano.debian.org
+    - finzi.debian.org
   smarthost:
     allegri.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
+    fano.debian.org: dijkstra.debian.org
+    finzi.debian.org: dijkstra.debian.org
   mail_port:
     allegri.debian.org: 2025
     ancina.debian.org: 2025
