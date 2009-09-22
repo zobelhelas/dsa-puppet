@@ -14,14 +14,14 @@ Exec {
 }
 
 node default {
+    $nodeinfo = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
+
     include munin-node
     include sudo
     include ssh
     include debian-org
     include monit
     include apt-keys
-
-    $nodeinfo = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
 
     include motd
     include samhain
