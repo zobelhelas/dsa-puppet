@@ -3,7 +3,4 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
-<% else %>
 deb     http://security.geo.debian.org/             lenny/updates    main
-<% end %>
