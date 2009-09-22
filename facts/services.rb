@@ -1,4 +1,5 @@
 ["bugs","qa"].each do |service|
+        confine :kernel => :linux
 	Facter.add(service + "_host") do
 		service_name = "#{service}." + Facter.domain
 		active = false

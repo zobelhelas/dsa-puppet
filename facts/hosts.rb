@@ -1,5 +1,4 @@
 Facter.add("brokenhosts") do
-        confine :kernel => :linux
 	brokenhosts = "true"
 	if FileTest.exist?("/etc/hosts")
 		IO.foreach("/etc/hosts") do |x|
