@@ -192,6 +192,7 @@ filter f_messages {
 # messages with priority emerg
 filter f_emerg { level(emerg); };
 
+<% if kernel == 'Linux' %>
 # complex filter for messages usually sent to the xconsole
 filter f_xconsole {
     facility(daemon,mail)
@@ -200,7 +201,7 @@ filter f_xconsole {
                 and level(crit,err,notice));
 };
 
-
+<% end %>
 ######
 # logs
 # order matters if you use "flags(final);" to mark the end of processing in a
@@ -349,6 +350,7 @@ log {
 };
 
 
+<% if kernel == 'Linux' %>
 # daemon.*;mail.*;\
 #         news.crit;news.err;news.notice;\
 #         *.=debug;*.=info;\
@@ -358,4 +360,4 @@ log {
         filter(f_xconsole);
         destination(dp_xconsole);
 };
-
+<%end%>
