@@ -77,7 +77,7 @@ class debian-org {
              ;
 
       "/etc/syslog-ng/syslog-ng.conf":
-             source => "puppet:///files/etc/syslog-ng/syslog-ng.conf",
+             content => template("syslog-ng.conf"),
              require => Package["syslog-ng"],
              notify  => Exec["syslog-ng reload"],
              ;
