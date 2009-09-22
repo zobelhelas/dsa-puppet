@@ -9,7 +9,7 @@ class buildd {
 
    file {
       "/etc/apt/sources.list.d/buildd.list":
-             source => "puppet:///files/etc/apt/sources.list.d/buildd.list",
+             source  => template("buildd/etc/apt/sources.list.d/buildd.list"),
              require => Package["apt-transport-https"],
              notify  => Exec["apt-get update"],
              ;
