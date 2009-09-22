@@ -77,7 +77,7 @@ class debian-org {
              ;
 
       "/etc/syslog-ng/syslog-ng.conf":
-             content => template("syslog-ng.conf"),
+             content => template("syslog-ng.conf.erb"),
              require => Package["syslog-ng"],
              notify  => Exec["syslog-ng reload"],
              ;
