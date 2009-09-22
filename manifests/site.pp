@@ -1,5 +1,5 @@
 Package {
-    require => [ Exec["apt-get update"], File["/etc/apt/apt.conf.d/local-recommends"] ]
+    require => File["/etc/apt/apt.conf.d/local-recommends"]
 }
 
 File {
