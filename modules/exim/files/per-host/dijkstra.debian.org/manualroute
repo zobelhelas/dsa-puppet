@@ -7,4 +7,4 @@
 ## example:
 ## buildd.debian.org: raff.debian.org::587 byname
 
-finzi.debian.org:          [172.17.12.1]::25
+finzi.debian.org:          [172.17.12.2]::25
