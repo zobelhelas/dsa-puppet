@@ -926,6 +926,16 @@ acl_check_predata:
 
 #!!# ACL that is used after the DATA command
 check_message:
+<%=
+out=''
+if nodeinfo['mailrelay']
+  out='
+  accept verify  = certificate
+'
+end
+out
+%>
+
   require verify = header_syntax
           message = Invalid syntax in the header
 
