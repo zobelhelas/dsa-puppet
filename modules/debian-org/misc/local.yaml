@@ -84,7 +84,9 @@ footer:
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
   bugsmaster: rietz.debian.org
-  mailrelay: spohr.debian.org
+  mailrelay:
+    - dijkstra.debian.org
+    - spohr.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
   qamaster: merkel.debian.org

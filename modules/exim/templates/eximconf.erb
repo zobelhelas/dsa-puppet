@@ -926,9 +926,6 @@ acl_check_predata:
 
 #!!# ACL that is used after the DATA command
 check_message:
-  require verify = header_syntax
-          message = Invalid syntax in the header
-
 <%=
 out=''
 if nodeinfo['rtmaster']
@@ -963,6 +960,11 @@ out
                                     }                                                   \
                             }
           message        = Mail to this address needs to be PGP-signed
+
+  accept verify  = certificate
+
+  require verify = header_syntax
+          message = Invalid syntax in the header
 
 # RFC 822 and 2822 say that headers must be ASCII.  This kinda emulates
 # postfix's strict_7bit_headers option, but only checks a few common problem
