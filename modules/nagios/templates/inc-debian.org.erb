@@ -11,5 +11,6 @@ case fqdn when
     nagii << '192.34.35.49'
 end
 
-print "allowed_hosts=" + nagii.join(',') 
+out = "allowed_hosts=" + nagii.join(',')
+out
 %>
