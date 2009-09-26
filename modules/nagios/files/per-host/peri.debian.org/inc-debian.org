@@ -1,5 +1,0 @@
-##
-## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
-## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
-##
-allowed_hosts=192.25.206.33,192.34.35.49,82.195.75.106
