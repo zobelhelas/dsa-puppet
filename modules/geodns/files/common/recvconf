@@ -172,6 +172,7 @@ if [ -s "$tempscript" ]; then
 	    exit 1
 	fi
     done < "$tempscript"
+    rm -f -- "$tempoutput"
 fi
 
 # Check for any leftover files here; if there are any, exit with an error and print the list
@@ -181,7 +182,6 @@ if [ ! -z "$(find . -type f)" ]; then
 fi
 
 rm -f -- "$temptar"
-rm -f -- "$tempoutput"
 rm -f -- "$tempscript"
 cd
 rm -rf -- "$tempdir"

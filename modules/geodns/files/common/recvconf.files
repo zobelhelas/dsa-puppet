@@ -3,6 +3,54 @@
 # dsa-puppet/modules/geodns/files/common/recvconf.files
 # you probably do not want to edit it manually wherever you find it
 
+file etc/bind/geodns/db.bugs.debian.org.AN
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org.AN
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.bugs.debian.org.SA
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org.SA
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.bugs.debian.org.OC
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org.OC
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.bugs.debian.org.AS
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org.AS
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.bugs.debian.org.AF
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org.AF
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.bugs.debian.org
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.bugs.debian.org.EU
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org.EU
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.bugs.debian.org.NA
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org.NA
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.packages.debian.org.AN
     perms 0644
     user geodnssync

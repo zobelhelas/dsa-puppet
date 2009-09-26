@@ -22,6 +22,14 @@ view "AF" {
     allow-transfer { };
   };
 
+  zone "bugs.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.bugs.debian.org.AF";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.geo.debian.org" {
     type master;
     file "/etc/bind/geodns/db.www.debian.org.AF";
@@ -61,6 +69,14 @@ view "AN" {
   zone "security.debian.org" {
     type master;
     file "/etc/bind/geodns/db.security.debian.org.AN";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "bugs.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.bugs.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -110,6 +126,14 @@ view "AS" {
     allow-transfer { };
   };
 
+  zone "bugs.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.bugs.debian.org.AS";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.geo.debian.org" {
     type master;
     file "/etc/bind/geodns/db.www.debian.org.AS";
@@ -149,6 +173,14 @@ view "EU" {
   zone "security.debian.org" {
     type master;
     file "/etc/bind/geodns/db.security.debian.org.EU";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "bugs.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.bugs.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -198,6 +230,14 @@ view "NA" {
     allow-transfer { };
   };
 
+  zone "bugs.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.bugs.debian.org.NA";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.geo.debian.org" {
     type master;
     file "/etc/bind/geodns/db.www.debian.org.NA";
@@ -237,6 +277,14 @@ view "OC" {
   zone "security.debian.org" {
     type master;
     file "/etc/bind/geodns/db.security.debian.org.OC";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "bugs.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.bugs.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -286,6 +334,14 @@ view "SA" {
     allow-transfer { };
   };
 
+  zone "bugs.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.bugs.debian.org.SA";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.geo.debian.org" {
     type master;
     file "/etc/bind/geodns/db.www.debian.org.SA";
@@ -325,6 +381,14 @@ view "default" {
   zone "security.debian.org" {
     type master;
     file "/etc/bind/geodns/db.security.debian.org";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "bugs.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.bugs.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
