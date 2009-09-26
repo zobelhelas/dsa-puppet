@@ -918,7 +918,7 @@ out
 %>
 
 acl_check_predata:
-  deny   condition     = ${if eq{$acl_m_lcl}{localonly}}
+  deny   condition     = ${if eq{$acl_m_prf}{localonly}}
          message       = mail for $acl_m_lrc is only accepted internally
 
   accept
