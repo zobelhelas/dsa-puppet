@@ -23,7 +23,7 @@ class nagios::client inherits nagios {
 			require => Package["nagios-nrpe-server"],
 			ensure  => directory;
 		"/etc/nagios/nrpe.d/debianorg.cfg":
-                        content => template("nagios/inc-debian.org.erb");
+                        content => template("nagios/inc-debian.org.erb"),
 			require => Package["nagios-nrpe-server"],
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d/nrpe_dsa.cfg":
