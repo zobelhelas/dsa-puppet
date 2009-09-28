@@ -59,6 +59,7 @@ nameinfo:
   schumann.debian.org: Robert Alexander Schumann (8 June 1810 - 29 July 1856)
   senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
   smetana.debian.org: Bedřich Smetana (2 March 1824 - 12 May 1884)
+  soler.debian.org: Padre Antonio Soler (December 3, 1729 (baptized) - December 20, 1783)
   sperger.debian.org: Johannes Matthias Sperger (March 23, 1750 - May 13, 1812)
   spohr.debian.org: Louis Spohr (5 April 1784 - 22 October 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (14 November 1774 - 24 January 1851)
@@ -122,6 +123,7 @@ host_settings:
     - samosa.debian.org
     - schein.debian.org
     - senfl.debian.org
+    - soler.debian.org
     - spohr.debian.org
     - steffani.debian.org
     - tartini.debian.org
