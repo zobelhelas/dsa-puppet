@@ -414,6 +414,10 @@ end
 out
 %>
 
+<%= 
+out = ""
+if nodeinfo['smarthost'].empty?
+  out = "
   # These are in HELO acl so that they are only run once.  They increment a counter,
   # so we don't want it to increment per rcpt to.
 
@@ -488,6 +492,9 @@ out
        condition       = ${if match {${lc:$sender_helo_name}}{\N.*[bcdfghjklmnpqrstvwxz]{7,}.*\.[a-z]+$\N}}
        log_message     = random HELO
        set acl_c_scr   = ${eval:$acl_c_scr+5}
+"
+out
+%>
 
   # Implicit, but simpler to just say it
   accept
