@@ -687,6 +687,7 @@ out = '
   # closure, but I\'m fairly sure it\'s now worth it, since the backport of
   # policyd-weight is trivial.
   warn  !hosts         = +debianhosts
+        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
         set acl_m_pw   = ${readsocket{inet:127.0.0.1:12525}\
                           {request=smtpd_access_policy\n\
                            protocol_state=RCPT\n\
@@ -704,31 +705,37 @@ out = '
 
   # Defer on socket error
   defer !hosts         = +debianhosts
+        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
         condition      = ${if eq{$acl_m_pw}{socket failure}{yes}{no}}
         message        = Cannot connect to policyd-weight. Please try again later.
 
   # Set proposed action to $acl_m_act and message to $acl_m_mes
   warn  !hosts         = +debianhosts
+        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
         set acl_m_mes  = ${extract{action}{$acl_m_pw}}
         set acl_m_act  = ${sg{$acl_m_pw}{\Naction=[^ ]+ (.*)\n\n\N}{\$1}}
 
   # Add X-policyd-weight header line to message
   warn  !hosts         = +debianhosts
+        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
         message        = $acl_m_mes
         condition      = ${if eq{$acl_m_act}{PREPEND}{yes}{no}}
 
   # Write log message, if policyd-weight can\'t run checks
   warn  !hosts         = +debianhosts
+        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
         log_message    = policyd-weight message: $acl_m_mes
         condition      = ${if eq{$acl_m_act}{DUNNO}{yes}{no}}
 
   # Deny mails which policyd-weight thinks are spam
   deny  !hosts         = +debianhosts
+        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
         message        = policyd-weight said: $acl_m_mes
         condition      = ${if eq{$acl_m_act}{550}{yes}{no}}
 
   # Defer messages when policyd-weight suggests so.
   defer  !hosts         = +debianhosts
+         condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
          message        = policyd-weight said: $acl_m_mes
          condition      = ${if eq{$acl_m_act}{450}{yes}{no}}
 '
@@ -763,6 +770,7 @@ if has_variable?("greylistd") && greylistd == "true"
                                  {/etc/greylistd/whitelist-hosts}{}} : \
                      ${if exists {/var/lib/greylistd/whitelist-hosts}\
                                  {/var/lib/greylistd/whitelist-hosts}{}} 
+    condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
     !authenticated = *
     domains        = +handled_domains : +rcpthosts
     condition      = ${readsocket{/var/run/greylistd/socket}\
@@ -779,6 +787,7 @@ elsif has_variable?("postgrey") && postgrey == "true"
   warn
     !senders       = :
     !hosts         = : +debianhosts : WHITELIST
+    condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
     condition      = ${if def:acl_m_grey {no}{yes}}
     set acl_m_grey = $pid.$tod_epoch.$sender_host_port
 
@@ -786,6 +795,7 @@ elsif has_variable?("postgrey") && postgrey == "true"
   defer
     !senders       = :
     !hosts         = : +debianhosts : WHITELIST
+    condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
     !authenticated = *
     domains        = +handled_domains : +rcpthosts
     local_parts    = GREYLIST_LOCAL_PARTS
@@ -810,6 +820,7 @@ elsif has_variable?("postgrey") && postgrey == "true"
  warn
     !senders       = :
     !hosts         = : +debianhosts : WHITELIST
+    condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
     !authenticated = *
     domains        = +handled_domains : +rcpthosts
     local_parts    = GREYLIST_LOCAL_PARTS
@@ -898,19 +909,19 @@ acl_check_mime:
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
          log_message   = discarded surbl message for $recipients
 
+  deny   condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{markup}{no}{yes}}
+         condition     = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = $acl_m_srb
+         message       = $acl_m_srb
+
   warn   condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{markup}}
          set acl_m_srb = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
          message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
-
-  accept condition     = ${if eq {$acl_m_prf}{markup}}
-
-  deny   condition     = ${if <{$message_size}{256000}}
-         set acl_m_srb = ${perl{surblspamcheck}}
-         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-         log_message   = $acl_m_srb
-         message       = $acl_m_srb
 
   accept
 '
@@ -964,8 +975,9 @@ out
 
   accept verify  = certificate
 
-  require verify = header_syntax
-          message = Invalid syntax in the header
+  require verify    = header_syntax
+          condition = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+          message   = Invalid syntax in the header
 
 # RFC 822 and 2822 say that headers must be ASCII.  This kinda emulates
 # postfix's strict_7bit_headers option, but only checks a few common problem
@@ -975,10 +987,12 @@ out
 	                         {match {$rh_To:}{[\200-\377]}}\
 				 {match {$rh_From:}{[\200-\377]}}\
 				 {match {$rh_Cc:}{[\200-\377]}}}{true}{false}}
+          condition       = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
 	  message         = improper use of 8-bit data in message header: message rejected
 
   deny
   	  condition       = ${if match {$rh_Subject:}{[^[:print:]]\{8\}}{true}{false}}
+          condition       = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
 	  message         = Your mailer is not RFC 2047 compliant: message rejected
 
 <%=
@@ -991,6 +1005,7 @@ out = '
           log_message     = discarded malware message for $recipients
 
   deny    condition       = ${if eq {$acl_m_prf}{markup}{no}{yes}}
+          condition       = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
   	  demime          = *
           malware         = */defer_ok
           message         = malware detected: $malware_name: message rejected
@@ -1013,19 +1028,20 @@ out='
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
          log_message   = discarded surbl message for $recipients
 
+  deny   condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{markup}{no}{yes}}
+         condition     = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = $acl_m_srb
+         message       = $acl_m_srb
+
   warn   condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{markup}}
          set acl_m_srb = ${perl{surblspamcheck}}
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
          message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
 
-  accept condition     = ${if eq {$acl_m_prf}{markup}}
-
-  deny   condition     = ${if <{$message_size}{256000}}
-         set acl_m_srb = ${perl{surblspamcheck}}
-         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-         log_message   = $acl_m_srb
-         message       = $acl_m_srb
 '
 end
 out
