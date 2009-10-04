@@ -856,6 +856,10 @@ out
          senders       = ${if exists{/etc/exim4/blacklist}{/etc/exim4/blacklist}{}}
          message       = We have blacklisted <$sender_address>.  Please stop mailing us
 
+<%= 
+out = ""
+if nodeinfo['smarthost'].empty?
+  out = "
   deny    message  = host $sender_host_address is listed in $dnslist_domain; see $dnslist_text
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rbllist}}}\
@@ -864,6 +868,10 @@ out
 		     ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rbl}{$value}{}}}}
 	  domains       = +handled_domains : +rcpthosts
 	  !hosts        = +debianhosts : WHITELIST
+"
+end
+out
+%>
 
   deny    message  = domain $sender_address_domain is listed in $dnslist_domain; see $dnslist_text
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
@@ -874,6 +882,10 @@ out
 	  domains       = +handled_domains : +rcpthosts
 	  !hosts        = +debianhosts : WHITELIST
 
+<%= 
+out = ""
+if nodeinfo['smarthost'].empty?
+  out = "
   deny    domains  = +handled_domains : +rcpthosts
           local_parts   = ${if match_domain{$domain}{+virtual_domains}\
 	           	   {${if exists {${extract{directory}{VDOMAINDATA}{${value}/callout_users}}}\
@@ -882,6 +894,10 @@ out
 		           ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-callout}{$local_part}{}}}}
           !hosts   = +debianhosts : WHITELIST
 	  !verify  = sender/callout
+"
+end
+out
+%>
 
 <%=
 out = ""
