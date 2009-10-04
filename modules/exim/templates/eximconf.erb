@@ -1155,7 +1155,11 @@ smarthost:
   driver = manualroute
   domains = !+handled_domains
   transport = remote_smtp_smarthost
-  route_list = * ' + nodeinfo['smarthost'] + '
+  route_list = * ' + nodeinfo['smarthost']
+  if nodeinfo['smarthost'] == 'mailout.debian.org'
+    out += '/MX'
+  end
+  out += '
   host_find_failed = defer
   same_domain_copy_routing = yes
   no_more
