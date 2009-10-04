@@ -169,8 +169,8 @@ host_settings:
     allegri.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
-    fano.debian.org: dijkstra.debian.org
-    finzi.debian.org: dijkstra.debian.org
+    fano.debian.org: luchesi.debian.org
+    finzi.debian.org: luchesi.debian.org
   mail_port:
     allegri.debian.org: 2025
     ancina.debian.org: 2025
