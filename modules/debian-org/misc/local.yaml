@@ -95,6 +95,7 @@ services:
   rtmaster: spohr.debian.org
 host_settings:
   heavy_exim:
+    - bellini.debian.org
     - draghi.debian.org
     - klecker.debian.org
     - master.debian.org
