@@ -203,12 +203,13 @@ smtp_accept_max_per_host = ${if match_ip {$sender_host_address}{+debianhosts}{0}
 smtp_accept_max = 300
 smtp_accept_queue = 200
 smtp_accept_queue_per_connection = 50
+smtp_accept_reserve = 25
 <% else %>
 smtp_accept_max = 30
 smtp_accept_queue = 20
 smtp_accept_queue_per_connection = 10
+smtp_accept_reserve = 5
 <% end %>
-smtp_accept_reserve = 25
 smtp_reserve_hosts = +debianhosts
 
 split_spool_directory = true
