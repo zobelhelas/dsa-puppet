@@ -981,8 +981,8 @@ out
 
   accept verify  = certificate
 
-  require verify    = header_syntax
-          condition = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+  deny    condition = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+          !verify   = header_syntax
           message   = Invalid syntax in the header
 
 # RFC 822 and 2822 say that headers must be ASCII.  This kinda emulates
