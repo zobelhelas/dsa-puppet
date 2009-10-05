@@ -415,9 +415,9 @@ out
 <%= 
 out = ""
 if nodeinfo['smarthost'].empty?
-  out = "
+  out = '
   # These are in HELO acl so that they are only run once.  They increment a counter,
-  # so we don't want it to increment per rcpt to.
+  # so we don\'t want it to increment per rcpt to.
 
   warn    dnslists       = list.dnswl.org&0.0.0.3
           log_message    = Hit on list.dnswl.org for $sender_host_address
@@ -452,7 +452,7 @@ if nodeinfo['smarthost'].empty?
           dnslists       = dul.dnsbl.sorbs.net
           set acl_c_scr  = ${eval:$acl_c_scr+15}
 
-  # If the sender's helo name is empty, the message will be rejected later
+  # If the sender\'s helo name is empty, the message will be rejected later
   # because the helo is empty.  If the rDNS lookup failed, we are already
   # going to greylist them, so no sense worrying about it here.  Finally,
   # if rDNS does not match helo name (both lower cased first), greylist.
@@ -461,7 +461,7 @@ if nodeinfo['smarthost'].empty?
           condition      = ${if eq {$host_lookup_failed}{1}{no}{yes}}
           condition      = ${if def:sender_helo_name {yes}{no}}
           condition      = ${if eq {${lc:$sender_helo_name}}{${lc:$sender_host_name}}{no}{yes}}
-          log_message    = HELO doesn't match rDNS
+          log_message    = HELO doesn\'t match rDNS
           set acl_c_scr  = ${eval:$acl_c_scr+8}
 
   # Regexes of doom
@@ -482,15 +482,15 @@ if nodeinfo['smarthost'].empty?
        set acl_c_scr   = ${eval:$acl_c_scr+7}
 
   # Random HELO (run of 7 consonants) (constructed by viruses).  We purposefully
-  # skip matching on machines named .*smtp.*, since that's 4 already.  This is a fairly
-  # naive test, so it's not worth much
+  # skip matching on machines named .*smtp.*, since that\'s 4 already.  This is a fairly
+  # naive test, so it\'s not worth much
 
   warn condition       = ${if match {${lc:$sender_helo_name}}{smtp}{no}{yes}}
        condition       = ${if match {${lc:$sender_helo_name}}{\N^[a-z0-9]+\.[a-z]+$\N}}
        condition       = ${if match {${lc:$sender_helo_name}}{\N.*[bcdfghjklmnpqrstvwxz]{7,}.*\.[a-z]+$\N}}
        log_message     = random HELO
        set acl_c_scr   = ${eval:$acl_c_scr+5}
-"
+'
 end
 out
 %>
@@ -857,7 +857,7 @@ out
 <%= 
 out = ""
 if nodeinfo['smarthost'].empty?
-  out = "
+  out = '
   deny    message  = host $sender_host_address is listed in $dnslist_domain; see $dnslist_text
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rbllist}}}\
@@ -866,7 +866,7 @@ if nodeinfo['smarthost'].empty?
 		     ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rbl}{$value}{}}}}
 	  domains       = +handled_domains : +rcpthosts
 	  !hosts        = +debianhosts : WHITELIST
-"
+'
 end
 out
 %>
@@ -883,7 +883,7 @@ out
 <%= 
 out = ""
 if nodeinfo['smarthost'].empty?
-  out = "
+  out = '
   deny    domains  = +handled_domains : +rcpthosts
           local_parts   = ${if match_domain{$domain}{+virtual_domains}\
 	           	   {${if exists {${extract{directory}{VDOMAINDATA}{${value}/callout_users}}}\
@@ -892,7 +892,7 @@ if nodeinfo['smarthost'].empty?
 		           ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-callout}{$local_part}{}}}}
           !hosts   = +debianhosts : WHITELIST
 	  !verify  = sender/callout
-"
+'
 end
 out
 %>
