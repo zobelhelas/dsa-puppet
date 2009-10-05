@@ -1,0 +1,28 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+## Format:
+## domain: hostname[::port] options
+## example:
+## buildd.debian.org: raff.debian.org::587 byname
+
+ancina.debian.org:		ancina.debian.org::2025
+arcadelt.debian.org:		arcadelt.debian.org::25
+argento.debian.org:		argento.debian.org::25
+brahms.debian.org:		brahms.debian.org::25
+goedel.debian.org:		goedel.debian.org::25
+goetz.debian.org:		goetz.debian.org::25
+kassia.debian.org:		kassia.debian.org::587
+lafayette.debian.org:		lafayette.debian.org::25
+lebrun.debian.org:		lebrun.debian.org::25
+malo.debian.org:		malo.debian.org::25
+mayer.debian.org:		mayer.debian.org::25
+murphy.debian.org:		murphy.debian.org::25
+paer.debian.org:		paer.debian.org::25
+piatti.debian.org:		piatti.debian.org::2025
+praetorius.debian.org:		praetorius.debian.org::25
+puccini.debian.org:		puccini.debian.org::25
+rem.debian.org:			rem.debian.org::25
+schroeder.debian.org:		schroeder.debian.org::25
+spontini.debian.org:		spontini.debian.org::25
