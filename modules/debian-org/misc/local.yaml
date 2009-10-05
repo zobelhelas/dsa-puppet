@@ -70,7 +70,6 @@ nameinfo:
   tartini.debian.org: Giuseppe Tartini (April 8, 1692 - February 26, 1770)
   unger.debian.org: Caroline Unger (October 28, 1803 - March 23, 1877)
   valente.debian.org: Vincenzo Valente (February 21, 1855 - September 6, 1921)
-  verdi.debian.org: Giuseppe Fortunino Francesco Verdi (October 9 or 10, 1813 - January 27, 1901)
   vivaldi.debian.org: Antonio Lucio Vivaldi (March 4, 1678 - July 28, 1741)
   voltaire.debian.org: François-Marie Arouet (Voltaire) (21 November 1694 - 30 May 1778)
   wagner.debian.org: Wilhelm Richard Wagner (22 May 1813 - 13 February 1883)
@@ -82,7 +81,6 @@ footer:
   bartok.debian.org: "Documentation: gluck:/org/admin.debian.org/doc/backup.debian.org"
   lebrun.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
   schroeder.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
-  verdi.debian.org: "- This host is using an iptables firewall.  See /etc/ferm/ferm.conf"
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
   bugsmaster: rietz.debian.org
