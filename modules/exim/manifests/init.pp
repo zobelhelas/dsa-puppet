@@ -28,8 +28,7 @@ class exim {
         ;
         "/etc/exim4/manualroute":
           require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/per-host/$fqdn/manualroute",
-                       "puppet:///exim/common/manualroute" ]
+          content => template("exim/manualroute.erb")
           ;
         "/etc/exim4/host_blacklist":
           require => Package["exim4-daemon-heavy"],
