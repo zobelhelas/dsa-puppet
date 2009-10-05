@@ -88,6 +88,7 @@ services:
   bugsmaster: rietz.debian.org
   mailrelay:
     - dijkstra.debian.org
+    - draghi.debian.org
     - luchesi.debian.org
     - spohr.debian.org
   packagesmaster: powell.debian.org
