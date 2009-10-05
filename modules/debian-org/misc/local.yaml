@@ -166,27 +166,41 @@ host_settings:
     - fano.debian.org
     - finzi.debian.org
   smarthost:
+    agnesi.debian.org: mailout.debian.org
+    agricola.debian.org: mailout.debian.org
+    albeniz.debian.org: mailout.debian.org
     allegri.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
+    crest.debian.org: mailout.debian.org
     fano.debian.org: luchesi.debian.org
     finzi.debian.org: luchesi.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
+    leisner.debian.org: mailout.debian.org
+    mahler.debian.org: mailout.debian.org
     malo.debian.org: mailout.debian.org
     mayer.debian.org: mailout.debian.org
+    merulo.debian.org: mailout.debian.org
+    morales.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
     paer.debian.org: mailout.debian.org
+    pergolesi.debian.org: mailout.debian.org
+    pescetti.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
+    smetana.debian.org: mailout.debian.org
+    sperger.debian.org: mailout.debian.org
     spontini.debian.org: mailout.debian.org
+    zee.debian.org: mailout.debian.org
+    zelenka.debian.org: mailout.debian.org
   mail_port:
     allegri.debian.org: 2025
     ancina.debian.org: 2025
