@@ -121,8 +121,6 @@ allow_domain_literals = true
 # Other domain and host lists may follow.
 # @ is the local FQDN, @[] matches the IP adress of any local interface.
 
-.include_if_exists /etc/exim4/local-settings.conf
-
 domainlist local_domains = @ : \
     @[] : \
     localhost : \
