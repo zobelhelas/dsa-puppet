@@ -23,7 +23,7 @@ Defaults	env_reset
 Host_Alias	QAHOSTS		= master, merkel
 Host_Alias	WEBHOSTS	= klecker, wolkenstein
 # User alias specification
-User_Alias	QACORE		= aba, djpig, hertzog, jeroen, joerg, lucas, luk, myon, tbm, weasel, zack
+User_Alias	QACORE		= aba, djpig, geissert, hertzog, jeroen, joerg, lucas, luk, myon, tbm, weasel, zack
 
 # Cmnd alias specification
 
