@@ -5,6 +5,8 @@
 
 // Slave domains, includ in bind.conf
 
+// NOT USED YET - SYNC UP WITH dsa-misc/config/bind/ before enabling finally
+
 zone "debian.org" {
 	type slave;
 	notify no;
@@ -89,6 +91,17 @@ zone "144-28.118.59.86.in-addr.arpa" {
 	allow-query { any; };
 	allow-transfer { };
 };
+zone "2.0.0.0.2.0.0.0.8.5.8.0.1.0.0.2.ip6.arpa" {
+	type slave;
+	notify no;
+	file "db.2001:0858:0002:0002";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
 
 // ipv6 at 1&1 - powell: 2001:08d8:0081:1520::/60
 zone "2.5.1.1.8.0.0.8.d.8.0.1.0.0.2.ip6.arpa" {
@@ -114,6 +127,19 @@ zone "a.5.1.1.8.0.0.8.d.8.0.1.0.0.2.ip6.arpa" {
 	allow-query { any; };
 	allow-transfer { };
 };
+// ipv6 at 1&1 - wieck and schumann
+zone "2.6.a.0.4.6.5.6.1.0.0.0.2.0.0.0.8.d.8.0.1.0.0.2.ip6.arpa" {
+	type slave;
+	notify no;
+	file "db.2001:8d8:2:1:6564:0a62";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
 // ipv6 at xs4all - klecker 2001:888:2000:12::/64
 zone "2.1.0.0.0.0.0.2.8.8.8.0.1.0.0.2.ip6.arpa" {
 	type slave;
@@ -126,11 +152,12 @@ zone "2.1.0.0.0.0.0.2.8.8.8.0.1.0.0.2.ip6.arpa" {
 	allow-query { any; };
 	allow-transfer { };
 };
-// ipv6 at schlund - wieck 2001:8d8:2:1:6564:a62::/64
-zone "2.6.a.0.4.6.5.6.1.0.0.0.2.0.0.0.8.d.8.0.1.0.0.2.ip6.arpa" {
+
+// 19.12.206.in-addr.arpa zone - reverse zone for 206.12.19/24 - debian at UBC/ECE
+zone "19.12.206.in-addr.arpa" {
 	type slave;
 	notify no;
-	file "db.2001:8d8:2:1:6564:a62";
+	file "db.206.12.19";
 	masters {
 		82.195.75.106; // draghi
 		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
@@ -138,6 +165,4 @@ zone "2.6.a.0.4.6.5.6.1.0.0.0.2.0.0.0.8.d.8.0.1.0.0.2.ip6.arpa" {
 	allow-query { any; };
 	allow-transfer { };
 };
-
-
 // vim:set syn=named:
