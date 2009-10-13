@@ -80,6 +80,7 @@ node default {
                       include ntp::server
                     }
          default:   {
+                      include ntp::client
                     }
      }
      case $brokenhosts {
