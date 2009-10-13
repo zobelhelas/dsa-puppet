@@ -75,8 +75,12 @@ node default {
 
      case $hostname {
          geo1,geo2,geo3:
-                    { include geodns }
-         default:   {}
+                    {
+                      include geodns
+                      include ntp::server
+                    }
+         default:   {
+                    }
      }
      case $brokenhosts {
          "true":    { include hosts }

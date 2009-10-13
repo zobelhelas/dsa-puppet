@@ -25,7 +25,6 @@ class debian-org {
              "pdksh": ensure => installed;
              "ksh": ensure => installed;
              "csh": ensure => installed;
-             "ntp": ensure => installed;
              "locales-all": ensure => installed;
              "libpam-pwdfile": ensure => installed;
              "vim": ensure => installed;
