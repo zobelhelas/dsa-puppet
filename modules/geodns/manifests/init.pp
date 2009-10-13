@@ -6,7 +6,7 @@ class geodns {
 
         file {
                 "/etc/apt/sources.list.d/geoip.list":
-                        source => "puppet:///files/etc/apt/sources.list.d/geoip.list",
+                        content => template("debian-org/etc/apt/sources.list.d/geoip.list.erb"),
                         notify  => Exec["apt-get update"],
                         ;
                 "/etc/bind/named.conf.local":
