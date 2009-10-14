@@ -2,7 +2,7 @@ class ntp::server inherits ntp {
 	file { "/etc/ntp.conf":
 		owner   => root,
 		group   => root,
-		mode    => 440,
+		mode    => 444,
 		source  => [ "puppet:///ntp/server.conf" ],
 		notify  => Exec["ntp restart"],
 		require => Package["ntp"]
