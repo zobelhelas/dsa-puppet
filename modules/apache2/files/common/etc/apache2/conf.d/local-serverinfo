@@ -1,0 +1,14 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<IfModule mod_info.c>
+        <Location /server-info>
+                SetHandler server-info
+                order deny,allow
+                deny from all
+                allow from localhost
+        </Location>
+</IfModule>
+
