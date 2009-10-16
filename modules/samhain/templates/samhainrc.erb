@@ -111,6 +111,7 @@ file=/etc/spamassassin/sa-update-keys
 
 # These are the directories for the files we handle with puppet
 file=/etc/apache2/conf.d
+files=/etc/apache2/mods-enabled
 file=/etc/samhain
 file=/etc/munin
 file=/etc/exim4
@@ -258,7 +259,16 @@ file=/etc/clamav-unofficial-sigs.dsa.conf
 end
 out
 %>
+files=/etc/munin/plugins/apache_accesses
+files=/etc/munin/plugins/apache_processes
+files=/etc/munin/plugins/apache_volume
 file=/etc/apache2/conf.d/ressource-limits
+files=/etc/apache2/mods-enabled/info.conf
+files=/etc/apache2/mods-enabled/info.load
+files=/etc/apache2/mods-enabled/server.conf
+files=/etc/apache2/mods-enabled/server.load
+files=/etc/apache2/conf.d/server-status
+files=/etc/apache2/conf.d/local-serverinfo
 file=/etc/apt/preferences
 file=/etc/apt/sources.list.d/volatile.list
 file=/etc/apt/sources.list.d/security.list
