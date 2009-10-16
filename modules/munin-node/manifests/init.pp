@@ -1,6 +1,6 @@
 define activate_munin_check($script) {
        file { "/etc/munin/plugins/$script":
-                ensure => "/usr/share/munin/plugins/$script"
+                ensure => "/usr/share/munin/plugins/$script",
                 notify => Exec["munin-node restart"];
         }
 }
