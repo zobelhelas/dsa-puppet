@@ -891,7 +891,7 @@ if nodeinfo['smarthost'].empty?
 		           {${lookup{$local_part}lsearch{/etc/exim4/callout_users}{$local_part}{}} : \
 		           ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-callout}{$local_part}{}}}}
           !hosts   = +debianhosts : WHITELIST
-	  !verify  = sender/callout
+	  !verify  = sender/callout=90s,maxwait=300s
 '
 end
 out
