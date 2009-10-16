@@ -27,6 +27,7 @@ class apache2 {
 			source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/local-serverinfo",
 			             "puppet:///apache2/common/etc/apache2/conf.d/local-serverinfo" ],
 			require => Package["apache2"],
+			notify  => Exec["apache2 reload"];
 		"/etc/apache2/conf.d/server-status":
 			source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/server-status",
 			             "puppet:///apache2/common/etc/apache2/conf.d/server-status" ],
