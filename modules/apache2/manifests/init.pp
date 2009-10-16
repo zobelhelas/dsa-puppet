@@ -3,6 +3,8 @@ define enable_module($module) {
 }
 
 class apache2 {
+        include munin-node::apache
+
 	package {
 		apache2: ensure => installed;
 		logrotate: ensure => installed;
