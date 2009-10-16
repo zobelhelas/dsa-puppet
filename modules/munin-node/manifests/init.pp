@@ -1,4 +1,4 @@
-define activate_munin_check($name) {
+define activate_munin_check() {
        file { "/etc/munin/plugins/$name":
                 ensure => "/usr/share/munin/plugins/$name",
                 notify => Exec["munin-node restart"];
