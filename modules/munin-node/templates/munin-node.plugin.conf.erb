@@ -17,10 +17,16 @@ group adm, maillog
 
 [cps*]
 user root
-
+<%=
+out = ""
+if mx == "exim4"
+  out="
 [exim_mail*]
-user (Debian-exim)
-group maillog
+user Debian-exim
+group maillog"
+end
+out
+%>
 
 [fw_conntrack]
 user root
@@ -44,15 +50,22 @@ user root
 user root
 env.mysqlopts --defaults-extra-file=/etc/mysql/debian.cnf
 
+<%=
+out = ""
+if mx == "postfix"
+  out="
 [postfix_mailqueue]
-user (postfix)
+user postfix
 
 [postfix_mailstats]
 group adm, maillog
 
 [postfix_mailvolume]
 group adm, maillog
-env.logfile mail.log
+env.logfile mail.log"
+end
+out
+%>
 
 [smart_*]
 user root
@@ -63,3 +76,10 @@ user root
 [spamassassin]
 group maillog
 
+[bind]
+<%=
+out = case node
+  when geo1,geo2,geo3 then "env.logfile=/var/log/bind9/geoip-query.log"
+end
+out
+%>
