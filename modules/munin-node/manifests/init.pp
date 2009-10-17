@@ -22,6 +22,7 @@ class munin-node {
     activate_munin_check {
         "cpu":;
         "df":;
+        "df_abs":;
         "df_inode":;
         "entropy":;
         "forks":;
