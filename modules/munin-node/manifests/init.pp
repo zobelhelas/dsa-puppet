@@ -37,6 +37,7 @@ class munin-node {
         "load":;
         "memory":;
         "ntp_offset":;
+        "ntp_states":;
         "open_files":;
         "open_inodes":;
         "processes":;
