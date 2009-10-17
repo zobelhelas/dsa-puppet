@@ -48,3 +48,8 @@ Facter.add("vsftpd") do
 		FileTest.exist?("/usr/sbin/vsftpd")
 	end
 end
+Facter.add("spamd") do
+	setcode do
+		FileTest.exist?("/usr/sbin/spamd")
+	end
+end
