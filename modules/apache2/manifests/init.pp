@@ -2,14 +2,14 @@ define enable_module($ensure=present, $require=apache2) {
         case $ensure {
                 present: {
                         exec { "/usr/sbin/a2enmod $name":
-                                unless => "/bin/sh -c '[ -L /etc/apache2/mods-enabled/${name}.load ]',
+                                unless => "/bin/sh -c '[ -L /etc/apache2/mods-enabled/${name}.load ]'",
                                 notify => Exec["force-reload-apache2"],
                                 require => Package[$require],
                         }
                 }
                 absent: {
                         exec { "/usr/sbin/a2dismod $name":
-                                onlyif => "/bin/sh -c '[ -L /etc/apache2/mods-enabled/${name}.load ]',
+                                onlyif => "/bin/sh -c '[ -L /etc/apache2/mods-enabled/${name}.load ]'",
                                 notify => Exec["force-reload-apache2"],
                                 require => Package[$require],
                         }
