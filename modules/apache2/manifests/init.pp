@@ -1,29 +1,27 @@
 class apache2 {
-	define enable_module($ensure=present, $require=apache2) {
+        include munin-node::apache
+
+	package {
+		"apache2": ensure => installed;
+		"logrotate": ensure => installed;
+	}
+
+	define enable_module($ensure=present) {
 	        case $ensure {
 	                present: {
 	                        exec { "/usr/sbin/a2enmod $name":
 	                                unless => "/bin/sh -c '[ -L /etc/apache2/mods-enabled/${name}.load ]'",
 	                                notify => Exec["force-reload-apache2"],
-	                                require => Package[$require],
 	                        }
 	                }
 	                absent: {
 	                        exec { "/usr/sbin/a2dismod $name":
 	                                onlyif => "/bin/sh -c '[ -L /etc/apache2/mods-enabled/${name}.load ]'",
 	                                notify => Exec["force-reload-apache2"],
-	                                require => Package[$require],
 	                        }
 	                }
 	                default: { err ( "Unknown ensure value: '$ensure'" ) }
 	         }
-	}
-
-        include munin-node::apache
-
-	package {
-		apache2: ensure => installed;
-		logrotate: ensure => installed;
 	}
 
         enable_module {
