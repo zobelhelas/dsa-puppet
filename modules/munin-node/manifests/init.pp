@@ -60,7 +60,7 @@ class munin-node {
             notify  => Exec["munin-node restart"];
 
         "/etc/munin/plugin-conf.d/munin-node":
-            content => template("munin/munin-node.plugin.conf.erb"),
+            content => template("munin-node/munin-node.plugin.conf.erb"),
             require => Package["munin-node"],
             notify  => Exec["munin-node restart"];
     }
