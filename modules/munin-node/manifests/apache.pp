@@ -3,6 +3,7 @@ class munin-node::apache inherits munin-node {
                 "apache_accesses":;
                 "apache_processes":;
                 "apache_volume":;
+                "apache_servers":;
                 "ps_apache2": script => "ps_";
         }
 }

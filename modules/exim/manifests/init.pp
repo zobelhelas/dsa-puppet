@@ -1,5 +1,6 @@
 class exim {
     activate_munin_check {
+            "ps_exim4": script => "ps_";
             "exim_mailqueue":;
             "exim_mailstats":;
             "postfix_mailqueue":  ensure => absent;

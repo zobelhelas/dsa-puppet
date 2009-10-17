@@ -46,6 +46,12 @@ class munin-node {
         "vmstat":;
     }
 
+    case $spamd {
+        "true": {
+              activate_munin_check { "spamassassin":; }
+        }
+    }
+
     file {
         "/etc/munin/munin-node.conf":
             source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.conf",
