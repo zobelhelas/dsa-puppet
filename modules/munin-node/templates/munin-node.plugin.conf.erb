@@ -79,7 +79,7 @@ group maillog
 [bind]
 <%=
 out = case hostname
-  when geo1,geo2,geo3 then "env.logfile=/var/log/bind9/geoip-query.log"
+  when "geo1","geo2","geo3" then "env.logfile=/var/log/bind9/geoip-query.log"
 end
 out
 %>
