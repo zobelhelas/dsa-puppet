@@ -12,6 +12,7 @@ define activate_munin_check($ensure=present) {
                      notify => Exec["munin-node restart"];
             }
         }
+    }
 }
 
 class munin-node {
