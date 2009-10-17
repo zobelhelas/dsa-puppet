@@ -50,13 +50,13 @@ class munin-node {
             source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.conf",
                          "puppet:///munin-node/common/munin-node.conf" ],
             require => Package["munin-node"],
-            notify  => Exec["munin-node restart"],
+            notify  => Exec["munin-node restart"];
 
         "/etc/munin/plugin-conf.d/munin-node":
             source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.plugin.conf",
                          "puppet:///munin-node/common/munin-node.plugin.conf" ],
             require => Package["munin-node"],
-            notify  => Exec["munin-node restart"],
+            notify  => Exec["munin-node restart"];
     }
 
     exec { "munin-node restart":
