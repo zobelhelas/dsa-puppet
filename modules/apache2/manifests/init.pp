@@ -1,5 +1,21 @@
-define enable_module($module) {
-        exec { "/usr/sbin/a2enmod $module": }
+define enable_module($ensure=present, $require=apache2) {
+        case $ensure {
+                present: {
+                        exec { "/usr/sbin/a2enmod $name":
+                                unless => "/bin/sh -c '[ -L /etc/apache2/mods-enabled/${name}.load ]',
+                                notify => Exec["force-reload-apache2"],
+                                require => Package[$require],
+                        }
+                }
+                absent: {
+                        exec { "/usr/sbin/a2dismod $name":
+                                onlyif => "/bin/sh -c '[ -L /etc/apache2/mods-enabled/${name}.load ]',
+                                notify => Exec["force-reload-apache2"],
+                                require => Package[$require],
+                        }
+                }
+                default: { err ( "Unknown ensure value: '$ensure'" ) }
+         }
 }
 
 class apache2 {
@@ -11,8 +27,8 @@ class apache2 {
 	}
 
         enable_module {
-                "info": module => info;
-                "status": module => status;
+                "info":;
+                "status":;
         }
 
 	file {
