@@ -1,4 +1,5 @@
 class geodns {
+        include munin-node::bind
 
         package {
                 bind9: ensure => installed;
