@@ -36,6 +36,7 @@ class munin-node {
         "open_inodes":;
         "processes":;
         "swap":;
+        "uptime":;
         "vmstat":;
     }
 
