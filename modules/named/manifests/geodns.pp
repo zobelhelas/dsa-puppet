@@ -1,4 +1,8 @@
 class named::geodns inherits named {
+        activate_munin_check {
+                "bind_views": script => bind;
+        }
+
         file {
                 "/etc/apt/sources.list.d/geoip.list":
                         content => template("debian-org/etc/apt/sources.list.d/geoip.list.erb"),
