@@ -1,10 +1,4 @@
-class geodns {
-        include munin-node::bind
-
-        package {
-                bind9: ensure => installed;
-        }
-
+class named::geodns inherits named {
         file {
                 "/etc/apt/sources.list.d/geoip.list":
                         content => template("debian-org/etc/apt/sources.list.d/geoip.list.erb"),
@@ -84,13 +78,6 @@ class geodns {
                         owner   => bind,
                         group   => bind,
                         mode    => 775,
-                        ;
-        }
-
-        exec {
-                "bind9 restart":
-                        path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-                        refreshonly => true,
                         ;
         }
 }
