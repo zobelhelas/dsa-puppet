@@ -22,6 +22,7 @@ node default {
     include debian-org
     include monit
     include apt-keys
+    include ntp
 
     include motd
     include samhain
@@ -77,10 +78,8 @@ node default {
          geo1,geo2,geo3:
                     {
                       include named::geodns
-                      include ntp::server
                     }
          default:   {
-                      include ntp::client
                     }
      }
      case $brokenhosts {
