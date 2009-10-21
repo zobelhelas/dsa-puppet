@@ -1,4 +1,13 @@
 class exim {
+    activate_munin_check {
+            "ps_exim4": script => "ps_";
+            "exim_mailqueue":;
+            "exim_mailstats":;
+            "postfix_mailqueue":  ensure => absent;
+            "postfix_mailstats":  ensure => absent;
+            "postfix_mailvolume": ensure => absent;
+    }
+
 
     package { exim4-daemon-heavy: ensure => installed }
 

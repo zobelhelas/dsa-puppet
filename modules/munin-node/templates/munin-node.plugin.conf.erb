@@ -1,0 +1,87 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+[apt]
+user root
+
+[courier_mta_mailqueue]
+group daemon
+
+[courier_mta_mailstats]
+group adm, maillog
+
+[courier_mta_mailvolume]
+group adm, maillog
+
+[cps*]
+user root
+<%=
+out = ""
+if mta == "exim4"
+  out="
+[exim_mail*]
+user Debian-exim
+group maillog"
+end
+out
+%>
+
+[fw_conntrack]
+user root
+
+[fw_forwarded_local]
+user root
+
+[hddtemp_smartctl]
+user root
+
+[if_*]
+user root
+
+[if_err_*]
+user nobody
+
+[ip_*]
+user root
+
+[mysql*]
+user root
+env.mysqlopts --defaults-extra-file=/etc/mysql/debian.cnf
+
+<%=
+out = ""
+if mta == "postfix"
+  out="
+[postfix_mailqueue]
+user postfix
+
+[postfix_mailstats]
+group adm, maillog
+
+[postfix_mailvolume]
+group adm, maillog
+env.logfile mail.log"
+end
+out
+%>
+
+[smart_*]
+user root
+
+[vlan*]
+user root
+
+[spamassassin]
+group maillog
+
+[bind*]
+<%=
+out = case hostname
+  when "geo1","geo2","geo3" then "group bind
+env.logfile /var/log/bind9/geoip-query.log"
+  else "group adm"
+end
+out
+%>

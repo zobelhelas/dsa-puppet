@@ -43,3 +43,13 @@ Facter.add("policydweight") do
 		FileTest.exist?("/usr/sbin/policyd-weight")
 	end
 end
+Facter.add("vsftpd") do
+	setcode do
+		FileTest.exist?("/usr/sbin/vsftpd")
+	end
+end
+Facter.add("spamd") do
+	setcode do
+		FileTest.exist?("/usr/sbin/spamd")
+	end
+end

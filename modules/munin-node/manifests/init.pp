@@ -1,19 +1,68 @@
-define activate_munin_check($script) {
-       file { "/etc/munin/plugins/$script":
-                ensure => "/usr/share/munin/plugins/$script",
-                notify => Exec["munin-node restart"];
+define activate_munin_check($ensure=present, script=$name) {
+    case $script {
+        "": { $base = $name }
+        default: { $base = $script }
+    }
+
+    case $ensure {
+        present: {
+            file { "/etc/munin/plugins/$name":
+                     ensure => "/usr/share/munin/plugins/$base",
+                     notify => Exec["munin-node restart"];
+            }
         }
+        default: {
+            file { "/etc/munin/plugins/$name":
+                     ensure => $ensure,
+                     notify => Exec["munin-node restart"];
+            }
+        }
+    }
 }
 
 class munin-node {
 
     package { munin-node: ensure => installed }
 
-    file { "/etc/munin/munin-node.conf":
-        source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.conf",
-                     "puppet:///munin-node/common/munin-node.conf" ],
-        require => Package["munin-node"],
-        notify  => Exec["munin-node restart"],
+    activate_munin_check {
+        "cpu":;
+        "df":;
+        "df_abs":;
+        "df_inode":;
+        "entropy":;
+        "forks":;
+        "interrupts":;
+        "iostat":;
+        "irqstats":;
+        "load":;
+        "memory":;
+        "ntp_offset":;
+        "ntp_states":;
+        "open_files":;
+        "open_inodes":;
+        "processes":;
+        "swap":;
+        "uptime":;
+        "vmstat":;
+    }
+
+    case $spamd {
+        "true": {
+              activate_munin_check { "spamassassin":; }
+        }
+    }
+
+    file {
+        "/etc/munin/munin-node.conf":
+            source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.conf",
+                         "puppet:///munin-node/common/munin-node.conf" ],
+            require => Package["munin-node"],
+            notify  => Exec["munin-node restart"];
+
+        "/etc/munin/plugin-conf.d/munin-node":
+            content => template("munin-node/munin-node.plugin.conf.erb"),
+            require => Package["munin-node"],
+            notify  => Exec["munin-node restart"];
     }
 
     exec { "munin-node restart":
