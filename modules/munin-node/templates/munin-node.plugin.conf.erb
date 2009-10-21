@@ -19,7 +19,7 @@ group adm, maillog
 user root
 <%=
 out = ""
-if mta and mta == "exim4"
+if has_variable?("mta") and mta == "exim4"
   out="
 [exim_mail*]
 user Debian-exim
@@ -52,7 +52,7 @@ env.mysqlopts --defaults-extra-file=/etc/mysql/debian.cnf
 
 <%=
 out = ""
-if mta and mta == "postfix"
+if has_variable?("mta") and mta == "postfix"
   out="
 [postfix_mailqueue]
 user postfix
