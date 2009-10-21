@@ -189,6 +189,7 @@ host_settings:
     morales.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
     paer.debian.org: mailout.debian.org
+    penalosa.debian.org: mailout.debian.org
     pergolesi.debian.org: mailout.debian.org
     pescetti.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
