@@ -23,5 +23,9 @@ class buildd {
             source  => "puppet:///buildd/mount-defaults",
             require => Package["sbuild"]
             ;
+      "/etc/cron.d/dsa-buildd":
+            source => "puppet:///buildd/cron.d-dsa-buildd",
+            require => Package["cron"]
+            ;
    }
 }

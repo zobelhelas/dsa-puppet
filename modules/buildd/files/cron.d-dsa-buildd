@@ -1,0 +1,1 @@
+@reboot buildd [ -f ~buildd/NO-DAEMON-PLEASE ] && grep 'delete-on-boot' ~buildd/NO-DAEMON-PLEASE > /dev/null && rm -f ~buildd/NO-DAEMON-PLEASE
