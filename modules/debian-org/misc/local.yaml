@@ -85,9 +85,7 @@ footer:
 services:
   bugsmaster: rietz.debian.org
   mailrelay:
-    - dijkstra.debian.org
     - draghi.debian.org
-    - luchesi.debian.org
     - spohr.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
@@ -176,8 +174,8 @@ host_settings:
     argento.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
-    fano.debian.org: luchesi.debian.org
-    finzi.debian.org: luchesi.debian.org
+    fano.debian.org: mailout.debian.org
+    finzi.debian.org: mailout.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
