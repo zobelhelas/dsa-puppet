@@ -492,7 +492,9 @@ if nodeinfo['smarthost'].empty?
 '
 else
   out = '
-  defer !hosts         = +debianhosts
+  drop !hosts          = +debianhosts
+       log_message     = mail from non-d.o host
+       message         = Interesting.  I doubt that should have happened.
 '
 end
 out
