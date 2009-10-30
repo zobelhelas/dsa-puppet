@@ -170,34 +170,61 @@ host_settings:
     ancina.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
+    bartok.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
+    caballero.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
+    dijkstra.debian.org: mailout.debian.org
+    escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
     finzi.debian.org: mailout.debian.org
+    geo1.debian.org: mailout.debian.org
+    geo2.debian.org: mailout.debian.org
+    geo3.debian.org: mailout.debian.org
+    gluck.debian.org: mailout.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
+    handel.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
+    kaufmann.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
+    lobos.debian.org: mailout.debian.org
+    luchesi.debian.org: mailout.debian.org
     mahler.debian.org: mailout.debian.org
     malo.debian.org: mailout.debian.org
     mayer.debian.org: mailout.debian.org
+    mayr.debian.org: mailout.debian.org
     merulo.debian.org: mailout.debian.org
     morales.debian.org: mailout.debian.org
+    mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
     paer.debian.org: mailout.debian.org
     penalosa.debian.org: mailout.debian.org
     pergolesi.debian.org: mailout.debian.org
+    peri.debian.org: mailout.debian.org
     pescetti.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
+    rore.debian.org: mailout.debian.org
+    saens.debian.org: mailout.debian.org
+    schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
+    schumann.debian.org: mailout.debian.org
+    senfl.debian.org: mailout.debian.org
     smetana.debian.org: mailout.debian.org
+    soler.debian.org: mailout.debian.org
     sperger.debian.org: mailout.debian.org
     spontini.debian.org: mailout.debian.org
+    steffani.debian.org: mailout.debian.org
+    strauss.debian.org: mailout.debian.org
+    unger.debian.org: mailout.debian.org
+    villa.debian.org: mailout.debian.org
+    voltaire.debian.org: mailout.debian.org
+    wieck.debian.org: mailout.debian.org
     zee.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
   mail_port:
