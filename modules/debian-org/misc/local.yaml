@@ -186,7 +186,6 @@ host_settings:
     goetz.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
-    kaufmann.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
@@ -220,7 +219,6 @@ host_settings:
     sperger.debian.org: mailout.debian.org
     spontini.debian.org: mailout.debian.org
     steffani.debian.org: mailout.debian.org
-    strauss.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
     voltaire.debian.org: mailout.debian.org
