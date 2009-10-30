@@ -3,7 +3,6 @@ nameinfo:
   agnesi.debian.org: Maria Teresa Agnesi (October 17, 1720 - January 19, 1795)
   agricola.debian.org: Alexander Agricola (1445 or 1446 - August 15, 1506)
   albeniz.debian.org: Isaac Manuel Francisco Albéniz i Pascual (May 29, 1860 - May 18, 1909)
-  allegri.debian.org: Gregorio Allegri (1582 - 7 February 1652)
   ancina.debian.org: Giovanni Giovenale Ancina (19 October 1545 - August 30, 1604)
   arcadelt.debian.org: Jacques Arcadelt (also Jacob Arcadelt) (?1507 - October 14, 1568)
   argento.debian.org: Dominick Argento (b. October 27, 1927)
@@ -168,7 +167,6 @@ host_settings:
     agnesi.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
     albeniz.debian.org: mailout.debian.org
-    allegri.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
@@ -202,7 +200,6 @@ host_settings:
     zee.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
   mail_port:
-    allegri.debian.org: 2025
     ancina.debian.org: 2025
     kassia.debian.org: 587
     piatti.debian.org: 2025
