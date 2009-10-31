@@ -21,6 +21,8 @@ vdoms = case fqdn
 
         when "bellini.debian.org" then "popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/"
 
+        when "chopin.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/org/security.debian.org/mail/"
+
         when "cimarosa.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail"
 #logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail"
 
