@@ -22,6 +22,7 @@ Defaults	env_reset
 # Host alias specification
 Host_Alias	QAHOSTS		= master, merkel
 Host_Alias	WEBHOSTS	= klecker, wolkenstein
+Host_Alias	SECHOSTS	= klecker, chopin
 # User alias specification
 User_Alias	QACORE		= aba, djpig, geissert, hertzog, jeroen, joerg, lucas, luk, myon, tbm, weasel, zack
 
@@ -112,10 +113,10 @@ archvsync	stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigg
 %debian-release	ries=(dak)		/usr/local/bin/dak transitions --import *
 %ftpteam	ries=(dak)		/usr/local/bin/dak transitions --import *
 # security
-%security	klecker=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
-%sec_public	klecker=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
-%sec_data	klecker=(archvsync)	NOPASSWD: /home/archvsync/security/signal ""
-dak		klecker=(archvsync)	NOPASSWD: /home/archvsync/signal_security
+%security	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
+%sec_public	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
+%sec_data	SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/security/signal ""
+dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 # more list stuff
