@@ -239,7 +239,7 @@ ports = []
 out = "daemon_smtp_ports = "
 ports << 25
 
-if nodeinfo['bugsmaster']
+if nodeinfo['bugsmaster'] or nodeinfo['bugsmx']
   ports << 587
 end
 
@@ -1684,7 +1684,7 @@ bsmtp:
 
 <%=
 out = ""
-if nodeinfo['bugsmaster']
+if nodeinfo['bugsmaster'] or nodeinfo['bugsmx']
   out = '
 bugs_pipe:
   driver = pipe
