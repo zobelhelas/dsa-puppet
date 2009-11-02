@@ -1380,14 +1380,18 @@ out
 
 <%=
 out = ""
-if nodeinfo['bugsmaster']
+if nodeinfo['bugsmaster'] or nodeinfo['bugsmx']
+  domain = 'bugs.debian.org'
+  if nodeinfo['bugsmaster']
+    domain = 'bugs-master.debian.org'
+  end
   out = '
 # This router delivers for bugs.d.o
 bugs:
   debug_print = "R: bugs for $local_part@$domain"
   driver = accept
   transport = bugs_pipe
-  domains = bugs.debian.org
+  domains = ' + domain + '
   cannot_route_message = Unknown or archived bug
   require_files = /org/bugs.debian.org/mail/run-procmail
   no_more
