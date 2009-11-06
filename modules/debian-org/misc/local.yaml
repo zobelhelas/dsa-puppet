@@ -166,6 +166,8 @@ host_settings:
   squeeze:
     - fano.debian.org
     - finzi.debian.org
+  smarthost_port:
+    voltaire.debian.org: 25
   smarthost:
     agnesi.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
