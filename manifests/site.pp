@@ -15,6 +15,7 @@ Exec {
 
 node default {
     $nodeinfo = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
+    $hoster   = whohosts($nodeinfo, "/etc/puppet/modules/debian-org/misc/hoster.yaml")
 
     include munin-node
     include sudo
