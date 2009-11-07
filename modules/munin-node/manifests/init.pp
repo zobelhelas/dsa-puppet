@@ -52,6 +52,12 @@ class munin-node {
         }
     }
 
+    case $vsftpd {
+        "true": {
+              include munin-node::vsftpd
+        }
+    }
+
     file {
         "/etc/munin/munin-node.conf":
             source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.conf",
