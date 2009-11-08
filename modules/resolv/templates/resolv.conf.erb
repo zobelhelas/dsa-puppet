@@ -3,15 +3,34 @@
 ### USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ###
 
-<%= resolvconf = case hoster
-    when "ubcece" then "search debprivate-ubc.debian.org debian.org
-nameserver 206.12.19.5
-nameserver 137.82.1.1
-nameserver 142.103.1.1
-"
+<%=
+nameservers = []
+searchpaths = []
+resolvconf  = ''
+
+case hoster
+  when "ubcece" then
+    searchpaths << "debprivate-ubc.debian.org"
+    nameservers += ["206.12.19.5", "137.82.1.1", "142.103.1.1" ]
+  when "darmstadt" then
+    case hostname
+      when "draghi", "liszt" then
+        nameservers << "127.0.0.1"
+    end
+    nameservers += ["82.195.75.81", "82.195.66.239", "217.198.242.225"]
+    searchpaths << "debprivate-darmstadt.debian.org"
 end
-if resolvconf == ""
-  raise Puppet::ParseError, "resolv.conf is empty"
+
+searchpaths << "debian.org"
+
+if nameservers.empty?
+  raise Puppet::ParseError, "Something has gone wrong writing resolv.conf: probably included for wrong hoster"
 end
+
+resolvconf += "search " + searchpaths.sort.join(" ") + "\n"
+nameservers.each do |ns|
+  resolvconf += "nameserver " + ns + "\n"
+end
+
 resolvconf
 %>
