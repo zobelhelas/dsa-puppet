@@ -31,7 +31,6 @@ node default {
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
-        default: {}
     }
 
     case $mta {
@@ -41,7 +40,6 @@ node default {
                   default: { include exim }
              }
         }
-        default:   {}
     }
 
 
@@ -56,36 +54,25 @@ node default {
 
      case extractnodeinfo($nodeinfo, 'apache2_defaultconfig') {
           "true":  { include apache2 }
-           default: { }
      }
 
      case extractnodeinfo($nodeinfo, 'buildd') {
           "true":  { include buildd }
-           default: { }
      }
      case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
           "true":  { include apache2::security_mirror }
-           default: { }
      }
 
 
 # maybe wait for rietz to be upgraded to lenny
     case $hostname {
-        rietz,raff,klecker:
-                   { include named::secondary }
-        default:   {}
+        rietz,raff,klecker: { include named::secondary }
     }
 
      case $hostname {
-         geo1,geo2,geo3:
-                    {
-                      include named::geodns
-                    }
-         default:   {
-                    }
+         geo1,geo2,geo3: { include named::geodns }
      }
      case $brokenhosts {
          "true":    { include hosts }
-         default:   {}
      }
 }
