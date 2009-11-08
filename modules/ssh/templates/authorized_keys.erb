@@ -1,4 +1,10 @@
 # local admin
+<%= hosterkeys = case hoster
+         when "ubcece" then
+         "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvEEyxznxleAhk98K7SkAeAKWibijL5uFjIl1+tr8rz+XmFsjabTK2+hQXkgzmU+jqQ2+MPp6btfAq9Oe27GQYWUFfsAZMRb907dReFQYPKbPhQZoo5LUfkrCiR3tD0Nm2JfepTV0079K1+Q50EMImttwbI94FfSoSgTxgF4rCoLpUgmF0IHDR1+kTGow7YnuS1Y/I1zKAbofg8KBGXOLArkcZbxArt25Y2wlnE+ZHIb3Rn3pYc3/KmPPvEQy9IkR/uzzkWSaCBVMFJEO0ejjWrV4HR64GlKUPQ0CekSYn1EErY55CF5sWkasXhflluwSf7b+/jedDM1A1Vrp9Z/F8Q== chrisd"
+    end
+hosterkeys
+%>
 <%= localkeys = case fqdn
          when "argento.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA5q3myoIMyqv6HhAR4lxaO7OXLRkKqUlEHeCudksc7ZAVSqJAQ3ODn8zAoY34duvRUOq7xpGcl8gXWujCtcUWDZCxNsxz+iWI/3oEaZly/ZTJXtoYUjmUodV7PJ8DbokiJGUIc1s3MiGa9QYam0D28TT8jWCJFcthC7VS61GBgT8= /Users/manon/.ssh/id_rsa - Manon Goo Local Admin"
          when "bartok.debian.org" then 
@@ -10,7 +16,6 @@ command="/usr/lib/da-backup/da-backup-ssh-wrap ' + node['hostname'].to_s + '",no
 '
            end
            out
-         when "bellini.debian.org", "cimarosa.debian.org", "dijkstra.debian.org", "ravel.debian.org", "spontini.debian.org", "stabile.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvEEyxznxleAhk98K7SkAeAKWibijL5uFjIl1+tr8rz+XmFsjabTK2+hQXkgzmU+jqQ2+MPp6btfAq9Oe27GQYWUFfsAZMRb907dReFQYPKbPhQZoo5LUfkrCiR3tD0Nm2JfepTV0079K1+Q50EMImttwbI94FfSoSgTxgF4rCoLpUgmF0IHDR1+kTGow7YnuS1Y/I1zKAbofg8KBGXOLArkcZbxArt25Y2wlnE+ZHIb3Rn3pYc3/KmPPvEQy9IkR/uzzkWSaCBVMFJEO0ejjWrV4HR64GlKUPQ0CekSYn1EErY55CF5sWkasXhflluwSf7b+/jedDM1A1Vrp9Z/F8Q== chrisd"
          when "mahler.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1bAZGQUdVBdX5N8985OG25yYO6wybV0HmL0jeyun8qOmyi15RlkP8XiWXkvBLE98Nh9Ji2UgMZog7geT65zf+bE2crxu9LmAIbNiMgh+Yk6JFCy8ZFiKmCngHLlkWlD3Z4YTYdSxiETXkE4EB1arXi3wt9h7Iq/h7ZmpVL3njaqPGhdZmo9r+c8eZnwD77VIk+pcCB5Yqh3Nu/RaNAMr9hrHfvd62NnYRG3vcdj9aQo3Cshh8tTqzw10B8lCUKrHSbtL8aFzUrZqFilcNWs36mGVnzcLya/TM1uID9z41O47ZDOfZvLkSmGPb44Jwcdt1DK8r60OBdGoHBOa337N7w== noahm@crystalline-entity"
          when "pergolesi.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA71vh3lytStDCr6df5u2tyzk45L7i8QoNysP51+ga6+v8kwMva30zw5fUD6BHYwNfwo1UZzUtsGLE5HTxKuBlfXs+myWjqpjbF3xSpPjbxKZYiLKMpJ5CVC0Mp6f2kSQ5sSC6Ue/etlAqs9D4rgbexo00QlOtBVof+Zolr3SyR6Y/Coo4UCHeFIAf8KQmhKhYEfPsIgsm+IsnpHglqZ8krOm60Fzo/K5xwb2raoVyg73cvBpaST3VGqqlT2+iTKLHUTaWSOvIj99KV6mYBdD4V8CCs3FWrKfM7wlXwBm/LVmr406Ho0QUo1zHZckvUITHtFQW0QwHpaR717fWB5lBz0d9VlQMz2JR7WfzX+iJqTAnVljjFYJIIHBQR8Xr0Z2rkSEjpi1Ar4iPQbYswMMnBQSGhITMPysHqZb75WYg17cubUbDwpiKPCdmDc5/iNoRFOLOW7vwcBISynUweRDDgeZI7sSFydEnIVK+hrLLmI/XZe4ekhZZXQYCc/tllc9kt2qpU8EWlFs0zSnUD/Lj0WOcgiSOJ3pzQWBBN2EHpM2FfdFa+qUhReSbIrWDgqLe9pkJ2emHFDRhBT4r2f85dw9BSUSVpxpA69fYCyZprJUs214Cq+nTZCSzKFfvflJR7VdCmEu0d5Wavf740OQ4gVipQHqydQVW5m4tYDQHR/s= hb@freenet-rz.de aka holger.baust@freenet-ag.de"
          when "pescetti.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArOaT7YSol/2O0jums0gui3aaycWk8sGz1taDwtQ+UTWzVh0Xn2DGUmBMGvmUVwqY0c7mRI/hOD2BDgvuLv0OQ6guZCLEHnAD4x/bsNucEzSQVEgTywuhans5PxfAGmGWk/thsNcqAE7JjFWGNNR6nj+ZmG299SieNW1wgxCWyQaiju/996yj6YKRN9aT1crNZA+sWi4z51XjPgbX2b55NLWrgmqBX4iSD6bV3nV6LEWXlTZzxUAqJotTD3PF3PWLi5h8kQhAOvT3cG6EkkAQV0TOcZam36x5cPbBek0iDNNQXv1w4fHN6f9qQ2/R5NdF06H91aSmxY7/OZ0XKgYKdw== /home/holgi/.ssh/id_rsa"
