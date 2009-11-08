@@ -42,7 +42,6 @@ node default {
         }
     }
 
-
     case $hostname {
         spohr: {
                       include nagios::server
@@ -52,16 +51,16 @@ node default {
 	}
     }
 
-     case extractnodeinfo($nodeinfo, 'apache2_defaultconfig') {
-          "true":  { include apache2 }
-     }
+    case extractnodeinfo($nodeinfo, 'apache2_defaultconfig') {
+         "true":  { include apache2 }
+    }
 
-     case extractnodeinfo($nodeinfo, 'buildd') {
-          "true":  { include buildd }
-     }
-     case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-          "true":  { include apache2::security_mirror }
-     }
+    case extractnodeinfo($nodeinfo, 'buildd') {
+         "true":  { include buildd }
+    }
+    case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
+         "true":  { include apache2::security_mirror }
+    }
 
 
 # maybe wait for rietz to be upgraded to lenny
@@ -69,10 +68,10 @@ node default {
         rietz,raff,klecker: { include named::secondary }
     }
 
-     case $hostname {
-         geo1,geo2,geo3: { include named::geodns }
-     }
-     case $brokenhosts {
-         "true":    { include hosts }
-     }
+    case $hostname {
+        geo1,geo2,geo3: { include named::geodns }
+    }
+    case $brokenhosts {
+        "true":    { include hosts }
+    }
 }
