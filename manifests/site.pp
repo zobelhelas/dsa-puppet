@@ -74,4 +74,7 @@ node default {
     case $brokenhosts {
         "true":    { include hosts }
     }
+    case $hoster {
+        "ubcece":  { include resolv }
+    }
 }
