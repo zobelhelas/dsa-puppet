@@ -27,7 +27,7 @@ if nameservers.empty?
   raise Puppet::ParseError, "Something has gone wrong writing resolv.conf: probably included for wrong hoster"
 end
 
-resolvconf += "search " + searchpaths.sort.join(" ") + "\n"
+resolvconf += "search " + searchpaths.join(" ") + "\n"
 nameservers.each do |ns|
   resolvconf += "nameserver " + ns + "\n"
 end
