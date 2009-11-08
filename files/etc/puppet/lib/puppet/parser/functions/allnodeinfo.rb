@@ -11,6 +11,10 @@ module Puppet::Parser::Functions
     filter = '(hostname=*)'
     begin
       ldap.search2('ou=hosts,dc=debian,dc=org', LDAP::LDAP_SCOPE_SUBTREE, filter, attrs=attributes, false, 0, 0, s_attr="hostname") do |x|
+        # If a returned value doesn't have all the attributes we're searching for, skip
+        attributes.each do |a|
+          next if x[a].empty?
+        end
         results << x
       end
     rescue LDAP::ResultError
