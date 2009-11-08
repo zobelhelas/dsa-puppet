@@ -14,7 +14,9 @@ module Puppet::Parser::Functions
         results << x
       end
     rescue LDAP::ResultError
+      raise Puppet::ParseError, "LDAP error"
     rescue RuntimeError
+      raise Puppet::ParseError, "No data returned from search"
     ensure
       ldap.unbind
     end
