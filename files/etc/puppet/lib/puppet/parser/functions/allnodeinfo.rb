@@ -13,7 +13,12 @@ module Puppet::Parser::Functions
       ldap.search2('ou=hosts,dc=debian,dc=org', LDAP::LDAP_SCOPE_SUBTREE, filter, attrs=attributes, false, 0, 0, s_attr="hostname").each do |x|
         # If a returned value doesn't have all the attributes we're searching for, skip
         attributes.each do |a|
-          next if x[a].empty?
+          # We'll skip if the array is empty, but we also seem to get back a nil object for empty attributes sometimes
+          begin
+            next if x[a].empty?
+          rescue NoMethodError
+            next
+          end
         end
         results << x
       end
