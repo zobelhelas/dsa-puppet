@@ -1,4 +1,4 @@
-define activate_munin_check($ensure=present, script=$name) {
+define activate_munin_check($ensure=present, $script=$name) {
     case $script {
         "": { $base = $name }
         default: { $base = $script }
@@ -49,6 +49,12 @@ class munin-node {
     case $spamd {
         "true": {
               activate_munin_check { "spamassassin":; }
+        }
+    }
+
+    case $vsftpd {
+        "true": {
+              include munin-node::vsftpd
         }
     }
 
