@@ -5,7 +5,7 @@ nameserver 137.82.1.1
 nameserver 142.103.1.1
 "
 end
-if resolvconf = ""
+if resolvconf == ""
   raise Puppet::ParseError, "resolv.conf is empty"
 end
 resolvconf
