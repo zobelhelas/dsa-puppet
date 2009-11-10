@@ -32,8 +32,7 @@ vdoms = case fqdn
 
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
 
-        when "klecker.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/org/security.debian.org/mail/
-non-us.debian.org: user=katie group=debadmin directory=/org/non-us.debian.org/mail/
+        when "klecker.debian.org" then "non-us.debian.org: user=katie group=debadmin directory=/org/non-us.debian.org/mail/
 www-master.debian.org: user=debwww group=debwww directory=/org/www.debian.org/mail/"
 
         when "master.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/org/vote.debian.org/mail
