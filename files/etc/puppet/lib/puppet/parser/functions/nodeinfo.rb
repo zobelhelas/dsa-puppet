@@ -44,22 +44,7 @@ module Puppet::Parser::Functions
       end
     end
 
-    ldap = LDAP::SSLConn.new('db.debian.org', 636)
-
-    results['ldap'] = []
-    filter = '(hostname=' + host +')'
-    begin
-      ldap.search2('ou=hosts,dc=debian,dc=org', LDAP::LDAP_SCOPE_SUBTREE, filter) do |x|
-        results['ldap'] << x
-      end
-    rescue LDAP::ResultError
-      raise Puppet::ParseError, "LDAP error"
-    rescue RuntimeError
-      raise Puppet::ParseError, "No data returned from search"
-    ensure
-      ldap.unbind
-    end
-    return(results)
+    results['ldap'] = Puppet::Parser::Functions::ldapinfo(host, '*')
   end
 end
 
