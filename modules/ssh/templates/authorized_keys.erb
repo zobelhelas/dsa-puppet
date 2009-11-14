@@ -9,7 +9,7 @@ hosterkeys
          when "argento.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA5q3myoIMyqv6HhAR4lxaO7OXLRkKqUlEHeCudksc7ZAVSqJAQ3ODn8zAoY34duvRUOq7xpGcl8gXWujCtcUWDZCxNsxz+iWI/3oEaZly/ZTJXtoYUjmUodV7PJ8DbokiJGUIc1s3MiGa9QYam0D28TT8jWCJFcthC7VS61GBgT8= /Users/manon/.ssh/id_rsa - Manon Goo Local Admin"
          when "bartok.debian.org" then 
            out = ''
-           keyinfo.each do |node|
+           keyinfo.keys.sort.each do |node|
              out += '# ' + node['hostname'].to_s + '
 command="/usr/lib/da-backup/da-backup-ssh-wrap ' + node['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + node['ipHostNumber'].join(',') + '" ' + node['sshRSAHostKey'].to_s + '
 
