@@ -10,8 +10,8 @@ hosterkeys
          when "bartok.debian.org" then 
            out = ''
            keyinfo.keys.sort.each do |node|
-             out += '# ' + node['hostname'].to_s + '
-command="/usr/lib/da-backup/da-backup-ssh-wrap ' + node['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + node['ipHostNumber'].join(',') + '" ' + node['sshRSAHostKey'].to_s + '
+             out += '# ' + keyinfo[node]['hostname'].to_s + '
+command="/usr/lib/da-backup/da-backup-ssh-wrap ' + keyinfo[node]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + keyinfo[node]['ipHostNumber'].join(',') + '" ' + keyinfo[node]['sshRSAHostKey'].to_s + '
 
 '
            end
