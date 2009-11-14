@@ -18,7 +18,7 @@ module Puppet::Parser::Functions
         unless attributes.include?("*")
           next if attributes.any?{ |a|  not x[a] or x[a].empty? }
         end
-        results[x['hostname']] = x
+        results[host] = x
       end
     rescue LDAP::ResultError
       raise Puppet::ParseError, "LDAP error"
@@ -27,6 +27,10 @@ module Puppet::Parser::Functions
     ensure
       ldap.unbind
     end
-    return( host == '*' ? results : results[host] )
+    if host == '*'
+      return(results)
+    else
+      return(results[host])
+    end
   end
 end

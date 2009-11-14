@@ -5,8 +5,8 @@ module Puppet::Parser::Functions
     yamlfile = args[1]
     parser.watch_file(yamlfile)
 
-    require 'ldap'
     require 'yaml'
+    require '/etc/puppet/lib/puppet/parser/functions/ldapinfo.rb'
 
     $KCODE = 'utf-8'
 
@@ -44,7 +44,9 @@ module Puppet::Parser::Functions
       end
     end
 
-    results['ldap'] = function_ldapinfo(host, '*')
+    results['ldap'] = []
+    results['ldap'] << function_ldapinfo(host, '*')
+    return(results)
   end
 end
 
