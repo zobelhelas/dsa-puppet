@@ -44,7 +44,7 @@ module Puppet::Parser::Functions
       end
     end
 
-    results['ldap'] = Puppet::Parser::Functions::ldapinfo(host, '*')
+    results['ldap'] = ldapinfo(host, '*')
   end
 end
 
