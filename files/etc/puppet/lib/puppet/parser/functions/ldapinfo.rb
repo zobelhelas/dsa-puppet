@@ -7,6 +7,7 @@ module Puppet::Parser::Functions
       attributes << 'hostname'
     end
 
+    require 'ldap'
     ldap = LDAP::SSLConn.new('db.debian.org', 636)
 
     results = {}
@@ -18,7 +19,8 @@ module Puppet::Parser::Functions
         unless attributes.include?("*")
           next if attributes.any?{ |a|  not x[a] or x[a].empty? }
         end
-        results[host] = x
+        results[x['hostname']] = []
+        results[x['hostname']] << x
       end
     rescue LDAP::ResultError
       raise Puppet::ParseError, "LDAP error"
