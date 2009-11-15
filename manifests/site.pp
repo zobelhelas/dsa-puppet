@@ -54,17 +54,18 @@ node default {
 	}
     }
 
-    case extractnodeinfo($nodeinfo, 'apache2_defaultconfig') {
-         "true":  { include apache2 }
+    case $apache2 {
+         "true":  {
+              case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
+                     "true":  { include apache2::security_mirror }
+                     default  { include apache2 }
+              }
+         }
     }
 
     case extractnodeinfo($nodeinfo, 'buildd') {
          "true":  { include buildd }
     }
-    case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-         "true":  { include apache2::security_mirror }
-    }
-
 
 # maybe wait for rietz to be upgraded to lenny
     case $hostname {
