@@ -30,6 +30,7 @@ out = case fqdn
                 Allow from all
         </Directory>
 "
+  when "master.debian.org" then ""
 else
 "
 	<IfModule mod_userdir.c>
