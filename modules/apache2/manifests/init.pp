@@ -80,8 +80,7 @@ class apache2 {
                         notify  => Exec["reload-apache2"];
 
 		"/etc/apache2/sites-available/default-debian.org":
-			source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/sites-available/default-debian.org",
-			             "puppet:///apache2/common/etc/apache2/sites-available/default-debian.org" ],
+			content => template("apache2/default-debian.org.erb",
 			require => Package["apache2"],
                         notify  => Exec["reload-apache2"];
 
