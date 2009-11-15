@@ -1,0 +1,43 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<VirtualHost *:80>
+	ServerAdmin debian-admin@debian.org
+
+	ErrorLog /var/log/apache2/error.log
+	CustomLog /var/log/apache2/access.log combined
+
+	DocumentRoot /srv/www/default.debian.org/htdocs
+
+	HostnameLookups Off
+	UseCanonicalName Off
+	ServerSignature On
+<%=
+out = ''
+if fqdn == "merkel.debian.org"
+  out = "
+        RemoveType .php .phtml .php3 .phps
+        php_admin_flag engine off
+        <Directory /home/don/public_html/cgi>
+                SetEnv PERLLIB "/home/don/perl/usr/share/perl5:/home/don/source/"
+                SetEnv DEBBUGS_CONFIG_FILE "/home/don/config_internal"
+                SetHandler cgi-script
+                AllowOverride None
+                Options +ExecCGI
+                Order allow,deny
+                Allow from all
+        </Directory>
+"
+else
+  out = "
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+"
+end
+out
+%>
+</VirtualHost>
+# vim:set syn=apache:
