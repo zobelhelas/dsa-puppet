@@ -78,11 +78,6 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/rbllist",
                        "puppet:///exim/common/rbllist" ]
           ;
-        "/etc/exim4/rcpthosts":
-          require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/per-host/$fqdn/rcpthosts",
-                       "puppet:///exim/common/rcpthosts" ]
-          ;
         "/etc/exim4/rhsbllist":
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rhsbllist",
