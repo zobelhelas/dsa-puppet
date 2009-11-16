@@ -214,7 +214,8 @@ delay_warning =
 <% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
 queue_run_max = 50
 deliver_queue_load_max = 50
-queue_only_load = 15
+queue_only_load = 35
+smtp_load_reserve = 20
 <% else %>
 queue_run_max = 5
 deliver_queue_load_max = 10
