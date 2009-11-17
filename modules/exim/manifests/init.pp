@@ -24,14 +24,14 @@ class exim {
           purge   => true,
           force   => true,
           recurse => true,
-          source  => puppet:///empty/
+          source  => "puppet:///empty/"
         ;
         "/etc/exim4/conf.d":
           ensure  => directory,
           purge   => true,
           force   => true,
           recurse => true,
-          source  => puppet:///empty/
+          source  => "puppet:///empty/"
         ;
         "/etc/exim4/ssl":
           ensure  => directory,
