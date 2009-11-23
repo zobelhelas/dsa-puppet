@@ -19,6 +19,20 @@ class exim {
           mode    => 755,
           purge   => true
         ;
+        "/etc/exim4/Git":
+          ensure  => directory,
+          purge   => true,
+          force   => true,
+          recurse => true,
+          source  => "puppet:///files/empty/"
+        ;
+        "/etc/exim4/conf.d":
+          ensure  => directory,
+          purge   => true,
+          force   => true,
+          recurse => true,
+          source  => "puppet:///files/empty/"
+        ;
         "/etc/exim4/ssl":
           ensure  => directory,
           owner   => root,
