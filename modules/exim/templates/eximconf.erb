@@ -529,7 +529,6 @@ out
   accept  domains  = +local_domains
           hosts    = +debianhosts
           endpass
-	  message  = unknown user
 	  verify   = recipient
 
 <%=
@@ -538,7 +537,6 @@ if nodeinfo['mailrelay']
   out = '
   accept  domains  = +mailhubdomains
           endpass
-	  message  = unknown user
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
 '
 end
@@ -547,7 +545,6 @@ out
 
   accept  domains  = +submission_domains
           endpass
-	  message  = unknown user
 	  verify   = recipient
 
   deny    message = relay not permitted
@@ -904,7 +901,6 @@ if nodeinfo['mailrelay']
   out = '
   accept  domains  = +mailhubdomains
           endpass
-	  message  = unknown user
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
 '
 end
@@ -912,7 +908,6 @@ out
 %>
   accept  domains  = +handled_domains
           endpass
-	  message  = unknown user
 	  verify   = recipient/defer_ok
 
   accept  hosts         = +debianhosts
