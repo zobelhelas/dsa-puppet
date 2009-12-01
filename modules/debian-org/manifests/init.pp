@@ -147,8 +147,14 @@ class debian-org {
 class debian-proliant inherits debian-org {
    package {
       "hpacucli": ensure => installed;
+      "hp-health": ensure => installed;
       "cpqarrayd": ensure => installed;
       "arrayprobe": ensure => installed;
+   }
+   case $architecture {
+      "amd64" {
+         package { "lib32gcc1": ensure => installed; }
+      }
    }
    file {
       "/etc/apt/sources.list.d/debian.restricted.list":
