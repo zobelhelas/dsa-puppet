@@ -42,6 +42,7 @@ admin		agnesi=(ALL)	ALL
 # nagios
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 # with smartarray controllers
+nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller all show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[02] pd all show
