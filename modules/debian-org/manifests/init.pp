@@ -152,7 +152,7 @@ class debian-proliant inherits debian-org {
       "arrayprobe": ensure => installed;
    }
    case $architecture {
-      "amd64" {
+      "amd64": {
          package { "lib32gcc1": ensure => installed; }
       }
    }
