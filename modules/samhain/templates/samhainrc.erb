@@ -361,6 +361,8 @@ file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg"
 when "handel.debian.org": extrafiles="dir=8/etc/puppet"
 when "dijkstra.debian.org": extrafiles="dir=4/etc/dsa-kvm"
 when /geo[123].debian.org/: extrafiles="dir=1/etc/bind/geodns"
+when /(raff|rietz|klecker).debian.org/: extrafiles="dir=1/etc/bind
+file=/etc/bind/named.conf.debian-zones"
 end
 extrafiles
 %>
