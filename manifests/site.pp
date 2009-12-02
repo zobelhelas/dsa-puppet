@@ -35,6 +35,9 @@ node default {
     case $smartarraycontroller {
         "true":    { include debian-proliant }
     }
+    case $kvmdomain {
+        "true":    { package { acpid: ensure => installed } }
+    }
 
     case $mta {
         "exim4":   {
