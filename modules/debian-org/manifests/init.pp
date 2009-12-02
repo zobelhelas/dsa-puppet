@@ -151,7 +151,7 @@ class debian-proliant inherits debian-org {
       "cpqarrayd": ensure => installed;
       "arrayprobe": ensure => installed;
    }
-   case $architecture {
+   case $debarchitecture {
       "amd64": {
          package { "lib32gcc1": ensure => installed; }
       }
