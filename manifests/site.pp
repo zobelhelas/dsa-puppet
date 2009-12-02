@@ -67,7 +67,6 @@ node default {
          "true":  { include buildd }
     }
 
-# maybe wait for rietz to be upgraded to lenny
     case $hostname {
         rietz,raff,klecker: { include named::secondary }
     }
