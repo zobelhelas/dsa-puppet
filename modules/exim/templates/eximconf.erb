@@ -529,7 +529,6 @@ out
   accept  domains  = +local_domains
           hosts    = +debianhosts
           endpass
-	  message  = unknown user
 	  verify   = recipient
 
 <%=
@@ -538,7 +537,6 @@ if nodeinfo['mailrelay']
   out = '
   accept  domains  = +mailhubdomains
           endpass
-	  message  = unknown user
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
 '
 end
@@ -547,7 +545,6 @@ out
 
   accept  domains  = +submission_domains
           endpass
-	  message  = unknown user
 	  verify   = recipient
 
   deny    message = relay not permitted
@@ -904,7 +901,6 @@ if nodeinfo['mailrelay']
   out = '
   accept  domains  = +mailhubdomains
           endpass
-	  message  = unknown user
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
 '
 end
@@ -912,7 +908,6 @@ out
 %>
   accept  domains  = +handled_domains
           endpass
-	  message  = unknown user
 	  verify   = recipient/defer_ok
 
   accept  hosts         = +debianhosts
@@ -1444,25 +1439,6 @@ end
 out
 %>
 
-virt_alias_verify:
-  debug_print = "R: virt_aliases for $local_part@$domain"
-  driver = redirect
-  data = ${if exists{\
-           ${extract{directory}{VDOMAINDATA}{${value}/aliases}}}\
-	   {${lookup{$local_part}lsearch*{\
-              ${extract{directory}{VDOMAINDATA}{$value/aliases}}\
-	   }}}}
-  directory_transport = address_directory
-  cannot_route_message = Unknown user
-  domains = +virtual_domains
-  file_transport = address_file
-  pipe_transport = address_pipe
-  qualify_preserve_domain
-  retry_use_local_part
-  transport_current_directory = ${extract{directory}{VDOMAINDATA}}
-  transport_home_directory = ${extract{directory}{VDOMAINDATA}}
-  verify_only
-
 virt_direct_verify:
   debug_print = "R: virt_direct for $local_part@$domain"
   driver = redirect
@@ -1505,7 +1481,6 @@ virt_aliases:
   retry_use_local_part
   transport_current_directory = ${extract{directory}{VDOMAINDATA}}
   transport_home_directory = ${extract{directory}{VDOMAINDATA}}
-  no_verify
   user = ${extract{user}{VDOMAINDATA}}
   
 # This is a qmailesque deliver into a directory of .forward files
