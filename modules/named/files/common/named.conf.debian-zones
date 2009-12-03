@@ -103,6 +103,20 @@ zone "2.0.0.0.2.0.0.0.8.5.8.0.1.0.0.2.ip6.arpa" {
 	allow-transfer { };
 };
 
+// debian rack with grnet
+zone "192-27.211.177.194.in-addr.arpa" {
+	type slave;
+	notify no;
+	file "db.194.177.211.192";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+
 // ipv6 at 1&1 - powell: 2001:08d8:0081:1520::/60
 zone "2.5.1.1.8.0.0.8.d.8.0.1.0.0.2.ip6.arpa" {
 	type slave;
