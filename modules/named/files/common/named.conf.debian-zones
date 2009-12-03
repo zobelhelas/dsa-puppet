@@ -102,7 +102,7 @@ zone "2.0.0.0.2.0.0.0.8.5.8.0.1.0.0.2.ip6.arpa" {
 };
 
 // debian rack with grnet
-zone "192-27.211.177.194.in-addr.arpa" {
+zone "192/27.211.177.194.in-addr.arpa" {
 	type slave;
 	notify no;
 	file "db.194.177.211.192";
