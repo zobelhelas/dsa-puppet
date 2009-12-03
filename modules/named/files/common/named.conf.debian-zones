@@ -5,8 +5,6 @@
 
 // Slave domains, includ in bind.conf
 
-// NOT USED YET - SYNC UP WITH dsa-misc/config/bind/ before enabling finally
-
 zone "debian.org" {
 	type slave;
 	notify no;
