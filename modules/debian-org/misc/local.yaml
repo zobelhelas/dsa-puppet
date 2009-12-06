@@ -82,7 +82,9 @@ footer:
   schroeder.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
-  bugsmaster: rietz.debian.org
+  bugsmaster:
+    - busoni.debian.org
+    - rietz.debian.org
   bugsmx:
     - byrd.debian.org
   mailrelay:
@@ -95,7 +97,10 @@ services:
 host_settings:
   heavy_exim:
     - bellini.debian.org
+    - busoni.debian.org
     - byrd.debian.org
+    - chopin.debian.org
+    - cimarosa.debian.org
     - draghi.debian.org
     - klecker.debian.org
     - master.debian.org
