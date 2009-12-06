@@ -103,11 +103,15 @@ host_settings:
     - klecker.debian.org
     - master.debian.org
     - merkel.debian.org
+    - morricone.debian.org
     - powell.debian.org
     - raff.debian.org
+    - ravel.debian.org
     - ries.debian.org
     - rietz.debian.org
     - spohr.debian.org
+    - valente.debian.org
+    - widor.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - kassia.debian.org
@@ -176,7 +180,6 @@ host_settings:
     mayer.debian.org: mailout.debian.org
     mayr.debian.org: mailout.debian.org
     merulo.debian.org: mailout.debian.org
-    morricone.debian.org: mailout.debian.org
     morales.debian.org: mailout.debian.org
     mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
@@ -189,7 +192,6 @@ host_settings:
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
-    ravel.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
     respighi.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
@@ -206,11 +208,9 @@ host_settings:
     stabile.debian.org: mailout.debian.org
     steffani.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
-    valente.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
     vivaldi.debian.org: mailout.debian.org
     voltaire.debian.org: mailout.debian.org
-    widor.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
     wolkenstein.debian.org: mailout.debian.org
     zee.debian.org: mailout.debian.org
