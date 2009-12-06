@@ -33,7 +33,9 @@ nameinfo:
   mahler.debian.org: Gustav Mahler (7 July 1860 - 18 May 1911)
   mayr.debian.org: Johann(es) Simon Mayr (June 14, 1763 - December 2, 1845)
   merkel.debian.org: Gustav (Adolf) Merkel (November 12, 1827 - October 30, 1885)
+  mendes.debian.org: Manuel Mendes (c. 1547 - September 24, 1605)
   merulo.debian.org: Claudio Merulo (8 April 1533 - 4 May 1604)
+  monteverdi.debian.org: Claudio Giovanni Antonio Monteverdi (15 May 1567 - 29 November 1643)
   morales.debian.org: Cristóbal de Morales (c. 1500 - between September 4 and October 7, 1553)
   morricone.debian.org: Ennio Morricone (November 10, 1928 - )
   mundy.debian.org: William Mundy (c. 1529 - 1591)
@@ -179,7 +181,9 @@ host_settings:
     malo.debian.org: mailout.debian.org
     mayer.debian.org: mailout.debian.org
     mayr.debian.org: mailout.debian.org
+    mendes.debian.org: mailout.debian.org
     merulo.debian.org: mailout.debian.org
+    monteverdi.debian.org: mailout.debian.org
     morales.debian.org: mailout.debian.org
     mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
