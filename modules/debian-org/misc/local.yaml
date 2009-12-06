@@ -151,8 +151,10 @@ host_settings:
     bartok.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
     caballero.debian.org: mailout.debian.org
+    carver.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
+    duarte.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
     finzi.debian.org: mailout.debian.org
@@ -174,10 +176,12 @@ host_settings:
     mayer.debian.org: mailout.debian.org
     mayr.debian.org: mailout.debian.org
     merulo.debian.org: mailout.debian.org
+    morricone.debian.org: mailout.debian.org
     morales.debian.org: mailout.debian.org
     mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
     paer.debian.org: mailout.debian.org
+    paganini.debian.org: mailout.debian.org
     penalosa.debian.org: mailout.debian.org
     pergolesi.debian.org: mailout.debian.org
     peri.debian.org: mailout.debian.org
@@ -185,7 +189,9 @@ host_settings:
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
+    ravel.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
+    respighi.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
     saens.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
@@ -197,11 +203,16 @@ host_settings:
     soler.debian.org: mailout.debian.org
     sperger.debian.org: mailout.debian.org
     spontini.debian.org: mailout.debian.org
+    stabile.debian.org: mailout.debian.org
     steffani.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
+    valente.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
+    vivaldi.debian.org: mailout.debian.org
     voltaire.debian.org: mailout.debian.org
+    widor.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
+    wolkenstein.debian.org: mailout.debian.org
     zee.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
   mail_port:
