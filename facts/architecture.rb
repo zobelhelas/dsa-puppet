@@ -11,3 +11,9 @@ Facter.add(:architecture) do
     end
 end
 
+Facter.add(:debarchitecture) do
+    setcode do
+        %x{/usr/bin/dpkg --print-architecture}
+    end
+end
+
