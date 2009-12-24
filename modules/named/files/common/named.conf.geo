@@ -6,6 +6,14 @@
 view "AF" {
   match-clients { AF; };
 
+  zone "volatile.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.volatile.debian.org.AF";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "security.geo.debian.org" {
     type master;
     file "/etc/bind/geodns/db.security.debian.org.AF";
@@ -49,6 +57,14 @@ view "AF" {
 };
 view "AN" {
   match-clients { AN; };
+
+  zone "volatile.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.volatile.debian.org.AN";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
 
   zone "security.geo.debian.org" {
     type master;
@@ -94,6 +110,14 @@ view "AN" {
 view "AS" {
   match-clients { AS; };
 
+  zone "volatile.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.volatile.debian.org.AS";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "security.geo.debian.org" {
     type master;
     file "/etc/bind/geodns/db.security.debian.org.AS";
@@ -137,6 +161,14 @@ view "AS" {
 };
 view "EU" {
   match-clients { EU; };
+
+  zone "volatile.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.volatile.debian.org.EU";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
 
   zone "security.geo.debian.org" {
     type master;
@@ -182,6 +214,14 @@ view "EU" {
 view "NA" {
   match-clients { NA; };
 
+  zone "volatile.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.volatile.debian.org.NA";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "security.geo.debian.org" {
     type master;
     file "/etc/bind/geodns/db.security.debian.org.NA";
@@ -225,6 +265,14 @@ view "NA" {
 };
 view "OC" {
   match-clients { OC; };
+
+  zone "volatile.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.volatile.debian.org.OC";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
 
   zone "security.geo.debian.org" {
     type master;
@@ -270,6 +318,14 @@ view "OC" {
 view "SA" {
   match-clients { SA; };
 
+  zone "volatile.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.volatile.debian.org.SA";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "security.geo.debian.org" {
     type master;
     file "/etc/bind/geodns/db.security.debian.org.SA";
@@ -313,6 +369,14 @@ view "SA" {
 };
 view "default" {
   match-clients { any; };
+
+  zone "volatile.debian.org" {
+    type master;
+    file "/etc/bind/geodns/db.volatile.debian.org";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
 
   zone "security.geo.debian.org" {
     type master;
