@@ -4,5 +4,10 @@ class named::secondary inherits named {
                      "puppet:///named/common/named.conf.debian-zones" ],
         notify  => Exec["bind9 reload"],
     }
+    file { "/etc/bind/named.conf.shared-keys":
+        mode    => 640,
+        owner   => root,
+        group   => bind,
+    }
 }
 
