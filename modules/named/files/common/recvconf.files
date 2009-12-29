@@ -57,6 +57,60 @@ file etc/bind/geodns/db.bugs.debian.org.NA
     group geodnssync
     precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail bugs.debian.org etc/bind/geodns/db.bugs.debian.org.NA
     postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org.AN
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.AN
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org.SA
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.SA
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org.OC
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.OC
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org.AS
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.AS
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org.undef
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.undef
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org.AF
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.AF
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org.EU
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.EU
+    postcommand sudo /etc/init.d/bind9 reload
+file etc/bind/geodns/db.ftp.debian.org.NA
+    perms 0644
+    user geodnssync
+    group geodnssync
+    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.NA
+    postcommand sudo /etc/init.d/bind9 reload
 file etc/bind/geodns/db.packages.debian.org.AN
     perms 0644
     user geodnssync
@@ -272,58 +326,4 @@ file etc/bind/geodns/db.www.debian.org.NA
     user geodnssync
     group geodnssync
     precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail www.debian.org etc/bind/geodns/db.www.debian.org.NA
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org.AN
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.AN
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org.SA
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.SA
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org.OC
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.OC
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org.AS
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.AS
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org.undef
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.undef
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org.AF
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.AF
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org.EU
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.EU
-    postcommand sudo /etc/init.d/bind9 reload
-file etc/bind/geodns/db.ftp.debian.org.NA
-    perms 0644
-    user geodnssync
-    group geodnssync
-    precommand /usr/sbin/named-checkzone -q -k fail -n fail -S fail -i full -m fail -M fail ftp.debian.org etc/bind/geodns/db.ftp.debian.org.NA
     postcommand sudo /etc/init.d/bind9 reload
