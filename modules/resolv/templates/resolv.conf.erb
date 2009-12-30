@@ -19,6 +19,13 @@ case hoster
     end
     nameservers += ["82.195.66.249", "217.198.242.225"]
     searchpaths << "debprivate-darmstadt.debian.org"
+  when "ftcollins" then
+    case hostname
+      when "spohr", "samosa" then
+        nameservers << "127.0.0.1"
+    end
+    nameservers += ["192.25.206.33", "192.25.206.59"]
+    searchpaths << "debprivate-ftcollins.debian.org"
 end
 
 searchpaths << "debian.org"
