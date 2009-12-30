@@ -146,7 +146,7 @@ class exim {
           ;
         "/var/log/exim4":
           mode    => 2750,
-          ensure  => directory
+          ensure  => directory,
           owner   => Debian-exim,
           group   => maillog
           ;
