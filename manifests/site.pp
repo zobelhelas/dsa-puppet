@@ -81,6 +81,6 @@ node default {
         "true":    { include hosts }
     }
     case $hoster {
-        "ubcece", "darmstadt":  { include resolv }
+        "ubcece", "darmstadt", "ftcollins":  { include resolv }
     }
 }

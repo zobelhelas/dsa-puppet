@@ -144,6 +144,12 @@ class exim {
           group   => Debian-exim,
           mode    => 640
           ;
+        "/var/log/exim4":
+          mode    => 2750,
+          ensure  => directory
+          owner   => Debian-exim,
+          group   => maillog
+          ;
     }
 
     exec { "exim4 reload":
