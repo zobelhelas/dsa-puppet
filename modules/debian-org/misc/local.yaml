@@ -107,7 +107,6 @@ host_settings:
     - merkel.debian.org
     - morricone.debian.org
     - powell.debian.org
-    - raff.debian.org
     - ravel.debian.org
     - ries.debian.org
     - rietz.debian.org
@@ -118,6 +117,7 @@ host_settings:
     - gluck.debian.org
     - kassia.debian.org
     - lobos.debian.org
+    - raff.debian.org
     - saens.debian.org
     - schein.debian.org
     - steffani.debian.org
@@ -196,6 +196,7 @@ host_settings:
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
+    raff.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
     respighi.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
