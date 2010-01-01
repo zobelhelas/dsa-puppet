@@ -75,7 +75,10 @@
 file=/etc/mtab
 file=/etc/ssh_random_seed
 file=/etc/asound.conf
+<% case hoster when "ubcece", "darmstadt", "ftcollins" then ""
+else -%>
 file=/etc/resolv.conf
+<% end -%>
 file=/etc/localtime
 file=/etc/ioctl.save
 file=/etc/passwd.backup
@@ -205,6 +208,10 @@ file=/var/log/syslog
 ##
 ## This file might be created or removed by the system sometimes.
 ##
+<% case hoster when "ubcece", "darmstadt", "ftcollins" then "" -%>
+file=/etc/resolv.conf
+<% else
+end -%>
 file=/etc/resolv.conf.pcmcia.save
 file=/etc/nologin
 file=/etc/postfix/debian.db
@@ -361,7 +368,7 @@ file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg"
 when "handel.debian.org": extrafiles="dir=8/etc/puppet"
 when "dijkstra.debian.org": extrafiles="dir=4/etc/dsa-kvm"
 when /geo[123].debian.org/: extrafiles="dir=1/etc/bind/geodns"
-when /(raff|rietz|klecker).debian.org/: extrafiles="dir=1/etc/bind
+when /(senfl|ravel|rietz|klecker).debian.org/: extrafiles="dir=1/etc/bind
 file=/etc/bind/named.conf.debian-zones"
 end
 extrafiles
