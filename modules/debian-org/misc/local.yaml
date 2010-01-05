@@ -77,11 +77,13 @@ nameinfo:
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21, 1844 - March 12, 1937)
   wieck.debian.org: Clara Josephine Wieck (September 13, 1819 - May 20, 1896)
   wolkenstein.debian.org: Oswald von Wolkenstein (1377 - August 2nd, 1445)
+  zandonai.debian.org: Riccardo Zandonai (May 30th, 1883 - June 5th, 1944)
   zelenka.debian.org: Jan Dismas Zelenka (16 October 1679 - 23 December 1745)
 footer:
   bartok.debian.org: "Documentation: gluck:/org/admin.debian.org/doc/backup.debian.org"
   lebrun.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
   schroeder.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
+  zandonai.debian.org: "Debian s390 buildd system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
   bugsmaster: rietz.debian.org
@@ -233,6 +235,7 @@ host_settings:
     voltaire.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
     zee.debian.org: mailout.debian.org
+    zandonai.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
   mail_port:
     ancina.debian.org: 2025
