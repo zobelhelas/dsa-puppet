@@ -1,0 +1,62 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<VirtualHost *:80>
+	ServerAdmin debian-admin@debian.org
+
+	ErrorLog /var/log/apache2/error.log
+	CustomLog /var/log/apache2/access.log combined
+
+	DocumentRoot /srv/www/default.debian.org/htdocs
+
+	HostnameLookups Off
+	UseCanonicalName Off
+	ServerSignature On
+<%=
+out = case fqdn
+  when "merkel.debian.org"
+  then "
+        RemoveType .php .phtml .php3 .phps
+        php_admin_flag engine off
+        <Directory /home/don/public_html/cgi>
+                SetEnv PERLLIB \"/home/don/perl/usr/share/perl5:/home/don/source/\"
+                SetEnv DEBBUGS_CONFIG_FILE \"/home/don/config_internal\"
+                SetHandler cgi-script
+                AllowOverride None
+                Options +ExecCGI
+                Order allow,deny
+                Allow from all
+        </Directory>
+"
+  when "master.debian.org" then ""
+else
+"
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+"
+end
+case fqdn
+  when "spohr.debian.org" then
+    out += "
+        Alias /debian \"/org/mirrors/ftp.debian.org/ftp\"
+"
+  when "piatti.debian.org" then
+    out += "
+       # for piuparts, RT#1218
+       Alias /debian/ \"/org/mirrors/ftp.debian.org/ftp/\"
+       <Directory \"/org/mirrors/ftp.debian.org/ftp/\">
+               Options Indexes MultiViews FollowSymLinks
+               AllowOverride None
+               Order deny,allow
+               Deny from all
+               Allow from 127.0.0.0/255.0.0.0 ::1/128 193.167.161.225/32
+       </Directory>
+"
+end
+out
+%>
+</VirtualHost>
+# vim:set syn=apache:

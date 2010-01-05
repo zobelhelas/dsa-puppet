@@ -33,7 +33,9 @@ nameinfo:
   mahler.debian.org: Gustav Mahler (7 July 1860 - 18 May 1911)
   mayr.debian.org: Johann(es) Simon Mayr (June 14, 1763 - December 2, 1845)
   merkel.debian.org: Gustav (Adolf) Merkel (November 12, 1827 - October 30, 1885)
+  mendes.debian.org: Manuel Mendes (c. 1547 - September 24, 1605)
   merulo.debian.org: Claudio Merulo (8 April 1533 - 4 May 1604)
+  monteverdi.debian.org: Claudio Giovanni Antonio Monteverdi (15 May 1567 - 29 November 1643)
   morales.debian.org: Cristóbal de Morales (c. 1500 - between September 4 and October 7, 1553)
   morricone.debian.org: Ennio Morricone (November 10, 1928 - )
   mundy.debian.org: William Mundy (c. 1529 - 1591)
@@ -54,7 +56,6 @@ nameinfo:
   rietz.debian.org: August Wilhelm Julius Rietz (December 28, 1812 - September 12, 1877)
   rore.debian.org: Cipriano de Rore (occasionally Cypriano) (1515 or 1516 - between September 11 and September 20, 1565)
   saens.debian.org: Charles-Camille Saint-Saëns  (9 October 1835 - 16 December 1921)
-  sarti.debian.org: Giuseppe Sarti (baptised December 1, 1729 - July 28, 1802)
   schein.debian.org: Johann Hermann Schein (January 20, 1586 - November 19, 1630)
   schroeder.debian.org: Hermann Schroeder (1904 - 1984)
   schumann.debian.org: Robert Alexander Schumann (8 June 1810 - 29 July 1856)
@@ -67,26 +68,25 @@ nameinfo:
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (14 November 1774 - 24 January 1851)
   stabile.debian.org: Annibale Stabile (~1535 - April 1595)
   steffani.debian.org: Agostino Steffani (25 July 1653 - 12 February 1728)
-  strauss.debian.org: Johann Baptist Strauß (October 25, 1825 - June 3, 1899)
   tartini.debian.org: Giuseppe Tartini (April 8, 1692 - February 26, 1770)
   unger.debian.org: Caroline Unger (October 28, 1803 - March 23, 1877)
   valente.debian.org: Vincenzo Valente (February 21, 1855 - September 6, 1921)
   vivaldi.debian.org: Antonio Lucio Vivaldi (March 4, 1678 - July 28, 1741)
   voltaire.debian.org: François-Marie Arouet (Voltaire) (21 November 1694 - 30 May 1778)
-  wagner.debian.org: Wilhelm Richard Wagner (22 May 1813 - 13 February 1883)
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21, 1844 - March 12, 1937)
   wieck.debian.org: Clara Josephine Wieck (September 13, 1819 - May 20, 1896)
   wolkenstein.debian.org: Oswald von Wolkenstein (1377 - August 2nd, 1445)
   zandonai.debian.org: Riccardo Zandonai (May 30th, 1883 - June 5th, 1944)
   zelenka.debian.org: Jan Dismas Zelenka (16 October 1679 - 23 December 1745)
 footer:
-  bartok.debian.org: "Documentation: gluck:/org/admin.debian.org/doc/backup.debian.org"
   lebrun.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
   schroeder.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
   zandonai.debian.org: "Debian s390 buildd system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
-  bugsmaster: rietz.debian.org
+  bugsmaster:
+    - busoni.debian.org
+    - rietz.debian.org
   bugsmx:
     - byrd.debian.org
   mailrelay:
@@ -99,49 +99,27 @@ services:
 host_settings:
   heavy_exim:
     - bellini.debian.org
+    - busoni.debian.org
     - byrd.debian.org
+    - chopin.debian.org
+    - cimarosa.debian.org
     - draghi.debian.org
     - klecker.debian.org
     - master.debian.org
     - merkel.debian.org
+    - morricone.debian.org
     - powell.debian.org
-    - raff.debian.org
+    - ravel.debian.org
     - ries.debian.org
     - rietz.debian.org
     - spohr.debian.org
-  apache2_defaultconfig:
-    - bellini.debian.org
-    - carver.debian.org
-    - cimarosa.debian.org
-    - draghi.debian.org
-    - duarte.debian.org
-    - gluck.debian.org
-    - kaufmann.debian.org
-    - klecker.debian.org
-    - liszt.debian.org
-    - lobos.debian.org
-    - piatti.debian.org
-    - raff.debian.org
-    - ravel.debian.org
-    - respighi.debian.org
-    - ries.debian.org
-    - rore.debian.org
-    - saens.debian.org
-    - samosa.debian.org
-    - schein.debian.org
-    - senfl.debian.org
-    - soler.debian.org
-    - spohr.debian.org
-    - steffani.debian.org
-    - tartini.debian.org
-    - villa.debian.org
+    - valente.debian.org
     - widor.debian.org
-    - wieck.debian.org
-    - wolkenstein.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - kassia.debian.org
     - lobos.debian.org
+    - raff.debian.org
     - saens.debian.org
     - schein.debian.org
     - steffani.debian.org
@@ -171,8 +149,6 @@ host_settings:
   squeeze:
     - fano.debian.org
     - finzi.debian.org
-  smarthost_port:
-    voltaire.debian.org: 25
   smarthost:
     agnesi.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
@@ -183,8 +159,10 @@ host_settings:
     bartok.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
     caballero.debian.org: mailout.debian.org
+    carver.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
+    duarte.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
     finzi.debian.org: mailout.debian.org
@@ -205,11 +183,14 @@ host_settings:
     malo.debian.org: mailout.debian.org
     mayer.debian.org: mailout.debian.org
     mayr.debian.org: mailout.debian.org
+    mendes.debian.org: mailout.debian.org
     merulo.debian.org: mailout.debian.org
+    monteverdi.debian.org: mailout.debian.org
     morales.debian.org: mailout.debian.org
     mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
     paer.debian.org: mailout.debian.org
+    paganini.debian.org: mailout.debian.org
     penalosa.debian.org: mailout.debian.org
     pergolesi.debian.org: mailout.debian.org
     peri.debian.org: mailout.debian.org
@@ -217,7 +198,9 @@ host_settings:
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
+    raff.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
+    respighi.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
     saens.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
@@ -229,11 +212,14 @@ host_settings:
     soler.debian.org: mailout.debian.org
     sperger.debian.org: mailout.debian.org
     spontini.debian.org: mailout.debian.org
+    stabile.debian.org: mailout.debian.org
     steffani.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
+    vivaldi.debian.org: mailout.debian.org
     voltaire.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
+    wolkenstein.debian.org: mailout.debian.org
     zee.debian.org: mailout.debian.org
     zandonai.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org

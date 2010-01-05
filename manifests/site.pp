@@ -14,11 +14,11 @@ Exec {
 }
 
 node default {
+    $localinfo = yamlinfo('*', "/etc/puppet/modules/debian-org/misc/local.yaml")
     $nodeinfo  = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
     $hoster    = whohosts($nodeinfo, "/etc/puppet/modules/debian-org/misc/hoster.yaml")
     notice("hoster for ${fqdn} is ${hoster}")
 
-    $localinfo = yamlinfo('*', "/etc/puppet/modules/debian-org/misc/local.yaml")
     $mxinfo   = allnodeinfo("mXRecord")
 
     include munin-node
@@ -34,6 +34,9 @@ node default {
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
+    }
+    case $kvmdomain {
+        "true":    { package { acpid: ensure => installed } }
     }
 
     case $mta {
@@ -54,21 +57,21 @@ node default {
 	}
     }
 
-    case extractnodeinfo($nodeinfo, 'apache2_defaultconfig') {
-         "true":  { include apache2 }
+    case $apache2 {
+         "true":  {
+              case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
+                     "true":  { include apache2::security_mirror }
+                     default: { include apache2 }
+              }
+         }
     }
 
     case extractnodeinfo($nodeinfo, 'buildd') {
          "true":  { include buildd }
     }
-    case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-         "true":  { include apache2::security_mirror }
-    }
 
-
-# maybe wait for rietz to be upgraded to lenny
     case $hostname {
-        rietz,raff,klecker: { include named::secondary }
+        rietz,klecker,ravel,senfl: { include named::secondary }
     }
 
     case $hostname {
@@ -78,6 +81,6 @@ node default {
         "true":    { include hosts }
     }
     case $hoster {
-        "ubcece", "darmstadt":  { include resolv }
+        "ubcece", "darmstadt", "ftcollins":  { include resolv }
     }
 }

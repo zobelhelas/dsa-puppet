@@ -19,6 +19,20 @@ class exim {
           mode    => 755,
           purge   => true
         ;
+        "/etc/exim4/Git":
+          ensure  => directory,
+          purge   => true,
+          force   => true,
+          recurse => true,
+          source  => "puppet:///files/empty/"
+        ;
+        "/etc/exim4/conf.d":
+          ensure  => directory,
+          purge   => true,
+          force   => true,
+          recurse => true,
+          source  => "puppet:///files/empty/"
+        ;
         "/etc/exim4/ssl":
           ensure  => directory,
           owner   => root,
@@ -78,11 +92,6 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/rbllist",
                        "puppet:///exim/common/rbllist" ]
           ;
-        "/etc/exim4/rcpthosts":
-          require => Package["exim4-daemon-heavy"],
-          source  => [ "puppet:///exim/per-host/$fqdn/rcpthosts",
-                       "puppet:///exim/common/rcpthosts" ]
-          ;
         "/etc/exim4/rhsbllist":
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/rhsbllist",
@@ -106,11 +115,6 @@ class exim {
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/logrotate-exim4-paniclog",
                        "puppet:///exim/common/logrotate-exim4-paniclog" ]
-          ;
-        "/etc/exim4/local-auto.conf":
-          require => Package["exim4-daemon-heavy"],
-          content => template("exim-local-auto.erb"),
-          notify  => Exec["exim4 reload"]
           ;
         "/etc/exim4/ssl/thishost.crt":
           require => Package["exim4-daemon-heavy"],
@@ -139,6 +143,12 @@ class exim {
           owner   => root,
           group   => Debian-exim,
           mode    => 640
+          ;
+        "/var/log/exim4":
+          mode    => 2750,
+          ensure  => directory,
+          owner   => Debian-exim,
+          group   => maillog
           ;
     }
 

@@ -62,14 +62,6 @@ class named::geodns inherits named {
                         mode    => 444,
                         ;
 
-                "/usr/share/GeoIP/GeoIPv6.dat":
-                        source  => [ "puppet:///named/per-host/$fqdn/GeoIPv6.dat",
-                                     "puppet:///named/common/GeoIPv6.dat" ],
-                        owner   => root,
-                        group   => root,
-                        mode    => 444,
-                        ;
-
                 "/etc/ssh/userkeys/geodnssync":
                         source  => [ "puppet:///named/per-host/$fqdn/authorized_keys",
                                      "puppet:///named/common/authorized_keys" ],

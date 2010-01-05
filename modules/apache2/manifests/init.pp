@@ -6,6 +6,30 @@ class apache2 {
 		"logrotate": ensure => installed;
 	}
 
+        define activate_apache_site($ensure=present, $site=$name) {
+                case $site {
+                        "": { $base = $name }
+                        default: { $base = $site }
+                }
+
+                case $ensure {
+                        present: {
+                                file { "/etc/apache2/sites-enabled/$name":
+                                         ensure => "/etc/apache2/sites-available/$base",
+                                         require => Package["apache2"],
+                                         notify => Exec["reload-apache2"];
+                                }
+                        }
+                        absent: {
+                                file { "/etc/apache2/sites-enabled/$name":
+                                         ensure => $ensure,
+                                         notify => Exec["reload-apache2"];
+                                }
+                        }
+	                default: { err ( "Unknown ensure value: '$ensure'" ) }
+                }
+        }
+
 	define enable_module($ensure=present) {
 	        case $ensure {
 	                present: {
@@ -27,6 +51,11 @@ class apache2 {
         enable_module {
                 "info":;
                 "status":;
+        }
+
+        activate_apache_site {
+                "00-default": site => "default-debian.org";
+                "000-default": ensure => absent;
         }
 
 	file {
@@ -51,8 +80,7 @@ class apache2 {
                         notify  => Exec["reload-apache2"];
 
 		"/etc/apache2/sites-available/default-debian.org":
-			source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/sites-available/default-debian.org",
-			             "puppet:///apache2/common/etc/apache2/sites-available/default-debian.org" ],
+			content => template("apache2/default-debian.org.erb"),
 			require => Package["apache2"],
                         notify  => Exec["reload-apache2"];
 

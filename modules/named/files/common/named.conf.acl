@@ -73,6 +73,7 @@ acl AS {
 	country_AE;
 	country_AF;
 	country_AM;
+	country_AP; // global region Asia/Pacific
 	country_AZ;
 	country_BD;
 	country_BH;
@@ -141,6 +142,7 @@ acl EU {
 	country_DK;
 	country_EE;
 	country_ES;
+	country_EU; // global region Europe
 	country_FI;
 	country_FO;
 	country_FR;
@@ -279,4 +281,13 @@ acl AN {
 	country_GS;
 	country_HM;
 	country_TF;
+};
+
+acl undef {
+	country_A1;
+	country_A2;
+	8.8.8.8/32; // Google DNS Server fails with GeoIP
+	8.8.4.4/32; // Google DNS Server fails with GeoIP
+	208.67.222.222/32; // OpenDNS fails with GeoIP
+	208.67.220.220/32; // OpenDNS fails with GeoIP
 };

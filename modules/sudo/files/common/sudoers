@@ -42,6 +42,7 @@ admin		agnesi=(ALL)	ALL
 # nagios
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 # with smartarray controllers
+nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller all show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[02] pd all show
@@ -77,6 +78,7 @@ nagios		bellini,cimarosa,morricone,paganini,respighi,vivaldi=(ALL)	NOPASSWD: /us
 %popcon		ALL=(popcon)	ALL
 %secretary	ALL=(secretary)	ALL
 %sectracker	ALL=(sectracker)	ALL
+%security	SECHOSTS=(mail_security)	ALL
 %snapshot	ALL=(snapshot)	ALL
 %uddadm		ALL=(udd)	ALL
 %volatile	ALL=(volatile)	ALL
@@ -102,8 +104,8 @@ pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # remote power to babylon5 in the same rack:
 joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
 # wbadm can update all buildd* users' keys on buildd.d.o
-%wbadm		raff=(root)		/usr/local/bin/update-buildd-sshkeys
 %wbadm		cimarosa=(root)		/usr/local/bin/update-buildd-sshkeys
+wbadm		cimarosa=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
 # mirror push
 dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
