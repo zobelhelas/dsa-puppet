@@ -12,6 +12,7 @@ when /geo[123].debian.org/:           ignore << %w{geoip-database libgeoip1 geoi
 when /liszt.debian.org/:              ignore << "amavisd-new"
 when /stabile.debian.org/:            ignore << "xfsprogs"
 when /(zandonai|zelenka).debian.org/: ignore << %w{zabbix-agent rrdcollect}
+when /(dijkstra|unger|luchesi|schumann).debian.org/: ignore << "qemu-kvm"
 end
 
 ignore.flatten.join("\n")
