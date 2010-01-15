@@ -25,7 +25,7 @@ case hoster
     searchpaths << "debprivate-ftcollins.debian.org"
   when "grnet" then
     nameservers += ["194.177.210.10", "194.177.210.210"]
-    searchpaths += "debprivate-grnet.debian.org"
+    searchpaths << "debprivate-grnet.debian.org"
   when "ubcece" then
     searchpaths << "debprivate-ubc.debian.org"
     nameservers += ["206.12.19.5", "137.82.1.1", "142.103.1.1" ]
