@@ -7,19 +7,11 @@ hosterkeys
 %>
 <%= localkeys = case fqdn
          when "argento.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA5q3myoIMyqv6HhAR4lxaO7OXLRkKqUlEHeCudksc7ZAVSqJAQ3ODn8zAoY34duvRUOq7xpGcl8gXWujCtcUWDZCxNsxz+iWI/3oEaZly/ZTJXtoYUjmUodV7PJ8DbokiJGUIc1s3MiGa9QYam0D28TT8jWCJFcthC7VS61GBgT8= /Users/manon/.ssh/id_rsa - Manon Goo Local Admin"
-         when "bartok.debian.org" then 
-           out = ''
-           keyinfo.keys.sort.each do |node|
-             out += '# ' + keyinfo[node][0]['hostname'].to_s + '
-command="/usr/lib/da-backup/da-backup-ssh-wrap ' + keyinfo[node][0]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + keyinfo[node][0]['ipHostNumber'].join(',') + '" ' + keyinfo[node][0]['sshRSAHostKey'].to_s + '
-
-'
-           end
-           out
          when "mahler.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1bAZGQUdVBdX5N8985OG25yYO6wybV0HmL0jeyun8qOmyi15RlkP8XiWXkvBLE98Nh9Ji2UgMZog7geT65zf+bE2crxu9LmAIbNiMgh+Yk6JFCy8ZFiKmCngHLlkWlD3Z4YTYdSxiETXkE4EB1arXi3wt9h7Iq/h7ZmpVL3njaqPGhdZmo9r+c8eZnwD77VIk+pcCB5Yqh3Nu/RaNAMr9hrHfvd62NnYRG3vcdj9aQo3Cshh8tTqzw10B8lCUKrHSbtL8aFzUrZqFilcNWs36mGVnzcLya/TM1uID9z41O47ZDOfZvLkSmGPb44Jwcdt1DK8r60OBdGoHBOa337N7w== noahm@crystalline-entity"
          when "pergolesi.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA71vh3lytStDCr6df5u2tyzk45L7i8QoNysP51+ga6+v8kwMva30zw5fUD6BHYwNfwo1UZzUtsGLE5HTxKuBlfXs+myWjqpjbF3xSpPjbxKZYiLKMpJ5CVC0Mp6f2kSQ5sSC6Ue/etlAqs9D4rgbexo00QlOtBVof+Zolr3SyR6Y/Coo4UCHeFIAf8KQmhKhYEfPsIgsm+IsnpHglqZ8krOm60Fzo/K5xwb2raoVyg73cvBpaST3VGqqlT2+iTKLHUTaWSOvIj99KV6mYBdD4V8CCs3FWrKfM7wlXwBm/LVmr406Ho0QUo1zHZckvUITHtFQW0QwHpaR717fWB5lBz0d9VlQMz2JR7WfzX+iJqTAnVljjFYJIIHBQR8Xr0Z2rkSEjpi1Ar4iPQbYswMMnBQSGhITMPysHqZb75WYg17cubUbDwpiKPCdmDc5/iNoRFOLOW7vwcBISynUweRDDgeZI7sSFydEnIVK+hrLLmI/XZe4ekhZZXQYCc/tllc9kt2qpU8EWlFs0zSnUD/Lj0WOcgiSOJ3pzQWBBN2EHpM2FfdFa+qUhReSbIrWDgqLe9pkJ2emHFDRhBT4r2f85dw9BSUSVpxpA69fYCyZprJUs214Cq+nTZCSzKFfvflJR7VdCmEu0d5Wavf740OQ4gVipQHqydQVW5m4tYDQHR/s= hb@freenet-rz.de aka holger.baust@freenet-ag.de"
          when "pescetti.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArOaT7YSol/2O0jums0gui3aaycWk8sGz1taDwtQ+UTWzVh0Xn2DGUmBMGvmUVwqY0c7mRI/hOD2BDgvuLv0OQ6guZCLEHnAD4x/bsNucEzSQVEgTywuhans5PxfAGmGWk/thsNcqAE7JjFWGNNR6nj+ZmG299SieNW1wgxCWyQaiju/996yj6YKRN9aT1crNZA+sWi4z51XjPgbX2b55NLWrgmqBX4iSD6bV3nV6LEWXlTZzxUAqJotTD3PF3PWLi5h8kQhAOvT3cG6EkkAQV0TOcZam36x5cPbBek0iDNNQXv1w4fHN6f9qQ2/R5NdF06H91aSmxY7/OZ0XKgYKdw== /home/holgi/.ssh/id_rsa"
-         when "powell.debian.org", "puccini.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApY3j8pYCpsN/PPZBU8mSdVBV7st3YNqxXp4eMVzkyKF0TwywG5A5Nj6hOquHFR/R19Kf0dfHSr2vLrjJXzH5efl+KGzGReo8rwm1vMZOrzK5lrWgzHlZTRF/CbZbQ1ov2UnCPZnmr+anH/KfJ0Easp751/neZ24oCbf7BOO2E4L8v72utsvEkXu0YRTaKqkZ+slDuDQdtisS6nH3ecnZy3JIy0NZEJFBnB0/Xz3v4Mci5kw5DCVU5jyIH/bUEYTBDQg5WH3Kuwb+SY/bwXgNmZDE4qVFCY73m6JcOWFKMWY3sBFiRRFdVHa32EdMQxdQpOns0uzG06OtGDQFlSuAlw== joerg_debian"
+         when "powell.debian.org", "puccini.debian.org", "bartok.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApY3j8pYCpsN/PPZBU8mSdVBV7st3YNqxXp4eMVzkyKF0TwywG5A5Nj6hOquHFR/R19Kf0dfHSr2vLrjJXzH5efl+KGzGReo8rwm1vMZOrzK5lrWgzHlZTRF/CbZbQ1ov2UnCPZnmr+anH/KfJ0Easp751/neZ24oCbf7BOO2E4L8v72utsvEkXu0YRTaKqkZ+slDuDQdtisS6nH3ecnZy3JIy0NZEJFBnB0/Xz3v4Mci5kw5DCVU5jyIH/bUEYTBDQg5WH3Kuwb+SY/bwXgNmZDE4qVFCY73m6JcOWFKMWY3sBFiRRFdVHa32EdMQxdQpOns0uzG06OtGDQFlSuAlw== joerg_debian
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAvii/FxkFUlSmn4rIuz1AX6B2INlxYmGo4KW9a1qfXk/foZqO8Igaz/c0nULmaC4KTmwOjzoCp1ujeWlTbQhQTTJb/yMc+SjpPCev70OwigCmyfZrpLienlCDQfPHG69QXgebydkQK7JkVKNT/mBYDeGYG7K23aCNVu9kLanL/4sDbpdPRBleRlUGV+pzgwSbtwlTyKrkPbr4LzNxkVJbkGPMzWxlALCtrH8jgfnbRqnLn36wJzuIWPuWxARr0D7kBOIQTxxH5TkmXk+XVjDDRsbKuRSOi4qKCknmIDGJyx8xEv1fErpAVgzsE6RLWCSVYoBgfaaIJsH0B4xp9ZPUKjvVbUPHM60zwYZcblsdbx5D6RJ04pihHEf58cfALoqLlHwes62aeqeTsEMmm5OK66tGroFoCmm+301i6QBNX4JrDdHODZixV945QX345Nth3kathcDCQB1jXvrXKkFRoMff6QQs+HxXlwAHsR+hkSv0YHbcptcGPZFTXpfsiyQTyPHpJOXZsYqCFz0387z4ldSH+Fmq98g1CVgQkNRF8TYHWNp1+pHnrq+gcT8hqv7JDLQ2X6joGmGBpdWkGBmSrRCVQmWmWK0BiDMxb6Z1ysAdLH6mzEwTg3gh4S0BDVmbRb5YNNVI9y5kBNcbX9c7yuiC7IOEKKV5gZOQ5Jv/0= joerg - debianla, 2010-01-15"
          when "rem.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAnHlDow0vUPDbi6OXKAkIV2zFi3xcDQAPLLmWJRY25HKvTLxkHlmXZH6CHrgx5deX4EogK6xWOvjUHdi/RD/BRU9DKFt6mepfGQvJQNeHK44S/yDrmPPWJq/bsCVu1ulOiLxGD4I2ei/4cDhWE5WypRC5Mn9+NOmNZp2kk9IL0UQChOQCXsPsVsch4wsuHns135TSzhH68X2iJK6GkqBeTvMs5DFqf2IbB4iLKASTxQITP1O3HYF4I5hVW9RGQD6i61TPAFKHkeruaMR0c4H7+f+jur9uo3URSTAidylspCST0/qg5xpDAcwDcfLItAtBuILQHyA6NSpBKEWA3zFzemJTDB3E/QEMMRInKJZFIhi08gtnETNxERG1+onss62lVCVn21SMYJQqHNW7GYmVqUlZLUKKUmTaualx0MHO8ODVJg2xzk/X0LWeE/0Nht/cg/DuqqA5DtSqXsw22kNAd+bTMnn0i+gahyCeLVswAhBVKjuLtU9SQXA4GsTxAvDd8rPRtusDI146fvPwgJCXMLStnZvs/22oXVdmMwwWbo5u5qUBqX51AjGI2i3b+JYQJrtBRnR0iNJV1VDiuRhsy48C4wUNRGX+DM78fldpKin5XMsSyEludyh9R7vFFtZMQFCqJelxfgDP5pU+jrxhFKY9rVcHTT0BqgWmpwPHkPs= rmurray@cyberhq
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAt3g97cGfOA9DnAKF6h8RlFDppPtyKfjlyvG4f+gTTYAkJVxeC8aCab4rSlhxNKho6r7OoZRj408J0/rr0INtbA4FnepQBZlvWwrV3vZRafVMq6rwXF3hh22d8iDv+g2HTDiGIlgANwaRlQP56gM9C8sF7gGw4PyaU7qG8+AAn3U= flo@paradigm
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwbRijHuvIC6cZUZwUfqLT5t/4GRvqiBBmYXkRRhwMajTOBeaR6vRx9mZ+UdTAUKno8LuMNvFoovvwXBqqwH7yMa/SHgpA0wXl+bcYUbtoRbOVQEXwX/70Yoo0HLMGwoeuddjUICYZQomLYYLlkrWt1in9g4AGzqtmyCcDrxaneGYOvwJIm4sBhhJfns3j8AK7wIAaOA5fU9azR6JofX8g7QhqVrTlww0yOTlHsqheGUnLVzqPTzcJTPLDWKs9DOZT8a+IOc1R5TS2k07IFZk4TjCodW+iLCKHdudqpS8MKOY9EtfDaANl7JeCNa0NUZRVeXX9H4jtPIJ5/naa6m1XQ== Florian.Lohoff(flo,mW-N,RSA,2048)"
@@ -40,3 +32,17 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAuWUv0xRqmnrYX/7b80HIAY9s80Qp4QRFH3DXEkuyDepr
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAqtZYwCwuLP2KZOfqdRyKbexfhcfEiwY7en7aYmY7eUxa396Nzhxv1KOl2xpatD40/TPHtU+GUMxa0PLM7Tn5j2HxZ5S/bjp2l881EWJlYUzZjL95e/PBhPM2r6/VvLTHI7dFI+2s2/LDIuRn3dKsIxFncRzZRjPrpks14wpII4UpVTwQSrBMwkweq0anUiUtw/y7s33fSQJKYu7gXkmkm7mtuF8PJnvI6j482pu34GxWGjjSs9f7ZAm2+mXviVedAsrN3E4MgK14Z6+lOIxfgWmZ2gz33u2nbJ5TCTGJYyxbkaYXXLKo8JW2GtcCZchmhw4kUzo0rfRIXI80e4FEeh3Tj2X0518xp7m/SvKa2nE/dcye2a77ruJZJ0tzHqUmXZSMT5ZdOqgIxeqLGksNFK1mPUbMsfkxbCANVLp17CIeqUtiMYfOjzCuKc3GdYe8Mp47dQx824hnfEldJw9dWH8d+ELO64UsQnEIleQt+d2ASdFK0Vc2SmG7gxcFa2OU9V8TAWx/HKhBhW5KkMKUagATYLgbqzMRfgqslJFDJxB8fQ++Xlodq20MTt2TM9L89ilKyzmG/tNawR71l8+U/sxJS6/sVVXCzHLlMEyVnYRZMBeNwiW2ZBjM+mTv300vUS7+iNUOaZasPOMJqV3d4ImgRUMcOmExMDAnHCRGS10= Peter Palfrader - debian adm key (2008-05-11)
 # sgran
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAl6d3j4CiqkNNPv328Dy0zmWE8z8+pDvyRIpMk9wi2ojEmWvfv9spgUX/hUL0h9GXOjeuAJaSD45+GuWKNM0AKaa8KCdTOrKle1lpmH6Uk/tjZZwrR8ujMN95/XNpCc3/pZBnRBKOQhZr5+Du4v0ZtLp90EkgAXC11dGxaVe05O/RV1+Tix0WtUO+sBDmirMRjbk0ADCk6ANupKypNtMhlb8HP2OZA1QzrDtCc+yb/CQIOwMFIwFXrdX4P1Jsh8QG5YrO10wu8ckxC7lN1yiwJ92ISefAihk1n1/a1kMzvbCkyO7muGb4KuLPWspeZ31YhmeSiZe36sNNPMURrIfU/n0nuTtLR1OHZ87FIyuo/fTGNMnsIUgxxKZEuHz5PzrRsCpqRvMOrk4J30tjnWtcyYJAQknW8rDfa66wlMziyzJqRDJq96NmZwWpmHH4xTtecnX2s5p27sxNjzG2BKFvGziqPb3pqkzZUnys3dIQxSXfF42VwkWjHJJkRqLidVOrnedpvMMQuu+qcTKVtsA4nYAA+b6Qm4XPLqpR/esgji/pzE+0vG+H+cx7uZlobzZxKGoIoFAir514VtBr/rETAsTwlKHRa2DvN5suOGU1lO7RYGh/cQvDDOSHcamsbBeWYDYK0pqSojus7nwdn8FfNEThfkumWJOTD9dZEF20Lu0= sgran's Debian adm key (2009-08-02)
+
+<%= machine_keys = case fqdn
+   when "bartok.debian.org" then 
+     out = ''
+     keyinfo.keys.sort.each do |node|
+       out += '# ' + keyinfo[node][0]['hostname'].to_s + '
+command="/usr/lib/da-backup/da-backup-ssh-wrap ' + keyinfo[node][0]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + keyinfo[node][0]['ipHostNumber'].join(',') + '" ' + keyinfo[node][0]['sshRSAHostKey'].to_s + '
+
+'
+     end
+     out
+   end
+machine_keys
+%>
