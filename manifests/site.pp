@@ -51,6 +51,7 @@ node default {
     case $hostname {
         spohr: {
                       include nagios::server
+                      include munin-node::master
         }
         default: {
 		      include nagios::client
