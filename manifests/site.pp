@@ -83,4 +83,7 @@ node default {
     case $hoster {
         "ubcece", "darmstadt", "ftcollins", "grnet":  { include resolv }
     }
+    case $hostname {
+	brahms: { include ferm }
+    }
 }
