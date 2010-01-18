@@ -77,7 +77,7 @@ class munin-node {
     }
     ferm::rule { "dsa-munin":
         description     => "Allow munin-node from spohr.debian.org",
-        rule            => "proto tcp dport 4949 saddr $HOST_MUNIN ACCEPT",
+        rule            => 'proto tcp dport 4949 saddr $HOST_MUNIN ACCEPT',
 	prio		=> "02"
    }
 }
