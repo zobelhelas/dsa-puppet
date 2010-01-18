@@ -4,7 +4,7 @@ class munin-node::master inherits munin-node {
 
     file {
         "/etc/munin/munin.conf":
-            content => template("munin/munin.conf.erb"),
+            content => template("munin-node/munin.conf.erb"),
             require => Package["munin"];
     }
 }
