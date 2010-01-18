@@ -58,6 +58,7 @@ nameinfo:
   rietz.debian.org: August Wilhelm Julius Rietz (December 28, 1812 - September 12, 1877)
   rore.debian.org: Cipriano de Rore (occasionally Cypriano) (1515 or 1516 - between September 11 and September 20, 1565)
   saens.debian.org: Charles-Camille Saint-Saëns  (9 October 1835 - 16 December 1921)
+  samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   schein.debian.org: Johann Hermann Schein (January 20, 1586 - November 19, 1630)
   schroeder.debian.org: Hermann Schroeder (1904 - 1984)
   schumann.debian.org: Robert Alexander Schumann (8 June 1810 - 29 July 1856)
@@ -131,6 +132,7 @@ host_settings:
     - ancina.debian.org
     - arcadelt.debian.org
     - argento.debian.org
+    - ball.debian.org
     - brahms.debian.org
     - fano.debian.org
     - finzi.debian.org
@@ -138,6 +140,7 @@ host_settings:
     - goetz.debian.org
     - lafayette.debian.org
     - malo.debian.org
+    - mayr.debian.org
     - murphy.debian.org
     - paer.debian.org
     - penalosa.debian.org
