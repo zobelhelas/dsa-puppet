@@ -4,7 +4,7 @@ class nagios {
 	}
 	ferm::rule { "dsa-nagios":
 		description     => "Allow nrpe from spohr.debian.org",
-		rule            => "proto tcp dport 5666 saddr $HOST_NAGIOS ACCEPT"
+		rule            => "proto tcp dport 5666 saddr $HOST_NAGIOS ACCEPT",
 		prio		=> "03"
 	}
 }
