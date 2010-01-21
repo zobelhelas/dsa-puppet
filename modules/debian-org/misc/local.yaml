@@ -137,6 +137,8 @@ host_settings:
     - arcadelt.debian.org
     - argento.debian.org
     - ball.debian.org
+    - barber.debian.org
+    - biber.debian.org
     - brahms.debian.org
     - fano.debian.org
     - finzi.debian.org
