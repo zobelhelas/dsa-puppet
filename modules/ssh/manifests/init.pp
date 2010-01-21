@@ -37,4 +37,5 @@ class ssh {
             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
             refreshonly => true,
         }
+
 }

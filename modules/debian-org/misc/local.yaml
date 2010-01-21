@@ -24,6 +24,7 @@ nameinfo:
   gluck.debian.org: Christoph Willibald Ritter von Gluck (2 July 1714 - 15 November 1787)
   goedel.debian.org: Kurt Gödel (April 28, 1906 - January 14, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7, 1840 - December 3, 1876)
+  grieg.debian.org: Edvard Hagerup Grieg (15 June 1843 - 4 September 1907)
   handel.debian.org: Georg Friedrich Händel (23 February 1685 - 14 April 1759)
   kassia.debian.org: Kassia (between 805 and 810 - bef. 867)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
@@ -34,6 +35,7 @@ nameinfo:
   luchesi.debian.org: Andrea Luca Luchesi (May 23, 1741 - March 21, 1801)
   mahler.debian.org: Gustav Mahler (7 July 1860 - 18 May 1911)
   mayr.debian.org: Johann(es) Simon Mayr (June 14, 1763 - December 2, 1845)
+  mayer.debian.org: John Mayer (October 28, 1930 - March 9, 2004)
   merkel.debian.org: Gustav (Adolf) Merkel (November 12, 1827 - October 30, 1885)
   mendes.debian.org: Manuel Mendes (c. 1547 - September 24, 1605)
   merulo.debian.org: Claudio Merulo (8 April 1533 - 4 May 1604)
@@ -54,11 +56,13 @@ nameinfo:
   puccini.debian.org: Giacomo Antonio Domenico Michele Secondo Maria Puccini (December 22, 1858 - November 29, 1924)
   raff.debian.org: Joseph Joachim Raff (May 27, 1822 - June 24 or June 25, 1882)
   ravel.debian.org: Joseph-Maurice Ravel (March 7, 1875 - December 28, 1937)
+  rautavaara.debian.org: Einojuhani Rautavaara (born October 9, 1928)
   respighi.debian.org: Ottorino Respighi (July 9, 1879 - April 18, 1936)
   ries.debian.org: Franz Ries (1846 - 1932)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28, 1812 - September 12, 1877)
   rore.debian.org: Cipriano de Rore (occasionally Cypriano) (1515 or 1516 - between September 11 and September 20, 1565)
   saens.debian.org: Charles-Camille Saint-Saëns  (9 October 1835 - 16 December 1921)
+  samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   schein.debian.org: Johann Hermann Schein (January 20, 1586 - November 19, 1630)
   schroeder.debian.org: Hermann Schroeder (1904 - 1984)
   schumann.debian.org: Robert Alexander Schumann (8 June 1810 - 29 July 1856)
@@ -132,6 +136,7 @@ host_settings:
     - ancina.debian.org
     - arcadelt.debian.org
     - argento.debian.org
+    - ball.debian.org
     - brahms.debian.org
     - fano.debian.org
     - finzi.debian.org
@@ -139,6 +144,7 @@ host_settings:
     - goetz.debian.org
     - lafayette.debian.org
     - malo.debian.org
+    - mayr.debian.org
     - murphy.debian.org
     - paer.debian.org
     - penalosa.debian.org
@@ -160,6 +166,16 @@ host_settings:
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
     bartok.debian.org: mailout.debian.org
+    blade0.debian.org: mailout.debian.org
+    blade1.debian.org: mailout.debian.org
+    blade2.debian.org: mailout.debian.org
+    blade3.debian.org: mailout.debian.org
+    blade4.debian.org: mailout.debian.org
+    blade5.debian.org: mailout.debian.org
+    blade6.debian.org: mailout.debian.org
+    blade7.debian.org: mailout.debian.org
+    blade8.debian.org: mailout.debian.org
+    blade9.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
     caballero.debian.org: mailout.debian.org
     carver.debian.org: mailout.debian.org
@@ -175,6 +191,7 @@ host_settings:
     gluck.debian.org: mailout.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
+    grieg.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
@@ -202,6 +219,7 @@ host_settings:
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
     raff.debian.org: mailout.debian.org
+    rautavaara.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
     respighi.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
@@ -223,8 +241,8 @@ host_settings:
     voltaire.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
     wolkenstein.debian.org: mailout.debian.org
-    zee.debian.org: mailout.debian.org
     zandonai.debian.org: mailout.debian.org
+    zee.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
   mail_port:
     ancina.debian.org: 2025
