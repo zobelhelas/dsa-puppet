@@ -1,6 +1,6 @@
-define activate_munin_check($ensure=present, $script=$name) {
+define activate_munin_check($ensure=present, $script = none) {
     case $script {
-        "": { $link = $name }
+        none: { $link = $name }
         default: { $link = $script }
     }
 
