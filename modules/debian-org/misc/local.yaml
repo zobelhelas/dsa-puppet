@@ -15,6 +15,7 @@ nameinfo:
   byrd.debian.org: William Byrd (1543 - 1623)
   carver.debian.org: Robert Carver (ca.1485 - ca.1570)
   chopin.debian.org: Frédéric Chopin (1 March 1810 - 17 October 1849)
+  cilea.debian.org: Francesco Cilèa (1866 - 1950)
   cimarosa.debian.org: Domenico Cimarosa (17 December 1749 - 11 January 1801)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - 16 January  1700)
@@ -28,18 +29,20 @@ nameinfo:
   goetz.debian.org: Hermann Gustav Goetz (December 7, 1840 - December 3, 1876)
   grieg.debian.org: Edvard Hagerup Grieg (15 June 1843 - 4 September 1907)
   handel.debian.org: Georg Friedrich Händel (23 February 1685 - 14 April 1759)
+  holter.debian.org: Iver Holter (13 December 1850 - 1941)
   kassia.debian.org: Kassia (between 805 and 810 - bef. 867)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11, 2000)
+  krenek.debian.org: Ernst Krenek (1900 - 1991)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24, 1756 - May 14, 1791)
   liszt.debian.org: Franz Liszt (October 22, 1811 - July 31, 1886)
   luchesi.debian.org: Andrea Luca Luchesi (May 23, 1741 - March 21, 1801)
   mahler.debian.org: Gustav Mahler (7 July 1860 - 18 May 1911)
-  mayr.debian.org: Johann(es) Simon Mayr (June 14, 1763 - December 2, 1845)
   mayer.debian.org: John Mayer (October 28, 1930 - March 9, 2004)
-  merkel.debian.org: Gustav (Adolf) Merkel (November 12, 1827 - October 30, 1885)
+  mayr.debian.org: Johann(es) Simon Mayr (June 14, 1763 - December 2, 1845)
   mendes.debian.org: Manuel Mendes (c. 1547 - September 24, 1605)
+  merkel.debian.org: Gustav (Adolf) Merkel (November 12, 1827 - October 30, 1885)
   merulo.debian.org: Claudio Merulo (8 April 1533 - 4 May 1604)
   monteverdi.debian.org: Claudio Giovanni Antonio Monteverdi (15 May 1567 - 29 November 1643)
   morales.debian.org: Cristóbal de Morales (c. 1500 - between September 4 and October 7, 1553)
@@ -57,14 +60,15 @@ nameinfo:
   praetorius.debian.org: Hieronymus Praetorius (10 August 1560 - 27 January 1629)
   puccini.debian.org: Giacomo Antonio Domenico Michele Secondo Maria Puccini (December 22, 1858 - November 29, 1924)
   raff.debian.org: Joseph Joachim Raff (May 27, 1822 - June 24 or June 25, 1882)
-  ravel.debian.org: Joseph-Maurice Ravel (March 7, 1875 - December 28, 1937)
   rautavaara.debian.org: Einojuhani Rautavaara (born October 9, 1928)
+  ravel.debian.org: Joseph-Maurice Ravel (March 7, 1875 - December 28, 1937)
   respighi.debian.org: Ottorino Respighi (July 9, 1879 - April 18, 1936)
   ries.debian.org: Franz Ries (1846 - 1932)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28, 1812 - September 12, 1877)
   rore.debian.org: Cipriano de Rore (occasionally Cypriano) (1515 or 1516 - between September 11 and September 20, 1565)
   saens.debian.org: Charles-Camille Saint-Saëns  (9 October 1835 - 16 December 1921)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
+  scelsi.debian.org: Giacinto Scelsi (1915 - 1982)
   schein.debian.org: Johann Hermann Schein (January 20, 1586 - November 19, 1630)
   schroeder.debian.org: Hermann Schroeder (1904 - 1984)
   schumann.debian.org: Robert Alexander Schumann (8 June 1810 - 29 July 1856)
@@ -80,6 +84,7 @@ nameinfo:
   tartini.debian.org: Giuseppe Tartini (April 8, 1692 - February 26, 1770)
   unger.debian.org: Caroline Unger (October 28, 1803 - March 23, 1877)
   valente.debian.org: Vincenzo Valente (February 21, 1855 - September 6, 1921)
+  vitry.debian.org: Philippe de Vitry (1291 - 1361)
   vivaldi.debian.org: Antonio Lucio Vivaldi (March 4, 1678 - July 28, 1741)
   voltaire.debian.org: François-Marie Arouet (Voltaire) (21 November 1694 - 30 May 1778)
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21, 1844 - March 12, 1937)
@@ -173,22 +178,13 @@ host_settings:
     ancina.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
-    bartok.debian.org: mailout.debian.org
     barber.debian.org: mailout.debian.org
+    bartok.debian.org: mailout.debian.org
     biber.debian.org: mailout.debian.org
-    blade0.debian.org: mailout.debian.org
-    blade1.debian.org: mailout.debian.org
-    blade2.debian.org: mailout.debian.org
-    blade3.debian.org: mailout.debian.org
-    blade4.debian.org: mailout.debian.org
-    blade5.debian.org: mailout.debian.org
-    blade6.debian.org: mailout.debian.org
-    blade7.debian.org: mailout.debian.org
-    blade8.debian.org: mailout.debian.org
-    blade9.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
     caballero.debian.org: mailout.debian.org
     carver.debian.org: mailout.debian.org
+    cilea.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
@@ -205,7 +201,9 @@ host_settings:
     goetz.debian.org: mailout.debian.org
     grieg.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
+    holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
+    krenek.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
@@ -221,6 +219,7 @@ host_settings:
     morales.debian.org: mailout.debian.org
     mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
+    orff.debian.org: mailout.debian.org
     paer.debian.org: mailout.debian.org
     paganini.debian.org: mailout.debian.org
     penalosa.debian.org: mailout.debian.org
@@ -236,6 +235,7 @@ host_settings:
     respighi.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
     saens.debian.org: mailout.debian.org
+    scelsi.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
     schumann.debian.org: mailout.debian.org
@@ -249,6 +249,7 @@ host_settings:
     steffani.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
+    vitry.debian.org: mailout.debian.org
     vivaldi.debian.org: mailout.debian.org
     voltaire.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
