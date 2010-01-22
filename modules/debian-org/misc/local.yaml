@@ -143,6 +143,8 @@ host_settings:
     - biber.debian.org
     - brahms.debian.org
     - fano.debian.org
+    - fasch.debian.org
+    - field.debian.org
     - finzi.debian.org
     - goedel.debian.org
     - goetz.debian.org
