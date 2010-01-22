@@ -174,6 +174,8 @@ host_settings:
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
     bartok.debian.org: mailout.debian.org
+    barber.debian.org: mailout.debian.org
+    biber.debian.org: mailout.debian.org
     blade0.debian.org: mailout.debian.org
     blade1.debian.org: mailout.debian.org
     blade2.debian.org: mailout.debian.org
@@ -192,6 +194,8 @@ host_settings:
     duarte.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
+    fasch.debian.org: mailout.debian.org
+    field.debian.org: mailout.debian.org
     finzi.debian.org: mailout.debian.org
     geo1.debian.org: mailout.debian.org
     geo2.debian.org: mailout.debian.org
