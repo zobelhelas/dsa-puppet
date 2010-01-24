@@ -154,7 +154,9 @@ host_settings:
     - goedel.debian.org
     - goetz.debian.org
     - lafayette.debian.org
+    - lebrun.debian.org
     - malo.debian.org
+    - mayer.debian.org
     - mayr.debian.org
     - murphy.debian.org
     - paer.debian.org
@@ -162,11 +164,10 @@ host_settings:
     - peri.debian.org
     - praetorius.debian.org
     - puccini.debian.org
-    - lebrun.debian.org
-    - spontini.debian.org
-    - schroeder.debian.org
-    - mayer.debian.org
+    - purcell.debian.org
     - rem.debian.org
+    - schroeder.debian.org
+    - spontini.debian.org
     - zandonai.debian.org
   squeeze:
     - fano.debian.org
