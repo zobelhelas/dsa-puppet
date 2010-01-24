@@ -12,7 +12,7 @@ Facter.add("mptcontroller") do
 	end
 end
 
-Facter.add("3warecontroller") do
+Facter.add("ThreeWarecontroller") do
 	confine :kernel => :linux
 	setcode do
 		is3w = "false"

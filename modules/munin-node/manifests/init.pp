@@ -1,13 +1,13 @@
-define activate_munin_check($ensure=present, $script=$name) {
+define activate_munin_check($ensure=present, $script = none) {
     case $script {
-        "": { $base = $name }
-        default: { $base = $script }
+        none: { $link = $name }
+        default: { $link = $script }
     }
 
     case $ensure {
         present: {
             file { "/etc/munin/plugins/$name":
-                     ensure => "/usr/share/munin/plugins/$base",
+                     ensure => "/usr/share/munin/plugins/$link",
                      notify => Exec["munin-node restart"];
             }
         }

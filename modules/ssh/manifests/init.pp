@@ -37,11 +37,5 @@ class ssh {
             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
             refreshonly => true,
         }
-        ferm::rule { "dsa-ssh":
-        	description     => "Allow SSH",
-        	rule            => "proto tcp dport ssh ACCEPT",
-		domain		=> "(ip ip6)",
-		prio		=> "01"
-        }
 
 }
