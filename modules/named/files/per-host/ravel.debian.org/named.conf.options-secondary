@@ -1,0 +1,32 @@
+//
+// THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+// USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+//
+
+acl debian-ubcece {
+	127.0.0.0/8;
+	137.82.84.64/27;
+	206.12.19.0/24;
+	192.168.2.0/24;
+};
+
+options {
+	directory "/var/cache/bind";
+
+	allow-recursion { localnets; 192.25.206.33;  };
+	allow-query { localnets; 192.25.206.33;  };
+
+	auth-nxdomain no;
+	listen-on-v6 { any; };
+};
+
+logging {
+
+	channel queries {
+		file "/var/log/bind9/named-query.log" versions 4 size 40m;
+		print-time yes;
+		print-category yes;
+	};
+	category queries { queries; };
+	category lame-servers { null; };
+};

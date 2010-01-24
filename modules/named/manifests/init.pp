@@ -17,6 +17,14 @@ class named {
                         refreshonly => true,
                         ;
         }
+        file {
+                "/var/log/bind9":
+                        ensure  => directory,
+                        owner   => bind,
+                        group   => bind,
+                        mode    => 775,
+                        ;
+        }
 }
 
 # vim: set fdm=marker ts=8 sw=8 et:
