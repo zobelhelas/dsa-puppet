@@ -75,9 +75,5 @@ class munin-node {
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
     }
-    ferm::rule { "dsa-munin":
-        description     => "Allow munin-node from spohr.debian.org",
-        rule            => "proto tcp dport 4949 saddr $HOST_MUNIN ACCEPT"
-   }
 }
 
