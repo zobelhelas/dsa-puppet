@@ -13,8 +13,8 @@ acl debian-ubcece {
 options {
 	directory "/var/cache/bind";
 
-	allow-recursion { localnets; 192.25.206.33;  };
-	allow-query { localnets; 192.25.206.33;  };
+	allow-recursion { localnets; debian-ubcece; 192.25.206.33;  };
+	allow-query { localnets; debian-ubcece; 192.25.206.33;  };
 
 	auth-nxdomain no;
 	listen-on-v6 { any; };
