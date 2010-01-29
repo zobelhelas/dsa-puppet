@@ -167,6 +167,7 @@ host_settings:
     - rem.debian.org
     - schroeder.debian.org
     - spontini.debian.org
+    - voltaire.debian.org
     - zandonai.debian.org
   squeeze:
     - fano.debian.org
