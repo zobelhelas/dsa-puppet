@@ -232,6 +232,7 @@ host_settings:
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
+    purcell.debian.org: mailout.debian.org
     raff.debian.org: mailout.debian.org
     rautavaara.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
