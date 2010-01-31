@@ -140,6 +140,7 @@ host_settings:
     - villa.debian.org
     - wieck.debian.org
   buildd:
+    - alkman.debian.org
     - ancina.debian.org
     - arcadelt.debian.org
     - argento.debian.org
@@ -159,7 +160,6 @@ host_settings:
     - mayer.debian.org
     - mayr.debian.org
     - murphy.debian.org
-    - paer.debian.org
     - penalosa.debian.org
     - peri.debian.org
     - praetorius.debian.org
@@ -168,6 +168,7 @@ host_settings:
     - rem.debian.org
     - schroeder.debian.org
     - spontini.debian.org
+    - voltaire.debian.org
     - zandonai.debian.org
   squeeze:
     - fano.debian.org
@@ -178,6 +179,7 @@ host_settings:
     agnesi.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
     albeniz.debian.org: mailout.debian.org
+    alkman.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
@@ -232,6 +234,7 @@ host_settings:
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
+    purcell.debian.org: mailout.debian.org
     raff.debian.org: mailout.debian.org
     rautavaara.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org

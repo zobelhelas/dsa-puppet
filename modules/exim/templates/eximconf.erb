@@ -1383,7 +1383,7 @@ bugs:
   no_more
   local_parts = ${if match\
                   {$local_part}\
-                  {\N^(\d+)(\d{2})(?:-(?:(?:submit|maintonly|quiet|forwarded|done|close|request|submitter)|(?:unsubscribe|ignore|(?:sub(?:scribe|help|yes|approve|reject))|unsubyes|bounce|probe|approve|reject|setlistyes|setlistsilentyes).*))?$\N}\
+                  {\N^(\d+)(\d{2})(?:-(?:(?:submit|maintonly|quiet|forwarded|done|close|request|submitter)|(?:unsubscribe|ignore|help|(?:sub(?:scribe|help|yes|approve|reject))|unsubyes|bounce|probe|approve|reject|setlistyes|setlistsilentyes).*))?$\N}\
                {${if exists{/org/bugs.debian.org/spool/db-h/$2/$1$2.summary}\
 	       {$local_part}fail}}fail}
 '
