@@ -140,6 +140,7 @@ host_settings:
     - villa.debian.org
     - wieck.debian.org
   buildd:
+    - alkman.debian.org
     - ancina.debian.org
     - arcadelt.debian.org
     - argento.debian.org
@@ -178,6 +179,7 @@ host_settings:
     agnesi.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
     albeniz.debian.org: mailout.debian.org
+    alkman.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
