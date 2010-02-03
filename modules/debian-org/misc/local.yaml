@@ -149,6 +149,7 @@ host_settings:
     - barber.debian.org
     - biber.debian.org
     - brahms.debian.org
+    - caballero.debian.org
     - fano.debian.org
     - fasch.debian.org
     - field.debian.org
