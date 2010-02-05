@@ -53,3 +53,11 @@ Facter.add("spamd") do
 		FileTest.exist?("/usr/sbin/spamd")
 	end
 end
+Facter.add("php5") do
+	setcode do
+		FileTest.exist?("/usr/lib/apache2/modules/libphp5.so") or
+                FileTest.exist?("/usr/bin/php5") or
+                FileTest.exist?("/usr/bin/php5-cgi") or
+                FileTest.exist?("/usr/lib/cgi-bin/php5")
+	end
+end
