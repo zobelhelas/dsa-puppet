@@ -56,8 +56,13 @@ end
 Facter.add("php5") do
 	setcode do
 		FileTest.exist?("/usr/lib/apache2/modules/libphp5.so") or
-                FileTest.exist?("/usr/bin/php5") or
-                FileTest.exist?("/usr/bin/php5-cgi") or
-                FileTest.exist?("/usr/lib/cgi-bin/php5")
+		FileTest.exist?("/usr/bin/php5") or
+		FileTest.exist?("/usr/bin/php5-cgi") or
+		FileTest.exist?("/usr/lib/cgi-bin/php5")
+	end
+end
+Facter.add("php5suhosin") do
+	setcode do
+		FileTest.exist?("/usr/lib/php5/20060613/suhosin.so")
 	end
 end
