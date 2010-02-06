@@ -83,6 +83,7 @@ nameinfo:
   stabile.debian.org: Annibale Stabile (~1535 - April 1595)
   steffani.debian.org: Agostino Steffani (25 July 1653 - 12 February 1728)
   tartini.debian.org: Giuseppe Tartini (April 8, 1692 - February 26, 1770)
+  tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7, 1840 - November 6, 1893)
   unger.debian.org: Caroline Unger (October 28, 1803 - March 23, 1877)
   valente.debian.org: Vincenzo Valente (February 21, 1855 - September 6, 1921)
   vitry.debian.org: Philippe de Vitry (1291 - 1361)
@@ -257,6 +258,7 @@ host_settings:
     spontini.debian.org: mailout.debian.org
     stabile.debian.org: mailout.debian.org
     steffani.debian.org: mailout.debian.org
+    tchaikovsky.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
     vitry.debian.org: mailout.debian.org
