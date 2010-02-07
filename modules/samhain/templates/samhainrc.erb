@@ -67,6 +67,9 @@
 # RedefIgnoreNone=(no default)
 # RedefUser0=(no default)
 # RedefUser1=(no default)
+<% if nodeinfo['buildd'] -%>
+IgnoreMissing=/etc/lvm/archive/vg.*.vg
+<% end -%>
 
 [Attributes]
 ##
