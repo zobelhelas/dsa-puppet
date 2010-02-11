@@ -54,7 +54,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[02] show status
 nagios		master=(ALL)	NOPASSWD: /usr/sbin/mpt-status -s
 nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
 nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
-nagios		bellini,cimarosa,morricone,paganini,respighi,vivaldi=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
+nagios		bellini,cimarosa,morricone,paganini,respighi,vivaldi,beethoven=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
 
 # groups and their role accounts
 %buildd		ALL=(buildd)	ALL
