@@ -135,7 +135,7 @@ file=/etc/nagios/obsolete-packages-ignore.d
 file=/etc/bind/geodns
 <%= extradir=""
 case fqdn 
-when "spohr.debian.org", "tchaikovsky.debian.org": extradir="file=/etc/nagios3/puppetconf.d
+when "tchaikovsky.debian.org": extradir="file=/etc/nagios3/puppetconf.d
 file=/etc/puppet"
 else extradir="file=/etc/puppet"
 end
@@ -362,7 +362,7 @@ file=/etc/cron.d/dsa-puppet-stuff
 file=/etc/cron.d/dsa-buildd
 <%= extrafiles=""
 case fqdn 
-when "spohr.debian.org", "tchaikovsky.debian.org": extrafiles="file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
+when "tchaikovsky.debian.org": extrafiles="file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
 file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
 file=/etc/nagios3/puppetconf.d/auto-services.cfg
 file=/etc/nagios3/puppetconf.d/auto-dependencies.cfg

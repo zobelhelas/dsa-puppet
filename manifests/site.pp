@@ -54,7 +54,7 @@ node default {
         }
     }
     case $hostname {
-        spohr,tchaikovsky: {
+        tchaikovsky: {
                       include nagios::server
         }
         default: {
