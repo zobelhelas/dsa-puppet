@@ -76,7 +76,7 @@ node default {
     }
 
     case $hostname {
-        rietz,klecker,ravel,senfl,orff: { include named::secondary }
+        klecker,ravel,senfl,orff: { include named::secondary }
     }
 
     case $hostname {
