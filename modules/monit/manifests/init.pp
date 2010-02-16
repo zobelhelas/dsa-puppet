@@ -11,7 +11,7 @@ class monit {
           ;
 
         "/etc/monit/monitrc":
-          source  => "puppet:///monit/monitrc",
+          content => template("monit/monitrc.erb"),
           require => Package["monit"],
           notify  => Exec["monit restart"],
           mode    => 400
@@ -40,7 +40,7 @@ class monit {
           ;
 
         "/etc/default/monit":
-          source  => "puppet:///monit/default",
+          content => template("monit/default.erb"),
           require => Package["monit"],
           notify  => Exec["monit restart"]
           ;

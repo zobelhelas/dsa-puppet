@@ -21,7 +21,10 @@
 ## Start monit in the background (run as a daemon) and check services at 
 ## 2-minute intervals.
 #
-# set daemon  120
+<% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
+set daemon 300
+<% else %>
+<% end %>
 #
 #
 ## Set syslog logging with the 'daemon' facility. If the FACILITY option is
