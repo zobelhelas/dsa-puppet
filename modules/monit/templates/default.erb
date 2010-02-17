@@ -10,7 +10,10 @@
 
 # You must set this variable to for monit to start
 startup=1
+<% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
+<% else %>
 
 # To change the intervals which monit should run uncomment
 # and change this variable.
 CHECK_INTERVALS=300
+<% end %>
