@@ -17,6 +17,7 @@ define set_alternatives($linkto) {
 
 
 class debian-org {
+
    package { "userdir-ldap": ensure => installed;
              "zsh": ensure => installed;
              "cron": ensure => installed;

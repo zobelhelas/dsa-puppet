@@ -156,4 +156,8 @@ class exim {
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
     }
+    ferm::rule { "dsa-exim":
+            description     => "Allow smtp access",
+            rule            => "proto tcp mod state state (NEW) dport (25) ACCEPT"
+    }
 }

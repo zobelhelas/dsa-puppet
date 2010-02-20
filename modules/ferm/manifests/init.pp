@@ -1,28 +1,25 @@
 class ferm {
-	define ferm_rule($domain="ip", $chain="INPUT", $rule, $description="", $prio="00") {
+	define rule($domain="ip", $chain="INPUT", $rule, $description="", $prio="00") {
 	        file { "/etc/ferm/dsa.d/${prio}_${name}":
 	                ensure  => present,
 	                owner   => root,
 	                group   => root,
-	                mode    => 0600,
+	                mode    => 0400,
 	                content => template("ferm/ferm-rule.erb"),
+                        notify  => Exec["ferm restart"],
 	        }
 	}
 
-        package { ferm: ensure => installed }
-
         file { 
+                "/etc/ferm": 
+                        ensure => directory;
                 "/etc/ferm/dsa.d": 
-                        ensure => directory,
-                        require => Package["ferm"];
-                "/etc/ferm/dsa.d/me.conf":
-                        content => template("ferm/me.conf.erb"),
-                        require => Package["ferm"],
-                        notify  => Exec["ferm restart"];
+                        ensure => directory;
         }
 
         exec { "ferm restart":
-                path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+                command     => "/bin/true",
                 refreshonly => true,
         }
+
 }
