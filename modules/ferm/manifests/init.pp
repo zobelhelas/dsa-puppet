@@ -18,6 +18,10 @@ class ferm {
                 "/etc/ferm/conf.d": 
                         ensure => directory,
                         require => Package["ferm"];
+                "/etc/ferm/ferm.conf":
+                        source  => "puppet:///ferm/ferm.conf",
+                        require => Package["ferm"],
+                        notify  => Exec["ferm restart"];
                 "/etc/ferm/conf.d/me.conf":
                         content => template("ferm/me.conf.erb"),
                         require => Package["ferm"],
