@@ -27,11 +27,15 @@ class ferm {
                         content => template("ferm/me.conf.erb"),
                         require => Package["ferm"],
                         notify  => Exec["ferm restart"];
+                "/etc/ferm/conf.d/defs.conf":
+                        source  => "puppet:///ferm/defs.conf",
+                        require => Package["ferm"],
+                        notify  => Exec["ferm restart"];
         }
 
         ferm::rule { "dsa-ssh":
                 description     => "Allow SSH from DSA",
-                rule            => "proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr (\$SSH_SOURCES) ACCEPT; }"
+                rule            => "domain (ip ip6) proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr (\$SSH_SOURCES) ACCEPT; }"
         }
 
         exec { "ferm restart":

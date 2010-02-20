@@ -9,11 +9,11 @@
 sshallowed = []
 
 case hostname
-  when 'logtest01' then sshallowed << [ '91.103.132.25', '91.103.132.49' ]
+  when 'logtest01' then sshallowed << [ '$DSA_IPS' ]
 end
 
 if sshallowed.length == 0
-  sshallowed << '0.0.0.0'
+  sshallowed = [ '0.0.0.0' ]
 end
 
 sshallowed.join(' ')
