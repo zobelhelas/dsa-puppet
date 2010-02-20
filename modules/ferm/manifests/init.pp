@@ -1,5 +1,5 @@
 class ferm {
-	define ferm_rule($domain="ip", $chain="INPUT", $rule, $description="", $prio="00") {
+	define rule($domain="ip", $chain="INPUT", $rule, $description="", $prio="00") {
 	        file { "/etc/ferm/dsa.d/${prio}_${name}":
 	                ensure  => present,
 	                owner   => root,
@@ -15,12 +15,21 @@ class ferm {
                 "/etc/ferm/dsa.d": 
                         ensure => directory,
                         require => Package["ferm"];
-                "/etc/ferm/dsa.d/me.conf":
+                "/etc/ferm/conf.d": 
+                        ensure => directory,
+                        require => Package["ferm"];
+                "/etc/ferm/conf.d/me.conf":
                         content => template("ferm/me.conf.erb"),
                         require => Package["ferm"],
                         notify  => Exec["ferm restart"];
         }
 
+        ferm::rule { "dsa-ssh":
+                description     => "Allow SSH from DSA",
+                rule            => "proto tcp dport ssh ACCEPT"
+        }
+
+        ferm_rule(
         exec { "ferm restart":
                 path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
                 refreshonly => true,
