@@ -17,6 +17,24 @@ define set_alternatives($linkto) {
 
 
 class debian-org {
+   ferm::rule { "dsa-ssh":
+           description     => "Allow SSH from DSA",
+           rule            => "proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr (\$SSH_SOURCES) ACCEPT; }"
+   }
+   ferm::rule { "dsa-ssh-v6":
+           description     => "Allow SSH from DSA",
+           domain          => "ip6",
+           rule            => "proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr (\$SSH_V6_SOURCES) ACCEPT; }"
+   }
+   ferm::rule { "dsa-munin":
+           description     => "Allow munin from munin master",
+           rule            => "proto tcp mod state state (NEW) dport (munin) @subchain 'munin' { saddr (\$HOST_MUNIN) ACCEPT; }"
+   }
+   ferm::rule { "dsa-nagios":
+           description     => "Allow nrpe from nagios master",
+           rule            => "proto tcp mod state state (NEW) dport (5666) @subchain 'nagios' { saddr (\$HOST_NAGIOS) ACCEPT; }"
+   }
+
    package { "userdir-ldap": ensure => installed;
              "zsh": ensure => installed;
              "cron": ensure => installed;
