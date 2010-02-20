@@ -11,7 +11,7 @@ class ferm {
 	}
 
         # realize (i.e. enable) all @ferm::rule virtual resources
-        Rule <| |>
+        Ferm::Rule <| |>
 
         package { ferm: ensure => installed }
 
