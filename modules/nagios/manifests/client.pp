@@ -46,7 +46,7 @@ class nagios::client inherits nagios {
 		refreshonly => true,
 	}
         ferm::rule { "dsa-nagios":
-                domain          => (ip ip6),
+                domain          => "(ip ip6)",
                 description     => "Allow nrpe from nagios master",
                 rule            => "proto tcp mod state state (NEW) dport (5666) @subchain 'nagios' { saddr (\$HOST_NAGIOS) ACCEPT; }"
         }
