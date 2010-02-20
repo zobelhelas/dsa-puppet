@@ -5,7 +5,7 @@ class ssh {
         }
 
         case $hostname {
-                bartok: {
+                bartok, beethoven: {
                     $keyinfo = allnodeinfo("sshRSAHostKey", "ipHostNumber")
                 }
         }

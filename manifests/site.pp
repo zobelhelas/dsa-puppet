@@ -54,7 +54,7 @@ node default {
         }
     }
     case $hostname {
-        spohr,tchaikovsky: {
+        tchaikovsky: {
                       include nagios::server
         }
         default: {
@@ -76,7 +76,7 @@ node default {
     }
 
     case $hostname {
-        rietz,klecker,ravel,senfl,orff: { include named::secondary }
+        klecker,ravel,senfl,orff: { include named::secondary }
     }
 
     case $hostname {

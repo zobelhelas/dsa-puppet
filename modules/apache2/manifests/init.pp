@@ -6,6 +6,20 @@ class apache2 {
 		"logrotate": ensure => installed;
 	}
 
+        case $php5 {
+                "true": { package {
+				"php5-suhosin": ensure => installed;
+			}
+                          file { "/etc/php5/conf.d/suhosin.ini":
+					source  => [ "puppet:///apache2/per-host/$fqdn/etc/php5/conf.d/suhosin.ini",
+					             "puppet:///apache2/common/etc/php5/conf.d/suhosin.ini" ],
+					require => Package["apache2", "php5-suhosin"],
+                                        notify  => Exec["force-reload-apache2"];
+			}
+		}
+	}
+
+
         define activate_apache_site($ensure=present, $site=$name) {
                 case $site {
                         "": { $base = $name }

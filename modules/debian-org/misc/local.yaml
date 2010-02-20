@@ -187,6 +187,7 @@ host_settings:
     ancina.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
+    ball.debian.org: mailout.debian.org
     barber.debian.org: mailout.debian.org
     bartok.debian.org: mailout.debian.org
     beethoven.debian.org: mailout.debian.org
@@ -273,7 +274,7 @@ host_settings:
     ancina.debian.org: 2025
     kassia.debian.org: 587
     piatti.debian.org: 2025
-  reservedaddrs:
-    ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"
+#  reservedaddrs:
+#    ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"
 ---
 

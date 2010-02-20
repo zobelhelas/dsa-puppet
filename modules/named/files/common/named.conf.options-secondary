@@ -11,6 +11,9 @@ options {
 
 	auth-nxdomain no;
 	listen-on-v6 { any; };
+
+	dnssec-enable yes;
+	dnssec-validation yes;
 };
 
 logging {
