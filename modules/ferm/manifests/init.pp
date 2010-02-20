@@ -4,7 +4,7 @@ class ferm {
 	                ensure  => present,
 	                owner   => root,
 	                group   => root,
-	                mode    => 0600,
+	                mode    => 0400,
 	                content => template("ferm/ferm-rule.erb"),
                         notify  => Exec["ferm restart"],
 	        }
