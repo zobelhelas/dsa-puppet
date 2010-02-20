@@ -10,15 +10,41 @@ class ferm {
 	        }
 	}
 
+        # realize (i.e. enable) all @ferm::rule virtual resources
+        Rule <| |>
+
+        package { ferm: ensure => installed }
+
         file { 
-                "/etc/ferm": 
-                        ensure => directory;
-                "/etc/ferm/dsa.d": 
-                        ensure => directory;
+                "/etc/ferm/dsa.d":
+                        ensure => directory,
+                        purge   => true,
+                        force   => true,
+                        recurse => true,
+                        source  => "puppet:///files/empty/",
+                        require => Package["ferm"];
+                "/etc/ferm/conf.d":
+                        ensure => directory,
+                        require => Package["ferm"];
+                "/etc/ferm/ferm.conf":
+                        source  => "puppet:///ferm/ferm.conf",
+                        require => Package["ferm"],
+                        mode    => 0400,
+                        notify  => Exec["ferm restart"];
+                "/etc/ferm/conf.d/me.conf":
+                        content => template("ferm/me.conf.erb"),
+                        require => Package["ferm"],
+                        mode    => 0400,
+                        notify  => Exec["ferm restart"];
+                "/etc/ferm/conf.d/defs.conf":
+                        source  => "puppet:///ferm/defs.conf",
+                        require => Package["ferm"],
+                        mode    => 0400,
+                        notify  => Exec["ferm restart"];
         }
 
         exec { "ferm restart":
-                command     => "/bin/true",
+                command     => "/etc/init.d/ferm restart",
                 refreshonly => true,
         }
 

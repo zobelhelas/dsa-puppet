@@ -25,7 +25,7 @@ class ntp {
 		path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
 		refreshonly => true,
 	}
-        ferm::rule { "dsa-ntp":
+        @ferm::rule { "dsa-ntp":
                 domain          => "(ip ip6)",
                 description     => "Allow ntp access",
                 rule            => "proto udp mod state state (NEW) dport (123) ACCEPT"

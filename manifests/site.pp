@@ -21,7 +21,6 @@ node default {
 
     $mxinfo   = allnodeinfo("mXRecord")
 
-    include ferm
     include munin-node
     include sudo
     include ssh
@@ -81,7 +80,7 @@ node default {
     }
 
     case $hostname {
-        logtest01: { include ferm::real }
+        logtest01: { include ferm }
     }
     case $hostname {
         geo1,geo2,geo3: { include named::geodns }
