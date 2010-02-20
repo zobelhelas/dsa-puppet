@@ -6,7 +6,7 @@ class apache2 {
 		"logrotate": ensure => installed;
 	}
 
-        case $php {
+        case $php5 {
                 "true": { package {
 				"php5-suhosin": ensure => installed;
 			}
