@@ -7,8 +7,9 @@ class apache2 {
 	}
 
         case $php {
-		package {
-			"php5-suhosin": ensure => installed;
+                "true": { package {
+				"php5-suhosin": ensure => installed;
+			}
 		}
 	}
 
