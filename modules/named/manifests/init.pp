@@ -25,6 +25,10 @@ class named {
                         mode    => 775,
                         ;
         }
+        ferm::rule { "dsa-bind":
+                description     => "Allow nameserver access",
+                rule            => "proto (udp tcp) mod state state (NEW) dport (53) ACCEPT"
+        }
 }
 
 # vim: set fdm=marker ts=8 sw=8 et:

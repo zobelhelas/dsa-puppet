@@ -129,4 +129,8 @@ class apache2 {
                command => "/etc/init.d/apache2 force-reload",
                refreshonly => true,
 	}
+        ferm::rule { "dsa-apache":
+                description     => "Allow web access",
+                rule            => "proto tcp mod state state (NEW) dport (80) ACCEPT"
+        }
 }
