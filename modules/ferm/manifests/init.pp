@@ -29,7 +29,6 @@ class ferm {
                 rule            => "proto tcp dport ssh ACCEPT"
         }
 
-        ferm_rule(
         exec { "ferm restart":
                 path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
                 refreshonly => true,
