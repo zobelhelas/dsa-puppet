@@ -38,7 +38,7 @@ class ferm::real {
                 rule            => "proto tcp mod state state (NEW) dport (5666) @subchain 'nagios' { saddr (\$HOST_NAGIOS) ACCEPT; }"
         }
 
-        exec { "ferm restart":
+        Exec["ferm restart"] {
                 path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
                 refreshonly => true,
         }
