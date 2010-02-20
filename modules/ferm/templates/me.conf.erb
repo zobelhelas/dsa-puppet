@@ -4,9 +4,10 @@
 ##
 
 
-@def $SSH_SOURCES = <%=
-sshallowed = case hostname
-  when 'logtest01' then '0.0.0.0/0'
+@def $SSH_SOURCES = (<%=
+sshallowed = []
+case hostname
+  when 'logtest01' then sshallowed << '0.0.0.0/0'
 end
-sshallowed
-%>
+sshallowed.join(' ')
+%>);
