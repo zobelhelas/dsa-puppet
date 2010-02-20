@@ -30,7 +30,7 @@ class ferm {
 
         ferm::rule { "dsa-ssh":
                 description     => "Allow SSH from DSA",
-                rule            => "proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr ($MY_SSH_ACCEPT_HOSTS) ACCEPT; }
+                rule            => "proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr ($MY_SSH_ACCEPT_HOSTS) ACCEPT; }"
         }
 
         exec { "ferm restart":
