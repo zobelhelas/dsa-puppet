@@ -24,7 +24,7 @@ class ferm::real inherits ferm {
         }
 
         Exec["ferm restart"] {
-                path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+                command     => "/etc/init.d/ferm restart",
                 refreshonly => true,
         }
 }
