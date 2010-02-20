@@ -7,7 +7,7 @@
 @def $SSH_SOURCES = (<%=
 sshallowed = []
 case hostname
-  when 'logtest01' then sshallowed << '0.0.0.0/0'
+  when 'logtest01' then sshallowed << [ '91.103.132.25', '91.103.132.49' ]
 end
 sshallowed.join(' ')
 %>);
