@@ -42,6 +42,14 @@ class ferm {
                 domain          => "ip6",
                 rule            => "proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr (\$SSH_V6_SOURCES) ACCEPT; }"
         }
+        ferm::rule { "dsa-munin":
+                description     => "Allow munin from munin master",
+                rule            => "proto tcp mod state state (NEW) dport (munin) @subchain 'munin' { saddr (\$HOST_MUNIN) ACCEPT; }"
+        }
+        ferm::rule { "dsa-nagios":
+                description     => "Allow nrpe from nagios master",
+                rule            => "proto tcp mod state state (NEW) dport (5666) @subchain 'nagios' { saddr (\$HOST_NAGIOS) ACCEPT; }"
+        }
 
         exec { "ferm restart":
                 path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
