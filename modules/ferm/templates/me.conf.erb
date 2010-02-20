@@ -5,7 +5,7 @@
 
 
 @def $SSH_SOURCES = <%
-ssh_allowed = case nodename
+ssh_allowed = case hostname
   when 'logtest01' then '0.0.0.0/0'
 end
 ssh_allowed
