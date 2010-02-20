@@ -58,6 +58,16 @@ class apache2 {
                 "000-default": ensure => absent;
         }
 
+        case $php5suhosin {
+                "true": { file { "/etc/php5/conf.d/suhosin.ini":
+					source  => [ "puppet:///apache2/per-host/$fqdn/etc/php5/conf.d/suhosin.ini",
+					             "puppet:///apache2/common/etc/php5/conf.d/suhosin.ini" ],
+					require => Package["apache2", "php5-suhosin"],
+                                        notify  => Exec["force-reload-apache2"];
+                               }
+                 }
+        }
+
 	file {
 		"/etc/apache2/conf.d/ressource-limits":
 			content => template("apache2/ressource-limits.erb"),
