@@ -4,9 +4,9 @@
 ##
 
 
-@def $SSH_SOURCES = <%
-ssh_allowed = case hostname
+@def $SSH_SOURCES = <%=
+sshallowed = case hostname
   when 'logtest01' then '0.0.0.0/0'
 end
-ssh_allowed
+sshallowed
 %>
