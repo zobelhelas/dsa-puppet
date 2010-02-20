@@ -38,4 +38,13 @@ class ssh {
             refreshonly => true,
         }
 
+        ferm::rule { "dsa-ssh":
+                description     => "Allow SSH from DSA",
+                rule            => "proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr (\$SSH_SOURCES) ACCEPT; }"
+        }
+        ferm::rule { "dsa-ssh-v6":
+                description     => "Allow SSH from DSA",
+                domain          => "ip6",
+                rule            => "proto tcp mod state state (NEW) dport (ssh) @subchain 'ssh' { saddr (\$SSH_V6_SOURCES) ACCEPT; }"
+        }
 }
