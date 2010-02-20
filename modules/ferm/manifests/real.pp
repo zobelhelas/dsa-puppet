@@ -1,4 +1,4 @@
-class ferm::real {
+class ferm::real inherits ferm {
 
         package { ferm: ensure => installed }
 
