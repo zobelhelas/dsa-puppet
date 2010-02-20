@@ -25,7 +25,7 @@ class named {
                         mode    => 775,
                         ;
         }
-        ferm::rule { "dsa-bind":
+        @ferm::rule { "dsa-bind":
                 domain          => "(ip ip6)",
                 description     => "Allow nameserver access",
                 rule            => "proto (udp tcp) mod state state (NEW) dport (53) ACCEPT"
