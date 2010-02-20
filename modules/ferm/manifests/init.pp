@@ -21,7 +21,6 @@ class ferm {
                         purge   => true,
                         force   => true,
                         recurse => true,
-                        source  => "puppet:///files/empty/",
                         require => Package["ferm"];
                 "/etc/ferm/conf.d":
                         ensure => directory,
