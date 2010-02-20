@@ -18,3 +18,18 @@ end
 
 sshallowed.join(' ')
 %>);
+
+@def $SSH_V6_SOURCES = (<%=
+
+sshallowed = []
+
+case hostname
+  when 'logtest01' then sshallowed << [ '$DSA_V6_IPS' ]
+end
+
+if sshallowed.length == 0
+  sshallowed = [ ':::' ]
+end
+
+sshallowed.join(' ')
+%>);
