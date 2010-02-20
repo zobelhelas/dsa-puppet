@@ -6,6 +6,13 @@ class apache2 {
 		"logrotate": ensure => installed;
 	}
 
+        case $php {
+		package {
+			"php5-suhosin": ensure => installed;
+		}
+	}
+
+
         define activate_apache_site($ensure=present, $site=$name) {
                 case $site {
                         "": { $base = $name }
