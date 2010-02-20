@@ -75,9 +75,10 @@ class munin-node {
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
     }
-   ferm::rule { "dsa-munin":
-           description     => "Allow munin from munin master",
-           rule            => "proto tcp mod state state (NEW) dport (munin) @subchain 'munin' { saddr (\$HOST_MUNIN) ACCEPT; }"
-   }
+    ferm::rule { "dsa-munin":
+            domain          => (ip ip6),
+            description     => "Allow munin from munin master",
+            rule            => "proto tcp mod state state (NEW) dport (munin) @subchain 'munin' { saddr (\$HOST_MUNIN) ACCEPT; }"
+    }
 }
 

@@ -130,6 +130,7 @@ class apache2 {
                refreshonly => true,
 	}
         ferm::rule { "dsa-apache":
+                domain          => (ip ip6),
                 description     => "Allow web access",
                 rule            => "proto tcp mod state state (NEW) dport (80) ACCEPT"
         }
