@@ -43,7 +43,7 @@ str = ''
 localinfo.keys.sort.each do |node|
    if localinfo[node]['muninmaster']
       keyinfo[node][0]['ipHostNumber'].each do |ip|
-         str += "allow " + ip.split('.').join('\.') + "$\n"
+         str += "allow ^" + ip.split('.').join('\.') + "$\n"
       end
    end
 end
