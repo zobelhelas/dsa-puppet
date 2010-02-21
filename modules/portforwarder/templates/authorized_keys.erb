@@ -7,7 +7,7 @@ config.each_pair do |sourcehost, services|
 		sshkey = nil
 		remote_ip = keyinfo[sourcehost][0]['ipHostNumber'].join(',')
 		forward_to_port = service['target_port']
-		local_bind = 127.0.0.2
+		local_bind = '127.0.0.2'
 
 		lines << "# from #{sourcehost} on local port #{service['source_bind_port']}"
 		if remote_ip.nil? or forward_to_port.nil? or local_bind.nil?
