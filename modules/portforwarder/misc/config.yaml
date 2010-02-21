@@ -2,7 +2,7 @@
 
 # from host:port to host:port
 master.debian.org:
-  - source_bind_port: 5442
+  - source_bind_port: 5441
     target_host: samosa.debian.org
     target_port: 5441
 
