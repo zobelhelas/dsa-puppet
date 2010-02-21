@@ -18,9 +18,9 @@
 @def $HOST_NAGIOS = (<%=
   nagii = []
   localinfo.keys.sort.each do |node|
-      if localinfo[node]['nagiosmaster'] == "true"
+      if localinfo[node]['nagiosmaster']
             nagii << keyinfo[node][0]['ipHostNumber']
-              end
+      end
   end
 
   nagii.join(' ')
@@ -29,9 +29,9 @@
 @def $HOST_MUNIN  = (<%=
   munins = []
   localinfo.keys.sort.each do |node|
-      if localinfo[node]['muninmaster'] == "true"
+      if localinfo[node]['muninmaster']
             munins << keyinfo[node][0]['ipHostNumber']
-              end
+      end
   end
 
   munins.join(' ')
