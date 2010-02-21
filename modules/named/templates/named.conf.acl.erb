@@ -8,7 +8,9 @@ acl Nagios {
   str = ''
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster']
-            str += "\t" + keyinfo[node][0]['ipHostNumber'] + "/32;\n"
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+              str += "\t" + ip + "/32;\n"
+          end
       end
   end
   str
