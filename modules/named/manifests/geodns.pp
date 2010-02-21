@@ -4,6 +4,9 @@ class named::geodns inherits named {
         }
 
         file {
+                "/tmp/test":
+                        content => template("named/class-test.erb")
+                        ;
                 "/etc/apt/sources.list.d/geoip.list":
                         content => template("debian-org/etc/apt/sources.list.d/geoip.list.erb"),
                         notify  => Exec["apt-get update"],
