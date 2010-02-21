@@ -105,6 +105,8 @@ services:
     - rietz.debian.org
   bugsmx:
     - byrd.debian.org
+  dbmaster:
+    - draghi.debian.org
   mailrelay:
     - draghi.debian.org
     - spohr.debian.org
