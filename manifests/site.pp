@@ -82,7 +82,7 @@ node default {
     }
 
     case $hostname {
-        logtest01: { include ferm }
+        logtest01,geo1: { include ferm }
     }
     case $hostname {
         geo1,geo2,geo3: { include named::geodns }
