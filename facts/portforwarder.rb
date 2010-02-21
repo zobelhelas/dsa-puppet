@@ -1,7 +1,7 @@
 begin
     require 'etc'
 
-    Facter.add("portforwarder-key") do
+    Facter.add("portforwarder_key") do
         setcode do
             key = nil
             keyfile = '/home/portforwarder/.ssh/id_rsa.pub'
@@ -12,7 +12,7 @@ begin
         end
     end
 
-    Facter.add("portforwarder-user-exists") do
+    Facter.add("portforwarder_user_exists") do
         setcode do
             result = false
             begin
