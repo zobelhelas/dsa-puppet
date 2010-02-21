@@ -1,5 +1,9 @@
 --- 
 
+# TODO: if we ever want to forward more than one port between two hosts then
+# we will have to come up with a wrapper script that picks the right target
+# port on the remote instead of just encoding it in authkeys.
+
 # from host:port to host:port
 master.debian.org:
   - source_bind_port: 5441
