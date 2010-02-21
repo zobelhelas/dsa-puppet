@@ -11,8 +11,11 @@ acl Nagios {
             nagii << keyinfo[node][0]['ipHostNumber'] + '/32'
       end
   end
-
-  nagii.join(";\n\t")
+  str = ''
+  nagii.each do |nag|
+    str += "\t" + nag + "/32;\n"
+  end
+  str
 %>;
 
 };
