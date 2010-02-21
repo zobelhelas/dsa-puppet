@@ -5,8 +5,7 @@ class named::secondary inherits named {
         notify  => Exec["bind9 reload"],
     }
     file { "/etc/bind/named.conf.options":
-        source  => [ "puppet:///named/per-host/$fqdn/named.conf.options-secondary",
-                     "puppet:///named/common/named.conf.options-secondary" ],
+        content => template("named/named.conf.options.erb"),
         notify  => Exec["bind9 reload"],
     }
     file { "/etc/bind/named.conf.shared-keys":

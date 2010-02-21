@@ -60,8 +60,7 @@ class munin-node {
 
     file {
         "/etc/munin/munin-node.conf":
-            source  => [ "puppet:///munin-node/per-host/$fqdn/munin-node.conf",
-                         "puppet:///munin-node/common/munin-node.conf" ],
+            content => template("munin-node/munin-node.conf.erb"),
             require => Package["munin-node"],
             notify  => Exec["munin-node restart"];
 

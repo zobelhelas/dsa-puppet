@@ -1,0 +1,35 @@
+<%=
+def getportforwarderkey(host)
+	key = nil
+	begin
+		facts = YAML.load(File.open("/var/lib/puppet/yaml/facts/#{host}.yaml").read)
+		return facts.values['portforwarder_key']
+	rescue Exception => e
+	end
+	return key
+end
+
+
+lines = []
+config = YAML.load(File.open('/etc/puppet/modules/portforwarder/misc/config.yaml').read)
+config.each_pair do |sourcehost, services|
+	##lines << "# sourcehost is #{sourcehost}"
+	services.each do |service|
+		##lines << "# targethost is #{service['target_host']}, my hostname #{hostname}, fqdn is #{fqdn}"
+		next if service['target_host'] != fqdn
+
+		sshkey = getportforwarderkey(sourcehost)
+		remote_ip = keyinfo[sourcehost][0]['ipHostNumber'].join(',')
+		forward_to_port = service['target_port']
+		local_bind = '127.0.0.2'
+
+		lines << "# from #{sourcehost} on local port #{service['source_bind_port']}"
+		if sshkey.nil? or remote_ip.nil? or forward_to_port.nil? or local_bind.nil?
+			lines << "# insufficient config values"
+		else
+			lines << "from=\"#{remote_ip}\",command=\"/bin/nc -s #{local_bind} 127.0.0.1 #{forward_to_port}\",no-pty,no-port-forwarding,no-X11-forwarding,no-agent-forwarding #{sshkey}"
+		end
+	end
+end
+lines.join("\n")
+%>
