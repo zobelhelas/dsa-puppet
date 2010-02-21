@@ -5,18 +5,14 @@
 
 acl Nagios {
 	<%=
-  nagii = []
+  str = ''
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster']
-            nagii << keyinfo[node][0]['ipHostNumber']
+            str += "\t" + keyinfo[node][0]['ipHostNumber'] + "/32;\n"
       end
   end
-  str = ''
-  nagii.each do |nag|
-    str += "\t" + nag + "/32;\n"
-  end
   str
-%>;
+%>
 
 };
 
