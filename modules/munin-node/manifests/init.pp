@@ -76,12 +76,12 @@ class munin-node {
     }
     @ferm::rule { "dsa-munin-v4":
             description     => "Allow munin from munin master",
-            rule            => "proto tcp mod state state (NEW) dport (munin) @subchain 'munin' { saddr (\$HOST_MUNIN_V4) ACCEPT; }"
+            rule            => "proto tcp mod state state (NEW) dport (munin) @subchain 'munin' { saddr (\$HOST_MUNIN_V4 \$HOST_NAGIOS_V4) ACCEPT; }"
     }
     @ferm::rule { "dsa-munin-v6":
             description     => "Allow munin from munin master",
             domain          => "ip6",
-            rule            => "proto tcp mod state state (NEW) dport (munin) @subchain 'munin' { saddr (\$HOST_MUNIN_V6) ACCEPT; }"
+            rule            => "proto tcp mod state state (NEW) dport (munin) @subchain 'munin' { saddr (\$HOST_MUNIN_V6 \$HOST_NAGIOS_V6) ACCEPT; }"
     }
 }
 
