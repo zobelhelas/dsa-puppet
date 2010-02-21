@@ -14,7 +14,7 @@ template = 'service @@TARGET_HOST@@@@TARGET_PORT@@
         group           = portforwarder
         instances       = 10
         server          = /usr/bin/ssh
-        server_args     = -o PreferredAuthentications=publickey -o EscapeChar=none -C @@TARGET_HOST@@ : nothing
+        server_args     = -o PreferredAuthentications=publickey -o EscapeChar=none -C @@TARGET_HOST@@ forward-to @@TARGET_PORT@@
         cps             = 0 0
 }
 '
