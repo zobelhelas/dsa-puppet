@@ -32,7 +32,7 @@ if config[fqdn]
 		else
 			p = template.clone
 			p.gsub!('@@TARGET_HOST@@', target_host)
-			p.gsub!('@@TARGET_PORT@@', target_port)
+			p.gsub!('@@TARGET_PORT@@', target_port.to_s)
 			p.gsub!('@@LOCLA_BIND@@', local_bind)
 			lines << p
 		end
