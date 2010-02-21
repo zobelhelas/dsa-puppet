@@ -6,7 +6,7 @@
 <%=
 ournag = []
 localinfo.keys.sort.each do |node|
-  if localinfo[node]['nagiosmaster'] == "true"
+  if localinfo[node]['nagiosmaster']
     ournag << keyinfo[node][0]['ipHostNumber']
   end
 end
