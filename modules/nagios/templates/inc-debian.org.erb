@@ -4,14 +4,12 @@
 ##
 
 <%=
-ournag = []
+nagii = []
 localinfo.keys.sort.each do |node|
   if localinfo[node]['nagiosmaster']
-    ournag << keyinfo[node][0]['ipHostNumber']
+    nagii << keyinfo[node][0]['ipHostNumber']
   end
 end
-
-nagii = ournag
 
 case fqdn when
   'mundy.debian.org', 'penalosa.debian.org', 'caballero.debian.org', 'peri.debian.org' then
