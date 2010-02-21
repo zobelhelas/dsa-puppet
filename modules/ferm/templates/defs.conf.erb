@@ -15,8 +15,27 @@
  proto (tcp udp) mod state state (NEW) dport $port ACCEPT;
 }
 
-@def $HOST_MUNIN  = (192.25.206.33);
-@def $HOST_NAGIOS = (206.12.19.118);
+@def $HOST_NAGIOS = (<%=
+  nagii = []
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['nagiosmaster'] == "true"
+            nagii << keyinfo[node][0]['ipHostNumber']
+              end
+  end
+
+  nagii.join(' ')
+%>);
+
+@def $HOST_MUNIN  = (<%=
+  munins = []
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['muninmaster'] == "true"
+            munins << keyinfo[node][0]['ipHostNumber']
+              end
+  end
+
+  munins.join(' ')
+%>);
 
 @def $sgran   = (91.103.132.24/29);
 @def $weasel  = ();

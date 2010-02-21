@@ -37,7 +37,7 @@ class ferm {
                         mode    => 0400,
                         notify  => Exec["ferm restart"];
                 "/etc/ferm/conf.d/defs.conf":
-                        source  => "puppet:///ferm/defs.conf",
+                        content => template("ferm/defs.conf.erb"),
                         require => Package["ferm"],
                         mode    => 0400,
                         notify  => Exec["ferm restart"];

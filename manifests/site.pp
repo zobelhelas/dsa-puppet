@@ -48,13 +48,14 @@ node default {
         }
     }
 
-    case $hostname {
-        spohr: {
+    case extractnodeinfo($nodeinfo, 'muninmaster') {
+        "true": {
                       include munin-node::master
         }
     }
-    case $hostname {
-        tchaikovsky: {
+
+    case extractnodeinfo($nodeinfo, 'nagiosmaster') {
+        "true": {
                       include nagios::server
         }
         default: {

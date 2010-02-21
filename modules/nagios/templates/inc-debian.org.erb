@@ -4,7 +4,14 @@
 ##
 
 <%=
-nagii = [ '206.12.19.118', '192.25.206.33', '82.195.75.106' ]
+ournag = []
+localinfo.keys.sort.each do |node|
+  if localinfo[node]['nagiosmaster'] == "true"
+    ournag << keyinfo[node][0]['ipHostNumber']
+  end
+end
+
+nagii = ournag
 
 case fqdn when
   'mundy.debian.org', 'penalosa.debian.org', 'caballero.debian.org', 'peri.debian.org' then
