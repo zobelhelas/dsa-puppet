@@ -17,16 +17,16 @@ acl Nagios {
 };
 
 options {
-        directory "/var/cache/bind";
+	directory "/var/cache/bind";
 
-        auth-nxdomain no;    # conform to RFC1035
-        listen-on-v6 { any; };
+	auth-nxdomain no;    # conform to RFC1035
+	listen-on-v6 { any; };
 
-        allow-transfer { none; };
-        allow-update { none; };
-<%= if classes.include?('named::geodns') -%>
-        blackhole { 192.168.0.0/16; 10.0.0.0/8; 172.16.0.0/12; };
-<%= end -%>
+	allow-transfer { none; };
+	allow-update { none; };
+<% if classes.include?("named::geodns") -%>
+	blackhole { 192.168.0.0/16; 10.0.0.0/8; 172.16.0.0/12; };
+<% end -%>
 
 <%=
   allowed='Nagios; '
@@ -34,26 +34,26 @@ options {
     allowed += 'localnets; '
   end
 
-  str =  "allow-recursion { " + allowed + " };\n"
-  str += "allow-query { " + allowed + " };\n"
+  str =  "\tallow-recursion { " + allowed + " };\n"
+  str += "\tallow-query { " + allowed + " };\n"
 
   str
 -%>
 
-<%= if classes.include?('named::secondary') -%>
+<% if classes.include?('named::secondary') -%>
 	dnssec-enable yes;
 	dnssec-validation yes;
-<%= end -%>
+<% end -%>
 };
 
 logging {
 
 	channel queries {
-<%= if classes.include?('named::geodns') -%>
+<% if classes.include?('named::geodns') -%>
 		file "/var/log/bind9/geoip-query.log" versions 4 size 40m;
-<%= else -%>
+<% else -%>
 		file "/var/log/bind9/named-query.log" versions 4 size 40m;
-<%= end -%>
+<% end -%>
 		print-time yes;
 		print-category yes;
 	};
@@ -61,3 +61,4 @@ logging {
 	category lame-servers { null; };
 };
 
+ 
