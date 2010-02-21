@@ -2,7 +2,9 @@
 lines = []
 config = YAML.load(File.open('/etc/puppet/modules/portforwarder/misc/config.yaml').read)
 config.each_pair do |sourcehost, services|
+	lines << "# sourcehost is #{sourcehost}"
 	services.each do |service|
+		lines << "# targethost is #{service['target_host']}, my hostname #{hostname}"
 		next if service['target_host'] != hostname
 
 		sshkey = nil
