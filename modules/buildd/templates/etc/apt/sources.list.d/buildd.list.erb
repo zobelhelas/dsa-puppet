@@ -4,3 +4,6 @@
 ##
 
 deb https://buildd.debian.org/apt/ lenny main
+<% if hostname == "alkman" -%>
+deb https://buildd.debian.org/apt/ lenny-proposed main
+<% end %>
