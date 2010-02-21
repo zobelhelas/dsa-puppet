@@ -93,4 +93,7 @@ node default {
     case $hoster {
         "ubcece", "darmstadt", "ftcollins", "grnet":  { include resolv }
     }
+    case $portforwarder_user_exists {
+        "true":    { include portforwarder }
+    }
 }
