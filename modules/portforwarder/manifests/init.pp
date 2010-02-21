@@ -6,7 +6,7 @@ class portforwarder {
             content => template("portforwarder/authorized_keys.erb"),
             mode    => 444,
             ;
-        "/etc/xined.d":
+        "/etc/xinetd.d":
             ensure  => directory,
             owner   => root,
             group   => root,
