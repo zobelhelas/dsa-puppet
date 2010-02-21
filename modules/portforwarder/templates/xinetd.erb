@@ -1,0 +1,42 @@
+<%=
+lines = []
+
+template = 'service @@TARGET_HOST@@@@TARGET_PORT@@
+{
+        protocol        = tcp
+        port            = @@LOCAL_BIND@@
+        type            = UNLISTED
+
+        bind            = 127.0.0.1
+        socket_type     = stream
+        wait            = no
+        user            = portforwarder
+        group           = portforwarder
+        instances       = 10
+        server          = /usr/bin/ssh
+        server_args     = -o PreferredAuthentications=publickey -o EscapeChar=none -C @@TARGET_HOST@@ : nothing
+        cps             = 0 0
+}
+'
+
+config = YAML.load(File.open('/etc/puppet/modules/portforwarder/misc/config.yaml').read)
+if config[fqdn]
+	config[fdqn].each do |service|
+		target_port = service['target_port']
+		target_host = service['target_host']
+		local_bind = service['source_bind_port']
+
+		lines << "# from #{sourcehost} on local port #{service['source_bind_port']}"
+		if target_port.nil? or target_host.nil? or local_bind.nil?
+			lines << "# insufficient config values"
+		else
+			p = template.clone
+			p.gsub!('@@TARGET_HOST@@', target_host)
+			p.gsub!('@@TARGET_PORT@@', target_port)
+			p.gsub!('@@LOCLA_BIND@@', local_bind)
+			lines << p
+		end
+	end
+end
+lines.join("\n")
+%>

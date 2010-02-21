@@ -12,10 +12,10 @@ class portforwarder {
             group   => root,
             mode    => 755,
             ;
-        #"/etc/xinetd.d/dsa-portforwader":
-        #    content => template("portforwarder/xinetd.erb"),
-        #    notify  => Exec["xinetd reload"]
-        #    ;
+        "/etc/xinetd.d/dsa-portforwader":
+            content => template("portforwarder/xinetd.erb"),
+            notify  => Exec["xinetd reload"]
+            ;
     }
 
     exec {
