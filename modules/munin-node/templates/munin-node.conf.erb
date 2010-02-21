@@ -38,5 +38,14 @@ ignore_file \.rpm(save|new)$
 # doesn't understand CIDR-style network notation.  You may repeat
 # the allow line as many times as you'd like
 
-allow ^192\.25\.206\.57$
-allow ^192\.25\.206\.33$
+<%=
+str = ''
+localinfo.keys.sort.each do |node|
+   if localinfo[node]['muninmaster']
+      keyinfo[node][0]['ipHostNumber'].each do |ip|
+         str += "allow ^" + ip.split('.').join('\.') + "$\n"
+      end
+   end
+end
+str
+-%>

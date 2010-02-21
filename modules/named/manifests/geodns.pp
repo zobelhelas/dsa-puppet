@@ -17,15 +17,15 @@ class named::geodns inherits named {
                         group   => root,
                         ;
                 "/etc/bind/named.conf.acl":
-                        content => template("named/named.conf.acl.erb"),
+                        source  => [ "puppet:///named/per-host/$fqdn/named.conf.acl",
+                                     "puppet:///named/common/named.conf.acl" ],
                         require => Package["bind9"],
                         notify  => Exec["bind9 restart"],
                         owner   => root,
                         group   => root,
                         ;
                 "/etc/bind/named.conf.options":
-                        source  => [ "puppet:///named/per-host/$fqdn/named.conf.options",
-                                     "puppet:///named/common/named.conf.options" ],
+                        content => template("named/named.conf.options.erb"),
                         require => Package["bind9"],
                         notify  => Exec["bind9 restart"],
                         owner   => root,

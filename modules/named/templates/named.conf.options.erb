@@ -1,0 +1,64 @@
+//
+// THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+// USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+//
+
+acl Nagios {
+<%=
+  str = ''
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['nagiosmaster']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+              str += "\t" + ip + "/32;\n"
+          end
+      end
+  end
+  str-%>
+};
+
+options {
+	directory "/var/cache/bind";
+
+	auth-nxdomain no;    # conform to RFC1035
+	listen-on-v6 { any; };
+
+	allow-transfer { none; };
+	allow-update { none; };
+<% if classes.include?("named::geodns") -%>
+	blackhole { 192.168.0.0/16; 10.0.0.0/8; 172.16.0.0/12; };
+<% end -%>
+
+<%=
+  allowed='Nagios; '
+  if classes.include?('named::secondary')
+    allowed += 'localnets; '
+  end
+
+  str =  "\tallow-recursion { " + allowed + " };\n"
+  str += "\tallow-query { " + allowed + " };\n"
+
+  str
+-%>
+
+<% if classes.include?('named::secondary') -%>
+	dnssec-enable yes;
+	dnssec-validation yes;
+<% end -%>
+};
+
+logging {
+
+	channel queries {
+<% if classes.include?('named::geodns') -%>
+		file "/var/log/bind9/geoip-query.log" versions 4 size 40m;
+<% else -%>
+		file "/var/log/bind9/named-query.log" versions 4 size 40m;
+<% end -%>
+		print-time yes;
+		print-category yes;
+	};
+	category queries { queries; };
+	category lame-servers { null; };
+};
+
+ 

@@ -3,19 +3,6 @@
 // USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 //
 
-acl Nagios {
-<%=
-  str = ''
-  localinfo.keys.sort.each do |node|
-      if localinfo[node]['nagiosmaster']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
-              str += "\t" + ip + "/32;\n"
-          end
-      end
-  end
-  str%>
-};
-
 // Africa
 acl AF {
 	country_AO;
