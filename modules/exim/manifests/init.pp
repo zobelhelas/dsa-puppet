@@ -159,6 +159,6 @@ class exim {
     @ferm::rule { "dsa-exim":
             domain          => "(ip ip6)",
             description     => "Allow smtp access",
-            rule            => "proto tcp mod state state (NEW) dport (25) ACCEPT"
+            rule            => "&SERVICE(tcp, 25)"
     }
 }

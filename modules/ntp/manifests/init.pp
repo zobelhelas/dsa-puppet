@@ -28,6 +28,6 @@ class ntp {
         @ferm::rule { "dsa-ntp":
                 domain          => "(ip ip6)",
                 description     => "Allow ntp access",
-                rule            => "proto udp mod state state (NEW) dport (123) ACCEPT"
+                rule            => "&SERVICE(udp, 123)"
         }
 }

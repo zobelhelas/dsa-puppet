@@ -132,6 +132,6 @@ class apache2 {
         @ferm::rule { "dsa-apache":
                 domain          => "(ip ip6)",
                 description     => "Allow web access",
-                rule            => "proto tcp mod state state (NEW) dport (80) ACCEPT"
+                rule            => "&SERVICE(tcp, 80)"
         }
 }

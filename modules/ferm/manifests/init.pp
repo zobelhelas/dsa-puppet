@@ -43,6 +43,14 @@ class ferm {
                         notify  => Exec["ferm restart"];
         }
 
+        ferm::rule { "dsa-drop":
+                domain          => "(ip ip6)",
+                description     => "Drop everything else",
+                prio            => "99",
+                rule            => "jump log_or_drop"
+        }
+
+
         exec { "ferm restart":
                 command     => "/etc/init.d/ferm restart",
                 refreshonly => true,
