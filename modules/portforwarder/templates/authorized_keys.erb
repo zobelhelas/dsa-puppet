@@ -1,4 +1,5 @@
 <%=
+lines = []
 config = YAML.load(File.open('/etc/puppet/modules/portforwarder/misc/config.yaml').read)
 config.each_pair do |sourcehost, services|
 	services.each do |service|
@@ -19,6 +20,5 @@ config.each_pair do |sourcehost, services|
 		end
 	end
 end
-lines = []
 lines.join("\n")
 %>
