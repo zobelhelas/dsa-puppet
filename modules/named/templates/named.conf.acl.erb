@@ -4,8 +4,16 @@
 //
 
 acl Nagios {
-	192.25.206.33/32;
-	206.12.19.118/32;
+<%=
+  str = ''
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['nagiosmaster']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+              str += "\t" + ip + "/32;\n"
+          end
+      end
+  end
+  str%>
 };
 
 // Africa

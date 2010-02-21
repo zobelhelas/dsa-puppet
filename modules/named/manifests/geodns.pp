@@ -17,8 +17,7 @@ class named::geodns inherits named {
                         group   => root,
                         ;
                 "/etc/bind/named.conf.acl":
-                        source  => [ "puppet:///named/per-host/$fqdn/named.conf.acl",
-                                     "puppet:///named/common/named.conf.acl" ],
+                        content => template("named/named.conf.acl.erb"),
                         require => Package["bind9"],
                         notify  => Exec["bind9 restart"],
                         owner   => root,

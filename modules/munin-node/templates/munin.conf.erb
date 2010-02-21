@@ -12,10 +12,12 @@ graph_strategy cgi
 
 <%= out = ''
     localinfo.keys.sort.each do |node|
-       out += '[' + node + ']
+       if not localinfo[node]['no_munin']
+          out += '[' + node + ']
     address ' + node + '
 
 '
-     end
+       end 
+    end
 out
 %>

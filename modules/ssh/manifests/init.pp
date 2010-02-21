@@ -4,13 +4,6 @@ class ssh {
                 openssh-server: ensure => installed;
         }
 
-        case $hostname {
-                bartok, beethoven: {
-                    $keyinfo = allnodeinfo("sshRSAHostKey", "ipHostNumber")
-                }
-        }
-
-
 	file { "/etc/ssh/ssh_config":
 		source  => [ "puppet:///ssh/ssh_config" ],
 		require => Package["openssh-client"]

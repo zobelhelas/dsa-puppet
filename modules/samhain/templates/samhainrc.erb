@@ -134,13 +134,13 @@ file=/etc/nagios/nrpe.d
 file=/etc/nagios/obsolete-packages-ignore.d
 file=/etc/bind/geodns
 <%= extradir=""
-case fqdn 
-when "tchaikovsky.debian.org": extradir="file=/etc/nagios3/puppetconf.d
+if nodeinfo['nagiosmaster']
+  extradir="file=/etc/nagios3/puppetconf.d
 file=/etc/puppet"
-else extradir="file=/etc/puppet"
 end
 extradir
 %>
+file=/etc/puppet
 file=/etc/cron.d
 file=/usr/lib/nagios/plugins
 file=/usr/sbin
