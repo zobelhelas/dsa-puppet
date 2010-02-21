@@ -17,6 +17,7 @@ node default {
     $localinfo = yamlinfo('*', "/etc/puppet/modules/debian-org/misc/local.yaml")
     $nodeinfo  = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
     $hoster    = whohosts($nodeinfo, "/etc/puppet/modules/debian-org/misc/hoster.yaml")
+    $keyinfo   = allnodeinfo("sshRSAHostKey", "ipHostNumber")
     notice("hoster for ${fqdn} is ${hoster}")
 
     $mxinfo   = allnodeinfo("mXRecord")
