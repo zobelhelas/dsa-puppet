@@ -15,27 +15,95 @@
  proto (tcp udp) mod state state (NEW) dport $port ACCEPT;
 }
 
-@def $HOST_NAGIOS = (<%=
+@def $HOST_NAGIOS_V4 = (<%=
   nagii = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster']
-            nagii << keyinfo[node][0]['ipHostNumber']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+             next if ip =~ /:/
+             nagii << ip
+          end
       end
   end
 
   nagii.join(' ')
 %>);
 
-@def $HOST_MUNIN  = (<%=
+@def $HOST_NAGIOS_V6 = (<%=
+  nagii = []
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['nagiosmaster']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+             next if ip =~ /\./
+             nagii << ip
+          end
+      end
+  end
+
+  nagii.join(' ')
+%>);
+
+@def $HOST_NAGIOS = ( $HOST_NAGIOS_V4 $HOST_NAGIOS_V6 );
+
+@def $HOST_MUNIN_V4 = (<%=
   munins = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['muninmaster']
-            munins << keyinfo[node][0]['ipHostNumber']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+             next if ip =~ /:/
+             munins << ip
+          end
       end
   end
 
   munins.join(' ')
 %>);
+
+@def $HOST_MUNIN_V6 = (<%=
+  munins = []
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['muninmaster']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+             next if ip =~ /\./
+             munins << ip
+          end
+      end
+  end
+
+  munins.join(' ')
+%>);
+
+@def $HOST_MUNIN = ( $HOST_MUNIN_V4 $HOST_MUNIN_V6 );
+
+@def $HOST_DB_V6  = (<%=
+  dbs = []
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['dbmaster']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+             next if ip =~ /\./
+             dbs << ip
+          end
+      end
+  end
+
+  dbs.join(' ')
+%>);
+
+@def $HOST_DB_V4 = (<%=
+  dbs = []
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['dbmaster']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+             next if ip =~ /:/
+             dbs << ip
+          end
+      end
+  end
+
+  dbs.join(' ')
+%>);
+
+@def $HOST_DB = ($HOST_DB_V4 $HOST_DB_V6);
 
 @def $sgran   = (91.103.132.24/29);
 @def $weasel  = ();
