@@ -108,6 +108,8 @@ services:
   mailrelay:
     - draghi.debian.org
     - spohr.debian.org
+  muninmaster: spohr.debian.org
+  nagiosmaster: tchaikovsky.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
   qamaster: merkel.debian.org
