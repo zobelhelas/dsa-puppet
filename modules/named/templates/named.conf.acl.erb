@@ -4,7 +4,7 @@
 //
 
 acl Nagios {
-	<%=
+<%=
   str = ''
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster']
@@ -13,9 +13,7 @@ acl Nagios {
           end
       end
   end
-  str
-%>
-
+  str%>
 };
 
 // Africa
