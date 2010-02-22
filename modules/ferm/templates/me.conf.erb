@@ -13,7 +13,7 @@ case hostname
 end
 
 if sshallowed.length == 0
-  sshallowed = [ '0.0.0.0' ]
+  sshallowed = [ '0.0.0.0/0' ]
 end
 
 sshallowed.join(' ')
