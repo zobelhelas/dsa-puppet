@@ -56,6 +56,7 @@ nameinfo:
   pergolesi.debian.org: Giovanni Battista Pergolesi (4 January 1710 - 16 or 17 March 1736)
   peri.debian.org: Jacopo Peri (20 August 1561 - 12 August 1633)
   pescetti.debian.org: Giovanni Battista Pescetti (ca. 1704  - 1766)
+  pettersson.debian.org: Gustav Allan Pettersson (September 19, 1911 - June 20, 1980)
   piatti.debian.org: Carlo Alfredo Piatti (January 8, 1822 - July 18, 1901)
   powell.debian.org: Andrew Powell (b. 18 April 1949)
   praetorius.debian.org: Hieronymus Praetorius (10 August 1560 - 27 January 1629)
@@ -241,6 +242,7 @@ host_settings:
     pergolesi.debian.org: mailout.debian.org
     peri.debian.org: mailout.debian.org
     pescetti.debian.org: mailout.debian.org
+    pettersson.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
