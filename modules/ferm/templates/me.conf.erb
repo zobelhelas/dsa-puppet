@@ -9,7 +9,7 @@
 sshallowed = []
 
 case hostname
-  when 'logtest01', 'geo1', then sshallowed << [ '$DSA_IPS', '$HOST_NAGIOS_V4', '$HOST_DB_V4' ]
+  when 'logtest01', 'geo1' then sshallowed << [ '$DSA_IPS', '$HOST_NAGIOS_V4', '$HOST_DB_V4' ]
 end
 
 if sshallowed.length == 0
