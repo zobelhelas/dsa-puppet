@@ -43,50 +43,43 @@ node default {
     case $mta {
         "exim4":   {
              case extractnodeinfo($nodeinfo, 'heavy_exim') {
-                  "true":  { include exim::mx }
+                  true:    { include exim::mx }
                   default: { include exim }
              }
         }
     }
 
     case extractnodeinfo($nodeinfo, 'muninmaster') {
-        "true": {
-                      include munin-node::master
-        }
+        true: { include munin-node::master }
     }
 
     case extractnodeinfo($nodeinfo, 'nagiosmaster') {
-        "true": {
-                      include nagios::server
-        }
-        default: {
-		      include nagios::client
-	}
+        true:    { include nagios::server }
+        default: { include nagios::client }
     }
 
     case $apache2 {
          "true":  {
               case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-                     "true":  { include apache2::security_mirror }
+                     true:    { include apache2::security_mirror }
                      default: { include apache2 }
               }
          }
     }
 
     case extractnodeinfo($nodeinfo, 'buildd') {
-         "true":  { include buildd }
+         true:  { include buildd }
     }
 
     case $hostname {
         klecker,ravel,senfl,orff: { include named::secondary }
+        geo1,geo2,geo3:           { include named::geodns }
     }
 
     case $hostname {
         logtest01,geo1: { include ferm }
     }
-    case $hostname {
-        geo1,geo2,geo3: { include named::geodns }
-    }
+
     case $brokenhosts {
         "true":    { include hosts }
     }
