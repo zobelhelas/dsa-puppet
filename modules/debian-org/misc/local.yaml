@@ -279,6 +279,8 @@ host_settings:
     kassia.debian.org: 587
     piatti.debian.org: 2025
   no_munin:
+    - carver.debian.org
+    - escher.debian.org
     - fano.debian.org
     - logtest01.debian.org
 #  reservedaddrs:
