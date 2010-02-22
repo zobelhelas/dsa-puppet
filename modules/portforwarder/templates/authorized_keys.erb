@@ -13,21 +13,26 @@ end
 lines = []
 config = YAML.load(File.open('/etc/puppet/modules/portforwarder/misc/config.yaml').read)
 config.each_pair do |sourcehost, services|
+	allowed_ports = []
+
 	##lines << "# sourcehost is #{sourcehost}"
 	services.each do |service|
 		##lines << "# targethost is #{service['target_host']}, my hostname #{hostname}, fqdn is #{fqdn}"
 		next if service['target_host'] != fqdn
+		allowed_ports << service['target_port'] if service['target_port']
+	end
 
+	if allowed_ports.length > 0
 		sshkey = getportforwarderkey(sourcehost)
 		remote_ip = keyinfo[sourcehost][0]['ipHostNumber'].join(',')
-		forward_to_port = service['target_port']
-		local_bind = '127.0.0.2'
+		local_bind = '127.101.%d.%d'%[ (sourcehost.hash / 256 % 256), sourcehost.hash % 256 ]
 
-		lines << "# from #{sourcehost} on local port #{service['source_bind_port']}"
-		if sshkey.nil? or remote_ip.nil? or forward_to_port.nil? or local_bind.nil?
+		lines << "# from #{sourcehost}"
+		if sshkey.nil? or remote_ip.nil? or local_bind.nil?
 			lines << "# insufficient config values"
 		else
-			lines << "from=\"#{remote_ip}\",command=\"/bin/nc -s #{local_bind} 127.0.0.1 #{forward_to_port}\",no-pty,no-port-forwarding,no-X11-forwarding,no-agent-forwarding #{sshkey}"
+			command = "/usr/bin/portforwarder-ssh-wrap #{sourcehost} #{local_bind} #{allowed_ports.join(' ')}"
+			lines << "from=\"#{remote_ip}\",command=\"#{command}\",no-pty,no-port-forwarding,no-X11-forwarding,no-agent-forwarding #{sshkey}"
 		end
 	end
 end
