@@ -9,11 +9,11 @@
 sshallowed = []
 
 case hostname
-  when 'logtest01', 'geo1' then sshallowed << [ '$DSA_IPS', '$HOST_NAGIOS_V4', '$HOST_DB_V4' ]
+  when 'logtest01', 'geo1', 'geo2', 'geo3' then sshallowed << [ '$DSA_IPS', '$HOST_NAGIOS_V4', '$HOST_DB_V4' ]
 end
 
 if sshallowed.length == 0
-  sshallowed = [ '0.0.0.0' ]
+  sshallowed = [ '0.0.0.0/0' ]
 end
 
 sshallowed.join(' ')
@@ -24,11 +24,11 @@ sshallowed.join(' ')
 sshallowed = []
 
 case hostname
-  when 'logtest01', 'geo1' then sshallowed << [ '$DSA_V6_IPS', '$HOST_NAGIOS_V6', '$HOST_DB_V6' ]
+  when 'logtest01', 'geo1', 'geo2', 'geo3' then sshallowed << [ '$DSA_V6_IPS', '$HOST_NAGIOS_V6', '$HOST_DB_V6' ]
 end
 
 if sshallowed.length == 0
-  sshallowed = [ ':::' ]
+  sshallowed = [ '::' ]
 end
 
 sshallowed.join(' ')

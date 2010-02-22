@@ -77,7 +77,7 @@ node default {
     }
 
     case $hostname {
-        logtest01,geo1: { include ferm }
+        logtest01,geo1,geo2,geo3: { include ferm }
     }
 
     case $brokenhosts {
