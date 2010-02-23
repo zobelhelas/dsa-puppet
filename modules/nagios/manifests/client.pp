@@ -47,6 +47,11 @@ class nagios::client inherits nagios {
 	}
         @ferm::rule { "dsa-nagios":
                 description     => "Allow nrpe from nagios master",
-                rule            => "proto tcp mod state state (NEW) dport (5666) @subchain 'nagios' { saddr (\$HOST_NAGIOS) ACCEPT; }"
+                rule            => "proto tcp mod state state (NEW) dport (5666) @subchain 'nagios' { saddr (\$HOST_NAGIOS_V4) ACCEPT; }"
+        }
+        @ferm::rule { "dsa-nagios":
+                description     => "Allow nrpe from nagios master",
+                domain          => "ip6",
+                rule            => "proto tcp mod state state (NEW) dport (5666) @subchain 'nagios' { saddr (\$HOST_NAGIOS_V6) ACCEPT; }"
         }
 }
