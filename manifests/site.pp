@@ -31,7 +31,6 @@ node default {
     include ntp
 
     include motd
-    include samhain
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
@@ -90,4 +89,5 @@ node default {
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
     }
+    include samhain
 }
