@@ -25,6 +25,7 @@ Host_Alias	QAHOSTS		= master, merkel
 Host_Alias	WEBHOSTS	= klecker, wolkenstein
 Host_Alias	SECHOSTS	= klecker, chopin
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
+Host_Alias	AACRAIDHOSTS	= bellini, cimarosa, morricone, paganini, respighi, vivaldi, beethoven, pettersson
 # User alias specification
 User_Alias	QACORE		= aba, djpig, geissert, hertzog, jeroen, joerg, lucas, luk, myon, tbm, weasel, zack
 
@@ -55,7 +56,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[02] show status
 nagios		master=(ALL)	NOPASSWD: /usr/sbin/mpt-status -s
 nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
 nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
-nagios		bellini,cimarosa,morricone,paganini,respighi,vivaldi,beethoven=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
+nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
 
 # groups and their role accounts
 %buildd		ALL=(buildd)	ALL
