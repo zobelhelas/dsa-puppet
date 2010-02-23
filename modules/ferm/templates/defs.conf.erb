@@ -105,6 +105,32 @@
 
 @def $HOST_DB = ($HOST_DB_V4 $HOST_DB_V6);
 
+@def $HOST_DEBIAN_V4 = (<%=
+  dbs = []
+  localinfo.keys.sort.each do |node|
+      keyinfo[node][0]['ipHostNumber'].each do |ip|
+         next if ip =~ /:/
+         dbs << ip
+      end
+  end
+
+  dbs.join(' ')
+%>);
+
+@def $HOST_DEBIAN_V6  = (<%=
+  dbs = []
+  localinfo.keys.sort.each do |node|
+      keyinfo[node][0]['ipHostNumber'].each do |ip|
+         next if ip =~ /\./
+         dbs << ip
+      end
+  end
+
+  dbs.join(' ')
+%>);
+
+@def $HOST_DEBIAN = ($HOST_DEBIAN_V4 $HOST_DEBIAN_V6);
+
 @def $sgran   = (91.103.132.24/29);
 @def $weasel  = ();
 @def $weasel  = ($weasel 86.59.118.144/28); # debian@sil
