@@ -107,8 +107,8 @@
 
 @def $HOST_DEBIAN_V4 = (<%=
   dbs = []
-  localinfo.keys.sort.each do |node|
-      next unless (keyinfo.has_key?(node) and keyinfo[node].at(0) and keyinfo[node][0].has_key?('ipHostNumber'))
+  keyinfo.keys.sort.each do |node|
+      next unless keyinfo[node][0].has_key?('ipHostNumber')
       keyinfo[node][0]['ipHostNumber'].each do |ip|
          next if ip =~ /:/
          dbs << ip
@@ -120,8 +120,8 @@
 
 @def $HOST_DEBIAN_V6  = (<%=
   dbs = []
-  localinfo.keys.sort.each do |node|
-      next unless (keyinfo.has_key?(node) and keyinfo[node].at(0) and keyinfo[node][0].has_key?('ipHostNumber'))
+  keyinfo.keys.sort.each do |node|
+      next unless keyinfo[node][0].has_key?('ipHostNumber')
       keyinfo[node][0]['ipHostNumber'].each do |ip|
          next if ip =~ /\./
          dbs << ip
