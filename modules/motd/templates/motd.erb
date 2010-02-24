@@ -5,9 +5,13 @@ is monitored and will be used as evidence for prosecutions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 <%=
+def wrap(s, width=78)
+      s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
+end
+
 purp = ''
 if nodeinfo.has_key?('nameinfo')
-  purp += nodeinfo['nameinfo'] + "\n\n"
+  purp += wrap(nodeinfo['nameinfo']) + "\n\n"
 end
 
 purp += 'Welcome to ' + fqdn
