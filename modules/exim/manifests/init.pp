@@ -161,4 +161,12 @@ class exim {
             description     => "Allow smtp access",
             rule            => "&SERVICE(tcp, 25)"
     }
+    # Do we actually want this?  I'm only doing it because it's harmless
+    # and makes the logs quiet.  There are better ways of making logs quiet,
+    # though.
+    @ferm::rule { "dsa-ident":
+            domain          => "(ip ip6)",
+            description     => "Allow ident access",
+            rule            => "&SERVICE(tcp, 113)"
+    }
 }

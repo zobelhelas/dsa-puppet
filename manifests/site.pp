@@ -31,7 +31,6 @@ node default {
     include ntp
 
     include motd
-    include samhain
 
     case $smartarraycontroller {
         "true":    { include debian-proliant }
@@ -74,10 +73,11 @@ node default {
     case $hostname {
         klecker,ravel,senfl,orff: { include named::secondary }
         geo1,geo2,geo3:           { include named::geodns }
+        bartok:                   { include named::recursor }
     }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3: { include ferm }
+        logtest01,geo1,geo2,geo3,bartok: { include ferm }
     }
 
     case $brokenhosts {
@@ -89,4 +89,5 @@ node default {
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
     }
+    include samhain
 }
