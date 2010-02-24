@@ -78,8 +78,8 @@ IgnoreMissing=/etc/lvm/archive/vg.*.vg
 file=/etc/mtab
 file=/etc/ssh_random_seed
 file=/etc/asound.conf
-<% case hoster when "ubcece", "darmstadt", "ftcollins" then ""
-else -%>
+<% case hoster when "ubcece", "darmstadt", "ftcollins", "grnet" then -%>
+<% else -%>
 file=/etc/resolv.conf
 <% end -%>
 file=/etc/localtime
@@ -95,15 +95,16 @@ file=/etc/network/run/ifstate
 file=/var/state/samhain/samhain_file
 file=/etc/bind/zones/db.debian.net
 file=/etc/exim4/bsmtp
-<% if hostname == "geo1" || hostname == "geo2" || hostname == "geo3" -%>
+<% if classes.include?("named::geodns") -%>
 file=/etc/bind
 file=/etc/bind/named.conf.acl
-file=/etc/bind/named.conf.options
 file=/etc/bind/named.conf.local
 file=/etc/bind/geodns/named.conf.geo
 file=/etc/bind/geodns/recvconf.files
 <% end -%>
-
+<% if classes.include?("named") -%>
+file=/etc/bind/named.conf.options
+<% end -%>
 
 #
 # There are files in /etc that might change, thus changing the directory
@@ -133,13 +134,9 @@ file=/etc/nagios
 file=/etc/nagios/nrpe.d
 file=/etc/nagios/obsolete-packages-ignore.d
 file=/etc/bind/geodns
-<%= extradir=""
-if nodeinfo['nagiosmaster']
-  extradir="file=/etc/nagios3/puppetconf.d
-file=/etc/puppet"
-end
-extradir
-%>
+<% if nodeinfo['nagiosmaster'] -%>
+file=/etc/nagios3/puppetconf.d
+<% end -%>
 file=/etc/puppet
 file=/etc/cron.d
 file=/usr/lib/nagios/plugins
@@ -149,6 +146,9 @@ file=/etc/monit/monit.d
 file=/etc/pam.d
 file=/etc/sysctl.d
 file=/etc/syslog-ng
+file=/etc/ferm/
+file=/etc/ferm/conf.d
+file=/etc/ferm/dsa.d
 
 
 [LogFiles]
@@ -211,10 +211,9 @@ file=/var/log/syslog
 ##
 ## This file might be created or removed by the system sometimes.
 ##
-<% case hoster when "ubcece", "darmstadt", "ftcollins" then "" -%>
+<% case hoster when "ubcece", "darmstadt", "ftcollins", "grnet" then -%>
 file=/etc/resolv.conf
-<% else
-end -%>
+<% end -%>
 file=/etc/resolv.conf.pcmcia.save
 file=/etc/nologin
 file=/etc/postfix/debian.db
@@ -360,27 +359,38 @@ file=/etc/monit/monit.d/01puppet
 file=/etc/monit/monit.d/00debian.org
 file=/etc/cron.d/dsa-puppet-stuff
 file=/etc/cron.d/dsa-buildd
-<%= extrafiles=""
-case fqdn 
-when "tchaikovsky.debian.org": extrafiles="file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
+<% if nodeinfo['nagiosmaster'] -%>
+file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
 file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
 file=/etc/nagios3/puppetconf.d/auto-services.cfg
 file=/etc/nagios3/puppetconf.d/auto-dependencies.cfg
 file=/etc/nagios3/puppetconf.d/auto-hostextinfo.cfg
 file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg
-file=/etc/munin/munin.conf"
-when "handel.debian.org": extrafiles="dir=8/etc/puppet"
-when "dijkstra.debian.org": extrafiles="dir=4/etc/dsa-kvm"
-when /geo[123].debian.org/: extrafiles="dir=1/etc/bind/geodns"
-when /(senfl|ravel|orff|klecker).debian.org/: extrafiles="dir=1/etc/bind
-file=/etc/bind/named.conf.debian-zones"
-end
-extrafiles
-%>
+<% end -%>
+<% if nodeinfo['muninmaster'] -%>
+file=/etc/munin/munin.conf
+<% end -%>
+<% if nodeinfo['puppetmaster'] -%>
+dir=8/etc/puppet
+<% end -%>  
+<% if classes.include?('named::geodns') -%>
+dir=1/etc/bind/geodns
+<% end -%>
+<% if classes.include?('named::secondary') -%>
+dir=1/etc/bind
+file=/etc/bind/named.conf.debian-zones
+<% end -%>
+<% if fqdn == "dijkstra.debian.org" -%>
+dir=4/etc/dsa-kvm
+<% end -%>
 
 <% if nodeinfo['buildd'] -%>
 dir=3/etc/lvm
 <% end -%>
+dir=1/etc/ferm/dsa.d
+file=/etc/ferm/conf.d/me.conf
+file=/etc/ferm/conf.d/defs.conf
+file=/etc/ferm/ferm.conf
 
 [IgnoreNone]
 ##
@@ -825,19 +835,12 @@ SetMailNum = 10
 SetMailAddress=samhain-reports@debian.org
 
 ## Mail relay (IP address)
-<%=
-out=""
-if not nodeinfo['smarthost'].empty?
-  out = '
-SetMailRelay = localhost
-'
-else
-out = '
+<% if nodeinfo['smarthost'].empty? -%>
 SetMailRelay = master.debian.org
-'
-end
-out
-%>
+<% else -%>
+SetMailRelay = localhost
+<% end -%>
+
 ## Custom subject format
 #
 MailSubject = [Samhain at %H] %T: %S

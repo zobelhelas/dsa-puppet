@@ -30,7 +30,7 @@ options {
 
 <%=
   allowed='Nagios; '
-  if classes.include?('named::secondary')
+  if classes.include?('named::secondary') or classes.include?('named::recursor')
     allowed += 'localnets; '
   end
 

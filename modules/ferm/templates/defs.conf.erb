@@ -105,6 +105,34 @@
 
 @def $HOST_DB = ($HOST_DB_V4 $HOST_DB_V6);
 
+@def $HOST_DEBIAN_V4 = (<%=
+  dbs = []
+  keyinfo.keys.sort.each do |node|
+      next unless keyinfo[node][0].has_key?('ipHostNumber')
+      keyinfo[node][0]['ipHostNumber'].each do |ip|
+         next if ip =~ /:/
+         dbs << ip
+      end
+  end
+
+  dbs.join(' ')
+%>);
+
+@def $HOST_DEBIAN_V6  = (<%=
+  dbs = []
+  keyinfo.keys.sort.each do |node|
+      next unless keyinfo[node][0].has_key?('ipHostNumber')
+      keyinfo[node][0]['ipHostNumber'].each do |ip|
+         next if ip =~ /\./
+         dbs << ip
+      end
+  end
+
+  dbs.join(' ')
+%>);
+
+@def $HOST_DEBIAN = ($HOST_DEBIAN_V4 $HOST_DEBIAN_V6);
+
 @def $sgran   = (91.103.132.24/29);
 @def $weasel  = ();
 @def $weasel  = ($weasel 86.59.118.144/28); # debian@sil
@@ -124,8 +152,8 @@
 @def $weasel6    = ($weasel6 2001:826:408:200::/56); # came
 @def $weasel6    = ($weasel6 2001:858:10f::/48); # anguilla
 @def $zobel6     = ();
-@def $zobel6     = ($zobel6 2001:6f8:1215::/48); baldur
-@def $zobel6     = ($zobel6 2001:6f8:928::/48); WS2 
-@def $zobel6     = ($zobel6 2a01:198:549::/48); WGS20
+@def $zobel6     = ($zobel6 2001:6f8:1215::/48); # baldur
+@def $zobel6     = ($zobel6 2001:6f8:928::/48); # WS2 
+@def $zobel6     = ($zobel6 2a01:198:549::/48); # WGS20
 @def $luca6      = ();
 @def $DSA_V6_IPS = ($sgran6 $weasel6 $zobel6 $luca6);
