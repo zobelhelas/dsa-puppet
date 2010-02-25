@@ -89,8 +89,8 @@ node default {
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
     }
-    case $kernel {
-        "GNU/kFreeBSD":    { include kfreebsd }
+    case $hostname {
+        finzi,fano,fasch,field:    { include kfreebsd }
     }
     include samhain
 }
