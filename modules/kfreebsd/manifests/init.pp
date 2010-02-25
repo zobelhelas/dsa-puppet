@@ -1,7 +1,7 @@
 class kfreebsd {
     file {
-        "/etc/cron.d/dsa-dsa-killruby":
-            source  => [ "puppet:///kfreebsd/dsa-dsa-killruby" ],
+        "/etc/cron.d/dsa-killruby":
+            source  => [ "puppet:///kfreebsd/dsa-killruby" ],
             ;
     }
 }
