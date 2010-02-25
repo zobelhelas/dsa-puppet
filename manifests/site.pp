@@ -32,6 +32,10 @@ node default {
 
     include motd
 
+    case $hostname {
+        finzi,fano,fasch,field:    { include kfreebsd }
+    }
+
     case $smartarraycontroller {
         "true":    { include debian-proliant }
     }
@@ -88,9 +92,6 @@ node default {
     }
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
-    }
-    case $hostname {
-        finzi,fano,fasch,field:    { include kfreebsd }
     }
     include samhain
 }
