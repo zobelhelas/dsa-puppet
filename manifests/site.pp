@@ -89,8 +89,8 @@ node default {
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
     }
-    case $debarchitecture {
-        "kfreebsd-amd64", "kfreebsd-i386":    { include kfreebsd }
+    case $kernel {
+        "GNU/kFreeBSD":    { include kfreebsd }
     }
     include samhain
 }
