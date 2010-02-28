@@ -27,7 +27,7 @@ end
 
 Facter.add("mptraid") do
 	setcode do
-		FileTest.exist?("/dev/mptctl") or FileTest.exist?("/dev/mpt9") or FileTest.exist?("/proc/mpt/summary")
+		FileTest.exist?("/dev/mptctl") or FileTest.exist?("/dev/mpt0") or FileTest.exist?("/proc/mpt/summary")
 	end
 end
 
