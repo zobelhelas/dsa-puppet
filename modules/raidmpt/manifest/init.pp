@@ -1,4 +1,4 @@
-class "raid-mpt" {
+class raidmpt {
     package {
         mtp-status: ensure => installed;
     }
