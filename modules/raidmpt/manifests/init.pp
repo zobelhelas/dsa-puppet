@@ -5,7 +5,7 @@ class raidmpt {
 
     file {
         "/etc/default/mpt-statusd":
-            content =>  "# This file is under puppet control\nRUN_DAEMON=no",
+            content =>  "# This file is under puppet control\nRUN_DAEMON=no\n",
             notify  => Exec["mpt-statusd-stop"],
             ;
     }
