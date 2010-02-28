@@ -114,6 +114,7 @@ dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
 # archvsync triggers snapshot
 archvsync	stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
+archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
 # dak stuff
 %debian-release	ries=(dak)		/usr/local/bin/dak transitions --import *
 %ftpteam	ries=(dak)		/usr/local/bin/dak transitions --import *

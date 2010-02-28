@@ -117,6 +117,7 @@ services:
     - tchaikovsky.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
+  puppetmaster: handel.debian.org
   qamaster: merkel.debian.org
   rtmaster: spohr.debian.org
 host_settings:

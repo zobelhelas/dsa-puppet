@@ -13,7 +13,7 @@ end
 
 Facter.add(:debarchitecture) do
     setcode do
-        %x{/usr/bin/dpkg --print-architecture}
+        %x{/usr/bin/dpkg --print-architecture}.chomp
     end
 end
 

@@ -32,6 +32,10 @@ node default {
 
     include motd
 
+    case $hostname {
+        finzi,fano,fasch,field:    { include kfreebsd }
+    }
+
     case $smartarraycontroller {
         "true":    { include debian-proliant }
     }
