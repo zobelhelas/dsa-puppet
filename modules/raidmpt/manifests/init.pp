@@ -11,7 +11,7 @@ class raidmpt {
     }
     exec {
         "mpt-statusd-stop":
-            command => 'pidfile=/var/run/mpt-statusd.pid; ! [ -e "$pidfile" ] || /sbin/start-stop-daemon --oknodo --stop --quiet --pidfile "$pidfile"; rm -f "$pidfile"'
+            command => 'pidfile=/var/run/mpt-statusd.pid; ! [ -e "$pidfile" ] || /sbin/start-stop-daemon --oknodo --stop --quiet --pidfile "$pidfile"; rm -f "$pidfile"',
             refreshonly => true,
             ;
     }
