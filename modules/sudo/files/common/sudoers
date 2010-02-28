@@ -26,6 +26,7 @@ Host_Alias	WEBHOSTS	= klecker, wolkenstein
 Host_Alias	SECHOSTS	= klecker, chopin
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= bellini, cimarosa, morricone, paganini, respighi, vivaldi, beethoven, pettersson
+Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara
 # User alias specification
 User_Alias	QACORE		= aba, djpig, geissert, hertzog, jeroen, joerg, lucas, luk, myon, tbm, weasel, zack
 
@@ -57,6 +58,7 @@ nagios		master=(ALL)	NOPASSWD: /usr/sbin/mpt-status -s
 nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
 nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
+nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, /usr/local/bin/megarc -dispCfg -a0 -nolog
 
 # groups and their role accounts
 %buildd		ALL=(buildd)	ALL
