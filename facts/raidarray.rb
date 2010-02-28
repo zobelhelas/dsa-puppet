@@ -25,6 +25,13 @@ Facter.add("ThreeWarecontroller") do
 	end
 end
 
+Facter.add("megaraid") do
+	confine :kernel => :linux
+	setcode do
+		FileTest.exist?("/dev/megadev0")
+	end
+end
+
 Facter.add("aacraid") do
 	confine :kernel => :linux
 	setcode do
