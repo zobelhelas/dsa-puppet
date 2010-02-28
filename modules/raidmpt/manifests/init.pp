@@ -1,6 +1,6 @@
 class raidmpt {
     package {
-        mtp-status: ensure => installed;
+        mpt-status: ensure => installed;
     }
 
     file {
