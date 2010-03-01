@@ -7,4 +7,4 @@
 # processes whose parent is init, and who have lived for longer than an hour
 # (if they lived for 10 hours then they get to live an hour longer because
 # the regex is just that gracious.
-12 * * * *	root	pgrep -P 1 -f '/usr/bin/ruby1.8 /usr/sbin/puppetd --factsync -o --no-daemonize' | xargs ps --no-headers -o pid,etime  | grep '[1-9]:..:..$' | awk '{print $1}' | xargs --no-run-if-empty kill -9
+12 * * * *	root	pgrep -P 1 -f '/usr/bin/ruby1.8 /usr/sbin/puppetd --factsync -o --no-daemonize' | xargs  --no-run-if-empty ps --no-headers -o pid,etime  | grep '[1-9]:..:..$' | awk '{print $1}' | xargs --no-run-if-empty kill -9
