@@ -110,8 +110,8 @@ pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # remote power to babylon5 in the same rack:
 joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
 # wbadm can update all buildd* users' keys on buildd.d.o
-%wbadm		cimarosa=(root)		/usr/local/bin/update-buildd-sshkeys
-wbadm		cimarosa=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
+%wbadm		cimarosa,grieg=(root)		/usr/local/bin/update-buildd-sshkeys
+wbadm		cimarosa,grieg=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
 # mirror push
 dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
