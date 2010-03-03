@@ -42,6 +42,9 @@ node default {
     case $kvmdomain {
         "true":    { package { acpid: ensure => installed } }
     }
+    case $mptraid {
+        "true":    { include "raidmpt" }
+    }
 
     case $mta {
         "exim4":   {

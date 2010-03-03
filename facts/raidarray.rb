@@ -5,13 +5,6 @@ Facter.add("smartarraycontroller") do
 	end
 end
 
-Facter.add("mptcontroller") do
-	confine :kernel => :linux
-	setcode do
-		FileTest.exist?("/proc/mpt/summary")
-	end
-end
-
 Facter.add("ThreeWarecontroller") do
 	confine :kernel => :linux
 	setcode do
@@ -29,6 +22,12 @@ Facter.add("megaraid") do
 	confine :kernel => :linux
 	setcode do
 		FileTest.exist?("/dev/megadev0")
+	end
+end
+
+Facter.add("mptraid") do
+	setcode do
+		FileTest.exist?("/dev/mptctl") or FileTest.exist?("/dev/mpt0") or FileTest.exist?("/proc/mpt/summary")
 	end
 end
 
