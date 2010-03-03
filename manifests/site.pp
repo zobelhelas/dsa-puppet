@@ -43,7 +43,7 @@ node default {
         "true":    { package { acpid: ensure => installed } }
     }
     case $mptraid {
-        "true":    { package { mpt-status: ensure => installed } }
+        "true":    { include "raidmpt" }
     }
 
     case $mta {
