@@ -96,5 +96,8 @@ node default {
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
     }
+    case $hostname {
+	senf: { include rsync }
+    }
     include samhain
 }
