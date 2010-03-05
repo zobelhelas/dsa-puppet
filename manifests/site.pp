@@ -84,7 +84,7 @@ node default {
     }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3,bartok: { include ferm }
+        logtest01,geo1,geo2,geo3,bartok,senfl: { include ferm }
     }
 
     case $brokenhosts {
