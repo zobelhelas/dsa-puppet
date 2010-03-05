@@ -82,6 +82,10 @@ node default {
         geo1,geo2,geo3:           { include named::geodns }
         bartok:                   { include named::recursor }
     }
+    
+    case $hostname {
+	senfl: { include rsync }
+    }
 
     case $hostname {
         logtest01,geo1,geo2,geo3,bartok,senfl: { include ferm }
@@ -95,9 +99,6 @@ node default {
     }
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
-    }
-    case $hostname {
-	senfl: { include rsync }
     }
     include samhain
 }
