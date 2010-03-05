@@ -97,7 +97,7 @@ node default {
         "true":    { include portforwarder }
     }
     case $hostname {
-	senf: { include rsync }
+	senfl: { include rsync }
     }
     include samhain
 }
