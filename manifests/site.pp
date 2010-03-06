@@ -93,7 +93,7 @@ node default {
                rule         => "&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))"
            }
         }
-	senfl {
+	senfl: {
 	   @ferm::rule { "dsa-rsync":
 		    domain          => "(ip ip6)",
 		    description     => "Allow rsync access",
@@ -105,7 +105,7 @@ node default {
 		    domain          => "(ip ip6)",
 		    description     => "Allow ftp access",
 		    rule            => "&SERVICE(tcp, 21)"
-           },
+           }
 	   @ferm::rule { "dsa-rsync":
 		    domain          => "(ip ip6)",
 		    description     => "Allow rsync access",
