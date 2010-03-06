@@ -41,6 +41,11 @@ class ferm {
                         require => Package["ferm"],
                         mode    => 0400,
                         notify  => Exec["ferm restart"];
+                "/etc/ferm/conf.d/interfaces.conf":
+                        content => template("ferm/interfaces.conf.erb"),
+                        require => Package["ferm"],
+                        mode    => 0400,
+                        notify  => Exec["ferm restart"];
         }
 
         exec { "ferm restart":
