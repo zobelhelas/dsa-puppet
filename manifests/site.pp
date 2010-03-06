@@ -84,7 +84,7 @@ node default {
     }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens: { include ferm }
+        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa: { include ferm }
     }
     case $hostname {
         piatti: {
@@ -100,7 +100,7 @@ node default {
 		    rule            => "&SERVICE(tcp, 873)"
 	   }
         }
-        saens: {
+        saens,villa: {
            @ferm::rule { "dsa-ftp":
 		    domain          => "(ip ip6)",
 		    description     => "Allow ftp access",
