@@ -8,12 +8,42 @@
 }
 
 @def &SERVICE_RANGE($proto, $port, $srange) = {
- proto $proto mod state state (NEW) dport $port saddr ($srange) ACCEPT;
+ proto $proto mod state state (NEW) dport $port @subchain $port { saddr ($srange) ACCEPT; }"
 }
 
 @def &TCP_UDP_SERVICE($port) = {
  proto (tcp udp) mod state state (NEW) dport $port ACCEPT;
 }
+
+@def $HOST_MAILRELAY_V4 = (<%=
+  mailrelay = []
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['mailrelay']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+             next if ip =~ /:/
+             mailrelay << ip
+          end
+      end
+  end
+
+  mailrelay.join(' ')
+%>);
+
+@def $HOST_MAILRELAY_V6 = (<%=
+  mailrelay = []
+  localinfo.keys.sort.each do |node|
+      if localinfo[node]['mailrelay']
+          keyinfo[node][0]['ipHostNumber'].each do |ip|
+             next if ip =~ /\./
+             mailrelay << ip
+          end
+      end
+  end
+
+  mailrelay.join(' ')
+%>);
+
+@def $HOST_MAILRELAY = ( $HOST_MAILRELAY_V4 $HOST_MAILRELAY_V6 );
 
 @def $HOST_NAGIOS_V4 = (<%=
   nagii = []

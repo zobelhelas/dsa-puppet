@@ -41,3 +41,33 @@ end
 
 sshallowed.join(' ')
 %>);
+
+def $SMTP_SOURCES =(<%=
+
+smtpallowed = []
+
+if not nodeinfo['smarthost'].empty?
+  smtpallowed = [ '$HOST_MAILRELAY_V4' ]
+end
+
+if smtpallowed.length == 0
+  smtpallowed = [ '0.0.0.0/0' ]
+end
+
+smtpallowed.join(' ')
+%>);
+
+def $SMTP_V6_SOURCES =(<%=
+
+smtpallowed = []
+
+if not nodeinfo['smarthost'].empty?
+  smtpallowed = [ '$HOST_MAILRELAY_V6' ]
+end
+
+if smtpallowed.length == 0
+  smtpallowed = [ '::' ]
+end
+
+smtpallowed.join(' ')
+%>);
