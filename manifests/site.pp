@@ -82,9 +82,13 @@ node default {
         geo1,geo2,geo3:           { include named::geodns }
         bartok:                   { include named::recursor }
     }
+    
+    case $hostname {
+	senfl: { include rsync }
+    }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3,bartok: { include ferm }
+        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven: { include ferm }
     }
 
     case $brokenhosts {
