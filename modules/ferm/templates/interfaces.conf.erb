@@ -1,0 +1,9 @@
+def $MUNIN_IFS = (<%=
+ifs = []
+interfaces.split(',').each do |iface|
+  next unless Kernel.global_variables.include?("ipaddress_" + iface)
+  ifs << iface
+end
+ifs.join(' ')
+%>);
+

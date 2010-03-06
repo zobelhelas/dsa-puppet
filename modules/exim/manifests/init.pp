@@ -156,10 +156,20 @@ class exim {
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
     }
+
+    case extractnodeinfo($nodeinfo, 'mail_port') {
+      /^(\d+)$/: { $mail_port = $1 }
+      default: { $mail_port = 'smtp' }
+    }
+
     @ferm::rule { "dsa-exim":
-            domain          => "(ip ip6)",
-            description     => "Allow smtp access",
-            rule            => "&SERVICE(tcp, 25)"
+            description     => "Allow SMTP",
+            rule            => "&SERVICE_RANGE(tcp, $mail_port, \$SMTP_SOURCES)"
+    }
+    @ferm::rule { "dsa-exim-v6":
+            description     => "Allow SMTP",
+            domain          => "ip6",
+            rule            => "&SERVICE_RANGE(tcp, $mail_port, \$SMTP_V6_SOURCES)"
     }
     # Do we actually want this?  I'm only doing it because it's harmless
     # and makes the logs quiet.  There are better ways of making logs quiet,
