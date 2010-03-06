@@ -47,7 +47,7 @@ def $SMTP_SOURCES =(<%=
 smtpallowed = []
 
 if not nodeinfo['smarthost'].empty?
-  smtpallowed = [ '$HOST_MAILRELAY_V4' ]
+  smtpallowed = [ '$HOST_MAILRELAY_V4', '$HOST_NAGIOS_V4' ]
 end
 
 if smtpallowed.length == 0
@@ -62,7 +62,7 @@ def $SMTP_V6_SOURCES =(<%=
 smtpallowed = []
 
 if not nodeinfo['smarthost'].empty?
-  smtpallowed = [ '$HOST_MAILRELAY_V6' ]
+  smtpallowed = [ '$HOST_MAILRELAY_V6', '$HOST_NAGIOS_V6' ]
 end
 
 if smtpallowed.length == 0
