@@ -82,13 +82,18 @@ node default {
         geo1,geo2,geo3:           { include named::geodns }
         bartok:                   { include named::recursor }
     }
-    
+
+    case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
+        true: { include rsync }
+        true: { include ftp }
+    }
+
     case $hostname {
 	senfl: { include rsync }
     }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3,bartok,senfl: { include ferm }
+        logtest01,geo1,geo2,geo3,bartok,senfl,saens: { include ferm }
     }
 
     case $brokenhosts {
