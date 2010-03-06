@@ -83,17 +83,6 @@ node default {
         bartok:                   { include named::recursor }
     }
 
-    case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-        true: { 
-              include rsync
-              include ftp
-        }
-    }
-
-    case $hostname {
-	senfl: { include rsync }
-    }
-
     case $hostname {
         logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens: { include ferm }
     }
@@ -102,6 +91,20 @@ node default {
            @ferm::rule { "dsa-udd-stunnel":
                description  => "port 8080 for udd stunnel",
                rule         => "&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))"
+           }
+        }
+	senfl,saens: {
+	   @ferm::rule { "dsa-rsync":
+		    domain          => "(ip ip6)",
+		    description     => "Allow rsync access",
+		    rule            => "&SERVICE(tcp, 873)"
+	   }
+        }
+        saens: {
+           @ferm::rule { "dsa-ftp":
+		    domain          => "(ip ip6)",
+		    description     => "Allow ftp access",
+		    rule            => "&SERVICE(tcp, 21)"
            }
         }
 
