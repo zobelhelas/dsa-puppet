@@ -90,7 +90,14 @@ node default {
     case $hostname {
         logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti: { include ferm }
     }
-
+    case $hostname {
+        piatti: {
+           @ferm::rule { "dsa-udd-stunnel":
+               description  => "port 8080 for udd stunnel",
+               rule         => "proto tcp saddr ( 192.25.206.16 70.103.162.29 217.196.43.134 ) dport 8080 ACCEPT;"
+           }
+        }
+    }
     case $brokenhosts {
         "true":    { include hosts }
     }
