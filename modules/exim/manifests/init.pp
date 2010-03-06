@@ -156,7 +156,7 @@ class exim {
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
     }
-    $mail_port = case extractnodeinfo($nodeinfo, 'mail_port')
+    $mail_port = extractnodeinfo($nodeinfo, 'mail_port')
     @ferm::rule { "dsa-exim":
             description     => "Allow SMTP",
             rule            => "&SERVICE_RANGE(tcp, $mail_port, \$SMTP_SOURCES)"
