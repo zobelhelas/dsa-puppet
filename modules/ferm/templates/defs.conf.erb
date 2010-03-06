@@ -8,7 +8,7 @@
 }
 
 @def &SERVICE_RANGE($proto, $port, $srange) = {
- proto $proto mod state state (NEW) dport $port @subchain $port { saddr ($srange) ACCEPT; }"
+ proto $proto mod state state (NEW) dport $port @subchain '$port' { saddr ($srange) ACCEPT; }"
 }
 
 @def &TCP_UDP_SERVICE($port) = {
