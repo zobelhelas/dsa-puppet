@@ -3,6 +3,7 @@ ifs = []
 interfaces.split(',').each do |iface|
   next unless Kernel.local_variables.include?("ipaddress_" + iface)
   ifs << iface
+end
 ifs.join(' ')
 %>);
 
