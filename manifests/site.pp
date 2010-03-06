@@ -105,7 +105,7 @@ node default {
 		    domain          => "(ip ip6)",
 		    description     => "Allow ftp access",
 		    rule            => "&SERVICE(tcp, 21)"
-           }
+           },
 	   @ferm::rule { "dsa-rsync":
 		    domain          => "(ip ip6)",
 		    description     => "Allow rsync access",
