@@ -84,8 +84,10 @@ node default {
     }
 
     case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-        true: { include rsync }
-        true: { include ftp }
+        true: { 
+              include rsync
+              include ftp
+        }
     }
 
     case $hostname {
