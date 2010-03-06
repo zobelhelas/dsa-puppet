@@ -132,22 +132,22 @@ class apache2 {
         @ferm::rule { "dsa-http-limit":
                 prio            => "20",
                 description     => "limit HTTP DOS",
-                rule            => "@subchain 'http_limit' mod limit limit-burst 60 limit 15/minute jump ACCEPT; jump DROP;"
+                rule            => "chain 'http_limit' { mod limit limit-burst 60 limit 15/minute jump ACCEPT; jump DROP; }"
         }
         @ferm::rule { "dsa-http-soso":
                 prio            => "21",
                 description     => "slow yahoo spider",
-                rule            => "@subchain 'limit_sosospider' mod connlimit connlimit-above 2 connlimit-mask 21 jump DROP; jump http_limit"
+                rule            => "chain 'limit_sosospider' { mod connlimit connlimit-above 2 connlimit-mask 21 jump DROP; jump http_limit; }"
         }
         @ferm::rule { "dsa-http-yahoo":
                 prio            => "21",
                 description     => "slow yahoo spider",
-                rule            => "@subchain 'limit_yahoo' mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP; jump http_limit"
+                rule            => "chain 'limit_yahoo' { mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP; jump http_limit; }"
         }
         @ferm::rule { "dsa-http-rules":
                 prio            => "22",
                 description     => "http subchain",
-                rule            => "@subchain 'http' saddr ( 74.6.22.182 74.6.18.240 ) jump limit_yahoo; saddr 124.115.0.0/21 jump limit_sosospider; mod recent name HTTPDOS update seconds 1800 jump log_or_drop; mod hashlimit hashlimit-name HTTPDOS hashlimit-mode srcip hashlimit-burst 600 hashlimit 30/minute jump ACCEPT; mod recent name HTTPDOS set jump log_or_drop;"
+                rule            => "chain 'http' { saddr ( 74.6.22.182 74.6.18.240 ) jump limit_yahoo; saddr 124.115.0.0/21 jump limit_sosospider; mod recent name HTTPDOS update seconds 1800 jump log_or_drop; mod hashlimit hashlimit-name HTTPDOS hashlimit-mode srcip hashlimit-burst 600 hashlimit 30/minute jump ACCEPT; mod recent name HTTPDOS set jump log_or_drop; }"
         }
         @ferm::rule { "dsa-http":
                 prio            => "23",
