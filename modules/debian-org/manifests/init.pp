@@ -20,32 +20,32 @@ define set_alternatives($linkto) {
 
 class debian-org {
     package {
-        "userdir-ldap": ensure => installed;
-        "zsh": ensure => installed;
-        "cron": ensure => installed;
         "apt-utils": ensure => installed;
-        "tcsh": ensure => installed;
-        "pdksh": ensure => installed;
-        "ksh": ensure => installed;
-        "csh": ensure => installed;
-        "locales-all": ensure => installed;
-        "libpam-pwdfile": ensure => installed;
-        "vim": ensure => installed;
-        "gnupg": ensure => installed;
+        "bash-completion": ensure => installed;
         "bzip2": ensure => installed;
-        "less": ensure => installed;
+        "cron": ensure => installed;
+        "csh": ensure => installed;
+        "dnsutils": ensure => installed;
         "ed": ensure => installed;
-        "puppet": ensure => installed;
+        "gnupg": ensure => installed;
+        "klogd": ensure => purged;
+        "ksh": ensure => installed;
+        "less": ensure => installed;
+        "libfilesystem-ruby1.8": ensure => installed;
+        "libpam-pwdfile": ensure => installed;
+        "locales-all": ensure => installed;
         "mtr-tiny": ensure => installed;
         "nload": ensure => installed;
         "pciutils": ensure => installed;
-        "dnsutils": ensure => installed;
-        "bash-completion": ensure => installed;
-        "libfilesystem-ruby1.8": ensure => installed;
-        "syslog-ng": ensure => installed;
-        "sysklogd": ensure => purged;
-        "klogd": ensure => purged;
+        "pdksh": ensure => installed;
+        "puppet": ensure => installed;
         "rsyslog": ensure => purged;
+        "sysklogd": ensure => purged;
+        "syslog-ng": ensure => installed;
+        "tcsh": ensure => installed;
+        "userdir-ldap": ensure => installed;
+        "vim": ensure => installed;
+        "zsh": ensure => installed;
     }
     file {
         "/etc/apt/preferences":
