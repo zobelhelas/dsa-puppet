@@ -1,5 +1,7 @@
 class named {
-        include munin-node::bind
+        activate_munin_check {
+                "bind":;
+        }
 
         package {
                 bind9: ensure => installed;

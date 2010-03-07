@@ -1,5 +1,11 @@
 class apache2 {
-        include munin-node::apache
+        activate_munin_check {
+                "apache_accesses":;
+                "apache_processes":;
+                "apache_volume":;
+                "apache_servers":;
+                "ps_apache2": script => "ps_";
+        }
 
 	package {
 		"apache2": ensure => installed;
