@@ -2,12 +2,12 @@ def $MUNIN_IPS = (<%= v4ips.split(',').join(' ') %>);
 
 domain ip {
         chain INPUT {
-               daddr ($MUNIN_IP) NOP;
+               daddr ($MUNIN_IPS) NOP;
         }
 }
 
 domain ip {
         chain OUTPUT {
-               saddr ($MUNIN_IP) NOP;
+               saddr ($MUNIN_IPS) NOP;
         }
 }
