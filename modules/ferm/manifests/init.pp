@@ -26,6 +26,10 @@ class ferm {
                 "/etc/ferm/conf.d":
                         ensure => directory,
                         require => Package["ferm"];
+                "/etc/default/ferm":
+                        source  => "puppet:///ferm/ferm.default",
+                        require => Package["ferm"],
+                        notify  => Exec["ferm restart"];
                 "/etc/ferm/ferm.conf":
                         source  => "puppet:///ferm/ferm.conf",
                         require => Package["ferm"],
