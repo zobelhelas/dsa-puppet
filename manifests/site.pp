@@ -119,6 +119,12 @@ node default {
 		    rule            => "&SERVICE(tcp, 873)"
 	   }
         }
+        ancina,zelenka {
+	   @ferm::rule { "dsa-time":
+		    description     => "Allow time access",
+		    rule            => "&SERVICE(udp, time, $HOST_NAGIOS_V4)"
+	   }
+        }
 
     }
     case $brokenhosts {
