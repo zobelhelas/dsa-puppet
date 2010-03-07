@@ -23,8 +23,12 @@ Facter.add("v6ips") do
                         addrs << $1
                 end
         end
+        ret = addrs.join(",")
+        if ret.empty?
+          ret = 'no'
+        end
         setcode do
-                addrs.join(",")
+          ret
         end
 end
 
