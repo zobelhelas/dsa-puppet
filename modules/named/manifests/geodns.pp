@@ -71,4 +71,6 @@ class named::geodns inherits named {
         }
 }
 
-# vim: set fdm=marker ts=8 sw=8 et:
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:
