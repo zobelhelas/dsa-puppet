@@ -1,4 +1,5 @@
 Facter.add("v4ips") do
+        confine :kernel => :linux
         addrs = []
         %x{ip addr list}.each do |line|
                 next unless line =~ /\s+inet/
@@ -13,6 +14,7 @@ Facter.add("v4ips") do
 end
 
 Facter.add("v6ips") do
+        confine :kernel => :linux
         addrs = []
         %x{ip addr list}.each do |line|
                 next unless line =~ /\s+inet/
