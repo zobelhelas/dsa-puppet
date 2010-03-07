@@ -14,8 +14,8 @@ class ferm {
         Ferm::Rule <| |>
 
         package {
-                ferm: ensure => installed
-                ulogd: ensure => installed
+                ferm: ensure => installed;
+                ulogd: ensure => installed;
         }
 
         file { 
