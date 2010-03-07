@@ -4,6 +4,9 @@ class named::geodns inherits named {
     }
 
     file {
+        "/etc/bind/named.conf.options":
+            content => template("named/named.conf.options.erb"),
+            notify  => Exec["bind9 reload"];
         "/etc/apt/sources.list.d/geoip.list":
             content => template("debian-org/etc/apt/sources.list.d/geoip.list.erb"),
             notify  => Exec["apt-get update"],

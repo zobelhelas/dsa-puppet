@@ -24,9 +24,6 @@ class named {
             group   => bind,
             mode    => 775,
             ;
-        "/etc/bind/named.conf.options":
-            content => template("named/named.conf.options.erb"),
-            notify  => Exec["bind9 reload"],
     }
     @ferm::rule { "dsa-bind":
         domain          => "(ip ip6)",
