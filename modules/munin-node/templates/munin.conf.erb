@@ -22,7 +22,8 @@ graph_strategy cgi
 out
 %>
 
+<% unless localinfo.keys.include?('rietz.debian.org') -%>
 # Not in puppet
 [rietz.debian.org]
     address rietz.debian.org
-
+<% end -%>
