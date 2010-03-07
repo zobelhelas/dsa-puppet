@@ -1,4 +1,5 @@
 def $MUNIN_IPS = (<%= v4ips.split(',').join(' ') %>);
+def $MUNIN6_IPS = (<%= v6ips.split(',').join(' ') %>);
 
 domain ip {
         chain INPUT {
@@ -9,5 +10,17 @@ domain ip {
 domain ip {
         chain OUTPUT {
                saddr ($MUNIN_IPS) NOP;
+        }
+}
+
+domain ip6 {
+        chain INPUT {
+               daddr ($MUNIN6_IPS) NOP;
+        }
+}
+
+domain ip6 {
+        chain OUTPUT {
+               saddr ($MUNIN6_IPS) NOP;
         }
 }
