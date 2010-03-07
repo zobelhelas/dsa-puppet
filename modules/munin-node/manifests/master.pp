@@ -9,3 +9,6 @@ class munin-node::master inherits munin-node {
     }
 }
 
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:

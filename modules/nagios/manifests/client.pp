@@ -55,3 +55,6 @@ class nagios::client inherits nagios {
                 rule            => "proto tcp mod state state (NEW) dport (5666) @subchain 'nagios' { saddr (\$HOST_NAGIOS_V6) ACCEPT; }"
         }
 }
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:

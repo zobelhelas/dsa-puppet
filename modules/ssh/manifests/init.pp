@@ -41,3 +41,6 @@ class ssh {
                 rule            => "&SERVICE_RANGE(tcp, ssh, \$SSH_V6_SOURCES)"
         }
 }
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:

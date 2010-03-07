@@ -1,5 +1,7 @@
 class named {
-        include munin-node::bind
+        activate_munin_check {
+                "bind":;
+        }
 
         package {
                 bind9: ensure => installed;
@@ -32,4 +34,6 @@ class named {
         }
 }
 
-# vim: set fdm=marker ts=8 sw=8 et:
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:

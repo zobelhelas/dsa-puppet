@@ -54,7 +54,13 @@ class munin-node {
 
     case $vsftpd {
         "true": {
-              include munin-node::vsftpd
+              package { 
+                      "logtail": ensure => installed;
+              }
+              activate_munin_check {
+                      "vsftpd":;
+                      "ps_vsftpd": script => "ps_";
+              }
         }
     }
 
@@ -85,3 +91,6 @@ class munin-node {
     }
 }
 
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:
