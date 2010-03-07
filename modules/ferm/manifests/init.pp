@@ -62,6 +62,16 @@ class ferm {
         $munin_ips: script => "ip_";
     }
 
+    case $v6ips {
+        'no': {}
+        default: {
+            $munin6_ips = split(regsubst($v6ips, '([^,]+)', 'ip6_\1', 'G'), ',')
+            activate_munin_check {
+                $munin6_ips: script => "ip6_";
+            }
+        }
+    }
+
     exec {
         "ferm restart":
             command     => "/etc/init.d/ferm restart",

@@ -161,13 +161,13 @@ class apache2 {
     @ferm::rule { "dsa-http":
         prio            => "23",
         description     => "Allow web access",
-        rule            => "proto tcp dport http jump http;"
+        rule            => "proto tcp dport (http https) jump http;"
     }
     @ferm::rule { "dsa-http-v6":
         domain          => "(ip6)",
         prio            => "23",
         description     => "Allow web access",
-        rule            => "&SERVICE(tcp, 80)"
+        rule            => "&SERVICE(tcp, (http https))"
     }
 }
 # vim:set et:
