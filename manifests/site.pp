@@ -122,7 +122,7 @@ node default {
         ancina,zelenka: {
 	   @ferm::rule { "dsa-time":
 		    description     => "Allow time access",
-		    rule            => "&SERVICE_RANGE(udp, time, \$HOST_NAGIOS_V4)"
+		    rule            => "&SERVICE_RANGE(tcp, time, \$HOST_NAGIOS_V4)"
 	   }
         }
 
