@@ -26,7 +26,7 @@ class debian-org {
         "cron": ensure => installed;
         "csh": ensure => installed;
         "dnsutils": ensure => installed;
-        "dsa-munin-checks": ensure => installed;
+        "dsa-munin-plugins": ensure => installed;
         "ed": ensure => installed;
         "gnupg": ensure => installed;
         "klogd": ensure => purged;
