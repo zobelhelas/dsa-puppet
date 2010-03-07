@@ -1,9 +1,13 @@
-def $MUNIN_IFS = (<%=
-ifs = []
-interfaces.split(',').each do |iface|
-  next unless Kernel.global_variables.include?("ipaddress_" + iface)
-  ifs << iface
-end
-ifs.join(' ')
-%>);
+def $MUNIN_IPS = (<%= v4ips.split(',').join(' ') %>);
 
+domain ip {
+        chain INPUT {
+               daddr ($MUNIN_IP) NOP;
+        }
+}
+
+domain ip {
+        chain OUTPUT {
+               saddr ($MUNIN_IP) NOP;
+        }
+}
