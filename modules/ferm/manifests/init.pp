@@ -48,6 +48,12 @@ class ferm {
                         notify  => Exec["ferm restart"];
         }
 
+        $munin_ips = split(regsubst($v4ips, '([^,]+)', 'ip_\1', 'G'), ',')
+
+        activate_munin_check {
+            $munin_ips: script => "ip_";
+        }
+
         exec { "ferm restart":
                 command     => "/etc/init.d/ferm restart",
                 refreshonly => true,
