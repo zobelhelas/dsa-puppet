@@ -74,23 +74,59 @@ node default {
     }
 
     case extractnodeinfo($nodeinfo, 'buildd') {
-         true:  { include buildd }
+         'true':  {
+             include buildd
+             case $kernel {
+                 Linux: {
+                     include ferm
+                 }
+             }
+         }
     }
 
     case $hostname {
         klecker,ravel,senfl,orff: { include named::secondary }
         geo1,geo2,geo3:           { include named::geodns }
-        bartok:                   { include named::recursor }
-    }
-    
-    case $hostname {
-	senfl: { include rsync }
+        bartok,schein,steffani:   { include named::recursor }
     }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven: { include ferm }
+        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball: { include ferm }
     }
+    case $hostname {
+        piatti: {
+           @ferm::rule { "dsa-udd-stunnel":
+               description  => "port 8080 for udd stunnel",
+               rule         => "&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))"
+           }
+        }
+	senfl: {
+	   @ferm::rule { "dsa-rsync":
+		    domain          => "(ip ip6)",
+		    description     => "Allow rsync access",
+		    rule            => "&SERVICE(tcp, 873)"
+	   }
+        }
+        saens,villa,lobos,raff,gluck,schein,wieck,steffani: {
+           @ferm::rule { "dsa-ftp":
+		    domain          => "(ip ip6)",
+		    description     => "Allow ftp access",
+		    rule            => "&SERVICE(tcp, 21)"
+           }
+	   @ferm::rule { "dsa-rsync":
+		    domain          => "(ip ip6)",
+		    description     => "Allow rsync access",
+		    rule            => "&SERVICE(tcp, 873)"
+	   }
+        }
+        ancina,zelenka: {
+	   @ferm::rule { "dsa-time":
+		    description     => "Allow time access",
+		    rule            => "&SERVICE_RANGE(tcp, time, \$HOST_NAGIOS_V4)"
+	   }
+        }
 
+    }
     case $brokenhosts {
         "true":    { include hosts }
     }

@@ -13,7 +13,10 @@ class ferm {
         # realize (i.e. enable) all @ferm::rule virtual resources
         Ferm::Rule <| |>
 
-        package { ferm: ensure => installed }
+        package {
+                ferm: ensure => installed;
+                ulogd: ensure => installed;
+        }
 
         file { 
                 "/etc/ferm/dsa.d":
@@ -26,6 +29,10 @@ class ferm {
                 "/etc/ferm/conf.d":
                         ensure => directory,
                         require => Package["ferm"];
+                "/etc/default/ferm":
+                        source  => "puppet:///ferm/ferm.default",
+                        require => Package["ferm"],
+                        notify  => Exec["ferm restart"];
                 "/etc/ferm/ferm.conf":
                         source  => "puppet:///ferm/ferm.conf",
                         require => Package["ferm"],
@@ -41,6 +48,17 @@ class ferm {
                         require => Package["ferm"],
                         mode    => 0400,
                         notify  => Exec["ferm restart"];
+                "/etc/ferm/conf.d/interfaces.conf":
+                        content => template("ferm/interfaces.conf.erb"),
+                        require => Package["ferm"],
+                        mode    => 0400,
+                        notify  => Exec["ferm restart"];
+        }
+
+        $munin_ips = split(regsubst($v4ips, '([^,]+)', 'ip_\1', 'G'), ',')
+
+        activate_munin_check {
+            $munin_ips: script => "ip_";
         }
 
         exec { "ferm restart":

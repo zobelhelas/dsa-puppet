@@ -1,0 +1,13 @@
+def $MUNIN_IPS = (<%= v4ips.split(',').join(' ') %>);
+
+domain ip {
+        chain INPUT {
+               daddr ($MUNIN_IPS) NOP;
+        }
+}
+
+domain ip {
+        chain OUTPUT {
+               saddr ($MUNIN_IPS) NOP;
+        }
+}
