@@ -13,7 +13,10 @@ class ferm {
         # realize (i.e. enable) all @ferm::rule virtual resources
         Ferm::Rule <| |>
 
-        package { ferm: ensure => installed }
+        package {
+                ferm: ensure => installed
+                ulogd: ensure => installed
+        }
 
         file { 
                 "/etc/ferm/dsa.d":
