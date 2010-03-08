@@ -66,7 +66,7 @@ class ferm {
         'true': {
             file {
                 "/etc/ferm/conf.d/load_ftp_conntrack.conf":
-                    source => "puppet:///ferm/ferm.default",
+                    source => "puppet:///ferm/conntrack_ftp.conf",
                     require => Package["ferm"],
                     notify  => Exec["ferm restart"];
             }
