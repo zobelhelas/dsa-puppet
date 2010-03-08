@@ -62,6 +62,15 @@ class ferm {
         $munin_ips: script => "ip_";
     }
 
+    case extractnodeinfo($nodeinfo, 'buildd') {
+        file {
+            "/etc/ferm/conf.d/load_ftp_conntrack.conf":
+                source => "puppet:///ferm/ferm.default",
+                require => Package["ferm"],
+                notify  => Exec["ferm restart"];
+        }
+    }
+
     case $v6ips {
         'no': {}
         default: {
