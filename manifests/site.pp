@@ -91,7 +91,7 @@ node default {
     }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel: { include ferm }
+        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky: { include ferm }
     }
     case $hostname {
         piatti: {
