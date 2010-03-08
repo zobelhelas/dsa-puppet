@@ -63,11 +63,13 @@ class ferm {
     }
 
     case extractnodeinfo($nodeinfo, 'buildd') {
-        file {
-            "/etc/ferm/conf.d/load_ftp_conntrack.conf":
-                source => "puppet:///ferm/ferm.default",
-                require => Package["ferm"],
-                notify  => Exec["ferm restart"];
+        'true': {
+            file {
+                "/etc/ferm/conf.d/load_ftp_conntrack.conf":
+                    source => "puppet:///ferm/ferm.default",
+                    require => Package["ferm"],
+                    notify  => Exec["ferm restart"];
+            }
         }
     }
 
