@@ -79,6 +79,9 @@ node default {
              case $kernel {
                  Linux: {
                      include ferm
+                     @ferm::rule { "dsa-hook-nf_conntrack_ftp":
+                         rule => "@hook pre 'modprobe nf_conntrack_ftp || true'",
+                         description => "let's load nf_conntrack_ftp" ; }
                  }
              }
          }
