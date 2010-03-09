@@ -91,7 +91,7 @@ node default {
     }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball: { include ferm }
+        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky: { include ferm }
     }
     case $hostname {
         piatti: {
@@ -123,6 +123,17 @@ node default {
 	   @ferm::rule { "dsa-time":
 		    description     => "Allow time access",
 		    rule            => "&SERVICE_RANGE(tcp, time, \$HOST_NAGIOS_V4)"
+	   }
+        }
+        handel: {
+	   @ferm::rule { "dsa-puppet":
+		    description     => "Allow puppet access",
+		    rule            => "&SERVICE_RANGE(tcp, 8140, \$HOST_DEBIAN_V4)"
+	   }
+	   @ferm::rule { "dsa-puppet-v6":
+		    domain          => 'ip6',
+		    description     => "Allow puppet access",
+		    rule            => "&SERVICE_RANGE(tcp, 8140, \$HOST_DEBIAN_V6)"
 	   }
         }
 
