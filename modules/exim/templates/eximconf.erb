@@ -1300,6 +1300,8 @@ procmail:
   check_local_user
   domains = +local_domains
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
+  local_part_suffix = -*
+  local_part_suffix_optional
   no_verify
   no_expn
   require_files = $local_part:$home/.procmailrc
