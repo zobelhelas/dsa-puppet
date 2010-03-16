@@ -136,7 +136,7 @@ localpartlist postmasterish = postmaster : abuse : hostmaster : root
 
 # Domains we relay for; that is domains that aren't considered local but we 
 # accept mail for them.
-hostlist debianhosts = 127.0.0.1 : net-lsearch;/var/lib/misc/thishost/debianhosts
+hostlist debianhosts = 127.0.0.1 : /var/lib/misc/thishost/debianhosts
 <%=
 out = ""
 if nodeinfo['mailrelay']
