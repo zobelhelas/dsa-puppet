@@ -17,7 +17,6 @@ class ferm {
     package {
             ferm: ensure => installed;
             ulogd: ensure => installed;
-            logrotate: ensure => installed;
     }
 
     file {
