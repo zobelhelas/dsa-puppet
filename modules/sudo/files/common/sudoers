@@ -28,6 +28,7 @@ Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= bellini, cimarosa, morricone, paganini, respighi, vivaldi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= master, fasch, holter, barber, biber, cilea, vitry, krenek, scelsi, orff, field
+Host_Alias	PORTERHOSTS	= agricola, albeniz, merulo, paer, pergolesi, pescetti, smetana, sperger, zee, zelenka
 # User alias specification
 User_Alias	QACORE		= aba, djpig, geissert, hertzog, jeroen, joerg, lucas, luk, myon, tbm, weasel, zack
 
@@ -140,4 +141,4 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 
 # Porter work
-%porter-sparc	sperger,smetana=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots
+%porter-sparc	PORTERHOSTS=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots
