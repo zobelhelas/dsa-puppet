@@ -67,6 +67,7 @@ nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, 
 %dde		ALL=(dde)	ALL
 %debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
+%debian-cd	ALL=(debian-cd)	ALL
 %debian-release	ALL=(release)	ALL
 %debwww		ALL=(debwww)	ALL
 %forums		ALL=(forums)	ALL
