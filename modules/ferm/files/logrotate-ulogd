@@ -4,6 +4,11 @@
 ##
 
 /var/log/ulog/*.log {
+    daily
+    compress
+    delaycompress
+    rotate 10
+    notifempty
     missingok
     sharedscripts
     create 640 root adm
