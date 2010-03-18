@@ -138,3 +138,6 @@ debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 # geodns may reload bind
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
+
+# Porter work
+%porter-sparc	sperger,smetana=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots
