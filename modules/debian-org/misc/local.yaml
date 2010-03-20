@@ -25,6 +25,7 @@ nameinfo:
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
   field.debian.org: John Field (1782 - 1837)
   finzi.debian.org: Gerald Raphael Finzi (14 July 1901 - 27 September 1956)
+  gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 – July  10th 1690)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (2 July 1714 - 15 November 1787)
   goedel.debian.org: Kurt Gödel (April 28, 1906 - January 14, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7, 1840 - December 3, 1876)
@@ -212,6 +213,7 @@ host_settings:
     fasch.debian.org: mailout.debian.org
     field.debian.org: mailout.debian.org
     finzi.debian.org: mailout.debian.org
+    gabrielli.debian.org: mailout.debian.org
     geo1.debian.org: mailout.debian.org
     geo2.debian.org: mailout.debian.org
     geo3.debian.org: mailout.debian.org
