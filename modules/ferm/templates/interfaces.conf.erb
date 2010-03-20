@@ -1,4 +1,10 @@
-def $MUNIN_IPS = (<%= v4ips.split(',').join(' ') %>);
+def $MUNIN_IPS = (<%=
+begin
+	v4ips.split(',').join(' ')
+rescue
+	''
+end
+%>);
 def $MUNIN6_IPS = (<%= v6ips == 'no' ? '' : v6ips.split(',').join(' ') %>);
 
 domain ip {
