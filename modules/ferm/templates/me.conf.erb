@@ -3,7 +3,9 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<%
+<%=
+out = []
+
 restrict_ssh = %w{logtest01 geo1 geo2 geo3 bartok beethoven tchaikovsky schroeder}
 
 ssh4allowed = []
@@ -14,7 +16,7 @@ if restrict_ssh.include?(hostname) then
 	ssh6allowed << %w{$DSA_V6_IPS $HOST_NAGIOS_V6 $HOST_DB_V6}
 end
 if %w{schroeder}.include?(hostname) then
-	puts '@def $CARNET = ( 193.198.184.8/29 161.53.160.133 161.53.160.90 161.53.11.222 161.53.12.134 161.53.12.142 161.53.12.143 );'
+	out << '@def $CARNET = ( 193.198.184.8/29 161.53.160.133 161.53.160.90 161.53.11.222 161.53.12.134 161.53.12.142 161.53.12.143 );'
 	ssh4allowed << '$CARNET'
 end
 if %w{bartok beethoven}.include?(hostname) then
@@ -24,8 +26,8 @@ end
 ssh4allowed.length == 0 and ssh4allowed << '0.0.0.0/0'
 ssh6allowed.length == 0 and ssh6allowed << '::'
 
-puts "@def $SSH_SOURCES    = (#{ssh4allowed.join(' ')});";
-puts "@def $SSH_V6_SOURCES = (#{ssh6allowed.join(' ')});";
+out << "@def $SSH_SOURCES    = (#{ssh4allowed.join(' ')});"
+out << "@def $SSH_V6_SOURCES = (#{ssh6allowed.join(' ')});"
 
 
 
@@ -41,7 +43,8 @@ end
 smtp4allowed.length == 0 and smtp4allowed << '0.0.0.0/0'
 smtp6allowed.length == 0 and smtp6allowed << '::'
 
-puts "@def $SMTP_SOURCES    = (#{smtp4allowed.join(' ')});";
-puts "@def $SMTP_V6_SOURCES = (#{smtp6allowed.join(' ')});";
+out << "@def $SMTP_SOURCES    = (#{smtp4allowed.join(' ')});"
+out << "@def $SMTP_V6_SOURCES = (#{smtp6allowed.join(' ')});"
 
+out.join("\n")
 %>
