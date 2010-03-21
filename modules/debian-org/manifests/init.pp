@@ -47,6 +47,7 @@ class debian-org {
         "userdir-ldap": ensure => installed;
         "vim": ensure => installed;
         "zsh": ensure => installed;
+        "logrotate": ensure => installed;
     }
     file {
         "/etc/apt/preferences":
