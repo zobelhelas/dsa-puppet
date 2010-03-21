@@ -67,6 +67,7 @@ nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, 
 %dde		ALL=(dde)	ALL
 %debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
+%debian-cd	ALL=(debian-cd)	ALL
 %debian-release	ALL=(release)	ALL
 %debwww		ALL=(debwww)	ALL
 %forums		ALL=(forums)	ALL
@@ -137,3 +138,13 @@ debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 # geodns may reload bind
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
+
+# Porter work
+%porter-alpha	albeniz=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-armel	agricola=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-amd64	pergolesi=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-hppa	paer=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-ia64	merulo=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-ppc	pescetti=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-s390	zelenka=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-sparc	smetana,sperger,zee=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot

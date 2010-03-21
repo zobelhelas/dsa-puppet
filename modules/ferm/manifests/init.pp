@@ -19,7 +19,7 @@ class ferm {
             ulogd: ensure => installed;
     }
 
-    file { 
+    file {
         "/etc/ferm/dsa.d":
             ensure => directory,
             purge   => true,
@@ -54,6 +54,10 @@ class ferm {
             require => Package["ferm"],
             mode    => 0400,
             notify  => Exec["ferm restart"];
+        "/etc/logrotate.d/ulogd":
+            source => "puppet:///ferm/logrotate-ulogd",
+            require => Package["logrotate"],
+            ;
     }
 
     $munin_ips = split(regsubst($v4ips, '([^,]+)', 'ip_\1', 'G'), ',')
