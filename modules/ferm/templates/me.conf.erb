@@ -3,6 +3,14 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+<%=
+  out=''
+  case hostname
+  when 'schroeder' then 
+    out = '@def $CARNET = ( 193.198.184.8/29 161.53.160.133 161.53.160.90 161.53.11.222 161.53.12.134 161.53.12.142 161.53.12.143 )'
+  end
+  out
+%>
 
 @def $SSH_SOURCES = (<%=
 
@@ -10,6 +18,7 @@ sshallowed = []
 
 case hostname
   when 'logtest01', 'geo1', 'geo2', 'geo3', 'bartok', 'beethoven', 'tchaikovsky' then sshallowed << [ '$DSA_IPS', '$HOST_NAGIOS_V4', '$HOST_DB_V4' ]
+  when 'schroeder' then sshallowed << [ '$DSA_IPS', '$HOST_NAGIOS_V4', '$HOST_DB_V4', '$CARNET' ]
 end
 
 case hostname
@@ -28,7 +37,7 @@ sshallowed.join(' ')
 sshallowed = []
 
 case hostname
-  when 'logtest01', 'geo1', 'geo2', 'geo3', 'bartok', 'beethoven', 'tchaikovsky' then sshallowed << [ '$DSA_V6_IPS', '$HOST_NAGIOS_V6', '$HOST_DB_V6' ]
+  when 'logtest01', 'geo1', 'geo2', 'geo3', 'bartok', 'beethoven', 'schroeder', 'tchaikovsky' then sshallowed << [ '$DSA_V6_IPS', '$HOST_NAGIOS_V6', '$HOST_DB_V6' ]
 end
 
 case hostname
