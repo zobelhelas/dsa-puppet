@@ -18,6 +18,7 @@ nameinfo:
   chopin.debian.org: Frédéric Chopin (1 March 1810 - 17 October 1849)
   cilea.debian.org: Francesco Cilèa (1866 - 1950)
   cimarosa.debian.org: Domenico Cimarosa (17 December 1749 - 11 January 1801)
+  corelli.debian.org: Arcangelo Corelli (February 17th, 1653 – January 8th, 1713)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - 16 January  1700)
   duarte.debian.org: Leonora Duarte (28 July  1610 - 1678)
@@ -25,7 +26,7 @@ nameinfo:
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
   field.debian.org: John Field (1782 - 1837)
   finzi.debian.org: Gerald Raphael Finzi (14 July 1901 - 27 September 1956)
-  gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 – July  10th 1690)
+  gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 – July 10th, 1690)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (2 July 1714 - 15 November 1787)
   goedel.debian.org: Kurt Gödel (April 28, 1906 - January 14, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7, 1840 - December 3, 1876)
@@ -160,6 +161,7 @@ host_settings:
     - biber.debian.org
     - brahms.debian.org
     - caballero.debian.org
+    - corelli.debian.org
     - fano.debian.org
     - fasch.debian.org
     - field.debian.org
@@ -206,6 +208,7 @@ host_settings:
     carver.debian.org: mailout.debian.org
     cilea.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
+    corelli.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
