@@ -103,7 +103,9 @@ source s_all {
 <%end%>
         # use the following line if you want to receive remote UDP logging messages
         # (this is equivalent to the "-r" syslogd flag)
-        # udp();
+<% if hostname == "paganini" -%>
+        udp();
+<%end%>
 };
 
 
