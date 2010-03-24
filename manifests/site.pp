@@ -94,6 +94,18 @@ node default {
         logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky: { include ferm }
     }
     case $hostname {
+        zandonai,zelenka: {
+           @ferm::rule { "dsa-zivit-rrdcollect":
+               description  => "port 6666 for rrdcollect for zivit",
+               rule         => "&SERVICE_RANGE(tcp, 6666, ( 10.130.18.71 ))"
+           }
+        }
+        zandonai,zelenka: {
+           @ferm::rule { "dsa-zivit-zabbix":
+               description  => "port 10050 for zabbix for zivit",
+               rule         => "&SERVICE_RANGE(tcp, 10050, ( 10.130.18.76 ))"
+           }
+        }
         piatti: {
            @ferm::rule { "dsa-udd-stunnel":
                description  => "port 8080 for udd stunnel",

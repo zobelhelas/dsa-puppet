@@ -1,3 +1,8 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
 #
 # Configuration file for syslog-ng under Debian
 #
@@ -98,7 +103,9 @@ source s_all {
 <%end%>
         # use the following line if you want to receive remote UDP logging messages
         # (this is equivalent to the "-r" syslogd flag)
-        # udp();
+<% if hostname == "paganini" -%>
+        udp();
+<%end%>
 };
 
 
@@ -359,5 +366,16 @@ log {
         source(s_all);
         filter(f_xconsole);
         destination(dp_xconsole);
+};
+<%end%>
+
+<% if hostname == "corelli" -%>
+destination loghost-paganini {
+	udp("192.168.2.10",port(514));
+};
+
+log {
+	source(s_all);
+	destination(loghost-paganini);
 };
 <%end%>
