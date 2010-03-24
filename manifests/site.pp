@@ -99,8 +99,6 @@ node default {
                description  => "port 6666 for rrdcollect for zivit",
                rule         => "&SERVICE_RANGE(tcp, 6666, ( 10.130.18.71 ))"
            }
-        }
-        zandonai,zelenka: {
            @ferm::rule { "dsa-zivit-zabbix":
                description  => "port 10050 for zabbix for zivit",
                rule         => "&SERVICE_RANGE(tcp, 10050, ( 10.130.18.76 ))"
