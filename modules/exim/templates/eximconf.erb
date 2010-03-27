@@ -325,6 +325,18 @@ out
 %>
 <%=
 out = ''
+if nodeinfo['bugsmaster']
+  out = '
+  warn    domains        = bugs.debian.org
+          set acl_m_rprf = BugsMail
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+'
+end
+out
+%>
+<%=
+out = ''
 if nodeinfo['packagesmaster']
   out = '
   warn    domains        = packages.debian.org
