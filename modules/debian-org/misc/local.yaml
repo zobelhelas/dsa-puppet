@@ -129,6 +129,7 @@ host_settings:
     - chopin.debian.org
     - cimarosa.debian.org
     - draghi.debian.org
+    - grieg.debian.org
     - klecker.debian.org
     - master.debian.org
     - merkel.debian.org
