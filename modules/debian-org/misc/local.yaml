@@ -22,6 +22,7 @@ nameinfo:
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - 16 January  1700)
   duarte.debian.org: Leonora Duarte (28 July  1610 - 1678)
+  englund.debian.org: Sven Einar Englund (June 17, 1916 - June 27, 1999)
   fano.debian.org: Guido Alberto Fano (18 March 1875 - 14 August 1961)
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
   field.debian.org: John Field (1782 - 1837)
@@ -39,12 +40,14 @@ nameinfo:
   krenek.debian.org: Ernst Krenek (1900 - 1991)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24, 1756 - May 14, 1791)
+  lindberg.debian.org: Magnus Lindberg (*27 June 1958)
   liszt.debian.org: Franz Liszt (October 22, 1811 - July 31, 1886)
   luchesi.debian.org: Andrea Luca Luchesi (May 23, 1741 - March 21, 1801)
   mahler.debian.org: Gustav Mahler (7 July 1860 - 18 May 1911)
   mayer.debian.org: John Mayer (October 28, 1930 - March 9, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14, 1763 - December 2, 1845)
   mendes.debian.org: Manuel Mendes (c. 1547 - September 24, 1605)
+  merikanto.debian.org: Oskar Merikanto (5 August 1868 - 17 February 1924)
   merkel.debian.org: Gustav (Adolf) Merkel (November 12, 1827 - October 30, 1885)
   merulo.debian.org: Claudio Merulo (8 April 1533 - 4 May 1604)
   monteverdi.debian.org: Claudio Giovanni Antonio Monteverdi (15 May 1567 - 29 November 1643)
@@ -210,6 +213,7 @@ host_settings:
     corelli.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
+    englund.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
     fasch.debian.org: mailout.debian.org
@@ -230,6 +234,7 @@ host_settings:
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
+    lindberg.debian.org: mailout.debian.org
     lobos.debian.org: mailout.debian.org
     luchesi.debian.org: mailout.debian.org
     mahler.debian.org: mailout.debian.org
@@ -237,6 +242,7 @@ host_settings:
     mayer.debian.org: mailout.debian.org
     mayr.debian.org: mailout.debian.org
     mendes.debian.org: mailout.debian.org
+    merikanto.debian.org: mailout.debian.org
     merulo.debian.org: mailout.debian.org
     monteverdi.debian.org: mailout.debian.org
     morales.debian.org: mailout.debian.org
