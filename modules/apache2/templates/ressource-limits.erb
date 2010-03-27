@@ -7,7 +7,7 @@ RLimitCPU 180
 <%=
 case fqdn
 	when "merkel.debian.org" then "" # maybe unlimited will be better
-	when "cimarosa.debian.org" then
+	when "grieg.debian.org" then
 		# buildd.debian.org
 		"RLimitMEM "+(96 * 1024**2).to_s
 	else

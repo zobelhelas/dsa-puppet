@@ -17,6 +17,6 @@ merkel.debian.org:
 
 samosa.debian.org:
   - source_bind_port: 5433
-    target_host: cimarosa.debian.org
+    target_host: grieg.debian.org
     target_port: 5433
 
