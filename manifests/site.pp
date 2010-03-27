@@ -49,7 +49,7 @@ node default {
     case $mta {
         "exim4":   {
              case extractnodeinfo($nodeinfo, 'heavy_exim') {
-                  true:    { include exim::mx }
+                  'true':  { include exim::mx }
                   default: { include exim }
              }
         }
