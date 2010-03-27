@@ -293,6 +293,14 @@ RT_QUEUE_MAP = /srv/rt.debian.org/mail/rt_queue_map
 ######################################################################
 begin acl
 
+acl_spamlovers:
+  # There are a few profiles that don't want much smtp time checking of
+  # mail.  It's easier to track them in one place
+
+  accept  condition      = ${if eq {$acl_m_prf}{PopconMail}}
+  accept  condition      = ${if eq {$acl_m_prf}{BugsMail}}
+  deny
+
 acl_getprofile:
   # This is a bad hack to reset the variable, by defining it be something
   # never referenced.
@@ -583,25 +591,25 @@ out
   # This is a rough pass at preventing addres harvesting or other mail blasts.
 
   defer  log_message   = Too many bad recipients ${eval:$rcpt_fail_count} out of $rcpt_count
-         condition     = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+         !acl          = acl_spamlovers
          message       = Too many bad recipients, try again later
          !hosts        = +debianhosts
          condition     = ${if > {${eval:$rcpt_fail_count}}{3}{yes}{no}}
 
   # Dump spambots that are so stupid they say helo as our IP address
 
-  drop !hosts          = +debianhosts
-        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
-       condition       = ${if eq {$sender_helo_name}{$interface_address}{yes}{no}}
-       message         = HELO mismatch Forged HELO for ($sender_helo_name)
+  drop   !hosts        = +debianhosts
+         !acl          = acl_spamlovers
+         condition     = ${if eq {$sender_helo_name}{$interface_address}{yes}{no}}
+         message       = HELO mismatch Forged HELO for ($sender_helo_name)
 
   # Also for spambots that say helo as us or one of our domains
 
-  drop !hosts          = +debianhosts
-        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
-       condition       = ${if match_domain{$sender_helo_name}{$primary_hostname:+handled_domains}}
-       condition       = ${if !match{$sender_host_name}{${rxquote:$sender_helo_name}\N$\N}}
-       message         = HELO mismatch Forged HELO for ($sender_helo_name)
+  drop   !hosts        = +debianhosts
+         !acl          = acl_spamlovers
+         condition     = ${if match_domain{$sender_helo_name}{$primary_hostname:+handled_domains}}
+         condition     = ${if !match{$sender_host_name}{${rxquote:$sender_helo_name}\N$\N}}
+         message       = HELO mismatch Forged HELO for ($sender_helo_name)
 
   # This logic gives you a list of commonly forged domains in helo to reject against
 
@@ -612,31 +620,31 @@ out
   # This is a failsafe in case DNS fails - we defer instead of hard reject if they 
   # say helo as a name in the list but we can't look them up
 
-  defer !hosts         = +debianhosts
-        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
-        condition      = ${if eq{$acl_m_frg}{}{no}{yes}}
-        condition      = ${if eq{$sender_host_name}{}{yes}{no}}
-        condition      = ${if eq{$host_lookup_failed}{1}{no}{yes}}
-        message        = Access temporarily denied. Resolve failed PTR for $sender_host_address
+  defer  !hosts        = +debianhosts
+         !acl          = acl_spamlovers
+         condition     = ${if eq{$acl_m_frg}{}{no}{yes}}
+         condition     = ${if eq{$sender_host_name}{}{yes}{no}}
+         condition     = ${if eq{$host_lookup_failed}{1}{no}{yes}}
+         message       = Access temporarily denied. Resolve failed PTR for $sender_host_address
 
   # If DNS works, go ahead and reject them
 
-  drop  !hosts         = +debianhosts
-        condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
-        condition      = ${if and { {!eq{$acl_m_frg}{}}{!match{$sender_host_name}{${rxquote:$acl_m_frg}\N$\N}}}{yes}{no}}
-        message        = HELO mismatch Forged HELO for ($sender_helo_name)
+  drop   !hosts        = +debianhosts
+         !acl          = acl_spamlovers
+         condition     = ${if and { {!eq{$acl_m_frg}{}}{!match{$sender_host_name}{${rxquote:$acl_m_frg}\N$\N}}}{yes}{no}}
+         message       = HELO mismatch Forged HELO for ($sender_helo_name)
 
   # disabled accounts don't even get local mail.
-  deny    local_parts   = lsearch;/var/lib/misc/$primary_hostname/mail-disable
-          domains       = +local_domains
-	  message       = ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-disable}{$value}}
+  deny   local_parts   = lsearch;/var/lib/misc/$primary_hostname/mail-disable
+         domains       = +local_domains
+	 message       = ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-disable}{$value}}
 
-  deny    domains       = +virtual_domains
-          local_parts   = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/localonly}}}\
-                                      {${extract{directory}{VDOMAINDATA}{${value}/localonly}}}\
-                                      {}}
-          hosts         = !+debianhosts
-          message       = mail for <$local_part@$domain> only accepted from debian.org machines
+  deny   domains       = +virtual_domains
+         local_parts   = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/localonly}}}\
+                                     {${extract{directory}{VDOMAINDATA}{${value}/localonly}}}\
+                                     {}}
+         hosts         = !+debianhosts
+         message       = mail for <$local_part@$domain> only accepted from debian.org machines
   # Accept if the source is local SMTP (i.e. not over TCP/IP).
   # We do this by testing for an empty sending host field.
   accept  hosts = :
