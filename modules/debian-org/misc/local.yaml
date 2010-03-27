@@ -106,6 +106,7 @@ services:
     - busoni.debian.org
     - rietz.debian.org
   bugsmx:
+    - busoni.debian.org
     - byrd.debian.org
   dbmaster:
     - draghi.debian.org
