@@ -227,7 +227,6 @@ host_settings:
     gluck.debian.org: mailout.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
-    grieg.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
     holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
