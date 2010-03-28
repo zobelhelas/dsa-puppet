@@ -114,6 +114,7 @@ services:
   mailrelay:
     - draghi.debian.org
     - spohr.debian.org
+    - merikanto.debian.org
   muninmaster: spohr.debian.org
   nagiosmaster:
     - draghi.debian.org
@@ -133,6 +134,7 @@ host_settings:
     - grieg.debian.org
     - klecker.debian.org
     - master.debian.org
+    - merikanto.debian.org
     - merkel.debian.org
     - morricone.debian.org
     - powell.debian.org
@@ -240,7 +242,6 @@ host_settings:
     mayer.debian.org: mailout.debian.org
     mayr.debian.org: mailout.debian.org
     mendes.debian.org: mailout.debian.org
-    merikanto.debian.org: mailout.debian.org
     merulo.debian.org: mailout.debian.org
     monteverdi.debian.org: mailout.debian.org
     morales.debian.org: mailout.debian.org
