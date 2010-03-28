@@ -114,7 +114,6 @@ services:
   mailrelay:
     - draghi.debian.org
     - spohr.debian.org
-    - englund.debian.org
   muninmaster: spohr.debian.org
   nagiosmaster:
     - draghi.debian.org
@@ -142,7 +141,6 @@ host_settings:
     - rietz.debian.org
     - spohr.debian.org
     - valente.debian.org
-    - englund.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - kassia.debian.org
@@ -214,6 +212,7 @@ host_settings:
     corelli.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
+    englund.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
     fasch.debian.org: mailout.debian.org
