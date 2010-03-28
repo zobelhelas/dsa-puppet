@@ -141,7 +141,6 @@ host_settings:
     - rietz.debian.org
     - spohr.debian.org
     - valente.debian.org
-    - widor.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - kassia.debian.org
@@ -283,6 +282,7 @@ host_settings:
     vitry.debian.org: mailout.debian.org
     vivaldi.debian.org: mailout.debian.org
     voltaire.debian.org: mailout.debian.org
+    widor.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
     wolkenstein.debian.org: mailout.debian.org
     zandonai.debian.org: mailout.debian.org
