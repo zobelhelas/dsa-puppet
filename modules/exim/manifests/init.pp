@@ -106,6 +106,11 @@ class exim {
           source  => [ "puppet:///exim/per-host/$fqdn/whitelist",
                        "puppet:///exim/common/whitelist" ]
           ;
+        "/etc/exim4/submission-domains":
+          require => Package["exim4-daemon-heavy"],
+          source  => [ "puppet:///exim/per-host/$fqdn/submission-domains",
+                       "puppet:///exim/common/submission-domains" ]
+          ;
         "/etc/logrotate.d/exim4-base":
           require => Package["exim4-daemon-heavy"],
           source  => [ "puppet:///exim/per-host/$fqdn/logrotate-exim4-base",
