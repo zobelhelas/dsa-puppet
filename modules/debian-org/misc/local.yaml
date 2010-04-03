@@ -105,7 +105,6 @@ footer:
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
   bugsmaster:
-    - rietz.debian.org
   bugsmx:
     - busoni.debian.org
     - byrd.debian.org
