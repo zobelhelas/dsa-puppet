@@ -49,7 +49,7 @@ node default {
     case $mta {
         "exim4":   {
              case extractnodeinfo($nodeinfo, 'heavy_exim') {
-                  true:    { include exim::mx }
+                  'true':  { include exim::mx }
                   default: { include exim }
              }
         }
@@ -99,8 +99,6 @@ node default {
                description  => "port 6666 for rrdcollect for zivit",
                rule         => "&SERVICE_RANGE(tcp, 6666, ( 10.130.18.71 ))"
            }
-        }
-        zandonai,zelenka: {
            @ferm::rule { "dsa-zivit-zabbix":
                description  => "port 10050 for zabbix for zivit",
                rule         => "&SERVICE_RANGE(tcp, 10050, ( 10.130.18.76 ))"
