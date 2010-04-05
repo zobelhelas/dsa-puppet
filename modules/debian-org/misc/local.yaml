@@ -99,7 +99,6 @@ nameinfo:
   zandonai.debian.org: Riccardo Zandonai (May 30th, 1883 - June 5th, 1944)
   zelenka.debian.org: Jan Dismas Zelenka (October 16th, 1679 - December 23rd, 1745)
 footer:
-  lebrun.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
   zandonai.debian.org: "Debian s390 buildd system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
