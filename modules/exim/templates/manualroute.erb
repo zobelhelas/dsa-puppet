@@ -15,7 +15,7 @@ extraroutes = []
 case fqdn
 when 'spohr.debian.org', 'draghi.debian.org', 'merikanto.debian.org' then
   mxmatches << 'mailout.debian.org'
-  extraroutes = [ 'keyring.debian.org:\t\tkaufmann.debian.org' ]
+  extraroutes = [ "keyring.debian.org:\t\tkaufmann.debian.org" ]
 end
 
 mxregex = Regexp.new('^\d+\s+(.*)\.$')
