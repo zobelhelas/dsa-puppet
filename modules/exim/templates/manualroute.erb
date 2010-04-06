@@ -9,12 +9,14 @@
 
 <%=
 mxmatches = [ fqdn ]
+routes = []
+extraroutes = []
+
 case fqdn
 when 'spohr.debian.org', 'draghi.debian.org', 'merikanto.debian.org' then
   mxmatches << 'mailout.debian.org'
+  extraroutes = [ 'keyring.debian.org:\t\tkaufmann.debian.org' ]
 end
-
-routes = []
 
 mxregex = Regexp.new('^\d+\s+(.*)\.$')
 mxinfo.keys.sort.each do |host|
@@ -29,6 +31,8 @@ mxinfo.keys.sort.each do |host|
     end
   end
 end
+
+routes << extraroutes
 
 routes.join("\n")
 %>
