@@ -21,7 +21,7 @@ vdoms = case fqdn
 
         when "bellini.debian.org" then "popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/"
 
-        when "byrd.debian.org", "busoni.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
+        when "busoni.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
 
         when "chopin.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/srv/security-master.debian.org/mail/"
 
@@ -31,6 +31,8 @@ vdoms = case fqdn
         when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
 
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
+
+        when "kaufmann.debian.org" then "keyring.debian.org: user=keyring group=Debian directory=/srv/keyring.debian.org/mail"
 
         when "klecker.debian.org" then "non-us.debian.org: user=katie group=debadmin directory=/org/non-us.debian.org/mail/
 www-master.debian.org: user=debwww group=debwww directory=/org/www.debian.org/mail/"
@@ -53,8 +55,6 @@ nm.debian.org: user=nm group=nm directory=/org/nm.debian.org/mail/"
 
         when "ries.debian.org" then "release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
 ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp.debian.org/mail group_writable=true"
-
-        when "rietz.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
 
         when "spohr.debian.org" then "rt.debian.org: user=rt group=rt directory=/srv/rt.debian.org/mail
 admin.debian.org: user=mail_admin group=mail_admin directory=/org/admin.debian.org/mail/"

@@ -25,7 +25,7 @@ if %w{bartok beethoven}.include?(hostname) then
 	ssh6allowed << '$HOST_DEBIAN_V6'
 end
 ssh4allowed.length == 0 and ssh4allowed << '0.0.0.0/0'
-ssh6allowed.length == 0 and ssh6allowed << '::'
+ssh6allowed.length == 0 and ssh6allowed << '::/0'
 
 out << "@def $SSH_SOURCES    = (#{ssh4allowed.join(' ')});"
 out << "@def $SSH_V6_SOURCES = (#{ssh6allowed.join(' ')});"

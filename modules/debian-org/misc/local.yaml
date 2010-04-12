@@ -13,7 +13,6 @@ nameinfo:
   biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
-  byrd.debian.org: William Byrd (1543 - July 4th, 1623)
   carver.debian.org: Robert Carver (ca.1485 - ca.1570)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
@@ -100,14 +99,12 @@ nameinfo:
   zandonai.debian.org: Riccardo Zandonai (May 30th, 1883 - June 5th, 1944)
   zelenka.debian.org: Jan Dismas Zelenka (October 16th, 1679 - December 23rd, 1745)
 footer:
-  lebrun.debian.org: "- This host is using an iptables firewall.  See /etc/rc.boot/firewall{,6}"
   zandonai.debian.org: "Debian s390 buildd system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
   bugsmaster:
   bugsmx:
     - busoni.debian.org
-    - byrd.debian.org
   dbmaster:
     - draghi.debian.org
   mailrelay:
@@ -127,7 +124,6 @@ host_settings:
   heavy_exim:
     - bellini.debian.org
     - busoni.debian.org
-    - byrd.debian.org
     - chopin.debian.org
     - draghi.debian.org
     - grieg.debian.org
@@ -208,8 +204,8 @@ host_settings:
     carver.debian.org: mailout.debian.org
     cilea.debian.org: mailout.debian.org
     cimarosa.debian.org: mailout.debian.org
-    crest.debian.org: mailout.debian.org
     corelli.debian.org: mailout.debian.org
+    crest.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
     englund.debian.org: mailout.debian.org
@@ -228,6 +224,7 @@ host_settings:
     handel.debian.org: mailout.debian.org
     holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
+    kaufmann.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
