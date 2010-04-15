@@ -166,6 +166,7 @@ host_settings:
     - goetz.debian.org
     - lafayette.debian.org
     - lebrun.debian.org
+    - lucatelli.debian.org
     - malo.debian.org
     - mayer.debian.org
     - mayr.debian.org
@@ -231,6 +232,7 @@ host_settings:
     leisner.debian.org: mailout.debian.org
     lindberg.debian.org: mailout.debian.org
     lobos.debian.org: mailout.debian.org
+    lucatelli.debian.org: mailout.debian.org
     luchesi.debian.org: mailout.debian.org
     mahler.debian.org: mailout.debian.org
     malo.debian.org: mailout.debian.org
