@@ -1387,7 +1387,6 @@ virt_users:
   allow_fail
   router_home_directory = ${extract{directory}{VDOMAINDATA}}
   transport_current_directory = ${extract{directory}{VDOMAINDATA}}
-  file = ${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}
   user = ${extract{user}{VDOMAINDATA}}
   group = ${extract{group}{VDOMAINDATA}}
   data = ${if exists{${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}\
