@@ -619,6 +619,7 @@ check_recipient:
 	  message       = mail from <$sender_address> not allowed externally
 
   deny    sender_domains= +virtual_domains
+          condition     = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/localusers}}}}
           condition     = ${lookup{$sender_address_local_part}lsearch{${extract{directory}{VDOMAINDATA}{${value}/localusers}}}{true}}
 	  hosts         = !+debianhosts
 	  message       = mail from <$sender_address> not allowed externally
