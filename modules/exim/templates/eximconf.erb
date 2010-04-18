@@ -582,7 +582,7 @@ check_recipient:
   # disabled accounts don't even get local mail.
   deny   domains       = +virtual_domains
          local_parts   = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/mail-disable}}}\
-                                     {partial-lsearch;${extract{directory}{VDOMAINDATA}{${value}/mail-disable}}}\
+                                     {lsearch;${extract{directory}{VDOMAINDATA}{${value}/mail-disable}}}\
                                      {}}
          message       = ${lookup{$local_part}lsearch{${extract{directory}{VDOMAINDATA}{${value}/mail-disable}}}{$value}}
 
