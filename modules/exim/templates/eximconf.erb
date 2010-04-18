@@ -1211,9 +1211,9 @@ ldap_aliases:
   driver = redirect
   allow_defer
   allow_fail
-  data = ${if exists{/var/lib/misc/$primary_hostname/mail-forward.cdb}\
+  data = ${if exists{/var/lib/misc/$primary_hostname/user-forward.cdb}\
              {${lookup{$local_part}cdb\
-	       {/var/lib/misc/$primary_hostname/mail-forward.cdb}}}}
+	       {/var/lib/misc/$primary_hostname/user-forward.cdb}}}}
   domains = +local_domains
   file_transport = address_file
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
