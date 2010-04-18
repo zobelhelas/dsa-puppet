@@ -1216,6 +1216,8 @@ ldap_aliases:
 	       {/var/lib/misc/$primary_hostname/user-forward.cdb}}}}
   domains = +local_domains
   file_transport = address_file
+  local_part_suffix = -*
+  local_part_suffix_optional
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
   pipe_transport = address_pipe
   retry_use_local_part
@@ -1226,6 +1228,8 @@ localuser:
   driver = accept
   check_local_user
   domains = +local_domains
+  local_part_suffix = -*
+  local_part_suffix_optional
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
   # Disable if the user has never logged in
   require_files = $home
@@ -1336,6 +1340,8 @@ virt_direct_verify:
   modemask = 002
   directory_transport = address_directory
   domains = +virtual_domains
+  local_part_suffix = -*
+  local_part_suffix_optional
   file = $home/.forward-\
               ${if exists {${home}/.forward-${local_part}}{${local_part}}\
 	           {default}}
@@ -1359,6 +1365,8 @@ virt_aliases:
               ${extract{directory}{VDOMAINDATA}{$value/aliases}}\
 	   }}}}
   directory_transport = address_directory
+  local_part_suffix = -*
+  local_part_suffix_optional
   domains = +virtual_domains
   file_transport = ${if eq {${extract{group_writable}{VDOMAINDATA}}}{true}{address_file_group}{address_file}}
   cannot_route_message = Unknown user
@@ -1388,6 +1396,8 @@ virt_direct:
   group = ${extract{group}{VDOMAINDATA}}
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
   modemask = 002
+  local_part_suffix = -*
+  local_part_suffix_optional
   pipe_transport = address_pipe
   reply_transport = address_reply
   retry_use_local_part
@@ -1415,6 +1425,8 @@ virt_users:
   file_transport = address_file
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
   pipe_transport = address_pipe
+  local_part_suffix = -*
+  local_part_suffix_optional
   retry_use_local_part
 
 ######################################################################
