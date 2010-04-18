@@ -343,21 +343,39 @@ acl_getprofile:
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
-  warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{markup}}
-          log_message    = $local_part@$domain: markup
-          set acl_m_rprf = markup
-
-  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
-
-  warn    condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{blackhole}}
+  warn    domains        = +virtual_domains
+          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}}
+          condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}{$value}{}}}{blackhole}}
           log_message    = $local_part@$domain: blackhole
           set acl_m_rprf = blackhole
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
   warn    domains        = +virtual_domains
-          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}}
-          condition      = ${if eq{${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction}}}{$value}{}}}{blackhole}}
+          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction.cdb}}}}
+          condition      = ${if eq{${lookup{$local_part}cdb{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction.cdb}}}{$value}{}}}{markup}}
+          log_message    = $local_part@$domain: markup
+          set acl_m_rprf = markup
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    domains        = +virtual_domains
+          condition      = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction.cdb}}}}
+          condition      = ${if eq{${lookup{$local_part}cdb{${extract{directory}{VDOMAINDATA}{${value}/contentinspectionaction.cdb}}}{$value}{}}}{blackhole}}
+          log_message    = $local_part@$domain: blackhole
+          set acl_m_rprf = blackhole
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    domains        = +local_domains
+          condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{markup}}
+          log_message    = $local_part@$domain: markup
+          set acl_m_rprf = markup
+
+  accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
+
+  warn    domains        = +local_domains
+          condition      = ${if eq{${lookup{$local_part}cdb{/var/lib/misc/${primary_hostname}/mail-contentinspectionaction.cdb}{$value}{}}}{blackhole}}
           log_message    = $local_part@$domain: blackhole
           set acl_m_rprf = blackhole
 
