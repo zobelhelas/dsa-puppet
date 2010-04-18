@@ -1365,8 +1365,6 @@ virt_aliases:
               ${extract{directory}{VDOMAINDATA}{$value/aliases}}\
 	   }}}}
   directory_transport = address_directory
-  local_part_suffix = -*
-  local_part_suffix_optional
   domains = +virtual_domains
   file_transport = ${if eq {${extract{group_writable}{VDOMAINDATA}}}{true}{address_file_group}{address_file}}
   cannot_route_message = Unknown user
