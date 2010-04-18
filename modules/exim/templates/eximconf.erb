@@ -32,20 +32,14 @@
 #           flushing' operations, but should be populated with a list
 #           of trusted machines. Wildcards are not permitted
 #  bsmtp_domains - Domains that we deliver locally via bsmtp
-<%=
-out = ""
-if nodeinfo['mailrelay']
-  out = '
+<% if nodeinfo['mailrelay'] %>
 #  mailhubdomains - Domains for which we are the MX, but the mail is relayed
 #           elsewhere.  This is designed for use with small volume or
 #           restricted machines that need to use a smarthost for mail
 #           traffic.  We will relay for them based on ssl cert validation
 #           but we need to teach exim how to route the mail to them.  This is
 #           that list.
-'
-end
-out
-%>
+<% end %>
 # Exim's wildcard mechanism is a bit odd in that to say "any address in
 # debian.org including debian.org" you must use two patterns,
 #   *.debian.org
@@ -81,15 +75,9 @@ out
 #                    MAIN CONFIGURATION SETTINGS                     #
 ######################################################################
 
-<%=
-out=''
-if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
-  out = "
+<% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
 perl_startup = do '/etc/exim4/exim_surbl.pl'
-"
-end
-out
-%>
+<% end %>
 
 # These options specify the Access Control Lists (ACLs) that
 # are used for incoming SMTP messages - after the RCPT and DATA
@@ -98,13 +86,9 @@ out
 acl_smtp_helo = check_helo
 acl_smtp_rcpt = ${if ={$interface_port}{587} {check_submission}{check_recipient}}
 acl_smtp_data = check_message
-<%=
-out=''
-if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
-  out = "acl_smtp_mime = acl_check_mime"
-end
-out
-%>
+<% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
+acl_smtp_mime = acl_check_mime
+<% end %>
 acl_smtp_predata = acl_check_predata
 
 # accept domain literal syntax in e-mail addresses. To actually make use of
@@ -134,31 +118,23 @@ localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
 localpartlist postmasterish = postmaster : abuse : hostmaster : root
 
-# Domains we relay for; that is domains that aren't considered local but we 
-# accept mail for them.
 hostlist debianhosts = 127.0.0.1 : /var/lib/misc/thishost/debianhosts
-<%=
-out = ""
-if nodeinfo['mailrelay']
-  out = '
-domainlist mailhubdomains = lsearch;/etc/exim4/manualroute
-'
-end
-out
-%>
 
 hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
 
-<%= out = ""
-if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
-out = "tls_certificate = /etc/exim4/ssl/thishost.crt
+<% if nodeinfo['mailrelay'] %>
+# Domains we relay for; that is domains that aren't considered local but we 
+# accept mail for them.
+domainlist mailhubdomains = lsearch;/etc/exim4/manualroute
+<% end %>
+
+<% if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" %>
+tls_certificate = /etc/exim4/ssl/thishost.crt
 tls_privatekey = /etc/exim4/ssl/thishost.key
 tls_try_verify_hosts = *
 tls_verify_certificates = /etc/exim4/ssl/ca.crt
-tls_crl = /etc/exim4/ssl/ca.crl"
-end
-out
-%>
+tls_crl = /etc/exim4/ssl/ca.crl
+<% end %>
 
 # The setting below causes Exim to do a reverse DNS lookup on all incoming
 # IP calls, in order to get the true host name. If you feel this is too
@@ -223,12 +199,9 @@ queue_only_load = 5
 <% end %>
 queue_list_requires_admin = false
 
-<%= out  = ""
-if has_variable?("clamd") && clamd == "true"
-  out = "av_scanner = clamd:/var/run/clamav/clamd.ctl"
-end
-out
-%>
+<% if has_variable?("clamd") && clamd == "true" %>
+av_scanner = clamd:/var/run/clamav/clamd.ctl
+<% end %>
 
 <%= 
 ports = []
@@ -255,12 +228,9 @@ admin_groups = adm
 remote_sort_domains = *.debian.org:*.debian.net
 
 pipelining_advertise_hosts = !*
-<%= out = ""
-if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
-out = 'tls_advertise_hosts = *'
-end
-out
-%>
+<% if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" %>
+tls_advertise_hosts = *
+<% end %>
 smtp_enforce_sync = true
 
 log_selector = +tls_cipher +tls_peerdn +queue_time +deliver_time +smtp_connection +smtp_incomplete_transaction +smtp_confirmation
@@ -319,46 +289,28 @@ acl_getprofile:
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
-<%=
-out=''
-if nodeinfo['rtmaster']
-  out='
+<% if nodeinfo['rtmaster'] %>
   warn    domains        = rt.debian.org
           set acl_m_rprf = RTMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
-'
-end
-out
-%>
-<%=
-out = ''
-if nodeinfo['bugsmx']
-  out = '
+
+<% end %>
+<% if nodeinfo['bugsmx'] %>
   warn    domains        = bugs.debian.org
           set acl_m_rprf = BugsMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
-'
-end
-out
-%>
-<%=
-out = ''
-if nodeinfo['packagesmaster']
-  out = '
+
+<% end %>
+<% if nodeinfo['packagesmaster'] %>
   warn    domains        = packages.debian.org
           set acl_m_rprf = PackagesMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
-'
-end
-out
-%>
-<%=
-out = ''
-if nodeinfo['packagesqamaster']
-  out='
+
+<% end %>
+<% if nodeinfo['packagesqamaster'] %>
   warn    recipients     = owner@packages.qa.debian.org : postmaster@packages.qa.debian.org
           set acl_m_rprf = PTSOwner
 
@@ -375,10 +327,8 @@ if nodeinfo['packagesqamaster']
           set acl_m_rprf = PTSMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
-'
-end
-out
-%>
+
+<% end %>
   warn    recipients     = change@db.debian.org : changes@db.debian.org : chpasswd@db.debian.org : ping@db.debian.org : recommend@nm.debian.org
           set acl_m_rprf = DBSignedMail
 
@@ -420,19 +370,13 @@ check_helo:
 
   warn    set acl_c_scr    = 0
 
-<%= 
-out = ""
-if nodeinfo['mailrelay']
-  out = "  accept  verify   = certificate"
-end
-out
-%>
+<% if nodeinfo['mailrelay'] %>
+  accept  verify   = certificate
 
-<%= 
-if nodeinfo['smarthost'].empty?
-  out = '
+<% end %>
+<% if nodeinfo['smarthost'].empty? %>
   # These are in HELO acl so that they are only run once.  They increment a counter,
-  # so we don\'t want it to increment per rcpt to.
+  # so we don't want it to increment per rcpt to.
 
   warn    dnslists       = list.dnswl.org&0.0.0.3
           log_message    = Hit on list.dnswl.org for $sender_host_address
@@ -467,7 +411,7 @@ if nodeinfo['smarthost'].empty?
           dnslists       = dul.dnsbl.sorbs.net
           set acl_c_scr  = ${eval:$acl_c_scr+15}
 
-  # If the sender\'s helo name is empty, the message will be rejected later
+  # If the sender's helo name is empty, the message will be rejected later
   # because the helo is empty.  If the rDNS lookup failed, we are already
   # going to greylist them, so no sense worrying about it here.  Finally,
   # if rDNS does not match helo name (both lower cased first), greylist.
@@ -476,7 +420,7 @@ if nodeinfo['smarthost'].empty?
           condition      = ${if eq {$host_lookup_failed}{1}{no}{yes}}
           condition      = ${if def:sender_helo_name {yes}{no}}
           condition      = ${if eq {${lc:$sender_helo_name}}{${lc:$sender_host_name}}{no}{yes}}
-          log_message    = HELO doesn\'t match rDNS
+          log_message    = HELO doesn't match rDNS
           set acl_c_scr  = ${eval:$acl_c_scr+8}
 
   # Regexes of doom
@@ -497,25 +441,21 @@ if nodeinfo['smarthost'].empty?
        set acl_c_scr   = ${eval:$acl_c_scr+7}
 
   # Random HELO (run of 7 consonants) (constructed by viruses).  We purposefully
-  # skip matching on machines named .*smtp.*, since that\'s 4 already.  This is a fairly
-  # naive test, so it\'s not worth much
+  # skip matching on machines named .*smtp.*, since that's 4 already.  This is a fairly
+  # naive test, so it's not worth much
 
   warn condition       = ${if match {${lc:$sender_helo_name}}{smtp}{no}{yes}}
        condition       = ${if match {${lc:$sender_helo_name}}{\N^[a-z0-9]+\.[a-z]+$\N}}
        condition       = ${if match {${lc:$sender_helo_name}}{\N.*[bcdfghjklmnpqrstvwxz]{7,}.*\.[a-z]+$\N}}
        log_message     = random HELO
        set acl_c_scr   = ${eval:$acl_c_scr+5}
-'
-else
-  out = '
+
+<% else %>
   drop !hosts          = +debianhosts
        log_message     = mail from non-d.o host
        message         = Interesting.  I doubt that should have happened.
-'
-end
-out
-%>
 
+<% end %>
   # Implicit, but simpler to just say it
   accept
 
@@ -526,14 +466,10 @@ check_submission:
   # We do this by testing for an empty sending host field.
   accept  hosts = : 127.0.0.1
 
-<%= 
-out = ""
-if nodeinfo['mailrelay']
-  out = "  accept  verify   = certificate"
-end
-out
-%>
+<% if nodeinfo['mailrelay'] %>
+  accept  verify   = certificate
 
+<% end %>
   # Defer after too many bad RCPT TO's.  Legit MTAs will retry later.
   # This is a rough pass at preventing addres harvesting or other mail blasts.
 
@@ -551,18 +487,12 @@ out
           endpass
 	  verify   = recipient
 
-<%=
-out = ""
-if nodeinfo['mailrelay']
-  out = '
+<% if nodeinfo['mailrelay'] %>
   accept  domains  = +mailhubdomains
           endpass
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
-'
-end
-out
-%>
 
+<% end %>
   accept  domains  = +submission_domains
           endpass
 	  verify   = recipient
@@ -572,14 +502,10 @@ out
 #!!# ACL that is used after the RCPT command
 check_recipient:
 
-<%=
-out = ""
-if nodeinfo['mailrelay']
-  out = "  accept  verify   = certificate"
-end
-out
-%>
+<% if nodeinfo['mailrelay'] %>
+  accept  verify   = certificate
 
+<% end %>
   warn    acl           = acl_getprofile
           condition     = ${if eq{$acl_m_prf}{}}
           set acl_m_prf = $acl_m_rprf
@@ -674,28 +600,18 @@ out
   warn    condition     = ${if eq{$acl_m_prf}{localonly}}
           set acl_m_lrc = ${if eq{$acl_m_lrc}{}{$local_part@$domain}{$acl_m_lrc, $local_part@$domain}}
 
-<%=
-out=''
-if 0 == 1:
-out='
+<% if 0 == 1 %>
   deny    message  = address $sender_host_address is listed in $dnslist_domain; $dnslist_text
 	  hosts    = !+debianhosts
           dnslists = rbl.debian.net : rbl.debian.net/$sender_address_domain
-'
-end
-out
-%>
-<%=
-out=''
-if nodeinfo['packagesmaster']
-  out='
+
+<% end %>
+<% if nodeinfo['packagesmaster'] %>
   warn    condition      = ${if eq {$acl_m_prf}{PackagesMail}}
           condition      = ${if eq {$sender_address}{$local_part@$domain}}
           message        = X-Packages-FromTo-Same: yes
-'
-end
-out
-%>
+
+<% end %>
   deny    condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
           !verify        = sender
 
@@ -704,17 +620,15 @@ out
           condition      = ${if >{${eval:$acl_c_scr+0}}{0}}
           ratelimit      = 10 / 60m / per_rcpt / $sender_host_address
           message        = slow down (no reverse dns, mismatched ehlo, dialup, or in blacklists)
-<%=
-out = ""
-if has_variable?("policydweight") && policydweight == "true"
-out = '
-  # Check with policyd-weight - this only works with a version after etch\'s,
-  # sadly.  etch\'s version attempts to hold the socket open, since that\'s what
+
+<% if has_variable?("policydweight") && policydweight == "true" %>
+  # Check with policyd-weight - this only works with a version after etch's,
+  # sadly.  etch's version attempts to hold the socket open, since that's what
   # postfix expects.  Exim, on the other hand, expects the remote side to close
-  # the socket when it\'s finished sending data, so it see each transaction as
-  # an incomplete read.  I\'m sure there\'s a way we could force exim to do
+  # the socket when it's finished sending data, so it see each transaction as
+  # an incomplete read.  I'm sure there's a way we could force exim to do
   # something sick and clever to force either the interpretation or the socket
-  # closure, but I\'m fairly sure it\'s now worth it, since the backport of
+  # closure, but I'm fairly sure it's now worth it, since the backport of
   # policyd-weight is trivial.
   warn  !hosts         = +debianhosts
         condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
@@ -751,7 +665,7 @@ out = '
         message        = $acl_m_mes
         condition      = ${if eq{$acl_m_act}{PREPEND}{yes}{no}}
 
-  # Write log message, if policyd-weight can\'t run checks
+  # Write log message, if policyd-weight can't run checks
   warn  !hosts         = +debianhosts
         condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
         log_message    = policyd-weight message: $acl_m_mes
@@ -768,24 +682,14 @@ out = '
          condition      = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
          message        = policyd-weight said: $acl_m_mes
          condition      = ${if eq{$acl_m_act}{450}{yes}{no}}
-'
-end
-out
-%>
-<%=
-out=''
-if nodeinfo['rtmaster']
-  out='
+
+<% end %>
+<% if nodeinfo['rtmaster'] %>
   warn    condition     = ${if eq{$acl_m_prf}{RTMail}}
           set acl_m12   = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}} {RTMailRecipientHasSubaddress}}}}
-'
-end
-out
-%>
-<%=
-out = ""
-if has_variable?("greylistd") && greylistd == "true"
-  out = '
+
+<% end %>
+<% if has_variable?("greylistd") && greylistd == "true" %>
   defer
     message  = $sender_host_address is not yet authorized to deliver mail from <$sender_address> to <$local_part@$domain>.
     log_message = greylisted.
@@ -809,11 +713,10 @@ if has_variable?("greylistd") && greylistd == "true"
                                   $sender_address \
                                   $local_part@$domain}\
                                  {5s}{}{false}}
-'
-elsif has_variable?("postgrey") && postgrey == "true"
-  out = '
+
+<% elsif has_variable?("postgrey") && postgrey == "true" %>
   # next three are greylisting, inspired by http://www.bebt.de/blog/debian/archives/2006/07/30/T06_12_27/index.html
-  # this adds acl_m_grey if there isn\'t one (so unique per message)
+  # this adds acl_m_grey if there isn't one (so unique per message)
   warn
     !senders       = :
     !hosts         = : +debianhosts : WHITELIST
@@ -856,10 +759,8 @@ elsif has_variable?("postgrey") && postgrey == "true"
     local_parts    = GREYLIST_LOCAL_PARTS
     condition      = ${if eq{${uc:${substr_0_7:$acl_m_pgr}}}{PREPEND}}
     message        = ${sg{$acl_m_pgr}{^\\\\w+\\\\s*}{}}
-'
-end
-out
-%>
+
+<% end %>
 
   accept  local_parts   = +postmasterish
           domains       = +handled_domains
@@ -872,10 +773,7 @@ out
          senders       = ${if exists{/etc/exim4/blacklist}{/etc/exim4/blacklist}{}}
          message       = We have blacklisted <$sender_address>.  Please stop mailing us
 
-<%= 
-out = ""
-if nodeinfo['smarthost'].empty?
-  out = '
+<% if nodeinfo['smarthost'].empty? %>
   deny    message  = host $sender_host_address is listed in $dnslist_domain; see $dnslist_text
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rbllist}}}\
@@ -884,11 +782,8 @@ if nodeinfo['smarthost'].empty?
 		     ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rbl}{$value}{}}}}
 	  domains       = +handled_domains
 	  !hosts        = +debianhosts : WHITELIST
-'
-end
-out
-%>
 
+<% end %>
   deny    message  = domain $sender_address_domain is listed in $dnslist_domain; see $dnslist_text
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rhsbllist}}}\
@@ -898,10 +793,7 @@ out
 	  domains       = +handled_domains
 	  !hosts        = +debianhosts : WHITELIST
 
-<%= 
-out = ""
-if nodeinfo['smarthost'].empty?
-  out = '
+<% if nodeinfo['smarthost'].empty? %>
   deny    domains  = +handled_domains
           local_parts   = ${if match_domain{$domain}{+virtual_domains}\
 	           	   {${if exists {${extract{directory}{VDOMAINDATA}{${value}/callout_users}}}\
@@ -910,22 +802,14 @@ if nodeinfo['smarthost'].empty?
 		           ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-callout}{$local_part}{}}}}
           !hosts   = +debianhosts : WHITELIST
 	  !verify  = sender/callout=90s,maxwait=300s
-'
-end
-out
-%>
 
-<%=
-out = ""
-if nodeinfo['mailrelay']
-  out = '
+<% end %>
+<% if nodeinfo['mailrelay'] %>
   accept  domains  = +mailhubdomains
           endpass
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
-'
-end
-out
-%>
+
+<% end %>
   accept  domains  = +handled_domains
           endpass
 	  verify   = recipient/defer_ok
@@ -936,10 +820,7 @@ out
 
   deny    message = relay not permitted
 
-<%=
-out=''
-if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
-out='
+<% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
 acl_check_mime:
 
  discard condition     = ${if <{$message_size}{256000}}
@@ -963,10 +844,8 @@ acl_check_mime:
          message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
 
   accept
-'
-end
-out
-%>
+
+<% end %>
 
 acl_check_predata:
   deny   condition     = ${if eq{$acl_m_prf}{localonly}}
@@ -977,31 +856,21 @@ acl_check_predata:
 
 #!!# ACL that is used after the DATA command
 check_message:
-<%=
-out=''
-if nodeinfo['rtmaster']
-  out='
+<% if nodeinfo['rtmaster'] %>
   deny    condition = ${if eq {$acl_m_prf}{RTMail}}
           condition = ${if and{{!match {${lc:$rh_Subject:}} {debian rt}} \
                                {!match {${lc:$rh_Subject:]}} {\N\[rt.debian.org \N}} \
                                {!match {$acl_m12}{RTMailRecipientHasSubaddress}}}}
           message  = messages to the Request Tracker system require a subject tag or a subaddress
-'
-end
-out
-%>
-<%=
-out=''
-if nodeinfo['packagesqamaster']
-  out='
+
+<% end %>
+<% if nodeinfo['packagesqamaster'] %>
   deny    !hosts  = +debianhosts : 217.196.43.134
           condition = ${if eq {$acl_m_prf}{PTSMail}}
           condition = ${if def:h_X-PTS-Approved:{false}{true}}
           message   = messages to the PTS require an X-PTS-Approved header
-'
-end
-out
-%>
+
+<% end %>
   deny    condition      = ${if eq {$acl_m_prf}{DBSignedMail}}
           condition      = ${if and {{!match {$message_body}{PGP MESSAGE}}              \
                                      {!match {$message_body}{PGP SIGNED MESSAGE}}       \
@@ -1034,10 +903,7 @@ out
           condition       = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
 	  message         = Your mailer is not RFC 2047 compliant: message rejected
 
-<%=
-out = ""
-if has_variable?("clamd") && clamd == "true"
-out = '
+<% if has_variable?("clamd") && clamd == "true" %>
   discard condition       = ${if eq {$acl_m_prf}{blackhole}}
           demime          = *
           malware         = */defer_ok
@@ -1053,14 +919,9 @@ out = '
   	  demime          = *
           malware         = */defer_ok
           message         = X-malware detected: $malware_name
-'
-end
-out
-%>
-<%=
-out=''
-if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty?
-out='
+
+<% end %>
+<% if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? %>
  discard condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{blackhole}}
          set acl_m_srb = ${perl{surblspamcheck}}
@@ -1081,19 +942,13 @@ out='
          condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
          message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
 
-'
-end
-out
-%>
+<% end %>
   # Check header_sender except for survey@popcon.d.o
   deny    condition    = ${if eq{$acl_m_prf}{PopconMail}{false}{true}}
           !verify      = header_sender
           message      = No valid sender found in the From:, Sender: and Reply-to: headers
 
-<%=
-out = ""
-if nodeinfo['packagesmaster']
-  out = '
+<% if nodeinfo['packagesmaster'] %>
   deny  message        = Congratulations, you scored $spam_score points.
         log_message    = spam: $spam_score points.
         condition      = ${if eq {$acl_m_prf}{PackagesMail}}
@@ -1103,10 +958,8 @@ if nodeinfo['packagesmaster']
         condition      = ${if <{$message_size}{256000}}
         spam           = pkg_user : true
         condition      = ${if >{$spam_score_int}{59}}
-'
-end
-out
-%>
+
+<% end %>
   accept
 
 
@@ -1144,21 +997,15 @@ begin routers
 #     An address is passed to each in turn until it is accepted.     #
 ######################################################################
 
-<%=
-out = ""
-if nodeinfo['mailrelay']
-  out = '
+<% if nodeinfo['mailrelay'] %>
 relay_manualroute:
   driver = manualroute
   domains = +mailhubdomains
   transport = remote_smtp
   route_data = ${lookup{$domain}lsearch{/etc/exim4/manualroute}}
   require_files = /etc/exim4/manualroute
-'
-end
-out
-%>
 
+<% end %>
 bsmtp:
   debug_print = "R: bsmtp for $local_part@$domain"
   driver = manualroute
@@ -1359,13 +1206,7 @@ localuser:
 # Everything before here should apply only to the local domains with a 
 # domains= rule
 
-# exim4 fails the router if it can't change to the user/group for delivery
-# during verification.  So we have to seperate the cases of verifying
-# the virts, and delivering to them.  blah.
-<%=
-out = ""
-if nodeinfo['packagesmaster']
-  out = '
+<% if nodeinfo['packagesmaster'] %>
 # This router delivers for packages.d.o
 packages:
   debug_print = "R: packages for $local_part@$domain"
@@ -1381,11 +1222,8 @@ packages:
   check_ancestor
   retry_use_local_part
   no_more
-'
-end
-out
-%>
 
+<% end %>
 <%=
 out = ""
 if nodeinfo['bugsmaster'] or nodeinfo['bugsmx']
@@ -1412,11 +1250,7 @@ bugs:
 end
 out
 %>
-
-<%=
-out = ""
-if nodeinfo['rtmaster']
-  out = '
+<% if nodeinfo['rtmaster'] %>
 # This router delivers for rt.d.o
 rt_force_new_verbose:
   debug_print = "R: rt for $local_part+new@$domain"
@@ -1426,14 +1260,14 @@ rt_force_new_verbose:
   local_parts = ${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}{$local_part}{}}
   local_part_suffix = +new
   pipe_transport = rt_pipe
-  data = "|/usr/bin/rt-mailgate --queue \'${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}\' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
+  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
 
 # FIXME: figure out how to generalize this approach so that all of the following would work
 # - rt+NNNN@rt.debian.org          : attach correspondence to ticket (verbose)
 # - rt+NNNN-quiesce@rt.debian.org  : attach correspondence to ticket (quiesce)
 # - rt+NNNN-<action>@rt.debian.org : attach correspondence to ticket (some action)
-# requires modification to custom condition in \'scrips\'
+# requires modification to custom condition in 'scrips'
 rt_force_new_quiesce:
   debug_print = "R: rt for $local_part+new-quiesce@$domain"
   driver = redirect
@@ -1442,7 +1276,7 @@ rt_force_new_quiesce:
   local_parts = ${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}{$local_part}{}}
   local_part_suffix = +new-quiesce
   pipe_transport = rt_pipe
-  data = "|/usr/bin/rt-mailgate --queue \'${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}\' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
+  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nX-RT-Mode: quiesce"
 
 rt_otherwise:
@@ -1454,12 +1288,14 @@ rt_otherwise:
   local_part_suffix = +*
   local_part_suffix_optional
   pipe_transport = rt_pipe
-  data = "|/usr/bin/rt-mailgate --queue \'${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}\' --url https://rt.debian.org/ --extension ticket --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
+  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --extension ticket --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
-'
-end
-out
-%>
+
+<% end %>
+
+# exim4 fails the router if it can't change to the user/group for delivery
+# during verification.  So we have to seperate the cases of verifying
+# the virts, and delivering to them.  blah.
 
 virt_direct_verify:
   debug_print = "R: virt_direct for $local_part@$domain"
@@ -1621,14 +1457,10 @@ remote_smtp:
   driver = smtp
   connect_timeout = 1m
   delay_after_cutoff = false
-<%=
-out = ""
-if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
-  out = "  tls_certificate = /etc/exim4/ssl/thishost.crt
-  tls_privatekey = /etc/exim4/ssl/thishost.key"
-end
-out
-%>
+<% if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" %>
+  tls_certificate = /etc/exim4/ssl/thishost.crt
+  tls_privatekey = /etc/exim4/ssl/thishost.key
+<% end %>
 
 <%=
 out = ""
@@ -1650,7 +1482,6 @@ remote_smtp_smarthost:
 end
 out
 %>
-
 # Send the message to procmail
 procmail_pipe:
   driver = pipe
@@ -1670,10 +1501,7 @@ bsmtp:
 		     {$value}fail}\
 		   }}
 
-<%=
-out = ""
-if nodeinfo['bugsmaster'] or nodeinfo['bugsmx']
-  out = '
+<% if nodeinfo['bugsmaster'] or nodeinfo['bugsmx'] %>
 bugs_pipe:
   driver = pipe
   command = /org/bugs.debian.org/mail/run-procmail
@@ -1684,25 +1512,17 @@ bugs_pipe:
   return_path_add
   return_output
   user = debbugs
-'
-end
-out
-%>
 
-<%=
-out = ""
-if nodeinfo['rtmaster']
-  out = '
+<% end %>
+<% if nodeinfo['rtmaster'] %>
 rt_pipe:
   debug_print = "T: rt_pipe for $local_part${local_part_suffix}@$domain"
   driver = pipe
   return_fail_output
   environment = EXTENSION=${substr_1:${local_part_suffix}}
   allow_commands = /usr/bin/rt-mailgate
-'
-end
-out
-%>
+
+<% end %>
 
 ######################################################################
 #                      RETRY CONFIGURATION                           #
