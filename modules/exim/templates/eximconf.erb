@@ -1396,26 +1396,6 @@ virt_direct:
   user = ${extract{user}{VDOMAINDATA}}
   #debug_print = .forward-${if exists {${home}/.forward-${local_part}} {${local_part}} {default}}
 
-# This router delivers to the LDAP generated mail-forward file.
-# It's only really useful for debian.org
-virt_users:
-  debug_print = "R: virt_users for $local_part@$domain"
-  driver = redirect
-  allow_defer
-  allow_fail
-  router_home_directory = ${extract{directory}{VDOMAINDATA}}
-  transport_current_directory = ${extract{directory}{VDOMAINDATA}}
-  user = ${extract{user}{VDOMAINDATA}}
-  group = ${extract{group}{VDOMAINDATA}}
-  data = ${if exists{${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}\
-             {${lookup{$local_part}cdb\
-             {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}}
-  domains = +virtual_domains
-  file_transport = address_file
-  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
-  pipe_transport = address_pipe
-  retry_use_local_part
-
 ######################################################################
 #                      TRANSPORTS CONFIGURATION                      #
 ######################################################################
