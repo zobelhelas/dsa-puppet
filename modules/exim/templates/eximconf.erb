@@ -1457,7 +1457,7 @@ remote_smtp:
   driver = smtp
   connect_timeout = 1m
   delay_after_cutoff = false
-<%= if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" %>
+<% if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" %>
   tls_certificate = /etc/exim4/ssl/thishost.crt
   tls_privatekey = /etc/exim4/ssl/thishost.key
 <% end %>
