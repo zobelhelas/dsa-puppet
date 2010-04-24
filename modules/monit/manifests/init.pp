@@ -13,7 +13,7 @@ class monit {
         "/etc/monit/monitrc":
           content => template("monit/monitrc.erb"),
           require => Package["monit"],
-          notify  => Exec["monit restart"],
+          notify  => Exec["monit stop"],
           mode    => 400
           ;
 
@@ -28,24 +28,24 @@ class monit {
         "/etc/monit/monit.d/01puppet":
           source  => "puppet:///monit/puppet",
           require => Package["monit"],
-          notify  => Exec["monit restart"],
+          notify  => Exec["monit stop"],
           mode    => 440
           ;
 
         "/etc/monit/monit.d/00debian.org":
           source  => "puppet:///monit/debianorg",
           require => Package["monit"],
-          notify  => Exec["monit restart"],
+          notify  => Exec["monit stop"],
           mode    => 440
           ;
 
         "/etc/default/monit":
           content => template("monit/default.erb"),
           require => Package["monit"],
-          notify  => Exec["monit restart"]
+          notify  => Exec["monit stop"]
           ;
     }
-    exec { "monit restart":
+    exec { "monit stop":
         path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
         refreshonly => true,
     }
