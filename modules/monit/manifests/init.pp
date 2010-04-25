@@ -1,7 +1,21 @@
 class monit {
     package { "monit": ensure => installed }
 
+    augeas { "inittab":
+        context => "/files/etc/inittab",
+        changes => [ "set mo/runlevels 2345",
+                     "set mo/action respawn",
+                     "set mo/process \"/usr/sbin/monit -d 300 -I -c /etc/monit/monitrc -s /var/lib/monit/monit.state\"",
+                   ],
+        onlyif => "match mo size == 0",
+        notify => Exec["init q"],
+    }
+
+
     file {
+        "/etc/rc2.d/S99monit":
+          ensure  => absent;
+
         "/etc/monit/":
           ensure  => directory,
           owner   => root,
