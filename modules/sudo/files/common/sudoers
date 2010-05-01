@@ -145,6 +145,7 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 %porter-amd64	pergolesi=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-hppa	paer=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-ia64	merulo=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-mips	gabrielli=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-ppc	pescetti=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-s390	zelenka=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-sparc	smetana,sperger,zee=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
