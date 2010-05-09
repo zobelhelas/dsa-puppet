@@ -144,6 +144,8 @@ class debian-org {
         "procps restart":
             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
             refreshonly => true;
+        "init q":
+            refreshonly => true;
     }
 }
 
