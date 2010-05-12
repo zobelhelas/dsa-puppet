@@ -146,6 +146,16 @@ node default {
 		    rule            => "&SERVICE_RANGE(tcp, 8140, \$HOST_DEBIAN_V6)"
 	   }
         }
+	powell: {
+	   @ferm::rule { "dsa-powell-v6-tunnel":
+		    description     => "Allow powell to use V6 tunnel broker",
+		    rule            => "proto ipv6 saddr 212.227.117.6 jump ACCEPT"
+	   }
+	   @ferm::rule { "dsa-powell-btseed":
+		    description     => "Allow powell to seed BT",
+		    rule            => "proto tcp dport 8000:8100 jump ACCEPT"
+	   }
+	}
 	beethoven: {
 	   @ferm::rule { "dsa-merikanto-beethoven":
 		    description     => "Allow merikanto",  # for nfs, and that uses all kind of ports by default.
