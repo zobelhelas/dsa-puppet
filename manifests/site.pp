@@ -152,6 +152,7 @@ node default {
 		    rule            => "proto ipv6 saddr 212.227.117.6 jump ACCEPT"
 	   }
 	   @ferm::rule { "dsa-powell-btseed":
+                    domain          => "(ip ip6)",
 		    description     => "Allow powell to seed BT",
 		    rule            => "proto tcp dport 8000:8100 jump ACCEPT"
 	   }
