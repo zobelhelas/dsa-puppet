@@ -156,6 +156,10 @@ node default {
 		    description     => "Allow powell to seed BT",
 		    rule            => "proto tcp dport 8000:8100 jump ACCEPT"
 	   }
+           @ferm::rule { "dsa-powell-rsync":
+                    description     => "Hoster wants to sync from here, and why not",
+                    rule            => "&SERVICE_RANGE(tcp, rsync, ( 195.20.242.90 192.25.206.33 82.195.75.106 206.12.19.118 ))"
+           }
 	}
 	beethoven: {
 	   @ferm::rule { "dsa-merikanto-beethoven":
