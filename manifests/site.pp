@@ -91,7 +91,7 @@ node default {
     }
 
     case $hostname {
-        logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky: { include ferm }
+        franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky: { include ferm }
     }
     case $hostname {
         zandonai,zelenka: {
@@ -146,6 +146,21 @@ node default {
 		    rule            => "&SERVICE_RANGE(tcp, 8140, \$HOST_DEBIAN_V6)"
 	   }
         }
+	powell: {
+	   @ferm::rule { "dsa-powell-v6-tunnel":
+		    description     => "Allow powell to use V6 tunnel broker",
+		    rule            => "proto ipv6 saddr 212.227.117.6 jump ACCEPT"
+	   }
+	   @ferm::rule { "dsa-powell-btseed":
+                    domain          => "(ip ip6)",
+		    description     => "Allow powell to seed BT",
+		    rule            => "proto tcp dport 8000:8100 jump ACCEPT"
+	   }
+           @ferm::rule { "dsa-powell-rsync":
+                    description     => "Hoster wants to sync from here, and why not",
+                    rule            => "&SERVICE_RANGE(tcp, rsync, ( 195.20.242.90 192.25.206.33 82.195.75.106 206.12.19.118 ))"
+           }
+	}
 	beethoven: {
 	   @ferm::rule { "dsa-merikanto-beethoven":
 		    description     => "Allow merikanto",  # for nfs, and that uses all kind of ports by default.

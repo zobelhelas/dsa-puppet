@@ -6,18 +6,18 @@
 <%=
 ignore = []
 case fqdn
-when /(bellini|cimarosa).debian.org/: ignore << "mcelog"
-when "busoni.debian.org":             ignore << %w{libthreads-perl libthreads-shared-perl}
-when /draghi.debian.org/:             ignore << %w{userdir-ldap libnet-dns-perl libnet-dns-sec-perl libnet-dns-zone-parser-perl libdns-ruby1.8}
-when /geo[123].debian.org/:           ignore << %w{geoip-database libgeoip1 geoip-bin}
-when /liszt.debian.org/:              ignore << "amavisd-new"
-when /stabile.debian.org/:            ignore << "xfsprogs"
-when /(zandonai|zelenka).debian.org/: ignore << %w{zabbix-agent rrdcollect}
+when /(bellini|cimarosa).debian.org/:   ignore << "mcelog"
+when "busoni.debian.org":               ignore << %w{libthreads-perl libthreads-shared-perl}
+when /draghi.debian.org/:               ignore << %w{userdir-ldap libnet-dns-perl libnet-dns-sec-perl libnet-dns-zone-parser-perl libdns-ruby1.8}
+when /geo[123].debian.org/:             ignore << %w{geoip-database libgeoip1 geoip-bin}
+when /liszt.debian.org/:                ignore << "amavisd-new"
+when /stabile.debian.org/:              ignore << "xfsprogs"
+when /(zandonai|zelenka).debian.org/:   ignore << %w{zabbix-agent rrdcollect}
 when /(dijkstra|unger|luchesi|schumann).debian.org/: ignore << "qemu-kvm"
-when /(lebrun|schroeder).debian.org/: ignore << "firmware-linux-nonfree"
-when /(peri|penalosa).debian.org/:    ignore << "linux-base"
-when "powell.debian.org":             ignore << %w{e2fslibs e2fsprogs libblkid1 libcomerr2 libss2 libuuid1 uuid-runtime}
-when "zee.debian.org":                ignore << %w{dpkg-dev dpkg}
+when /(lebrun|schroeder).debian.org/:   ignore << "firmware-linux-nonfree"
+when /(mayer|paer|peri|penalosa).debian.org/: ignore << "linux-base"
+when "powell.debian.org":               ignore << %w{e2fslibs e2fsprogs libblkid1 libcomerr2 libss2 libuuid1 uuid-runtime}
+when "zee.debian.org":                  ignore << %w{dpkg-dev dpkg}
 end
 
 case fqdn
