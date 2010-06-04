@@ -189,6 +189,7 @@ check_spool_space  = 20M
 delay_warning =
 
 <%- if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? -%>
+message_body_visible = 5000
 queue_run_max = 50
 deliver_queue_load_max = 50
 queue_only_load = 35
