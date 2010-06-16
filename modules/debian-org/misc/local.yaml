@@ -33,6 +33,7 @@ nameinfo:
   goetz.debian.org: Hermann Gustav Goetz (December 7th, 1840 - December 3rd, 1876)
   grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
+  heininen.debian.org: Paavo Heininen (January 13th, 1938)
   holter.debian.org: Iver Holter (December 13th, 1850 - January 27th, 1941)
   kassia.debian.org: Kassia (between 805 and 810 - bef. 867)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
@@ -224,6 +225,7 @@ host_settings:
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
+    heininen.debian.org: mailout.debian.org
     holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
