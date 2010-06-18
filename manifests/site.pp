@@ -167,6 +167,17 @@ node default {
 		    rule            => "source 172.22.127.147 interface bond0 jump ACCEPT",
 	   }
 	}
+        heininen: {
+	   @ferm::rule { "dsa-puppet":
+		    description     => "Allow syslog access",
+		    rule            => "&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V4)"
+	   }
+	   @ferm::rule { "dsa-puppet-v6":
+		    domain          => 'ip6',
+		    description     => "Allow syslog access",
+		    rule            => "&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V6)"
+	   }
+        }
 
     }
     case $brokenhosts {
