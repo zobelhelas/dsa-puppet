@@ -13,9 +13,6 @@ class ssl {
         "/etc/ssl/debian/certs":
           ensure  => directory,
           mode    => 755,
-          purge   => true,
-          force   => true,
-          recurse => true,
           source  => "puppet:///files/empty/"
         ;
         "/etc/ssl/debian/crls":
