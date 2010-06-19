@@ -101,7 +101,6 @@ source s_all {
 <% else %>
         file("/proc/kmsg" program_override("kernel: "));
 <%end%>
-<% else %>
         # standard Linux log source (this is the default place for the syslog()
         # function to send logs to)
         unix-dgram("/var/run/log");
