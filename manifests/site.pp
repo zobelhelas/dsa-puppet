@@ -91,7 +91,7 @@ node default {
     }
 
     case $hostname {
-        franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen: { include ferm }
+        franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen,kokkonen: { include ferm }
     }
     case $hostname {
         zandonai,zelenka: {

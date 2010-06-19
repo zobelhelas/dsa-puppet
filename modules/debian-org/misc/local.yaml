@@ -38,6 +38,7 @@ nameinfo:
   kassia.debian.org: Kassia (between 805 and 810 - bef. 867)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
+  kokkonen.debian.org: November 13th, 1921 - October 1st, 1996)
   krenek.debian.org: Ernst Krenek (August 23rd, 1900 - December 22nd, 1991)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
@@ -230,6 +231,7 @@ host_settings:
     holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
+    kokkonen.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
