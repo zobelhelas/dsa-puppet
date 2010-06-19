@@ -1,3 +1,6 @@
+<% if syslogversion == "3" -%>
+@version: 3.0
+<%end%>
 ##
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
@@ -93,13 +96,20 @@ source s_all {
         # function to send logs to)
         unix-stream("/dev/log");
         # messages from the kernel
+<% if syslogversion == "2" -%>
         file("/proc/kmsg" log_prefix("kernel: "));
+<% else %>
+        file("/proc/kmsg" program_override("kernel: "));
+<%end%>
 <% else %>
         # standard Linux log source (this is the default place for the syslog()
         # function to send logs to)
         unix-dgram("/var/run/log");
         # messages from the kernel
+<% if syslogversion == "2" -%>
         file("/dev/klog" log_prefix("kernel: "));
+<% else %>
+        file("/dev/klog" program_override("kernel: "));
 <%end%>
         # use the following line if you want to receive remote UDP logging messages
         # (this is equivalent to the "-r" syslogd flag)
@@ -107,6 +117,17 @@ source s_all {
         udp();
 <%end%>
 };
+
+<% if hostname == "heininen" -%>
+source s_network {
+	tcp6(port(5140)
+		tls( key_file("/etc/exim4/ssl/thishost.key")
+		     cert_file("/etc/exim4/ssl/thishost.cert")
+		     ca_dir("/etc/exim4/ssl/")
+		)
+	);
+};
+<%end%>
 
 
 ######
@@ -219,6 +240,9 @@ filter f_xconsole {
 # auth,authpriv.*                 /var/log/auth.log
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_auth);
         destination(df_auth);
 };
@@ -226,6 +250,9 @@ log {
 # *.*;auth,authpriv.none          -/var/log/syslog
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_syslog);
         destination(df_syslog);
 };
@@ -241,6 +268,9 @@ log {
 # daemon.*                        -/var/log/daemon.log
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_daemon);
         destination(df_daemon);
 };
@@ -248,6 +278,9 @@ log {
 # kern.*                          -/var/log/kern.log
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_kern);
         destination(df_kern);
 };
@@ -255,6 +288,9 @@ log {
 # lpr.*                           -/var/log/lpr.log
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_lpr);
         destination(df_lpr);
 };
@@ -262,6 +298,9 @@ log {
 # mail.*                          -/var/log/mail.log
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_mail);
         destination(df_mail);
 };
@@ -269,6 +308,9 @@ log {
 # user.*                          -/var/log/user.log
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_user);
         destination(df_user);
 };
@@ -276,6 +318,9 @@ log {
 # uucp.*                          /var/log/uucp.log
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_uucp);
         destination(df_uucp);
 };
@@ -283,6 +328,9 @@ log {
 # mail.info                       -/var/log/mail.info
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_mail);
         filter(f_at_least_info);
         destination(df_mail_info);
@@ -291,6 +339,9 @@ log {
 # mail.warn                       -/var/log/mail.warn
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_mail);
         filter(f_at_least_warn);
         destination(df_mail_warn);
@@ -299,6 +350,9 @@ log {
 # mail.err                        /var/log/mail.err
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_mail);
         filter(f_at_least_err);
         destination(df_mail_err);
@@ -307,6 +361,9 @@ log {
 # news.crit                       /var/log/news/news.crit
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_news);
         filter(f_at_least_crit);
         destination(df_news_dot_crit);
@@ -315,6 +372,9 @@ log {
 # news.err                        /var/log/news/news.err
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_news);
         filter(f_at_least_err);
         destination(df_news_dot_err);
@@ -323,6 +383,9 @@ log {
 # news.notice                     /var/log/news/news.notice
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_news);
         filter(f_at_least_notice);
         destination(df_news_dot_notice);
@@ -334,6 +397,9 @@ log {
 #         news.none;mail.none     -/var/log/debug
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_debug);
         destination(df_debug);
 };
@@ -345,6 +411,9 @@ log {
 #         mail,news.none          -/var/log/messages
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_messages);
         destination(df_messages);
 };
@@ -352,6 +421,9 @@ log {
 # *.emerg                         *
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_emerg);
         destination(du_all);
 };
@@ -364,6 +436,9 @@ log {
 #         *.=notice;*.=warn       |/dev/xconsole
 log {
         source(s_all);
+<% if hostname == "heininen" -%>
+        source(s_network);
+<% end %>
         filter(f_xconsole);
         destination(dp_xconsole);
 };
