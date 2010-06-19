@@ -106,15 +106,15 @@ source s_all {
         # function to send logs to)
         unix-dgram("/var/run/log");
         # messages from the kernel
-<%end%>
 <% if syslogversion == "2" -%>
         file("/dev/klog" log_prefix("kernel: "));
 <% else %>
         file("/dev/klog" program_override("kernel: "));
 <%end%>
+<%end%>
+<% if hostname == "paganini" -%>
         # use the following line if you want to receive remote UDP logging messages
         # (this is equivalent to the "-r" syslogd flag)
-<% if hostname == "paganini" -%>
         udp();
 <%end%>
 };
