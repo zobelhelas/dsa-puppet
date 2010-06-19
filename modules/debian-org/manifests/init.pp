@@ -83,7 +83,7 @@ class debian-org {
         "/etc/syslog-ng/syslog-ng.conf":
             content => template("syslog-ng.conf.erb"),
             require => Package["syslog-ng"],
-            notify  => Exec["syslog-ng reload"],
+            notify  => Exec["syslog-ng restart"],
             ;
         "/etc/logrotate.d/syslog-ng":
             require => Package["syslog-ng"],
@@ -128,7 +128,7 @@ class debian-org {
     }
    
     exec {
-        "syslog-ng reload":
+        "syslog-ng restart":
             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
             refreshonly => true;
         "dpkg-reconfigure tzdata -pcritical -fnoninteractive":
