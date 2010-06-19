@@ -5,7 +5,7 @@ class ssl {
         "/etc/ssl/debian":
           ensure  => directory,
           mode    => 755,
-          purge   => true
+          purge   => true,
           recurse => true,
           force   => true,
           source  => "puppet:///files/empty/"
@@ -29,7 +29,7 @@ class ssl {
         "/etc/ssl/debian/keys":
           ensure  => directory,
           mode    => 750,
-          purge   => true
+          purge   => true,
           force   => true,
           recurse => true,
           source  => "puppet:///files/empty/"
