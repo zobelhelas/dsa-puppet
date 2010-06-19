@@ -29,6 +29,7 @@ node default {
     include monit
     include apt-keys
     include ntp
+    include ssl
 
     include motd
 
