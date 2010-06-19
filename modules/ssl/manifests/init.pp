@@ -35,7 +35,7 @@ class ssl {
           source  => "puppet:///files/empty/"
         ;
         "/etc/ssl/debian/certs/thishost.crt":
-          source  => "puppet:///ssl/clientcerts/$fqdn.crt",
+          source  => "puppet:///ssl/clientcerts/$fqdn.client.crt",
           notify  => Exec["c_rehash /etc/ssl/debian/certs"],
           ;
         "/etc/ssl/debian/keys/thishost.key":
