@@ -43,11 +43,11 @@ class ssl {
           mode    => 640
           ;
         "/etc/ssl/debian/certs/ca.crt":
-          source  => "puppet:///exim/certs/ca.crt",
+          source  => "puppet:///ssl/clientcerts/ca.crt",
           notify  => Exec["c_rehash /etc/ssl/debian/certs"],
           ;
         "/etc/ssl/debian/crls/ca.crl":
-          source  => "puppet:///exim/certs/ca.crl",
+          source  => "puppet:///ssl/clientcerts/ca.crl",
           ;
     }
 
