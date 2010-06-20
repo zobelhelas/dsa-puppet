@@ -81,6 +81,12 @@ options {
 	# we tell the syslog-ng that if a hostname match this regexp than that
 	# is not a real hostname.
 	bad_hostname("^gconfd$");
+
+<% if hostname == "heininen" -%>
+	# we trust our mutual authenticated syslog clients
+	keep_hostname(yes);
+<%end%>
+
 };
 
 
@@ -123,7 +129,7 @@ source s_all {
 source s_network {
 	tcp6(port(5140)
 		tls( key_file("/etc/exim4/ssl/thishost.key")
-		     cert_file("/etc/exim4/ssl/thishost.cert")
+		     cert_file("/etc/exim4/ssl/thishost.crt")
 		     ca_dir("/etc/exim4/ssl/")
 		)
 	);
@@ -445,13 +451,19 @@ log {
 };
 <%end%>
 
-<% if hostname == "corelli" -%>
-destination loghost-paganini {
-	udp("192.168.2.10",port(514));
+<% if hostname != "heininen" -%>
+ <% if syslogversion == "3" %>
+destination loghost-heininen {
+	tcp6("heininen.debian.org" port (5140)
+		tls( key_file("/etc/ssl/debian/keys/thishost.key")
+		     cert_file("/etc/ssl/debian/certs/thishost.crt")
+		     ca_dir("/etc/ssl/debian/certs/")
+		)
+	)
 };
-
 log {
 	source(s_all);
-	destination(loghost-paganini);
+	destination(loghost-heininen);
 };
+ <%end%>
 <%end%>
