@@ -127,7 +127,7 @@ source s_all {
 
 <% if hostname == "heininen" -%>
 source s_network {
-	tcp6(port(5140)
+	tcp6(port(5140) max-connections(200)
 		tls( key_file("/etc/exim4/ssl/thishost.key")
 		     cert_file("/etc/exim4/ssl/thishost.crt")
 		     ca_dir("/etc/exim4/ssl/")
