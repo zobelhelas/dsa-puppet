@@ -459,8 +459,10 @@ destination loghost-heininen {
 		     cert_file("/etc/ssl/debian/certs/thishost.crt")
 		     ca_dir("/etc/ssl/debian/certs/")
 		)
-	)
+	);
 };
+
+
 log {
 	source(s_all);
 	destination(loghost-heininen);
