@@ -182,7 +182,7 @@ node default {
 	kaufmann: {
            @ferm::rule { "dsa-hkp":
 		    domain          => "(ip ip6)",
-		    description     => "Allow ftp access",
+		    description     => "Allow hkp access",
 		    rule            => "&SERVICE(tcp, 11371)"
            }
 	}
