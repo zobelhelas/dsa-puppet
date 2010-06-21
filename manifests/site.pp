@@ -168,7 +168,7 @@ node default {
 		    rule            => "source 172.22.127.147 interface bond0 jump ACCEPT",
 	   }
 	}
-        heininen: {
+	heininen: {
 	   @ferm::rule { "dsa-syslog":
 		    description     => "Allow syslog access",
 		    rule            => "&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V4)"
@@ -179,7 +179,13 @@ node default {
 		    rule            => "&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V6)"
 	   }
         }
-
+	kaufmann: {
+           @ferm::rule { "dsa-hkp":
+		    domain          => "(ip ip6)",
+		    description     => "Allow ftp access",
+		    rule            => "&SERVICE(tcp, 11371)"
+           }
+	}
     }
     case $brokenhosts {
         "true":    { include hosts }
