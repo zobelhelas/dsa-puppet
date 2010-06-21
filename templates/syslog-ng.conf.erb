@@ -191,7 +191,7 @@ destination du_all { usertty("*"); };
 filter f_auth { facility(auth, authpriv); };
 
 # all messages except from the auth and authpriv facilities
-filter f_syslog { not facility(auth, authpriv); };
+filter f_syslog { not facility(auth, authpriv, mail); };
 
 # respectively: messages from the cron, daemon, kern, lpr, mail, news, user,
 # and uucp facilities
