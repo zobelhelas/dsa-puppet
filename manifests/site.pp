@@ -92,7 +92,7 @@ node default {
     }
 
     case $hostname {
-        franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen,kokkonen: { include ferm }
+        franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen,kokkonen,kaufmann: { include ferm }
     }
     case $hostname {
         zandonai,zelenka: {
@@ -111,7 +111,7 @@ node default {
                rule         => "&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))"
            }
         }
-	senfl: {
+	senfl,kaufmann: {
 	   @ferm::rule { "dsa-rsync":
 		    domain          => "(ip ip6)",
 		    description     => "Allow rsync access",
@@ -168,7 +168,7 @@ node default {
 		    rule            => "source 172.22.127.147 interface bond0 jump ACCEPT",
 	   }
 	}
-        heininen: {
+	heininen: {
 	   @ferm::rule { "dsa-syslog":
 		    description     => "Allow syslog access",
 		    rule            => "&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V4)"
@@ -179,7 +179,13 @@ node default {
 		    rule            => "&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V6)"
 	   }
         }
-
+	kaufmann: {
+           @ferm::rule { "dsa-hkp":
+		    domain          => "(ip ip6)",
+		    description     => "Allow hkp access",
+		    rule            => "&SERVICE(tcp, 11371)"
+           }
+	}
     }
     case $brokenhosts {
         "true":    { include hosts }
