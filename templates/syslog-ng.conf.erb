@@ -477,6 +477,7 @@ destination hostdest_facility_dot_crit   { file("/var/log/hosts/$HOST/$YEAR/$MON
 #  Catch all log files
 #----------------------------------------------------------------------
 destination df_ALL_auth { file("/var/log/auth-all.log"); };
+destination df_ALL_mail { file("/var/log/mail-all.log"); };
 destination df_ALL_syslog { file("/var/log/syslog-all"); };
 
 log { source(s_local);
@@ -528,6 +529,9 @@ log { source(s_local);
 log { source(s_local);
       source(s_network);
       filter(f_auth); destination(df_ALL_auth); };
+log { source(s_local);
+      source(s_network);
+      filter(f_mail); destination(df_ALL_mail); };
 log { source(s_local);
       source(s_network);
       filter(f_syslog); destination(df_ALL_syslog); };
