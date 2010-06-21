@@ -111,7 +111,7 @@ node default {
                rule         => "&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))"
            }
         }
-	senfl,kaufmann: {
+	senfl: {
 	   @ferm::rule { "dsa-rsync":
 		    domain          => "(ip ip6)",
 		    description     => "Allow rsync access",
@@ -185,6 +185,12 @@ node default {
 		    description     => "Allow hkp access",
 		    rule            => "&SERVICE(tcp, 11371)"
            }
+	   @ferm::rule { "dsa-rsync":
+		    domain          => "(ip ip6)",
+		    description     => "Allow rsync access",
+		    rule            => "&SERVICE(tcp, 873)"
+	   }
+        }
 	}
     }
     case $brokenhosts {
