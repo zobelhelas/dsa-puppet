@@ -190,7 +190,6 @@ node default {
 		    description     => "Allow rsync access",
 		    rule            => "&SERVICE(tcp, 873)"
 	   }
-        }
 	}
     }
     case $brokenhosts {
