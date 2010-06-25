@@ -143,7 +143,6 @@ host_settings:
     - valente.debian.org
   apache2_security_mirror:
     - gluck.debian.org
-    - kassia.debian.org
     - lobos.debian.org
     - raff.debian.org
     - saens.debian.org
