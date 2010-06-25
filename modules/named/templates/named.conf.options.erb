@@ -40,7 +40,7 @@ options {
   str
 -%>
 
-<% if classes.include?('named::secondary') -%>
+<% if classes.include?('named::secondary') or classes.include?('named::geodns') -%>
 	dnssec-enable yes;
 	dnssec-validation yes;
 <% end -%>
