@@ -48,7 +48,7 @@
 @def $HOST_NAGIOS_V4 = (<%=
   nagii = []
   localinfo.keys.sort.each do |node|
-      if localinfo[node]['nagiosmaster']
+      if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
           keyinfo[node][0]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              nagii << ip
@@ -62,7 +62,7 @@
 @def $HOST_NAGIOS_V6 = (<%=
   nagii = []
   localinfo.keys.sort.each do |node|
-      if localinfo[node]['nagiosmaster']
+      if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
           keyinfo[node][0]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              nagii << ip

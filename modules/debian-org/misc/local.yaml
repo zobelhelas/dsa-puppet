@@ -116,8 +116,8 @@ services:
     - spohr.debian.org
     - merikanto.debian.org
   muninmaster: spohr.debian.org
-  nagiosmaster:
-    - draghi.debian.org
+  nagiosmaster: draghi.debian.org
+  extranrpeclient:
     - tchaikovsky.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
