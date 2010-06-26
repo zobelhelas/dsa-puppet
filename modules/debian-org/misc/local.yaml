@@ -26,16 +26,19 @@ nameinfo:
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
   field.debian.org: John Field (1782 - 1837)
   finzi.debian.org: Gerald Raphael Finzi (July 14th, 1901 - September 27th, 1956)
+  franck.debian.org: Melchior Franck (1579 - June 1st, 1639)
   gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 – July 10th, 1690)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
   goedel.debian.org: Kurt Gödel (April 28th, 1906 - January 14th, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7th, 1840 - December 3rd, 1876)
   grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
+  heininen.debian.org: Paavo Heininen (January 13th, 1938)
   holter.debian.org: Iver Holter (December 13th, 1850 - January 27th, 1941)
   kassia.debian.org: Kassia (between 805 and 810 - bef. 867)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
+  kokkonen.debian.org: November 13th, 1921 - October 1st, 1996)
   krenek.debian.org: Ernst Krenek (August 23rd, 1900 - December 22nd, 1991)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
@@ -52,6 +55,7 @@ nameinfo:
   monteverdi.debian.org: Claudio Giovanni Antonio Monteverdi (May 15th, 1567 - November 29, 1643)
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
   mundy.debian.org: William Mundy (c. 1529 - 1591)
+  nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
   orff.debian.org: Carl Orff (July 10th, 1895 - March 29th, 1982)
   paer.debian.org: Ferdinando Paër (July 1st, 1771 - May 3rd, 1839)
   paganini.debian.org: Niccolò Paganini (October 27th, 1782 – May 27th, 1840)
@@ -112,9 +116,9 @@ services:
     - spohr.debian.org
     - merikanto.debian.org
   muninmaster: spohr.debian.org
-  nagiosmaster:
+  nagiosmaster: tchaikovsky.debian.org
+  extranrpeclient:
     - draghi.debian.org
-    - tchaikovsky.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
   puppetmaster: handel.debian.org
@@ -139,7 +143,6 @@ host_settings:
     - valente.debian.org
   apache2_security_mirror:
     - gluck.debian.org
-    - kassia.debian.org
     - lobos.debian.org
     - raff.debian.org
     - saens.debian.org
@@ -223,9 +226,11 @@ host_settings:
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
+    heininen.debian.org: mailout.debian.org
     holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
+    kokkonen.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
@@ -244,6 +249,7 @@ host_settings:
     morales.debian.org: mailout.debian.org
     mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
+    nielsen.debian.org: mailout.debian.org
     orff.debian.org: mailout.debian.org
     paer.debian.org: mailout.debian.org
     paganini.debian.org: mailout.debian.org

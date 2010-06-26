@@ -60,6 +60,8 @@ nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 nagios		MPTRAIDHOSTS=(ALL)	NOPASSWD: /usr/sbin/mpt-status -s
 nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
 nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, /usr/local/bin/megarc -dispCfg -a0 -nolog
+# other nagios things
+nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg ""
 
 # groups and their role accounts
 %buildd		ALL=(buildd)	ALL
@@ -106,10 +108,10 @@ piupartss	piatti=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
 pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # on draghi, the domains git thing will run bind9 reload afterwards
-%adm		draghi=(root)		NOPASSWD: /etc/init.d/bind9 reload
-%adm		draghi=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/db.debian.org/dns
+%dnsadm		draghi=(root)		NOPASSWD: /etc/init.d/bind9 reload
+%dnsadm		draghi=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo
 # remote power to babylon5 in the same rack:
-joerg		unger=(ALL)		/usr/bin/sispmctl -t 1, /usr/bin/sispmctl -g 1
+joerg		unger=(ALL)		/usr/bin/sispmctl -t [12], /usr/bin/sispmctl -g [12]
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		cimarosa,grieg=(root)		/usr/local/bin/update-buildd-sshkeys
 wbadm		cimarosa,grieg=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build

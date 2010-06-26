@@ -13,11 +13,10 @@ class monit {
 
 
     file {
-        "/etc/rc2.d/K99monit":
-          ensure  => "../init.d/monit";
-
-        "/etc/rc2.d/S99monit":
-          ensure  => absent;
+        #"/etc/rc2.d/K99monit":
+        #  ensure  => "../init.d/monit";
+        #"/etc/rc2.d/S99monit":
+        #  ensure  => absent;
 
         "/etc/monit/":
           ensure  => directory,

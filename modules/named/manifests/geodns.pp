@@ -30,8 +30,14 @@ class named::geodns inherits named {
         "/etc/bind/geodns":
             ensure  => directory,
             owner   => root,
+            group   => root,
+            mode    => 755,
+            ;
+        "/etc/bind/geodns/zonefiles":
+            ensure  => directory,
+            owner   => geodnssync,
             group   => geodnssync,
-            mode    => 775,
+            mode    => 755,
             ;
         "/etc/bind/geodns/named.conf.geo":
             source  => [ "puppet:///named/per-host/$fqdn/named.conf.geo",
@@ -41,19 +47,12 @@ class named::geodns inherits named {
             owner   => root,
             group   => root,
             ;
-        "/etc/bind/geodns/recvconf":
-            source  => [ "puppet:///named/per-host/$fqdn/recvconf",
-                         "puppet:///named/common/recvconf" ],
+        "/etc/bind/geodns/trigger":
+            source  => [ "puppet:///named/per-host/$fqdn/trigger",
+                         "puppet:///named/common/trigger" ],
             owner   => root,
             group   => root,
             mode    => 555,
-            ;
-        "/etc/bind/geodns/recvconf.files":
-            source  => [ "puppet:///named/per-host/$fqdn/recvconf.files",
-                         "puppet:///named/common/recvconf.files" ],
-            owner   => root,
-            group   => root,
-            mode    => 444,
             ;
         "/etc/ssh/userkeys/geodnssync":
             source  => [ "puppet:///named/per-host/$fqdn/authorized_keys",

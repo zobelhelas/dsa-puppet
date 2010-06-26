@@ -48,7 +48,7 @@
 @def $HOST_NAGIOS_V4 = (<%=
   nagii = []
   localinfo.keys.sort.each do |node|
-      if localinfo[node]['nagiosmaster']
+      if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
           keyinfo[node][0]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              nagii << ip
@@ -62,7 +62,7 @@
 @def $HOST_NAGIOS_V6 = (<%=
   nagii = []
   localinfo.keys.sort.each do |node|
-      if localinfo[node]['nagiosmaster']
+      if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
           keyinfo[node][0]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              nagii << ip
@@ -178,6 +178,7 @@
 @def $DSA_IPS = ($sgran $weasel $zobel $luca);
 
 @def $sgran6     = (2001:4b10:100b::/48);
+@def $sgran6     = ($sgran6 2001:4b10:0000:810b::/64);
 @def $weasel6    = ();
 @def $weasel6    = ($weasel6 2001:826:408:200::/56); # came
 @def $weasel6    = ($weasel6 2001:858:10f::/48); # anguilla

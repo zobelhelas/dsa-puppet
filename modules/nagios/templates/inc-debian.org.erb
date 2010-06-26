@@ -6,7 +6,7 @@
 <%=
 nagii = []
 localinfo.keys.sort.each do |node|
-  if localinfo[node]['nagiosmaster']
+  if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
     nagii << keyinfo[node][0]['ipHostNumber']
   end
 end
