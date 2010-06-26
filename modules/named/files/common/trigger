@@ -1,0 +1,3 @@
+#!/bin/sh
+rsync -az --delete draghi.debian.org:zonefiles/ /etc/bind/geodns/zonefiles/
+sudo /etc/init.d/bind9 reload
