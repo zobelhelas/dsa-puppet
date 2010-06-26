@@ -33,6 +33,12 @@ class named::geodns inherits named {
             group   => geodnssync,
             mode    => 775,
             ;
+        "/etc/bind/geodns/zonefiles":
+            ensure  => directory,
+            owner   => geodnssync,
+            group   => geodnssync,
+            mode    => 755,
+            ;
         "/etc/bind/geodns/named.conf.geo":
             source  => [ "puppet:///named/per-host/$fqdn/named.conf.geo",
                          "puppet:///named/common/named.conf.geo" ],
