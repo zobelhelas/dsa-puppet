@@ -8,7 +8,7 @@ view "AF" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org.AF";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org.AF";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -16,7 +16,7 @@ view "AF" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.AF";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.AF";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -24,7 +24,7 @@ view "AF" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.AF";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.AF";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -32,7 +32,7 @@ view "AF" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org.AF";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.AF";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -40,7 +40,7 @@ view "AF" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org.AF";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.AF";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -48,7 +48,7 @@ view "AF" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org.AF";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.AF";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -56,7 +56,7 @@ view "AF" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org.AF";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org.AF";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -64,7 +64,7 @@ view "AF" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org.AF";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org.AF";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -76,7 +76,7 @@ view "AN" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org.AN";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -84,7 +84,7 @@ view "AN" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.AN";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -92,7 +92,7 @@ view "AN" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.AN";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -100,7 +100,7 @@ view "AN" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org.AN";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -108,7 +108,7 @@ view "AN" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org.AN";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -116,7 +116,7 @@ view "AN" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org.AN";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -124,7 +124,7 @@ view "AN" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org.AN";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -132,7 +132,7 @@ view "AN" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org.AN";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -144,7 +144,7 @@ view "AS" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org.AS";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org.AS";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -152,7 +152,7 @@ view "AS" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.AS";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.AS";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -160,7 +160,7 @@ view "AS" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.AS";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.AS";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -168,7 +168,7 @@ view "AS" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org.AS";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.AS";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -176,7 +176,7 @@ view "AS" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org.AS";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.AS";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -184,7 +184,7 @@ view "AS" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org.AS";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.AS";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -192,7 +192,7 @@ view "AS" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org.AS";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org.AS";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -200,7 +200,7 @@ view "AS" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org.AS";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org.AS";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -212,7 +212,7 @@ view "EU" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org.EU";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -220,7 +220,7 @@ view "EU" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.EU";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -228,7 +228,7 @@ view "EU" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.EU";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -236,7 +236,7 @@ view "EU" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org.EU";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -244,7 +244,7 @@ view "EU" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org.EU";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -252,7 +252,7 @@ view "EU" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org.EU";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -260,7 +260,7 @@ view "EU" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org.EU";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -268,7 +268,7 @@ view "EU" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org.EU";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -280,7 +280,7 @@ view "NA" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org.NA";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org.NA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -288,7 +288,7 @@ view "NA" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.NA";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.NA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -296,7 +296,7 @@ view "NA" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.NA";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.NA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -304,7 +304,7 @@ view "NA" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org.NA";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.NA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -312,7 +312,7 @@ view "NA" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org.NA";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.NA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -320,7 +320,7 @@ view "NA" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org.NA";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.NA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -328,7 +328,7 @@ view "NA" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org.NA";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org.NA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -336,7 +336,7 @@ view "NA" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org.NA";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org.NA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -348,7 +348,7 @@ view "OC" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org.OC";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -356,7 +356,7 @@ view "OC" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.OC";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -364,7 +364,7 @@ view "OC" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.OC";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -372,7 +372,7 @@ view "OC" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org.OC";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -380,7 +380,7 @@ view "OC" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org.OC";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -388,7 +388,7 @@ view "OC" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org.OC";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -396,7 +396,7 @@ view "OC" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org.OC";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -404,7 +404,7 @@ view "OC" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org.OC";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -416,7 +416,7 @@ view "SA" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org.SA";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org.SA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -424,7 +424,7 @@ view "SA" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.SA";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.SA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -432,7 +432,7 @@ view "SA" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.SA";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.SA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -440,7 +440,7 @@ view "SA" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org.SA";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.SA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -448,7 +448,7 @@ view "SA" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org.SA";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.SA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -456,7 +456,7 @@ view "SA" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org.SA";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.SA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -464,7 +464,7 @@ view "SA" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org.SA";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org.SA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -472,7 +472,7 @@ view "SA" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org.SA";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org.SA";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -484,7 +484,7 @@ view "undef" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org.undef";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org.undef";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -492,7 +492,7 @@ view "undef" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.undef";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.undef";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -500,7 +500,7 @@ view "undef" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org.undef";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org.undef";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -508,7 +508,7 @@ view "undef" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org.undef";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.undef";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -516,7 +516,7 @@ view "undef" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org.undef";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.undef";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -524,7 +524,7 @@ view "undef" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org.undef";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.undef";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -532,7 +532,7 @@ view "undef" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org.undef";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org.undef";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -540,7 +540,7 @@ view "undef" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org.undef";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org.undef";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -552,7 +552,7 @@ view "default" {
 
   zone "volatile.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.volatile.debian.org";
+    file "/etc/bind/geodns/zonefiles/db.volatile.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -560,7 +560,7 @@ view "default" {
 
   zone "security.geo.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -568,7 +568,7 @@ view "default" {
 
   zone "security.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.security.debian.org";
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -576,7 +576,7 @@ view "default" {
 
   zone "ftp.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.ftp.debian.org";
+    file "/etc/bind/geodns/zonefiles/db.ftp.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -584,7 +584,7 @@ view "default" {
 
   zone "snapshot.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.snapshot.debian.org";
+    file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -592,7 +592,7 @@ view "default" {
 
   zone "bugs.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.bugs.debian.org";
+    file "/etc/bind/geodns/zonefiles/db.bugs.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -600,7 +600,7 @@ view "default" {
 
   zone "www.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.www.debian.org";
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -608,7 +608,7 @@ view "default" {
 
   zone "packages.debian.org" {
     type master;
-    file "/etc/bind/geodns/db.packages.debian.org";
+    file "/etc/bind/geodns/zonefiles/db.packages.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
