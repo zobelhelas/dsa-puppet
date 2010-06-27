@@ -24,6 +24,7 @@ Defaults	passprompt="[sudo] password for %u on %h: "
 Host_Alias	QAHOSTS		= master, merkel
 Host_Alias	WEBHOSTS	= klecker, wolkenstein
 Host_Alias	SECHOSTS	= klecker, chopin
+Host_Alias	FTPHOSTS	= ries, franck
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= bellini, cimarosa, morricone, paganini, respighi, vivaldi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
@@ -116,14 +117,14 @@ joerg		unger=(ALL)		/usr/bin/sispmctl -t [12], /usr/bin/sispmctl -g [12]
 %wbadm		cimarosa,grieg=(root)		/usr/local/bin/update-buildd-sshkeys
 wbadm		cimarosa,grieg=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
 # mirror push
-dak		ries=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
+dak		FTPHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
 # archvsync triggers snapshot
 archvsync	stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
 archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
 # dak stuff
-%debian-release	ries=(dak)		/usr/local/bin/dak transitions --import *
-%ftpteam	ries=(dak)		/usr/local/bin/dak transitions --import *
+%debian-release	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
+%ftpteam	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
 # security
 %security	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
 %sec_public	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
