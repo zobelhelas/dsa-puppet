@@ -130,6 +130,7 @@ host_settings:
     - busoni.debian.org
     - chopin.debian.org
     - draghi.debian.org
+    - franck.debian.org
     - grieg.debian.org
     - klecker.debian.org
     - master.debian.org
