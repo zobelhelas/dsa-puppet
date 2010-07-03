@@ -50,7 +50,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 # with smartarray controllers
 nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
-nagios		franck=(ALL)	NOPASSWD: /usr/bin/arrayprobe -f /dev/cciss/c1d0 ""
+nagios		franck=(ALL)	NOPASSWD: /usr/bin/arrayprobe -f /dev/cciss/c1d0
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller all show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[012] pd all show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[012] pd [0-9]\:[0-9] show
