@@ -17,7 +17,9 @@ if restrict_ssh.include?(hostname) then
 end
 if %w{schroeder}.include?(hostname) then
 	out << '@def $CARNET = ( 193.198.184.8/29 161.53.160.133 161.53.160.90 161.53.11.222 161.53.12.134 161.53.12.142 161.53.12.143 );'
+	out << '@def $KIBI = ( 88.164.242.219 );'
 	ssh4allowed << '$CARNET'
+	ssh4allowed << '$KIBI'
 	ssh4allowed << '82.195.75.84' # nott.ayous.org, HE (builddadm)
 end
 if %w{bartok beethoven}.include?(hostname) then
