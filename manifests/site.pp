@@ -96,7 +96,7 @@ node default {
     }
 
     case $hostname {
-        agricola,albeniz,gabrielli,zee,zelenka: { include ferm }
+        agricola,albeniz,gabrielli,merulo,paer,pergolesi,pescetti,smetana,sperger,zee,zelenka: { include ferm }
     }
 
     case $hostname {
