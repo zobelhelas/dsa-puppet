@@ -264,6 +264,8 @@ host_settings:
     pescetti.debian.org: mailout.debian.org
     pettersson.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
+    porpora.debian.org: mailout.debian.org
+    poulenc.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
     purcell.debian.org: mailout.debian.org
