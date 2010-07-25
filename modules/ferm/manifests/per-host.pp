@@ -18,6 +18,12 @@ class ferm::per-host {
     }
 
     case $hostname {
+        ravel: {
+            include ferm::nfs-server
+        }
+    }
+
+    case $hostname {
         piatti: {
            @ferm::rule { "dsa-udd-stunnel":
                description  => "port 8080 for udd stunnel",
