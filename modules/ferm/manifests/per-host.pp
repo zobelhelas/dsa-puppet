@@ -12,7 +12,7 @@ class ferm::per-host {
     }
 
     case $hostname {
-        chopin,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ries,rietz,franck,morricone,valente,klecker: {
+        chopin,franck,gluck,klecker,lobos,morricone,raff,ries,rietz,saens,schein,steffani,valente,villa,wieck: {
            include ferm::ftp
         }
     }
