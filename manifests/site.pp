@@ -92,8 +92,11 @@ node default {
     }
 
     case $hostname {
-        franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen,kokkonen,kaufmann,agricola,albeniz,gabrielli: { include ferm }
+        franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen,kokkonen,kaufmann: { include ferm }
     }
+
+    case $hostname {agricola,albeniz,gabrielli,zee,zelenka}
+
     case $hostname {
         zandonai,zelenka: {
            @ferm::rule { "dsa-zivit-rrdcollect":
