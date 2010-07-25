@@ -92,7 +92,7 @@ node default {
     }
 
     case $hostname {
-        franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen,kokkonen,kaufmann: { include ferm }
+        ries,franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen,kokkonen,kaufmann: { include ferm }
     }
 
     case $hostname {
@@ -126,7 +126,7 @@ node default {
 		    rule            => "&SERVICE(tcp, 873)"
 	   }
         }
-        saens,villa,lobos,raff,gluck,schein,wieck,steffani,franck,morricone,valente: {
+        saens,villa,lobos,raff,gluck,schein,wieck,steffani,ries,franck,morricone,valente: {
            @ferm::rule { "dsa-ftp":
 		    domain          => "(ip ip6)",
 		    description     => "Allow ftp access",
