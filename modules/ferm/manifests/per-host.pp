@@ -93,6 +93,16 @@ class ferm::per-host {
                     description     => "Allow finger access",
                     rule            => "&SERVICE(tcp, 79)"
 	    }
+            @ferm::rule { "dsa-ldap":
+                    domain          => "(ip ip6)",
+                    description     => "Allow ldap access",
+                    rule            => "&SERVICE(tcp, 389)"
+	    }
+            @ferm::rule { "dsa-ldaps":
+                    domain          => "(ip ip6)",
+                    description     => "Allow ldaps access",
+                    rule            => "&SERVICE(tcp, 636)"
+	    }
         }
     }
 }
