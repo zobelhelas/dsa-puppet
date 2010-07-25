@@ -103,7 +103,7 @@ node default {
     }
 
     case $hostname {
-        zandonai,zelenka: {
+        ancina,zandonai,zelenka: {
            @ferm::rule { "dsa-zivit-rrdcollect":
                description  => "port 6666 for rrdcollect for zivit",
                rule         => "&SERVICE_RANGE(tcp, 6666, ( 10.130.18.71 ))"
@@ -112,6 +112,10 @@ node default {
                description  => "port 10050 for zabbix for zivit",
                rule         => "&SERVICE_RANGE(tcp, 10050, ( 10.130.18.76 ))"
            }
+	   @ferm::rule { "dsa-time":
+		    description     => "Allow time access",
+		    rule            => "&SERVICE_RANGE(tcp, time, \$HOST_NAGIOS_V4)"
+	   }
         }
         piatti: {
            @ferm::rule { "dsa-udd-stunnel":
@@ -136,12 +140,6 @@ node default {
 		    domain          => "(ip ip6)",
 		    description     => "Allow rsync access",
 		    rule            => "&SERVICE(tcp, 873)"
-	   }
-        }
-        ancina,zelenka: {
-	   @ferm::rule { "dsa-time":
-		    description     => "Allow time access",
-		    rule            => "&SERVICE_RANGE(tcp, time, \$HOST_NAGIOS_V4)"
 	   }
         }
         handel: {
