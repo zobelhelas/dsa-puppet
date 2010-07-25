@@ -77,11 +77,6 @@ node default {
     case extractnodeinfo($nodeinfo, 'buildd') {
          'true':  {
              include buildd
-             case $kernel {
-                 Linux: {
-                     include ferm
-                 }
-             }
          }
     }
 
