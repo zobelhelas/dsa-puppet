@@ -77,11 +77,6 @@ node default {
     case extractnodeinfo($nodeinfo, 'buildd') {
          'true':  {
              include buildd
-             case $kernel {
-                 Linux: {
-                     include ferm
-                 }
-             }
          }
     }
 
@@ -92,14 +87,14 @@ node default {
     }
 
     case $hostname {
-        ries,franck,powell,logtest01,geo1,geo2,geo3,bartok,senfl,beethoven,piatti,saens,villa,lobos,raff,gluck,schein,wieck,steffani,ball,handel,tchaikovsky,heininen,nielsen,kokkonen,kaufmann: { include ferm }
-    }
-
-    case $hostname {
-        agricola,albeniz,gabrielli,merulo,paer,pergolesi,pescetti,smetana,sperger,zee,zelenka: { include ferm }
-    }
-    case $hostname {
-        busoni,englund,orff,duarte,grieg,soler,klecker,krenek,liszt,lindberg,master,morricone,respighi,scelsi,valente,vitry,vivaldi,wolkenstein,rietz,unger: { include ferm }
+        bellini,cilea,merikanto,petterson,sibelius: {}
+        default: {
+             case $kernel {
+                 Linux: {
+                     include ferm
+                 }
+             }
+         }
     }
 
     case $hostname {
