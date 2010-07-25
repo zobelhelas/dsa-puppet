@@ -99,7 +99,7 @@ node default {
         agricola,albeniz,gabrielli,merulo,paer,pergolesi,pescetti,smetana,sperger,zee,zelenka: { include ferm }
     }
     case $hostname {
-        orff,duarte,soler,krenek,lindberg,morricone,respighi,scelsi,valente,vitry,vivaldi,wolkenstein: { include ferm }
+        orff,duarte,soler,krenek,lindberg,morricone,respighi,scelsi,valente,vitry,vivaldi,wolkenstein,cilea: { include ferm }
     }
 
     case $hostname {
@@ -197,6 +197,18 @@ node default {
 		    domain          => "(ip ip6)",
 		    description     => "Allow rsync access",
 		    rule            => "&SERVICE(tcp, 873)"
+	   }
+	}
+	cilea: {
+           @ferm::rule { "dsa-sip":
+		    domain          => "(ip ip6)",
+		    description     => "Allow sip access",
+		    rule            => "&TCP_UDP_SERVICE(5060)"
+           }
+	   @ferm::rule { "dsa-sipx":
+		    domain          => "(ip ip6)",
+		    description     => "Allow sipx access",
+		    rule            => "&TCP_UDP_SERVICE(5080)"
 	   }
 	}
     }
