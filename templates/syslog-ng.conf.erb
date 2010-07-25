@@ -1,4 +1,4 @@
-<%- if defined?(syslogversion) && syslogversion == "3" -%>
+<%- if defined?(syslogversion) && syslogversion.to_s == "3" -%>
 @version: 3.0
 <%- end -%>
 ##
@@ -102,7 +102,7 @@ source s_local {
         # function to send logs to)
         unix-stream("/dev/log");
         # messages from the kernel
-<%- if defined?(syslogversion) && syslogversion == "2" -%>
+<%- if defined?(syslogversion) && syslogversion.to_s == "2" -%>
         file("/proc/kmsg" log_prefix("kernel: "));
 <%- else -%>
         file("/proc/kmsg" program_override("kernel: "));
@@ -112,7 +112,7 @@ source s_local {
         # function to send logs to)
         unix-dgram("/var/run/log");
         # messages from the kernel
-<%- if defined?(syslogversion) && syslogversion == "2" -%>
+<%- if defined?(syslogversion) && syslogversion.to_s == "2" -%>
         file("/dev/klog" log_prefix("kernel: "));
 <%- else -%>
         file("/dev/klog" program_override("kernel: "));
@@ -404,7 +404,7 @@ log {
 
 
 <%- if hostname != "heininen" -%>
- <%- if defined?(syslogversion) && syslogversion == "3" -%>
+ <%- if defined?(syslogversion) && syslogversion.to_s == "3" -%>
 destination loghost-heininen {
 	tcp("heininen.debian.org" port (5140)
 		tls( key_file("/etc/ssl/debian/keys/thishost.key")
