@@ -99,7 +99,7 @@ node default {
         agricola,albeniz,gabrielli,merulo,paer,pergolesi,pescetti,smetana,sperger,zee,zelenka: { include ferm }
     }
     case $hostname {
-        orff,duarte,soler,lindberg,wolkenstein: { include ferm }
+        orff,duarte,soler,lindberg,vivaldi,wolkenstein: { include ferm }
     }
 
     case $hostname {
