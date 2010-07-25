@@ -32,10 +32,8 @@ ssh6allowed.length == 0 and ssh6allowed << '::/0'
 out << "@def $SSH_SOURCES    = (#{ssh4allowed.join(' ')});"
 out << "@def $SSH_V6_SOURCES = (#{ssh6allowed.join(' ')});"
 
-if %w{cilea}.include?(hostname) then
-	out << '@hook pre "/sbin/modprobe nf_conntrack_sip";'
-	out << '@hook pre "/sbin/modprobe nf_conntrack_h323";'
-end
+
+
 
 smtp4allowed = []
 smtp6allowed = []
