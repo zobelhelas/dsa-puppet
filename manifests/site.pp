@@ -88,7 +88,7 @@ node default {
     case $hostname {
         klecker,ravel,senfl,orff: { include named::secondary }
         geo1,geo2,geo3:           { include named::geodns }
-        bartok,schein,steffani,ries,franck:   { include named::recursor }
+        bartok,schein,steffani,ries,franck,liszt:   { include named::recursor }
     }
 
     case $hostname {
