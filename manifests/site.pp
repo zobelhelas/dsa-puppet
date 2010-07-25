@@ -126,7 +126,7 @@ node default {
 		    rule            => "&SERVICE(tcp, 873)"
 	   }
         }
-        saens,villa,lobos,raff,gluck,schein,wieck,steffani,franck,morricone: {
+        saens,villa,lobos,raff,gluck,schein,wieck,steffani,franck,morricone,valente: {
            @ferm::rule { "dsa-ftp":
 		    domain          => "(ip ip6)",
 		    description     => "Allow ftp access",
