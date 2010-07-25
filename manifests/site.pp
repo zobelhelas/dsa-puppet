@@ -96,6 +96,8 @@ node default {
              }
          }
     }
+    include ferm::per-host
+
     case $brokenhosts {
         "true":    { include hosts }
     }
