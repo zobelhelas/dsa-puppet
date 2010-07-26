@@ -31,6 +31,16 @@ class ferm::per-host {
            }
         }
 
+        paganini: {
+           @ferm::rule { "dsa-dhcp":
+		    description     => "Allow dhcp access",
+		    rule            => "&SERVICE(udp, 67)"
+	   }
+           @ferm::rule { "dsa-tftp":
+		    description     => "Allow tftp access",
+		    rule            => "&SERVICE(udp, 69)"
+	   }
+        }
         handel: {
 	   @ferm::rule { "dsa-puppet":
 		    description     => "Allow puppet access",
