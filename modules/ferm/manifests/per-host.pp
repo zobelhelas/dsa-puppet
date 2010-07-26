@@ -24,7 +24,7 @@ class ferm::per-host {
     }
 
     case $hostname {
-        piatti: {
+        piatti,samosa: {
            @ferm::rule { "dsa-udd-stunnel":
                description  => "port 8080 for udd stunnel",
                rule         => "&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))"
