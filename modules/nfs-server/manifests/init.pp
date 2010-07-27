@@ -9,15 +9,15 @@ class nfs-server {
 
     file {
         "/etc/default/nfs-common":
-            source  => "puppet:///nfs-server/nfs-common.default"),
+            source  => "puppet:///nfs-server/nfs-common.default",
             require => Package["nfs-common"],
             notify  => Exec["nfs-common restart"];
         "/etc/default/nfs-kernel-server":
-            source  => "puppet:///nfs-server/nfs-kernel-server.default"),
+            source  => "puppet:///nfs-server/nfs-kernel-server.default",
             require => Package["nfs-kernel-server"],
             notify  => Exec["nfs-kernel-server restart"];
         "/etc/modprobe.d/lockd.local":
-            source  => "puppet:///nfs-server/lockd.local.modprobe");
+            source  => "puppet:///nfs-server/lockd.local.modprobe";
     }
 
     exec {
