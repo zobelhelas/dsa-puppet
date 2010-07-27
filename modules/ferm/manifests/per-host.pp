@@ -18,7 +18,7 @@ class ferm::per-host {
     }
 
     case $hostname {
-        ravel: {
+        ravel,spohr: {
             include ferm::nfs-server
         }
     }
