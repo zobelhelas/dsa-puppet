@@ -98,6 +98,12 @@ node default {
     }
     include ferm::per-host
 
+    case $hostname {
+        ravel,spohr: {
+            include nfs-server
+        }
+    }
+
     case $brokenhosts {
         "true":    { include hosts }
     }
