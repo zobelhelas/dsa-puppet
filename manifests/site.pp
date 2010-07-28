@@ -87,7 +87,7 @@ node default {
     }
 
     case $hostname {
-        cilea,luchesi,merikanto,paganini,rautavaara,sibelius: {}
+        cilea,luchesi,paganini,rautavaara,sibelius: {}
         default: {
              case $kernel {
                  Linux: {
