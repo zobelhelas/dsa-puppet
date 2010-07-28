@@ -202,13 +202,19 @@ host_settings:
     - field.debian.org
     - finzi.debian.org
   smarthost:
+    abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
+    alain.debian.org: mailout.debian.org
     albeniz.debian.org: mailout.debian.org
     alkman.debian.org: mailout.debian.org
+    alwyn.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
+    antheil.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
+    arne.debian.org: mailout.debian.org
+    arnold.debian.org: mailout.debian.org
     ball.debian.org: mailout.debian.org
     barber.debian.org: mailout.debian.org
     bartok.debian.org: mailout.debian.org
