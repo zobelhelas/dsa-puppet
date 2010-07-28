@@ -99,7 +99,7 @@ node default {
     include ferm::per-host
 
     case $hostname {
-        ravel,spohr: {
+        beethoven,ravel,spohr: {
             include nfs-server
         }
     }
