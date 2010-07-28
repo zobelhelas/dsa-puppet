@@ -61,12 +61,6 @@ class ferm::per-host {
                     rule            => "&SERVICE_RANGE(tcp, rsync, ( 195.20.242.90 192.25.206.33 82.195.75.106 206.12.19.118 ))"
            }
 	}
-	beethoven: {
-	   @ferm::rule { "dsa-merikanto-beethoven":
-		    description     => "Allow merikanto",  # for nfs, and that uses all kind of ports by default.
-		    rule            => "source 172.22.127.147 interface bond0 jump ACCEPT",
-	   }
-	}
 	heininen: {
 	   @ferm::rule { "dsa-syslog":
 		    description     => "Allow syslog access",
