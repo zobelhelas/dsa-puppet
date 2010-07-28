@@ -87,7 +87,7 @@ node default {
     }
 
     case $hostname {
-        cilea,luchesi,merikanto,paganini,rautavaara,sibelius,spohr: {}
+        cilea,luchesi,paganini,rautavaara,sibelius: {}
         default: {
              case $kernel {
                  Linux: {
@@ -97,6 +97,12 @@ node default {
          }
     }
     include ferm::per-host
+
+    case $hostname {
+        beethoven,ravel,spohr: {
+            include nfs-server
+        }
+    }
 
     case $brokenhosts {
         "true":    { include hosts }

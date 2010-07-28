@@ -6,7 +6,7 @@ class ferm::per-host {
         }
     }
     case $hostname {
-        franck,gluck,kaufmann,kassia,klecker,lobos,morricone,raff,ries,rietz,saens,schein,senfl,steffani,valente,villa,wieck: {
+        chopin,franck,gluck,kaufmann,kassia,klecker,lobos,merikanto,morricone,raff,ravel,ries,rietz,saens,schein,senfl,stabile,steffani,valente,villa,wieck: {
            include ferm::rsync
         }
     }
@@ -18,12 +18,6 @@ class ferm::per-host {
     }
 
     case $hostname {
-        ravel: {
-            include ferm::nfs-server
-        }
-    }
-
-    case $hostname {
         piatti,samosa: {
            @ferm::rule { "dsa-udd-stunnel":
                description  => "port 8080 for udd stunnel",
@@ -31,6 +25,16 @@ class ferm::per-host {
            }
         }
 
+        paganini: {
+           @ferm::rule { "dsa-dhcp":
+		    description     => "Allow dhcp access",
+		    rule            => "&SERVICE(udp, 67)"
+	   }
+           @ferm::rule { "dsa-tftp":
+		    description     => "Allow tftp access",
+		    rule            => "&SERVICE(udp, 69)"
+	   }
+        }
         handel: {
 	   @ferm::rule { "dsa-puppet":
 		    description     => "Allow puppet access",
@@ -56,12 +60,6 @@ class ferm::per-host {
                     description     => "Hoster wants to sync from here, and why not",
                     rule            => "&SERVICE_RANGE(tcp, rsync, ( 195.20.242.90 192.25.206.33 82.195.75.106 206.12.19.118 ))"
            }
-	}
-	beethoven: {
-	   @ferm::rule { "dsa-merikanto-beethoven":
-		    description     => "Allow merikanto",  # for nfs, and that uses all kind of ports by default.
-		    rule            => "source 172.22.127.147 interface bond0 jump ACCEPT",
-	   }
 	}
 	heininen: {
 	   @ferm::rule { "dsa-syslog":

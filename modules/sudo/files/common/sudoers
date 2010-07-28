@@ -131,7 +131,7 @@ archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
 # security
 %security	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
 %sec_public	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
-%sec_data	SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/security/signal ""
+%sec_public	SECHOSTS=(dak)		NOPASSWD: /home/dak/trigger_mirror
 dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
@@ -144,6 +144,9 @@ debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 # geodns may reload bind
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
+# fossology
+%fossy		vivaldi=(root)		/etc/init.d/fossology
+%fossy		vivaldi=(fossy)		ALL
 
 # Porter work
 %porter-alpha	albeniz=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
