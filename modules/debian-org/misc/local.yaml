@@ -160,9 +160,13 @@ host_settings:
     - villa.debian.org
     - wieck.debian.org
   buildd:
+    - alain.debian.org
     - alkman.debian.org
+    - alwyn.debian.org
     - ancina.debian.org
+    - antheil.debian.org
     - arcadelt.debian.org
+    - arnold.debian.org
     - argento.debian.org
     - ball.debian.org
     - barber.debian.org
