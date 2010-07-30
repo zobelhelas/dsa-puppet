@@ -150,7 +150,7 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 
 # Porter work
 %porter-alpha	albeniz=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-armel	agricola=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-armel	abel,agricola=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-amd64	pergolesi=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-hppa	paer=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-ia64	merulo=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
