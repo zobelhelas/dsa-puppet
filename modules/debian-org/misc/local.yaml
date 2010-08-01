@@ -166,8 +166,8 @@ host_settings:
     - ancina.debian.org
     - antheil.debian.org
     - arcadelt.debian.org
-    - arnold.debian.org
     - argento.debian.org
+    - arnold.debian.org
     - ball.debian.org
     - barber.debian.org
     - biber.debian.org
@@ -180,6 +180,7 @@ host_settings:
     - finzi.debian.org
     - goedel.debian.org
     - goetz.debian.org
+    - krenek.debian.org
     - lafayette.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
@@ -198,6 +199,7 @@ host_settings:
     - rem.debian.org
     - schroeder.debian.org
     - spontini.debian.org
+    - vitry.debian.org
     - voltaire.debian.org
     - zandonai.debian.org
   squeeze:
