@@ -123,8 +123,8 @@ wbadm		cimarosa,grieg=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wan
 dak		FTPHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
 # archvsync triggers snapshot
-archvsync	stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
-archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
+archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
+archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
 # dak stuff
 %debian-release	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
 %ftpteam	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
