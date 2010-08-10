@@ -162,10 +162,21 @@ class apache2 {
         description     => "http subchain",
         rule            => "chain 'http' { saddr ( 74.6.22.182 74.6.18.240 ) jump limit_yahoo; saddr 124.115.0.0/21 jump limit_sosospider; saddr (65.52.0.0/14 207.46.0.0/16) jump limit_bing; mod recent name HTTPDOS update seconds 1800 jump log_or_drop; mod hashlimit hashlimit-name HTTPDOS hashlimit-mode srcip hashlimit-burst 600 hashlimit 30/minute jump ACCEPT; mod recent name HTTPDOS set jump log_or_drop; }"
     }
-    @ferm::rule { "dsa-http":
-        prio            => "23",
-        description     => "Allow web access",
-        rule            => "proto tcp dport (http https) jump http;"
+    case $hostname {
+        sibelius,stabile: {
+            @ferm::rule { "dsa-http":
+                prio            => "23",
+                description     => "Allow web access",
+                rule            => "&SERVICE(tcp, (http https))"
+            }
+        }
+        default: {
+            @ferm::rule { "dsa-http":
+                prio            => "23",
+                description     => "Allow web access",
+                rule            => "proto tcp dport (http https) jump http;"
+            }
+        }
     }
     @ferm::rule { "dsa-http-v6":
         domain          => "(ip6)",

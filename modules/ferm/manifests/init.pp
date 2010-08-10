@@ -27,6 +27,9 @@ class ferm {
             recurse => true,
             source  => "puppet:///files/empty/",
             require => Package["ferm"];
+        "/etc/ferm":
+            ensure  => directory,
+            mode    => 0755;
         "/etc/ferm/conf.d":
             ensure => directory,
             require => Package["ferm"];

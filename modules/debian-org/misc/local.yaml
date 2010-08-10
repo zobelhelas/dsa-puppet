@@ -1,11 +1,17 @@
 ---
 nameinfo:
+  abel.debian.org: Carl Friedrich Abel (1723 - 1787)
   agnesi.debian.org: Maria Teresa Agnesi (October 17th, 1720 - January 19th, 1795)
   agricola.debian.org: Alexander Agricola (1445 or 1446 - August 15th, 1506)
+  alain.debian.org: Jehan Alain (1911 - 1940)
   albeniz.debian.org: Isaac Manuel Francisco Albéniz i Pascual (May 29th, 1860 - May 18th, 1909)
+  alwyn.debian.org: William Alwyn (1905 - 1985)
   ancina.debian.org: Giovanni Giovenale Ancina (October 19th, 1545 - August 30th, 1604)
+  antheil.debian.org: George Antheil (1900 - 1959)
   arcadelt.debian.org: Jacques Arcadelt (also Jacob Arcadelt) (?1507 - October 14th, 1568)
   argento.debian.org: Dominick Argento (b. October 27th, 1927)
+  arne.debian.org: Thomas Augustine Arne (1710 - 1778)
+  arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
   barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
   bartok.debian.org: Béla Viktor János Bartók (March 25th, 1881 - September 26th, 1945)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
@@ -13,7 +19,6 @@ nameinfo:
   biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
-  carver.debian.org: Robert Carver (ca.1485 - ca.1570)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   cimarosa.debian.org: Domenico Cimarosa (17 December 1749 - 11 January 1801)
@@ -45,14 +50,11 @@ nameinfo:
   lindberg.debian.org: Magnus Lindberg (June 27th, 1958)
   liszt.debian.org: Franz Liszt (October 22nd, 1811 - July 31st, 1886)
   luchesi.debian.org: Andrea Luca Luchesi (May 23rd, 1741 - March 21st, 1801)
-  mahler.debian.org: Gustav Mahler (July 7th, 1860 - May 18th, 1911)
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
-  mendes.debian.org: Manuel Mendes (1547 - September 24th, 1605)
   merikanto.debian.org: Oskar Merikanto (August 5th, 1868 - February 17th, 1924)
   merkel.debian.org: Gustav (Adolf) Merkel (November 12th, 1827 - October 30th, 1885)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
-  monteverdi.debian.org: Claudio Giovanni Antonio Monteverdi (May 15th, 1567 - November 29, 1643)
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
@@ -65,6 +67,8 @@ nameinfo:
   pescetti.debian.org: Giovanni Battista Pescetti (ca. 1704  - 1766)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   piatti.debian.org: Carlo Alfredo Piatti (January 8th, 1822 - July 18th, 1901)
+  porpora.debian.org: Niccolò (Antonio) Porpora (17 August 1686 - 3 March 1768)
+  poulenc.debian.org: Francis Jean Marcel Poulenc (January 7, 1899 - January 30, 1963)
   powell.debian.org: Andrew Powell (b. April 18th, 1949)
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
   puccini.debian.org: Giacomo Antonio Domenico Michele Secondo Maria Puccini (December 22nd, 1858 - November 29th, 1924)
@@ -130,6 +134,7 @@ host_settings:
     - busoni.debian.org
     - chopin.debian.org
     - draghi.debian.org
+    - franck.debian.org
     - grieg.debian.org
     - klecker.debian.org
     - master.debian.org
@@ -151,10 +156,14 @@ host_settings:
     - villa.debian.org
     - wieck.debian.org
   buildd:
+    - alain.debian.org
     - alkman.debian.org
+    - alwyn.debian.org
     - ancina.debian.org
+    - antheil.debian.org
     - arcadelt.debian.org
     - argento.debian.org
+    - arnold.debian.org
     - ball.debian.org
     - barber.debian.org
     - biber.debian.org
@@ -167,6 +176,7 @@ host_settings:
     - finzi.debian.org
     - goedel.debian.org
     - goetz.debian.org
+    - krenek.debian.org
     - lafayette.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
@@ -177,12 +187,15 @@ host_settings:
     - murphy.debian.org
     - penalosa.debian.org
     - peri.debian.org
+    - porpora.debian.org
+    - poulenc.debian.org
     - praetorius.debian.org
     - puccini.debian.org
     - purcell.debian.org
     - rem.debian.org
     - schroeder.debian.org
     - spontini.debian.org
+    - vitry.debian.org
     - voltaire.debian.org
     - zandonai.debian.org
   squeeze:
@@ -191,13 +204,19 @@ host_settings:
     - field.debian.org
     - finzi.debian.org
   smarthost:
+    abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
+    alain.debian.org: mailout.debian.org
     albeniz.debian.org: mailout.debian.org
     alkman.debian.org: mailout.debian.org
+    alwyn.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
+    antheil.debian.org: mailout.debian.org
     arcadelt.debian.org: mailout.debian.org
     argento.debian.org: mailout.debian.org
+    arne.debian.org: mailout.debian.org
+    arnold.debian.org: mailout.debian.org
     ball.debian.org: mailout.debian.org
     barber.debian.org: mailout.debian.org
     bartok.debian.org: mailout.debian.org
@@ -205,7 +224,6 @@ host_settings:
     biber.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
     caballero.debian.org: mailout.debian.org
-    carver.debian.org: mailout.debian.org
     cilea.debian.org: mailout.debian.org
     cimarosa.debian.org: mailout.debian.org
     corelli.debian.org: mailout.debian.org
@@ -239,14 +257,10 @@ host_settings:
     lobos.debian.org: mailout.debian.org
     lucatelli.debian.org: mailout.debian.org
     luchesi.debian.org: mailout.debian.org
-    mahler.debian.org: mailout.debian.org
     malo.debian.org: mailout.debian.org
     mayer.debian.org: mailout.debian.org
     mayr.debian.org: mailout.debian.org
-    mendes.debian.org: mailout.debian.org
     merulo.debian.org: mailout.debian.org
-    monteverdi.debian.org: mailout.debian.org
-    morales.debian.org: mailout.debian.org
     mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
     nielsen.debian.org: mailout.debian.org
@@ -259,6 +273,8 @@ host_settings:
     pescetti.debian.org: mailout.debian.org
     pettersson.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
+    porpora.debian.org: mailout.debian.org
+    poulenc.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
     puccini.debian.org: mailout.debian.org
     purcell.debian.org: mailout.debian.org
@@ -300,14 +316,10 @@ host_settings:
   no_munin:
     - agnesi.debian.org
     - allegri.debian.org
-    - carver.debian.org
+    - byrd.debian.org
     - escher.debian.org
     - fano.debian.org
-    - logtest01.debian.org
-    - mahler.debian.org
     - malo.debian.org
-    - mendes.debian.org
-    - morales.debian.org
 #  reservedaddrs:
 #    ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"
 ---

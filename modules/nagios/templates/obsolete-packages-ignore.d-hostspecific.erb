@@ -8,6 +8,7 @@ ignore = []
 case fqdn
 when /(bellini|cimarosa).debian.org/:   ignore << "mcelog"
 when "busoni.debian.org":               ignore << %w{libthreads-perl libthreads-shared-perl}
+when "cilea.debian.org":                ignore << "/freeswitch.*/"
 when /draghi.debian.org/:               ignore << %w{userdir-ldap libnet-dns-perl libnet-dns-sec-perl libnet-dns-zone-parser-perl libdns-ruby1.8}
 when /geo[123].debian.org/:             ignore << %w{geoip-database libgeoip1 geoip-bin}
 when /liszt.debian.org/:                ignore << "amavisd-new"
@@ -17,7 +18,7 @@ when /(dijkstra|unger|luchesi|schumann).debian.org/: ignore << "qemu-kvm"
 when /(lebrun|schroeder).debian.org/:   ignore << "firmware-linux-nonfree"
 when /(mayer|paer|peri|penalosa).debian.org/: ignore << "linux-base"
 when "powell.debian.org":               ignore << %w{e2fslibs e2fsprogs libblkid1 libcomerr2 libss2 libuuid1 uuid-runtime}
-when "ries.debian.org":                 ignore << %w{apt-utils apt libapt-pkg-dev}
+when "franck.debian.org":               ignore << %w{libuuid1 util-linux libcomerr2 libss2 e2fslibs uuid-runtime hpacucli e2fsprogs firmware-bnx2 libblkid1}
 when "zee.debian.org":                  ignore << %w{dpkg-dev dpkg}
 end
 

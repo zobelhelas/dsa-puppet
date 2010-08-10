@@ -61,6 +61,12 @@ class named::geodns inherits named {
             group   => geodnssync,
             mode    => 440,
             ;
+        "/etc/cron.d/dsa-boot-geodnssync":
+            source  => [ "puppet:///named/per-host/$fqdn/cron-geo",
+                         "puppet:///named/common/cron-geo" ],
+            owner   => root,
+            group   => root,
+            ;
     }
 }
 

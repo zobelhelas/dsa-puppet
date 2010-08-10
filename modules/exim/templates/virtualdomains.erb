@@ -30,6 +30,9 @@ vdoms = case fqdn
 
         when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
 
+        when "franck.debian.org" then "release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
+ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp-master.debian.org/mail group_writable=true"
+
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
 
         when "kaufmann.debian.org" then "keyring.debian.org: user=keyring group=Debian directory=/srv/keyring.debian.org/mail"
