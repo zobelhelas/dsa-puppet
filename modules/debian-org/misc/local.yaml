@@ -79,7 +79,9 @@ nameinfo:
   ries.debian.org: Franz Ries (April 7th, 1846 – January 20th, 1932)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   rore.debian.org: Cipriano de Rore (occasionally Cypriano) (1515 or 1516 - between September 11 and September 20, 1565)
+  rossini.debian.org: Gioachino Rossini (February 29, 1792 - November 13, 1868)
   saens.debian.org: Charles-Camille Saint-Saëns  (October 9th, 1835 - December 16th, 1921)
+  salieri.debian.org: Antonio Salieri (Legnago, 18 August 1750 - Vienna, 7 May 1825)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   scelsi.debian.org: Giacinto Scelsi (January 8th, 1905 - August 9th, 1988)
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
@@ -96,6 +98,7 @@ nameinfo:
   steffani.debian.org: Agostino Steffani (July 25th, 1653 - February 12th, 1728)
   tartini.debian.org: Giuseppe Tartini (April 8th, 1692 - February 26th, 1770)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
+  traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (30 March 1727 - 6 April 1779)
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
   valente.debian.org: Vincenzo Valente (February 21st, 1855 - September 6th, 1921)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
@@ -284,7 +287,9 @@ host_settings:
     respighi.debian.org: mailout.debian.org
     rietz.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
+    rossini.debian.org: mailout.debian.org
     saens.debian.org: mailout.debian.org
+    salieri.debian.org: mailout.debian.org
     scelsi.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
@@ -298,6 +303,7 @@ host_settings:
     stabile.debian.org: mailout.debian.org
     steffani.debian.org: mailout.debian.org
     tchaikovsky.debian.org: mailout.debian.org
+    traetta.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
     vitry.debian.org: mailout.debian.org
