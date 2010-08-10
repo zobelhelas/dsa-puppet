@@ -142,7 +142,7 @@ class ferm::per-host {
             @ferm::rule { "dsa-routing":
                 description     => "forward chain",
                 chain           => "FORWARD",
-                rule            => "
+                rule            => '
                                     def $ADDRESS_FASCH=194.177.211.201;
                                     def $ADDRESS_FIELD=194.177.211.210;
                                     def $FREEBSD_HOSTS=($ADDRESS_FASCH $ADDRESS_FIELD);
@@ -153,14 +153,14 @@ class ferm::per-host {
                                     interface eth0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
                                     ULOG ulog-prefix "REJECT FORWARD: ";
                                     REJECT reject-with icmp-admin-prohibited;
-                                    "
+                                    '
             }
         }
         luchesi: {
             @ferm::rule { "dsa-routing":
                 description     => "forward chain",
                 chain           => "FORWARD",
-                rule            => "
+                rule            => '
                                     def $ADDRESS_FANO=206.12.19.110;
                                     def $ADDRESS_FINZI=206.12.19.111;
                                     def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI);
@@ -173,7 +173,7 @@ class ferm::per-host {
                                     interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
                                     ULOG ulog-prefix "REJECT FORWARD: ";
                                     REJECT reject-with icmp-admin-prohibited;
-                                    "
+                                    '
             }
         }
     }
