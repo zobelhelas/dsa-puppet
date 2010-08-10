@@ -52,11 +52,11 @@ nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
 nagios		franck=(ALL)	NOPASSWD: /usr/bin/arrayprobe -f /dev/cciss/c1d0
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller all show
-nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[012] pd all show
-nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[012] pd [0-9]\:[0-9] show
-nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[012] pd [0-9][EIC]\:[0-9]\:[0-9] show
-nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[012] pd [0-9][EIC]\:[0-9]\:[0-9][0-9] show
-nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[012] show status
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] pd all show
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] pd [0-9]\:[0-9] show
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] pd [0-9][EIC]\:[0-9]\:[0-9] show
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] pd [0-9][EIC]\:[0-9]\:[0-9][0-9] show
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] show status
 # other raid controllers
 nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
 nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
