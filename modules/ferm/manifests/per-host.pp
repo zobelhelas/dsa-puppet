@@ -116,25 +116,25 @@ class ferm::per-host {
     case $hostname { rautavaara,luchesi: {
         @ferm::rule { "dsa-to-kfreebsd":
             description     => "Traffic routed to kfreebsd hosts",
-            rule            => "chain to-kfreebsd {
+            rule            => 'chain to-kfreebsd {
                                     proto icmp ACCEPT;
                                     source ($FREEBSD_SSH_ACCESS) proto tcp dport 22 ACCEPT;
                                     source ($HOST_MAILRELAY_V4) proto tcp dport 25 ACCEPT;
                                     source ($HOST_MUNIN_V4) proto tcp dport 4949 ACCEPT;
                                     source ($HOST_NAGIOS_V4) proto tcp dport 5666 ACCEPT;
                                     source ($HOST_NAGIOS_V4) proto udp dport ntp ACCEPT;
-                                }"
+                                }'
         }
         @ferm::rule { "dsa-from-kfreebsd":
             description     => "Traffic routed from kfreebsd vlan/bridge",
-            rule            => "chain from-kfreebsd {
+            rule            => 'chain from-kfreebsd {
                                     proto icmp ACCEPT;
                                     proto tcp dport (21 22 80 53 443) ACCEPT;
                                     proto udp dport (53 123) ACCEPT;
                                     proto tcp dport 8140 daddr 82.195.75.104 ACCEPT; # puppethost
                                     proto tcp dport 5140 daddr 82.195.75.98 ACCEPT; # loghost
                                     proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT;
-                                }"
+                                }'
         }
     }}
     case $hostname {
