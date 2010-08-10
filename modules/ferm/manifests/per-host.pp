@@ -119,8 +119,8 @@ class ferm::per-host {
             chain           => 'to-kfreebsd',
             rule            => 'proto icmp ACCEPT;
                                 source ($FREEBSD_SSH_ACCESS $HOST_NAGIOS_V4) proto tcp dport 22 ACCEPT;
-                                source ($HOST_MAILRELAY_V4) proto tcp dport 25 ACCEPT;
-                                source ($HOST_MUNIN_V4) proto tcp dport 4949 ACCEPT;
+                                source ($HOST_MAILRELAY_V4 $HOST_NAGIOS_V4) proto tcp dport 25 ACCEPT;
+                                source ($HOST_MUNIN_V4 $HOST_NAGIOS_V4) proto tcp dport 4949 ACCEPT;
                                 source ($HOST_NAGIOS_V4) proto tcp dport 5666 ACCEPT;
                                 source ($HOST_NAGIOS_V4) proto udp dport ntp ACCEPT;
                                '
