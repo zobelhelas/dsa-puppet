@@ -109,4 +109,76 @@ class ferm::per-host {
 	    }
         }
     }
+
+
+
+
+    case $hostname { rautavaara,luchesi: {
+        @ferm::rule { "dsa-to-kfreebsd":
+            description     => "Traffic routed to kfreebsd hosts",
+            rule            => "chain to-kfreebsd {
+                                    proto icmp ACCEPT;
+                                    source ($FREEBSD_SSH_ACCESS) proto tcp dport 22 ACCEPT;
+                                    source ($HOST_MAILRELAY_V4) proto tcp dport 25 ACCEPT;
+                                    source ($HOST_MUNIN_V4) proto tcp dport 4949 ACCEPT;
+                                    source ($HOST_NAGIOS_V4) proto tcp dport 5666 ACCEPT;
+                                    source ($HOST_NAGIOS_V4) proto udp dport ntp ACCEPT;
+                                }"
+        }
+        @ferm::rule { "dsa-from-kfreebsd":
+            description     => "Traffic routed from kfreebsd vlan/bridge",
+            rule            => "chain from-kfreebsd {
+                                    proto icmp ACCEPT;
+                                    proto tcp dport (21 22 80 53 443) ACCEPT;
+                                    proto udp dport (53 123) ACCEPT;
+                                    proto tcp dport 8140 daddr 82.195.75.104 ACCEPT; # puppethost
+                                    proto tcp dport 5140 daddr 82.195.75.98 ACCEPT; # loghost
+                                    proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT;
+                                }"
+        }
+    }}
+    case $hostname {
+        rautavaara: {
+            @ferm::rule { "dsa-routing":
+                description     => "forward chain",
+                chain           => "FORWARD",
+                rule            => "
+                                    def $ADDRESS_FASCH=194.177.211.201;
+                                    def $ADDRESS_FIELD=194.177.211.210;
+                                    def $FREEBSD_HOSTS=($ADDRESS_FASCH $ADDRESS_FIELD);
+
+                                    policy ACCEPT;
+                                    mod state state (ESTABLISHED RELATED) ACCEPT;
+                                    interface vlan11 outerface eth0 jump from-kfreebsd;
+                                    interface eth0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
+                                    ULOG ulog-prefix "REJECT FORWARD: ";
+                                    REJECT reject-with icmp-admin-prohibited;
+                                    "
+            }
+        }
+        luchesi: {
+            @ferm::rule { "dsa-routing":
+                description     => "forward chain",
+                chain           => "FORWARD",
+                rule            => "
+                                    def $ADDRESS_FANO=206.12.19.110;
+                                    def $ADDRESS_FINZI=206.12.19.111;
+                                    def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI);
+
+                                    policy ACCEPT;
+                                    mod state state (ESTABLISHED RELATED) ACCEPT;
+                                    interface br0 outerface br0 ACCEPT;
+
+                                    interface br2 outerface br0 jump from-kfreebsd;
+                                    interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
+                                    ULOG ulog-prefix "REJECT FORWARD: ";
+                                    REJECT reject-with icmp-admin-prohibited;
+                                    "
+            }
+        }
+    }
 }
+
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:
