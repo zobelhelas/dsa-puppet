@@ -5,5 +5,5 @@
 
 <% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
 <% else %>
-deb	http://mirror.netcologne.de/debian-backports/	lenny-backports main 
+deb	http://mirror.netcologne.de/debian-backports/	lenny-backports main contrib non-free
 <% end %>

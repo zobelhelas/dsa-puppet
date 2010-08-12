@@ -5,5 +5,5 @@
 
 <% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
 <% else %>
-deb     http://security.debian.org/             lenny/updates    main
+deb     http://security.debian.org/             lenny/updates    main contrib non-free
 <% end %>
