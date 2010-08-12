@@ -87,7 +87,7 @@ node default {
     }
 
     case $hostname {
-        cilea,paganini: {}
+        paganini: {}
         default: {
              case $kernel {
                  Linux: {

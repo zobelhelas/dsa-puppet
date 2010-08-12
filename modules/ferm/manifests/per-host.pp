@@ -108,6 +108,24 @@ class ferm::per-host {
                     rule            => "&SERVICE(tcp, 636)"
 	    }
         }
+	cilea: {
+            file {
+                "/etc/ferm/conf.d/load_sip_conntrack.conf":
+                    source => "puppet:///ferm/conntrack_sip.conf",
+                    require => Package["ferm"],
+                    notify  => Exec["ferm restart"];
+            },
+            @ferm::rule { "dsa-sip":
+                    domain          => "(ip ip6)",
+                    description     => "Allow sip access",
+                    rule            => "&TCP_UDP_SERVICE(5060)"
+            }
+            @ferm::rule { "dsa-sipx":
+                    domain          => "(ip ip6)",
+                    description     => "Allow sipx access",
+                    rule            => "&TCP_UDP_SERVICE(5080)"
+            }
+        }
     }
 
 
