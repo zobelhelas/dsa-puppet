@@ -195,6 +195,20 @@ class ferm::per-host {
             }
         }
     }
+
+    # redirect snapshot into varnish
+    case $hostname {
+        sibelius: {
+            @ferm::rule { "dsa-snapshot-varnish":
+                rule            => '&SERVICE(tcp, 11371)'
+            }
+            @ferm::rule { "dsa-snapshot-varnish":
+                table           => 'nat'
+                chain           => 'PREROUTING'
+                rule            => 'proto tcp daddr 193.62.202.28 dport 80 REDIRECT to-ports 6081'
+            }
+        }
+    }
 }
 
 # vim:set et:
