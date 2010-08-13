@@ -202,7 +202,7 @@ class ferm::per-host {
             @ferm::rule { "dsa-snapshot-varnish":
                 rule            => '&SERVICE(tcp, 11371)',
             }
-            @ferm::rule { "dsa-snapshot-varnish":
+            @ferm::rule { "dsa-nat-snapshot-varnish":
                 table           => 'nat',
                 chain           => 'PREROUTING',
                 rule            => 'proto tcp daddr 193.62.202.28 dport 80 REDIRECT to-ports 6081',
