@@ -200,7 +200,7 @@ class ferm::per-host {
     case $hostname {
         sibelius: {
             @ferm::rule { "dsa-snapshot-varnish":
-                rule            => '&SERVICE(tcp, 11371)',
+                rule            => '&SERVICE(tcp, 6081)',
             }
             @ferm::rule { "dsa-nat-snapshot-varnish":
                 table           => 'nat',
