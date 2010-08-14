@@ -10,7 +10,6 @@ when /(bellini|cimarosa).debian.org/:   ignore << "mcelog"
 when "busoni.debian.org":               ignore << %w{libthreads-perl libthreads-shared-perl}
 when "cilea.debian.org":                ignore << "/freeswitch.*/"
 when /draghi.debian.org/:               ignore << %w{userdir-ldap libnet-dns-perl libnet-dns-sec-perl libnet-dns-zone-parser-perl libdns-ruby1.8}
-when /geo[123].debian.org/:             ignore << %w{geoip-database libgeoip1 geoip-bin}
 when /liszt.debian.org/:                ignore << "amavisd-new"
 when /stabile.debian.org/:              ignore << "xfsprogs"
 when /(zandonai|zelenka).debian.org/:   ignore << %w{zabbix-agent rrdcollect}
