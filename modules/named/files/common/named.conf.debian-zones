@@ -188,4 +188,19 @@ zone "19.12.206.in-addr.arpa" {
 	allow-query { any; };
 	allow-transfer { };
 };
+
+// 0.0.0.4.0.1.6.0.0.f.8.f.7.0.6.2.ip6.arpa - reverse zone for 2607:f8f0:0610:4000::/64 - ubcece6
+zone "0.0.0.4.0.1.6.0.0.f.8.f.7.0.6.2.ip6.arpa" {
+	type slave;
+	notify no;
+	file "db.2607:f8f0:0610:4000";
+	masters {
+		82.195.75.106; // draghi
+		2001:41b8:202:deb:216:36ff:fe40:3906; //draghi
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
+
 // vim:set syn=named:
