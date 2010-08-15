@@ -18,8 +18,8 @@ class apache2 {
             }
 
             file { "/etc/php5/conf.d/suhosin.ini":
-                source  => [ "puppet:///apache2/per-host/$fqdn/etc/php5/conf.d/suhosin.ini",
-                             "puppet:///apache2/common/etc/php5/conf.d/suhosin.ini" ],
+                source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/php5/conf.d/suhosin.ini",
+                             "puppet:///modules/apache2/common/etc/php5/conf.d/suhosin.ini" ],
                 require => Package["apache2", "php5-suhosin"],
                 notify  => Exec["force-reload-apache2"];
             }
@@ -86,18 +86,18 @@ class apache2 {
             require => Package["apache2"],
                         notify  => Exec["reload-apache2"];
         "/etc/apache2/conf.d/security":
-            source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/security",
-                         "puppet:///apache2/common/etc/apache2/conf.d/security" ],
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/conf.d/security",
+                         "puppet:///modules/apache2/common/etc/apache2/conf.d/security" ],
             require => Package["apache2"],
             notify  => Exec["reload-apache2"];
         "/etc/apache2/conf.d/local-serverinfo":
-            source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/local-serverinfo",
-                         "puppet:///apache2/common/etc/apache2/conf.d/local-serverinfo" ],
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/conf.d/local-serverinfo",
+                         "puppet:///modules/apache2/common/etc/apache2/conf.d/local-serverinfo" ],
             require => Package["apache2"],
             notify  => Exec["reload-apache2"];
         "/etc/apache2/conf.d/server-status":
-            source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/server-status",
-                         "puppet:///apache2/common/etc/apache2/conf.d/server-status" ],
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/conf.d/server-status",
+                         "puppet:///modules/apache2/common/etc/apache2/conf.d/server-status" ],
             require => Package["apache2"],
             notify  => Exec["reload-apache2"];
 
@@ -107,8 +107,8 @@ class apache2 {
             notify  => Exec["reload-apache2"];
 
         "/etc/logrotate.d/apache2":
-            source  => [ "puppet:///apache2/per-host/$fqdn/etc/logrotate.d/apache2",
-                         "puppet:///apache2/common/etc/logrotate.d/apache2" ];
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/logrotate.d/apache2",
+                         "puppet:///modules/apache2/common/etc/logrotate.d/apache2" ];
 
         "/srv/www":
             mode    => 755,
