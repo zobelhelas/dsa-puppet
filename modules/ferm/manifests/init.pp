@@ -34,11 +34,11 @@ class ferm {
             ensure => directory,
             require => Package["ferm"];
         "/etc/default/ferm":
-            source  => "puppet:///ferm/ferm.default",
+            source  => "puppet:///modules/ferm/ferm.default",
             require => Package["ferm"],
             notify  => Exec["ferm restart"];
         "/etc/ferm/ferm.conf":
-            source  => "puppet:///ferm/ferm.conf",
+            source  => "puppet:///modules/ferm/ferm.conf",
             require => Package["ferm"],
             mode    => 0400,
             notify  => Exec["ferm restart"];
@@ -58,7 +58,7 @@ class ferm {
             mode    => 0400,
             notify  => Exec["ferm restart"];
         "/etc/logrotate.d/ulogd":
-            source => "puppet:///ferm/logrotate-ulogd",
+            source => "puppet:///modules/ferm/logrotate-ulogd",
             require => Package["logrotate"],
             ;
     }
@@ -73,7 +73,7 @@ class ferm {
         'true': {
             file {
                 "/etc/ferm/conf.d/load_ftp_conntrack.conf":
-                    source => "puppet:///ferm/conntrack_ftp.conf",
+                    source => "puppet:///modules/ferm/conntrack_ftp.conf",
                     require => Package["ferm"],
                     notify  => Exec["ferm restart"];
             }

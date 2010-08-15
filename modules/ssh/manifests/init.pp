@@ -5,7 +5,7 @@ class ssh {
         }
 
 	file { "/etc/ssh/ssh_config":
-		source  => [ "puppet:///ssh/ssh_config" ],
+		source  => [ "puppet:///modules/ssh/ssh_config" ],
 		require => Package["openssh-client"]
                 ;
 	       "/etc/ssh/sshd_config":
