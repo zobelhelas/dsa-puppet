@@ -7,11 +7,11 @@ class clamav {
     file {
         "/etc/clamav-unofficial-sigs.dsa.conf":
             require => Package["clamav-unofficial-sigs"],
-            source  => [ "puppet:///clamav/clamav-unofficial-sigs.dsa.conf" ]
+            source  => [ "puppet:///modules/clamav/clamav-unofficial-sigs.dsa.conf" ]
             ;
         "/etc/clamav-unofficial-sigs.conf":
             require => Package["clamav-unofficial-sigs"],
-            source  => [ "puppet:///clamav/clamav-unofficial-sigs.conf" ]
+            source  => [ "puppet:///modules/clamav/clamav-unofficial-sigs.conf" ]
             ;
     }
 }

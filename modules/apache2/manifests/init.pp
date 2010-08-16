@@ -18,8 +18,8 @@ class apache2 {
             }
 
             file { "/etc/php5/conf.d/suhosin.ini":
-                source  => [ "puppet:///apache2/per-host/$fqdn/etc/php5/conf.d/suhosin.ini",
-                             "puppet:///apache2/common/etc/php5/conf.d/suhosin.ini" ],
+                source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/php5/conf.d/suhosin.ini",
+                             "puppet:///modules/apache2/common/etc/php5/conf.d/suhosin.ini" ],
                 require => Package["apache2", "php5-suhosin"],
                 notify  => Exec["force-reload-apache2"];
             }
@@ -86,18 +86,18 @@ class apache2 {
             require => Package["apache2"],
                         notify  => Exec["reload-apache2"];
         "/etc/apache2/conf.d/security":
-            source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/security",
-                         "puppet:///apache2/common/etc/apache2/conf.d/security" ],
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/conf.d/security",
+                         "puppet:///modules/apache2/common/etc/apache2/conf.d/security" ],
             require => Package["apache2"],
             notify  => Exec["reload-apache2"];
         "/etc/apache2/conf.d/local-serverinfo":
-            source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/local-serverinfo",
-                         "puppet:///apache2/common/etc/apache2/conf.d/local-serverinfo" ],
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/conf.d/local-serverinfo",
+                         "puppet:///modules/apache2/common/etc/apache2/conf.d/local-serverinfo" ],
             require => Package["apache2"],
             notify  => Exec["reload-apache2"];
         "/etc/apache2/conf.d/server-status":
-            source  => [ "puppet:///apache2/per-host/$fqdn/etc/apache2/conf.d/server-status",
-                         "puppet:///apache2/common/etc/apache2/conf.d/server-status" ],
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/conf.d/server-status",
+                         "puppet:///modules/apache2/common/etc/apache2/conf.d/server-status" ],
             require => Package["apache2"],
             notify  => Exec["reload-apache2"];
 
@@ -107,8 +107,8 @@ class apache2 {
             notify  => Exec["reload-apache2"];
 
         "/etc/logrotate.d/apache2":
-            source  => [ "puppet:///apache2/per-host/$fqdn/etc/logrotate.d/apache2",
-                         "puppet:///apache2/common/etc/logrotate.d/apache2" ];
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/logrotate.d/apache2",
+                         "puppet:///modules/apache2/common/etc/logrotate.d/apache2" ];
 
         "/srv/www":
             mode    => 755,
@@ -148,7 +148,7 @@ class apache2 {
     }
     @ferm::rule { "dsa-http-soso":
         prio            => "21",
-        description     => "slow yahoo spider",
+        description     => "slow soso spider",
         chain           => 'limit_sosospider',
         rule            => '
                             mod connlimit connlimit-above 2 connlimit-mask 21 jump DROP;
@@ -161,6 +161,15 @@ class apache2 {
         chain           => 'limit_yahoo',
         rule            => '
                             mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP;
+                            jump http_limit;
+                           '
+    }
+    @ferm::rule { "dsa-http-google":
+        prio            => "21",
+        description     => "slow google spider",
+        chain           => 'limit_google',
+        rule            => '
+                            mod connlimit connlimit-above 2 connlimit-mask 19 jump DROP;
                             jump http_limit;
                            '
     }
@@ -178,9 +187,10 @@ class apache2 {
         description     => "http subchain",
         chain           => 'http',
         rule            => '
-                            saddr ( 74.6.22.182 74.6.18.240 ) jump limit_yahoo;
+                            saddr ( 74.6.22.182 74.6.18.240 67.195.0.0/16 ) jump limit_yahoo;
                             saddr 124.115.0.0/21 jump limit_sosospider;
                             saddr (65.52.0.0/14 207.46.0.0/16) jump limit_bing;
+                            saddr (66.249.64.0/19) jump limit_google;
 
                             mod recent name HTTPDOS update seconds 1800 jump log_or_drop;
                             mod hashlimit hashlimit-name HTTPDOS hashlimit-mode srcip hashlimit-burst 600 hashlimit 30/minute jump ACCEPT;

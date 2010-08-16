@@ -111,7 +111,7 @@ class ferm::per-host {
 	cilea: {
             file {
                 "/etc/ferm/conf.d/load_sip_conntrack.conf":
-                    source => "puppet:///ferm/conntrack_sip.conf",
+                    source => "puppet:///modules/ferm/conntrack_sip.conf",
                     require => Package["ferm"],
                     notify  => Exec["ferm restart"];
             }

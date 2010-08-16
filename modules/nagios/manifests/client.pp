@@ -6,16 +6,16 @@ class nagios::client inherits nagios {
 
 	file {
 		"/etc/default/nagios-nrpe-server":
-			source  => [ "puppet:///nagios/per-host/$fqdn/default",
-			             "puppet:///nagios/common/default" ],
+			source  => [ "puppet:///modules/nagios/per-host/$fqdn/default",
+			             "puppet:///modules/nagios/common/default" ],
 			require => Package["nagios-nrpe-server"],
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/default/nagios-nrpe":
 			ensure  => absent,
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.cfg":
-			source  => [ "puppet:///nagios/per-host/$fqdn/nrpe.cfg",
-			             "puppet:///nagios/common/nrpe.cfg" ],
+			source  => [ "puppet:///modules/nagios/per-host/$fqdn/nrpe.cfg",
+			             "puppet:///modules/nagios/common/nrpe.cfg" ],
 			require => Package["nagios-nrpe-server"],
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d":
@@ -27,13 +27,13 @@ class nagios::client inherits nagios {
 			require => Package["nagios-nrpe-server"],
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d/nrpe_dsa.cfg":
-			source  => [ "puppet:///nagios/dsa-nagios/generated/nrpe_dsa.cfg" ],
+			source  => [ "puppet:///modules/nagios/dsa-nagios/generated/nrpe_dsa.cfg" ],
 			require => Package["dsa-nagios-checks"],
 			notify  => Exec["nagios-nrpe-server restart"];
 
 		"/etc/nagios/obsolete-packages-ignore":
-			source  => [ "puppet:///nagios/per-host/$fqdn/obsolete-packages-ignore",
-			             "puppet:///nagios/common/obsolete-packages-ignore" ],
+			source  => [ "puppet:///modules/nagios/per-host/$fqdn/obsolete-packages-ignore",
+			             "puppet:///modules/nagios/common/obsolete-packages-ignore" ],
 			require => Package["dsa-nagios-checks"];
 
 		"/etc/nagios/obsolete-packages-ignore.d/hostspecific":

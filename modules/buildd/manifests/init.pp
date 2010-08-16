@@ -15,16 +15,16 @@ class buildd {
              ;
        
         "/etc/apt/trusted-keys.d/buildd.debian.org.asc":
-             source  => "puppet:///buildd/buildd.debian.org.asc",
+             source  => "puppet:///modules/buildd/buildd.debian.org.asc",
              mode    => 664,
              notify  => Exec["apt-keys-update"],
              ;
         "/etc/schroot/mount-defaults":
-             source  => "puppet:///buildd/mount-defaults",
+             source  => "puppet:///modules/buildd/mount-defaults",
              require => Package["sbuild"]
              ;
         "/etc/cron.d/dsa-buildd":
-             source => "puppet:///buildd/cron.d-dsa-buildd",
+             source => "puppet:///modules/buildd/cron.d-dsa-buildd",
              require => Package["cron"]
              ;
     }

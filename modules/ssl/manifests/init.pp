@@ -32,19 +32,19 @@ class ssl {
           source  => "puppet:///files/empty/"
         ;
         "/etc/ssl/debian/certs/thishost.crt":
-          source  => "puppet:///ssl/clientcerts/$fqdn.client.crt",
+          source  => "puppet:///modules/ssl/clientcerts/$fqdn.client.crt",
           notify  => Exec["c_rehash /etc/ssl/debian/certs"],
           ;
         "/etc/ssl/debian/keys/thishost.key":
-          source  => "puppet:///ssl/clientcerts/$fqdn.key",
+          source  => "puppet:///modules/ssl/clientcerts/$fqdn.key",
           mode    => 640
           ;
         "/etc/ssl/debian/certs/ca.crt":
-          source  => "puppet:///ssl/clientcerts/ca.crt",
+          source  => "puppet:///modules/ssl/clientcerts/ca.crt",
           notify  => Exec["c_rehash /etc/ssl/debian/certs"],
           ;
         "/etc/ssl/debian/crls/ca.crl":
-          source  => "puppet:///ssl/clientcerts/ca.crl",
+          source  => "puppet:///modules/ssl/clientcerts/ca.crl",
           ;
     }
 
