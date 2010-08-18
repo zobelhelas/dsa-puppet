@@ -26,6 +26,7 @@ class ferm {
             force   => true,
             recurse => true,
             source  => "puppet:///files/empty/",
+            notify  => Exec["ferm restart"],
             require => Package["ferm"];
         "/etc/ferm":
             ensure  => directory,
