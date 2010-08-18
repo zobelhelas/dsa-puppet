@@ -320,7 +320,6 @@ host_settings:
   no_munin:
     - agnesi.debian.org
     - allegri.debian.org
-    - byrd.debian.org
     - escher.debian.org
     - fano.debian.org
     - malo.debian.org
