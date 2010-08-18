@@ -138,14 +138,7 @@ class apache2 {
     }
 
     case $hostname {
-        sibelius,stabile: {
-            @ferm::rule { "dsa-http":
-                prio            => "23",
-                description     => "Allow web access",
-                rule            => "&SERVICE(tcp, (http https))"
-            }
-        }
-        default: {
+        busoni,byrd,duarte,holter,lindberg,master,merkel,powell,rore: {
             @ferm::rule { "dsa-http-limit":
                 prio            => "20",
                 description     => "limit HTTP DOS",
@@ -210,6 +203,13 @@ class apache2 {
                 prio            => "23",
                 description     => "Allow web access",
                 rule            => "proto tcp dport (http https) jump http;"
+            }
+        }
+        default: {
+            @ferm::rule { "dsa-http":
+                prio            => "23",
+                description     => "Allow web access",
+                rule            => "&SERVICE(tcp, (http https))"
             }
         }
     }
