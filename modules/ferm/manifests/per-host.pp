@@ -111,7 +111,7 @@ class ferm::per-host {
 	cilea: {
             file {
                 "/etc/ferm/conf.d/load_sip_conntrack.conf":
-                    source => "puppet:///ferm/conntrack_sip.conf",
+                    source => "puppet:///modules/ferm/conntrack_sip.conf",
                     require => Package["ferm"],
                     notify  => Exec["ferm restart"];
             }
@@ -192,6 +192,30 @@ class ferm::per-host {
                                     ULOG ulog-prefix "REJECT FORWARD: ";
                                     REJECT reject-with icmp-admin-prohibited;
                                     '
+            }
+        }
+    }
+
+    # redirect snapshot into varnish
+    case $hostname {
+        sibelius: {
+            @ferm::rule { "dsa-snapshot-varnish":
+                rule            => '&SERVICE(tcp, 6081)',
+            }
+            @ferm::rule { "dsa-nat-snapshot-varnish":
+                table           => 'nat',
+                chain           => 'PREROUTING',
+                rule            => 'proto tcp daddr 193.62.202.28 dport 80 REDIRECT to-ports 6081',
+            }
+        }
+        stabile: {
+            @ferm::rule { "dsa-snapshot-varnish":
+                rule            => '&SERVICE(tcp, 6081)',
+            }
+            @ferm::rule { "dsa-nat-snapshot-varnish":
+                table           => 'nat',
+                chain           => 'PREROUTING',
+                rule            => 'proto tcp daddr 206.12.19.150 dport 80 REDIRECT to-ports 6081',
             }
         }
     }

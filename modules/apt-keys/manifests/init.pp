@@ -7,12 +7,12 @@ class apt-keys {
             ;
 
         "/etc/apt/trusted-keys.d/backports.org.asc":
-            source  => "puppet:///apt-keys/backports.org.asc",
+            source  => "puppet:///modules/apt-keys/backports.org.asc",
             mode    => 664,
             notify  => Exec["apt-keys-update"],
             ;
         "/etc/apt/trusted-keys.d/db.debian.org.asc":
-            source  => "puppet:///apt-keys/db.debian.org.asc",
+            source  => "puppet:///modules/apt-keys/db.debian.org.asc",
             mode    => 664,
             notify  => Exec["apt-keys-update"],
             ;

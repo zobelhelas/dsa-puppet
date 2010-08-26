@@ -42,14 +42,14 @@ class monit {
           ;
 
         "/etc/monit/monit.d/01puppet":
-          source  => "puppet:///monit/puppet",
+          source  => "puppet:///modules/monit/puppet",
           require => Package["monit"],
           notify  => Exec["monit stop"],
           mode    => 440
           ;
 
         "/etc/monit/monit.d/00debian.org":
-          source  => "puppet:///monit/debianorg",
+          source  => "puppet:///modules/monit/debianorg",
           require => Package["monit"],
           notify  => Exec["monit stop"],
           mode    => 440

@@ -28,6 +28,12 @@ if (nodeinfo['ldap'].at(0)) and (nodeinfo['ldap'][0].has_key?('purpose'))
       purp += nodeinfo['ldap'][0]['architecture'][0]
     end
     purp += " porterbox\n"
+    purp += "\n"
+    purp += "See 'dchroot -l' for a list of available chroots.\n"
+    if nodeinfo['ldap'][0].has_key?('admin')
+      purp += "Please contact #{nodeinfo['ldap'][0]['admin'][0]} for install requests,\n"
+      purp += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
+    end
   else
     purp += ", used for the following services:\n"
     nodeinfo['ldap'][0]['purpose'].sort.each do |l|
@@ -52,3 +58,8 @@ purp
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+<%
+# vim:set et:
+# vim:set sts=2 ts=2:
+# vim:set shiftwidth=2:
+-%>
