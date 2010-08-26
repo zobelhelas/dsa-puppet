@@ -145,7 +145,6 @@ host_settings:
     - morricone.debian.org
     - powell.debian.org
     - ravel.debian.org
-    - ries.debian.org
     - spohr.debian.org
     - valente.debian.org
   apache2_security_mirror:
@@ -280,6 +279,7 @@ host_settings:
     rautavaara.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
     respighi.debian.org: mailout.debian.org
+    ries.debian.org: mailout.debian.org
     rietz.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
     rossini.debian.org: mailout.debian.org
