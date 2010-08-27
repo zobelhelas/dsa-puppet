@@ -86,17 +86,12 @@ node default {
         bartok,franck,liszt,master,ries,samosa,schein,spohr,steffani:   { include named::recursor }
     }
 
-    case $hostname {
-        paganini: {}
-        default: {
-             case $kernel {
-                 Linux: {
-                     include ferm
-                 }
-             }
-         }
+    case $kernel {
+        Linux: {
+            include ferm
+            include ferm::per-host
+        }
     }
-    include ferm::per-host
 
     case $hostname {
         beethoven,ravel,spohr: {
@@ -115,3 +110,7 @@ node default {
     }
     include samhain
 }
+
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:
