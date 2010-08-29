@@ -7,11 +7,11 @@ admin : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 books : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 cdvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 consultants : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-da-manager : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+da-manager : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
 events: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-ftpmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-ftp-master : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-gandi-discount : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+ftpmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+ftp-master : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+gandi-discount : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net : combined.njabl.org
 hardware-donations : sbl-xbl.spamhaus.org
 hostmaster : sbl-xbl.spamhaus.org : cbl.abuseat.org
 keyring-maint : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
@@ -19,11 +19,11 @@ leader : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.ne
 mailer-daemon : sbl-xbl.spamhaus.org : cbl.abuseat.org
 merchandise : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 mia : sbl-xbl.spamhaus.org
-mirrors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-new-maintainer : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-override-change : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+mirrors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+new-maintainer : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+override-change : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
 partners : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-planet : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+planet : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
 preinstallvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 press: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
 rmurray : sbl-xbl.spamhaus.org
