@@ -7,7 +7,7 @@
 nagii = []
 localinfo.keys.sort.each do |node|
   if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
-    nagii << ldapall[node]['ipHostNumber']
+    nagii << keyinfo[node]['ipHostNumber']
   end
 end
 
