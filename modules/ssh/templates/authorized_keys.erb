@@ -36,9 +36,9 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAuGJnElqbhgLtmJp/de8s42cAwKrkAhFq5u8EAkauEv6B
 <%= machine_keys = case fqdn
    when "bartok.debian.org", "beethoven.debian.org" then
      out = ''
-     keyinfo.keys.sort.each do |node|
-       out += '# ' + keyinfo[node]['hostname'].to_s + '
-command="/usr/lib/da-backup/da-backup-ssh-wrap ' + keyinfo[node]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + keyinfo[node]['ipHostNumber'].join(',') + '" ' + keyinfo[node]['sshRSAHostKey'].to_s + '
+     ldapall.keys.sort.each do |node|
+       out += '# ' + ldapall[node]['hostname'].to_s + '
+command="/usr/lib/da-backup/da-backup-ssh-wrap ' + ldapall[node]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + keyinfo[node]['ipHostNumber'].join(',') + '" ' + keyinfo[node]['sshRSAHostKey'].to_s + '
 
 '
      end
