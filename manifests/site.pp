@@ -18,9 +18,8 @@ node default {
     $nodeinfo  = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
     $hoster    = whohosts($nodeinfo, "/etc/puppet/modules/debian-org/misc/hoster.yaml")
     $keyinfo   = allnodeinfo("sshRSAHostKey", "ipHostNumber")
+    $mxinfo    = allnodeinfo("mXRecord")
     notice("hoster for ${fqdn} is ${hoster}")
-
-    $mxinfo   = allnodeinfo("mXRecord")
 
     include munin-node
     include sudo
