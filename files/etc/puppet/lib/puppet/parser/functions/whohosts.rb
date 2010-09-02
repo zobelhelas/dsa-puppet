@@ -12,8 +12,8 @@ module Puppet::Parser::Functions
     ans = "unknown"
     yaml = YAML.load_file(yamlfile)
 
-    if (nodeinfo['ldap'].at(0)) and (nodeinfo['ldap'][0].has_key?('ipHostNumber'))
-      nodeinfo['ldap'][0]['ipHostNumber'].each do |addr|
+    if (nodeinfo['ldap'].has_key?('ipHostNumber'))
+      nodeinfo['ldap']['ipHostNumber'].each do |addr|
         yaml.keys.each do |hoster|
           yaml[hoster].each do |net|
             if IPAddr.new(net).include?(addr)

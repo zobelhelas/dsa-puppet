@@ -37,8 +37,8 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAuGJnElqbhgLtmJp/de8s42cAwKrkAhFq5u8EAkauEv6B
    when "bartok.debian.org", "beethoven.debian.org" then
      out = ''
      keyinfo.keys.sort.each do |node|
-       out += '# ' + keyinfo[node][0]['hostname'].to_s + '
-command="/usr/lib/da-backup/da-backup-ssh-wrap ' + keyinfo[node][0]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + keyinfo[node][0]['ipHostNumber'].join(',') + '" ' + keyinfo[node][0]['sshRSAHostKey'].to_s + '
+       out += '# ' + keyinfo[node]['hostname'].to_s + '
+command="/usr/lib/da-backup/da-backup-ssh-wrap ' + keyinfo[node]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + keyinfo[node]['ipHostNumber'].join(',') + '" ' + keyinfo[node]['sshRSAHostKey'].to_s + '
 
 '
      end

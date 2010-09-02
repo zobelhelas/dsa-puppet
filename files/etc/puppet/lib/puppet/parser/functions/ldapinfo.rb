@@ -19,8 +19,7 @@ module Puppet::Parser::Functions
         unless attributes.include?("*")
           next if attributes.any?{ |a|  not x[a] or x[a].empty? }
         end
-        results[x['hostname'][0]] = []
-        results[x['hostname'][0]] << x
+        results[x['hostname'][0]] = x
       end
     rescue LDAP::ResultError
       raise Puppet::ParseError, "LDAP error"
