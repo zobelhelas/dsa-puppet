@@ -10,12 +10,10 @@ module Puppet::Parser::Functions
     results['ldap'] = function_ldapinfo(host, '*')
 
     results['misc'] = {}
-    if $fqdn == host
-      # find out if we are behind nat
-      v4addrs = $v4ips.split(',')
-      intersection = v4addrs & nodeinfo['ldap']['ipHostNumber']
-      results['misc']['natted'] = intersection.empty?
-    end
+    # find out if we are behind nat
+    v4addrs = $v4ips.split(',')
+    intersection = v4addrs & nodeinfo['ldap']['ipHostNumber']
+    results['misc']['natted'] = intersection.empty?
 
     return(results)
   end
