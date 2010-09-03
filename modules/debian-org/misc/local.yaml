@@ -156,6 +156,11 @@ host_settings:
     - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
+  timeserver:
+    - merikanto.debian.org
+    - orff.debian.org
+    - ravel.debian.org
+    - busoni.debian.org
   buildd:
     - alain.debian.org
     - alkman.debian.org
