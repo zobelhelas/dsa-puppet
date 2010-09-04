@@ -27,6 +27,7 @@ planet : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njab
 preinstallvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 press: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
 rmurray : sbl-xbl.spamhaus.org
+security: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
 treasurer : sbl-xbl.spamhaus.org
 wbadm : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 webmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
