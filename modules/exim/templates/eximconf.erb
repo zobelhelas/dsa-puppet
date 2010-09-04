@@ -804,8 +804,8 @@ check_recipient:
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rbllist}}}\
 		     {${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/rbllist}}}{$value}{}}}{}}}\
-		     {${lookup{$local_part}lsearch{/etc/exim4/rbllist}{$value}{}} : \
-		     ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rbl}{$value}{}}}}
+		     {${lookup{$local_part}lsearch{/etc/exim4/rbllist}{$value}{}}}} : \
+		     ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rbl}{$value}{}}
 	  domains       = +handled_domains
 	  !hosts        = +debianhosts : WHITELIST
 
@@ -814,8 +814,8 @@ check_recipient:
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rhsbllist}}}\
 		     {${expand:${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/rhsbllist}}}{$value}{}}}}{}}}\
-		     {${expand:${lookup{$local_part}lsearch{/etc/exim4/rhsbllist}{$value}{}}} : \
-		     ${expand:${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rhsbl}{$value}{}}}}}
+		     {${expand:${lookup{$local_part}lsearch{/etc/exim4/rhsbllist}{$value}{}}}}} : \
+		     ${expand:${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rhsbl}{$value}{}}}
 	  domains       = +handled_domains
 	  !hosts        = +debianhosts : WHITELIST
 
