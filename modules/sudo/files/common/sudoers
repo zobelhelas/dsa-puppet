@@ -114,8 +114,8 @@ piupartss	piatti=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
 pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # on draghi, the domains git thing will run bind9 reload afterwards
-%dnsadm		draghi=(root)		NOPASSWD: /etc/init.d/bind9 reload
-%dnsadm		draghi=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo
+%dnsadm		draghi,orff=(root)		NOPASSWD: /etc/init.d/bind9 reload
+%dnsadm		draghi,orff=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo
 # remote power to babylon5 in the same rack:
 joerg		unger=(ALL)		/usr/bin/sispmctl -t [12], /usr/bin/sispmctl -g [12]
 # wbadm can update all buildd* users' keys on buildd.d.o
