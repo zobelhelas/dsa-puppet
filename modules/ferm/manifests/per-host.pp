@@ -87,11 +87,11 @@ class ferm::per-host {
            }
         }
 	draghi: {
-            @ferm::rule { "dsa-bind":
-                    domain          => "(ip ip6)",
-                    description     => "Allow nameserver access",
-                    rule            => "&TCP_UDP_SERVICE(53)"
-            }
+            #@ferm::rule { "dsa-bind":
+            #        domain          => "(ip ip6)",
+            #        description     => "Allow nameserver access",
+            #        rule            => "&TCP_UDP_SERVICE(53)"
+            #}
             @ferm::rule { "dsa-finger":
                     domain          => "(ip ip6)",
                     description     => "Allow finger access",
