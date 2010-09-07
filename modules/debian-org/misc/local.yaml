@@ -124,7 +124,7 @@ services:
   muninmaster: spohr.debian.org
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
-    - draghi.debian.org
+    - orff.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
   puppetmaster: handel.debian.org
