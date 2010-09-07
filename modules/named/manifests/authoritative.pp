@@ -1,4 +1,4 @@
-class named::secondary inherits named {
+class named::authoritative inherits named {
     file {
         "/etc/bind/named.conf.debian-zones":
             source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.debian-zones",

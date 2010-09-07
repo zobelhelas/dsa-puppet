@@ -377,7 +377,7 @@ dir=8/etc/puppet
 <% if classes.include?('named::geodns') -%>
 dir=1/etc/bind/geodns
 <% end -%>
-<% if classes.include?('named::secondary') -%>
+<% if classes.include?('named::authoritative') -%>
 dir=1/etc/bind
 file=/etc/bind/named.conf.debian-zones
 <% end -%>
