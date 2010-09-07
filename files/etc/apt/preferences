@@ -3,7 +3,7 @@ Explanation: THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
 Explanation: USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 Explanation:
 Package: *
-Pin: release o=Backports.org archive
+Pin: release o=Debian Backports
 Pin-Priority: 200
 
 Package: sbuild
