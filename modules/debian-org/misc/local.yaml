@@ -19,6 +19,7 @@ nameinfo:
   biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
+  byrd.debian.org: William Byrd (1543 - July 4th, 1623)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   cimarosa.debian.org: Domenico Cimarosa (17 December 1749 - 11 January 1801)
@@ -207,6 +208,7 @@ host_settings:
     - fasch.debian.org
     - field.debian.org
     - finzi.debian.org
+    - byrd.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
@@ -227,6 +229,7 @@ host_settings:
     beethoven.debian.org: mailout.debian.org
     biber.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
+    byrd.debian.org: mailout.debian.org
     caballero.debian.org: mailout.debian.org
     cilea.debian.org: mailout.debian.org
     cimarosa.debian.org: mailout.debian.org
