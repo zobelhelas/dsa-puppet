@@ -132,7 +132,7 @@ class ferm::per-host {
             @ferm::rule { "dsa-krb-kdc":
                 domain          => "(ip ip6)",
                 description  => "kerberos KDC",
-                rule         => "&SERVICE(tcp, kerberos)"
+                rule         => "&TCP_UDP_SERVICE(kerberos)"
             }
         }
     }
