@@ -46,6 +46,7 @@ nameinfo:
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
   kokkonen.debian.org: November 13th, 1921 - October 1st, 1996)
   krenek.debian.org: Ernst Krenek (August 23rd, 1900 - December 22nd, 1991)
+  lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
   lindberg.debian.org: Magnus Lindberg (June 27th, 1958)
@@ -210,6 +211,7 @@ host_settings:
     - field.debian.org
     - finzi.debian.org
     - byrd.debian.org
+    - lamba.debian.org
     - schuetz.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
@@ -259,6 +261,7 @@ host_settings:
     kaufmann.debian.org: mailout.debian.org
     kokkonen.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
+    lamb.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
