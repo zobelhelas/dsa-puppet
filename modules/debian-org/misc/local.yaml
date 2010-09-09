@@ -87,6 +87,7 @@ nameinfo:
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
+  schuetz.debian.org: Heinrich Schütz (October 8 (JC), 1585 - November 6, 1672)
   senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
@@ -209,6 +210,7 @@ host_settings:
     - field.debian.org
     - finzi.debian.org
     - byrd.debian.org
+    - schuetz.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
@@ -297,6 +299,7 @@ host_settings:
     schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
     schumann.debian.org: mailout.debian.org
+    schuetz.debian.org: mailout.debian.org
     senfl.debian.org: mailout.debian.org
     sibelius.debian.org: mailout.debian.org
     smetana.debian.org: mailout.debian.org
