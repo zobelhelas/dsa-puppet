@@ -1,5 +1,5 @@
 class ferm {
-    define rule($domain="ip", $table="filter", $chain="INPUT", $rule, $description="", $prio="00") {
+    define rule($domain="ip", $table="filter", $chain="INPUT", $rule, $description="", $prio="00", $notarule=false) {
         file {
             "/etc/ferm/dsa.d/${prio}_${name}":
                 ensure  => present,

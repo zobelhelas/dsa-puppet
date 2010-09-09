@@ -6,7 +6,7 @@
 domain <%= domain %> {
 	table <%= table %> {
 		chain <%= chain %> {
-			<%= rule %>;
+			<%= rule %><% unless notarule -%>;<% end -%>
 		}
 	}
 }
