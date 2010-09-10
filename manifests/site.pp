@@ -107,7 +107,12 @@ node default {
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
     }
+
     include samhain
+
+    case $hostname {
+        byrd,schuetz,draghi:    { include krb }
+    }
 }
 
 # vim:set et:
