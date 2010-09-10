@@ -154,12 +154,12 @@ class ferm::per-host {
                 rule         => "&SERVICE(udp, kpasswd)",
             }
             @ferm::rule { "dsa-krb-kadmind":
-                domain          => "(ip ip6)",
+                domain       => "ip",
                 description  => "kerberos kadmind access from draghi",
                 rule         => "&SERVICE_RANGE(tcp, kerberos-adm, 82.195.75.106)",
             }
             @ferm::rule { "dsa-krb-kadmind-v6":
-                domain          => "(ip ip6)",
+                domain       => "ip6",
                 description  => "kerberos kadmind access from draghi",
                 rule         => "&SERVICE_RANGE(tcp, kerberos-adm, 2001:41b8:202:deb:216:36ff:fe40:3906)",
             }
