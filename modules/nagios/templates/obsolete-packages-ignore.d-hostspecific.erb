@@ -9,7 +9,7 @@ case fqdn
 when /(bellini|cimarosa).debian.org/:   ignore << "mcelog"
 when "busoni.debian.org":               ignore << %w{libthreads-perl libthreads-shared-perl}
 when "cilea.debian.org":                ignore << "/freeswitch.*/"
-when /draghi.debian.org/:               ignore << %w{userdir-ldap}
+when /draghi.debian.org/:               ignore << %w{userdir-ldap libheimdal-kadm5-perl}
 when /orff.debian.org/:                 ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
 when /liszt.debian.org/:                ignore << "amavisd-new"
 when /stabile.debian.org/:              ignore << "xfsprogs"
