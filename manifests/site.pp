@@ -111,7 +111,7 @@ node default {
     include samhain
 
     case $hostname {
-        byrd,schuetz,draghi:    { include krb }
+        byrd,schuetz,draghi,lamb:    { include krb }
     }
 }
 
