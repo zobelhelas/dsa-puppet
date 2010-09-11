@@ -211,7 +211,7 @@ host_settings:
     - field.debian.org
     - finzi.debian.org
     - byrd.debian.org
-    - lamba.debian.org
+    - lamb.debian.org
     - schuetz.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
