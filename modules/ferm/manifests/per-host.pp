@@ -60,7 +60,7 @@ class ferm::per-host {
                 rule            => "&SERVICE_RANGE(tcp, rsync, ( 195.20.242.90 192.25.206.33 82.195.75.106 206.12.19.118 ))"
             }
         }
-        heininen: {
+        heininen,lotti: {
             @ferm::rule { "dsa-syslog":
                 description     => "Allow syslog access",
                 rule            => "&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V4)"
