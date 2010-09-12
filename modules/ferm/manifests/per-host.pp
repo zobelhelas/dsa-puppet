@@ -136,7 +136,7 @@ class ferm::per-host {
                                 source ($HOST_MAILRELAY_V4 $HOST_NAGIOS_V4) proto tcp dport 25 ACCEPT;
                                 source ($HOST_MUNIN_V4 $HOST_NAGIOS_V4) proto tcp dport 4949 ACCEPT;
                                 source ($HOST_NAGIOS_V4) proto tcp dport 5666 ACCEPT;
-                                source ($HOST_NAGIOS_V4) proto udp dport ntp ACCEPT;
+                                source ($HOST_NAGIOS_V4) proto udp dport ntp ACCEPT
                                '
         }
         @ferm::rule { "dsa-from-kfreebsd":
@@ -147,7 +147,7 @@ class ferm::per-host {
                                 proto udp dport (53 123) ACCEPT;
                                 proto tcp dport 8140 daddr 82.195.75.104 ACCEPT; # puppethost
                                 proto tcp dport 5140 daddr 82.195.75.98 ACCEPT; # loghost
-                                proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT;
+                                proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT
                                '
         }
     }}
@@ -166,7 +166,7 @@ class ferm::per-host {
                                     interface vlan11 outerface eth0 jump from-kfreebsd;
                                     interface eth0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
                                     ULOG ulog-prefix "REJECT FORWARD: ";
-                                    REJECT reject-with icmp-admin-prohibited;
+                                    REJECT reject-with icmp-admin-prohibited
                                     '
             }
         }
@@ -186,7 +186,7 @@ class ferm::per-host {
                                     interface br2 outerface br0 jump from-kfreebsd;
                                     interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
                                     ULOG ulog-prefix "REJECT FORWARD: ";
-                                    REJECT reject-with icmp-admin-prohibited;
+                                    REJECT reject-with icmp-admin-prohibited
                                     '
             }
         }
