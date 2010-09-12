@@ -216,6 +216,7 @@ host_settings:
     - lamb.debian.org
     - locke.debian.org
     - lotti.debian.org
+    - rautavaara.debian.org
     - schuetz.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
