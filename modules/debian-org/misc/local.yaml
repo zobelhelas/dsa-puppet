@@ -52,6 +52,7 @@ nameinfo:
   lindberg.debian.org: Magnus Lindberg (June 27th, 1958)
   liszt.debian.org: Franz Liszt (October 22nd, 1811 - July 31st, 1886)
   locke.debian.org: Matthew Locke (ca. 1621 - 1677)
+  lotti.debian.org: Antonio Lotti (ca. 1667 - January 5th, 1740)
   luchesi.debian.org: Andrea Luca Luchesi (May 23rd, 1741 - March 21st, 1801)
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
@@ -214,6 +215,7 @@ host_settings:
     - byrd.debian.org
     - lamb.debian.org
     - locke.debian.org
+    - lotti.debian.org
     - schuetz.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
@@ -270,6 +272,7 @@ host_settings:
     lindberg.debian.org: mailout.debian.org
     lobos.debian.org: mailout.debian.org
     locke.debian.org: mailout.debian.org
+    lotti.debian.org: mailout.debian.org
     lucatelli.debian.org: mailout.debian.org
     luchesi.debian.org: mailout.debian.org
     malo.debian.org: mailout.debian.org
