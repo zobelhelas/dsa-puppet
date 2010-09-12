@@ -403,7 +403,7 @@ log {
 <%- end -%>
 
 
-<%- if (hostname != "heininen") || (hostname != "lotti") -%>
+<%- if (hostname != "heininen") && (hostname != "lotti") -%>
  <%- if has_variable?("syslogversion") and syslogversion.to_s == "3" -%>
 destination loghost-heininen {
 	tcp("heininen.debian.org" port (5140)
