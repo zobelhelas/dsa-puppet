@@ -113,6 +113,9 @@ node default {
     case $hostname {
         byrd,schuetz,draghi,lamb:    { include krb }
     }
+    case $hostname {
+        lamb:    { include afs::server }
+    }
 }
 
 # vim:set et:
