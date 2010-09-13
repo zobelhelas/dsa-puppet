@@ -403,8 +403,8 @@ log {
 <%- end -%>
 
 
-<%- if (hostname != "heininen") && (hostname != "lotti") -%>
- <%- if has_variable?("syslogversion") and syslogversion.to_s == "3" -%>
+<%- if has_variable?("syslogversion") and syslogversion.to_s == "3" -%>
+  <%- if hostname != "heininen" -%>
 destination loghost-heininen {
 	tcp("heininen.debian.org" port (5140)
 		tls( key_file("/etc/ssl/debian/keys/thishost.key")
@@ -413,6 +413,8 @@ destination loghost-heininen {
 		)
 	);
 };
+ <%- end -%>
+ <%- if hostname != "lotti" -%>
 destination loghost-lotti {
 	tcp("lotti.debian.org" port (5140)
 		tls( key_file("/etc/ssl/debian/keys/thishost.key")
@@ -421,14 +423,17 @@ destination loghost-lotti {
 		)
 	);
 };
-
+ <%- end -%>
 
 log {
 	source(s_local);
+ <%- if hostname != "heininen" -%> 
 	destination(loghost-heininen);
-	destination(loghost-lotti);
-};
  <%- end -%>
+ <%- if hostname != "lotti" -%>
+	destination(loghost-lotti);
+ <%- end -%>
+};
 <%- end -%>
 
 
