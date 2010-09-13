@@ -111,10 +111,10 @@ node default {
     include samhain
 
     case $hostname {
-        byrd,schuetz,draghi,lamb,locke:    { include krb }
+        byrd,schuetz,draghi,lamb,locke,rautavaara:    { include krb }
     }
     case $hostname {
-        lamb,locke:    { include afs::server }
+        lamb,locke,rautavaara:    { include afs::server }
     }
 }
 
