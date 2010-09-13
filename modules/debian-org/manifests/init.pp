@@ -80,15 +80,6 @@ class debian-org {
             source => "puppet:///files/etc/default/puppet"
             ;
        
-        "/etc/syslog-ng/syslog-ng.conf":
-            content => template("syslog-ng.conf.erb"),
-            require => Package["syslog-ng"],
-            notify  => Exec["syslog-ng reload"],
-            ;
-        "/etc/logrotate.d/syslog-ng":
-            require => Package["syslog-ng"],
-            source => "puppet:///files/etc/logrotate.d/syslog-ng",
-            ;
         "/etc/cron.d/dsa-puppet-stuff":
             source => "puppet:///files/etc/cron.d/dsa-puppet-stuff",
             require => Package["cron"]
@@ -128,9 +119,6 @@ class debian-org {
     }
    
     exec {
-        "syslog-ng reload":
-            path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-            refreshonly => true;
         "dpkg-reconfigure tzdata -pcritical -fnoninteractive":
             path        => "/usr/bin:/usr/sbin:/bin:/sbin",
             refreshonly => true;

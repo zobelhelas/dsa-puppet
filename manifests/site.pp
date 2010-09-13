@@ -22,6 +22,7 @@ node default {
     notice("hoster for ${fqdn} is ${hoster}")
 
     include munin-node
+    include syslog-ng
     include sudo
     include ssh
     include debian-org
