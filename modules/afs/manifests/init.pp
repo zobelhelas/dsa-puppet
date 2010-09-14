@@ -1,4 +1,5 @@
 class afs {
+    package { "openafs-client": ensure => installed }
 
     file {
         "/etc/openafs/CellServDB":
