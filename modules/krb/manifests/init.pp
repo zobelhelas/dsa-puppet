@@ -1,7 +1,10 @@
 class krb {
+    package { "heimdal-clients": ensure => installed }
+
     file {
         "/etc/krb5.conf":
             content => template("krb/krb5.conf.erb"),
+            require => Package["heimdal-clients"],
             ;
     }
 
