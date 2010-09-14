@@ -1,4 +1,19 @@
 class afs {
+
+    file {
+        "/etc/openafs/CellServDB":
+            source  => "puppet:///modules/afs/CellServDB",
+            require => Package["openafs-client"],
+            # notify  => # something to call fs newcell maybe?
+            mode    => 444
+            ;
+        "/etc/openafs/ThisCell":
+            source  => "puppet:///modules/afs/ThisCell",
+            require => Package["openafs-client"],
+            mode    => 444
+            ;
+    }
+
     @ferm::rule { "dsa-afs callback":
         domain          => "(ip ip6)",
         description  => "afs callback",
