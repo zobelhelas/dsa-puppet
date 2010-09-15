@@ -127,6 +127,8 @@ planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
 # archvsync triggers snapshot
 archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
 archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
+# allow the debbugs-mirror user on rietz to release the afs volume so changes make it to the read-only replicas
+debbugs-mirror	rietz=(root)		NOPASSWD: /usr/bin/vos release -id srv.mirrors.bugs -localauth
 # dak stuff
 %debian-release	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
 %ftpteam	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
