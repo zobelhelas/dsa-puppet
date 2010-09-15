@@ -119,7 +119,7 @@ node default {
             include krb
             include afs
         }
-        lamb,locke,rautavaara: {
+        lamb,locke,rautavaara,rietz: {
             include krb
             include afs::server
         }
