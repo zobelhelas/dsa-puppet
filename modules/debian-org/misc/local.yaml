@@ -218,6 +218,7 @@ host_settings:
     - lotti.debian.org
     - rautavaara.debian.org
     - schuetz.debian.org
+    - salieri.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
