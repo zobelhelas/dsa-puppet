@@ -21,7 +21,7 @@ Defaults	env_reset
 Defaults	passprompt="[sudo] password for %u on %h: "
 
 # Host alias specification
-Host_Alias	QAHOSTS		= master, merkel
+Host_Alias	QAHOSTS		= master, merkel, quantz
 Host_Alias	WEBHOSTS	= klecker, wolkenstein
 Host_Alias	SECHOSTS	= klecker, chopin
 Host_Alias	FTPHOSTS	= franck
