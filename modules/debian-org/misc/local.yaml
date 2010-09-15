@@ -75,6 +75,7 @@ nameinfo:
   poulenc.debian.org: Francis Jean Marcel Poulenc (January 7, 1899 - January 30, 1963)
   powell.debian.org: Andrew Powell (b. April 18th, 1949)
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
+  quantz.debian.org: Johann Joachim Quantz (30 January 1697 ? 12 July 1773)
   raff.debian.org: Joseph Joachim Raff (May 27th, 1822 - June 24th or 25th, 1882)
   rautavaara.debian.org: Einojuhani Rautavaara (born October 9th, 1928)
   ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
@@ -219,6 +220,7 @@ host_settings:
     - rautavaara.debian.org
     - schuetz.debian.org
     - salieri.debian.org
+    - quantz.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
@@ -296,6 +298,7 @@ host_settings:
     porpora.debian.org: mailout.debian.org
     poulenc.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
+    quantz.debian.org: mailout.debian.org
     raff.debian.org: mailout.debian.org
     rautavaara.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
