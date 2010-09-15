@@ -1,16 +1,28 @@
 class afs {
-    package { "openafs-client": ensure => installed }
-
+    package {
+        "openafs-client":
+            ensure => installed,
+            require => File['/etc/openafs/CellServDB',
+                            '/etc/openafs/ThisCell',
+                            '/etc/openafs/afs.conf.client'],
+            ;
+    }
     file {
+        "/etc/openafs":
+            ensure  => directory,
+            mode    => 755,
+            ;
         "/etc/openafs/CellServDB":
             source  => "puppet:///modules/afs/CellServDB",
-            require => Package["openafs-client"],
             # notify  => # something to call fs newcell maybe?
             mode    => 444
             ;
         "/etc/openafs/ThisCell":
             source  => "puppet:///modules/afs/ThisCell",
-            require => Package["openafs-client"],
+            mode    => 444
+            ;
+        "/etc/openafs/afs.conf.client":
+            source  => "puppet:///modules/afs/afs.conf.client",
             mode    => 444
             ;
     }
