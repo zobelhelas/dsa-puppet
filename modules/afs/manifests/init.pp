@@ -6,6 +6,9 @@ class afs {
                             '/etc/openafs/ThisCell',
                             '/etc/openafs/afs.conf.client'],
             ;
+        "openafs-krb5":
+            ensure => installed,
+            ;
     }
     file {
         "/etc/openafs":
