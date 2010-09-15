@@ -39,6 +39,8 @@ ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp-master.debian.
 
         when "klecker.debian.org" then "www-master.debian.org: user=debwww group=debwww directory=/org/www.debian.org/mail/"
 
+        when "wolkenstein.debian.org" then "www-master.debian.org: user=debwww group=debwww directory=/srv/www.debian.org/mail/"
+
         when "master.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/org/vote.debian.org/mail
 packages.qa.debian.org: user=qa group=qa directory=/org/packages.qa.debian.org/mail
 bugs.qa.debian.org: user=cjwatson group=qa directory=/org/bugs.qa.debian.org/mail
