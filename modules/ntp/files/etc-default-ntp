@@ -14,7 +14,8 @@ h="`hostname`"
 KEYSDIR="/etc/ntp.keys.d"
 if ! [ -e "$KEYSDIR/ntpkey_cert_$h" ] ||
    ! [ -e "$KEYSDIR/ntpkey_host_$h" ] ||
-   ! [ -e "$KEYSDIR/ntpkey_iff_$h" ]; then
+   (! [ -e "$KEYSDIR/ntpkey_iff_$h" ] &&
+    ! [ -e "$KEYSDIR/ntpkey_iffkey_$h" ]); then
 	# on a "server" we would have to add -T to the ntp-keygen call
 	# and then run something like this:
 	#
