@@ -25,7 +25,13 @@ paganini.debian.org:
     target_host: samosa.debian.org
     target_port: 5441
 
+# qa->projectb mirror
 quantz.debian.org:
   - source_bind_port: 5433
     target_host: merkel.debian.org
     target_port: 5433
+# qa->udd
+quantz.debian.org:
+  - source_bind_port: 5441
+    target_host: samosa.debian.org
+    target_port: 5441
