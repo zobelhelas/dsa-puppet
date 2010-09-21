@@ -146,7 +146,7 @@ class ferm::per-host {
                                 proto tcp dport (21 22 80 53 443) ACCEPT;
                                 proto udp dport (53 123) ACCEPT;
                                 proto tcp dport 8140 daddr 82.195.75.104 ACCEPT; # puppethost
-                                proto tcp dport 5140 daddr 82.195.75.98 ACCEPT; # loghost
+                                proto tcp dport 5140 daddr (82.195.75.98 206.12.19.121) ACCEPT; # loghost
                                 proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT
                                '
         }
