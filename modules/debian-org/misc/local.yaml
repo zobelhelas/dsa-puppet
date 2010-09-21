@@ -146,6 +146,7 @@ host_settings:
     - franck.debian.org
     - grieg.debian.org
     - klecker.debian.org
+    - kokkonen.debian.org
     - master.debian.org
     - merikanto.debian.org
     - merkel.debian.org
