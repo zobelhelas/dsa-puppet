@@ -270,7 +270,6 @@ host_settings:
     holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
-    kokkonen.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
     lamb.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
