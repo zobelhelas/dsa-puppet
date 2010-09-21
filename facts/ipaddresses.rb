@@ -20,7 +20,7 @@ Facter.add("v4ips") do
 end
 
 Facter.add("v4ips") do
-	confine :kernel => %w{FreeBSD}
+	confine :kernel => %w{GNU/kFreeBSD}
 	setcode do
 		addrs = []
 		output = %x{/sbin/ifconfig}
