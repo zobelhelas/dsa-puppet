@@ -153,6 +153,7 @@ host_settings:
     - ravel.debian.org
     - spohr.debian.org
     - valente.debian.org
+    - quantz.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org

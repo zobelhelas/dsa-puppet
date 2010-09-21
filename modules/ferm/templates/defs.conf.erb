@@ -196,4 +196,6 @@
 @def $USER_aurel32 = ();
 @def $USER_aurel32 = ($USER_aurel32 88.191.82.174); # hall.aurel32.net
 @def $USER_aurel32 = ($USER_aurel32 82.232.2.251); # farad.aurel32.net
-@def $FREEBSD_SSH_ACCESS = ($DSA_IPS $USER_kibi $USER_aurel32);
+@def $FREEBSD_SSH_ACCESS = ();
+@def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $DSA_IPS $USER_kibi $USER_aurel32);
+@def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS 194.177.211.200); # grieg
