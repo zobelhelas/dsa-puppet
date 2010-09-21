@@ -12,8 +12,7 @@ mxmatches = [ fqdn ]
 routes = []
 extraroutes = []
 
-case fqdn
-when 'spohr.debian.org', 'draghi.debian.org', 'merikanto.debian.org' then
+if nodeinfo['mailrelay']
   mxmatches << 'mailout.debian.org'
   extraroutes = [ "keyring.debian.org:\t\tkaufmann.debian.org" ]
 end
