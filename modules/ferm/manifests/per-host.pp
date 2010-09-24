@@ -6,7 +6,7 @@ class ferm::per-host {
     }
 
     case $hostname {
-        chopin,franck,gluck,kaufmann,kassia,klecker,lobos,merikanto,morricone,raff,ravel,ries,rietz,saens,schein,senfl,stabile,steffani,valente,villa,wieck: {
+        chopin,franck,gluck,kaufmann,kassia,klecker,lobos,merikanto,merkel,morricone,raff,ravel,ries,rietz,saens,schein,senfl,stabile,steffani,valente,villa,wieck: {
             include ferm::rsync
         }
     }
