@@ -51,7 +51,7 @@ else
 end
 
 if nodeinfo.has_key?('footer')
-  purp += "\n" + nodeinfo['footer'] + "\n"
+  purp += "\n" + wrap(nodeinfo['footer']) + "\n"
 end
 purp
 -%>
