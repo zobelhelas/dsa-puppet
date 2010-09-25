@@ -62,6 +62,7 @@ nameinfo:
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
+  nono.debian.org: Luigi Nono (January 29, 1924 - May 8, 1990)
   orff.debian.org: Carl Orff (July 10th, 1895 - March 29th, 1982)
   paer.debian.org: Ferdinando Paër (July 1st, 1771 - May 3rd, 1839)
   paganini.debian.org: Niccolò Paganini (October 27th, 1782 – May 27th, 1840)
@@ -224,6 +225,7 @@ host_settings:
     - schuetz.debian.org
     - salieri.debian.org
     - quantz.debian.org
+    - nono.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
