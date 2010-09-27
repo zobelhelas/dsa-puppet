@@ -41,7 +41,12 @@ node default {
         "true":    { include debian-proliant }
     }
     case $kvmdomain {
-        "true":    { package { acpid: ensure => installed } }
+        "true": {
+            package { acpid: ensure => installed }
+            case extractnodeinfo($nodeinfo, 'squeeze') {
+                'true':  { package { acpi-support-base: ensure => installed } }
+            }
+        }
     }
     case $mptraid {
         "true":    { include "raidmpt" }
