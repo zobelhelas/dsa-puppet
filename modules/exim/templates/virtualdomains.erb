@@ -25,21 +25,19 @@ vdoms = case fqdn
 
         when "chopin.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/srv/security-master.debian.org/mail/"
 
-        when "grieg.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail"
-#logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail"
-
         when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
 
         when "franck.debian.org" then "release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
 ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp-master.debian.org/mail group_writable=true"
+
+        when "grieg.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail"
+#logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail"
 
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
 
         when "kaufmann.debian.org" then "keyring.debian.org: user=keyring group=Debian directory=/srv/keyring.debian.org/mail"
 
         when "klecker.debian.org" then "www-master.debian.org: user=debwww group=debwww directory=/org/www.debian.org/mail/"
-
-        when "wolkenstein.debian.org" then "www-master.debian.org: user=debwww group=debwww directory=/srv/www.debian.org/mail/"
 
         when "master.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/org/vote.debian.org/mail
 packages.qa.debian.org: user=qa group=qa directory=/org/packages.qa.debian.org/mail
@@ -52,12 +50,12 @@ debian.net: user=nobody group=Debian directory=/org/star.debian.star/"
 bugs.qa.debian.org: user=nobody group=nogroup directory=/org/bugs.qa.debian.org/mail/
 nm.debian.org: user=nm group=nm directory=/org/nm.debian.org/mail/"
 
-        when "quantz.debian.org" then "qa.debian.org: user=qa group=qa directory=/org/qa.debian.org/mail/
-bugs.qa.debian.org: user=nobody group=nogroup directory=/org/bugs.qa.debian.org/mail/"
-
         when "morricone.debian.org" then "backports.debian.org: user=dak group=backports directory=/srv/backports-master.debian.org/mail/"
 
         when "powell.debian.org" then "packages.debian.org: user=pkg_user group=Debian directory=/org/packages.debian.org/mail/"
+
+        when "quantz.debian.org" then "qa.debian.org: user=qa group=qa directory=/org/qa.debian.org/mail/
+bugs.qa.debian.org: user=nobody group=nogroup directory=/org/bugs.qa.debian.org/mail/"
 
         when "ravel.debian.org" then "women.debian.org: user=nobody group=mujeres directory=/org/women.debian.org/mail"
 
@@ -67,6 +65,8 @@ admin.debian.org: user=mail_admin group=mail_admin directory=/org/admin.debian.o
         when "tartini.debian.org" then "forums.debian.net: user=forums group=forums directory=/srv/forums.debian.net/mail"
 
         when "valente.debian.org" then "volatile.debian.org: user=volatile group=volatile directory=/srv/volatile-master.debian.org/mail"
+
+        when "wolkenstein.debian.org" then "www-master.debian.org: user=debwww group=debwww directory=/srv/www.debian.org/mail/"
 end
 vdoms
 %>
