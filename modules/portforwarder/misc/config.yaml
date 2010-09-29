@@ -34,3 +34,9 @@ quantz.debian.org:
   - source_bind_port: 5441
     target_host: samosa.debian.org
     target_port: 5441
+
+nono.debian.org:
+  # nm->projectb mirror
+  - source_bind_port: 5433
+    target_host: merkel.debian.org
+    target_port: 5433
