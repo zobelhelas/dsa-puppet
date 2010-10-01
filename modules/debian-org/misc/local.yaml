@@ -125,9 +125,7 @@ services:
   dbmaster:
     - draghi.debian.org
   mailrelay:
-    - draghi.debian.org
     - kokkonen.debian.org
-    - spohr.debian.org
     - merikanto.debian.org
   muninmaster: spohr.debian.org
   nagiosmaster: tchaikovsky.debian.org
