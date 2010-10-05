@@ -333,7 +333,6 @@ host_settings:
     voltaire.debian.org: mailout.debian.org
     widor.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
-    wolkenstein.debian.org: mailout.debian.org
     zandonai.debian.org: mailout.debian.org
     zee.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
