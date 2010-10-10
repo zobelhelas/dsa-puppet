@@ -119,7 +119,7 @@ localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
 localpartlist postmasterish = postmaster : abuse : hostmaster
 
-hostlist debianhosts = 127.0.0.1 : /var/lib/misc/thishost/debianhosts
+hostlist debianhosts = : 127.0.0.1 : /var/lib/misc/thishost/debianhosts
 
 hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
 
@@ -478,7 +478,7 @@ check_submission:
 
   # Accept if the source is local SMTP (i.e. not over TCP/IP).
   # We do this by testing for an empty sending host field.
-  accept  hosts = : 127.0.0.1
+  accept  hosts = +debianhosts
 
 <%- if nodeinfo['mailrelay'] -%>
   accept  verify   = certificate
@@ -520,6 +520,7 @@ check_recipient:
   accept  verify   = certificate
 
 <%- end -%>
+  accept  hosts = : 127.0.0.1 : @
   warn    acl           = acl_getprofile
           condition     = ${if eq{$acl_m_prf}{}}
           set acl_m_prf = $acl_m_rprf
