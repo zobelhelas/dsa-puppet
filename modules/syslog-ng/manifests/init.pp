@@ -7,7 +7,7 @@ class syslog-ng {
             ;
         "/etc/default/syslog-ng":
             require => Package["syslog-ng"],
-            source => "puppet:///modules/syslog-ng/syslog-ng.logrotate",
+            source => "puppet:///modules/syslog-ng/syslog-ng.default",
             notify  => Exec["syslog-ng reload"],
             ;
         "/etc/logrotate.d/syslog-ng":
