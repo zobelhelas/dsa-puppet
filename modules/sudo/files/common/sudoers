@@ -22,7 +22,7 @@ Defaults	passprompt="[sudo] password for %u on %h: "
 
 # Host alias specification
 Host_Alias	QAHOSTS		= master, merkel, quantz
-Host_Alias	WEBHOSTS	= klecker, wolkenstein
+Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
 Host_Alias	FTPHOSTS	= franck, ries
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
@@ -138,6 +138,7 @@ debbugs-mirror	rietz=(root)		NOPASSWD: /usr/bin/vos release -id srv.mirrors.bugs
 dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
+%press		WEBHOSTS=(debwww)	/org/www.debian.org/update-part News
 # more list stuff
 %list		liszt=(root)		/usr/sbin/postfix reload
 %list		liszt=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
