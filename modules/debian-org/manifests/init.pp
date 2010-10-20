@@ -94,7 +94,7 @@ class debian-org {
             ;
         "/etc/rc.local":
             mode   => 0775,
-            source => "puppet:///modules/debian.org/rc.local",
+            source => "puppet:///modules/debian-org/rc.local",
             notify => Exec["rc.local start"],
             ;
     }
