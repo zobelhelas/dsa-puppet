@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if [ -e /proc/sys/kernel/modules_disabled ]; then
+	echo 1 > /proc/sys/kernel/modules_disabled || true
+fi

@@ -92,6 +92,11 @@ class debian-org {
             require => Package["libpam-pwdfile"],
             source => "puppet:///files/etc/pam.d/common-session",
             ;
+        "/etc/rc.local":
+            mode   => 0775,
+            source => "puppet:///modules/debian.org/rc.local",
+            notify => Exec["rc.local start"],
+            ;
     }
     case $hostname {
         handel: {
@@ -127,6 +132,9 @@ class debian-org {
             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
             refreshonly => true;
         "puppetmaster restart":
+            path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
+            refreshonly => true;
+        "rc.local start":
             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
             refreshonly => true;
         "procps restart":
