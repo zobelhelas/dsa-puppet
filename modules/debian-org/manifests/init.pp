@@ -93,7 +93,7 @@ class debian-org {
             source => "puppet:///files/etc/pam.d/common-session",
             ;
         "/etc/rc.local":
-            mode   => 0775,
+            mode   => 0755,
             source => "puppet:///modules/debian-org/rc.local",
             notify => Exec["rc.local start"],
             ;
