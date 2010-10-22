@@ -29,5 +29,6 @@ press: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
 rmurray : sbl-xbl.spamhaus.org
 security: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
 treasurer : sbl-xbl.spamhaus.org
+wat : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
 wbadm : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 webmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
