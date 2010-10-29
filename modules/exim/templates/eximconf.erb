@@ -1541,7 +1541,7 @@ out
 # Send the message to procmail
 procmail_pipe:
   driver = pipe
-  command = /usr/bin/procmail -a ${substr_1:${local_part_suffix}}}
+  command = /usr/bin/procmail -a ${substr_1:${local_part_suffix}}
   return_path_add
   user = ${local_part}
 
