@@ -120,7 +120,7 @@ node default {
         byrd,schuetz: {
             include krb
         }
-        bartok,draghi,quantz: {
+        bartok,draghi,quantz,samosa: {
             include krb
             include afs
         }
