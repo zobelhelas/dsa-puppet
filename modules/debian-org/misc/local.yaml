@@ -76,11 +76,12 @@ nameinfo:
   poulenc.debian.org: Francis Jean Marcel Poulenc (January 7, 1899 - January 30, 1963)
   powell.debian.org: Andrew Powell (b. April 18th, 1949)
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
-  quantz.debian.org: Johann Joachim Quantz (30 January 1697 ? 12 July 1773)
+  quantz.debian.org: Johann Joachim Quantz (January 30th, 1697 ? July 12th 1773)
   raff.debian.org: Joseph Joachim Raff (May 27th, 1822 - June 24th or 25th, 1882)
   rautavaara.debian.org: Einojuhani Rautavaara (born October 9th, 1928)
   ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
   respighi.debian.org: Ottorino Respighi (July 9th, 1879 - April 18th, 1936)
+  reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19, 1873 - May 11th, 1916)
   ries.debian.org: Franz Ries (April 7th, 1846 – January 20th, 1932)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   rore.debian.org: Cipriano de Rore (occasionally Cypriano) (1515 or 1516 - between September 11 and September 20, 1565)
@@ -135,7 +136,9 @@ services:
   packagesqamaster: master.debian.org
   puppetmaster: handel.debian.org
   qamaster: merkel.debian.org
-  rtmaster: spohr.debian.org
+  rtmaster: 
+    - spohr.debian.org
+    - reger.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org
@@ -224,6 +227,7 @@ host_settings:
     - schuetz.debian.org
     - salieri.debian.org
     - quantz.debian.org
+    - reger.debian.org
     - nono.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
