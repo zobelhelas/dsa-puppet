@@ -5,7 +5,7 @@ class ssh {
         }
 
 	file { "/etc/ssh/ssh_config":
-		source  => [ "puppet:///modules/ssh/ssh_config" ],
+		content => template("ssh/ssh_config.erb"),
 		require => Package["openssh-client"]
                 ;
 	       "/etc/ssh/sshd_config":
