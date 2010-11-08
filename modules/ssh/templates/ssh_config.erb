@@ -49,3 +49,6 @@ Host *
     GSSAPIAuthentication no
     GSSAPIDelegateCredentials no
     VerifyHostKeyDNS yes
+<%- if (hostname == "sibelius") -%>
+    ServerAliveInterval 450
+<%- end -%>
