@@ -79,6 +79,11 @@ node default {
          }
     }
 
+    case $rsyncd {
+         "true": { include rsyncd-log }
+    }
+
+
     case extractnodeinfo($nodeinfo, 'buildd') {
          'true':  {
              include buildd
