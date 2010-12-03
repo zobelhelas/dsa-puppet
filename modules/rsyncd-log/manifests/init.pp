@@ -1,9 +1,8 @@
 class rsyncd-log {
-    package { "logrotate": ensure => installed; }
-
     file {
         "/etc/logrotate.d/dsa-rsyncd":
             source  => "puppet:///modules/rsyncd-log/logrotate.d-dsa-rsyncd",
+            require => Package["logrotate"],
             ;
         "/var/log/rsyncd":
             ensure  => directory,
