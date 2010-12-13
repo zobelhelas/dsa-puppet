@@ -132,8 +132,8 @@ debbugs-mirror	rietz=(root)		NOPASSWD: /usr/bin/vos release -id srv.mirrors.bugs
 %debian-release	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
 %ftpteam	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
 # security
-%security	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
-%sec_public	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR] -- *
+%security	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR]
+%sec_public	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR]
 %sec_public	SECHOSTS=(dak)		NOPASSWD: /home/dak/trigger_mirror
 dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
