@@ -9,8 +9,8 @@ case fqdn
 when /(bellini|cimarosa).debian.org/:   ignore << "mcelog"
 when "busoni.debian.org":               ignore << %w{libthreads-perl libthreads-shared-perl}
 when "cilea.debian.org":                ignore << "/freeswitch.*/"
-when /draghi.debian.org/:               ignore << %w{userdir-ldap libnet-dns-perl libnet-dns-sec-perl libnet-dns-zone-parser-perl libdns-ruby1.8}
-when /geo[123].debian.org/:             ignore << %w{geoip-database libgeoip1 geoip-bin}
+when /draghi.debian.org/:               ignore << %w{userdir-ldap libheimdal-kadm5-perl}
+when /orff.debian.org/:                 ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
 when /liszt.debian.org/:                ignore << "amavisd-new"
 when /stabile.debian.org/:              ignore << "xfsprogs"
 when /(zandonai|zelenka).debian.org/:   ignore << %w{zabbix-agent rrdcollect}
@@ -20,10 +20,13 @@ when /(mayer|paer|peri|penalosa).debian.org/: ignore << "linux-base"
 when "powell.debian.org":               ignore << %w{e2fslibs e2fsprogs libblkid1 libcomerr2 libss2 libuuid1 uuid-runtime}
 when "franck.debian.org":               ignore << %w{libuuid1 util-linux libcomerr2 libss2 e2fslibs uuid-runtime hpacucli e2fsprogs firmware-bnx2 libblkid1}
 when "zee.debian.org":                  ignore << %w{dpkg-dev dpkg}
+when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/: ignore << %w{flash-kernel linux-firmware-image}
 end
 
 case fqdn
-when /(draghi|orff|ravel|klecker).debian.org/: ignore << %w{libdns64 bind9 libbind9-60 liblwres60 bind9-host libisccfg60 libisc60 dnsutils bind9utils libisccc60}
+when /(draghi|orff|ravel|klecker|geo[123]).debian.org/: ignore << %w{libdns66 libdns64 bind9 libbind9-60 liblwres60 bind9-host libisccfg60 libisc60 dnsutils bind9utils libisccc60}
 end
+
+ignore << '/openafs-modules-.*/'
 ignore.flatten.join("\n")
 %>

@@ -3,30 +3,32 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-admin : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-books : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-cdvendors : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-consultants : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-da-manager : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-events: list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-ftpmaster : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-ftp-master : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-gandi-discount : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+admin : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+books : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+cdvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+consultants : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+da-manager : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+events: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+ftpmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+ftp-master : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+gandi-discount : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net : combined.njabl.org
 hardware-donations : sbl-xbl.spamhaus.org
 hostmaster : sbl-xbl.spamhaus.org : cbl.abuseat.org
-keyring-maint : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-leader : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+keyring-maint : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+leader : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 mailer-daemon : sbl-xbl.spamhaus.org : cbl.abuseat.org
-merchandise : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+merchandise : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 mia : sbl-xbl.spamhaus.org
-mirrors : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-new-maintainer : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-override-change : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-partners : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-planet : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-preinstallvendors : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-press: list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+mirrors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+new-maintainer : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+override-change : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+partners : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+planet : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+preinstallvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+press: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
 rmurray : sbl-xbl.spamhaus.org
+security: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
 treasurer : sbl-xbl.spamhaus.org
-wbadm : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-webmaster : list.dsbl.org : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+wat : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+wbadm : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+webmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net

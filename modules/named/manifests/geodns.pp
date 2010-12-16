@@ -12,16 +12,16 @@ class named::geodns inherits named {
             notify  => Exec["apt-get update"],
             ;
         "/etc/bind/named.conf.local":
-            source  => [ "puppet:///named/per-host/$fqdn/named.conf.local",
-                         "puppet:///named/common/named.conf.local" ],
+            source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.local",
+                         "puppet:///modules/named/common/named.conf.local" ],
             require => Package["bind9"],
             notify  => Exec["bind9 restart"],
             owner   => root,
             group   => root,
             ;
         "/etc/bind/named.conf.acl":
-            source  => [ "puppet:///named/per-host/$fqdn/named.conf.acl",
-                         "puppet:///named/common/named.conf.acl" ],
+            source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.acl",
+                         "puppet:///modules/named/common/named.conf.acl" ],
             require => Package["bind9"],
             notify  => Exec["bind9 restart"],
             owner   => root,
@@ -40,30 +40,30 @@ class named::geodns inherits named {
             mode    => 755,
             ;
         "/etc/bind/geodns/named.conf.geo":
-            source  => [ "puppet:///named/per-host/$fqdn/named.conf.geo",
-                         "puppet:///named/common/named.conf.geo" ],
+            source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.geo",
+                         "puppet:///modules/named/common/named.conf.geo" ],
             require => Package["bind9"],
             notify  => Exec["bind9 restart"],
             owner   => root,
             group   => root,
             ;
         "/etc/bind/geodns/trigger":
-            source  => [ "puppet:///named/per-host/$fqdn/trigger",
-                         "puppet:///named/common/trigger" ],
+            source  => [ "puppet:///modules/named/per-host/$fqdn/trigger",
+                         "puppet:///modules/named/common/trigger" ],
             owner   => root,
             group   => root,
             mode    => 555,
             ;
         "/etc/ssh/userkeys/geodnssync":
-            source  => [ "puppet:///named/per-host/$fqdn/authorized_keys",
-                         "puppet:///named/common/authorized_keys" ],
+            source  => [ "puppet:///modules/named/per-host/$fqdn/authorized_keys",
+                         "puppet:///modules/named/common/authorized_keys" ],
             owner   => root,
             group   => geodnssync,
             mode    => 440,
             ;
         "/etc/cron.d/dsa-boot-geodnssync":
-            source  => [ "puppet:///named/per-host/$fqdn/cron-geo",
-                         "puppet:///named/common/cron-geo" ],
+            source  => [ "puppet:///modules/named/per-host/$fqdn/cron-geo",
+                         "puppet:///modules/named/common/cron-geo" ],
             owner   => root,
             group   => root,
             ;

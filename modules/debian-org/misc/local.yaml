@@ -19,6 +19,7 @@ nameinfo:
   biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
+  byrd.debian.org: William Byrd (1543 - July 4th, 1623)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   cimarosa.debian.org: Domenico Cimarosa (17 December 1749 - 11 January 1801)
@@ -45,10 +46,13 @@ nameinfo:
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
   kokkonen.debian.org: November 13th, 1921 - October 1st, 1996)
   krenek.debian.org: Ernst Krenek (August 23rd, 1900 - December 22nd, 1991)
+  lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
   lindberg.debian.org: Magnus Lindberg (June 27th, 1958)
   liszt.debian.org: Franz Liszt (October 22nd, 1811 - July 31st, 1886)
+  locke.debian.org: Matthew Locke (ca. 1621 - 1677)
+  lotti.debian.org: Antonio Lotti (ca. 1667 - January 5th, 1740)
   luchesi.debian.org: Andrea Luca Luchesi (May 23rd, 1741 - March 21st, 1801)
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
@@ -58,6 +62,7 @@ nameinfo:
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
+  nono.debian.org: Luigi Nono (January 29, 1924 - May 8, 1990)
   orff.debian.org: Carl Orff (July 10th, 1895 - March 29th, 1982)
   paer.debian.org: Ferdinando Paër (July 1st, 1771 - May 3rd, 1839)
   paganini.debian.org: Niccolò Paganini (October 27th, 1782 – May 27th, 1840)
@@ -71,20 +76,24 @@ nameinfo:
   poulenc.debian.org: Francis Jean Marcel Poulenc (January 7, 1899 - January 30, 1963)
   powell.debian.org: Andrew Powell (b. April 18th, 1949)
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
-  puccini.debian.org: Giacomo Antonio Domenico Michele Secondo Maria Puccini (December 22nd, 1858 - November 29th, 1924)
+  quantz.debian.org: Johann Joachim Quantz (January 30th, 1697 ? July 12th 1773)
   raff.debian.org: Joseph Joachim Raff (May 27th, 1822 - June 24th or 25th, 1882)
   rautavaara.debian.org: Einojuhani Rautavaara (born October 9th, 1928)
   ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
   respighi.debian.org: Ottorino Respighi (July 9th, 1879 - April 18th, 1936)
+  reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19, 1873 - May 11th, 1916)
   ries.debian.org: Franz Ries (April 7th, 1846 – January 20th, 1932)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   rore.debian.org: Cipriano de Rore (occasionally Cypriano) (1515 or 1516 - between September 11 and September 20, 1565)
+  rossini.debian.org: Gioachino Rossini (February 29, 1792 - November 13, 1868)
   saens.debian.org: Charles-Camille Saint-Saëns  (October 9th, 1835 - December 16th, 1921)
+  salieri.debian.org: Antonio Salieri (Legnago, 18 August 1750 - Vienna, 7 May 1825)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   scelsi.debian.org: Giacinto Scelsi (January 8th, 1905 - August 9th, 1988)
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
+  schuetz.debian.org: Heinrich Schütz (October 8 (JC), 1585 - November 6, 1672)
   senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
@@ -96,6 +105,7 @@ nameinfo:
   steffani.debian.org: Agostino Steffani (July 25th, 1653 - February 12th, 1728)
   tartini.debian.org: Giuseppe Tartini (April 8th, 1692 - February 26th, 1770)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
+  traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (30 March 1727 - 6 April 1779)
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
   valente.debian.org: Vincenzo Valente (February 21st, 1855 - September 6th, 1921)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
@@ -116,18 +126,19 @@ services:
   dbmaster:
     - draghi.debian.org
   mailrelay:
-    - draghi.debian.org
-    - spohr.debian.org
+    - kokkonen.debian.org
     - merikanto.debian.org
   muninmaster: spohr.debian.org
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
-    - draghi.debian.org
+    - orff.debian.org
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
   puppetmaster: handel.debian.org
   qamaster: merkel.debian.org
-  rtmaster: spohr.debian.org
+  rtmaster: 
+    - spohr.debian.org
+    - reger.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org
@@ -137,13 +148,16 @@ host_settings:
     - franck.debian.org
     - grieg.debian.org
     - klecker.debian.org
+    - kokkonen.debian.org
     - master.debian.org
     - merikanto.debian.org
     - merkel.debian.org
     - morricone.debian.org
+    - nono.debian.org
     - powell.debian.org
+    - quantz.debian.org
     - ravel.debian.org
-    - ries.debian.org
+    - reger.debian.org
     - spohr.debian.org
     - valente.debian.org
   apache2_security_mirror:
@@ -155,6 +169,11 @@ host_settings:
     - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
+  timeserver:
+    - merikanto.debian.org
+    - orff.debian.org
+    - ravel.debian.org
+    - busoni.debian.org
   buildd:
     - alain.debian.org
     - alkman.debian.org
@@ -190,8 +209,6 @@ host_settings:
     - porpora.debian.org
     - poulenc.debian.org
     - praetorius.debian.org
-    - puccini.debian.org
-    - purcell.debian.org
     - rem.debian.org
     - schroeder.debian.org
     - spontini.debian.org
@@ -203,6 +220,17 @@ host_settings:
     - fasch.debian.org
     - field.debian.org
     - finzi.debian.org
+    - byrd.debian.org
+    - lamb.debian.org
+    - locke.debian.org
+    - lotti.debian.org
+    - rautavaara.debian.org
+    - schuetz.debian.org
+    - salieri.debian.org
+    - sibelius.debian.org
+    - quantz.debian.org
+    - reger.debian.org
+    - nono.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
@@ -223,6 +251,7 @@ host_settings:
     beethoven.debian.org: mailout.debian.org
     biber.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
+    byrd.debian.org: mailout.debian.org
     caballero.debian.org: mailout.debian.org
     cilea.debian.org: mailout.debian.org
     cimarosa.debian.org: mailout.debian.org
@@ -248,13 +277,15 @@ host_settings:
     holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
-    kokkonen.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
+    lamb.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
     lindberg.debian.org: mailout.debian.org
     lobos.debian.org: mailout.debian.org
+    locke.debian.org: mailout.debian.org
+    lotti.debian.org: mailout.debian.org
     lucatelli.debian.org: mailout.debian.org
     luchesi.debian.org: mailout.debian.org
     malo.debian.org: mailout.debian.org
@@ -276,19 +307,21 @@ host_settings:
     porpora.debian.org: mailout.debian.org
     poulenc.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
-    puccini.debian.org: mailout.debian.org
-    purcell.debian.org: mailout.debian.org
     raff.debian.org: mailout.debian.org
     rautavaara.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
     respighi.debian.org: mailout.debian.org
+    ries.debian.org: mailout.debian.org
     rietz.debian.org: mailout.debian.org
     rore.debian.org: mailout.debian.org
+    rossini.debian.org: mailout.debian.org
     saens.debian.org: mailout.debian.org
+    salieri.debian.org: mailout.debian.org
     scelsi.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
     schumann.debian.org: mailout.debian.org
+    schuetz.debian.org: mailout.debian.org
     senfl.debian.org: mailout.debian.org
     sibelius.debian.org: mailout.debian.org
     smetana.debian.org: mailout.debian.org
@@ -298,6 +331,7 @@ host_settings:
     stabile.debian.org: mailout.debian.org
     steffani.debian.org: mailout.debian.org
     tchaikovsky.debian.org: mailout.debian.org
+    traetta.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
     vitry.debian.org: mailout.debian.org
@@ -305,7 +339,6 @@ host_settings:
     voltaire.debian.org: mailout.debian.org
     widor.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
-    wolkenstein.debian.org: mailout.debian.org
     zandonai.debian.org: mailout.debian.org
     zee.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
@@ -316,7 +349,6 @@ host_settings:
   no_munin:
     - agnesi.debian.org
     - allegri.debian.org
-    - byrd.debian.org
     - escher.debian.org
     - fano.debian.org
     - malo.debian.org

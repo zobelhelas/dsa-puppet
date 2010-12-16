@@ -119,7 +119,7 @@ localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
 localpartlist postmasterish = postmaster : abuse : hostmaster
 
-hostlist debianhosts = 127.0.0.1 : /var/lib/misc/thishost/debianhosts
+hostlist debianhosts = : 127.0.0.1 : /var/lib/misc/thishost/debianhosts
 
 hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
 
@@ -248,16 +248,16 @@ received_header_text = Received: ${if def:sender_rcvhost {from $sender_rcvhost\n
 # macro definitions.
 # Do not wrap!
 VDOMAINDATA = ${lookup{$domain}partial-lsearch{/etc/exim4/virtualdomains}{$value}}
-WHITELIST = ${if match_domain{$domain}{+virtual_domains}{\
-               ${if exists {/srv/$domain/mail/whitelist}{\
-                ${lookup{$local_part}lsearch{/srv/$domain/mail/whitelist}{$value}{}}\
-                }{}}\
-               }{${lookup{$local_part}lsearch{/etc/exim4/whitelist}{$value}{}} : ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-whitelist}{$value}{}}}}
+WHITELIST = ${if match_domain{$domain}{+virtual_domains}\
+            {${if exists {${extract{directory}{VDOMAINDATA}{${value}/whitelist}}}\
+            {${lookup{$local_part}lsearch{${extract{directory}{VDOMAINDATA}{${value}/whitelist}}}{$value}{}}}{}}}\
+            {/etc/exim4/whitelist} } : \
+            ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-whitelist}{$value}{}}
 GREYLIST_LOCAL_PARTS = ${if match_domain{$domain}{+virtual_domains}\
-		       {${if exists {${extract{directory}{VDOMAINDATA}{${value}/grey_users}}}\
-		       {${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/grey_users}}}{$local_part}{}}}{}}}\
-		       {${lookup{$local_part}lsearch{/etc/exim4/grey_users}{$local_part}{}} : \
-		       ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-greylist}{$local_part}{}}}}
+                       {${if exists {${extract{directory}{VDOMAINDATA}{${value}/grey_users}}}\
+                       {${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/grey_users}}}{$local_part}{}}}{}}}\
+                       {${lookup{$local_part}lsearch{/etc/exim4/grey_users}{$local_part}{}}}} : \
+                       ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-greylist}{$local_part}{}}
 RT_QUEUE_MAP = /srv/rt.debian.org/mail/rt_queue_map
 
 ######################################################################
@@ -478,7 +478,7 @@ check_submission:
 
   # Accept if the source is local SMTP (i.e. not over TCP/IP).
   # We do this by testing for an empty sending host field.
-  accept  hosts = : 127.0.0.1
+  accept  hosts = +debianhosts
 
 <%- if nodeinfo['mailrelay'] -%>
   accept  verify   = certificate
@@ -520,6 +520,7 @@ check_recipient:
   accept  verify   = certificate
 
 <%- end -%>
+  accept  hosts = : 127.0.0.1 : @
   warn    acl           = acl_getprofile
           condition     = ${if eq{$acl_m_prf}{}}
           set acl_m_prf = $acl_m_rprf
@@ -804,8 +805,8 @@ check_recipient:
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rbllist}}}\
 		     {${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/rbllist}}}{$value}{}}}{}}}\
-		     {${lookup{$local_part}lsearch{/etc/exim4/rbllist}{$value}{}} : \
-		     ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rbl}{$value}{}}}}
+		     {${lookup{$local_part}lsearch{/etc/exim4/rbllist}{$value}{}}}} : \
+		     ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rbl}{$value}{}}
 	  domains       = +handled_domains
 	  !hosts        = +debianhosts : WHITELIST
 
@@ -814,18 +815,18 @@ check_recipient:
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rhsbllist}}}\
 		     {${expand:${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/rhsbllist}}}{$value}{}}}}{}}}\
-		     {${expand:${lookup{$local_part}lsearch{/etc/exim4/rhsbllist}{$value}{}}} : \
-		     ${expand:${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rhsbl}{$value}{}}}}}
+		     {${expand:${lookup{$local_part}lsearch{/etc/exim4/rhsbllist}{$value}{}}}}} : \
+		     ${expand:${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-rhsbl}{$value}{}}}
 	  domains       = +handled_domains
 	  !hosts        = +debianhosts : WHITELIST
 
 <%- if nodeinfo['smarthost'].empty? -%>
   deny    domains  = +handled_domains
-          local_parts   = ${if match_domain{$domain}{+virtual_domains}\
-	           	   {${if exists {${extract{directory}{VDOMAINDATA}{${value}/callout_users}}}\
-		           {${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/callout_users}}}{$local_part}{}}}{}}}\
-		           {${lookup{$local_part}lsearch{/etc/exim4/callout_users}{$local_part}{}} : \
-		           ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-callout}{$local_part}{}}}}
+          local_parts = ${if match_domain{$domain}{+virtual_domains}\
+                        {${if exists {${extract{directory}{VDOMAINDATA}{${value}/callout_users}}}\
+                        {${lookup{$local_part}lsearch*{${extract{directory}{VDOMAINDATA}{${value}/callout_users}}}{$local_part}{}}}{}}}\
+                        {${lookup{$local_part}lsearch{/etc/exim4/callout_users}{$local_part}{}}}} : \
+                        ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-callout}{$local_part}{}}
           !hosts   = +debianhosts : WHITELIST
 	  !verify  = sender/callout=90s,maxwait=300s
 
@@ -997,7 +998,6 @@ check_message:
 
 begin rewrite
 
-\N^buildd_(.*)@ries\.debian\.org$\N buildd_$1@buildd.debian.org T
 \N^buildd_(.*)@franck\.debian\.org$\N buildd_$1@buildd.debian.org T
 \N^buildd_(.*)@klecker\.debian\.org$\N buildd_$1@buildd.debian.org T
 *@debian.org ${lookup{$1}cdb{/var/lib/misc/${primary_hostname}/mail-forward.cdb}{$value}fail} T
@@ -1541,7 +1541,7 @@ out
 # Send the message to procmail
 procmail_pipe:
   driver = pipe
-  command = /usr/bin/procmail -a ${substr_1:${local_part_suffix}}}
+  command = /usr/bin/procmail -a ${substr_1:${local_part_suffix}}
   return_path_add
   user = ${local_part}
 

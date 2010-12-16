@@ -1,0 +1,44 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+##
+
+#
+# from the package:
+#
+NTPD_OPTS='-g'
+
+#
+# make sure this host already has ntp keys:
+#
+h="`hostname`"
+KEYSDIR="/etc/ntp.keys.d"
+if ! [ -e "$KEYSDIR/ntpkey_cert_$h" ] ||
+   ! [ -e "$KEYSDIR/ntpkey_host_$h" ] ||
+   (! [ -e "$KEYSDIR/ntpkey_iff_$h" ] &&
+    ! [ -e "$KEYSDIR/ntpkey_iffkey_$h" ]); then
+	# on a "server" we would have to add -T to the ntp-keygen call
+	# and then run something like this:
+	#
+	### sed -e 's/^[[:space:]]*#//' << 'EOF'
+	# cd "$KEYSDIR" &&
+	# RANDFILE=/dev/urandom /usr/sbin/ntp-keygen -T -I -H -c RSA-SHA1 -m 1024 &&
+	# RANDFILE=/dev/urandom ntp-keygen -q `hostname` -e | (
+	#        read l; echo "$l";
+	#        read l; echo "$l";
+	#        echo
+	#        echo "# This is the public version of this 'private' key -"
+	#        echo "# the private data has been replaced by 0x01."
+	#        echo "# (just ask 'openssl dsa -text < foo.pub')"
+	#        echo
+	#        openssl dsa -passin `hostname` -passin pass:`hostname` )  > ntpkey_iff_`hostname`.pub
+	#
+	#
+	# So that we can copy that .pub to all the clients that need it (don't
+	# call it .pub on the client then)
+	#
+	# on the client this is all we need:
+	if [ -x /usr/sbin/ntp-keygen ] ; then
+		[ -d "$KEYSDIR" ] || install -d -o root -g ntp -m 770 "$KEYSDIR"
+		( cd "$KEYSDIR" && RANDFILE=/dev/urandom /usr/sbin/ntp-keygen -I -H -c RSA-SHA1 -m 1024 )
+	fi
+fi

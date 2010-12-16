@@ -1,0 +1,18 @@
+# ntpkey_IFFkey_merikanto.3492505905
+# Fri Sep  3 12:31:46 2010
+
+# This is the public version of this 'private' key -
+# the private data has been replaced by 0x01.
+# (just ask 'openssl dsa -text < foo.pub')
+
+-----BEGIN DSA PRIVATE KEY-----
+MIIBpwIBAAKBgQCWWLVyJ6HUVVEqOHxj7Iw+hZGaw+1Lzbugw4AwYIQWy/0PVN1j
+zyAEA+dd5JcOiZ83u83mnljRIof780ZshZo8jx0E4Xf+B/yr+/OKUiaCh+ZhDsXz
+XSvhIDPS/YMpVeDqEiEeQMnHy91IIsdAp+mY28eQ9YrL2WSlv2DZ+qIAiQIVAOQd
+lg0FvFrRL4odQCGOue0wQHKhAoGASb1auh2h+g1dLvSAkw4fUYRq06cBWnmeUC31
+KZOBAnElcg+sYyqkrmZe6U0aSZFt/mWvTk2gdoZVA+ITGfsi4GH5LOc0UHp4AsyH
+e31dpQgzceZHhXj+hPGfKjH2cQunZW+eJlsXBKKY5J2dakA6hPStsT7kpejAsoLm
+mxxffZgCgYA0PJBuVqLgKHKxncCHDC9DPq+dJ8b62hrXFB11Sb7pJs0qWtJpLD1J
+FdaiZeUmBwFRgGosU/Gb44yXBNjIr1IYlaDIE+hxz7xByKj3Vi5wZh7KylW0Em4v
+WefQlojNBsymYoDSKSFw1RX7dPKEaL+Nkuz/NvPhVxBd2EzH5uHmEAIBAQ==
+-----END DSA PRIVATE KEY-----

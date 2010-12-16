@@ -4,7 +4,10 @@
 ##
 
 domain <%= domain %> {
-        chain <%= chain %> {
-                <%= rule %>;
-        }
+	table <%= table %> {
+		chain <%= chain %> {
+			<%= rule %><% unless notarule -%>;<% end -%>
+
+		}
+	}
 }

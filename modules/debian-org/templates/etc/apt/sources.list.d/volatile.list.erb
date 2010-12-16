@@ -5,5 +5,5 @@
 
 <% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
 <% else %>
-deb     http://volatile.debian.org/debian-volatile lenny/volatile   main
+deb     http://volatile.debian.org/debian-volatile lenny/volatile   main contrib non-free
 <% end %>

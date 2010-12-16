@@ -149,6 +149,7 @@ file=/etc/syslog-ng
 file=/etc/ferm/
 file=/etc/ferm/conf.d
 file=/etc/ferm/dsa.d
+file=/etc/rc.local
 
 
 [LogFiles]
@@ -324,6 +325,7 @@ file=/etc/apt/apt.conf.d/local-pdiffs
 file=/etc/puppet/puppet.conf
 file=/etc/default/puppet
 file=/etc/default/postgrey
+file=/etc/default/syslog-ng
 file=/etc/logrotate.d/exim4-paniclog
 file=/etc/logrotate.d/exim4-base
 file=/etc/logrotate.d/syslog-ng
@@ -377,7 +379,7 @@ dir=8/etc/puppet
 <% if classes.include?('named::geodns') -%>
 dir=1/etc/bind/geodns
 <% end -%>
-<% if classes.include?('named::secondary') -%>
+<% if classes.include?('named::authoritative') -%>
 dir=1/etc/bind
 file=/etc/bind/named.conf.debian-zones
 <% end -%>
@@ -545,7 +547,7 @@ MailSeverity=crit
 PrintSeverity=none
 LogSeverity=info
 SyslogSeverity=alert
-ExportSeverity=none
+#ExportSeverity=none
 
 
 
@@ -612,7 +614,7 @@ ExportSeverity=none
 
 ## Switch on/off
 #
-KernelCheckActive = True
+#KernelCheckActive = True
 
 ## Check interval (seconds); btw., the check is VERY fast
 #
@@ -630,7 +632,7 @@ KernelCheckActive = True
 
 ## Switch on/off
 #
-LoginCheckActive = True
+# LoginCheckActive = True
 
 ## Severity for logins, multiple logins, logouts
 # 

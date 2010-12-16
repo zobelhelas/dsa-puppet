@@ -20,3 +20,29 @@ samosa.debian.org:
     target_host: grieg.debian.org
     target_port: 5433
 
+paganini.debian.org:
+  - source_bind_port: 5441
+    target_host: samosa.debian.org
+    target_port: 5441
+
+quantz.debian.org:
+  # qa->projectb mirror
+  - source_bind_port: 5433
+    target_host: merkel.debian.org
+    target_port: 5433
+  # qa->udd
+  - source_bind_port: 5441
+    target_host: samosa.debian.org
+    target_port: 5441
+
+nono.debian.org:
+  # nm->projectb mirror
+  - source_bind_port: 5433
+    target_host: merkel.debian.org
+    target_port: 5433
+
+stabile.debian.org:
+  # snapshot postgresql streaming replication.  sibelius is the master, stabile the slave.
+  - source_bind_port: 15433
+    target_host: sibelius.debian.org
+    target_port: 5433

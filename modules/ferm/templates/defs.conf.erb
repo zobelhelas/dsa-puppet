@@ -19,7 +19,7 @@
   mailrelay = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['mailrelay']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
+          keyinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              mailrelay << ip
           end
@@ -33,7 +33,7 @@
   mailrelay = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['mailrelay']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
+          keyinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              mailrelay << ip
           end
@@ -49,7 +49,7 @@
   nagii = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
+          keyinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              nagii << ip
           end
@@ -63,7 +63,7 @@
   nagii = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
+          keyinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              nagii << ip
           end
@@ -79,7 +79,7 @@
   munins = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['muninmaster']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
+          keyinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              munins << ip
           end
@@ -93,7 +93,7 @@
   munins = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['muninmaster']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
+          keyinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              munins << ip
           end
@@ -109,7 +109,7 @@
   dbs = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['dbmaster']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
+          keyinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              dbs << ip
           end
@@ -123,7 +123,7 @@
   dbs = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['dbmaster']
-          keyinfo[node][0]['ipHostNumber'].each do |ip|
+          keyinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              dbs << ip
           end
@@ -138,8 +138,8 @@
 @def $HOST_DEBIAN_V4 = (<%=
   dbs = []
   keyinfo.keys.sort.each do |node|
-      next unless keyinfo[node][0].has_key?('ipHostNumber')
-      keyinfo[node][0]['ipHostNumber'].each do |ip|
+      next unless keyinfo[node].has_key?('ipHostNumber')
+      keyinfo[node]['ipHostNumber'].each do |ip|
          next if ip =~ /:/
          dbs << ip
       end
@@ -151,8 +151,8 @@
 @def $HOST_DEBIAN_V6  = (<%=
   dbs = []
   keyinfo.keys.sort.each do |node|
-      next unless keyinfo[node][0].has_key?('ipHostNumber')
-      keyinfo[node][0]['ipHostNumber'].each do |ip|
+      next unless keyinfo[node].has_key?('ipHostNumber')
+      keyinfo[node]['ipHostNumber'].each do |ip|
          next if ip =~ /\./
          dbs << ip
       end
@@ -186,6 +186,7 @@
 @def $zobel6     = ($zobel6 2001:6f8:1215::/48); # baldur
 @def $zobel6     = ($zobel6 2001:6f8:928::/48); # WS2 
 @def $zobel6     = ($zobel6 2a01:198:549::/48); # WGS20
+@def $zobel6     = ($zobel6 2a01:198:6b2::/48); # AdS20
 @def $luca6      = ();
 @def $DSA_V6_IPS = ($sgran6 $weasel6 $zobel6 $luca6);
 
@@ -196,4 +197,6 @@
 @def $USER_aurel32 = ();
 @def $USER_aurel32 = ($USER_aurel32 88.191.82.174); # hall.aurel32.net
 @def $USER_aurel32 = ($USER_aurel32 82.232.2.251); # farad.aurel32.net
-@def $FREEBSD_SSH_ACCESS = ($DSA_IPS $USER_kibi $USER_aurel32);
+@def $FREEBSD_SSH_ACCESS = ();
+@def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $DSA_IPS $USER_kibi $USER_aurel32);
+@def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS 194.177.211.200); # grieg

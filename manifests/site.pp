@@ -18,11 +18,11 @@ node default {
     $nodeinfo  = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
     $hoster    = whohosts($nodeinfo, "/etc/puppet/modules/debian-org/misc/hoster.yaml")
     $keyinfo   = allnodeinfo("sshRSAHostKey", "ipHostNumber")
+    $mxinfo    = allnodeinfo("mXRecord")
     notice("hoster for ${fqdn} is ${hoster}")
 
-    $mxinfo   = allnodeinfo("mXRecord")
-
     include munin-node
+    include syslog-ng
     include sudo
     include ssh
     include debian-org
@@ -41,7 +41,12 @@ node default {
         "true":    { include debian-proliant }
     }
     case $kvmdomain {
-        "true":    { package { acpid: ensure => installed } }
+        "true": {
+            package { acpid: ensure => installed }
+            case extractnodeinfo($nodeinfo, 'squeeze') {
+                'true':  { package { acpi-support-base: ensure => installed } }
+            }
+        }
     }
     case $mptraid {
         "true":    { include "raidmpt" }
@@ -74,6 +79,11 @@ node default {
          }
     }
 
+    case $rsyncd {
+         "true": { include rsyncd-log }
+    }
+
+
     case extractnodeinfo($nodeinfo, 'buildd') {
          'true':  {
              include buildd
@@ -81,25 +91,20 @@ node default {
     }
 
     case $hostname {
-        klecker,ravel,senfl,orff: { include named::secondary }
-        geo1,geo2,geo3:           { include named::geodns }
-        bartok,franck,liszt,master,ries,samosa,schein,spohr,steffani:   { include named::recursor }
+        klecker,ravel,senfl,orff,draghi: { include named::authoritative }
+        geo1,geo2,geo3:                  { include named::geodns }
+        bartok,franck,liszt,master,samosa,schein,spohr,steffani,widor:   { include named::recursor }
+    }
+
+    case $kernel {
+        Linux: {
+            include ferm
+            include ferm::per-host
+        }
     }
 
     case $hostname {
-        cilea,paganini,rautavaara: {}
-        default: {
-             case $kernel {
-                 Linux: {
-                     include ferm
-                 }
-             }
-         }
-    }
-    include ferm::per-host
-
-    case $hostname {
-        beethoven,ravel,spohr: {
+        beethoven,ravel,spohr,stabile: {
             include nfs-server
         }
     }
@@ -113,5 +118,24 @@ node default {
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
     }
+
     include samhain
+
+    case $hostname {
+        byrd,schuetz: {
+            include krb
+        }
+        bartok,draghi,quantz,samosa: {
+            include krb
+            include afs
+        }
+        lamb,locke,rautavaara,rietz: {
+            include krb
+            include afs::server
+        }
+    }
 }
+
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:

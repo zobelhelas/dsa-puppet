@@ -19,6 +19,30 @@ Facter.add("v4ips") do
         end
 end
 
+Facter.add("v4ips") do
+	confine :kernel => 'GNU/kFreeBSD'
+	setcode do
+		addrs = []
+		output = %x{/sbin/ifconfig}
+
+		output.split(/^\S/).each { |str|
+			if str =~ /inet ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/
+				tmp = $1
+				unless tmp =~ /127\./
+					addrs << tmp
+					break
+				end
+			end
+		}
+
+		ret = addrs.join(",")
+		if ret.empty?
+			ret = 'no'
+		end
+		ret
+	end
+end
+
 Facter.add("v6ips") do
         confine :kernel => :linux
         addrs = []

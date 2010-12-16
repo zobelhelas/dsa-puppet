@@ -1,0 +1,14 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+/var/log/rsyncd/*.log {
+        daily
+        missingok
+        rotate 56
+        compress
+        delaycompress
+        notifempty
+        create 640 root archvsync
+}

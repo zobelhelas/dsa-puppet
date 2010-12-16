@@ -1,8 +1,8 @@
-class named::secondary inherits named {
+class named::authoritative inherits named {
     file {
         "/etc/bind/named.conf.debian-zones":
-            source  => [ "puppet:///named/per-host/$fqdn/named.conf.debian-zones",
-                         "puppet:///named/common/named.conf.debian-zones" ],
+            source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.debian-zones",
+                         "puppet:///modules/named/common/named.conf.debian-zones" ],
             notify  => Exec["bind9 reload"];
         "/etc/bind/named.conf.options":
             content => template("named/named.conf.options.erb"),

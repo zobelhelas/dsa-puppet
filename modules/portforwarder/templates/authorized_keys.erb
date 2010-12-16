@@ -29,7 +29,7 @@ config.each_pair do |sourcehost, services|
 
 	if allowed_ports.length > 0
 		sshkey = getportforwarderkey(sourcehost)
-		remote_ip = keyinfo[sourcehost][0]['ipHostNumber'].join(',')
+		remote_ip = keyinfo[sourcehost]['ipHostNumber'].join(',')
 		local_bind = '127.101.%d.%d'%[ (sourcehost.hash / 256 % 256), sourcehost.hash % 256 ]
 
 		lines << "# from #{sourcehost}"

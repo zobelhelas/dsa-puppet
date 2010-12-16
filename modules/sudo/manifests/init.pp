@@ -5,13 +5,13 @@ class sudo {
 		owner   => root,
 		group   => root,
 		mode    => 440,
-		source  => [ "puppet:///sudo/per-host/$fqdn/sudoers",
-		             "puppet:///sudo/common/sudoers" ],
+		source  => [ "puppet:///modules/sudo/per-host/$fqdn/sudoers",
+		             "puppet:///modules/sudo/common/sudoers" ],
 		require => Package["sudo"]
                 ;
 	       "/etc/pam.d/sudo":
-		source  => [ "puppet:///sudo/per-host/$fqdn/pam",
-		             "puppet:///sudo/common/pam" ],
+		source  => [ "puppet:///modules/sudo/per-host/$fqdn/pam",
+		             "puppet:///modules/sudo/common/pam" ],
 		require => Package["sudo"]
                 ;
 

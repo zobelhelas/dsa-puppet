@@ -1,0 +1,18 @@
+# ntpkey_IFFkey_orff.3492505946
+# Fri Sep  3 12:32:27 2010
+
+# This is the public version of this 'private' key -
+# the private data has been replaced by 0x01.
+# (just ask 'openssl dsa -text < foo.pub')
+
+-----BEGIN DSA PRIVATE KEY-----
+MIIBpwIBAAKBgQCPMl5UYkQV+TKXIOo4ySk9B6/WOFTbbofkv9zU9BsXZx3dqBL4
+uDorS+8BawWZcaBRvl1FiG31wcDq2/ltCthIqtUqcY8OvStYpdncBNOwWfzI+iQp
+9FWg18xG9qufgkm7GOK0jSPxSg5WkkpbzDVJGtamrcM3dTfl8uD54/yqpwIVAMfA
+kSN8n3ULsmOXZ809hmsMAeuvAoGAbsjJi/trgqnmjzqB3qcPinH2ljzPX9VUCHKp
+7zZlfR3iICKTXUJSLYzoT3IWtPJuLacNpCMr641QOypHYeXhSyF4SXtNf6RTtHKU
+FgWFtrBI0TO6P1oUdUUUYGo4mf90vIA/PgH0XqGupqV5k8tWU1Nkldqkdv1V8DRZ
+/mTooYYCgYBm/1vSho/CA6ObMdCkbWZUefe6oRrOqOUKH6gWSjh4FchD8CpXuPfi
+NLgnWIW3kmvunuRfLofxg1fvyOLLbBsvMt3sP60DX3ZAAmliaoQSmpRhHQJ5MRlW
+N1YhIacmH/E/b0Pt69AEI8y2qaZ/dytdUgqhP3FiIP8xUWmgBKQ3YAIBAQ==
+-----END DSA PRIVATE KEY-----

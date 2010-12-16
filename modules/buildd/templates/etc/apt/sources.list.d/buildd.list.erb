@@ -4,6 +4,8 @@
 ##
 
 deb https://buildd.debian.org/apt/ lenny main
-<% if hostname == "alkman" -%>
+<% if %w{alkman porpora}.include?(hostname) -%>
 deb https://buildd.debian.org/apt/ lenny-proposed main
+<% elsif %w{krenek}.include?(hostname) -%>
+deb https://buildd.debian.org/apt/ lenny-experimental main
 <% end %>

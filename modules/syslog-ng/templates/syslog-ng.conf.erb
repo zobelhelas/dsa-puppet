@@ -82,7 +82,7 @@ options {
 	# is not a real hostname.
 	bad_hostname("^gconfd$");
 
-<%- if hostname == "heininen" -%>
+<%- if (hostname == "heininen") || (hostname == "lotti") -%>
 	# we trust our mutual authenticated syslog clients
 	keep_hostname(yes);
 <%- end -%>
@@ -125,7 +125,7 @@ source s_local {
 <%- end -%>
 };
 
-<%-  if hostname == "heininen" -%>
+<%- if (hostname == "heininen") || (hostname == "lotti") -%>
 source s_network {
 	tcp6(port(5140) max-connections(200)
 		tls( key_file("/etc/exim4/ssl/thishost.key")
@@ -403,8 +403,8 @@ log {
 <%- end -%>
 
 
-<%- if hostname != "heininen" -%>
- <%- if has_variable?("syslogversion") and syslogversion.to_s == "3" -%>
+<%- if has_variable?("syslogversion") and syslogversion.to_s == "3" -%>
+  <%- if hostname != "heininen" -%>
 destination loghost-heininen {
 	tcp("heininen.debian.org" port (5140)
 		tls( key_file("/etc/ssl/debian/keys/thishost.key")
@@ -413,18 +413,32 @@ destination loghost-heininen {
 		)
 	);
 };
-
+ <%- end -%>
+ <%- if hostname != "lotti" -%>
+destination loghost-lotti {
+	tcp("lotti.debian.org" port (5140)
+		tls( key_file("/etc/ssl/debian/keys/thishost.key")
+		     cert_file("/etc/ssl/debian/certs/thishost.crt")
+		     ca_dir("/etc/ssl/debian/certs/")
+		)
+	);
+};
+ <%- end -%>
 
 log {
 	source(s_local);
+ <%- if hostname != "heininen" -%> 
 	destination(loghost-heininen);
-};
  <%- end -%>
+ <%- if hostname != "lotti" -%>
+	destination(loghost-lotti);
+ <%- end -%>
+};
 <%- end -%>
 
 
 
-<%- if hostname == "heininen" -%>
+<%- if (hostname == "heininen") || (hostname == "lotti") -%>
 ###############################################################################
 ########## ON LOG HOST ########################################################
 ###############################################################################

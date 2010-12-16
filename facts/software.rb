@@ -72,3 +72,8 @@ Facter.add("syslogversion") do
 		%x{dpkg-query -W -f='${Version}\n' syslog-ng | cut -b1}.chomp
 	end
 end
+Facter.add("rsyncd") do
+	setcode do
+		FileTest.exist?("/etc/rsyncd.conf")
+	end
+end
