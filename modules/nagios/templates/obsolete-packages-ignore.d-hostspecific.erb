@@ -12,7 +12,8 @@ when "cilea.debian.org":                ignore << "/freeswitch.*/"
 when /draghi.debian.org/:               ignore << %w{userdir-ldap libheimdal-kadm5-perl}
 when /orff.debian.org/:                 ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
 when /liszt.debian.org/:                ignore << "amavisd-new"
-when /stabile.debian.org/:              ignore << "xfsprogs"
+when /stabile.debian.org/:              ignore << %w{xfsprogs postgresql-9.0-debversion}
+when /sibelius.debian.org/:             ignore << %w{postgresql-9.0 postgresql-9.0-debversion libpq5 postgresql-contrib-9.0 postgresql-client-9.0 postgresql-plperl-9.0}
 when /(zandonai|zelenka).debian.org/:   ignore << %w{zabbix-agent rrdcollect}
 when /(dijkstra|unger|luchesi|schumann).debian.org/: ignore << "qemu-kvm"
 when /(lebrun|schroeder).debian.org/:   ignore << "firmware-linux-nonfree"
