@@ -13,7 +13,6 @@ nameinfo:
   arne.debian.org: Thomas Augustine Arne (1710 - 1778)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
   barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
-  bartok.debian.org: Béla Viktor János Bartók (March 25th, 1881 - September 26th, 1945)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
   bellini.debian.org: Vincenzo Salvatore Carmelo Francesco Bellini (November 3rd, 1801 - September 23rd, 1835)
   biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
@@ -247,7 +246,6 @@ host_settings:
     arnold.debian.org: mailout.debian.org
     ball.debian.org: mailout.debian.org
     barber.debian.org: mailout.debian.org
-    bartok.debian.org: mailout.debian.org
     beethoven.debian.org: mailout.debian.org
     biber.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org

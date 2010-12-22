@@ -6,7 +6,7 @@
 <%=
 out = []
 
-restrict_ssh = %w{lebrun logtest01 geo1 geo2 geo3 bartok beethoven tchaikovsky schroeder heininen handel lotti}
+restrict_ssh = %w{lebrun logtest01 geo1 geo2 geo3 beethoven tchaikovsky schroeder heininen handel lotti}
 
 ssh4allowed = []
 ssh6allowed = []
@@ -23,7 +23,7 @@ if %w{lebrun schroeder}.include?(hostname) then
 	ssh4allowed << '70.103.162.29' # master
 	ssh4allowed << '82.195.75.84'  # nott.ayous.org, HE (builddadm)
 end
-if %w{bartok beethoven}.include?(hostname) then
+if %w{beethoven}.include?(hostname) then
 	ssh4allowed << '$HOST_DEBIAN_V4'
 	ssh6allowed << '$HOST_DEBIAN_V6'
 end
