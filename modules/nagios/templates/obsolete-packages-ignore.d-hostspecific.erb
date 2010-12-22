@@ -6,7 +6,7 @@
 <%=
 ignore = []
 case fqdn
-when /(bellini|cimarosa).debian.org/:   ignore << "mcelog"
+when "bellini.debian.org":              ignore << "mcelog"
 when "busoni.debian.org":               ignore << %w{libthreads-perl libthreads-shared-perl}
 when "cilea.debian.org":                ignore << "/freeswitch.*/"
 when /draghi.debian.org/:               ignore << %w{userdir-ldap libheimdal-kadm5-perl}
