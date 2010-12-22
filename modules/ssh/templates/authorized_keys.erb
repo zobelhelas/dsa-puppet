@@ -36,7 +36,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAqtZYwCwuLP2KZOfqdRyKbexfhcfEiwY7en7aYmY7eUxa
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAuGJnElqbhgLtmJp/de8s42cAwKrkAhFq5u8EAkauEv6BZNqvY/6aRBxCNU55e5JZKa7D1qKMG0upZFCOl5K36uv0KXlCvIMgaQqQcce41dtNRmiyHpw3LXqdV2qJNpJAXMpsEN4F/STkftTOcFhI9nhz88IIwsboCErla1W8NxxRkBU0FxpT4Zn1wBlq30o12gtBFs3lO+nE7+k8H8I791V+3kjVAXCDh5Ep8BY4Bg8eSuhwUgmiNvWf6E6/D0s9pFJdAMFKFLPivsnc13nfgYDmxZQKrkVV8LqIGaisy7Q3LdQLKBraWYmfQ5idkaPK+EUSERdusG7pB0wzp1ieA1iEkgMRFFLBx22tQmEdmu+Wo3vM77FmNYWvvPKDwKYn1uwg0Kgf1JTWlFwq5C73EG3Q6Vb6ExNPaX/GMDkpi0Km5p2/BIM/jyCmCH+ScFRCtzJoxEg3L7BFdCKgY1bQW2pZDMRQ9nc32+EDUGQQbYp44/8mr4mXqDYV4VElZTqWZ6hJZk1cS7hustO8lJE3Yykp+q/5I0cq7fxe5aLBO5DwTPq9EY/dlcTy8z09Itm/AcJuCipg4I0nQ1cSDTNYn+4NVxoga/yS3gJlU5euXKmcaK9SaRCBIHtWR/Semza3Imvgtgd25bwKI+6VT/fHgqgmvo184NZID099w2E90eE= sgran's root key for debian.org machines
 
 <%= machine_keys = case fqdn
-   when "bartok.debian.org", "beethoven.debian.org" then
+   when "beethoven.debian.org" then
      out = ''
      keyinfo.keys.sort.each do |node|
        out += '# ' + keyinfo[node]['hostname'].to_s + '
