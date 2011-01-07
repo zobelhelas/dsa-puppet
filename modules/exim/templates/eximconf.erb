@@ -1133,7 +1133,7 @@ userforward_verify:
   user = Debian-exim
   no_check_local_user
   directory_transport = address_directory
-<%- if hostname == "master.debian.org -%>
+<%- if fqdn == "master.debian.org" -%>
   domains = +local_domains : debian.org
 <%- else -%>
   domains = +local_domains
@@ -1167,7 +1167,7 @@ userforward:
   check_ancestor
   check_local_user
   directory_transport = address_directory
-<%- if hostname == "master.debian.org -%>
+<%- if fqdn == "master.debian.org" -%>
   domains = +local_domains : debian.org
 <%- else -%>
   domains = +local_domains
@@ -1199,7 +1199,7 @@ procmail:
   debug_print = "R: procmail for $local_part@$domain"
   driver = accept
   check_local_user
-<%- if hostname == "master.debian.org -%>
+<%- if fqdn == "master.debian.org" -%>
   domains = +local_domains : debian.org
 <%- else -%>
   domains = +local_domains
