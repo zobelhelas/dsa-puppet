@@ -16,6 +16,12 @@ case hoster
     end
     nameservers += ["82.195.75.81", "82.195.66.249", "217.198.242.225"]
     searchpaths << "debprivate-darmstadt.debian.org"
+  when "dgi" then
+    case hostname
+      when "widor" then
+         nameserver << "127.0.0.1"
+    end
+    nameservers += ["195.49.152.215", "195.49.152.213", "195.49.152.214"]
   when "ftcollins" then
     case hostname
       when "spohr", "samosa" then
@@ -26,9 +32,11 @@ case hoster
   when "grnet" then
     nameservers += ["194.177.210.10", "194.177.210.210"]
     searchpaths << "debprivate-grnet.debian.org"
+  when "osousl" then
+    nameserver += ["140.211.166.130","140.211.166.131"]
   when "ubcece" then
-    searchpaths << "debprivate-ubc.debian.org"
     nameservers += ["206.12.19.5", "137.82.1.1", "142.103.1.1" ]
+    searchpaths << "debprivate-ubc.debian.org"
 end
 
 searchpaths << "debian.org"
