@@ -135,7 +135,6 @@ services:
   puppetmaster: handel.debian.org
   qamaster: merkel.debian.org
   rtmaster: 
-    - spohr.debian.org
     - reger.debian.org
 host_settings:
   heavy_exim:
