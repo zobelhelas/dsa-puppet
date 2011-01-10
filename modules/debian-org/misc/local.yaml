@@ -22,6 +22,7 @@ nameinfo:
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 – January 8th, 1713)
+  danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - January 16th, 1700)
   duarte.debian.org: Leonora Duarte (July 28th, 1610 - 1678)
@@ -229,6 +230,7 @@ host_settings:
     - reger.debian.org
     - nono.debian.org
     - spohr.debian.org
+    - danzi.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
@@ -253,6 +255,7 @@ host_settings:
     cilea.debian.org: mailout.debian.org
     corelli.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
+    danzi.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
     englund.debian.org: mailout.debian.org
