@@ -121,6 +121,8 @@ class debian-org {
     set_alternatives {
         "editor":
             linkto => "/usr/bin/vim.basic",
+        "view":
+            linkto => "/usr/bin/vim.basic",
     }
    
     exec {

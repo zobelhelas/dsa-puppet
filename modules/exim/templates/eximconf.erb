@@ -1161,6 +1161,30 @@ userforward_verify:
   router_home_directory = ${lookup passwd{$local_part}{${extract{5}{:}{$value}}}fail}
   verify_only
 
+# This is a senmailesque alias file lookup
+virt_aliases:
+  debug_print = "R: virt_aliases for $local_part@$domain"
+  driver = redirect
+  allow_defer
+  allow_fail
+  data = ${if exists{\
+           ${extract{directory}{VDOMAINDATA}{${value}/aliases}}}\
+	   {${lookup{$local_part}lsearch*{\
+              ${extract{directory}{VDOMAINDATA}{$value/aliases}}\
+	   }}}}
+  directory_transport = address_directory
+  domains = +virtual_domains
+  file_transport = ${if eq {${extract{group_writable}{VDOMAINDATA}}}{true}{address_file_group}{address_file}}
+  cannot_route_message = Unknown user
+  group = ${extract{group}{VDOMAINDATA}}
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
+  pipe_transport = address_pipe
+  qualify_preserve_domain
+  retry_use_local_part
+  transport_current_directory = ${extract{directory}{VDOMAINDATA}}
+  transport_home_directory = ${extract{directory}{VDOMAINDATA}}
+  user = ${extract{user}{VDOMAINDATA}}
+  
 userforward:
   debug_print = "R: userforward for $local_part${local_part_suffix}@$domain"
   driver = redirect
@@ -1335,30 +1359,6 @@ virt_direct_verify:
   transport_current_directory = ${extract{directory}{VDOMAINDATA}}
   verify_only
 
-# This is a senmailesque alias file lookup
-virt_aliases:
-  debug_print = "R: virt_aliases for $local_part@$domain"
-  driver = redirect
-  allow_defer
-  allow_fail
-  data = ${if exists{\
-           ${extract{directory}{VDOMAINDATA}{${value}/aliases}}}\
-	   {${lookup{$local_part}lsearch*{\
-              ${extract{directory}{VDOMAINDATA}{$value/aliases}}\
-	   }}}}
-  directory_transport = address_directory
-  domains = +virtual_domains
-  file_transport = ${if eq {${extract{group_writable}{VDOMAINDATA}}}{true}{address_file_group}{address_file}}
-  cannot_route_message = Unknown user
-  group = ${extract{group}{VDOMAINDATA}}
-  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
-  pipe_transport = address_pipe
-  qualify_preserve_domain
-  retry_use_local_part
-  transport_current_directory = ${extract{directory}{VDOMAINDATA}}
-  transport_home_directory = ${extract{directory}{VDOMAINDATA}}
-  user = ${extract{user}{VDOMAINDATA}}
-  
 # This is a qmailesque deliver into a directory of .forward files
 virt_direct:
   debug_print = "R: virt_direct for $local_part@$domain"
