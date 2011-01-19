@@ -161,7 +161,6 @@ host_settings:
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org
-    - raff.debian.org
     - saens.debian.org
     - schein.debian.org
     - steffani.debian.org
@@ -227,6 +226,7 @@ host_settings:
     - salieri.debian.org
     - sibelius.debian.org
     - quantz.debian.org
+    - raff.debian.org
     - reger.debian.org
     - nono.debian.org
     - spohr.debian.org
