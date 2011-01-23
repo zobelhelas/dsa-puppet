@@ -5,6 +5,7 @@ class buildd {
         "buildd-builder-meta": ensure => installed;
         "apt-transport-https": ensure => installed;
         "debootstrap": ensure => installed;
+        "dupload": ensure => installed;
     }
    
     file {
@@ -26,6 +27,10 @@ class buildd {
         "/etc/cron.d/dsa-buildd":
              source => "puppet:///modules/buildd/cron.d-dsa-buildd",
              require => Package["cron"]
+             ;
+        "/etc/dupload.conf":
+             source => "puppet:///modules/buildd/dupload.conf",
+             require => Package["dupload"]
              ;
     }
 }

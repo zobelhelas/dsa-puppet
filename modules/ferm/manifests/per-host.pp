@@ -6,13 +6,13 @@ class ferm::per-host {
     }
 
     case $hostname {
-        chopin,franck,gluck,kaufmann,kassia,klecker,lobos,merikanto,merkel,morricone,raff,ravel,ries,rietz,saens,schein,senfl,stabile,steffani,valente,villa,wieck,wolkenstein: {
+        chopin,franck,gluck,kaufmann,kassia,klecker,lobos,merikanto,merkel,morricone,ravel,ries,rietz,saens,schein,senfl,stabile,steffani,valente,villa,wieck,wolkenstein: {
             include ferm::rsync
         }
     }
 
     case $hostname {
-        chopin,franck,gluck,kassia,klecker,lobos,morricone,ravel,raff,ries,rietz,saens,schein,steffani,valente,villa,wieck,stabile: {
+        chopin,franck,gluck,kassia,klecker,lobos,morricone,ravel,ries,rietz,saens,schein,steffani,valente,villa,wieck,stabile: {
             include ferm::ftp
         }
     }
