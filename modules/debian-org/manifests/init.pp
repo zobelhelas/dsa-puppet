@@ -39,7 +39,6 @@ class debian-org {
         "nload": ensure => installed;
         "pciutils": ensure => installed;
         "pdksh": ensure => installed;
-        "puppet": ensure => installed;
         "rsyslog": ensure => purged;
         "sysklogd": ensure => purged;
         "syslog-ng": ensure => installed;
