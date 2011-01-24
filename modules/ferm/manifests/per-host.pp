@@ -24,13 +24,13 @@ class ferm::per-host {
                 rule         => "&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))"
             }
         }
-	danzi: {
-            @ferm::rule { "dsa-postgres-danzi":
-                description     => "Allow postgress access",
-                rule            => "&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 ))"
-            }
+        danzi: {
+                @ferm::rule { "dsa-postgres-danzi":
+                    description     => "Allow postgress access",
+                    rule            => "&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 ))"
+                }
 
-	}
+        }
         paganini: {
             @ferm::rule { "dsa-dhcp":
                 description     => "Allow dhcp access",
