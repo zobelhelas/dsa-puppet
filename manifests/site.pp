@@ -100,6 +100,9 @@ node default {
         Linux: {
             include ferm
             include ferm::per-host
+            case $rsyncd {
+                "true": { include ferm::rsync }
+            }
         }
     }
 
