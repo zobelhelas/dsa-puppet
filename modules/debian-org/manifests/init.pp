@@ -71,14 +71,14 @@ class debian-org {
             source => "puppet:///files/etc/timezone",
             notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
         "/etc/puppet/puppet.conf":
-            require => Package["puppet"],
+            # require => Package["puppet"],
             source => "puppet:///files/etc/puppet/puppet.conf"
             ;
         "/etc/default/puppet":
-            require => Package["puppet"],
+            # require => Package["puppet"],
             source => "puppet:///files/etc/default/puppet"
             ;
-       
+
         "/etc/cron.d/dsa-puppet-stuff":
             source => "puppet:///files/etc/cron.d/dsa-puppet-stuff",
             require => Package["cron"]
