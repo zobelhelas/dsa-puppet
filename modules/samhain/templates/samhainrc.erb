@@ -215,6 +215,9 @@ file=/var/log/syslog
 <% case hoster when "ubcece", "darmstadt", "ftcollins", "grnet" then -%>
 file=/etc/resolv.conf
 <% end -%>
+<% if nodeinfo['buildd'] -%>
+file=/etc/dupload.conf
+<% end -%>
 file=/etc/resolv.conf.pcmcia.save
 file=/etc/nologin
 file=/etc/postfix/debian.db

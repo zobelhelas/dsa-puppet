@@ -6,12 +6,6 @@ class ferm::per-host {
     }
 
     case $hostname {
-        chopin,franck,gluck,kaufmann,kassia,klecker,lobos,merikanto,merkel,morricone,ravel,ries,rietz,saens,schein,senfl,stabile,steffani,valente,villa,wieck,wolkenstein: {
-            include ferm::rsync
-        }
-    }
-
-    case $hostname {
         chopin,franck,gluck,kassia,klecker,lobos,morricone,ravel,ries,rietz,saens,schein,steffani,valente,villa,wieck,stabile: {
             include ferm::ftp
         }
@@ -24,13 +18,13 @@ class ferm::per-host {
                 rule         => "&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))"
             }
         }
-	danzi: {
-            @ferm::rule { "dsa-postgres-danzi":
-                description     => "Allow postgress access",
-                rule            => "&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 ))"
-            }
+        danzi: {
+                @ferm::rule { "dsa-postgres-danzi":
+                    description     => "Allow postgress access",
+                    rule            => "&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 ))"
+                }
 
-	}
+        }
         paganini: {
             @ferm::rule { "dsa-dhcp":
                 description     => "Allow dhcp access",
@@ -61,10 +55,6 @@ class ferm::per-host {
                 domain          => "(ip ip6)",
                 description     => "Allow powell to seed BT",
                 rule            => "proto tcp dport 8000:8100 jump ACCEPT"
-            }
-            @ferm::rule { "dsa-powell-rsync":
-                description     => "Hoster wants to sync from here, and why not",
-                rule            => "&SERVICE_RANGE(tcp, rsync, ( 195.20.242.90 192.25.206.33 82.195.75.106 206.12.19.118 ))"
             }
         }
         heininen,lotti: {
@@ -208,7 +198,7 @@ class ferm::per-host {
             @ferm::rule { "dsa-nat-snapshot-varnish":
                 table           => 'nat',
                 chain           => 'PREROUTING',
-                rule            => 'proto tcp daddr 193.62.202.28 dport 80 REDIRECT to-ports 6081',
+                rule            => 'proto tcp daddr 193.62.202.30 dport 80 REDIRECT to-ports 6081',
             }
         }
         stabile: {

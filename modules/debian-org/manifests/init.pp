@@ -39,7 +39,6 @@ class debian-org {
         "nload": ensure => installed;
         "pciutils": ensure => installed;
         "pdksh": ensure => installed;
-        "puppet": ensure => installed;
         "rsyslog": ensure => purged;
         "sysklogd": ensure => purged;
         "syslog-ng": ensure => installed;
@@ -72,21 +71,21 @@ class debian-org {
             source => "puppet:///files/etc/timezone",
             notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
         "/etc/puppet/puppet.conf":
-            require => Package["puppet"],
+            # require => Package["puppet"],
             source => "puppet:///files/etc/puppet/puppet.conf"
             ;
         "/etc/default/puppet":
-            require => Package["puppet"],
+            # require => Package["puppet"],
             source => "puppet:///files/etc/default/puppet"
             ;
-       
+
         "/etc/cron.d/dsa-puppet-stuff":
             source => "puppet:///files/etc/cron.d/dsa-puppet-stuff",
             require => Package["cron"]
             ;
         "/etc/ldap/ldap.conf":
             require => Package["userdir-ldap"],
-            source => "puppet:///files/etc/ldap/ldap.conf",
+            source => "puppet:///modules/debian.org/ldap.conf",
             ;
         "/etc/pam.d/common-session":
             require => Package["libpam-pwdfile"],
