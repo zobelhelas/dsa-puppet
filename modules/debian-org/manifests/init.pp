@@ -50,7 +50,7 @@ class debian-org {
     }
     file {
         "/etc/apt/preferences":
-            source => "puppet:///files/etc/apt/preferences";
+            source => "puppet:///modules/debian-org/apt.preferences";
         "/etc/apt/sources.list.d/backports.org.list":
             content => template("debian-org/etc/apt/sources.list.d/backports.org.list.erb"),
             notify  => Exec["apt-get update"];
@@ -68,11 +68,11 @@ class debian-org {
         "/etc/apt/apt.conf.d/local-pdiffs":
             source => "puppet:///modules/debian-org/apt.conf.d/local-pdiffs";
         "/etc/timezone":
-            source => "puppet:///files/etc/timezone",
+            source => "puppet:///modules/debian-org/timezone",
             notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
         "/etc/puppet/puppet.conf":
             # require => Package["puppet"],
-            source => "puppet:///files/etc/puppet/puppet.conf"
+            source => "puppet:///modules/debian-org/puppet.conf"
             ;
         "/etc/default/puppet":
             # require => Package["puppet"],
