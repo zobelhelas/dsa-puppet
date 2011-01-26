@@ -64,9 +64,9 @@ class debian-org {
             content => template("debian-org/etc/apt/sources.list.d/volatile.list.erb"),
             notify  => Exec["apt-get update"];
         "/etc/apt/apt.conf.d/local-recommends":
-            source => "puppet:///files/etc/apt/apt.conf.d/local-recommends";
+            source => "puppet:///modules/debian-org/apt.conf.d/local-recommends";
         "/etc/apt/apt.conf.d/local-pdiffs":
-            source => "puppet:///files/etc/apt/apt.conf.d/local-pdiffs";
+            source => "puppet:///modules/debian-org/apt.conf.d/local-pdiffs";
         "/etc/timezone":
             source => "puppet:///files/etc/timezone",
             notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
@@ -76,11 +76,11 @@ class debian-org {
             ;
         "/etc/default/puppet":
             # require => Package["puppet"],
-            source => "puppet:///files/etc/default/puppet"
+            source => "puppet:///modules/debian-org/puppet.default"
             ;
 
         "/etc/cron.d/dsa-puppet-stuff":
-            source => "puppet:///files/etc/cron.d/dsa-puppet-stuff",
+            source => "puppet:///modules/debian-org/dsa-puppet-stuff.cron",
             require => Package["cron"]
             ;
         "/etc/ldap/ldap.conf":
@@ -89,7 +89,7 @@ class debian-org {
             ;
         "/etc/pam.d/common-session":
             require => Package["libpam-pwdfile"],
-            source => "puppet:///files/etc/pam.d/common-session",
+            source => "puppet:///modules/debian-org/pam.common-session",
             ;
         "/etc/rc.local":
             mode   => 0755,
