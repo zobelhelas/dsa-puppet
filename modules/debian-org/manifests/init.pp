@@ -85,7 +85,7 @@ class debian-org {
             ;
         "/etc/ldap/ldap.conf":
             require => Package["userdir-ldap"],
-            source => "puppet:///modules/debian.org/ldap.conf",
+            source => "puppet:///modules/debian-org/ldap.conf",
             ;
         "/etc/pam.d/common-session":
             require => Package["libpam-pwdfile"],
