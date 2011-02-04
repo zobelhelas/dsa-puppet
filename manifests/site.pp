@@ -62,21 +62,21 @@ node default {
     }
 
     case extractnodeinfo($nodeinfo, 'muninmaster') {
-        true: { include munin-node::master }
+        "true": { include munin-node::master }
     }
 
     case extractnodeinfo($nodeinfo, 'nagiosmaster') {
-        true:    { include nagios::server }
+        "true":    { include nagios::server }
         default: { include nagios::client }
     }
 
     case $apache2 {
          "true":  {
               case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-                     true:    { include apache2::security_mirror }
+                     "true":    { include apache2::security_mirror }
               }
               case extractnodeinfo($nodeinfo, 'apache2_www_mirror') {
-                     true:    { include apache2::www_mirror }
+                     "true":    { include apache2::www_mirror }
               }
               include apache2
          }
