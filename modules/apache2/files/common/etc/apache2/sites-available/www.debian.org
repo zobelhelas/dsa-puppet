@@ -86,7 +86,7 @@
    RewriteLog /var/log/apache2/www-other.debian.org-recirect.log
 
    RewriteEngine on
-   RewriteRule ^(.*)$ http://www.debian.org/$1 [R=301,L]
+   RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
 </VirtualHost>
 
 <VirtualHost *:80>
