@@ -1,0 +1,136 @@
+# Need to turn on negotiation_module
+<Directory /org/www.debian.org/www/>
+  Options +MultiViews +FollowSymLinks +Indexes
+  AddHandler type-map var
+  # Make sure that the srm.conf directive is commented out.
+  AddDefaultCharSet Off
+  AllowOverride AuthConfig FileInfo
+
+  # Serve icons as image/x-icon
+  AddType image/x-icon .ico
+
+  # Serve RSS feeds as application/rss+xml
+  AddType application/rss+xml .rdf
+
+  # Nice caching..
+  ExpiresActive On
+  ExpiresDefault "access plus 1 day"
+  ExpiresByType image/gif "access plus 1 week"
+  ExpiresByType image/jpeg "access plus 1 week"
+
+  # language stuff, for web site translations
+  # for boot-floppies docs only: sk
+  AddLanguage en .en
+  AddLanguage en-us .en-us
+  AddLanguage en-gb .en-gb
+  AddLanguage ar .ar
+  AddLanguage bg .bg
+  AddLanguage ca .ca
+  AddLanguage cs .cs
+  AddLanguage da .da
+  AddLanguage de .de
+  AddLanguage el .el
+  AddLanguage eo .eo
+  AddLanguage es .es
+  AddLanguage fi .fi
+  AddLanguage fr .fr
+  AddLanguage hr .hr
+  AddLanguage hu .hu
+  AddLanguage hy .hy
+  AddLanguage id .id
+  AddLanguage it .it
+  AddLanguage ja .ja
+  AddLanguage ko .ko
+  AddLanguage lt .lt
+  AddLanguage nl .nl
+  AddLanguage no .no
+  AddLanguage nb .nb
+  AddLanguage pl .pl
+  AddLanguage pt .pt
+  AddLanguage pt-br .pt
+  AddLanguage ro .ro
+  AddLanguage ru .ru
+  AddLanguage sk .sk
+  AddLanguage sl .sl
+  AddLanguage sv .sv
+  AddLanguage tr .tr
+  AddLanguage uk .uk
+  AddLanguage vi .vi
+  AddLanguage zh-CN .zh-cn
+  AddLanguage zh-HK .zh-hk
+  AddLanguage zh-TW .zh-tw
+  LanguagePriority en fr de it es ja pl hr da pt pt-br fi zh-cn zh-hk zh-tw cs sv ko no nb ru tr eo ar nl hu ro sk el ca en-us en-gb id lt sl bg uk hy vi
+
+  DirectoryIndex index index.html index.shtml index.htm
+
+  <Files *.html.es>
+    ForceType text/html
+  </Files>
+
+  <Files *.pdf.es>
+    ForceType application/pdf
+  </Files>
+
+  <Files *.txt.es>
+    ForceType text/plain
+  </Files>
+</Directory>
+
+<VirtualHost *:80>
+   ServerName www.nl.debian.org
+   ServerAdmin webmaster@debian.org
+   ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net
+   DocumentRoot /srv/www.debian.org/www/
+   ErrorLog /var/log/apache2/www-other.debian.org-error.log
+   CustomLog /var/log/apache2/www-other.debian.org-access.log combined
+   RewriteLog /var/log/apache2/www-other.debian.org-recirect.log
+
+   RewriteEngine on
+   RewriteRule ^(.*)$ http://www.debian.org/$1 [R=301,L]
+</VirtualHost>
+
+<VirtualHost *:80>
+   ServerName www.debian.org
+   ServerAdmin webmaster@debian.org
+   ServerAlias debian.org www-staging.debian.org
+   DocumentRoot /srv/www.debian.org/www/
+   ErrorLog /var/log/apache2/www.debian.org-error.log
+   CustomLog /var/log/apache2/www.debian.org-access.log combined
+
+   # CacheNegotiatedDocs: By default, Apache sends Pragma: no-cache with each
+   # document that was negotiated on the basis of content. This asks proxy
+   # servers not to cache the document. Uncommenting the following line disables
+   # this behavior, and proxies will be allowed to cache the documents.
+   CacheNegotiatedDocs On
+
+# the joys of backwards compatibility
+   Redirect /cgi-bin/cvsweb http://cvs.debian.org
+   Redirect /Lists-Archives http://lists.debian.org
+   Redirect /search http://search.debian.org
+   Redirect /Packages http://packages.debian.org
+   Redirect /lintian http://lintian.debian.org
+
+   Redirect /SPI http://www.spi-inc.org
+#   Redirect /OpenHardware http://www.openhardware.org
+   Redirect /OpenSource http://www.opensource.org
+
+   Redirect /Bugs/db/ix/pseudopackages.html http://www.debian.org/Bugs/pseudo-packages
+   RewriteEngine on
+   RewriteRule ^/Bugs/db/pa/l([^/]+).html$ http://bugs.debian.org/$1
+   RewriteRule ^/Bugs/db/[[:digit:]][[:digit:]]/([[:digit:]][[:digit:]][[:digit:]]+).html$ http://bugs.debian.org/$1
+   RewriteRule ^/Bugs/db/ma/l([^/]+).html$ http://bugs.debian.org/cgi-bin/pkgreport.cgi?maintenc=$1
+
+   Userdir http://people.debian.org/~*/   
+
+   Redirect /doc/prospective-packages http://www.debian.org/devel/wnpp/
+   Redirect /devel/maintainer_contacts http://www.debian.org/intro/organization
+   Redirect /zh/ http://www.debian.org/intl/Chinese/
+   Redirect /devel/help http://www.debian.org/devel/join/
+   Redirect /distrib/books http://www.debian.org/doc/books
+   Redirect /distrib/vendors http://www.debian.org/CD/vendors/
+   Redirect /distrib/cdinfo http://www.debian.org/CD/vendors/info
+   Redirect /related_links http://www.debian.org/misc/related_links
+   Redirect /ports/laptops http://www.debian.org/misc/laptops/
+   Redirect /misc/README.mirrors http://www.debian.org/mirror/list
+   Redirect /misc/README.non-US http://www.debian.org/mirror/list.non-US
+</VirtualHost>

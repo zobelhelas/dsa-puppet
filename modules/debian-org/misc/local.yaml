@@ -166,6 +166,13 @@ host_settings:
     - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
+  apache2_www_mirror:
+    - senfl.debian.org
+    - bellini.debian.org
+    - englund.debian.org
+    - gluck.debian.org
+    - klecker.debian.org
+    - kokkonen.debian.org
   timeserver:
     - merikanto.debian.org
     - orff.debian.org
