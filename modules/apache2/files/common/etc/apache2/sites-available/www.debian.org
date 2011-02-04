@@ -1,5 +1,5 @@
 # Need to turn on negotiation_module
-<Directory /org/www.debian.org/www/>
+<Directory /srv/www.debian.org/www/>
   Options +MultiViews +FollowSymLinks +Indexes
   AddHandler type-map var
   # Make sure that the srm.conf directive is commented out.
