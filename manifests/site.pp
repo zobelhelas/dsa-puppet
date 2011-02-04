@@ -78,7 +78,7 @@ node default {
               case extractnodeinfo($nodeinfo, 'apache2_www_mirror') {
                      true:    { include apache2::www_mirror }
               }
-              default: { include apache2 }
+              include apache2
          }
     }
 
