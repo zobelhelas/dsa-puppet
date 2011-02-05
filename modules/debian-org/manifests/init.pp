@@ -137,8 +137,15 @@ class debian-proliant inherits debian-org {
     package {
         "hpacucli": ensure => installed;
         "hp-health": ensure => installed;
-        "cpqarrayd": ensure => installed;
         "arrayprobe": ensure => installed;
+    }
+    case extractnodeinfo($nodeinfo, 'squeeze') {
+        true: {}
+        default: {
+            package {
+                "cpqarrayd": ensure => installed;
+            }
+        }
     }
     case $debarchitecture {
         "amd64": {
