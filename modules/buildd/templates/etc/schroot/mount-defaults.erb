@@ -7,6 +7,16 @@
 # (CHROOT_PATH)
 #
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
+<% if nodeinfo['ldap'].has_key?('architecture') and nodeinfo['ldap']['architecture'].start_with?('kfreebsd') -%>
+# kFreeBSD version
+proc		/proc		linprocfs	defaults	0	0
+dev		/dev		devfs	rw,bind		0	0
+dev		/dev/fd		fdescfs	rw,bind		0	0
+sys		/sys		linsysfs	defaults	0	0
+<% else -%>
+# Linux version
 proc            /proc           proc    defaults        0       0
 /dev/pts        /dev/pts        none    rw,bind         0       0
 tmpfs           /dev/shm        tmpfs   defaults        0       0
+<% end %>
+

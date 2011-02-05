@@ -21,7 +21,7 @@ class buildd {
              notify  => Exec["apt-keys-update"],
              ;
         "/etc/schroot/mount-defaults":
-             source  => "puppet:///modules/buildd/mount-defaults",
+             content => template("buildd/etc/schroot/mount-defaults.erb"),
              require => Package["sbuild"]
              ;
         "/etc/cron.d/dsa-buildd":
