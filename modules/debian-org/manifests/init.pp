@@ -97,17 +97,6 @@ class debian-org {
             notify => Exec["rc.local start"],
             ;
     }
-    case $hostname {
-        handel: {
-            file {
-                "/etc/puppet/lib":
-                    ensure  => directory,
-                    source => "puppet:///files/etc/puppet/lib",
-                    recurse => true,
-                    notify  => Exec["puppetmaster restart"];
-             }
-         }
-    }
    
     # set mmap_min_addr to 4096 to mitigate
     # Linux NULL-pointer dereference exploits
