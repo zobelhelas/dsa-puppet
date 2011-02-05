@@ -3,7 +3,7 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 deb     http://security.debian.org/             squeeze/updates    main contrib non-free
 <% else %>
 deb     http://security.debian.org/             lenny/updates    main contrib non-free
