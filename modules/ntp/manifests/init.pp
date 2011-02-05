@@ -36,7 +36,7 @@ class ntp {
                     owner   => root,
                     group   => root,
                     mode    => 444,
-                    source  => [ "puppet:///ntp/etc-default-ntp" ],
+                    source  => [ "puppet:///modules/ntp/etc-default-ntp" ],
                     require => Package["ntp"],
                     notify  => Exec["ntp restart"],
                     ;
@@ -45,7 +45,7 @@ class ntp {
                     owner   => root,
                     group   => root,
                     mode    => 444,
-                    source  => [ "puppet:///ntp/ntpkey_iff_merikanto.pub" ],
+                    source  => [ "puppet:///modules/ntp/ntpkey_iff_merikanto.pub" ],
                     require => Package["ntp"],
                     notify  => Exec["ntp restart"],
                     ;
@@ -53,7 +53,7 @@ class ntp {
                     owner   => root,
                     group   => root,
                     mode    => 444,
-                    source  => [ "puppet:///ntp/ntpkey_iff_orff.pub" ],
+                    source  => [ "puppet:///modules/ntp/ntpkey_iff_orff.pub" ],
                     require => Package["ntp"],
                     notify  => Exec["ntp restart"],
                     ;
@@ -61,7 +61,7 @@ class ntp {
                     owner   => root,
                     group   => root,
                     mode    => 444,
-                    source  => [ "puppet:///ntp/ntpkey_iff_ravel.pub" ],
+                    source  => [ "puppet:///modules/ntp/ntpkey_iff_ravel.pub" ],
                     require => Package["ntp"],
                     notify  => Exec["ntp restart"],
                     ;
@@ -69,7 +69,7 @@ class ntp {
                     owner   => root,
                     group   => root,
                     mode    => 444,
-                    source  => [ "puppet:///ntp/ntpkey_iff_busoni.pub" ],
+                    source  => [ "puppet:///modules/ntp/ntpkey_iff_busoni.pub" ],
                     require => Package["ntp"],
                     notify  => Exec["ntp restart"],
                     ;
