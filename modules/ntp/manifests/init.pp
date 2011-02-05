@@ -29,7 +29,7 @@ class ntp {
             ;
     }
     case extractnodeinfo($nodeinfo, 'timeserver') {
-        'true': { }
+        true: { }
         default: {
             file {
                 "/etc/default/ntp":
