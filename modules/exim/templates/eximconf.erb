@@ -76,7 +76,7 @@
 #                    MAIN CONFIGURATION SETTINGS                     #
 ######################################################################
 
-<%- if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? -%>
+<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
 perl_startup = do '/etc/exim4/exim_surbl.pl'
 <%- end -%>
 
@@ -87,7 +87,7 @@ perl_startup = do '/etc/exim4/exim_surbl.pl'
 acl_smtp_helo = check_helo
 acl_smtp_rcpt = ${if ={$interface_port}{587} {check_submission}{check_recipient}}
 acl_smtp_data = check_message
-<%- if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? -%>
+<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
 acl_smtp_mime = acl_check_mime
 <%- end -%>
 acl_smtp_predata = acl_check_predata
@@ -169,7 +169,7 @@ timeout_frozen_after=14d
 message_size_limit = 100M
 message_logs = false
 smtp_accept_max_per_host = ${if match_ip {$sender_host_address}{+debianhosts}{0}{7}}
-<%- if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? -%>
+<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
 smtp_accept_max = 300
 smtp_accept_queue = 200
 smtp_accept_queue_per_connection = 50
@@ -188,7 +188,7 @@ check_spool_space  = 20M
 
 delay_warning =
 
-<%- if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? -%>
+<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
 message_body_visible = 5000
 queue_run_max = 50
 deliver_queue_load_max = 50
@@ -847,7 +847,7 @@ check_recipient:
 
   deny    message = relay not permitted
 
-<%- if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? -%>
+<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
 acl_check_mime:
 
  discard condition     = ${if <{$message_size}{256000}}
@@ -947,7 +947,7 @@ check_message:
           message         = X-malware detected: $malware_name
 
 <%- end -%>
-<%- if nodeinfo.has_key?('heavy_exim') and not nodeinfo['heavy_exim'].empty? -%>
+<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
  discard condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{blackhole}}
          set acl_m_srb = ${perl{surblspamcheck}}

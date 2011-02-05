@@ -21,7 +21,7 @@
 ## Start monit in the background (run as a daemon) and check services at 
 ## 2-minute intervals.
 #
-<% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 set daemon 300
 <% else %>
 <% end %>
