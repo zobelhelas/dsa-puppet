@@ -1,5 +1,10 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
 # Need to turn on negotiation_module
-<Directory /org/www.debian.org/www/>
+<Directory /srv/www.debian.org/www/>
   Options +MultiViews +FollowSymLinks +Indexes
   AddHandler type-map var
   # Make sure that the srm.conf directive is commented out.
@@ -84,9 +89,10 @@
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log combined
    RewriteLog /var/log/apache2/www-other.debian.org-recirect.log
+   RewriteLogLevel 1
 
    RewriteEngine on
-   RewriteRule ^(.*)$ http://www.debian.org/$1 [R=301,L]
+   RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
 </VirtualHost>
 
 <VirtualHost *:80>
