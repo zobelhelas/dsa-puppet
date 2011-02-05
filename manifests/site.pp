@@ -61,6 +61,10 @@ node default {
         }
     }
 
+    case extractnodeinfo($nodeinfo, 'puppetmaster') {
+        true: { include puppetmaster }
+    }
+
     case extractnodeinfo($nodeinfo, 'muninmaster') {
         true: { include munin-node::master }
     }
