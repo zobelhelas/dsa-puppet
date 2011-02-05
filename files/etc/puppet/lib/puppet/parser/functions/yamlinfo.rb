@@ -34,7 +34,7 @@ module Puppet::Parser::Functions
           if values.kind_of?(Hash)
             results[property] = values[host] if values.has_key?(host)
           elsif values.kind_of?(Array)
-            results[property] = "true" if values.include?(host)
+            results[property] = values.include?(host)
           end
         end
       end

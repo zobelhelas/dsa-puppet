@@ -44,7 +44,7 @@ node default {
         "true": {
             package { acpid: ensure => installed }
             case extractnodeinfo($nodeinfo, 'squeeze') {
-                'true':  { package { acpi-support-base: ensure => installed } }
+                true:  { package { acpi-support-base: ensure => installed } }
             }
         }
     }
@@ -55,28 +55,28 @@ node default {
     case $mta {
         "exim4":   {
              case extractnodeinfo($nodeinfo, 'heavy_exim') {
-                  'true':  { include exim::mx }
+                  true:  { include exim::mx }
                   default: { include exim }
              }
         }
     }
 
     case extractnodeinfo($nodeinfo, 'muninmaster') {
-        "true": { include munin-node::master }
+        true: { include munin-node::master }
     }
 
     case extractnodeinfo($nodeinfo, 'nagiosmaster') {
-        "true":    { include nagios::server }
+        true:    { include nagios::server }
         default: { include nagios::client }
     }
 
     case $apache2 {
          "true":  {
               case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
-                     "true":    { include apache2::security_mirror }
+                     true:    { include apache2::security_mirror }
               }
               case extractnodeinfo($nodeinfo, 'apache2_www_mirror') {
-                     "true":    { include apache2::www_mirror }
+                     true:    { include apache2::www_mirror }
               }
               include apache2
          }
@@ -88,7 +88,7 @@ node default {
 
 
     case extractnodeinfo($nodeinfo, 'buildd') {
-         'true':  {
+         true:  {
              include buildd
          }
     }
