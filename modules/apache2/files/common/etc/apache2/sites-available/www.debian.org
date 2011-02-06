@@ -109,6 +109,9 @@
    # this behavior, and proxies will be allowed to cache the documents.
    CacheNegotiatedDocs On
 
+# Custom Error
+   ErrorDocument 404 /errors/404
+
 # the joys of backwards compatibility
    Redirect /cgi-bin/cvsweb http://cvs.debian.org
    Redirect /Lists-Archives http://lists.debian.org
