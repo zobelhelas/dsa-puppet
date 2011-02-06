@@ -84,7 +84,7 @@
 <VirtualHost *:80>
    ServerName www.nl.debian.org
    ServerAdmin webmaster@debian.org
-   ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net
+   ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net debian.org
    DocumentRoot /srv/www.debian.org/www/
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log combined
@@ -98,7 +98,7 @@
 <VirtualHost *:80>
    ServerName www.debian.org
    ServerAdmin webmaster@debian.org
-   ServerAlias debian.org www-staging.debian.org
+   ServerAlias www-staging.debian.org
    DocumentRoot /srv/www.debian.org/www/
    ErrorLog /var/log/apache2/www.debian.org-error.log
    CustomLog /var/log/apache2/www.debian.org-access.log combined
