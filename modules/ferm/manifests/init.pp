@@ -71,7 +71,7 @@ class ferm {
     }
 
     case extractnodeinfo($nodeinfo, 'buildd') {
-        'true': {
+        true: {
             file {
                 "/etc/ferm/conf.d/load_ftp_conntrack.conf":
                     source => "puppet:///modules/ferm/conntrack_ftp.conf",

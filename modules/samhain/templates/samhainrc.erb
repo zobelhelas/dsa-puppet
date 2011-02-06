@@ -215,6 +215,9 @@ file=/var/log/syslog
 <% case hoster when "ubcece", "darmstadt", "ftcollins", "grnet" then -%>
 file=/etc/resolv.conf
 <% end -%>
+<% if nodeinfo['buildd'] -%>
+file=/etc/dupload.conf
+<% end -%>
 file=/etc/resolv.conf.pcmcia.save
 file=/etc/nologin
 file=/etc/postfix/debian.db
@@ -260,7 +263,7 @@ file=/etc/ssh/ssh_config
 file=/etc/ssh/sshd_config
 <%=
 out=""
-if not nodeinfo['heavy_exim'].empty?
+if nodeinfo['heavy_exim']
   out = '
 file=/etc/exim4/surbl_whitelist.txt
 file=/etc/exim4/exim_surbl.pl
@@ -369,6 +372,7 @@ file=/etc/nagios3/puppetconf.d/auto-services.cfg
 file=/etc/nagios3/puppetconf.d/auto-dependencies.cfg
 file=/etc/nagios3/puppetconf.d/auto-hostextinfo.cfg
 file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg
+file=/etc/nagios3/puppetconf.d/auto-servicegroups.cfg
 <% end -%>
 <% if nodeinfo['muninmaster'] -%>
 file=/etc/munin/munin.conf

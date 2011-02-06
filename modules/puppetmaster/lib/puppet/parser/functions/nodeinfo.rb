@@ -4,7 +4,7 @@ module Puppet::Parser::Functions
     host = args[0]
     yamlfile = args[1]
 
-    require '/etc/puppet/lib/puppet/parser/functions/ldapinfo.rb'
+    require '/var/lib/puppet/lib/puppet/parser/functions/ldapinfo.rb'
 
     results         = function_yamlinfo(host, yamlfile)
     results['ldap'] = function_ldapinfo(host, '*')

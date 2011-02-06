@@ -44,7 +44,7 @@ node default {
         "true": {
             package { acpid: ensure => installed }
             case extractnodeinfo($nodeinfo, 'squeeze') {
-                'true':  { package { acpi-support-base: ensure => installed } }
+                true:  { package { acpi-support-base: ensure => installed } }
             }
         }
     }
@@ -55,10 +55,14 @@ node default {
     case $mta {
         "exim4":   {
              case extractnodeinfo($nodeinfo, 'heavy_exim') {
-                  'true':  { include exim::mx }
+                  true:  { include exim::mx }
                   default: { include exim }
              }
         }
+    }
+
+    case extractnodeinfo($nodeinfo, 'puppetmaster') {
+        true: { include puppetmaster }
     }
 
     case extractnodeinfo($nodeinfo, 'muninmaster') {
@@ -74,8 +78,11 @@ node default {
          "true":  {
               case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
                      true:    { include apache2::security_mirror }
-                     default: { include apache2 }
               }
+              case extractnodeinfo($nodeinfo, 'apache2_www_mirror') {
+                     true:    { include apache2::www_mirror }
+              }
+              include apache2
          }
     }
 
@@ -85,7 +92,7 @@ node default {
 
 
     case extractnodeinfo($nodeinfo, 'buildd') {
-         'true':  {
+         true:  {
              include buildd
          }
     }
@@ -100,6 +107,9 @@ node default {
         Linux: {
             include ferm
             include ferm::per-host
+            case $rsyncd {
+                "true": { include ferm::rsync }
+            }
         }
     }
 

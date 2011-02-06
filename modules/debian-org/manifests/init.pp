@@ -39,7 +39,6 @@ class debian-org {
         "nload": ensure => installed;
         "pciutils": ensure => installed;
         "pdksh": ensure => installed;
-        "puppet": ensure => installed;
         "rsyslog": ensure => purged;
         "sysklogd": ensure => purged;
         "syslog-ng": ensure => installed;
@@ -51,7 +50,7 @@ class debian-org {
     }
     file {
         "/etc/apt/preferences":
-            source => "puppet:///files/etc/apt/preferences";
+            source => "puppet:///modules/debian-org/apt.preferences";
         "/etc/apt/sources.list.d/backports.org.list":
             content => template("debian-org/etc/apt/sources.list.d/backports.org.list.erb"),
             notify  => Exec["apt-get update"];
@@ -65,49 +64,38 @@ class debian-org {
             content => template("debian-org/etc/apt/sources.list.d/volatile.list.erb"),
             notify  => Exec["apt-get update"];
         "/etc/apt/apt.conf.d/local-recommends":
-            source => "puppet:///files/etc/apt/apt.conf.d/local-recommends";
+            source => "puppet:///modules/debian-org/apt.conf.d/local-recommends";
         "/etc/apt/apt.conf.d/local-pdiffs":
-            source => "puppet:///files/etc/apt/apt.conf.d/local-pdiffs";
+            source => "puppet:///modules/debian-org/apt.conf.d/local-pdiffs";
         "/etc/timezone":
-            source => "puppet:///files/etc/timezone",
+            source => "puppet:///modules/debian-org/timezone",
             notify => Exec["dpkg-reconfigure tzdata -pcritical -fnoninteractive"];
         "/etc/puppet/puppet.conf":
-            require => Package["puppet"],
-            source => "puppet:///files/etc/puppet/puppet.conf"
+            # require => Package["puppet"],
+            source => "puppet:///modules/debian-org/puppet.conf"
             ;
         "/etc/default/puppet":
-            require => Package["puppet"],
-            source => "puppet:///files/etc/default/puppet"
+            # require => Package["puppet"],
+            source => "puppet:///modules/debian-org/puppet.default"
             ;
-       
+
         "/etc/cron.d/dsa-puppet-stuff":
-            source => "puppet:///files/etc/cron.d/dsa-puppet-stuff",
+            source => "puppet:///modules/debian-org/dsa-puppet-stuff.cron",
             require => Package["cron"]
             ;
         "/etc/ldap/ldap.conf":
             require => Package["userdir-ldap"],
-            source => "puppet:///files/etc/ldap/ldap.conf",
+            source => "puppet:///modules/debian-org/ldap.conf",
             ;
         "/etc/pam.d/common-session":
             require => Package["libpam-pwdfile"],
-            source => "puppet:///files/etc/pam.d/common-session",
+            source => "puppet:///modules/debian-org/pam.common-session",
             ;
         "/etc/rc.local":
             mode   => 0755,
             source => "puppet:///modules/debian-org/rc.local",
             notify => Exec["rc.local start"],
             ;
-    }
-    case $hostname {
-        handel: {
-            file {
-                "/etc/puppet/lib":
-                    ensure  => directory,
-                    source => "puppet:///files/etc/puppet/lib",
-                    recurse => true,
-                    notify  => Exec["puppetmaster restart"];
-             }
-         }
     }
    
     # set mmap_min_addr to 4096 to mitigate
@@ -149,8 +137,15 @@ class debian-proliant inherits debian-org {
     package {
         "hpacucli": ensure => installed;
         "hp-health": ensure => installed;
-        "cpqarrayd": ensure => installed;
         "arrayprobe": ensure => installed;
+    }
+    case extractnodeinfo($nodeinfo, 'squeeze') {
+        true: {}
+        default: {
+            package {
+                "cpqarrayd": ensure => installed;
+            }
+        }
     }
     case $debarchitecture {
         "amd64": {

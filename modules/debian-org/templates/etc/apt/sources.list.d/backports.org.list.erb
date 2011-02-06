@@ -3,7 +3,7 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% if nodeinfo.has_key?('squeeze') and not nodeinfo['squeeze'].empty? %>
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 <% else %>
 deb	http://mirror.netcologne.de/debian-backports/	lenny-backports main contrib non-free
 <% end %>
