@@ -110,7 +110,7 @@
    CacheNegotiatedDocs On
 
 # Custom Error
-   ErrorDocument 404 /errors/404
+   ErrorDocument 404 /devel/website/errors/404
 
 # the joys of backwards compatibility
    Redirect /cgi-bin/cvsweb http://cvs.debian.org
