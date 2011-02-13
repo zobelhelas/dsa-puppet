@@ -221,6 +221,7 @@ host_settings:
     - voltaire.debian.org
     - zandonai.debian.org
   squeeze:
+    - arne.debian.org
     - byrd.debian.org
     - danzi.debian.org
     - fano.debian.org
