@@ -221,24 +221,24 @@ host_settings:
     - voltaire.debian.org
     - zandonai.debian.org
   squeeze:
+    - byrd.debian.org
+    - danzi.debian.org
     - fano.debian.org
     - fasch.debian.org
     - field.debian.org
     - finzi.debian.org
-    - byrd.debian.org
     - lamb.debian.org
     - locke.debian.org
     - lotti.debian.org
-    - rautavaara.debian.org
-    - schuetz.debian.org
-    - salieri.debian.org
-    - sibelius.debian.org
+    - nono.debian.org
     - quantz.debian.org
     - raff.debian.org
+    - rautavaara.debian.org
     - reger.debian.org
-    - nono.debian.org
+    - salieri.debian.org
+    - schuetz.debian.org
+    - sibelius.debian.org
     - spohr.debian.org
-    - danzi.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
