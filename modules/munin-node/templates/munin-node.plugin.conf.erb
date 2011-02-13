@@ -62,6 +62,11 @@ user root
 user root
 env.mysqlopts --defaults-extra-file=/etc/mysql/debian.cnf
 
+[df*]
+env.exclude none unknown iso9660 squashfs udf romfs ramfs debugfs
+env.warning 92
+env.critical 98
+
 <%=
 out = ""
 if has_variable?("mta") and mta == "postfix"
