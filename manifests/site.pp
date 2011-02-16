@@ -135,7 +135,7 @@ node default {
         byrd,schuetz,tchaikovsky: {
             include krb
         }
-        draghi,quantz,samosa: {
+        draghi,quantz: {
             include krb
             include afs
         }
