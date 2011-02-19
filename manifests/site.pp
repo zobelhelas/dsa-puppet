@@ -147,7 +147,7 @@ node default {
 
     case $hostname {
         chopin,geo3,soler,wieck: {
-            include sysctl
+            include debian-radvd
         }
    }
 }
