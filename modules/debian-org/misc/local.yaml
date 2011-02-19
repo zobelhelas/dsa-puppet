@@ -236,6 +236,7 @@ host_settings:
     - raff.debian.org
     - rautavaara.debian.org
     - reger.debian.org
+    - rem.debian.org
     - salieri.debian.org
     - schuetz.debian.org
     - sibelius.debian.org
