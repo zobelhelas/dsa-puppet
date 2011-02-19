@@ -144,6 +144,12 @@ node default {
             include afs::server
         }
     }
+
+    case $hostname {
+        chopin,geo3,soler,wieck: {
+            include sysctl
+        }
+   }
 }
 
 # vim:set et:
