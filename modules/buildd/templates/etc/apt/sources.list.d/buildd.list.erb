@@ -3,7 +3,12 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
+deb https://buildd.debian.org/apt/ squeeze main
+<% else %>
 deb https://buildd.debian.org/apt/ lenny main
+<% end %>
+
 <% if %w{alkman porpora}.include?(hostname) -%>
 deb https://buildd.debian.org/apt/ lenny-proposed main
 <% elsif %w{krenek}.include?(hostname) -%>
