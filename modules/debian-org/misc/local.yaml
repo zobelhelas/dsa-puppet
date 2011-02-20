@@ -244,6 +244,7 @@ host_settings:
     - schuetz.debian.org
     - sibelius.debian.org
     - spohr.debian.org
+    - tchaikovsky.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
