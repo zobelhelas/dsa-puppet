@@ -89,7 +89,7 @@ class debian-org {
             ;
         "/etc/pam.d/common-session":
             require => Package["libpam-pwdfile"],
-            source => "puppet:///modules/debian-org/pam.common-session",
+            content => template("debian-org/pam.common-session.erb"),
             ;
         "/etc/rc.local":
             mode   => 0755,
