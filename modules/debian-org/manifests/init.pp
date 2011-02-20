@@ -158,6 +158,19 @@ class debian-proliant inherits debian-org {
             notify  => Exec["apt-get update"];
     }
 }
+
+class debian-radvd inherits debian-org {
+    sysctl {
+        "dsa-accept-ra-default" :
+            key         => "net.ipv6.conf.default.accept_ra",
+            value       => 0,
+    }
+    sysctl {
+        "dsa-accept-ra-all" :
+            key         => "net.ipv6.conf.all.accept_ra",
+            value       => 0,
+    }
+}
 # vim:set et:
 # vim:set sts=4 ts=4:
 # vim:set shiftwidth=4:

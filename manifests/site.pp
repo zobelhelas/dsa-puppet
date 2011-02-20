@@ -135,7 +135,7 @@ node default {
         byrd,schuetz,tchaikovsky: {
             include krb
         }
-        draghi,quantz,samosa: {
+        draghi,quantz: {
             include krb
             include afs
         }
@@ -144,6 +144,12 @@ node default {
             include afs::server
         }
     }
+
+    case $hostname {
+        chopin,geo3,soler,wieck: {
+            include debian-radvd
+        }
+   }
 }
 
 # vim:set et:

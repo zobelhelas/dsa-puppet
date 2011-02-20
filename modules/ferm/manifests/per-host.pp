@@ -25,6 +25,12 @@ class ferm::per-host {
                 }
 
         }
+        abel,alwyn: {
+            @ferm::rule { "dsa-tftp":
+                description     => "Allow tftp access",
+                rule            => "&SERVICE(udp, 69)"
+            }
+        }
         paganini: {
             @ferm::rule { "dsa-dhcp":
                 description     => "Allow dhcp access",

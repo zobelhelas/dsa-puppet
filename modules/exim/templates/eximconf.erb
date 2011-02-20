@@ -526,6 +526,7 @@ check_recipient:
           set acl_m_prf = $acl_m_rprf
 
   defer   condition     = ${if eq{$acl_m_prf}{$acl_m_rprf}{no}{yes}}
+          message       = Different profile, please retry
           log_message   = Only one profile at a time, please
 
   # Defer after too many bad RCPT TO's.  Legit MTAs will retry later.

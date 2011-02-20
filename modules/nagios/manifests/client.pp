@@ -14,8 +14,7 @@ class nagios::client inherits nagios {
 			ensure  => absent,
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.cfg":
-			source  => [ "puppet:///modules/nagios/per-host/$fqdn/nrpe.cfg",
-			             "puppet:///modules/nagios/common/nrpe.cfg" ],
+			content => template("nagios/nrpe.cfg.erb"),
 			require => Package["nagios-nrpe-server"],
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d":
@@ -23,7 +22,7 @@ class nagios::client inherits nagios {
 			require => Package["nagios-nrpe-server"],
 			ensure  => directory;
 		"/etc/nagios/nrpe.d/debianorg.cfg":
-                        content => template("nagios/inc-debian.org.erb"),
+			content => template("nagios/inc-debian.org.erb"),
 			require => Package["nagios-nrpe-server"],
 			notify  => Exec["nagios-nrpe-server restart"];
 		"/etc/nagios/nrpe.d/nrpe_dsa.cfg":
