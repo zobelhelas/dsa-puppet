@@ -10,7 +10,7 @@
 
   keyinfo.keys.sort.each do |node|
     if keyinfo[node]['purpose'].include?('buildd')
-      lines << "  # #{keyinfo[node]['hostname'].to_s} #{nodeinfo['ldap']['architecture'][0]}"
+      lines << "  # #{keyinfo[node]['hostname'].to_s}"
       keyinfo[node]['ipHostNumber'].each do |addr|
         lines << "  allow from #{addr}"
       end
