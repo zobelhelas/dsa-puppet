@@ -13,10 +13,9 @@
       lines << "  # #{keyinfo[node]['hostname'].to_s} #{nodeinfo['ldap']['architecture'][0]}"
       keyinfo[node]['ipHostNumber'].each do |addr|
         lines << "  allow from #{addr}"
-       end
-     end
-     out
-   end
+      end
+    end
+  end
 
   lines.join("\n")
 # vim:set et:
