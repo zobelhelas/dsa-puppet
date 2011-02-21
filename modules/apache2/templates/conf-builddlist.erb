@@ -1,0 +1,27 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<Macro CommonBuilddHostList>
+
+<%=
+  lines = []
+
+  keyinfo.keys.sort.each do |node|
+    if keyinfo[node]['purpose'].include?('buildd')
+      lines << "  # #{keyinfo[node]['hostname'].to_s} #{nodeinfo['ldap']['architecture'][0]}"
+      keyinfo[node]['ipHostNumber'].each do |addr|
+        lines << "  allow from #{addr}"
+       end
+     end
+     out
+   end
+
+  lines.join("\n")
+# vim:set et:
+# vim:set sts=2 ts=2:
+# vim:set shiftwidth=2:
+%>
+
+</Macro>
