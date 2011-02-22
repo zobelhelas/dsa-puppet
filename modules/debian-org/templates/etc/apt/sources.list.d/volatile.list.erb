@@ -4,6 +4,7 @@
 ##
 
 <% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
+deb	http://ftp.debian.org/debian	squeeze-updates		main contrib non-free
 <% else %>
 deb     http://volatile.debian.org/debian-volatile lenny/volatile   main contrib non-free
 <% end %>
