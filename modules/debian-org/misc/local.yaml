@@ -162,6 +162,7 @@ host_settings:
     - gluck.debian.org
     - lobos.debian.org
     - saens.debian.org
+    - santoro.debian.org
     - schein.debian.org
     - steffani.debian.org
     - villa.debian.org
@@ -241,6 +242,7 @@ host_settings:
     - rem.debian.org
     - rossini.debian.org
     - salieri.debian.org
+    - santoro.debian.org
     - scelsi.debian.org
     - schuetz.debian.org
     - sibelius.debian.org
@@ -331,6 +333,7 @@ host_settings:
     rossini.debian.org: mailout.debian.org
     saens.debian.org: mailout.debian.org
     salieri.debian.org: mailout.debian.org
+    santoro.debian.org: mailout.debian.org
     scelsi.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
