@@ -46,3 +46,8 @@ stabile.debian.org:
   - source_bind_port: 15433
     target_host: sibelius.debian.org
     target_port: 5433
+
+franck.debian.org:
+  - source_bind_port: 5443
+    target_host: grieg.debian.org
+    target_port: 5433
