@@ -15,7 +15,7 @@ aacumea:
   netrange:
     - 130.236.0.0/14
     - 2001:06B0:000E::/48
-  nameservers: [130.239.18.145, 130.239.1.90, 130.239.4.100]·
+  nameservers: [130.239.18.145, 130.239.1.90, 130.239.4.100]
 # Australian National University (ana.edu.au)
 ana:
   netrange:
