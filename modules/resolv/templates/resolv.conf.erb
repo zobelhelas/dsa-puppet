@@ -34,10 +34,10 @@ case hosterinfo["name"]
     searchpaths << "debprivate-grnet.debian.org"
   when "osousl" then
     nameserver += ["140.211.166.130","140.211.166.131"]
-  when "ubcece" then
-    nameservers += ["206.12.19.5", "137.82.1.1", "142.103.1.1" ]
-    searchpaths << "debprivate-ubc.debian.org"
 end
+
+nameservers += hosterinfo['nameservers'] if hosterinfo['nameservers']
+searchpaths += hosterinfo['searchpaths'] if hosterinfo['searchpaths']
 
 searchpaths << "debian.org"
 

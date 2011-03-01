@@ -95,6 +95,8 @@ ubcece:
   netrange:
     - 137.82.84.64/27
     - 206.12.19.0/24
+  searchpaths: [debprivate-ubc.debian.org]
+  nameservers: [206.12.19.5, 137.82.1.1, 142.103.1.1]
 ugent:
   netrange:
     - 157.193.0.0/16
