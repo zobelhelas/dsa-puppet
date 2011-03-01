@@ -102,6 +102,9 @@ node default {
         geo1,geo2,geo3:                  { include named::geodns }
         franck,liszt,master,samosa,spohr,widor:   { include named::recursor }
     }
+    case $hostname {
+        ries:   { include unbound }
+    }
 
     case $kernel {
         Linux: {
