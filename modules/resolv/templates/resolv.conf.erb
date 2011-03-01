@@ -24,9 +24,15 @@ end
 
 resolvconf  = ''
 resolvconf += "search " + searchpaths.join(" ") + "\n"
-nameservers.each do |ns|
-  resolvconf += "nameserver " + ns + "\n"
+
+if runs_local_resolver
+  resolvconf += "nameserver 127.0.0.1\n"
+else
+  nameservers.each do |ns|
+    resolvconf += "nameserver " + ns + "\n"
+  end
 end
+
 options.each do |opt|
   resolvconf += "options " + opt + "\n"
 end

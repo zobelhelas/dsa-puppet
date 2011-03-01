@@ -103,7 +103,13 @@ node default {
         franck,liszt,master,samosa,spohr,widor:   { include named::recursor }
     }
     case $hostname {
-        ries:   { include unbound }
+        ries:   {
+            include unbound
+            $runs_local_resolver = true
+        }
+        default: {
+            $runs_local_resolver = false
+        }
     }
     case getfromhash($hosterinfo, 'nameservers') {
         false:      {}
