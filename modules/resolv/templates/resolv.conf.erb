@@ -29,11 +29,6 @@ case hosterinfo["name"]
     end
     nameservers += ["192.25.206.33", "192.25.206.57"]
     searchpaths << "debprivate-ftcollins.debian.org"
-  when "grnet" then
-    nameservers += ["194.177.210.10", "194.177.210.210"]
-    searchpaths << "debprivate-grnet.debian.org"
-  when "osousl" then
-    nameserver += ["140.211.166.130","140.211.166.131"]
 end
 
 nameservers += hosterinfo['nameservers'] if hosterinfo['nameservers']

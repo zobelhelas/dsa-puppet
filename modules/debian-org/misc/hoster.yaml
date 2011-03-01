@@ -57,6 +57,8 @@ grnet:
   netrange:
     - 194.177.211.192/27
     - 2001:648:2ffc:deb::/64
+  searchpaths: [debprivate-grnet.debian.org]
+  nameservers: [194.177.210.10, 194.177.210.210]
 helsinki:
   netrange:
     - 193.167.160.0/23
@@ -67,10 +69,11 @@ isc:
 nmmn:
   netrange:
     - 217.114.76.80/29
-osousl:
+osuosl:
   netrange:
     - 140.211.166.0/25
     - 140.211.15.0/24
+  nameservers: [140.211.166.130, 140.211.166.131, 216.165.191.54]
 sanger:
   netrange:
     - 193.62.202.24/29
