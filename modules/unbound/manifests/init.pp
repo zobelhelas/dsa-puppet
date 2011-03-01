@@ -1,4 +1,4 @@
-class unbouned {
+class unbound {
     package {
         unbound: ensure => installed;
     }
