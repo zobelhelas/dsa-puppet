@@ -15,13 +15,12 @@ module Puppet::Parser::Functions
     if (nodeinfo['ldap'].has_key?('ipHostNumber'))
       nodeinfo['ldap']['ipHostNumber'].each do |addr|
         yaml.keys.each do |hoster|
-          if yaml[hoster].kind_of?(Array)
-            netrange = yaml[hoster]
-          elsif yaml[hoster].kind_of?(Hash) and yaml[hoster].has_key?('netrange')
+          if yaml[hoster].kind_of?(Hash) and yaml[hoster].has_key?('netrange')
             netrange = yaml[hoster]['netrange']
           else
             next
           end
+
           netrange.each do |net|
             begin
               if IPAddr.new(net).include?(addr)
