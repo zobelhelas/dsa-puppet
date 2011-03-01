@@ -629,12 +629,6 @@ check_recipient:
   warn    condition     = ${if eq{$acl_m_prf}{localonly}}
           set acl_m_lrc = ${if eq{$acl_m_lrc}{}{$local_part@$domain}{$acl_m_lrc, $local_part@$domain}}
 
-<%- if 0 == 1 -%>
-  deny    message  = address $sender_host_address is listed in $dnslist_domain; $dnslist_text
-	  hosts    = !+debianhosts
-          dnslists = rbl.debian.net : rbl.debian.net/$sender_address_domain
-
-<%- end -%>
 <%- if nodeinfo['packagesmaster'] -%>
   warn    condition      = ${if eq {$acl_m_prf}{PackagesMail}}
           condition      = ${if eq {$sender_address}{$local_part@$domain}}

@@ -162,7 +162,7 @@ class exim {
         refreshonly => true,
     }
 
-    case extractnodeinfo($nodeinfo, 'mail_port') {
+    case getfromhash($nodeinfo, 'mail_port') {
       /^(\d+)$/: { $mail_port = $1 }
       default: { $mail_port = 'smtp' }
     }

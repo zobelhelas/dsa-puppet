@@ -9,7 +9,7 @@ deb https://buildd.debian.org/apt/ squeeze main
 deb https://buildd.debian.org/apt/ lenny main
 <% end %>
 
-<% if %w{alkman porpora}.include?(hostname) -%>
+<% if %w{alkman porpora zandonai}.include?(hostname) -%>
 deb https://buildd.debian.org/apt/ lenny-proposed main
 <% elsif %w{krenek}.include?(hostname) -%>
 deb https://buildd.debian.org/apt/ lenny-experimental main

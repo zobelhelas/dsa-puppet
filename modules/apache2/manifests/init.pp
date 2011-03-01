@@ -136,6 +136,22 @@ class apache2 {
             command => "/etc/init.d/apache2 force-reload",
             refreshonly => true;
     }
+    case $hostname {
+        chopin,franck,morricone: {
+            package {
+                "libapache2-mod-macro": ensure => installed;
+            }
+            enable_module {
+                "macro":;
+            }
+            file {
+                "/etc/apache2/conf.d/puppet-builddlist":
+                    content => template("apache2/conf-builddlist.erb"),
+                    require => Package["apache2"],
+                    notify  => Exec["reload-apache2"];
+            }
+        }
+    }
 
     case $hostname {
         busoni,duarte,holter,lindberg,master,merkel,powell,rore: {

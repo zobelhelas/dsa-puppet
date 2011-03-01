@@ -89,7 +89,7 @@ class debian-org {
             ;
         "/etc/pam.d/common-session":
             require => Package["libpam-pwdfile"],
-            source => "puppet:///modules/debian-org/pam.common-session",
+            content => template("debian-org/pam.common-session.erb"),
             ;
         "/etc/rc.local":
             mode   => 0755,
@@ -139,7 +139,7 @@ class debian-proliant inherits debian-org {
         "hp-health": ensure => installed;
         "arrayprobe": ensure => installed;
     }
-    case extractnodeinfo($nodeinfo, 'squeeze') {
+    case getfromhash($nodeinfo, 'squeeze') {
         true: {}
         default: {
             package {

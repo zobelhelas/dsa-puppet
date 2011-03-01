@@ -162,6 +162,7 @@ host_settings:
     - gluck.debian.org
     - lobos.debian.org
     - saens.debian.org
+    - santoro.debian.org
     - schein.debian.org
     - steffani.debian.org
     - villa.debian.org
@@ -173,6 +174,7 @@ host_settings:
     - klecker.debian.org
     - kokkonen.debian.org
     - senfl.debian.org
+    - santoro.debian.org
     - wolkenstein.debian.org
   timeserver:
     - merikanto.debian.org
@@ -234,16 +236,19 @@ host_settings:
     - lotti.debian.org
     - nono.debian.org
     - quantz.debian.org
+    - piatti.debian.org
     - raff.debian.org
     - rautavaara.debian.org
     - reger.debian.org
     - rem.debian.org
     - rossini.debian.org
     - salieri.debian.org
+    - santoro.debian.org
     - scelsi.debian.org
     - schuetz.debian.org
     - sibelius.debian.org
     - spohr.debian.org
+    - tchaikovsky.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
@@ -329,6 +334,7 @@ host_settings:
     rossini.debian.org: mailout.debian.org
     saens.debian.org: mailout.debian.org
     salieri.debian.org: mailout.debian.org
+    santoro.debian.org: mailout.debian.org
     scelsi.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org

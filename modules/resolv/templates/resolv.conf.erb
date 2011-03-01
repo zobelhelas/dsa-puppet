@@ -6,38 +6,15 @@
 <%=
 nameservers = []
 searchpaths = []
-resolvconf  = ''
+options = []
 
-case hoster
-  when "darmstadt" then
-    case hostname
-      when "draghi", "liszt" then
-        nameservers << "127.0.0.1"
-    end
-    nameservers += ["82.195.75.81", "82.195.66.249", "217.198.242.225"]
-    searchpaths << "debprivate-darmstadt.debian.org"
-  when "dgi" then
-    case hostname
-      when "widor" then
-         nameserver << "127.0.0.1"
-    end
-    nameservers += ["195.49.152.215", "195.49.152.213", "195.49.152.214"]
-  when "ftcollins" then
-    case hostname
-      when "spohr", "samosa" then
-        nameservers << "127.0.0.1"
-    end
-    nameservers += ["192.25.206.33", "192.25.206.57"]
-    searchpaths << "debprivate-ftcollins.debian.org"
-  when "grnet" then
-    nameservers += ["194.177.210.10", "194.177.210.210"]
-    searchpaths << "debprivate-grnet.debian.org"
-  when "osousl" then
-    nameserver += ["140.211.166.130","140.211.166.131"]
-  when "ubcece" then
-    nameservers += ["206.12.19.5", "137.82.1.1", "142.103.1.1" ]
-    searchpaths << "debprivate-ubc.debian.org"
+if %w{draghi liszt widor spohr samosa}.include?(hostname)
+  nameservers << "127.0.0.1"
 end
+
+nameservers += hosterinfo['nameservers'] if hosterinfo['nameservers']
+searchpaths += hosterinfo['searchpaths'] if hosterinfo['searchpaths']
+options += hosterinfo['resolvoptions'] if hosterinfo['resolvoptions']
 
 searchpaths << "debian.org"
 
@@ -45,9 +22,13 @@ if nameservers.empty?
   raise Puppet::ParseError, "Something has gone wrong writing resolv.conf: probably included for wrong hoster"
 end
 
+resolvconf  = ''
 resolvconf += "search " + searchpaths.join(" ") + "\n"
 nameservers.each do |ns|
   resolvconf += "nameserver " + ns + "\n"
+end
+options.each do |opt|
+  resolvconf += "options " + opt + "\n"
 end
 
 resolvconf
