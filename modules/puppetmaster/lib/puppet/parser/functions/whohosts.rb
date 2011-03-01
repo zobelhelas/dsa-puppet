@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
         yaml.keys.each do |hoster|
           if yaml[hoster].kind_of?(Array)
             netrange = yaml[hoster]
-          elsif yaml[hoster].kind_of?(Array) and yaml[hoster].has_key?['netrange']
+          elsif yaml[hoster].kind_of?(Hash) and yaml[hoster].has_key?('netrange')
             netrange = yaml[hoster]['netrange']
           else
             next
@@ -25,10 +25,10 @@ module Puppet::Parser::Functions
           netrange.each do |net|
             begin
               if IPAddr.new(net).include?(addr)
-                return hoster
+                ans = hoster
               end
-            rescue
-              raise "Could not match addr #{addr} for net #{net}"
+            rescue Exception => e
+              raise "Error while trying to match addr #{addr} for net #{net}: #{e.message}\n#{e.backtrace}"
             end
           end
         end
