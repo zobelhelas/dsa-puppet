@@ -22,9 +22,7 @@ class unbound {
             owner   => unbound,
             group   => unbound,
             mode    => 644,
-            # IANA root trust anchor, valid from 2010-07-15T00:00:00+00:00
-            # downloaded from https://data.iana.org/root-anchors/root-anchors.xml
-            content => ". IN DS 19036 8 2 49AAC11D7B6F6446702E54A1607371607A1A41855200FD2CE1CDDE32F24E8FB5\n",
+            source  => [ "puppet:///modules/unbound/root.key" ],
             notify  => Exec["unbound restart"],
             ;
         "/var/lib/unbound/debian.org.key":
@@ -33,8 +31,7 @@ class unbound {
             owner   => unbound,
             group   => unbound,
             mode    => 644,
-            # debian.org DS record, July 2010'
-            content => "debian.org. IN DS 5283 7 2 3DC987A633914C195D03EA129E92327630D3428E92884A5E97829A55701F9E8A\n",
+            source  => [ "puppet:///modules/unbound/debian.org.key" ],
             notify  => Exec["unbound restart"],
             ;
         "/etc/unbound/unbound.conf":
