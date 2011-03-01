@@ -105,6 +105,10 @@ node default {
     case $hostname {
         ries:   { include unbound }
     }
+    case getfromhash($hosterinfo, 'nameservers') {
+        false:      {}
+        default:    { include resolv }
+    }
 
     case $kernel {
         Linux: {
@@ -124,10 +128,6 @@ node default {
 
     case $brokenhosts {
         "true":    { include hosts }
-    }
-    case getfromhash($hosterinfo, 'nameservers') {
-        false:      {}
-        default:    { include resolv }
     }
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
