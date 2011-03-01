@@ -6,7 +6,7 @@
 <%=
 nameservers = []
 searchpaths = []
-resolvconf  = ''
+options = []
 
 if %w{draghi liszt widor spohr samosa}.include?(hostname)
   nameservers << "127.0.0.1"
@@ -14,6 +14,7 @@ end
 
 nameservers += hosterinfo['nameservers'] if hosterinfo['nameservers']
 searchpaths += hosterinfo['searchpaths'] if hosterinfo['searchpaths']
+options += hosterinfo['resolvoptions'] if hosterinfo['resolvoptions']
 
 searchpaths << "debian.org"
 
@@ -21,9 +22,13 @@ if nameservers.empty?
   raise Puppet::ParseError, "Something has gone wrong writing resolv.conf: probably included for wrong hoster"
 end
 
+resolvconf  = ''
 resolvconf += "search " + searchpaths.join(" ") + "\n"
 nameservers.each do |ns|
   resolvconf += "nameserver " + ns + "\n"
+end
+opions.each do |opt|
+  resolvconf += "options " + opt + "\n"
 end
 
 resolvconf

@@ -1,44 +1,57 @@
 ---
+1und1:
+  netrange:
+    - 87.106.0.0/16
+    - 2001:8d8:81:1520::/64
+  nameservers: [87.106.64.251, 195.20.224.99, 195.20.224.234]
 1und1-sec:
   netrange:
     - 195.20.242.64/26
     - 212.227.126.32/27
     - 2001:8d8:2:1::/64
-1und1:
-  netrange:
-    - 87.106.0.0/16
-    - 2001:8d8:81:1520::/64
+  searchpaths: [debprivate-oneandone.debian.org]
+  nameservers: [195.20.224.99, 195.20.224.234, 87.106.64.251]
 aacumea:
   netrange:
     - 130.236.0.0/14
     - 2001:06B0:000E::/48
+  nameservers: [130.239.18.145, 130.239.1.90, 130.239.4.100]·
 # Australian National University (ana.edu.au)
 ana:
   netrange:
     - 150.203.164.0/24
     - 2001:388:1034:2900::64
+  nameservers: [150.203.1.10, 150.203.164.10, 150.203.164.9]
 arm:
   netrange:
     - 217.140.96.58/29
+  nameservers: [158.43.128.1, 217.140.108.113]
 br:
   # University Federal do Parana (.br)
   netrange:
     - 200.17.192.0/19
+  nameservers: [200.17.202.1, 200.17.202.3]
 brainfood:
   netrange:
     - 70.103.162.0/24
+  nameservers: [70.103.162.29, 70.103.162.4]
 brown:
   netrange:
     - 128.148.0.0/16
+  nameservers: [128.148.34.103, 128.148.34.3]
 carnet:
   netrange:
     - 193.198.0.0/16
+  nameservers: [161.53.160.3, 161.53.123.3]
 csail:
+  # mit
   netrange:
     - 128.31.0.0/24
+  nameservers: [128.30.2.24, 128.30.2.25, 128.30.0.125]
 cst:
   netrange:
     - 213.188.99.208/28
+  nameservers: [213.157.0.194, 213.157.0.193]
 darmstadt:
   netrange:
     - 82.195.75.64/26
@@ -53,6 +66,7 @@ dgi:
 freenet:
   netrange:
     - 62.104.0.0/16
+  nameservers: [194.97.3.83, 62.104.64.3, 194.97.3.11]
 ftcollins:
   netrange:
     - 192.25.206.0/24
@@ -67,13 +81,16 @@ grnet:
 helsinki:
   netrange:
     - 193.167.160.0/23
+  nameservers: [128.214.9.15, 218.214.4.29]
 isc:
   netrange:
     - 149.20.0.0/16
     - 2001:4F8::/32
+  nameservers: [149.20.64.2, 204.152.184.67]
 nmmn:
   netrange:
     - 217.114.76.80/29
+  nameservers: [217.114.70.53, 217.114.77.53]
 osuosl:
   netrange:
     - 140.211.166.0/25
@@ -82,23 +99,30 @@ osuosl:
 sanger:
   netrange:
     - 193.62.202.24/29
+  nameservers: [193.62.203.96, 193.62.203.97]
+  resolvoptions: [single-request]
 rapidswitch:
   netrange:
     - 193.201.200.0/23
+  nameservers: [87.117.198.200, 87.117.237.100, 87.117.196.200]
 sil:
   netrange:
     - 86.59.118.144/28
+  nameservers: [213.129.232.1, 213.129.226.2]
 scanplus:
   netrange:
     - 212.211.132.0/26
     - 212.211.132.248/29
     - 2001:a78::/64
+  nameservers: [212.211.132.4, 212.75.32.4]
 snowman:
   netrange:
     - 72.66.115.54
+  nameservers: [10.10.1.1]
 telegrafxs4all:
   netrange:
     - 82.94.249.152/29
+  nameservers: [194.109.6.66]
 ubcece:
   netrange:
     - 137.82.84.64/27
@@ -108,13 +132,16 @@ ubcece:
 ugent:
   netrange:
     - 157.193.0.0/16
+  nameservers: [157.193.40.42]
 umn:
   netrange:
     - 128.101.240.212
+  nameservers: [128.101.101.101, 134.84.84.84]
 utwente:
   netrange:
     - 130.89.0.0/16
     - 2001:0610:1908::/48
+  nameservers: [130.89.2.2, 130.89.2.3]
 xs4all:
   netrange:
     - 194.109.137.216/29
@@ -122,6 +149,12 @@ xs4all:
 ynic:
   netrange:
     - 144.32.168.64/28
+  nameservers: [144.32.169.74, 144.32.169.75, 144.32.169.76]
 zivit:
   netrange:
     - 80.245.144.0/22
+  nameservers: [80.245.147.53, 80.245.147.54]
+
+# vim:set et:
+# vim:set sts=2 ts=2:
+# vim:set shiftwidth=2:
