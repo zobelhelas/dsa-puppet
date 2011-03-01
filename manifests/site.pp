@@ -43,7 +43,7 @@ node default {
     case $kvmdomain {
         "true": {
             package { acpid: ensure => installed }
-            case extractnodeinfo($nodeinfo, 'squeeze') {
+            case getfromhash($nodeinfo, 'squeeze') {
                 true:  { package { acpi-support-base: ensure => installed } }
             }
         }
@@ -54,32 +54,32 @@ node default {
 
     case $mta {
         "exim4":   {
-             case extractnodeinfo($nodeinfo, 'heavy_exim') {
+             case getfromhash($nodeinfo, 'heavy_exim') {
                   true:  { include exim::mx }
                   default: { include exim }
              }
         }
     }
 
-    case extractnodeinfo($nodeinfo, 'puppetmaster') {
+    case getfromhash($nodeinfo, 'puppetmaster') {
         true: { include puppetmaster }
     }
 
-    case extractnodeinfo($nodeinfo, 'muninmaster') {
+    case getfromhash($nodeinfo, 'muninmaster') {
         true: { include munin-node::master }
     }
 
-    case extractnodeinfo($nodeinfo, 'nagiosmaster') {
+    case getfromhash($nodeinfo, 'nagiosmaster') {
         true:    { include nagios::server }
         default: { include nagios::client }
     }
 
     case $apache2 {
          "true":  {
-              case extractnodeinfo($nodeinfo, 'apache2_security_mirror') {
+              case getfromhash($nodeinfo, 'apache2_security_mirror') {
                      true:    { include apache2::security_mirror }
               }
-              case extractnodeinfo($nodeinfo, 'apache2_www_mirror') {
+              case getfromhash($nodeinfo, 'apache2_www_mirror') {
                      true:    { include apache2::www_mirror }
               }
               include apache2
