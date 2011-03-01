@@ -23,8 +23,12 @@ module Puppet::Parser::Functions
             next
           end
           netrange.each do |net|
-          if IPAddr.new(net).include?(addr)
-            return hoster
+          begin
+            if IPAddr.new(net).include?(addr)
+              return hoster
+            end
+          rescue
+            raise "Could not match addr #{addr} for net #{net}"
           end
         end
       end
