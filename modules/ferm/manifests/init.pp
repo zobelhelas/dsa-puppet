@@ -70,7 +70,7 @@ class ferm {
         $munin_ips: script => "ip_";
     }
 
-    case extractnodeinfo($nodeinfo, 'buildd') {
+    case getfromhash($nodeinfo, 'buildd') {
         true: {
             file {
                 "/etc/ferm/conf.d/load_ftp_conntrack.conf":
