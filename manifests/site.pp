@@ -16,10 +16,10 @@ Exec {
 node default {
     $localinfo = yamlinfo('*', "/etc/puppet/modules/debian-org/misc/local.yaml")
     $nodeinfo  = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
-    $hoster    = whohosts($nodeinfo, "/etc/puppet/modules/debian-org/misc/hoster.yaml")
+    $hosterinfo = whohosts($nodeinfo, "/etc/puppet/modules/debian-org/misc/hoster.yaml")
     $keyinfo   = allnodeinfo("sshRSAHostKey", "ipHostNumber", "purpose")
     $mxinfo    = allnodeinfo("mXRecord")
-    notice("hoster for ${fqdn} is ${hoster}")
+    notice("hoster for ${fqdn} is ${getfromhash(hosterinfo, "name")}")
 
     include munin-node
     include syslog-ng
@@ -122,7 +122,7 @@ node default {
     case $brokenhosts {
         "true":    { include hosts }
     }
-    case $hoster {
+    case getfromhash($hosterinfo, "name") {
         "ubcece", "darmstadt", "ftcollins", "grnet":  { include resolv }
     }
     case $portforwarder_user_exists {
