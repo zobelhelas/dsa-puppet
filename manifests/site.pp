@@ -91,7 +91,7 @@ node default {
     }
 
 
-    case extractnodeinfo($nodeinfo, 'buildd') {
+    case getfromhash($nodeinfo, 'buildd') {
          true:  {
              include buildd
          }
