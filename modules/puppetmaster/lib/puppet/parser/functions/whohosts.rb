@@ -9,7 +9,7 @@ module Puppet::Parser::Functions
 
     $KCODE = 'utf-8'
 
-    ans = {"name": "unknown"}
+    ans = {"name" => "unknown"}
     yaml = YAML.load_file(yamlfile)
 
     if (nodeinfo['ldap'].has_key?('ipHostNumber'))
@@ -27,7 +27,7 @@ module Puppet::Parser::Functions
                 ans = yaml[hoster]
                 ans['name'] = hoster
               end
-            rescue Exception => e
+            rescue => e
               raise "Error while trying to match addr #{addr} for net #{net}: #{e.message}\n#{e.backtrace}"
             end
           end

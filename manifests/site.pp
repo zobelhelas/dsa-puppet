@@ -122,7 +122,7 @@ node default {
     case $brokenhosts {
         "true":    { include hosts }
     }
-    case getfromhash($hosterinfo, "name") {
+    case getfromhash($hosterinfo, 'name') {
         "ubcece", "darmstadt", "ftcollins", "grnet":  { include resolv }
     }
     case $portforwarder_user_exists {
