@@ -15,9 +15,11 @@ module Puppet::Parser::Functions
     if (nodeinfo['ldap'].has_key?('ipHostNumber'))
       nodeinfo['ldap']['ipHostNumber'].each do |addr|
         yaml.keys.each do |hoster|
-          yaml[hoster].each do |net|
-            if IPAddr.new(net).include?(addr)
-              ans = hoster
+          if yaml[hoster].has_key?'netrange'
+            yaml[hoster]['netrange'].each do |net|
+              if IPAddr.new(net).include?(addr)
+                return hoster
+              end
             end
           end
         end
@@ -26,3 +28,6 @@ module Puppet::Parser::Functions
     return ans
   end
 end
+# vim:set ts=2:
+# vim:set et:
+# vim:set shiftwidth=2:
