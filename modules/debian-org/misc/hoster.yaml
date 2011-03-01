@@ -44,15 +44,20 @@ darmstadt:
     - 82.195.75.64/26
     - 82.195.75.32/28
     - 2001:41b8:202:deb::/64
+  searchpaths: [debprivate-darmstadt.debian.org]
+  nameservers: [82.195.75.81, 82.195.66.249, 217.198.242.225]
 dgi:
   netrange:
     - 93.94.130.128/26
+  nameservers: [195.49.152.215, 195.49.152.213, 195.49.152.214]
 freenet:
   netrange:
     - 62.104.0.0/16
 ftcollins:
   netrange:
     - 192.25.206.0/24
+  searchpaths: [debprivate-debprivate-ftcollins.debian.org]
+  nameservers: [192.25.206.33, 192.25.206.57]
 grnet:
   netrange:
     - 194.177.211.192/27

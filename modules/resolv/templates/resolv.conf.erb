@@ -8,27 +8,8 @@ nameservers = []
 searchpaths = []
 resolvconf  = ''
 
-case hosterinfo["name"]
-  when "darmstadt" then
-    case hostname
-      when "draghi", "liszt" then
-        nameservers << "127.0.0.1"
-    end
-    nameservers += ["82.195.75.81", "82.195.66.249", "217.198.242.225"]
-    searchpaths << "debprivate-darmstadt.debian.org"
-  when "dgi" then
-    case hostname
-      when "widor" then
-         nameserver << "127.0.0.1"
-    end
-    nameservers += ["195.49.152.215", "195.49.152.213", "195.49.152.214"]
-  when "ftcollins" then
-    case hostname
-      when "spohr", "samosa" then
-        nameservers << "127.0.0.1"
-    end
-    nameservers += ["192.25.206.33", "192.25.206.57"]
-    searchpaths << "debprivate-ftcollins.debian.org"
+if %w{draghi liszt widor spohr samosa}.include?(hostname)
+  nameservers << "127.0.0.1"
 end
 
 nameservers += hosterinfo['nameservers'] if hosterinfo['nameservers']
