@@ -39,8 +39,8 @@ module Puppet::Parser::Functions
         if nodeinfo['hoster']['allow_dns_query']
           raise Puppet::ParseError, "No nameservers listed for #{nodeinfo['hoster']['name']} yet we should answer somebody's queries?  That makes no sense."
         end
-      elsif (nodeinfo['hoster']['nameservers'] & nodeinfo['misc']['v4addrs']).size > 0 or
-            (nodeinfo['hoster']['nameservers'] & nodeinfo['misc']['v6addrs']).size > 0
+      elsif (nodeinfo['misc']['v4addrs'] and (nodeinfo['hoster']['nameservers'] & nodeinfo['misc']['v4addrs']).size > 0) or
+            (nodeinfo['misc']['v6addrs'] and (nodeinfo['hoster']['nameservers'] & nodeinfo['misc']['v6addrs']).size > 0)
         # this host is listed as a nameserver at this location
         nodeinfo['misc']['resolver-recursive'] = true
 
