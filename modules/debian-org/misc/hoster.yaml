@@ -74,7 +74,7 @@ freenet:
 ftcollins:
   netrange:
     - 192.25.206.0/24
-  searchpaths: [debprivate-debprivate-ftcollins.debian.org]
+  searchpaths: [debprivate-ftcollins.debian.org]
   nameservers: [192.25.206.33, 192.25.206.57]
   # only applicable for hosts that are recursive anyway:
   allow_dns_query: [192.25.206.0/24]
