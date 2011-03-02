@@ -1,7 +1,7 @@
 module Puppet::Parser::Functions
   newfunction(:allnodeinfo, :type => :rvalue) do |args|
-    required = args.shift
-    optional = args.shift
+    required = args.shift.split()
+    optional = args.shift.split()
 
     allhosts = function_ldapinfo('*', required+optional )
     res = {}
