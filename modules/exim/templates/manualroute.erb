@@ -19,7 +19,7 @@ end
 
 mxregex = Regexp.new('^\d+\s+(.*)\.$')
 allnodeinfo.keys.sort.each do |host|
-  next unless allnodeinfo[host['mXRecord']
+  next unless allnodeinfo[host]['mXRecord']
   allnodeinfo[host]['mXRecord'].each do |mx|
     mxmatch = mxregex.match(mx)
     if mxmatches.include?(mxmatch[1])
