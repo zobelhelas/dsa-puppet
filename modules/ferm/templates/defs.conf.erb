@@ -15,6 +15,10 @@
  proto (tcp udp) mod state state (NEW) dport $port ACCEPT;
 }
 
+@def &TCP_UDP_SERVICE_RANGE($port, $srange) = {
+ proto (tcp udp) mod state state (NEW) dport $port @subchain "$port" { saddr ($srange) ACCEPT; }"
+}
+
 @def $HOST_MAILRELAY_V4 = (<%=
   mailrelay = []
   localinfo.keys.sort.each do |node|

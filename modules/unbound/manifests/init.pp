@@ -42,6 +42,26 @@ class unbound {
             group   => root,
             ;
     }
+
+    case getfromhash($nodeinfo, 'misc', 'resolver-recursive') {
+        true: {
+            case getfromhash($nodeinfo, 'hoster', 'allow_dns_query') {
+                false: {}
+                default: {
+                    @ferm::rule { "dsa-bind":
+                        domain          => "ip",
+                        description     => "Allow nameserver access",
+                        rule            => sprintf("&TCP_UDP_SERVICE_RANGE(53, %s)", join_spc(filter_ipv4(getfromhash($nodeinfo, 'hoster', 'allow_dns_query')))),
+                    }
+                    @ferm::rule { "dsa-bind":
+                        domain          => "ip6",
+                        description     => "Allow nameserver access",
+                        rule            => sprintf("&TCP_UDP_SERVICE_RANGE(53, %s)", join_spc(filter_ipv6(getfromhash($nodeinfo, 'hoster', 'allow_dns_query')))),
+                    }
+                }
+            }
+        }
+    }
 }
 
 # vim:set et:
