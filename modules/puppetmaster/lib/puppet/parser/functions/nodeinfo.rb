@@ -53,7 +53,7 @@ module Puppet::Parser::Functions
 
       return(nodeinfo)
     rescue => e
-      raise Puppet::ParseError, "Error in nodeinfo for node #{host}, yamlfile #{yamlfile}"
+      raise Puppet::ParseError, "Error in nodeinfo for node #{host}, yamlfile #{yamlfile}: #{e.message}\n#{e.backtrace}"
     end
   end
 end
