@@ -25,7 +25,7 @@ class unbound {
             group   => unbound,
             mode    => 644,
             source  => [ "puppet:///modules/unbound/root.key" ],
-            notify  => Exec["unbound restart"],
+            #notify  => Exec["unbound restart"],
             ;
     }
     file {
@@ -36,7 +36,7 @@ class unbound {
             group   => unbound,
             mode    => 644,
             source  => [ "puppet:///modules/unbound/debian.org.key" ],
-            notify  => Exec["unbound restart"],
+            #notify  => Exec["unbound restart"],
             ;
     }
     file {
