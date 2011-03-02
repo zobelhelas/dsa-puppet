@@ -54,7 +54,17 @@ server:
 	auto-trust-anchor-file: "/var/lib/unbound/root.key"
 	auto-trust-anchor-file: "/var/lib/unbound/debian.org.key"
 
-#forward-zone:
-#	name: "."
-#	forward-addr: 192.0.2.1
-#	forward-addr: 192.0.2.199
+<%=
+	out = []
+	unless results['misc']['resolver-recursive']
+		forwarders = nodeinfo['hoster']['nameservers']
+		forwarders ||= []
+
+		out << 'forward-zone:'
+		out << '	name: "."'
+		forwarders.each do |ns|
+			out << "	forward-addr: #{ns}"
+		end
+	end
+	out.join("\n")
+%>

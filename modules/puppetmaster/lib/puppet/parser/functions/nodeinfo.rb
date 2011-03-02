@@ -32,6 +32,17 @@ module Puppet::Parser::Functions
       end
     end
 
+    if not nodeinfo['hoster']['nameservers'] or nodeinfo['hoster']['nameservers'].empty?
+      # no nameservers known for this hoster
+      results['misc']['resolver-recursive'] = true
+    elsif (nodeinfo['hoster']['nameservers'] & nodeinfo['misc']['v4addrs']).size > 0 or
+          (nodeinfo['hoster']['nameservers'] & nodeinfo['misc']['v6addrs']).size > 0
+      # this host is listed as a nameserver at this location
+      results['misc']['resolver-recursive'] = true
+    else
+      results['misc']['resolver-recursive'] = false
+    end
+
     return(results)
   end
 end
