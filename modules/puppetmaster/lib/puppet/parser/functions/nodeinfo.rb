@@ -1,8 +1,8 @@
 module Puppet::Parser::Functions
   newfunction(:nodeinfo, :type => :rvalue) do |args|
+    host = args[0]
+    yamlfile = args[1]
     begin
-      host = args[0]
-      yamlfile = args[1]
 
       require '/var/lib/puppet/lib/puppet/parser/functions/ldapinfo.rb'
       require '/var/lib/puppet/lib/puppet/parser/functions/whohosts.rb'
@@ -53,7 +53,7 @@ module Puppet::Parser::Functions
 
       return(nodeinfo)
     rescue => e
-      raise Puppet::ParseError, "Error while trying to match addr #{addr} for net #{net}: #{e.message}\n#{e.backtrace}"
+      raise Puppet::ParseError, "Error in nodeinfo for node #{host}, yamlfile #{yamlfile}"
     end
   end
 end
