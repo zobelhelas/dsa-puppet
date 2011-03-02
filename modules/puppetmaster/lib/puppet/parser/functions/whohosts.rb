@@ -28,7 +28,7 @@ module Puppet::Parser::Functions
                 ans['name'] = hoster
               end
             rescue => e
-              raise "Error while trying to match addr #{addr} for net #{net}: #{e.message}\n#{e.backtrace}"
+              raise Puppet::ParseError, "Error while trying to match addr #{addr} for net #{net}: #{e.message}\n#{e.backtrace}"
             end
           end
         end
