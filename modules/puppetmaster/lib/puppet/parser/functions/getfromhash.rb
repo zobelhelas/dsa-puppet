@@ -1,16 +1,21 @@
 module Puppet::Parser::Functions
   newfunction(:getfromhash, :type => :rvalue) do |args|
-    h = args.shift
-    key = args.shift
+    x = args.shift
+    keys = args
+    keys_done = []
 
-    raise Puppet::ParseError, "argument is not a hash" unless h.kind_of?(Hash)
-    if h.has_key?(key)
-      ans = h[key]
-    else
-      ans = false
+    # allows getting of hash[key] or even hash[key1][key2] etc.
+    keys.each do |key|
+      raise Puppet::ParseError, "argument[#{keys_done.join('][')}] is not a hash." unless x.kind_of?(Hash)
+      unless h.has_key?(key)
+        x = false
+        break
+      end
+      x = x[key]
+      keys_done << key
     end
 
-    return ans
+    return x
   end
 end
 # vim:set et:
