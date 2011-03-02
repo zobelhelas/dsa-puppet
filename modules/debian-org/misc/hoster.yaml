@@ -40,7 +40,8 @@ brainfood:
 brown:
   netrange:
     - 128.148.0.0/16
-  nameservers: [128.148.34.103, 128.148.34.3]
+  # all hosts have their own recursor
+  nameservers: []
 carnet:
   netrange:
     - 193.198.0.0/16
