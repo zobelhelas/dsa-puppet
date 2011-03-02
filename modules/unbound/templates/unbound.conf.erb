@@ -56,7 +56,7 @@ server:
 
 <%=
 	out = []
-	unless results['misc']['resolver-recursive']
+	unless nodeinfo['misc']['resolver-recursive']
 		forwarders = nodeinfo['hoster']['nameservers']
 		forwarders ||= []
 
