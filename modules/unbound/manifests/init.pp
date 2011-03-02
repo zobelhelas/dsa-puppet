@@ -16,6 +16,8 @@ class unbound {
             group   => unbound,
             mode    => 775,
             ;
+    }
+    file {
         "/var/lib/unbound/root.key":
             ensure  => present,
             replace => false,
@@ -25,6 +27,8 @@ class unbound {
             source  => [ "puppet:///modules/unbound/root.key" ],
             notify  => Exec["unbound restart"],
             ;
+    }
+    file {
         "/var/lib/unbound/debian.org.key":
             ensure  => present,
             replace => false,
@@ -34,6 +38,8 @@ class unbound {
             source  => [ "puppet:///modules/unbound/debian.org.key" ],
             notify  => Exec["unbound restart"],
             ;
+    }
+    file {
         "/etc/unbound/unbound.conf":
             content => template("unbound/unbound.conf.erb"),
             require => Package["unbound"],
