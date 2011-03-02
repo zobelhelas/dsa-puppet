@@ -19,7 +19,7 @@
   mailrelay = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['mailrelay']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              mailrelay << ip
           end
@@ -33,7 +33,7 @@
   mailrelay = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['mailrelay']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              mailrelay << ip
           end
@@ -49,7 +49,7 @@
   nagii = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              nagii << ip
           end
@@ -63,7 +63,7 @@
   nagii = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              nagii << ip
           end
@@ -79,7 +79,7 @@
   munins = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['muninmaster']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              munins << ip
           end
@@ -93,7 +93,7 @@
   munins = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['muninmaster']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              munins << ip
           end
@@ -109,7 +109,7 @@
   dbs = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['dbmaster']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              dbs << ip
           end
@@ -123,7 +123,7 @@
   dbs = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['dbmaster']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              dbs << ip
           end
@@ -137,9 +137,9 @@
 
 @def $HOST_DEBIAN_V4 = (<%=
   dbs = []
-  keyinfo.keys.sort.each do |node|
-      next unless keyinfo[node].has_key?('ipHostNumber')
-      keyinfo[node]['ipHostNumber'].each do |ip|
+  allnodeinfo.keys.sort.each do |node|
+      next unless allnodeinfo[node].has_key?('ipHostNumber')
+      allnodeinfo[node]['ipHostNumber'].each do |ip|
          next if ip =~ /:/
          dbs << ip
       end
@@ -150,9 +150,9 @@
 
 @def $HOST_DEBIAN_V6  = (<%=
   dbs = []
-  keyinfo.keys.sort.each do |node|
-      next unless keyinfo[node].has_key?('ipHostNumber')
-      keyinfo[node]['ipHostNumber'].each do |ip|
+  allnodeinfo.keys.sort.each do |node|
+      next unless allnodeinfo[node].has_key?('ipHostNumber')
+      allnodeinfo[node]['ipHostNumber'].each do |ip|
          next if ip =~ /\./
          dbs << ip
       end

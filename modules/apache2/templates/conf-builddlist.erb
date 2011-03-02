@@ -8,10 +8,11 @@
 <%=
   lines = []
 
-  keyinfo.keys.sort.each do |node|
-    if keyinfo[node]['purpose'].include?('buildd')
-      lines << "  # #{keyinfo[node]['hostname'].to_s}"
-      keyinfo[node]['ipHostNumber'].each do |addr|
+  allnodeinfo.keys.sort.each do |node|
+    next unless allnodeinfo[node]['purpose']
+    if allnodeinfo[node]['purpose'].include?('buildd')
+      lines << "  # #{allnodeinfo[node]['hostname'].to_s}"
+      allnodeinfo[node]['ipHostNumber'].each do |addr|
         lines << "  allow from #{addr}"
       end
     end
@@ -19,6 +20,7 @@
 
   lines.join("\n")
 # vim:set et:
+# vim:set tabwidth=2:
 # vim:set sts=2 ts=2:
 # vim:set shiftwidth=2:
 %>
