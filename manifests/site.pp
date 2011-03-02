@@ -110,10 +110,7 @@ node default {
             $runs_local_resolver = false
         }
     }
-    case getfromhash($hosterinfo, 'nameservers') {
-        false:      {}
-        default:    { include resolv }
-    }
+    include resolv
 
     case $kernel {
         Linux: {
