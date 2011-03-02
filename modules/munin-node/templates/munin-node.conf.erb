@@ -42,6 +42,7 @@ ignore_file \.rpm(save|new)$
 str = ''
 localinfo.keys.sort.each do |node|
    if localinfo[node]['muninmaster']
+      next unless allnodeinfo[node]['ipHostNumber']
       allnodeinfo[node]['ipHostNumber'].each do |ip|
          str += "allow ^" + ip.split('.').join('\.') + "$\n"
       end
