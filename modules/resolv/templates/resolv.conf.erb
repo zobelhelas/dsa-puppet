@@ -12,9 +12,9 @@ if %w{draghi liszt widor spohr samosa}.include?(hostname)
   nameservers << "127.0.0.1"
 end
 
-nameservers += hosterinfo['nameservers'] if hosterinfo['nameservers']
-searchpaths += hosterinfo['searchpaths'] if hosterinfo['searchpaths']
-options += hosterinfo['resolvoptions'] if hosterinfo['resolvoptions']
+nameservers += nodeinfo['hoster']['nameservers'] if nodeinfo['hoster']['nameservers']
+searchpaths += nodeinfo['hoster']['searchpaths'] if nodeinfo['hoster']['searchpaths']
+options += nodeinfo['hoster']['resolvoptions'] if nodeinfo['hoster']['resolvoptions']
 
 searchpaths << "debian.org"
 

@@ -3,7 +3,7 @@ module Puppet::Parser::Functions
     require 'ipaddr'
     require 'yaml'
 
-    nodeinfo = args[0]
+    ipAddrs = args[0]
     yamlfile = args[1]
     parser.watch_file(yamlfile)
 
@@ -12,24 +12,22 @@ module Puppet::Parser::Functions
     ans = {"name" => "unknown"}
     yaml = YAML.load_file(yamlfile)
 
-    if (nodeinfo['ldap'].has_key?('ipHostNumber'))
-      nodeinfo['ldap']['ipHostNumber'].each do |addr|
-        yaml.keys.each do |hoster|
-          if yaml[hoster].kind_of?(Hash) and yaml[hoster].has_key?('netrange')
-            netrange = yaml[hoster]['netrange']
-          else
-            next
-          end
+    ipAddrs.each do |addr|
+      yaml.keys.each do |hoster|
+        if yaml[hoster].kind_of?(Hash) and yaml[hoster].has_key?('netrange')
+          netrange = yaml[hoster]['netrange']
+        else
+          next
+        end
 
-          netrange.each do |net|
-            begin
-              if IPAddr.new(net).include?(addr)
-                ans = yaml[hoster]
-                ans['name'] = hoster
-              end
-            rescue => e
-              raise Puppet::ParseError, "Error while trying to match addr #{addr} for net #{net}: #{e.message}\n#{e.backtrace}"
+        netrange.each do |net|
+          begin
+            if IPAddr.new(net).include?(addr)
+              ans = yaml[hoster]
+              ans['name'] = hoster
             end
+          rescue => e
+            raise Puppet::ParseError, "Error while trying to match addr #{addr} for net #{net}: #{e.message}\n#{e.backtrace}"
           end
         end
       end

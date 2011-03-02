@@ -5,9 +5,14 @@ module Puppet::Parser::Functions
     yamlfile = args[1]
 
     require '/var/lib/puppet/lib/puppet/parser/functions/ldapinfo.rb'
+    require '/var/lib/puppet/lib/puppet/parser/functions/whohosts.rb'
 
     results         = function_yamlinfo(host, yamlfile)
     results['ldap'] = function_ldapinfo(host, '*')
+    unless results['ldap']['ipHostNumber']
+      raise Puppet::ParseError, "Host #{host} does not have ipHostNumber values in ldap"
+    end
+    results['hoster'] = whohosts(results['ldap']['ipHostNumber'], "/etc/puppet/modules/debian-org/misc/hoster.yaml")
 
     results['misc'] = {}
     fqdn = lookupvar('fqdn')
