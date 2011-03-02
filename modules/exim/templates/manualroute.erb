@@ -18,9 +18,8 @@ if nodeinfo['mailrelay']
 end
 
 mxregex = Regexp.new('^\d+\s+(.*)\.$')
-allnodeinfo.keys.sort.each do |host|
-  next unless allnodeinfo[host]['mXRecord']
-  allnodeinfo[host]['mXRecord'].each do |mx|
+mxinfo.keys.sort.each do |host|
+  mxinfo[host]['mXRecord'].each do |mx|
     mxmatch = mxregex.match(mx)
     if mxmatches.include?(mxmatch[1])
       route = host + ":\t\t" + host
