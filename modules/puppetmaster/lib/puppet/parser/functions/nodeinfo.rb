@@ -12,7 +12,7 @@ module Puppet::Parser::Functions
     unless results['ldap']['ipHostNumber']
       raise Puppet::ParseError, "Host #{host} does not have ipHostNumber values in ldap"
     end
-    results['hoster'] = whohosts(results['ldap']['ipHostNumber'], "/etc/puppet/modules/debian-org/misc/hoster.yaml")
+    results['hoster'] = function_whohosts(results['ldap']['ipHostNumber'], "/etc/puppet/modules/debian-org/misc/hoster.yaml")
 
     results['misc'] = {}
     fqdn = lookupvar('fqdn')
