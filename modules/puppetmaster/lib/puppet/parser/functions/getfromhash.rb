@@ -7,7 +7,7 @@ module Puppet::Parser::Functions
     # allows getting of hash[key] or even hash[key1][key2] etc.
     keys.each do |key|
       raise Puppet::ParseError, "argument[#{keys_done.join('][')}] is not a hash." unless x.kind_of?(Hash)
-      unless h.has_key?(key)
+      unless x.has_key?(key)
         x = false
         break
       end
