@@ -101,7 +101,7 @@ node default {
         liszt,spohr,widor:               { include named::recursor }
     }
     case $hostname {
-        franck,master,ries,samosa:   {
+        franck,master,murphy,ries,samosa:   {
             include unbound
             $runs_local_resolver = true
         }
