@@ -38,6 +38,7 @@ class unbound {
             notify  => Exec["unbound restart"],
             owner   => root,
             group   => root,
+            require => [ File[/var/lib/unbound/root.key],  File[/var/lib/unbound/debian.org.key] ],
             ;
     }
 
