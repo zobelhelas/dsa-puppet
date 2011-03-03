@@ -98,10 +98,10 @@ node default {
     case $hostname {
         klecker,ravel,senfl,orff,draghi: { include named::authoritative }
         geo1,geo2,geo3:                  { include named::geodns }
-        liszt,spohr,widor:               { include named::recursor }
+        liszt,widor:                     { include named::recursor }
     }
     case $hostname {
-        franck,master,murphy,ries,samosa:   {
+        franck,master,murphy,ries,samosa,spohr:   {
             include unbound
             $runs_local_resolver = true
         }
