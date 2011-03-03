@@ -37,6 +37,8 @@ brainfood:
     - 70.103.162.0/24
   searchpaths: [debprivate-brainfood.debian.org]
   nameservers: [70.103.162.29, 70.103.162.4]
+  # master accepts queries from murphy
+  allow_dns_query: [70.103.162.31/32]
 brown:
   netrange:
     - 128.148.0.0/16
