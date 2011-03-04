@@ -13,6 +13,9 @@ class clamav {
             require => Package["clamav-unofficial-sigs"],
             source  => [ "puppet:///modules/clamav/clamav-unofficial-sigs.conf" ]
             ;
+        "/var/lib/clamav/mbl.ndb":
+            ensure  => absent,
+            ;
     }
 }
 
