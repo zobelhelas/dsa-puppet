@@ -16,10 +16,8 @@ Exec {
 node default {
     $localinfo = yamlinfo('*', "/etc/puppet/modules/debian-org/misc/local.yaml")
     $nodeinfo  = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
-    $hosterinfo = whohosts($nodeinfo, "/etc/puppet/modules/debian-org/misc/hoster.yaml")
-    $keyinfo   = allnodeinfo("sshRSAHostKey", "ipHostNumber", "purpose")
-    $mxinfo    = allnodeinfo("mXRecord")
-    notice("hoster for ${fqdn} is ${hosterinfo}")
+    $allnodeinfo = allnodeinfo("sshRSAHostKey ipHostNumber", "purpose mXRecord")
+    notice( sprintf("hoster for %s is %s", $fqdn, getfromhash($nodeinfo, 'hoster', 'name') ) )
 
     include munin-node
     include syslog-ng
@@ -100,8 +98,18 @@ node default {
     case $hostname {
         klecker,ravel,senfl,orff,draghi: { include named::authoritative }
         geo1,geo2,geo3:                  { include named::geodns }
-        franck,liszt,master,samosa,schein,spohr,steffani,widor:   { include named::recursor }
+        liszt,widor:                     { include named::recursor }
     }
+    case $hostname {
+        franck,master,murphy,ries,samosa,spohr:   {
+            include unbound
+            $runs_local_resolver = true
+        }
+        default: {
+            $runs_local_resolver = false
+        }
+    }
+    include resolv
 
     case $kernel {
         Linux: {
@@ -121,10 +129,6 @@ node default {
 
     case $brokenhosts {
         "true":    { include hosts }
-    }
-    case getfromhash($hosterinfo, 'nameservers') {
-        false:      {}
-        default:    { include resolv }
     }
     case $portforwarder_user_exists {
         "true":    { include portforwarder }

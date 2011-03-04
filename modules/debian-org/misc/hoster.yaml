@@ -37,10 +37,13 @@ brainfood:
     - 70.103.162.0/24
   searchpaths: [debprivate-brainfood.debian.org]
   nameservers: [70.103.162.29, 70.103.162.4]
+  # master accepts queries from murphy
+  allow_dns_query: [70.103.162.31/32]
 brown:
   netrange:
     - 128.148.0.0/16
-  nameservers: [128.148.34.103, 128.148.34.3]
+  # all hosts have their own recursor
+  nameservers: []
 carnet:
   netrange:
     - 193.198.0.0/16
@@ -73,8 +76,10 @@ freenet:
 ftcollins:
   netrange:
     - 192.25.206.0/24
-  searchpaths: [debprivate-debprivate-ftcollins.debian.org]
+  searchpaths: [debprivate-ftcollins.debian.org]
   nameservers: [192.25.206.33, 192.25.206.57]
+  # only applicable for hosts that are recursive anyway:
+  allow_dns_query: [192.25.206.0/24]
 grnet:
   netrange:
     - 194.177.211.192/27
@@ -134,6 +139,7 @@ ubcece:
     - 206.12.19.0/24
   searchpaths: [debprivate-ubc.debian.org]
   nameservers: [206.12.19.5, 137.82.1.1, 142.103.1.1]
+  allow_dns_query: [137.82.84.64/27, 206.12.19.0/24]
 ugent:
   netrange:
     - 157.193.0.0/16

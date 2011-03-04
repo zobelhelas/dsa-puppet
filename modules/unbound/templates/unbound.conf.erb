@@ -1,0 +1,66 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+server:
+	verbosity: 1
+
+<%=
+	out = []
+	if nodeinfo['misc']['resolver-recursive'] and nodeinfo['hoster']['allow_dns_query']
+		out << "	interface: 0.0.0.0"
+		out << "	interface: ::0"
+		out << ""
+		out << "	interface-automatic: yes"
+
+		out << "	access-control: 0.0.0.0/0 refuse"
+		out << "	access-control: ::0/0 refuse"
+		out << "	access-control: 127.0.0.0/8 allow"
+		out << "	access-control: ::0/0 refuse"
+		out << "	access-control: ::1 allow"
+		out << "	access-control: ::ffff:127.0.0.1 allow"
+		nodeinfo['hoster']['allow_dns_query'].each do |net|
+			out << "	access-control: #{net} allow"
+		end
+	end
+	out.join("\n")
+%>
+
+	#chroot: ""
+
+	hide-identity: yes
+	hide-version: yes
+
+	use-caps-for-id: yes
+
+	# Do not query the following addresses. No DNS queries are sent there.
+	# List one address per entry. List classless netblocks with /size,
+	# do-not-query-address: 127.0.0.1/8
+	# do-not-query-address: ::1
+
+	# if yes, the above default do-not-query-address entries are present.
+	# if no, localhost can be queried (for testing and debugging).
+	# do-not-query-localhost: yes
+
+	# File with trusted keys, kept uptodate using RFC5011 probes,
+	# initial file like trust-anchor-file, then it stores metadata.
+	# Use several entries, one per domain name, to track multiple zones.
+	# auto-trust-anchor-file: ""
+	auto-trust-anchor-file: "/var/lib/unbound/root.key"
+	auto-trust-anchor-file: "/var/lib/unbound/debian.org.key"
+
+<%=
+	out = []
+	unless nodeinfo['misc']['resolver-recursive']
+		forwarders = nodeinfo['hoster']['nameservers']
+		forwarders ||= []
+
+		out << 'forward-zone:'
+		out << '	name: "."'
+		forwarders.each do |ns|
+			out << "	forward-addr: #{ns}"
+		end
+	end
+	out.join("\n")
+%>

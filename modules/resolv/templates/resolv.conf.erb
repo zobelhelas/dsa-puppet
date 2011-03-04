@@ -8,25 +8,31 @@ nameservers = []
 searchpaths = []
 options = []
 
-if %w{draghi liszt widor spohr samosa}.include?(hostname)
+if %w{draghi liszt widor spohr}.include?(hostname)
   nameservers << "127.0.0.1"
 end
 
-nameservers += hosterinfo['nameservers'] if hosterinfo['nameservers']
-searchpaths += hosterinfo['searchpaths'] if hosterinfo['searchpaths']
-options += hosterinfo['resolvoptions'] if hosterinfo['resolvoptions']
+nameservers += nodeinfo['hoster']['nameservers'] if nodeinfo['hoster']['nameservers']
+searchpaths += nodeinfo['hoster']['searchpaths'] if nodeinfo['hoster']['searchpaths']
+options += nodeinfo['hoster']['resolvoptions'] if nodeinfo['hoster']['resolvoptions']
 
 searchpaths << "debian.org"
 
-if nameservers.empty?
-  raise Puppet::ParseError, "Something has gone wrong writing resolv.conf: probably included for wrong hoster"
-end
-
 resolvconf  = ''
 resolvconf += "search " + searchpaths.join(" ") + "\n"
-nameservers.each do |ns|
-  resolvconf += "nameserver " + ns + "\n"
+
+if runs_local_resolver
+  resolvconf += "nameserver 127.0.0.1\n"
+else
+  if nameservers.empty?
+    raise Puppet::ParseError, "Something has gone wrong writing resolv.conf.  No nameservers to use!"
+  end
+
+  nameservers.each do |ns|
+    resolvconf += "nameserver " + ns + "\n"
+  end
 end
+
 options.each do |opt|
   resolvconf += "options " + opt + "\n"
 end
