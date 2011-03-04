@@ -225,6 +225,7 @@ host_settings:
   squeeze:
     - arne.debian.org
     - byrd.debian.org
+    - cilea.debian.org
     - danzi.debian.org
     - fano.debian.org
     - fasch.debian.org
@@ -235,8 +236,8 @@ host_settings:
     - locke.debian.org
     - lotti.debian.org
     - nono.debian.org
-    - quantz.debian.org
     - piatti.debian.org
+    - quantz.debian.org
     - raff.debian.org
     - rautavaara.debian.org
     - reger.debian.org
