@@ -105,7 +105,7 @@ nameinfo:
   steffani.debian.org: Agostino Steffani (July 25th, 1653 - February 12th, 1728)
   tartini.debian.org: Giuseppe Tartini (April 8th, 1692 - February 26th, 1770)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
-  traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (30 March 1727 - 6 April 1779)
+  traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (March 30th, 1727 - April 6th, 1779)
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
   valente.debian.org: Vincenzo Valente (February 21st, 1855 - September 6th, 1921)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
@@ -251,6 +251,7 @@ host_settings:
     - sibelius.debian.org
     - spohr.debian.org
     - tchaikovsky.debian.org
+    - traetta.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
