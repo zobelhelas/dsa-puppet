@@ -161,8 +161,7 @@ class apache2 {
                 chain           => 'http_limit',
                 rule            => '
                                     mod limit limit-burst 60 limit 15/minute jump ACCEPT;
-                                    jump DROP;
-                                   '
+                                    jump DROP'
             }
             @ferm::rule { "dsa-http-soso":
                 prio            => "21",
@@ -170,8 +169,7 @@ class apache2 {
                 chain           => 'limit_sosospider',
                 rule            => '
                                     mod connlimit connlimit-above 2 connlimit-mask 21 jump DROP;
-                                    jump http_limit;
-                                   '
+                                    jump http_limit'
             }
             @ferm::rule { "dsa-http-yahoo":
                 prio            => "21",
@@ -179,8 +177,7 @@ class apache2 {
                 chain           => 'limit_yahoo',
                 rule            => '
                                     mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP;
-                                    jump http_limit;
-                                   '
+                                    jump http_limit'
             }
             @ferm::rule { "dsa-http-google":
                 prio            => "21",
@@ -188,8 +185,7 @@ class apache2 {
                 chain           => 'limit_google',
                 rule            => '
                                     mod connlimit connlimit-above 2 connlimit-mask 19 jump DROP;
-                                    jump http_limit;
-                                   '
+                                    jump http_limit'
             }
             @ferm::rule { "dsa-http-bing":
                 prio            => "21",
@@ -197,8 +193,7 @@ class apache2 {
                 chain           => 'limit_bing',
                 rule            => '
                                     mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP;
-                                    jump http_limit;
-                                   '
+                                    jump http_limit'
             }
             @ferm::rule { "dsa-http-rules":
                 prio            => "22",
@@ -212,13 +207,12 @@ class apache2 {
 
                                     mod recent name HTTPDOS update seconds 1800 jump log_or_drop;
                                     mod hashlimit hashlimit-name HTTPDOS hashlimit-mode srcip hashlimit-burst 600 hashlimit 30/minute jump ACCEPT;
-                                    mod recent name HTTPDOS set jump log_or_drop;
-                                   '
+                                    mod recent name HTTPDOS set jump log_or_drop'
             }
             @ferm::rule { "dsa-http":
                 prio            => "23",
                 description     => "Allow web access",
-                rule            => "proto tcp dport (http https) jump http;"
+                rule            => "proto tcp dport (http https) jump http"
             }
         }
         default: {
