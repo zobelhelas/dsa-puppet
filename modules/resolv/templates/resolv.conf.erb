@@ -21,6 +21,7 @@ searchpaths << "debian.org"
 resolvconf  = ''
 resolvconf += "search " + searchpaths.join(" ") + "\n"
 
+unbound = lookupvar('unbound')
 if unbound and unbound == "true"
   resolvconf += "nameserver 127.0.0.1\n"
 else
