@@ -25,7 +25,10 @@ if defined?(unbound) and unbound and unbound == "true"
   resolvconf += "nameserver 127.0.0.1\n"
 else
   if nameservers.empty?
-    raise Puppet::ParseError, "Something has gone wrong writing resolv.conf.  No nameservers to use!"
+    #raise Puppet::ParseError, "Something has gone wrong writing resolv.conf.  No nameservers to use!"
+    STDERR.put "Something has gone wrong writing resolv.conf.  No nameservers to use - using google's!"
+    nameservers << '8.8.8.8'
+    nameservers << '8.8.4.4'
   end
 
   nameservers.each do |ns|
