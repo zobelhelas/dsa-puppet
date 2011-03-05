@@ -21,7 +21,7 @@ searchpaths << "debian.org"
 resolvconf  = ''
 resolvconf += "search " + searchpaths.join(" ") + "\n"
 
-if runs_local_resolver
+if unbound and unbound == "true"
   resolvconf += "nameserver 127.0.0.1\n"
 else
   if nameservers.empty?
