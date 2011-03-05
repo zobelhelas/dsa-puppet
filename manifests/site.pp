@@ -106,13 +106,15 @@ node default {
             $runs_local_resolver = true
         }
         default: {
-            $runs_local_resolver = false
-        }
-    }
-    case getfromhash($nodeinfo, 'squeeze') {
-        true:  {
-            include unbound
-            $runs_local_resolver = true
+            case getfromhash($nodeinfo, 'squeeze') {
+                true:  {
+                    include unbound
+                    $runs_local_resolver = true
+                }
+                default: {
+                    $runs_local_resolver = false
+                }
+            }
         }
     }
     include resolv
