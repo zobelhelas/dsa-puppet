@@ -152,7 +152,9 @@ utwente:
   netrange:
     - 130.89.0.0/16
     - 2001:0610:1908::/48
-  nameservers: [130.89.2.2, 130.89.2.3]
+  # broken with dnssec
+  #nameservers: [130.89.2.2, 130.89.2.3]
+  nameservers: []
 xs4all:
   netrange:
     - 194.109.137.216/29
