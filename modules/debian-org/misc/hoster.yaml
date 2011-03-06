@@ -107,9 +107,12 @@ osuosl:
 sanger:
   netrange:
     - 193.62.202.24/29
-  nameservers: [193.62.203.96, 193.62.203.97]
+  # broken with dnssec
+  # nameservers: [193.62.203.96, 193.62.203.97]
+  #resolvoptions: [single-request]
+  nameservers: [193.62.202.28, 193.62.202.29]
   searchpaths: [debprivate-sanger.debian.org]
-  resolvoptions: [single-request]
+  allow_dns_query: [193.62.202.24/29]
 rapidswitch:
   netrange:
     - 193.201.200.0/23
