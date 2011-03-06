@@ -235,6 +235,7 @@ host_settings:
     - finzi.debian.org
     - kassia.debian.org
     - lamb.debian.org
+    - lindberg.debian.org
     - locke.debian.org
     - lotti.debian.org
     - nono.debian.org
