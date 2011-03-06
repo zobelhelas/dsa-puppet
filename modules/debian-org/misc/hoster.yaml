@@ -123,7 +123,6 @@ sil:
   searchpaths: [debprivate-sil.debian.org]
   # broken with dnssec
   # nameservers: [213.129.232.1, 213.129.226.2]
-  nameservers: [213.129.226.2]
 scanplus:
   netrange:
     - 212.211.132.0/26
