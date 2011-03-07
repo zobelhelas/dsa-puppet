@@ -101,7 +101,7 @@ node default {
         liszt,widor:                     { include named::recursor }
     }
     case $hostname {
-        franck,master,murphy,ries,samosa,smetana,spohr:   { include unbound }
+        franck,master,merikanto,murphy,ries,samosa,smetana,spohr:   { include unbound }
     }
     case getfromhash($nodeinfo, 'squeeze') {
         true:  { include unbound }
