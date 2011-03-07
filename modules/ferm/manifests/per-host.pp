@@ -25,7 +25,7 @@ class ferm::per-host {
                 }
 
         }
-        abel,alwyn: {
+        abel,alwyn,rietz: {
             @ferm::rule { "dsa-tftp":
                 description     => "Allow tftp access",
                 rule            => "&SERVICE(udp, 69)"
