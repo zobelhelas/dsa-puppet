@@ -180,6 +180,7 @@ ynic:
 zivit:
   netrange:
     - 80.245.144.0/22
+  nameservers_break_dnssec: true
   nameservers: [80.245.147.53, 80.245.147.54]
 
 # vim:set et:
