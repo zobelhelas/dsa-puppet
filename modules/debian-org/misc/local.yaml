@@ -256,6 +256,7 @@ host_settings:
     - spohr.debian.org
     - tchaikovsky.debian.org
     - traetta.debian.org
+    - unger.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
