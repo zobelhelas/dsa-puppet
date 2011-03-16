@@ -233,6 +233,7 @@ host_settings:
     - fasch.debian.org
     - field.debian.org
     - finzi.debian.org
+    - geo1.debian.org
     - heininen.debian.org
     - kassia.debian.org
     - lamb.debian.org
@@ -246,6 +247,7 @@ host_settings:
     - rautavaara.debian.org
     - reger.debian.org
     - rem.debian.org
+    - rietz.debian.org
     - rossini.debian.org
     - salieri.debian.org
     - santoro.debian.org
@@ -255,6 +257,7 @@ host_settings:
     - spohr.debian.org
     - tchaikovsky.debian.org
     - traetta.debian.org
+    - unger.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
