@@ -236,6 +236,7 @@ host_settings:
     - geo1.debian.org
     - heininen.debian.org
     - kassia.debian.org
+    - kaufmann.debian.org
     - lamb.debian.org
     - lindberg.debian.org
     - locke.debian.org
