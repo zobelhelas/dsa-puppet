@@ -19,7 +19,7 @@ class apt-keys {
     }
 
     exec { "apt-keys-update":
-         command => ': && for keyfile in /etc/apt/trusted-keys.d/*; do apt-key add $keyfile; done',
+         command => '/bin/true && for keyfile in /etc/apt/trusted-keys.d/*; do apt-key add $keyfile; done',
          refreshonly => true
     }
 }
