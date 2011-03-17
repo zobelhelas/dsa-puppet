@@ -224,6 +224,7 @@ host_settings:
     - voltaire.debian.org
     - zandonai.debian.org
   squeeze:
+    - alkman.debian.org
     - arne.debian.org
     - beethoven.debian.org
     - byrd.debian.org
