@@ -225,6 +225,7 @@ host_settings:
     - zandonai.debian.org
   squeeze:
     - arne.debian.org
+    - beethoven.debian.org
     - byrd.debian.org
     - cilea.debian.org
     - danzi.debian.org
@@ -241,6 +242,7 @@ host_settings:
     - lindberg.debian.org
     - locke.debian.org
     - lotti.debian.org
+    - murphy.debian.org
     - nono.debian.org
     - piatti.debian.org
     - quantz.debian.org
