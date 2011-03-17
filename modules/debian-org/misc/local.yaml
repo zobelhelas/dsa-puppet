@@ -230,6 +230,7 @@ host_settings:
     - byrd.debian.org
     - cilea.debian.org
     - danzi.debian.org
+    - dijkstra.debian.org
     - duarte.debian.org
     - englund.debian.org
     - fano.debian.org
