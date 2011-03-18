@@ -268,6 +268,7 @@ host_settings:
     - tchaikovsky.debian.org
     - traetta.debian.org
     - unger.debian.org
+    - vitry.debian.org
     - wieck.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
