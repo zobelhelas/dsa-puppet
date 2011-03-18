@@ -98,10 +98,10 @@ node default {
     case $hostname {
         klecker,ravel,senfl,orff,draghi: { include named::authoritative }
         geo1,geo2,geo3:                  { include named::geodns }
-        liszt,widor:                     { include named::recursor }
+        liszt:                           { include named::recursor }
     }
     case $hostname {
-        franck,master,lobos,ries,samosa,smetana,spohr:   { include unbound }
+        franck,master,lobos,ries,samosa,smetana,spohr,widor:   { include unbound }
     }
     case getfromhash($nodeinfo, 'squeeze') {
         true:  { include unbound }
