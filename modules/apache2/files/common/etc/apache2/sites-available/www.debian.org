@@ -25,6 +25,9 @@
   ExpiresByType image/png "access plus 1 week"
   ExpiresByType image/x-icon "access plus 1 week"
 
+  # FileEtag needs to be the same across mirrors (used for caching, ignore inode)
+  FileEtag MTime Size
+
   # language stuff, for web site translations
   # for boot-floppies docs only: sk
   AddLanguage en .en
