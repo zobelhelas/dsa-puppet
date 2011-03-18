@@ -226,7 +226,9 @@ host_settings:
   squeeze:
     - alkman.debian.org
     - arne.debian.org
+    - barber.debian.org
     - beethoven.debian.org
+    - biber.debian.org
     - brahms.debian.org
     - byrd.debian.org
     - cilea.debian.org
