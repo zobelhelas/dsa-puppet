@@ -22,6 +22,8 @@
   ExpiresDefault "access plus 1 day"
   ExpiresByType image/gif "access plus 1 week"
   ExpiresByType image/jpeg "access plus 1 week"
+  ExpiresByType image/png "access plus 1 week"
+  ExpiresByType image/x-icon "access plus 1 week"
 
   # language stuff, for web site translations
   # for boot-floppies docs only: sk
