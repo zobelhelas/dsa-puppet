@@ -217,6 +217,7 @@ acl NA {
 	country_TC;
 	country_TT;
 	country_US;
+	country_UY;
 	country_VC;
 	country_VG;
 	country_VI;
@@ -236,7 +237,6 @@ acl SA {
 	country_PE;
 	country_PY;
 	country_SR;
-	country_UY;
 	country_VE;
 };
 

@@ -5,6 +5,7 @@
 
 <% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 deb https://buildd.debian.org/apt/ squeeze main
+deb https://buildd.debian.org/apt/ lenny main
 <% else %>
 deb https://buildd.debian.org/apt/ lenny main
 <% end %>

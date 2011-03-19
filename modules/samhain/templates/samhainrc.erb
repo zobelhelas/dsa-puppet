@@ -78,10 +78,6 @@ IgnoreMissing=/etc/lvm/archive/.*.vg
 file=/etc/mtab
 file=/etc/ssh_random_seed
 file=/etc/asound.conf
-<% case hoster when "ubcece", "darmstadt", "ftcollins", "grnet" then -%>
-<% else -%>
-file=/etc/resolv.conf
-<% end -%>
 file=/etc/localtime
 file=/etc/ioctl.save
 file=/etc/passwd.backup
@@ -105,6 +101,7 @@ file=/etc/bind/geodns/recvconf.files
 <% if classes.include?("named") -%>
 file=/etc/bind/named.conf.options
 <% end -%>
+file=/etc/apache2/conf.d/puppet-builddlist
 
 #
 # There are files in /etc that might change, thus changing the directory
@@ -212,9 +209,7 @@ file=/var/log/syslog
 ##
 ## This file might be created or removed by the system sometimes.
 ##
-<% case hoster when "ubcece", "darmstadt", "ftcollins", "grnet" then -%>
 file=/etc/resolv.conf
-<% end -%>
 <% if nodeinfo['buildd'] -%>
 file=/etc/dupload.conf
 <% end -%>

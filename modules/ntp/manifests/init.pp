@@ -28,7 +28,7 @@ class ntp {
             ensure  => directory,
             ;
     }
-    case extractnodeinfo($nodeinfo, 'timeserver') {
+    case getfromhash($nodeinfo, 'timeserver') {
         true: { }
         default: {
             file {

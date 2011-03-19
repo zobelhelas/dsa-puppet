@@ -139,7 +139,7 @@ class debian-proliant inherits debian-org {
         "hp-health": ensure => installed;
         "arrayprobe": ensure => installed;
     }
-    case extractnodeinfo($nodeinfo, 'squeeze') {
+    case getfromhash($nodeinfo, 'squeeze') {
         true: {}
         default: {
             package {

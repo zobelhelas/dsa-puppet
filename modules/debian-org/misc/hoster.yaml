@@ -1,42 +1,188 @@
 ---
-1und1-sec:
-  - 195.20.242.64/26
-  - 212.227.126.32/27
-  - 2001:8d8:2:1::/64
 1und1:
-  - 2001:8d8:81:1520::/64
+  netrange:
+    - 87.106.0.0/16
+    - 2001:8d8:81:1520::/64
+  nameservers_break_dnssec: true
+  nameservers: [87.106.64.251, 195.20.224.99, 195.20.224.234]
+  # for i in `awk '$1=="nameserver" {print $2}' /etc/resolv.conf; [ -e /etc/unbound/unbound.conf ] && awk '$1=="forward-addr:" {print $2}' /etc/unbound/unbound.conf`; do dig +dnssec @$i -t ns . | grep RRSIG || echo BROKEN; echo;echo $i; echo;read; done
+1und1-sec:
+  netrange:
+    - 195.20.242.64/26
+    - 212.227.126.32/27
+    - 2001:8d8:2:1::/64
+  searchpaths: [debprivate-oneandone.debian.org]
+  nameservers_break_dnssec: true
+  nameservers: [195.20.224.99, 195.20.224.234, 87.106.64.251]
+accumu:
+  netrange:
+    - 130.236.0.0/14
+    - 2001:06B0:000E::/48
+  searchpaths: [debprivate-accumu.debian.org]
+  nameservers: [130.239.18.145, 130.239.1.90, 130.239.4.100]
+# Australian National University (ana.edu.au)
+ana:
+  netrange:
+    - 150.203.164.0/24
+    - 2001:388:1034:2900::64
+  nameservers_break_dnssec: true
+  nameservers: [150.203.1.10, 150.203.164.10, 150.203.164.9]
 arm:
-  - 217.140.96.58/29
+  netrange:
+    - 217.140.96.58/29
+  nameservers_break_dnssec: true
+  nameservers: [158.43.128.1, 217.140.108.113]
+br:
+  # University Federal do Parana (.br)
+  netrange:
+    - 200.17.192.0/19
+  nameservers: [200.17.202.1, 200.17.202.3]
+brainfood:
+  netrange:
+    - 70.103.162.0/24
+  searchpaths: [debprivate-brainfood.debian.org]
+  # all hosts have their own recursor
+  nameservers: []
+brown:
+  netrange:
+    - 128.148.0.0/16
+  # all hosts have their own recursor
+  nameservers: []
+carnet:
+  netrange:
+    - 193.198.0.0/16
+  nameservers_break_dnssec: true
+  nameservers: [161.53.160.3, 161.53.123.3]
 csail:
-  - 128.31.0.0/24
+  # mit
+  netrange:
+    - 128.31.0.0/24
+  searchpaths: [debprivate-csail.debian.org]
+  nameservers: [128.30.2.24, 128.30.2.25, 128.30.0.125]
+cst:
+  netrange:
+    - 213.188.99.208/28
+  nameservers: [213.157.0.194, 213.157.0.193]
 darmstadt:
-  - 82.195.75.64/26
-  - 82.195.75.32/28
-  - 2001:41b8:202:deb::/64
+  netrange:
+    - 82.195.75.64/26
+    - 82.195.75.32/28
+    - 2001:41b8:202:deb::/64
+  searchpaths: [debprivate-darmstadt.debian.org]
+  nameservers: [82.195.75.81, 82.195.66.249, 217.198.242.225]
 dgi:
-  - 93.94.130.128/26
+  netrange:
+    - 93.94.130.128/26
+  nameservers: [195.49.152.215, 195.49.152.213, 195.49.152.214]
+freenet:
+  netrange:
+    - 62.104.0.0/16
+  nameservers_break_dnssec: true
+  nameservers: [194.97.3.83, 62.104.64.3, 194.97.3.11]
 ftcollins:
-  - 192.25.206.0/24
+  netrange:
+    - 192.25.206.0/24
+  searchpaths: [debprivate-ftcollins.debian.org]
+  nameservers: [192.25.206.33, 192.25.206.57]
+  # only applicable for hosts that are recursive anyway:
+  allow_dns_query: [192.25.206.0/24]
 grnet:
-  - 194.177.211.192/27
-  - 2001:648:2ffc:deb::/64
-nl:
-  - 194.109.137.216/29
-  - 2001:888:2000:12::/64
-osousl:
-  - 140.211.166.0/25
-  - 140.211.15.0/24
+  netrange:
+    - 194.177.211.192/27
+    - 2001:648:2ffc:deb::/64
+  searchpaths: [debprivate-grnet.debian.org]
+  nameservers: [194.177.210.10, 194.177.210.210]
+helsinki:
+  netrange:
+    - 193.167.160.0/23
+  # all hosts have their own recursor
+  nameservers: []
+isc:
+  netrange:
+    - 149.20.0.0/16
+    - 2001:4F8::/32
+  nameservers: [149.20.64.2, 204.152.184.67]
+nmmn:
+  netrange:
+    - 217.114.76.80/29
+  nameservers: [217.114.70.53, 217.114.77.53]
+osuosl:
+  netrange:
+    - 140.211.166.0/25
+    - 140.211.15.0/24
+  nameservers_break_dnssec: true
+  nameservers: [140.211.166.130, 140.211.166.131, 216.165.191.54]
 sanger:
-  - 193.62.202.24/29
+  netrange:
+    - 193.62.202.24/29
+  # broken with dnssec
+  # nameservers: [193.62.203.96, 193.62.203.97]
+  #resolvoptions: [single-request]
+  nameservers: [193.62.202.28, 193.62.202.29]
+  searchpaths: [debprivate-sanger.debian.org]
+  allow_dns_query: [193.62.202.24/29]
+rapidswitch:
+  netrange:
+    - 193.201.200.0/23
+  nameservers: [87.117.198.200, 87.117.237.100, 87.117.196.200]
 sil:
-  - 86.59.118.144/28
+  netrange:
+    - 86.59.118.144/28
+  searchpaths: [debprivate-sil.debian.org]
+  nameservers_break_dnssec: true
+  nameservers: [213.129.232.1, 213.129.226.2]
 scanplus:
-  - 212.211.132.0/26
-  - 212.211.132.248/29
-  - 2001:a78::/64
+  netrange:
+    - 212.211.132.0/26
+    - 212.211.132.248/29
+    - 2001:a78::/64
+  nameservers_break_dnssec: true
+  nameservers: [212.211.132.4, 212.75.32.4]
+snowman:
+  netrange:
+    - 72.66.115.54
+  nameservers: [10.10.1.1]
+telegrafxs4all:
+  netrange:
+    - 82.94.249.152/29
+  nameservers_break_dnssec: true
+  nameservers: [194.109.6.66]
 ubcece:
-  - 137.82.84.64/27
-  - 206.12.19.0/24
+  netrange:
+    - 137.82.84.64/27
+    - 206.12.19.0/24
+  searchpaths: [debprivate-ubc.debian.org]
+  nameservers: [206.12.19.5, 137.82.1.1, 142.103.1.1]
+  allow_dns_query: [137.82.84.64/27, 206.12.19.0/24]
+ugent:
+  netrange:
+    - 157.193.0.0/16
+  nameservers: [157.193.40.42]
+umn:
+  netrange:
+    - 128.101.240.212
+  nameservers: [128.101.101.101, 134.84.84.84]
+utwente:
+  netrange:
+    - 130.89.0.0/16
+    - 2001:0610:1908::/48
+  # broken with dnssec
+  #nameservers: [130.89.2.2, 130.89.2.3]
+  nameservers: []
+xs4all:
+  netrange:
+    - 194.109.137.216/29
+    - 2001:888:2000:12::/64
 ynic:
-  - 144.32.168.64/28
----
+  netrange:
+    - 144.32.168.64/28
+  nameservers: [144.32.169.74, 144.32.169.75, 144.32.169.76]
+zivit:
+  netrange:
+    - 80.245.144.0/22
+  nameservers_break_dnssec: true
+  nameservers: [80.245.147.53, 80.245.147.54]
+
+# vim:set et:
+# vim:set sts=2 ts=2:
+# vim:set shiftwidth=2:

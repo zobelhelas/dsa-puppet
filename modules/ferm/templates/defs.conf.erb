@@ -15,11 +15,15 @@
  proto (tcp udp) mod state state (NEW) dport $port ACCEPT;
 }
 
+@def &TCP_UDP_SERVICE_RANGE($port, $srange) = {
+ proto (tcp udp) mod state state (NEW) dport $port @subchain "$port" { saddr ($srange) ACCEPT; }"
+}
+
 @def $HOST_MAILRELAY_V4 = (<%=
   mailrelay = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['mailrelay']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              mailrelay << ip
           end
@@ -33,7 +37,7 @@
   mailrelay = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['mailrelay']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              mailrelay << ip
           end
@@ -49,7 +53,7 @@
   nagii = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              nagii << ip
           end
@@ -63,7 +67,7 @@
   nagii = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              nagii << ip
           end
@@ -79,7 +83,7 @@
   munins = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['muninmaster']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              munins << ip
           end
@@ -93,7 +97,7 @@
   munins = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['muninmaster']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              munins << ip
           end
@@ -109,7 +113,7 @@
   dbs = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['dbmaster']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /\./
              dbs << ip
           end
@@ -123,7 +127,7 @@
   dbs = []
   localinfo.keys.sort.each do |node|
       if localinfo[node]['dbmaster']
-          keyinfo[node]['ipHostNumber'].each do |ip|
+          allnodeinfo[node]['ipHostNumber'].each do |ip|
              next if ip =~ /:/
              dbs << ip
           end
@@ -137,9 +141,9 @@
 
 @def $HOST_DEBIAN_V4 = (<%=
   dbs = []
-  keyinfo.keys.sort.each do |node|
-      next unless keyinfo[node].has_key?('ipHostNumber')
-      keyinfo[node]['ipHostNumber'].each do |ip|
+  allnodeinfo.keys.sort.each do |node|
+      next unless allnodeinfo[node].has_key?('ipHostNumber')
+      allnodeinfo[node]['ipHostNumber'].each do |ip|
          next if ip =~ /:/
          dbs << ip
       end
@@ -150,9 +154,9 @@
 
 @def $HOST_DEBIAN_V6  = (<%=
   dbs = []
-  keyinfo.keys.sort.each do |node|
-      next unless keyinfo[node].has_key?('ipHostNumber')
-      keyinfo[node]['ipHostNumber'].each do |ip|
+  allnodeinfo.keys.sort.each do |node|
+      next unless allnodeinfo[node].has_key?('ipHostNumber')
+      allnodeinfo[node]['ipHostNumber'].each do |ip|
          next if ip =~ /\./
          dbs << ip
       end
@@ -174,7 +178,7 @@
 @def $zobel   = ($zobel 87.139.82.80/32); # exit.credativ.com
 @def $zobel   = ($zobel 87.193.134.192/27); # credativ qsc
 @def $zobel   = ($zobel 78.47.2.104/29); # baldur, bragi, saga
-@def $luca    = ();
+@def $luca    = (64.71.152.109);
 @def $DSA_IPS = ($sgran $weasel $zobel $luca);
 
 @def $sgran6     = (2001:4b10:100b::/48);

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ##
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
@@ -6,5 +6,7 @@
 ##
 
 if [ -e /proc/sys/kernel/modules_disabled ]; then
-	echo 1 > /proc/sys/kernel/modules_disabled || true
+	( sleep 60;
+	  echo 1 > /proc/sys/kernel/modules_disabled || true
+	) & disown
 fi

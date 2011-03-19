@@ -77,3 +77,9 @@ Facter.add("rsyncd") do
 		FileTest.exist?("/etc/rsyncd.conf")
 	end
 end
+Facter.add("unbound") do
+	setcode do
+		FileTest.exist?("/usr/sbin/unbound") and
+		FileTest.exist?("/var/lib/unbound/root.key")
+	end
+end
