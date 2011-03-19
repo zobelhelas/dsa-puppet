@@ -3,15 +3,29 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+# The buildd default repository.
 <% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 deb https://buildd.debian.org/apt/ squeeze main
-deb https://buildd.debian.org/apt/ lenny main
 <% else %>
 deb https://buildd.debian.org/apt/ lenny main
 <% end %>
 
 <% if %w{alkman porpora zandonai}.include?(hostname) -%>
+
+# Include the current test version too.
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
+deb https://buildd.debian.org/apt/ squeeze-proposed main
+<% else %>
 deb https://buildd.debian.org/apt/ lenny-proposed main
+<% end %>
+
 <% elsif %w{krenek}.include?(hostname) -%>
+
+# The buildd bleeding edge repository.
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
+deb https://buildd.debian.org/apt/ squeeze-experimental main
+<% else %>
 deb https://buildd.debian.org/apt/ lenny-experimental main
+<% end %>
+
 <% end %>
