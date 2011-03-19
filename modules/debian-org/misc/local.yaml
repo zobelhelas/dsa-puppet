@@ -260,6 +260,7 @@ host_settings:
     - rautavaara.debian.org
     - reger.debian.org
     - rem.debian.org
+    - ries.debian.org
     - rietz.debian.org
     - rossini.debian.org
     - salieri.debian.org
