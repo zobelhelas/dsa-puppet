@@ -37,23 +37,10 @@ node default {
 
     case $hostname {
         heininen:    {
-            include "stunnel4"
-            stunnel4::stunnel_server {
-                "ekeyd":
-                    accept => 18888,
-                    connect => "127.0.0.1:8888",
-                    ;
-            }
+            include "entropykey::provider"
         }
         unger:    {
-            include "stunnel4"
-            stunnel4::stunnel_client {
-                "ekeyd":
-                    accept => "127.0.0.1:8888",
-                    connecthost => "heininen.debian.org",
-                    connectport => 18888,
-                    ;
-            }
+            include "entropykey::remote_consumer"
         }
     }
 

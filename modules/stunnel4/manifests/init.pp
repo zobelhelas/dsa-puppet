@@ -73,7 +73,7 @@ class stunnel4 {
                 require => [ Package['stunnel4'] ],
                 ;
         "restart_stunnel":
-                command => "env -i /etc/init.d/stunnel4 restart",
+                command => "true && cd / && env -i /etc/init.d/stunnel4 restart",
                 require => [ File['/etc/stunnel/stunnel.conf'], Exec['enable_stunnel4'], Package['stunnel4'] ],
                 refreshonly => true,
                 ;
