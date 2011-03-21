@@ -1,6 +1,12 @@
 class stunnel4 {
     define stunnel_generic($client, $verify, $cafile, $crlfile=false, $accept, $connect, $local=false) {
         file {
+            "/etc/stunnel":
+                ensure  => directory,
+                owner   => root,
+                group   => root,
+                mode    => 755,
+                ;
             "/etc/stunnel/puppet-${name}.conf":
                 content => template("stunnel4/stunnel.conf.erb"),
                 notify  => Exec['restart_stunnel'],
