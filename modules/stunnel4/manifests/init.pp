@@ -60,7 +60,6 @@ class stunnel4 {
                 cafile => "/etc/stunnel/puppet-${name}-peer.pem",
                 accept => "${accept}",
                 connect => "${connecthost}:${connectport}",
-                require => [ File["/etc/stunnel/puppet-${name}-peer.pem"] ],
                 ;
         }
     }
