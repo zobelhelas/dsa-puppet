@@ -51,3 +51,10 @@ franck.debian.org:
   - source_bind_port: 5443
     target_host: grieg.debian.org
     target_port: 5433
+
+ries.debian.org:
+  # dak postgresql streaming replication.  franck is the master, ries the slave.
+  - source_bind_port: 15433
+    target_host: franck.debian.org
+    target_port: 5433
+
