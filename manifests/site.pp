@@ -35,10 +35,6 @@ node default {
         finzi,fano,fasch,field:    { include kfreebsd }
     }
 
-    case $hostname {
-        merikanto,heininen,unger,rautavaara,englund,salieri: { include entropykey }
-    }
-
     case $smartarraycontroller {
         "true":    { include debian-proliant }
     }
@@ -155,7 +151,12 @@ node default {
         chopin,geo3,soler,wieck: {
             include debian-radvd
         }
-   }
+    }
+
+    case $kernel {
+        Linux: { include entropykey }
+    }
+
 }
 
 # vim:set et:
