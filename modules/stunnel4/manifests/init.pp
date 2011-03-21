@@ -30,7 +30,8 @@ class stunnel4 {
             "stunnel-${name}":
                 description => "stunnel ${name}",
                 rule => "&SERVICE_RANGE(tcp, ${accept}, \$HOST_DEBIAN_V4)",
-                ;
+        }
+        @ferm::rule {
             "stunnel-${name}-v6":
                 domain          => 'ip6',
                 description => "stunnel ${name}",
