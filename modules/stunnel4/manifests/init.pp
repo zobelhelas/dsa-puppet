@@ -29,9 +29,13 @@ class stunnel4 {
         @ferm::rule {
             "stunnel-${name}":
                 description => "stunnel ${name}",
-                rule => "&TCP_UDP_SERVICE(${accept})",
-                domain => "(ip ip6)",
+                rule => "&SERVICE_RANGE(tcp, ${accept}, \$HOST_DEBIAN_V4)",
                 ;
+            "stunnel-${name}-v6":
+                domain          => 'ip6',
+                description => "stunnel ${name}",
+                rule => "&SERVICE_RANGE(tcp, ${accept}, \$HOST_DEBIAN_V6)",
+            }
         }
     }
     define stunnel_client($accept, $connecthost, $connectport) {
