@@ -36,7 +36,7 @@ node default {
     }
 
     case $hostname {
-        heininen,unger: { include entropykey }
+        heininen,unger,rautavaara,englund,salieri: { include entropykey }
     }
 
     case $smartarraycontroller {
