@@ -81,6 +81,13 @@ class ferm::per-host {
                 rule            => "&SERVICE(tcp, 11371)"
             }
         }
+        franck: {
+            @ferm::rule { "dak_replication":
+                domain          => "(ip)",
+                description     => "Allow dak pg replication",
+                rule            => "&SERVICE_RANGE(tcp, 5433, 128.148.34.103/32)"
+            }
+        }
         liszt: {
             @ferm::rule { "smtp":
                 domain          => "(ip ip6)",
