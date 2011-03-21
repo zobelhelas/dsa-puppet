@@ -55,10 +55,24 @@ class entropykey::remote_consumer inherits entropykey::local_consumer {
     stunnel4::stunnel_client {
         "ekeyd":
             accept => "127.0.0.1:8888",
-            connecthost => "heininen.debian.org",
+            connecthost => "${entropy_provider}",
             connectport => 18888,
             ;
     }
+}
+
+class entropykey {
+    case getfromhash($nodeinfo, 'entropy_key') {
+        true:  { include entropykey::provider }
+    }
+
+    $entropy_provider  = entropy_provider($fqdn, $nodeinfo)
+    case $entropy_provider {
+        false: {}
+        local: { include entropykey::local_consumer }
+        default: { include entropykey::remote_consumer }
+    }
+
 }
 
 # vim:set et:

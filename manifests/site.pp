@@ -36,12 +36,7 @@ node default {
     }
 
     case $hostname {
-        heininen:    {
-            include "entropykey::provider"
-        }
-        unger:    {
-            include "entropykey::remote_consumer"
-        }
+        heininen,unger: { include entropykey }
     }
 
     case $smartarraycontroller {

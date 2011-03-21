@@ -14,11 +14,8 @@ module Puppet::Parser::Functions
 
     ipAddrs.each do |addr|
       yaml.keys.each do |hoster|
-        if yaml[hoster].kind_of?(Hash) and yaml[hoster].has_key?('netrange')
-          netrange = yaml[hoster]['netrange']
-        else
-          next
-        end
+        next unless yaml[hoster].kind_of?(Hash) and yaml[hoster].has_key?('netrange')
+        netrange = yaml[hoster]['netrange']
 
         netrange.each do |net|
           begin
