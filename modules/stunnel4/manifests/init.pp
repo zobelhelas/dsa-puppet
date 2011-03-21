@@ -63,6 +63,7 @@ class stunnel4 {
     file {
         "/etc/stunnel/stunnel.conf":
             ensure => absent,
+            require => [ Package['stunnel4'] ],
             ;
     }
 
