@@ -33,6 +33,11 @@ class buildd {
              require => Package["dupload"]
              ;
     }
+
+    case $kernel {
+        Linux: { linux_module { "dm_snapshot": ensure => present; } }
+    }
+
 }
 # vim:set et:
 # vim:set sts=4 ts=4:

@@ -20,7 +20,12 @@ options {
 	directory "/var/cache/bind";
 
 	auth-nxdomain no;    # conform to RFC1035
+<% if classes.include?("named::geodns") -%>
+	listen-on { ! 127.0.0.1; any; };
+	listen-on-v6 { ! ::1; any; };
+<% else -%>
 	listen-on-v6 { any; };
+<% end -%>
 
 	allow-transfer { none; };
 	allow-update { none; };

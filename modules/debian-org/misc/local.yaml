@@ -224,18 +224,38 @@ host_settings:
     - voltaire.debian.org
     - zandonai.debian.org
   squeeze:
+    - alkman.debian.org
     - arne.debian.org
+    - barber.debian.org
+    - beethoven.debian.org
+    - biber.debian.org
+    - brahms.debian.org
     - byrd.debian.org
+    - chopin.debian.org
     - cilea.debian.org
     - danzi.debian.org
+    - dijkstra.debian.org
+    - duarte.debian.org
+    - englund.debian.org
     - fano.debian.org
     - fasch.debian.org
     - field.debian.org
     - finzi.debian.org
+    - franck.debian.org
+    - geo1.debian.org
+    - geo2.debian.org
+    - geo3.debian.org
+    - heininen.debian.org
     - kassia.debian.org
+    - kaufmann.debian.org
+    - krenek.debian.org
     - lamb.debian.org
+    - lindberg.debian.org
     - locke.debian.org
     - lotti.debian.org
+    - luchesi.debian.org
+    - merikanto.debian.org
+    - murphy.debian.org
     - nono.debian.org
     - piatti.debian.org
     - quantz.debian.org
@@ -243,15 +263,22 @@ host_settings:
     - rautavaara.debian.org
     - reger.debian.org
     - rem.debian.org
+    - ries.debian.org
+    - rietz.debian.org
     - rossini.debian.org
     - salieri.debian.org
     - santoro.debian.org
     - scelsi.debian.org
+    - schein.debian.org
     - schuetz.debian.org
     - sibelius.debian.org
+    - smetana.debian.org
     - spohr.debian.org
     - tchaikovsky.debian.org
     - traetta.debian.org
+    - unger.debian.org
+    - vitry.debian.org
+    - wieck.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
@@ -373,6 +400,12 @@ host_settings:
     - escher.debian.org
     - fano.debian.org
     - malo.debian.org
+  entropy_key:
+    - heininen.debian.org
+    - englund.debian.org
+    - rautavaara.debian.org
+    - salieri.debian.org
+    - widor.debian.org
 #  reservedaddrs:
 #    ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"
 ---

@@ -8,7 +8,7 @@ nameservers = []
 searchpaths = []
 options = []
 
-if %w{draghi liszt widor spohr}.include?(hostname)
+if %w{draghi liszt spohr}.include?(hostname)
   nameservers << "127.0.0.1"
 end
 
@@ -21,11 +21,14 @@ searchpaths << "debian.org"
 resolvconf  = ''
 resolvconf += "search " + searchpaths.join(" ") + "\n"
 
-if runs_local_resolver
+if has_variable?('unbound') and unbound and unbound == "true"
   resolvconf += "nameserver 127.0.0.1\n"
 else
   if nameservers.empty?
-    raise Puppet::ParseError, "Something has gone wrong writing resolv.conf.  No nameservers to use!"
+    #raise Puppet::ParseError, "Something has gone wrong writing resolv.conf.  No nameservers to use!"
+    scope.function_warning(["Something has gone wrong writing resolv.conf.  No nameservers to use - using google's!"])
+    nameservers << '8.8.8.8'
+    nameservers << '8.8.4.4'
   end
 
   nameservers.each do |ns|

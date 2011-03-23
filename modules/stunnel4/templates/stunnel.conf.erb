@@ -1,0 +1,41 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<%- if client -%>
+cert = /etc/ssl/debian/certs/thishost.crt
+key = /etc/ssl/debian/keys/thishost.key
+<%- else -%>
+cert = /etc/exim4/ssl/thishost.crt
+key = /etc/exim4/ssl/thishost.key
+<%- end -%>
+
+; Some security enhancements for UNIX systems - comment them out on Win32
+chroot = /var/run/stunnel4
+setuid = stunnel4
+setgid = stunnel4
+; PID is created inside chroot jail
+pid = /stunnel-<%= name %>.pid
+
+verify = <%= verify %>
+CAfile = <%= cafile %>
+<%- if crlfile -%>
+CRLfile = /etc/exim4/ssl/ca.crl
+<%- end -%>
+
+; Some debugging stuff useful for troubleshooting
+debug = notice
+; don't use a file, use syslog
+; output = /var/log/stunnel4/stunnel.log
+
+client = <%= client ? "yes" : "no" %>
+
+[<%= name %>-server]
+accept = <%= accept =~ /:/ ? accept : ":::#{accept}" %>
+connect = <%= connect %>
+<%- if local -%>
+local = <%= local %>
+<%- end -%>
+
+; vim:ft=dosini
