@@ -223,6 +223,7 @@ host_settings:
     - vitry.debian.org
     - voltaire.debian.org
     - zandonai.debian.org
+    - zee.debian.org
   squeeze:
     - alkman.debian.org
     - arne.debian.org
