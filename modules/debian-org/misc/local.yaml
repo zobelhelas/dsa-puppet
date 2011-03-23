@@ -244,6 +244,7 @@ host_settings:
     - franck.debian.org
     - geo1.debian.org
     - geo2.debian.org
+    - geo3.debian.org
     - heininen.debian.org
     - kassia.debian.org
     - kaufmann.debian.org
