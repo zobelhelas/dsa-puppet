@@ -231,6 +231,7 @@ host_settings:
     - biber.debian.org
     - brahms.debian.org
     - byrd.debian.org
+    - chopin.debian.org
     - cilea.debian.org
     - danzi.debian.org
     - dijkstra.debian.org
