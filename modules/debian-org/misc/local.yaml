@@ -204,10 +204,8 @@ host_settings:
     - goedel.debian.org
     - goetz.debian.org
     - krenek.debian.org
-    - lafayette.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
-    - malo.debian.org
     - mayer.debian.org
     - mayr.debian.org
     - mundy.debian.org
@@ -223,6 +221,7 @@ host_settings:
     - vitry.debian.org
     - voltaire.debian.org
     - zandonai.debian.org
+    - zee.debian.org
   squeeze:
     - alkman.debian.org
     - arne.debian.org
@@ -255,6 +254,7 @@ host_settings:
     - lotti.debian.org
     - luchesi.debian.org
     - merikanto.debian.org
+    - morricone.debian.org
     - murphy.debian.org
     - nono.debian.org
     - piatti.debian.org
@@ -267,6 +267,7 @@ host_settings:
     - rietz.debian.org
     - rossini.debian.org
     - salieri.debian.org
+    - samosa.debian.org
     - santoro.debian.org
     - scelsi.debian.org
     - schein.debian.org
@@ -408,5 +409,3 @@ host_settings:
     - widor.debian.org
 #  reservedaddrs:
 #    ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"
----
-
