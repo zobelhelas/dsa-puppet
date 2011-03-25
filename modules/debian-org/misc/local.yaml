@@ -279,6 +279,7 @@ host_settings:
     - traetta.debian.org
     - unger.debian.org
     - vitry.debian.org
+    - widor.debian.org
     - wieck.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
