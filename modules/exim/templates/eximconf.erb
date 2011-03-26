@@ -119,7 +119,7 @@ localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
 localpartlist postmasterish = postmaster : abuse : hostmaster
 
-hostlist debianhosts = : 127.0.0.1 : /var/lib/misc/thishost/debianhosts
+hostlist debianhosts = <; ; 127.0.0.1 ; ::1 ; /var/lib/misc/thishost/debianhosts
 
 hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
 
