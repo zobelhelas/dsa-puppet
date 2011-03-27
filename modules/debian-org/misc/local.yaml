@@ -229,6 +229,7 @@ host_settings:
     - beethoven.debian.org
     - biber.debian.org
     - brahms.debian.org
+    - busoni.debian.org
     - byrd.debian.org
     - chopin.debian.org
     - cilea.debian.org
