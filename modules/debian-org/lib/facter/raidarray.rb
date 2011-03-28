@@ -26,6 +26,7 @@ Facter.add("megaraid") do
 end
 
 Facter.add("mptraid") do
+	confine :kernel => :linux
 	setcode do
 		FileTest.exist?("/dev/mptctl") or FileTest.exist?("/dev/mpt0") or FileTest.exist?("/proc/mpt/summary")
 	end
