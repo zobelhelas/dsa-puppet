@@ -204,10 +204,8 @@ host_settings:
     - goedel.debian.org
     - goetz.debian.org
     - krenek.debian.org
-    - lafayette.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
-    - malo.debian.org
     - mayer.debian.org
     - mayr.debian.org
     - mundy.debian.org
@@ -223,6 +221,7 @@ host_settings:
     - vitry.debian.org
     - voltaire.debian.org
     - zandonai.debian.org
+    - zee.debian.org
   squeeze:
     - alkman.debian.org
     - arne.debian.org
@@ -230,6 +229,7 @@ host_settings:
     - beethoven.debian.org
     - biber.debian.org
     - brahms.debian.org
+    - busoni.debian.org
     - byrd.debian.org
     - chopin.debian.org
     - cilea.debian.org
@@ -245,18 +245,23 @@ host_settings:
     - geo1.debian.org
     - geo2.debian.org
     - geo3.debian.org
+    - gluck.debian.org
     - heininen.debian.org
     - kassia.debian.org
     - kaufmann.debian.org
     - krenek.debian.org
     - lamb.debian.org
     - lindberg.debian.org
+    - lobos.debian.org
     - locke.debian.org
     - lotti.debian.org
     - luchesi.debian.org
     - merikanto.debian.org
+    - morricone.debian.org
     - murphy.debian.org
     - nono.debian.org
+    - pergolesi.debian.org
+    - pettersson.debian.org
     - piatti.debian.org
     - quantz.debian.org
     - raff.debian.org
@@ -266,18 +271,26 @@ host_settings:
     - ries.debian.org
     - rietz.debian.org
     - rossini.debian.org
+    - saens.debian.org
     - salieri.debian.org
+    - samosa.debian.org
     - santoro.debian.org
     - scelsi.debian.org
     - schein.debian.org
     - schuetz.debian.org
+    - schumann.debian.org
+    - senfl.debian.org
     - sibelius.debian.org
     - smetana.debian.org
+    - soler.debian.org
     - spohr.debian.org
+    - stabile.debian.org
     - tchaikovsky.debian.org
     - traetta.debian.org
     - unger.debian.org
+    - villa.debian.org
     - vitry.debian.org
+    - widor.debian.org
     - wieck.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
@@ -408,5 +421,3 @@ host_settings:
     - widor.debian.org
 #  reservedaddrs:
 #    ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"
----
-

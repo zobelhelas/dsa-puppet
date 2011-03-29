@@ -28,7 +28,7 @@ paganini.debian.org:
 quantz.debian.org:
   # qa->projectb mirror
   - source_bind_port: 5433
-    target_host: merkel.debian.org
+    target_host: ries.debian.org
     target_port: 5433
   # qa->udd
   - source_bind_port: 5441
