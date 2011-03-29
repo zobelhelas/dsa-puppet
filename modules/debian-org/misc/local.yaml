@@ -229,6 +229,7 @@ host_settings:
     - beethoven.debian.org
     - biber.debian.org
     - brahms.debian.org
+    - busoni.debian.org
     - byrd.debian.org
     - chopin.debian.org
     - cilea.debian.org
@@ -244,12 +245,14 @@ host_settings:
     - geo1.debian.org
     - geo2.debian.org
     - geo3.debian.org
+    - gluck.debian.org
     - heininen.debian.org
     - kassia.debian.org
     - kaufmann.debian.org
     - krenek.debian.org
     - lamb.debian.org
     - lindberg.debian.org
+    - lobos.debian.org
     - locke.debian.org
     - lotti.debian.org
     - luchesi.debian.org
@@ -257,6 +260,7 @@ host_settings:
     - morricone.debian.org
     - murphy.debian.org
     - nono.debian.org
+    - pettersson.debian.org
     - piatti.debian.org
     - quantz.debian.org
     - raff.debian.org
@@ -272,12 +276,16 @@ host_settings:
     - scelsi.debian.org
     - schein.debian.org
     - schuetz.debian.org
+    - schumann.debian.org
     - sibelius.debian.org
     - smetana.debian.org
+    - soler.debian.org
     - spohr.debian.org
+    - stabile.debian.org
     - tchaikovsky.debian.org
     - traetta.debian.org
     - unger.debian.org
+    - villa.debian.org
     - vitry.debian.org
     - widor.debian.org
     - wieck.debian.org
