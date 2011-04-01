@@ -47,6 +47,7 @@ class debian-org {
         "dsa-munin-plugins": ensure => installed;
         "klogd": ensure => purged;
         "less": ensure => installed;
+        "logrotate": ensure => installed;
         "libfilesystem-ruby1.8": ensure => installed;
         "mtr-tiny": ensure => installed;
         "nload": ensure => installed;
