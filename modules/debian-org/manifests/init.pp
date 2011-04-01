@@ -54,6 +54,7 @@ class debian-org {
         "pciutils": ensure => installed;
         "rsyslog": ensure => purged;
         "sysklogd": ensure => purged;
+        "userdir-ldap": ensure => installed;
     }
     file {
         "/etc/apt/preferences":
