@@ -42,6 +42,7 @@ class debian-org {
     package {
         "apt-utils": ensure => installed;
         "bash-completion": ensure => installed;
+        "cron": ensure => installed;
         "debian.org": ensure => installed;
         "dnsutils": ensure => installed;
         "dsa-munin-plugins": ensure => installed;
