@@ -60,7 +60,7 @@ class ferm {
             notify  => Exec["ferm restart"];
         "/etc/logrotate.d/ulogd":
             source => "puppet:///modules/ferm/logrotate-ulogd",
-            require => Package["logrotate"],
+            require => Package["debian.org"],
             ;
     }
 
