@@ -42,20 +42,17 @@ class debian-org {
     package {
         "apt-utils": ensure => installed;
         "bash-completion": ensure => installed;
-        "cron": ensure => installed;
         "debian.org": ensure => installed;
         "dnsutils": ensure => installed;
         "dsa-munin-plugins": ensure => installed;
         "klogd": ensure => purged;
         "less": ensure => installed;
-        "logrotate": ensure => installed;
         "libfilesystem-ruby1.8": ensure => installed;
         "mtr-tiny": ensure => installed;
         "nload": ensure => installed;
         "pciutils": ensure => installed;
         "rsyslog": ensure => purged;
         "sysklogd": ensure => purged;
-        "userdir-ldap": ensure => installed;
     }
     file {
         "/etc/apt/preferences":
@@ -90,14 +87,14 @@ class debian-org {
 
         "/etc/cron.d/dsa-puppet-stuff":
             source => "puppet:///modules/debian-org/dsa-puppet-stuff.cron",
-            require => Package["cron"]
+            require => Package["debian.org"]
             ;
         "/etc/ldap/ldap.conf":
-            require => Package["userdir-ldap"],
+            require => Package["debian.org"],
             source => "puppet:///modules/debian-org/ldap.conf",
             ;
         "/etc/pam.d/common-session":
-            require => Package["libpam-pwdfile"],
+            require => Package["debian.org"],
             content => template("debian-org/pam.common-session.erb"),
             ;
         "/etc/rc.local":

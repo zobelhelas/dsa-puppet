@@ -26,7 +26,7 @@ class buildd {
              ;
         "/etc/cron.d/dsa-buildd":
              source => "puppet:///modules/buildd/cron.d-dsa-buildd",
-             require => Package["cron"]
+             require => Package["debian.org"]
              ;
         "/etc/dupload.conf":
              source => "puppet:///modules/buildd/dupload.conf",
