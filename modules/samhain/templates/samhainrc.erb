@@ -147,7 +147,9 @@ file=/etc/ferm/
 file=/etc/ferm/conf.d
 file=/etc/ferm/dsa.d
 file=/etc/rc.local
-
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
+file=/etc/unbound
+<% end -%>
 
 [LogFiles]
 ##
@@ -386,7 +388,6 @@ file=/etc/bind/named.conf.debian-zones
 <% if fqdn == "dijkstra.debian.org" -%>
 dir=4/etc/dsa-kvm
 <% end -%>
-
 <% if nodeinfo['buildd'] -%>
 dir=3/etc/lvm
 <% end -%>
@@ -395,6 +396,9 @@ file=/etc/ferm/conf.d/me.conf
 file=/etc/ferm/conf.d/defs.conf
 file=/etc/ferm/ferm.conf
 dir=2/etc/ssl/debian
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
+file=/etc/unbound/unbound.conf
+<% end -%>
 
 [IgnoreNone]
 ##
