@@ -161,6 +161,7 @@ ugent:
 umn:
   netrange:
     - 128.101.240.212
+  nameservers_break_dnssec: true
   nameservers: [128.101.101.101, 134.84.84.84]
 utwente:
   netrange:

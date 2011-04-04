@@ -14,6 +14,7 @@ class unbound {
             ensure  => directory,
             owner   => unbound,
             group   => unbound,
+            require => Package["unbound"],
             mode    => 775,
             ;
         "/var/lib/unbound/root.key":

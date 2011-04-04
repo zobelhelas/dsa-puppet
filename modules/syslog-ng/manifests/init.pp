@@ -1,4 +1,8 @@
 class syslog-ng {
+    package {
+        "syslog-ng": ensure => installed;
+    }
+
     file {
         "/etc/syslog-ng/syslog-ng.conf":
             content => template("syslog-ng/syslog-ng.conf.erb"),

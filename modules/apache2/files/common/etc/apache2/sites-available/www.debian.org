@@ -22,6 +22,11 @@
   ExpiresDefault "access plus 1 day"
   ExpiresByType image/gif "access plus 1 week"
   ExpiresByType image/jpeg "access plus 1 week"
+  ExpiresByType image/png "access plus 1 week"
+  ExpiresByType image/x-icon "access plus 1 week"
+
+  # FileEtag needs to be the same across mirrors (used for caching, ignore inode)
+  FileEtag MTime Size
 
   # language stuff, for web site translations
   # for boot-floppies docs only: sk
@@ -66,7 +71,7 @@
   AddLanguage zh-TW .zh-tw
   LanguagePriority en fr de it es ja pl hr da pt pt-br fi zh-cn zh-hk zh-tw cs sv ko no nb ru tr eo ar nl hu ro sk el ca en-us en-gb id lt sl bg uk hy vi
 
-  DirectoryIndex index index.html index.shtml index.htm
+  DirectoryIndex maintenance index index.html index.shtml index.htm
 
   <Files *.html.es>
     ForceType text/html

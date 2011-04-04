@@ -260,6 +260,8 @@ host_settings:
     - morricone.debian.org
     - murphy.debian.org
     - nono.debian.org
+    - orff.debian.org
+    - pescetti.debian.org
     - pergolesi.debian.org
     - pettersson.debian.org
     - piatti.debian.org
@@ -268,6 +270,7 @@ host_settings:
     - rautavaara.debian.org
     - reger.debian.org
     - rem.debian.org
+    - respighi.debian.org
     - ries.debian.org
     - rietz.debian.org
     - rossini.debian.org
@@ -284,7 +287,9 @@ host_settings:
     - smetana.debian.org
     - soler.debian.org
     - spohr.debian.org
+    - spontini.debian.org
     - stabile.debian.org
+    - steffani.debian.org
     - tchaikovsky.debian.org
     - traetta.debian.org
     - unger.debian.org
