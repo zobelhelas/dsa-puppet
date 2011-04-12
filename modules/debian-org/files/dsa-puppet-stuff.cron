@@ -1,4 +1,9 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
 SHELL=/bin/bash
 @hourly  root [ ! -d /var/cache/dsa ] || touch /var/cache/dsa/cron.alive
-34 */4 * * * root if [ -x /usr/sbin/puppetd ]; then sleep $(( $RANDOM \% 3600 )); if [ -x /usr/bin/timeout ]; then TO="timeout 3600"; else TO=""; fi; $TO /usr/sbin/puppetd -o --no-daemonize 2>&1 | grep -v 'v6: error fetching interface information: Device not found' ; fi
+34 */4 * * * root if [ -x /usr/sbin/puppetd ]; then sleep $(( $RANDOM \% 3600 )); if [ -x /usr/bin/timeout ]; then TO="timeout 3600"; else TO=""; fi; tmp="$(tempfile)"; egrep -v '^(#|$)' /etc/dsa/cron.ignore.dsa-puppet-stuff > "$tmp" && $TO /usr/sbin/puppetd -o --no-daemonize 2>&1 | egrep --text -v -f "$tmp"; rm -f "$tmp"; fi
 @daily       root find /var/lib/puppet/clientbucket/ -type f -mtime +30 -atime +30 -exec rm {} \+
