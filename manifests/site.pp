@@ -119,7 +119,7 @@ node default {
     }
 
     case $hostname {
-        beethoven,ravel,spohr,stabile: {
+        beethoven,duarte,ravel,spohr,stabile: {
             include nfs-server
         }
     }
