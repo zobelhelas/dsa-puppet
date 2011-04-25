@@ -150,6 +150,7 @@ file=/etc/rc.local
 <% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 file=/etc/unbound
 <% end -%>
+file=/etc/dsa
 
 [LogFiles]
 ##
@@ -258,6 +259,7 @@ file=/etc/exim4/ssl/thishost.crt
 file=/etc/exim4/ssl/thishost.key
 file=/etc/ssh/ssh_config
 file=/etc/ssh/sshd_config
+file=/etc/dsa/cron.ignore.dsa-puppet-stuff
 <%=
 out=""
 if nodeinfo['heavy_exim']
@@ -428,6 +430,7 @@ dir=3/sbin
 dir=/usr/sbin
 dir=/lib
 dir=3/usr/lib
+dir=3/usr/share
 #
 # RedHat and Debian have the bootinit scripts in /etc/init.d/* or /etc/rc.d/*, 
 #        so we go 3 levels deep there too

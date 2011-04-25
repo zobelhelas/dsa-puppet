@@ -33,6 +33,7 @@ nameinfo:
   finzi.debian.org: Gerald Raphael Finzi (July 14th, 1901 - September 27th, 1956)
   franck.debian.org: Melchior Franck (1579 - June 1st, 1639)
   gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 - July 10th, 1690)
+  glinka.debian.org: Mikhail Ivanovich Glinka (1804 - 1857)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
   goedel.debian.org: Kurt Gödel (April 28th, 1906 - January 14th, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7th, 1840 - December 3rd, 1876)
@@ -245,6 +246,7 @@ host_settings:
     - geo1.debian.org
     - geo2.debian.org
     - geo3.debian.org
+    - glinka.debian.org
     - gluck.debian.org
     - heininen.debian.org
     - kassia.debian.org
@@ -334,6 +336,7 @@ host_settings:
     geo1.debian.org: mailout.debian.org
     geo2.debian.org: mailout.debian.org
     geo3.debian.org: mailout.debian.org
+    glinka.debian.org: mailout.debian.org
     gluck.debian.org: mailout.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org

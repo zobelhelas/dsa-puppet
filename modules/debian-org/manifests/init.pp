@@ -102,6 +102,15 @@ class debian-org {
             source => "puppet:///modules/debian-org/rc.local",
             notify => Exec["rc.local start"],
             ;
+
+        "/etc/dsa":
+            mode   => 0755,
+            ensure  => directory,
+            ;
+        "/etc/dsa/cron.ignore.dsa-puppet-stuff":
+            source => "puppet:///modules/debian-org/dsa-puppet-stuff.cron.ignore",
+            require => Package["debian.org"]
+            ;
     }
    
     # set mmap_min_addr to 4096 to mitigate
