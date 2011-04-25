@@ -19,7 +19,7 @@ when /(dijkstra|unger|luchesi|schumann).debian.org/: ignore << "qemu-kvm"
 when /(lebrun|schroeder).debian.org/:   ignore << "firmware-linux-nonfree"
 when /(mayer|paer|peri|penalosa).debian.org/: ignore << "linux-base"
 when "powell.debian.org":               ignore << %w{e2fslibs e2fsprogs libblkid1 libcomerr2 libss2 libuuid1 uuid-runtime}
-when "franck.debian.org":               ignore << %w{libuuid1 util-linux libcomerr2 libss2 e2fslibs uuid-runtime hpacucli e2fsprogs firmware-bnx2 libblkid1}
+when "franck.debian.org":               ignore << %w{libuuid1 util-linux libcomerr2 libss2 e2fslibs uuid-runtime hpacucli e2fsprogs firmware-bnx2 libblkid1 python-apt}
 when "zee.debian.org":                  ignore << %w{dpkg-dev dpkg}
 when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/: ignore << %w{flash-kernel linux-firmware-image}
 end
