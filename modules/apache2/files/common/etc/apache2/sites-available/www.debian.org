@@ -167,4 +167,8 @@
    RedirectPermanent /releases/5.0 /releases/lenny
    RedirectPermanent /releases/6.0 /releases/squeeze
    RedirectPermanent /releases/unstable /releases/sid
+
+# Offer a Redirect to DSA without knowing year #474730
+   RewriteMap dsa txt:/srv/www.debian.org/www/security/map-dsa.txt
+   RewriteRule ^/security/dsa-(\d+)(\..*)? /security/${dsa:$1}$2 [R=301]
 </VirtualHost>
