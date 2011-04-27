@@ -179,4 +179,7 @@
    RewriteRule ^/doc/manuals/reference/ch-(.+)(\..*)   /doc/manuals/reference/${reference:$1}$2 [R=301]
    RewriteRule ^/doc/manuals/reference/ap-appendix(.*) /doc/manuals/reference/apa$1 [R=301]
    RewriteRule ^/doc/manuals/reference/footnotes(.*)   /doc/manuals/reference/index$1 [R=301]
+# New Maintainers' Guide
+   RewriteRule ^/doc/(manuals/)?maint-guide/ch-(.*) /doc/manuals/maint-guide/$2 [R=301]
+   RewriteRule ^/doc/(manuals/)?maint-guide/footnotes(.*) /doc/manuals/maint-guide/index$2 [R=301]
 </VirtualHost>
