@@ -118,17 +118,17 @@
    ErrorDocument 404 /devel/website/errors/404
 
 # the joys of backwards compatibility
-   Redirect /cgi-bin/cvsweb http://cvs.debian.org
-   Redirect /Lists-Archives http://lists.debian.org
-   Redirect /search http://search.debian.org
-   Redirect /Packages http://packages.debian.org
-   Redirect /lintian http://lintian.debian.org
+   RedirectPermanent /cgi-bin/cvsweb http://cvs.debian.org
+   RedirectPermanent /Lists-Archives http://lists.debian.org
+   RedirectPermanent /search http://search.debian.org
+   RedirectPermanent /Packages http://packages.debian.org
+   RedirectPermanent /lintian http://lintian.debian.org
 
-   Redirect /SPI http://www.spi-inc.org
-#   Redirect /OpenHardware http://www.openhardware.org
-   Redirect /OpenSource http://www.opensource.org
+   RedirectPermanent /SPI http://www.spi-inc.org
+#   RedirectPermanent /OpenHardware http://www.openhardware.org
+   RedirectPermanent /OpenSource http://www.opensource.org
 
-   Redirect /Bugs/db/ix/pseudopackages.html http://www.debian.org/Bugs/pseudo-packages
+   RedirectPermanent /Bugs/db/ix/pseudopackages.html http://www.debian.org/Bugs/pseudo-packages
    RewriteEngine on
    RewriteRule ^/Bugs/db/pa/l([^/]+).html$ http://bugs.debian.org/$1
    RewriteRule ^/Bugs/db/[[:digit:]][[:digit:]]/([[:digit:]][[:digit:]][[:digit:]]+).html$ http://bugs.debian.org/$1
@@ -136,15 +136,15 @@
 
    Userdir http://people.debian.org/~*/   
 
-   Redirect /doc/prospective-packages http://www.debian.org/devel/wnpp/
-   Redirect /devel/maintainer_contacts http://www.debian.org/intro/organization
-   Redirect /zh/ http://www.debian.org/intl/Chinese/
-   Redirect /devel/help http://www.debian.org/devel/join/
-   Redirect /distrib/books http://www.debian.org/doc/books
-   Redirect /distrib/vendors http://www.debian.org/CD/vendors/
-   Redirect /distrib/cdinfo http://www.debian.org/CD/vendors/info
-   Redirect /related_links http://www.debian.org/misc/related_links
-   Redirect /ports/laptops http://www.debian.org/misc/laptops/
-   Redirect /misc/README.mirrors http://www.debian.org/mirror/list
-   Redirect /misc/README.non-US http://www.debian.org/mirror/list.non-US
+   RedirectPermanent /doc/prospective-packages http://www.debian.org/devel/wnpp/
+   RedirectPermanent /devel/maintainer_contacts http://www.debian.org/intro/organization
+   RedirectPermanent /zh/ http://www.debian.org/intl/Chinese/
+   RedirectPermanent /devel/help http://www.debian.org/devel/join/
+   RedirectPermanent /distrib/books http://www.debian.org/doc/books
+   RedirectPermanent /distrib/vendors http://www.debian.org/CD/vendors/
+   RedirectPermanent /distrib/cdinfo http://www.debian.org/CD/vendors/info
+   RedirectPermanent /related_links http://www.debian.org/misc/related_links
+   RedirectPermanent /ports/laptops http://www.debian.org/misc/laptops/
+   RedirectPermanent /misc/README.mirrors http://www.debian.org/mirror/list
+   RedirectPermanent /misc/README.non-US http://www.debian.org/mirror/list.non-US
 </VirtualHost>
