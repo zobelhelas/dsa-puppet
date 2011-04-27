@@ -116,6 +116,8 @@
 
 # Custom Error
    ErrorDocument 404 /devel/website/errors/404
+   RewriteCond %{DOCUMENT_ROOT}/devel/website/errors/404.$2.html -f
+   RewriteRule ^/(?!devel/website/errors/)(.*/)?404\.(.+)\.html$ /devel/website/errors/404.$2.html [L]
 
 # the joys of backwards compatibility
    RedirectPermanent /cgi-bin/cvsweb http://cvs.debian.org
