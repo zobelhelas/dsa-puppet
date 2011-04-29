@@ -171,4 +171,12 @@
 # Offer a Redirect to DSA without knowing year #474730
    RewriteMap dsa txt:/srv/www.debian.org/www/security/map-dsa.txt
    RewriteRule ^/security/dsa-(\d+)(\..*)? /security/${dsa:$1}$2 [R=301]
+
+# Compatibility after SGML -> DocBook
+# Debian Reference #624239
+   RewriteMap reference txt:/srv/www.debian.org/www/doc/map-reference.txt
+   RewriteRule ^/doc/manuals/reference/ch-support(.*)  /support$1 [R=301]
+   RewriteRule ^/doc/manuals/reference/ch-(.+)(\..*)   /doc/manuals/reference/${reference:$1}$2 [R=301]
+   RewriteRule ^/doc/manuals/reference/ap-appendix(.*) /doc/manuals/reference/apa$1 [R=301]
+   RewriteRule ^/doc/manuals/reference/footnotes(.*)   /doc/manuals/reference/index$1 [R=301]
 </VirtualHost>
