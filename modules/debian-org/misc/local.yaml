@@ -250,6 +250,7 @@ host_settings:
     - geo3.debian.org
     - glinka.debian.org
     - gluck.debian.org
+    - grieg.debian.org
     - heininen.debian.org
     - kassia.debian.org
     - kaufmann.debian.org
