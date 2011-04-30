@@ -20,7 +20,7 @@ options {
 	directory "/var/cache/bind";
 
 	auth-nxdomain no;    # conform to RFC1035
-<% if classes.include?("named::geodns") or %w{orff senfl}.include?(hostname) -%>
+<% if classes.include?("named::geodns") or %w{diamond orff senfl}.include?(hostname) -%>
 	listen-on { ! 127.0.0.1; any; };
 	listen-on-v6 { ! ::1; any; };
 <% else -%>
@@ -35,7 +35,7 @@ options {
 
 <%=
   allowed='Nagios; '
-  if (classes.include?('named::authoritative') and not %w{orff senfl}.include?(hostname)) or classes.include?('named::recursor')
+  if (classes.include?('named::authoritative') and not %w{diamond orff senfl}.include?(hostname)) or classes.include?('named::recursor')
     allowed += 'localnets; '
   end
 
