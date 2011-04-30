@@ -23,6 +23,7 @@ nameinfo:
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
   danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
+  diamond.debian.org: David Leo Diamond (July 9, 1915 - June 13, 2005)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - January 16th, 1700)
   duarte.debian.org: Leonora Duarte (July 28th, 1610 - 1678)
@@ -235,6 +236,7 @@ host_settings:
     - chopin.debian.org
     - cilea.debian.org
     - danzi.debian.org
+    - diamond.debian.org
     - dijkstra.debian.org
     - duarte.debian.org
     - englund.debian.org
@@ -324,6 +326,7 @@ host_settings:
     corelli.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
     danzi.debian.org: mailout.debian.org
+    diamond.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
     englund.debian.org: mailout.debian.org
