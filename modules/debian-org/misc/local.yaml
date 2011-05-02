@@ -178,7 +178,8 @@ host_settings:
     - kokkonen.debian.org
     - senfl.debian.org
     - santoro.debian.org
-    - wolkenstein.debian.org
+    # www-master is handled differently.
+    # - wolkenstein.debian.org
   timeserver:
     - merikanto.debian.org
     - orff.debian.org
