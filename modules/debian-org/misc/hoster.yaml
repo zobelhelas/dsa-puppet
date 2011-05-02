@@ -36,7 +36,7 @@ br:
   # University Federal do Parana (.br)
   netrange:
     - 200.17.192.0/19
-  nameservers: [200.17.202.1, 200.17.202.3]
+  nameservers: [200.236.31.1, 200.17.202.3]
 brainfood:
   netrange:
     - 70.103.162.0/24
