@@ -154,7 +154,7 @@ class apache2 {
     }
 
     case $hostname {
-        busoni,duarte,holter,lindberg,master,merkel,morricone,powell,rore: {
+        busoni,duarte,holter,lindberg,master,merkel,powell,rore: {
             @ferm::rule { "dsa-http-limit":
                 prio            => "20",
                 description     => "limit HTTP DOS",
@@ -200,7 +200,7 @@ class apache2 {
                 description     => "http subchain",
                 chain           => 'http',
                 rule            => '
-                                    saddr ( 128.30.0.0/16 74.6.22.182 74.6.18.240 67.195.0.0/16 ) jump limit_yahoo;
+                                    saddr ( 74.6.22.182 74.6.18.240 67.195.0.0/16 ) jump limit_yahoo;
                                     saddr 124.115.0.0/21 jump limit_sosospider;
                                     saddr (65.52.0.0/14 207.46.0.0/16) jump limit_bing;
                                     saddr (66.249.64.0/19) jump limit_google;
