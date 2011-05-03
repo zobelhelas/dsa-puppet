@@ -182,4 +182,9 @@
 # New Maintainers' Guide
    RewriteRule ^/doc/(manuals/)?maint-guide/ch-(.*) /doc/manuals/maint-guide/$2 [R=301]
    RewriteRule ^/doc/(manuals/)?maint-guide/footnotes(.*) /doc/manuals/maint-guide/index$2 [R=301]
+
+# Canonical place for manuals under /doc/manuals/
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/$1 -d
+   RewriteRule ^/doc/([^/]+)/?(.*)? /doc/manuals/$1/$2 [L,R=301]
+
 </VirtualHost>
