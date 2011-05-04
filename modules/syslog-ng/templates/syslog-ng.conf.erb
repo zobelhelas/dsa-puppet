@@ -82,11 +82,7 @@ options {
 	# is not a real hostname.
 	bad_hostname("^gconfd$");
 
-<%- if (hostname == "heininen") || (hostname == "lotti") -%>
-	# we trust our mutual authenticated syslog clients
-	keep_hostname(yes);
-<%- end -%>
-
+	keep_hostname(no);
 };
 
 
