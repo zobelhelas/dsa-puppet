@@ -26,4 +26,4 @@ out
 # exit code as that does not reliably tell us if the check could
 # not connect to the nrpe server or if the remote check returned not-null.
 command[dsa2_shutdown]=if /usr/lib/nagios/plugins/check_procs -w 1: -u root -C shutdown > /dev/null; then echo 'system-in-shutdown'; else echo 'no shutdown running' ; fi
-command[restart-ekey]=/usr/lib/nagios/plugins/dsa-eventhandler-restart-service $SERVICESTATE$ $SERVICESTATETYPE$ $SERVICEATTEMPT$ ekeyd-egd-linux
+command[restart-ekey]=sudo /etc/init.d/ekeyd-egd-linux restart
