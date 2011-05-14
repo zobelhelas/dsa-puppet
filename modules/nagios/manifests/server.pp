@@ -11,6 +11,10 @@ class nagios::server inherits nagios::client {
 			source  => [ "puppet:///modules/nagios/dsa-nagios/static/checkcommands.cfg" ],
 			require => Package["nagios3"],
 			notify  => Exec["nagios3 reload"];
+		"/etc/nagios-plugins/config/local-dsa-eventhandlers.cfg":
+			source  => [ "puppet:///modules/nagios/dsa-nagios/static/eventhandlers.cfg" ],
+			require => Package["nagios3"],
+			notify  => Exec["nagios3 reload"];
 
 		"/etc/nagios3/cgi.cfg":
 			source  => [ "puppet:///modules/nagios/dsa-nagios/static/cgi.cfg" ],
