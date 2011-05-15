@@ -14,6 +14,7 @@ ftp-master : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.
 gandi-discount : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net : combined.njabl.org
 hardware-donations : sbl-xbl.spamhaus.org
 hostmaster : sbl-xbl.spamhaus.org : cbl.abuseat.org
+iana : sbl-xbl.spamhaus.org : cbl.abuseat.org
 keyring-maint : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 leader : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
 mailer-daemon : sbl-xbl.spamhaus.org : cbl.abuseat.org
