@@ -256,7 +256,7 @@ zone "alioth.debian.org" {
 	notify no;
 	file "db.alioth.debian.org";
 	masters {
-		217.196.43.134;
+		217.196.43.132;
 	};
 	allow-query { any; };
 	allow-transfer { };
