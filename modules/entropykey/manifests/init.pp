@@ -11,7 +11,7 @@ class entropykey::provider {
             ;
         # our CRL expires after a while (2 or 4 weeks?), so we have
         # to restart stunnel so it loads the new CRL.
-        "/etc/cron.weekly/stunnel-ekey.conf":
+        "/etc/cron.weekly/stunnel-ekey-restart":
             content =>  "# This file is under puppet control\nenv -i /etc/init.d/stunnel4 restart puppet-ekeyd\n",
             mode => "555",
             ;
