@@ -117,7 +117,7 @@ case "$1" in
         ;;
   *)
         N=/etc/init.d/$NAME
-        echo "Usage: $N {start|stop|force-reload|restart}" >&2
+        echo "Usage: $N {start|stop|force-reload|restart} [<stunnel instance>]" >&2
         exit 1
         ;;
 esac
