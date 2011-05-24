@@ -20,7 +20,7 @@ DEFAULTPIDFILE="/var/run/stunnel4.pid"
 DAEMON=/usr/bin/stunnel4
 NAME=stunnel
 DESC="SSL tunnels"
-FILES="/etc/stunnel/*.conf"
+FILES="${STUNNEL_FILES:-/etc/stunnel/*.conf}"
 OPTIONS=""
 ENABLED=0
 
