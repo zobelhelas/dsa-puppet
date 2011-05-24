@@ -88,8 +88,13 @@ class stunnel4 {
                 ;
         "restart_stunnel":
                 command => "true && cd / && env -i /etc/init.d/stunnel4 restart",
-                require => [ File['/etc/stunnel/stunnel.conf'], Exec['enable_stunnel4'], Package['stunnel4'] ],
+                require => [ File['/etc/stunnel/stunnel.conf'], Exec['enable_stunnel4'], Exec['kill_file_override'], Package['stunnel4'] ],
                 refreshonly => true,
+                ;
+        "kill_file_override":
+                command => "sed -i -e 's/^FILES=/#&/' /etc/default/stunnel4",
+                onlyif => "grep -q '^FILES=' /etc/default/stunnel4",
+                require => [ Package['stunnel4'] ],
                 ;
     }
 }
