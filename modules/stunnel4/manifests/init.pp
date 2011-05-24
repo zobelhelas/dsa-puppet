@@ -13,6 +13,7 @@ class stunnel4 {
                 ;
             "/etc/init.d/stunnel4":
                 source => "puppet:///modules/stunnel4/etc-init.d-stunnel4",
+                mode    => 555,
             ;
         }
     }
