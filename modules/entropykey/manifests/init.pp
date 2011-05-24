@@ -15,7 +15,6 @@ class entropykey::provider {
             content =>  "# This file is under puppet control\nenv -i /etc/init.d/stunnel4 restart puppet-ekeyd\n",
             mode => "555",
             ;
-        ;
     }
 
     exec {
