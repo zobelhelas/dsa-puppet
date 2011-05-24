@@ -23,9 +23,15 @@ DESC="SSL tunnels"
 OPTIONS=""
 ENABLED=0
 
-FILES="/etc/stunnel/*.conf"
-if [ -n "${2-:}" ] && [ -e "/etc/stunnel/$2.conf" ]; then
-	FILES="/etc/stunnel/$2.conf}"
+if [ -n "${2-:}" ]; then
+	if [ -e "/etc/stunnel/$2.conf" ]; then
+		FILES="/etc/stunnel/$2.conf"
+	else
+		echo >&2 "/etc/stunnel/$2.conf does not exist."
+		exit 1
+	fi
+else
+	FILES="/etc/stunnel/*.conf"
 fi
 
 get_pids() {
