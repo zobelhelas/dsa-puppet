@@ -11,6 +11,9 @@ class stunnel4 {
                 content => template("stunnel4/stunnel.conf.erb"),
                 notify  => Exec['restart_stunnel'],
                 ;
+            "/etc/init.d/stunnel4":
+                source => "puppet:///modules/stunnel4/etc-init.d-stunnel4",
+            ;
         }
     }
 
