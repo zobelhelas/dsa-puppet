@@ -23,7 +23,7 @@ DESC="SSL tunnels"
 OPTIONS=""
 ENABLED=0
 
-if [ -n "${2-:}" ]; then
+if [ -n "${2:-}" ]; then
 	if [ -e "/etc/stunnel/$2.conf" ]; then
 		FILES="/etc/stunnel/$2.conf"
 	else
