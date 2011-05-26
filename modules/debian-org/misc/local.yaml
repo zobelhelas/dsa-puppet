@@ -277,6 +277,7 @@ host_settings:
     - quantz.debian.org
     - raff.debian.org
     - rautavaara.debian.org
+    - ravel.debian.org
     - reger.debian.org
     - rem.debian.org
     - respighi.debian.org
