@@ -18,7 +18,7 @@ class stunnel4 {
         }
         exec {
             "restart_stunnel_${name}":
-                    command => "true && cd / && env -i /etc/init.d/stunnel4 restart ${name}",
+                    command => "true && cd / && env -i /etc/init.d/stunnel4 restart puppet-${name}",
                     require => [ File['/etc/stunnel/stunnel.conf'],
                                  File['/etc/init.d/stunnel4'],
                                  Exec['enable_stunnel4'],
