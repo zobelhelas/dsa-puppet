@@ -16,6 +16,18 @@ class stunnel4 {
                 mode    => 555,
             ;
         }
+
+        case $client {
+                true: {
+                    $certfile = "/etc/ssl/debian/certs/thishost.crt"
+                    $keyfile = /etc/ssl/debian/keys/thishost.key
+                    }
+                default: {
+                    $certfile = /etc/exim4/ssl/thishost.crt
+                    $keyfile = /etc/exim4/ssl/thishost.key
+                    }
+        }
+
         exec {
             "restart_stunnel_${name}":
                     command => "true && cd / && env -i /etc/init.d/stunnel4 restart puppet-${name}",
@@ -25,6 +37,9 @@ class stunnel4 {
                                  Exec['kill_file_override'],
                                  Package['stunnel4']
                                ],
+                    subscribe => [ File[$certfile],
+                                   File[$keyfile]
+                                 ],
                     refreshonly => true,
                     ;
         }
