@@ -9,12 +9,24 @@ class stunnel4 {
                 ;
             "/etc/stunnel/puppet-${name}.conf":
                 content => template("stunnel4/stunnel.conf.erb"),
-                notify  => Exec['restart_stunnel'],
+                notify  => Exec["restart_stunnel_${name}"],
                 ;
             "/etc/init.d/stunnel4":
                 source => "puppet:///modules/stunnel4/etc-init.d-stunnel4",
                 mode    => 555,
             ;
+        }
+        exec {
+            "restart_stunnel_${name}":
+                    command => "true && cd / && env -i /etc/init.d/stunnel4 restart ${name}",
+                    require => [ File['/etc/stunnel/stunnel.conf'],
+                                 File['/etc/init.d/stunnel4'],
+                                 Exec['enable_stunnel4'],
+                                 Exec['kill_file_override'],
+                                 Package['stunnel4']
+                               ],
+                    refreshonly => true,
+                    ;
         }
     }
 
@@ -54,7 +66,7 @@ class stunnel4 {
                 # source  => "puppet:///modules/exim/certs/${connecthost}.crt",
                 content => generate("/bin/cat", "/etc/puppet/modules/exim/files/certs/${connecthost}.crt",
                                                 "/etc/puppet/modules/exim/files/certs/ca.crt"),
-                notify  => Exec['restart_stunnel'],
+                notify  => Exec["restart_stunnel_${name}"],
                 ;
         }
         stunnel_generic {
@@ -85,16 +97,6 @@ class stunnel4 {
                 command => "sed -i -e 's/^ENABLED=/#&/; \$a ENABLED=1 # added by puppet' /etc/default/stunnel4",
                 unless => "grep -q '^ENABLED=1' /etc/default/stunnel4",
                 require => [ Package['stunnel4'] ],
-                ;
-        "restart_stunnel":
-                command => "true && cd / && env -i /etc/init.d/stunnel4 restart",
-                require => [ File['/etc/stunnel/stunnel.conf'],
-                             File['/etc/init.d/stunnel4'],
-                             Exec['enable_stunnel4'],
-                             Exec['kill_file_override'],
-                             Package['stunnel4']
-                           ],
-                refreshonly => true,
                 ;
         "kill_file_override":
                 command => "sed -i -e 's/^FILES=/#&/' /etc/default/stunnel4",
