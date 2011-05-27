@@ -20,11 +20,11 @@ class stunnel4 {
         case $client {
                 true: {
                     $certfile = "/etc/ssl/debian/certs/thishost.crt"
-                    $keyfile = /etc/ssl/debian/keys/thishost.key
+                    $keyfile = "/etc/ssl/debian/keys/thishost.key"
                     }
                 default: {
-                    $certfile = /etc/exim4/ssl/thishost.crt
-                    $keyfile = /etc/exim4/ssl/thishost.key
+                    $certfile = "/etc/exim4/ssl/thishost.crt"
+                    $keyfile = "/etc/exim4/ssl/thishost.key"
                     }
         }
 
