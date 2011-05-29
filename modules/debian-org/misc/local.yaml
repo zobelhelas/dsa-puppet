@@ -310,6 +310,7 @@ host_settings:
     - vitry.debian.org
     - widor.debian.org
     - wieck.debian.org
+    - zelenka.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
