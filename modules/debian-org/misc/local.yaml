@@ -265,6 +265,7 @@ host_settings:
     - locke.debian.org
     - lotti.debian.org
     - luchesi.debian.org
+    - master.debian.org
     - merikanto.debian.org
     - morricone.debian.org
     - murphy.debian.org
