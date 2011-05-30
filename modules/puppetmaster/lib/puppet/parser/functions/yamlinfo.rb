@@ -3,7 +3,8 @@ module Puppet::Parser::Functions
 
     host = args[0]
     yamlfile = args[1]
-    #self.interp.newfile(yamlfile)
+    parser = Puppet::Parser::Parser.new(environment)
+    parser.watch_file(yamlfile)
 
     def read_yaml(yaml, host)
       results = {}
