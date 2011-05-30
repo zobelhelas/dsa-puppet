@@ -5,7 +5,7 @@ module Puppet::Parser::Functions
 
     ipAddrs = args[0]
     yamlfile = args[1]
-    parser.watch_file(yamlfile)
+    self.interp.newfile(yamlfile)
 
     $KCODE = 'utf-8'
 
