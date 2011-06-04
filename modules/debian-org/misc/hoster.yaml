@@ -152,7 +152,7 @@ ubcece:
     - 137.82.84.64/27
     - 206.12.19.0/24
   searchpaths: [debprivate-ubc.debian.org]
-  nameservers: [137.82.1.1, 142.103.1.1]
+  nameservers: []
   allow_dns_query: [137.82.84.64/27, 206.12.19.0/24]
 ugent:
   netrange:
