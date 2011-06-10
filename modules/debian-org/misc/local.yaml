@@ -231,6 +231,7 @@ host_settings:
     - ball.debian.org
     - barber.debian.org
     - beethoven.debian.org
+    - bellini.debian.org
     - biber.debian.org
     - brahms.debian.org
     - busoni.debian.org
@@ -240,6 +241,7 @@ host_settings:
     - danzi.debian.org
     - diamond.debian.org
     - dijkstra.debian.org
+    - draghi.debian.org
     - duarte.debian.org
     - englund.debian.org
     - fano.debian.org
@@ -272,6 +274,7 @@ host_settings:
     - murphy.debian.org
     - nono.debian.org
     - orff.debian.org
+    - paganini.debian.org
     - pescetti.debian.org
     - pergolesi.debian.org
     - pettersson.debian.org

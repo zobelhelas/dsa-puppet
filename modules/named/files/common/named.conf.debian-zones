@@ -250,6 +250,21 @@ zone "1.0.0.0.5.0.0.0.8.7.a.0.1.0.0.2.ip6.arpa" {
 	allow-transfer { };
 };
 
+// 0.0.0.4.6.0.2.0.0.3.6.0.1.0.0.2.ip6.arpa - reverse for 2001:630:206:4000::/64 (sanger)
+zone "0.0.0.4.6.0.2.0.0.3.6.0.1.0.0.2.ip6.arpa" {
+	type slave;
+	notify no;
+	file "db.2001:0630:0206:4000";
+	masters {
+		194.177.211.209; // orff
+		2001:648:2ffc:deb:213:72ff:fe69:e188; // orff
+		82.195.75.106; // draghi (backup master - requires manual reconfiguration on draghi)
+		2001:41b8:202:deb:216:36ff:fe40:3906; // draghi (see above
+	};
+	allow-query { any; };
+	allow-transfer { };
+};
+
 
 zone "alioth.debian.org" {
 	type slave;
