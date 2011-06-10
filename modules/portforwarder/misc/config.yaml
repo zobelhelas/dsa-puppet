@@ -5,11 +5,6 @@
 # port on the remote instead of just encoding it in authkeys.
 
 # from host:port to host:port
-alioth.debian.org:
-  - source_bind_port: 5441
-    target_host: samosa.debian.org
-    target_port: 5441
-
 master.debian.org:
   - source_bind_port: 5441
     target_host: samosa.debian.org
@@ -63,4 +58,9 @@ ries.debian.org:
   - source_bind_port: 15433
     target_host: franck.debian.org
     target_port: 5433
+
+wagner.debian.org:
+  - source_bind_port: 5441
+    target_host: samosa.debian.org
+    target_port: 5441
 
