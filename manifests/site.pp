@@ -80,6 +80,9 @@ node default {
               case getfromhash($nodeinfo, 'apache2_www_mirror') {
                      true:    { include apache2::www_mirror }
               }
+              case getfromhash($nodeinfo, 'apache2_backports_mirror') {
+                     true:    { include apache2::backports_mirror }
+              }
               include apache2
          }
     }
