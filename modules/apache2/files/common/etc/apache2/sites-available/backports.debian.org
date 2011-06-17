@@ -1,0 +1,23 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<VirtualHost *:80>
+	ServerName backports.debian.org
+	ServerAdmin debian-admin@debian.org
+
+	ErrorLog /var/log/apache2/backports.debian.org-error.log
+	CustomLog /var/log/apache2/backports.debian.org-access.log combined
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+
+	Alias /debian-backports /srv/mirrors/backports.debian.org/
+
+	RewriteEngine On
+	RewriteRule ^/debian-backports($|/.*)	-					[L]
+	RewriteRule ^/(.*)			http://backports-master.debian.org/$1	[R]
+</VirtualHost>
+# vim:set syn=apache:
