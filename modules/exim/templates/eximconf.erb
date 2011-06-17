@@ -119,7 +119,7 @@ localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
 localpartlist postmasterish = postmaster : abuse : hostmaster
 
-hostlist debianhosts = <; ; 127.0.0.1 ; ::1 ; /var/lib/misc/thishost/debianhosts
+hostlist debianhosts = <; ; 127.0.0.1 ; ::1 ; /var/lib/misc/thishost/debianhosts ; 89.16.166.49 ; 82.195.75.76 ; 2001:41b8:202:deb:bab5:0:52c3:4b4c
 
 hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
 
@@ -180,7 +180,7 @@ smtp_accept_queue = 20
 smtp_accept_queue_per_connection = 10
 smtp_accept_reserve = 5
 <%- end -%>
-smtp_reserve_hosts = <; +debianhosts ; 89.16.166.49 ; 82.195.75.76 ; 2001:41b8:202:deb:bab5:0:52c3:4b4c
+smtp_reserve_hosts = +debianhosts
 
 split_spool_directory = true
 check_spool_inodes = 200
