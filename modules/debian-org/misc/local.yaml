@@ -182,6 +182,7 @@ host_settings:
     # - wolkenstein.debian.org
   apache2_backports_mirror:
     - englund.debian.org
+    - morricone.debian.org
   timeserver:
     - merikanto.debian.org
     - orff.debian.org
