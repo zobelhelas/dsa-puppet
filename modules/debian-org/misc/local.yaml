@@ -180,6 +180,8 @@ host_settings:
     - santoro.debian.org
     # www-master is handled differently.
     # - wolkenstein.debian.org
+  apache2_backports_mirror:
+    - englund.debian.org
   timeserver:
     - merikanto.debian.org
     - orff.debian.org
