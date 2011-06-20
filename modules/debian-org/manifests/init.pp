@@ -128,7 +128,7 @@ class debian-org {
    
     mailalias {
         "samhain-reports":
-            recipient => "debian-archive-debian-samhain-reports@master.debian.org,debian-admin@ftbfs.de,weasel@debian.org,steve@lobefin.net",
+            recipient => debian-archive-debian-samhain-reports@master.debian.org,debian-admin@ftbfs.de,weasel@debian.org,steve@lobefin.net,
             ensure => present;
     }
 
