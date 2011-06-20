@@ -126,6 +126,12 @@ class debian-org {
             linkto => "/usr/bin/vim.basic",
     }
    
+    mailalias {
+        "samhain-reports":
+            recpient => "debian-archive-debian-samhain-reports@master.debian.org,debian-admin@ftbfs.de,weasel@debian.org,steve@lobefin.net",
+            ensure => present;
+    }
+
     exec {
         "dpkg-reconfigure tzdata -pcritical -fnoninteractive":
             path        => "/usr/bin:/usr/sbin:/bin:/sbin",
