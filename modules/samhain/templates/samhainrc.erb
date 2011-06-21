@@ -843,14 +843,9 @@ SetMailNum = 10
 
 ## Recipient (max. 8)
 #
-SetMailAddress=samhain-reports@debian.org
+SetMailAddress=samhain-reports@<%= fqdn -%>
 
-## Mail relay (IP address)
-<% if nodeinfo['smarthost'].empty? -%>
-SetMailRelay = master.debian.org
-<% else -%>
 SetMailRelay = localhost
-<% end -%>
 
 ## Custom subject format
 #
