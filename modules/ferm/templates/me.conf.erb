@@ -18,8 +18,7 @@ end
 if %w{lebrun schroeder}.include?(hostname) then
 	out << '@def $CARNET = ( 193.198.184.8/29 161.53.160.133 161.53.160.90 161.53.11.222 161.53.12.134 161.53.12.142 161.53.12.143 );'
 	ssh4allowed << '$CARNET'
-	ssh4allowed << '70.103.162.29' # master
-	ssh4allowed << '82.195.75.84'  # nott.ayous.org, HE (builddadm)
+	ssh4allowed << '$BUILDD_SSH_ACCESS'
 end
 if %w{beethoven}.include?(hostname) then
 	ssh4allowed << '$HOST_DEBIAN_V4'
