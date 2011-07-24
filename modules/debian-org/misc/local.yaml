@@ -357,6 +357,7 @@ host_settings:
     diamond.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
+    dukas.debian.org: mailout.debian.org
     englund.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
@@ -432,6 +433,7 @@ host_settings:
     steffani.debian.org: mailout.debian.org
     tchaikovsky.debian.org: mailout.debian.org
     traetta.debian.org: mailout.debian.org
+    tye.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
     vitry.debian.org: mailout.debian.org
