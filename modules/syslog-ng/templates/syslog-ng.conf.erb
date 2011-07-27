@@ -24,7 +24,7 @@
 options {
         # disable the chained hostname format in logs
         # (default is enabled)
-        chain_hostnames(0);
+        chain_hostnames(1);
 
         # the time to wait before a died connection is re-established
         # (default is 60)
@@ -82,11 +82,7 @@ options {
 	# is not a real hostname.
 	bad_hostname("^gconfd$");
 
-<%- if (hostname == "heininen") || (hostname == "lotti") -%>
-	# we trust our mutual authenticated syslog clients
-	keep_hostname(yes);
-<%- end -%>
-
+	keep_hostname(no);
 };
 
 

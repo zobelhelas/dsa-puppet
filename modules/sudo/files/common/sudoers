@@ -44,6 +44,7 @@ admin		agnesi=(ALL)	ALL
 %zivit-admins	ZIVITHOSTS=(ALL)	NOPASSWD: ALL
 
 # nagios
+nagios		ALL=(ALL)	NOPASSWD: /etc/init.d/ekeyd-egd-linux restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 # with smartarray controllers
 nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
@@ -71,10 +72,12 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %buildd		ALL=(buildd)	ALL
 %d-i		ALL=(d-i)	ALL
 %dde		ALL=(dde)	ALL
+%ddtp		ALL=(ddtp)	ALL
 %debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
 %debbugs	ALL=(debbugs-mirror)	ALL
 %debian-cd	ALL=(debian-cd)	ALL
+%debian-i18n	ALL=(debian-i18n)	ALL
 %debian-release	ALL=(release)	ALL
 %debvoip	cilea=(freeswitch)	ALL
 %debwww		ALL=(debwww)	ALL
@@ -100,6 +103,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %uddadm		ALL=(udd)	ALL
 %volatile	ALL=(volatile)	ALL
 %wbadm		ALL=(wbadm)	ALL
+%mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki)	ALL
 %qa-core	QAHOSTS=(qa)	ALL
 

@@ -128,6 +128,13 @@ class ferm::per-host {
                 rule            => "&TCP_UDP_SERVICE(5080)"
             }
         }
+	scelsi: {
+            @ferm::rule { "dc11-icecast":
+                domain          => "(ip ip6)",
+                description     => "Allow icecast access",
+                rule            => "&SERVICE(tcp, 8000)"
+            }
+	}
     }
 
     case $hostname { rautavaara,luchesi: {
@@ -150,6 +157,7 @@ class ferm::per-host {
                                 proto udp dport (53 123) ACCEPT;
                                 proto tcp dport 8140 daddr 82.195.75.104 ACCEPT; # puppethost
                                 proto tcp dport 5140 daddr (82.195.75.98 206.12.19.121) ACCEPT; # loghost
+                                proto tcp dport 11371 daddr 82.195.75.107 ACCEPT; # keyring host
                                 proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT
                                '
         }

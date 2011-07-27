@@ -80,6 +80,9 @@ node default {
               case getfromhash($nodeinfo, 'apache2_www_mirror') {
                      true:    { include apache2::www_mirror }
               }
+              case getfromhash($nodeinfo, 'apache2_backports_mirror') {
+                     true:    { include apache2::backports_mirror }
+              }
               include apache2
          }
     }
@@ -96,9 +99,9 @@ node default {
     }
 
     case $hostname {
-        klecker,ravel,senfl,orff,draghi: { include named::authoritative }
-        geo1,geo2,geo3:                  { include named::geodns }
-        liszt:                           { include named::recursor }
+        klecker,ravel,senfl,orff,draghi,diamond: { include named::authoritative }
+        geo1,geo2,geo3:                          { include named::geodns }
+        liszt:                                   { include named::recursor }
     }
     case $hostname {
         franck,master,lobos,samosa,spohr,widor:   { include unbound }

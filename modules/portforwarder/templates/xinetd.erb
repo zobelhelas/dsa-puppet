@@ -19,7 +19,7 @@ template = 'service @@TARGET_HOST@@@@TARGET_PORT@@
         group           = portforwarder
         instances       = 10
         server          = /usr/bin/ssh
-        server_args     = -o PreferredAuthentications=publickey -o EscapeChar=none -o BatchMode=yes -C @@TARGET_HOST@@ forward-to @@TARGET_PORT@@
+        server_args     = -o PreferredAuthentications=publickey -o EscapeChar=none -o BatchMode=yes -C @@SSH_OPTIONS@@ @@TARGET_HOST@@ forward-to @@TARGET_PORT@@
         cps             = 0 0
 }
 '
@@ -30,6 +30,7 @@ if config[fqdn]
 		target_port = service['target_port']
 		target_host = service['target_host']
 		local_bind = service['source_bind_port']
+		ssh_options = service['ssh_options'] || ""
 
 		lines << "# to #{target_port.to_s}:target_host from local port #{local_bind.to_s}"
 		if target_port.nil? or target_host.nil? or local_bind.nil?
@@ -39,6 +40,7 @@ if config[fqdn]
 			p.gsub!('@@TARGET_HOST@@', target_host)
 			p.gsub!('@@TARGET_PORT@@', target_port.to_s)
 			p.gsub!('@@LOCAL_BIND@@', local_bind.to_s)
+			p.gsub!('@@SSH_OPTIONS@@', ssh_options.to_s)
 			lines << p
 		end
 	end

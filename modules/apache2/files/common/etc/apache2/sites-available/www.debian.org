@@ -116,19 +116,21 @@
 
 # Custom Error
    ErrorDocument 404 /devel/website/errors/404
+   RewriteCond %{DOCUMENT_ROOT}/devel/website/errors/404.$2.html -f
+   RewriteRule ^/(?!devel/website/errors/)(.*/)?404\.(.+)\.html$ /devel/website/errors/404.$2.html [L]
 
 # the joys of backwards compatibility
-   Redirect /cgi-bin/cvsweb http://cvs.debian.org
-   Redirect /Lists-Archives http://lists.debian.org
-   Redirect /search http://search.debian.org
-   Redirect /Packages http://packages.debian.org
-   Redirect /lintian http://lintian.debian.org
+   RedirectPermanent /cgi-bin/cvsweb http://cvs.debian.org
+   RedirectPermanent /Lists-Archives http://lists.debian.org
+   RedirectPermanent /search http://search.debian.org
+   RedirectPermanent /Packages http://packages.debian.org
+   RedirectPermanent /lintian http://lintian.debian.org
 
-   Redirect /SPI http://www.spi-inc.org
-#   Redirect /OpenHardware http://www.openhardware.org
-   Redirect /OpenSource http://www.opensource.org
+   RedirectPermanent /SPI http://www.spi-inc.org
+#   RedirectPermanent /OpenHardware http://www.openhardware.org
+   RedirectPermanent /OpenSource http://www.opensource.org
 
-   Redirect /Bugs/db/ix/pseudopackages.html http://www.debian.org/Bugs/pseudo-packages
+   RedirectPermanent /Bugs/db/ix/pseudopackages.html /Bugs/pseudo-packages
    RewriteEngine on
    RewriteRule ^/Bugs/db/pa/l([^/]+).html$ http://bugs.debian.org/$1
    RewriteRule ^/Bugs/db/[[:digit:]][[:digit:]]/([[:digit:]][[:digit:]][[:digit:]]+).html$ http://bugs.debian.org/$1
@@ -136,15 +138,53 @@
 
    Userdir http://people.debian.org/~*/   
 
-   Redirect /doc/prospective-packages http://www.debian.org/devel/wnpp/
-   Redirect /devel/maintainer_contacts http://www.debian.org/intro/organization
-   Redirect /zh/ http://www.debian.org/intl/Chinese/
-   Redirect /devel/help http://www.debian.org/devel/join/
-   Redirect /distrib/books http://www.debian.org/doc/books
-   Redirect /distrib/vendors http://www.debian.org/CD/vendors/
-   Redirect /distrib/cdinfo http://www.debian.org/CD/vendors/info
-   Redirect /related_links http://www.debian.org/misc/related_links
-   Redirect /ports/laptops http://www.debian.org/misc/laptops/
-   Redirect /misc/README.mirrors http://www.debian.org/mirror/list
-   Redirect /misc/README.non-US http://www.debian.org/mirror/list.non-US
+   RedirectPermanent /doc/prospective-packages /devel/wnpp/
+   RedirectPermanent /devel/maintainer_contacts /intro/organization
+   RedirectPermanent /zh/ /international/Chinese/
+   RedirectPermanent /chinese/ /international/Chinese/
+   RedirectPermanent /devel/help /devel/join/
+   RedirectPermanent /distrib/books /doc/books
+   RedirectPermanent /distrib/vendors /CD/vendors/
+   RedirectPermanent /distrib/cdinfo /CD/vendors/info
+   RedirectPermanent /related_links /misc/related_links
+   RedirectPermanent /ports/laptops /misc/laptops/
+   RedirectPermanent /misc/README.mirrors /mirror/list
+   RedirectPermanent /misc/README.non-US /mirror/list.non-US
+   RedirectPermanent /intl /international
+   RedirectPermanent /ports/armel  /ports/arm
+   RedirectPermanent /ports/mipsel /ports/mips
+   RedirectPermanent /ports/kfreebsd-amd64 /ports/kfreebsd-gnu
+   RedirectPermanent /ports/kfreebsd-i386  /ports/kfreebsd-gnu
+   RedirectPermanent /mirror/mirrors_full.html /mirror/list-full.html
+   RedirectPermanent /mirrors /mirror
+   RedirectPermanent /News/project /News/weekly
+   RedirectPermanent /releases/2.0 /releases/hamm
+   RedirectPermanent /releases/2.1 /releases/slink
+   RedirectPermanent /releases/2.2 /releases/potato
+   RedirectPermanent /releases/3.0 /releases/woody
+   RedirectPermanent /releases/3.1 /releases/sarge
+   RedirectPermanent /releases/4.0 /releases/etch
+   RedirectPermanent /releases/5.0 /releases/lenny
+   RedirectPermanent /releases/6.0 /releases/squeeze
+   RedirectPermanent /releases/unstable /releases/sid
+
+# Offer a Redirect to DSA without knowing year #474730
+   RewriteMap dsa txt:/srv/www.debian.org/www/security/map-dsa.txt
+   RewriteRule ^/security/dsa-(\d+)(\..*)? /security/${dsa:$1}$2 [R=301]
+
+# Compatibility after SGML -> DocBook
+# Debian Reference #624239
+   RewriteMap reference txt:/srv/www.debian.org/www/doc/map-reference.txt
+   RewriteRule ^/doc/manuals/reference/ch-support(.*)  /support$1 [R=301]
+   RewriteRule ^/doc/manuals/reference/ch-([^\.]+)(.*)  /doc/manuals/reference/${reference:$1}$2 [R=301]
+   RewriteRule ^/doc/manuals/reference/ap-appendix(.*) /doc/manuals/reference/apa$1 [R=301]
+   RewriteRule ^/doc/manuals/reference/footnotes(.*)   /doc/manuals/reference/index$1 [R=301]
+# New Maintainers' Guide
+   RewriteRule ^/doc/(manuals/)?maint-guide/ch-(.*) /doc/manuals/maint-guide/$2 [R=301]
+   RewriteRule ^/doc/(manuals/)?maint-guide/footnotes(.*) /doc/manuals/maint-guide/index$2 [R=301]
+
+# Canonical place for manuals under /doc/manuals/
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/$1 -d
+   RewriteRule ^/doc/([^/]+)/?(.*)? /doc/manuals/$1/$2 [L,R=301]
+
 </VirtualHost>

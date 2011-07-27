@@ -9,8 +9,39 @@ class stunnel4 {
                 ;
             "/etc/stunnel/puppet-${name}.conf":
                 content => template("stunnel4/stunnel.conf.erb"),
-                notify  => Exec['restart_stunnel'],
+                notify  => Exec["restart_stunnel_${name}"],
                 ;
+            "/etc/init.d/stunnel4":
+                source => "puppet:///modules/stunnel4/etc-init.d-stunnel4",
+                mode    => 555,
+            ;
+        }
+
+        case $client {
+                true: {
+                    $certfile = "/etc/ssl/debian/certs/thishost.crt"
+                    $keyfile = "/etc/ssl/debian/keys/thishost.key"
+                    }
+                default: {
+                    $certfile = "/etc/exim4/ssl/thishost.crt"
+                    $keyfile = "/etc/exim4/ssl/thishost.key"
+                    }
+        }
+
+        exec {
+            "restart_stunnel_${name}":
+                    command => "true && cd / && env -i /etc/init.d/stunnel4 restart puppet-${name}",
+                    require => [ File['/etc/stunnel/stunnel.conf'],
+                                 File['/etc/init.d/stunnel4'],
+                                 Exec['enable_stunnel4'],
+                                 Exec['kill_file_override'],
+                                 Package['stunnel4']
+                               ],
+                    subscribe => [ File[$certfile],
+                                   File[$keyfile]
+                                 ],
+                    refreshonly => true,
+                    ;
         }
     }
 
@@ -50,7 +81,7 @@ class stunnel4 {
                 # source  => "puppet:///modules/exim/certs/${connecthost}.crt",
                 content => generate("/bin/cat", "/etc/puppet/modules/exim/files/certs/${connecthost}.crt",
                                                 "/etc/puppet/modules/exim/files/certs/ca.crt"),
-                notify  => Exec['restart_stunnel'],
+                notify  => Exec["restart_stunnel_${name}"],
                 ;
         }
         stunnel_generic {
@@ -82,10 +113,10 @@ class stunnel4 {
                 unless => "grep -q '^ENABLED=1' /etc/default/stunnel4",
                 require => [ Package['stunnel4'] ],
                 ;
-        "restart_stunnel":
-                command => "true && cd / && env -i /etc/init.d/stunnel4 restart",
-                require => [ File['/etc/stunnel/stunnel.conf'], Exec['enable_stunnel4'], Package['stunnel4'] ],
-                refreshonly => true,
+        "kill_file_override":
+                command => "sed -i -e 's/^FILES=/#&/' /etc/default/stunnel4",
+                onlyif => "grep -q '^FILES=' /etc/default/stunnel4",
+                require => [ Package['stunnel4'] ],
                 ;
     }
 }

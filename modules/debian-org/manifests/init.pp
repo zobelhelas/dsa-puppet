@@ -39,6 +39,7 @@ define linux_module ($ensure) {
 
 
 class debian-org {
+    $debianadmin = [ "debian-archive-debian-samhain-reports@master.debian.org", "debian-admin@ftbfs.de", "weasel@debian.org", "steve@lobefin.net" ]
     package {
         "apt-utils": ensure => installed;
         "bash-completion": ensure => installed;
@@ -126,6 +127,12 @@ class debian-org {
             linkto => "/usr/bin/vim.basic",
     }
    
+    mailalias {
+        "samhain-reports":
+            recipient => $debianadmin,
+            ensure => present;
+    }
+
     exec {
         "dpkg-reconfigure tzdata -pcritical -fnoninteractive":
             path        => "/usr/bin:/usr/sbin:/bin:/sbin",

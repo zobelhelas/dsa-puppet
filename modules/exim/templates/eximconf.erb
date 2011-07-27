@@ -119,7 +119,7 @@ localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
 localpartlist postmasterish = postmaster : abuse : hostmaster
 
-hostlist debianhosts = <; ; 127.0.0.1 ; ::1 ; /var/lib/misc/thishost/debianhosts
+hostlist debianhosts = <; ; 127.0.0.1 ; ::1 ; /var/lib/misc/thishost/debianhosts ; 89.16.166.49 ; 82.195.75.76 ; 2001:41b8:202:deb:bab5:0:52c3:4b4c
 
 hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
 
@@ -902,7 +902,8 @@ check_message:
                             }
           message        = Mail to this address needs to be PGP-signed
 
-  accept verify  = certificate
+  accept  verify    = certificate
+  accept  hosts     = +debianhosts
 
   deny    condition = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
           !verify   = header_syntax
