@@ -38,7 +38,7 @@ quantz.debian.org:
 nono.debian.org:
   # nm->projectb mirror
   - source_bind_port: 5433
-    target_host: merkel.debian.org
+    target_host: ries.debian.org
     target_port: 5433
 
 stabile.debian.org:

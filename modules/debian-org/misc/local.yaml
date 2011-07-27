@@ -36,6 +36,7 @@ nameinfo:
   gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 - July 10th, 1690)
   glinka.debian.org: Mikhail Ivanovich Glinka (1804 - 1857)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
+  dukas.debian.org: Paul Dukas (1865 - 1935)
   goedel.debian.org: Kurt Gödel (April 28th, 1906 - January 14th, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7th, 1840 - December 3rd, 1876)
   grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
@@ -108,6 +109,7 @@ nameinfo:
   tartini.debian.org: Giuseppe Tartini (April 8th, 1692 - February 26th, 1770)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
   traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (March 30th, 1727 - April 6th, 1779)
+  tye.debian.org: Christopher Tye (c.1505 - 1573)
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
   valente.debian.org: Vincenzo Valente (February 21st, 1855 - September 6th, 1921)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
@@ -246,6 +248,7 @@ host_settings:
     - dijkstra.debian.org
     - draghi.debian.org
     - duarte.debian.org
+    - dukas.debian.org
     - englund.debian.org
     - fano.debian.org
     - fasch.debian.org
@@ -317,6 +320,7 @@ host_settings:
     - steffani.debian.org
     - tchaikovsky.debian.org
     - traetta.debian.org
+    - tye.debian.org
     - unger.debian.org
     - villa.debian.org
     - vitry.debian.org
@@ -353,6 +357,7 @@ host_settings:
     diamond.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
+    dukas.debian.org: mailout.debian.org
     englund.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
@@ -428,6 +433,7 @@ host_settings:
     steffani.debian.org: mailout.debian.org
     tchaikovsky.debian.org: mailout.debian.org
     traetta.debian.org: mailout.debian.org
+    tye.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
     vitry.debian.org: mailout.debian.org
