@@ -902,7 +902,8 @@ check_message:
                             }
           message        = Mail to this address needs to be PGP-signed
 
-  accept verify  = certificate
+  accept  verify    = certificate
+  accept  hosts     = +debianhosts
 
   deny    condition = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
           !verify   = header_syntax
