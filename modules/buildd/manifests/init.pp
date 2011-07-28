@@ -32,6 +32,10 @@ class buildd {
              source => "puppet:///modules/buildd/dupload.conf",
              require => Package["dupload"]
              ;
+        "/etc/default/schroot":
+             source => "puppet:///modules/buildd/default-schroot",
+             require => Package["schroot"]
+             ;
     }
 
     case $kernel {
