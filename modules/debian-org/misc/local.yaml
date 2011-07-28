@@ -27,6 +27,7 @@ nameinfo:
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - January 16th, 1700)
   duarte.debian.org: Leonora Duarte (July 28th, 1610 - 1678)
+  elgar.debian.org: Edward Elgar (1857 - 1934)
   englund.debian.org: Sven Einar Englund (June 17th, 1916 - June 27th, 1999)
   fano.debian.org: Guido Alberto Fano (March 18th, 1875 - August 14th, 1961)
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
@@ -249,6 +250,7 @@ host_settings:
     - draghi.debian.org
     - duarte.debian.org
     - dukas.debian.org
+    - elgar.debian.org
     - englund.debian.org
     - fano.debian.org
     - fasch.debian.org
@@ -358,6 +360,7 @@ host_settings:
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
     dukas.debian.org: mailout.debian.org
+    elgar.debian.org: mailout.debian.org
     englund.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
