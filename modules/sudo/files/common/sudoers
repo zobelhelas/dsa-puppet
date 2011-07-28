@@ -68,6 +68,7 @@ nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, 
 nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg ""
 
 # groups and their role accounts
+%accounting	ALL=(auditor)	ALL
 %backports	ALL=(backports)	ALL
 %buildd		ALL=(buildd)	ALL
 %d-i		ALL=(d-i)	ALL
