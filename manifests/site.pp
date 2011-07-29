@@ -83,6 +83,9 @@ node default {
               case getfromhash($nodeinfo, 'apache2_backports_mirror') {
                      true:    { include apache2::backports_mirror }
               }
+              case getfromhash($nodeinfo, 'apache2_ftp-upcoming_mirror') {
+                     true:    { include apache2::ftp-upcoming_mirror }
+              }
               include apache2
          }
     }

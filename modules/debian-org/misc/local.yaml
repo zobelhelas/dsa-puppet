@@ -181,8 +181,8 @@ host_settings:
     - kokkonen.debian.org
     - senfl.debian.org
     - santoro.debian.org
-    # www-master is handled differently.
-    # - wolkenstein.debian.org
+  'apache2_ftp-upcoming_mirror':
+    - rietz.debian.org
   apache2_backports_mirror:
     - englund.debian.org
     - morricone.debian.org
