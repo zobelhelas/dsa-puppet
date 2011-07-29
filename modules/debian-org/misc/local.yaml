@@ -183,6 +183,8 @@ host_settings:
     - santoro.debian.org
   'apache2_ftp-upcoming_mirror':
     - rietz.debian.org
+    - kassia.debian.org
+    - merikanto.debian.org
   apache2_backports_mirror:
     - englund.debian.org
     - morricone.debian.org
