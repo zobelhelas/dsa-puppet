@@ -49,6 +49,9 @@ node default {
     case $mptraid {
         "true":    { include "raidmpt" }
     }
+    case $productname {
+        "PowerEdge 2850": { include megactl }
+    }
 
     case $mta {
         "exim4":   {
