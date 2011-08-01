@@ -282,6 +282,7 @@ host_settings:
     - master.debian.org
     - merikanto.debian.org
     - morricone.debian.org
+    - mundy.debian.org
     - murphy.debian.org
     - nono.debian.org
     - orff.debian.org
