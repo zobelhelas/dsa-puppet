@@ -845,6 +845,9 @@ check_recipient:
 <%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
 acl_check_mime:
 
+ accept  verify        = certificate
+ accept  hosts         = +debianhosts
+
  discard condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{blackhole}}
          set acl_m_srb = ${perl{surblspamcheck}}
