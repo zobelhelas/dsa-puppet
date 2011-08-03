@@ -1301,7 +1301,7 @@ rt_force_new_verbose:
   pipe_transport = rt_pipe
   data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_remove = Subject
-  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if match {$h_subject:}{(?i)(.*?)\\[?debian rt\\]?\\s*(.*)} {$1$2}{$h_subject:}}"
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\[?debian rt\\]?\\s*(.*)}}} {$1$2}{$h_subject:}}"
 
 # FIXME: figure out how to generalize this approach so that all of the following would work
 # - rt+NNNN@rt.debian.org          : attach correspondence to ticket (verbose)
@@ -1317,7 +1317,8 @@ rt_force_new_quiesce:
   local_part_suffix = +new-quiesce
   pipe_transport = rt_pipe
   data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
-  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nX-RT-Mode: quiesce"
+  headers_remove = Subject
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nX-RT-Mode: quiesce\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\[?debian rt\\]?\\s*(.*)}}} {$1$2}{$h_subject:}}"
 
 rt_otherwise:
   debug_print = "R: rt for $local_part@$domain"
@@ -1329,7 +1330,8 @@ rt_otherwise:
   local_part_suffix_optional
   pipe_transport = rt_pipe
   data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --extension ticket --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
-  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
+  headers_remove = Subject
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\[?debian rt\\]?\\s*(.*)}}} {$1$2}{$h_subject:}}"
 
 <%- end -%>
 
