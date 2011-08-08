@@ -28,6 +28,7 @@ nameinfo:
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - January 16th, 1700)
   duarte.debian.org: Leonora Duarte (July 28th, 1610 - 1678)
+  elgar.debian.org: Edward Elgar (1857 - 1934)
   englund.debian.org: Sven Einar Englund (June 17th, 1916 - June 27th, 1999)
   fano.debian.org: Guido Alberto Fano (March 18th, 1875 - August 14th, 1961)
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
@@ -37,6 +38,7 @@ nameinfo:
   gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 - July 10th, 1690)
   glinka.debian.org: Mikhail Ivanovich Glinka (1804 - 1857)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
+  dukas.debian.org: Paul Dukas (1865 - 1935)
   goedel.debian.org: Kurt Gödel (April 28th, 1906 - January 14th, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7th, 1840 - December 3rd, 1876)
   grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
@@ -109,6 +111,7 @@ nameinfo:
   tartini.debian.org: Giuseppe Tartini (April 8th, 1692 - February 26th, 1770)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
   traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (March 30th, 1727 - April 6th, 1779)
+  tye.debian.org: Christopher Tye (c.1505 - 1573)
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
   valente.debian.org: Vincenzo Valente (February 21st, 1855 - September 6th, 1921)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
@@ -179,8 +182,10 @@ host_settings:
     - kokkonen.debian.org
     - senfl.debian.org
     - santoro.debian.org
-    # www-master is handled differently.
-    # - wolkenstein.debian.org
+  'apache2_ftp-upcoming_mirror':
+    - rietz.debian.org
+    - kassia.debian.org
+    - merikanto.debian.org
   apache2_backports_mirror:
     - englund.debian.org
     - morricone.debian.org
@@ -248,6 +253,8 @@ host_settings:
     - dijkstra.debian.org
     - draghi.debian.org
     - duarte.debian.org
+    - dukas.debian.org
+    - elgar.debian.org
     - englund.debian.org
     - fano.debian.org
     - fasch.debian.org
@@ -277,6 +284,7 @@ host_settings:
     - master.debian.org
     - merikanto.debian.org
     - morricone.debian.org
+    - mundy.debian.org
     - murphy.debian.org
     - nono.debian.org
     - orff.debian.org
@@ -319,6 +327,7 @@ host_settings:
     - steffani.debian.org
     - tchaikovsky.debian.org
     - traetta.debian.org
+    - tye.debian.org
     - unger.debian.org
     - villa.debian.org
     - vitry.debian.org
@@ -356,6 +365,7 @@ host_settings:
     diamond.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
+    elgar.debian.org: mailout.debian.org
     englund.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org

@@ -1,5 +1,6 @@
 class buildd {
     package {
+        "schroot": ensure => installed;
         "sbuild": ensure => installed;
         "buildd": ensure => installed;
         "buildd-builder-meta": ensure => installed;
@@ -31,6 +32,10 @@ class buildd {
         "/etc/dupload.conf":
              source => "puppet:///modules/buildd/dupload.conf",
              require => Package["dupload"]
+             ;
+        "/etc/default/schroot":
+             source => "puppet:///modules/buildd/default-schroot",
+             require => Package["schroot"]
              ;
     }
 
