@@ -15,6 +15,7 @@ nameinfo:
   barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
   bellini.debian.org: Vincenzo Salvatore Carmelo Francesco Bellini (November 3rd, 1801 - September 23rd, 1835)
+  berlioz.debian.org: Hector Berlioz (December 11th, 1803 - March 8th, 1869)
   biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
@@ -235,6 +236,7 @@ host_settings:
     - barber.debian.org
     - beethoven.debian.org
     - bellini.debian.org
+    - berlioz.debian.org
     - biber.debian.org
     - brahms.debian.org
     - busoni.debian.org
@@ -342,6 +344,7 @@ host_settings:
     ball.debian.org: mailout.debian.org
     barber.debian.org: mailout.debian.org
     beethoven.debian.org: mailout.debian.org
+    berlioz.debian.org: mailout.debian.org
     biber.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
     byrd.debian.org: mailout.debian.org
