@@ -38,6 +38,7 @@ nameinfo:
   gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 - July 10th, 1690)
   glinka.debian.org: Mikhail Ivanovich Glinka (1804 - 1857)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
+  gombert.debian.org: Nicolas Gombert (c. 1495 – c. 1560)
   dukas.debian.org: Paul Dukas (1865 - 1935)
   goedel.debian.org: Kurt Gödel (April 28th, 1906 - January 14th, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7th, 1840 - December 3rd, 1876)
@@ -267,6 +268,7 @@ host_settings:
     - geo3.debian.org
     - glinka.debian.org
     - gluck.debian.org
+    - gombert.debian.org
     - grieg.debian.org
     - handel.debian.org
     - heininen.debian.org
@@ -381,6 +383,7 @@ host_settings:
     gluck.debian.org: mailout.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
+    gombert.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
     heininen.debian.org: mailout.debian.org
     holter.debian.org: mailout.debian.org
