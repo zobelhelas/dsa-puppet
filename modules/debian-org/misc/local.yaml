@@ -235,6 +235,7 @@ host_settings:
     - zandonai.debian.org
     - zee.debian.org
   squeeze:
+    - alain.debian.org
     - alkman.debian.org
     - arne.debian.org
     - ball.debian.org
