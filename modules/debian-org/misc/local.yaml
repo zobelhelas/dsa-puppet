@@ -238,6 +238,7 @@ host_settings:
   squeeze:
     - alain.debian.org
     - alkman.debian.org
+    - alwyn.debian.org
     - arne.debian.org
     - ball.debian.org
     - barber.debian.org
