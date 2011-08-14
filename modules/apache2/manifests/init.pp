@@ -154,7 +154,7 @@ class apache2 {
     }
 
     case $hostname {
-        busoni,duarte,holter,lindberg,master,merkel,powell,rore: {
+        busoni,duarte,holter,lindberg,master,powell,rore: {
             @ferm::rule { "dsa-http-limit":
                 prio            => "20",
                 description     => "limit HTTP DOS",

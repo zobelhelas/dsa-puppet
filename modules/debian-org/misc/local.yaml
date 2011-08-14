@@ -62,7 +62,6 @@ nameinfo:
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
   merikanto.debian.org: Oskar Merikanto (August 5th, 1868 - February 17th, 1924)
-  merkel.debian.org: Gustav (Adolf) Merkel (November 12th, 1827 - October 30th, 1885)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
   mundy.debian.org: William Mundy (c. 1529 - 1591)
@@ -142,7 +141,6 @@ services:
   packagesmaster: powell.debian.org
   packagesqamaster: master.debian.org
   puppetmaster: handel.debian.org
-  qamaster: merkel.debian.org
   rtmaster: 
     - reger.debian.org
 host_settings:
@@ -157,7 +155,6 @@ host_settings:
     - kokkonen.debian.org
     - master.debian.org
     - merikanto.debian.org
-    - merkel.debian.org
     - morricone.debian.org
     - nono.debian.org
     - powell.debian.org
