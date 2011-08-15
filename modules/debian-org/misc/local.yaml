@@ -233,6 +233,8 @@ host_settings:
     - zandonai.debian.org
     - zee.debian.org
   squeeze:
+    - abel.debian.org
+    - agricola.debian.org
     - alain.debian.org
     - alkman.debian.org
     - alwyn.debian.org
