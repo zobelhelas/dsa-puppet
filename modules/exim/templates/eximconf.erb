@@ -1184,6 +1184,31 @@ virt_aliases:
   transport_home_directory = ${extract{directory}{VDOMAINDATA}}
   user = ${extract{user}{VDOMAINDATA}}
   
+# No direct match, so try doing a regex match if there's an
+# aliases.regex
+virt_aliases_regex:
+  debug_print = "R: virt_aliases_regex for $local_part$local_part_suffix@$domain"
+  driver = redirect
+  allow_defer
+  allow_fail
+  data = ${if exists{\
+           ${extract{directory}{VDOMAINDATA}{${value}/aliases.regex}}}\
+	   {${lookup{$local_part}nwildlsearch*{\
+              ${extract{directory}{VDOMAINDATA}{$value/aliases.regex}}\
+	   }}}}
+  directory_transport = address_directory
+  domains = +virtual_domains
+  file_transport = ${if eq {${extract{group_writable}{VDOMAINDATA}}}{true}{address_file_group}{address_file}}
+  cannot_route_message = Unknown user
+  group = ${extract{group}{VDOMAINDATA}}
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
+  pipe_transport = address_pipe
+  qualify_preserve_domain
+  retry_use_local_part
+  transport_current_directory = ${extract{directory}{VDOMAINDATA}}
+  transport_home_directory = ${extract{directory}{VDOMAINDATA}}
+  user = ${extract{user}{VDOMAINDATA}}
+
 userforward:
   debug_print = "R: userforward for $local_part${local_part_suffix}@$domain"
   driver = redirect
@@ -1301,7 +1326,7 @@ rt_force_new_verbose:
   pipe_transport = rt_pipe
   data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_remove = Subject
-  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)debian rt\\s*(.*)}}} {$1$2}{$h_subject:}}"
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\\\[?debian rt\\\\]?\\s*(.*)}}} {$1$2}{$h_subject:}}"
 
 # FIXME: figure out how to generalize this approach so that all of the following would work
 # - rt+NNNN@rt.debian.org          : attach correspondence to ticket (verbose)
@@ -1318,7 +1343,7 @@ rt_force_new_quiesce:
   pipe_transport = rt_pipe
   data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_remove = Subject
-  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nX-RT-Mode: quiesce\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)debian rt\\s*(.*)}}} {$1$2}{$h_subject:}}"
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nX-RT-Mode: quiesce\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\\\[?debian rt\\\\]?\\s*(.*)}}} {$1$2}{$h_subject:}}"
 
 rt_otherwise:
   debug_print = "R: rt for $local_part@$domain"
@@ -1331,7 +1356,7 @@ rt_otherwise:
   pipe_transport = rt_pipe
   data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --extension ticket --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_remove = Subject
-  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)debian rt\\s*(.*)}}} {$1$2}{$h_subject:}}"
+  headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\\\[?debian rt\\\\]?\\s*(.*)}}} {$1$2}{$h_subject:}}"
 
 <%- end -%>
 

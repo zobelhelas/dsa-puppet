@@ -143,16 +143,8 @@ node default {
     include samhain
 
     case $hostname {
-        byrd,schuetz,tchaikovsky: {
+        byrd,schuetz,tchaikovsky,draghi,quantz,lamb,locke,rautavaara,rietz: {
             include krb
-        }
-        draghi,quantz: {
-            include krb
-            include afs
-        }
-        lamb,locke,rautavaara,rietz: {
-            include krb
-            include afs::server
         }
     }
 
