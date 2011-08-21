@@ -39,11 +39,11 @@ node default {
         "true":    { include debian-proliant }
     }
     case $kvmdomain {
-        case $debarchitecture {
-            kfreebsd-amd64,kfreebsd-i386: {
-            }
-            default: {
-                "true": {
+        "true": {
+            case $debarchitecture {
+                kfreebsd-amd64,kfreebsd-i386: {
+                }
+                default: {
                     package { acpid: ensure => installed }
                     case getfromhash($nodeinfo, 'squeeze') {
                         true:  { package { acpi-support-base: ensure => installed } }
