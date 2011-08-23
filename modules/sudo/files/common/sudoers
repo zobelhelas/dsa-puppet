@@ -109,6 +109,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki)	ALL
 %qa-core	QAHOSTS=(qa)	ALL
+%gobby		gombert=(gobby)	ALL
 
 # the dak user gets to run stuff as dak-unpriv (for things like lintian checks)
 dak		ALL=(dak-unpriv)	NOPASSWD: ALL
