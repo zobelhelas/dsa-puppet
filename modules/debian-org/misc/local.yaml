@@ -251,6 +251,7 @@ host_settings:
     - brahms.debian.org
     - busoni.debian.org
     - byrd.debian.org
+    - caballero.debian.org
     - chopin.debian.org
     - cilea.debian.org
     - danzi.debian.org
