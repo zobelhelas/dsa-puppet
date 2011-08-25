@@ -290,6 +290,7 @@ host_settings:
     - luchesi.debian.org
     - master.debian.org
     - merikanto.debian.org
+    - merulo.debian.org
     - morricone.debian.org
     - mundy.debian.org
     - murphy.debian.org
