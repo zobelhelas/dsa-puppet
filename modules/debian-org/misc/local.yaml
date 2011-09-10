@@ -116,7 +116,6 @@ nameinfo:
   valente.debian.org: Vincenzo Valente (February 21st, 1855 - September 6th, 1921)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
   vivaldi.debian.org: Antonio Lucio Vivaldi (March 4th, 1678 - July 28th, 1741)
-  voltaire.debian.org: François-Marie Arouet (Voltaire) (November 21st, 1694 - May 30th, 1778)
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21st, 1844 - March 12th, 1937)
   wieck.debian.org: Clara Josephine Wieck (September 13th, 1819 - May 20th, 1896)
   wolkenstein.debian.org: Oswald von Wolkenstein (1377 - August 2nd, 1445)
@@ -229,7 +228,6 @@ host_settings:
     - schroeder.debian.org
     - spontini.debian.org
     - vitry.debian.org
-    - voltaire.debian.org
     - zandonai.debian.org
     - zee.debian.org
   squeeze:
@@ -340,7 +338,6 @@ host_settings:
     - unger.debian.org
     - villa.debian.org
     - vitry.debian.org
-    - voltaire.debian.org
     - widor.debian.org
     - wieck.debian.org
     - zandonai.debian.org
@@ -455,7 +452,6 @@ host_settings:
     villa.debian.org: mailout.debian.org
     vitry.debian.org: mailout.debian.org
     vivaldi.debian.org: mailout.debian.org
-    voltaire.debian.org: mailout.debian.org
     widor.debian.org: mailout.debian.org
     wieck.debian.org: mailout.debian.org
     zandonai.debian.org: mailout.debian.org
