@@ -85,6 +85,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %debvoip	cilea=(freeswitch)	ALL
 %debwww		ALL=(debwww)	ALL
 %btslink	ALL=(btslink)	ALL
+%emdebian	ALL=(emdebian)	ALL
 %forums		ALL=(forums)	ALL
 %keyring	ALL=(keyring)	ALL
 %lintian	ALL=(lintian)	ALL
