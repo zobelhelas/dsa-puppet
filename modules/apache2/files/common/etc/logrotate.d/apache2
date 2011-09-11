@@ -7,7 +7,7 @@
 	daily
 	dateext
 	missingok
-	rotate 360
+	rotate 15
 	compress
 	delaycompress
 	notifempty
