@@ -9,6 +9,7 @@
 
 <VirtualHost *:80>
 	ServerName www.backports.org
+	ServerAlias lists.backports.org
 	ServerAdmin debian-admin@debian.org
 
 	ErrorLog /var/log/apache2/www.backports.org-error.log
