@@ -132,6 +132,7 @@ sil:
   #nameservers_break_dnssec: true
   #nameservers: [213.129.232.1, 213.129.226.2]
   nameservers: [86.59.118.147, 86.59.118.148]
+  allow_dns_query: [86.59.118.144/28 2001:858:2:2::/64]
 scanplus:
   netrange:
     - 212.211.132.0/26
