@@ -28,8 +28,10 @@ nameinfo:
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - January 16th, 1700)
   duarte.debian.org: Leonora Duarte (July 28th, 1610 - 1678)
+  eder.debian.org: Helmut Eder (December 26th, 1916 - February 8th, 2005)
   elgar.debian.org: Edward Elgar (1857 - 1934)
   englund.debian.org: Sven Einar Englund (June 17th, 1916 - June 27th, 1999)
+  eysler.debian.org: Edmund Samuel Eysler (March 12th, 1874 - October 4th, 1949)
   fano.debian.org: Guido Alberto Fano (March 18th, 1875 - August 14th, 1961)
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
   field.debian.org: John Field (1782 - 1837)
@@ -206,6 +208,7 @@ host_settings:
     - brahms.debian.org
     - caballero.debian.org
     - corelli.debian.org
+    - eysler.debian.org
     - fano.debian.org
     - fasch.debian.org
     - field.debian.org
@@ -259,8 +262,10 @@ host_settings:
     - draghi.debian.org
     - duarte.debian.org
     - dukas.debian.org
+    - eder.debian.org
     - elgar.debian.org
     - englund.debian.org
+    - eysler.debian.org
     - fano.debian.org
     - fasch.debian.org
     - field.debian.org
@@ -372,9 +377,11 @@ host_settings:
     diamond.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
     duarte.debian.org: mailout.debian.org
+    eder.debian.org: mailout.debian.org
     elgar.debian.org: mailout.debian.org
     englund.debian.org: mailout.debian.org
     escher.debian.org: mailout.debian.org
+    eysler.debian.org: mailout.debian.org
     fano.debian.org: mailout.debian.org
     fasch.debian.org: mailout.debian.org
     field.debian.org: mailout.debian.org
