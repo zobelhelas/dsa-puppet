@@ -3,7 +3,7 @@ class apache2::www_mirror inherits apache2 {
         "/etc/apache2/sites-available/www.debian.org":
             source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/sites-available/www.debian.org",
                          "puppet:///modules/apache2/common/etc/apache2/sites-available/www.debian.org" ];
-
+            notify => Exec["reload-apache2"];
     }
 
     activate_apache_site {
