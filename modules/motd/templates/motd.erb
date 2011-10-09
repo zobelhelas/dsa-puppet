@@ -71,12 +71,12 @@ end
 unless vms.empty?
   purp += "\nThe following virtual machines run on this system:\n"
   vms.each do |node|
-    purp += "\t#{node}"
+    purp += "\t- #{node}"
     if allnodeinfo[node]['purpose']
       purp += ":\n"
       allnodeinfo[node]['purpose'].sort.each do |l|
         l = markup(l)
-        purp += "\t - " + l + "\n"
+        purp += "\t   " + l + "\n"
       end
     else
       purp += "\n"
