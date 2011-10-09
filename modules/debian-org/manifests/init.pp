@@ -65,6 +65,9 @@ class debian-org {
                 "/etc/apt/sources.list.d/backports.org.list":
                     content => template("debian-org/etc/apt/sources.list.d/backports.org.list.erb"),
                     notify  => Exec["apt-get update"];
+                "/etc/apt/sources.list.d/volatile.list":
+                    content => template("debian-org/etc/apt/sources.list.d/volatile.list.erb"),
+                    notify  => Exec["apt-get update"];
             }
         }
     }
@@ -73,9 +76,6 @@ class debian-org {
             source => "puppet:///modules/debian-org/apt.preferences";
         "/etc/apt/sources.list.d/debian.org.list":
             content => template("debian-org/etc/apt/sources.list.d/debian.org.list.erb"),
-            notify  => Exec["apt-get update"];
-        "/etc/apt/sources.list.d/volatile.list":
-            content => template("debian-org/etc/apt/sources.list.d/volatile.list.erb"),
             notify  => Exec["apt-get update"];
         "/etc/apt/apt.conf.d/local-recommends":
             source => "puppet:///modules/debian-org/apt.conf.d/local-recommends";
