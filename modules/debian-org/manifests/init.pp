@@ -62,13 +62,13 @@ class debian-org {
                 "/etc/apt/sources.list.d/security.list":
                     content => template("debian-org/etc/apt/sources.list.d/security.list.erb"),
                     notify  => Exec["apt-get update"];
+                "/etc/apt/sources.list.d/backports.org.list":
+                    content => template("debian-org/etc/apt/sources.list.d/backports.org.list.erb"),
+                    notify  => Exec["apt-get update"];
             }
     file {
         "/etc/apt/preferences":
             source => "puppet:///modules/debian-org/apt.preferences";
-        "/etc/apt/sources.list.d/backports.org.list":
-            content => template("debian-org/etc/apt/sources.list.d/backports.org.list.erb"),
-            notify  => Exec["apt-get update"];
         "/etc/apt/sources.list.d/debian.org.list":
             content => template("debian-org/etc/apt/sources.list.d/debian.org.list.erb"),
             notify  => Exec["apt-get update"];
