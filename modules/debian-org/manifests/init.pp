@@ -56,7 +56,7 @@ class debian-org {
         "sysklogd": ensure => purged;
     }
     case $debarchitecture {
-        "armhf":
+        "armhf": {}
         default:
             file {
                 "/etc/apt/sources.list.d/security.list":
