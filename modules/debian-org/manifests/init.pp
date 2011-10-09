@@ -57,7 +57,7 @@ class debian-org {
     }
     case $debarchitecture {
         "armhf": {}
-        default:
+        default: {
             file {
                 "/etc/apt/sources.list.d/security.list":
                     content => template("debian-org/etc/apt/sources.list.d/security.list.erb"),
@@ -66,6 +66,7 @@ class debian-org {
                     content => template("debian-org/etc/apt/sources.list.d/backports.org.list.erb"),
                     notify  => Exec["apt-get update"];
             }
+        }
     }
     file {
         "/etc/apt/preferences":
