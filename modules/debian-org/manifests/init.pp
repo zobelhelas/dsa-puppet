@@ -55,6 +55,14 @@ class debian-org {
         "rsyslog": ensure => purged;
         "sysklogd": ensure => purged;
     }
+    case $debarchitecture {
+        "armhf":
+        default:
+            file {
+                "/etc/apt/sources.list.d/security.list":
+                    content => template("debian-org/etc/apt/sources.list.d/security.list.erb"),
+                    notify  => Exec["apt-get update"];
+            }
     file {
         "/etc/apt/preferences":
             source => "puppet:///modules/debian-org/apt.preferences";
@@ -63,9 +71,6 @@ class debian-org {
             notify  => Exec["apt-get update"];
         "/etc/apt/sources.list.d/debian.org.list":
             content => template("debian-org/etc/apt/sources.list.d/debian.org.list.erb"),
-            notify  => Exec["apt-get update"];
-        "/etc/apt/sources.list.d/security.list":
-            content => template("debian-org/etc/apt/sources.list.d/security.list.erb"),
             notify  => Exec["apt-get update"];
         "/etc/apt/sources.list.d/volatile.list":
             content => template("debian-org/etc/apt/sources.list.d/volatile.list.erb"),
