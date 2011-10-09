@@ -233,6 +233,13 @@ host_settings:
     - vitry.debian.org
     - zandonai.debian.org
     - zee.debian.org
+  wheezy:
+    - harris.debian.org
+    - hartmann.debian.org
+    - hasse.debian.org
+    - hebden.debian.org
+    - henze.debian.org
+    - hoiby.debian.org
   squeeze:
     - abel.debian.org
     - agricola.debian.org
