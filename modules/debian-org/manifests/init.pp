@@ -66,6 +66,7 @@ class debian-org {
                     content => template("debian-org/etc/apt/sources.list.d/backports.org.list.erb"),
                     notify  => Exec["apt-get update"];
             }
+    }
     file {
         "/etc/apt/preferences":
             source => "puppet:///modules/debian-org/apt.preferences";
