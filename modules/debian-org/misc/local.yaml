@@ -403,7 +403,13 @@ host_settings:
     goetz.debian.org: mailout.debian.org
     gombert.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
+    harris.debian.org: mailout.debian.org
+    hartmann.debian.org: mailout.debian.org
+    hasse.debian.org: mailout.debian.org
+    hebden.debian.org: mailout.debian.org
     heininen.debian.org: mailout.debian.org
+    henze.debian.org: mailout.debian.org
+    hoiby.debian.org: mailout.debian.org
     holter.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
