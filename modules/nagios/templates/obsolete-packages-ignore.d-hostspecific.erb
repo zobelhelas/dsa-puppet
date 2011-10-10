@@ -18,6 +18,7 @@ when "rossini.debian.org":              ignore << %w{ganeti2}
 when "franck.debian.org":               ignore << %w{python-apt}
 when "zee.debian.org":                  ignore << %w{dpkg-dev dpkg}
 when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/: ignore << %w{flash-kernel linux-firmware-image}
+when /(harris|hartmann|hasse|hebden|henze|hoiby).debian.org/: ignore << %w{flash-kernel puppet puppet-common}
 end
 
 case fqdn
