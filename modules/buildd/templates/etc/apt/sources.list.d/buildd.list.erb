@@ -4,8 +4,10 @@
 ##
 
 # The buildd default repository.
-<% if (nodeinfo.has_key?('squeeze') and nodeinfo['squeeze']) or (nodeinfo.has_key?('wheezy') and nodeinfo['wheezy']) %>
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 deb https://buildd.debian.org/apt/ squeeze main
+<% elsif nodeinfo.has_key?('wheezy') and nodeinfo['wheezy'] %>
+deb https://buildd.debian.org/apt/ wheezy main
 <% else %>
 deb https://buildd.debian.org/apt/ lenny main
 <% end %>
@@ -13,7 +15,7 @@ deb https://buildd.debian.org/apt/ lenny main
 <% if %w{alkman porpora zandonai}.include?(hostname) -%>
 
 # Include the current test version too.
-<% if (nodeinfo.has_key?('squeeze') and nodeinfo['squeeze']) or (nodeinfo.has_key?('wheezy') and nodeinfo['wheezy']) %>
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 deb https://buildd.debian.org/apt/ squeeze-proposed main
 <% else %>
 deb https://buildd.debian.org/apt/ lenny-proposed main
@@ -22,7 +24,7 @@ deb https://buildd.debian.org/apt/ lenny-proposed main
 <% elsif %w{krenek}.include?(hostname) -%>
 
 # The buildd bleeding edge repository.
-<% if (nodeinfo.has_key?('squeeze') and nodeinfo['squeeze']) or (nodeinfo.has_key?('wheezy') and nodeinfo['wheezy']) %>
+<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 deb https://buildd.debian.org/apt/ squeeze-experimental main
 <% else %>
 deb https://buildd.debian.org/apt/ lenny-experimental main
