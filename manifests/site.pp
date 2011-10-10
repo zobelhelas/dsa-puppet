@@ -121,6 +121,9 @@ node default {
     case getfromhash($nodeinfo, 'squeeze') {
         true:  { include unbound }
     }
+    case getfromhash($nodeinfo, 'wheezy') {
+        true:  { include unbound }
+    }
     include resolv
 
     case $kernel {
