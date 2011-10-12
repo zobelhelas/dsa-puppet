@@ -6,7 +6,7 @@
 <%=
 out = []
 
-restrict_ssh = %w{lebrun logtest01 geo1 geo2 geo3 beethoven tchaikovsky schroeder heininen handel lotti}
+restrict_ssh = %w{lebrun logtest01 geo1 geo2 geo3 beethoven tchaikovsky schroeder heininen handel lotti dijkstra luchesi salieri schumann traetta unger rossini draghi}
 
 ssh4allowed = []
 ssh6allowed = []
@@ -20,7 +20,7 @@ if %w{lebrun schroeder}.include?(hostname) then
 	ssh4allowed << '$CARNET'
 	ssh4allowed << '$BUILDD_SSH_ACCESS'
 end
-if %w{beethoven}.include?(hostname) then
+if %w{beethoven draghi}.include?(hostname) then
 	ssh4allowed << '$HOST_DEBIAN_V4'
 	ssh6allowed << '$HOST_DEBIAN_V6'
 end
