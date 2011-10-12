@@ -5,8 +5,7 @@ class sudo {
 		owner   => root,
 		group   => root,
 		mode    => 440,
-		source  => [ "puppet:///modules/sudo/per-host/$fqdn/sudoers",
-		             "puppet:///modules/sudo/common/sudoers" ],
+		content => template("sudo/sudoers.erb"),
 		require => Package["sudo"]
                 ;
 	       "/etc/pam.d/sudo":

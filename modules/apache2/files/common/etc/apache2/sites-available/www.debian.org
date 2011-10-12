@@ -138,6 +138,10 @@
 
    Userdir http://people.debian.org/~*/   
 
+   RedirectPermanent /doc/manuals/debian-fr-howto /doc/manuals/fr/debian-fr-howto
+   RedirectPermanent /doc/manuals/reference /doc/manuals/debian-reference
+   RedirectPermanent /doc/packaging-manuals/developers-reference /doc/manuals/developers-reference
+   RedirectPermanent /doc/packaging-manuals/packaging-tutorial /doc/manuals/packaging-tutorial
    RedirectPermanent /doc/prospective-packages /devel/wnpp/
    RedirectPermanent /devel/maintainer_contacts /intro/organization
    RedirectPermanent /zh/ /international/Chinese/
@@ -155,6 +159,7 @@
    RedirectPermanent /ports/mipsel /ports/mips
    RedirectPermanent /ports/kfreebsd-amd64 /ports/kfreebsd-gnu
    RedirectPermanent /ports/kfreebsd-i386  /ports/kfreebsd-gnu
+   RedirectPermanent /ports/sparc64 /ports/sparc
    RedirectPermanent /mirror/mirrors_full.html /mirror/list-full.html
    RedirectPermanent /mirrors /mirror
    RedirectPermanent /News/project /News/weekly
@@ -168,6 +173,10 @@
    RedirectPermanent /releases/6.0 /releases/squeeze
    RedirectPermanent /releases/unstable /releases/sid
 
+   RewriteRule ^/ports/freebsd(.*) /ports/kfreebsd-gnu/ [R=301]
+   RewriteRule ^/devel/debian-installer/report-template(.*) /releases/stable/i386/ch05s04.html#submit-bug [NE,R=301]
+   RewriteRule ^/devel/debian-installer/hooks(.*) http://d-i.alioth.debian.org/doc/internals/apb.html [R=301]
+
 # Offer a Redirect to DSA without knowing year #474730
    RewriteMap dsa txt:/srv/www.debian.org/www/security/map-dsa.txt
    RewriteRule ^/security/dsa-(\d+)(\..*)? /security/${dsa:$1}$2 [R=301]
@@ -175,10 +184,10 @@
 # Compatibility after SGML -> DocBook
 # Debian Reference #624239
    RewriteMap reference txt:/srv/www.debian.org/www/doc/map-reference.txt
-   RewriteRule ^/doc/manuals/reference/ch-support(.*)  /support$1 [R=301]
-   RewriteRule ^/doc/manuals/reference/ch-([^\.]+)(.*)  /doc/manuals/reference/${reference:$1}$2 [R=301]
-   RewriteRule ^/doc/manuals/reference/ap-appendix(.*) /doc/manuals/reference/apa$1 [R=301]
-   RewriteRule ^/doc/manuals/reference/footnotes(.*)   /doc/manuals/reference/index$1 [R=301]
+   RewriteRule ^/doc/manuals/debian-reference/ch-support(.*)  /support$1 [R=301]
+   RewriteRule ^/doc/manuals/debian-reference/ch-([^\.]+)(.*) /doc/manuals/debian-reference/${reference:$1}$2 [R=301]
+   RewriteRule ^/doc/manuals/debian-reference/ap-appendix(.*) /doc/manuals/debian-reference/apa$1 [R=301]
+   RewriteRule ^/doc/manuals/debian-reference/footnotes(.*)   /doc/manuals/debian-reference/index$1 [R=301]
 # New Maintainers' Guide
    RewriteRule ^/doc/(manuals/)?maint-guide/ch-(.*) /doc/manuals/maint-guide/$2 [R=301]
    RewriteRule ^/doc/(manuals/)?maint-guide/footnotes(.*) /doc/manuals/maint-guide/index$2 [R=301]

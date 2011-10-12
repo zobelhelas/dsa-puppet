@@ -16,20 +16,6 @@
 	ServerSignature On
 <%=
 out = case fqdn
-  when "merkel.debian.org"
-  then "
-        RemoveType .php .phtml .php3 .phps
-        php_admin_flag engine off
-        <Directory /home/don/public_html/cgi>
-                SetEnv PERLLIB \"/home/don/perl/usr/share/perl5:/home/don/source/\"
-                SetEnv DEBBUGS_CONFIG_FILE \"/home/don/config_internal\"
-                SetHandler cgi-script
-                AllowOverride None
-                Options +ExecCGI
-                Order allow,deny
-                Allow from all
-        </Directory>
-"
   when "master.debian.org" then ""
 else
 "

@@ -10,11 +10,6 @@ master.debian.org:
     target_host: samosa.debian.org
     target_port: 5441
 
-merkel.debian.org:
-  - source_bind_port: 5441
-    target_host: samosa.debian.org
-    target_port: 5441
-
 samosa.debian.org:
   - source_bind_port: 5433
     target_host: grieg.debian.org

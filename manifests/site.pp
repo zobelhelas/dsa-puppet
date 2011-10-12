@@ -16,7 +16,7 @@ Exec {
 node default {
     $localinfo = yamlinfo('*', "/etc/puppet/modules/debian-org/misc/local.yaml")
     $nodeinfo  = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
-    $allnodeinfo = allnodeinfo("sshRSAHostKey ipHostNumber", "purpose mXRecord")
+    $allnodeinfo = allnodeinfo("sshRSAHostKey ipHostNumber", "purpose mXRecord physicalHost purpose")
     notice( sprintf("hoster for %s is %s", $fqdn, getfromhash($nodeinfo, 'hoster', 'name') ) )
 
     include munin-node
@@ -40,9 +40,15 @@ node default {
     }
     case $kvmdomain {
         "true": {
-            package { acpid: ensure => installed }
-            case getfromhash($nodeinfo, 'squeeze') {
-                true:  { package { acpi-support-base: ensure => installed } }
+            case $debarchitecture {
+                kfreebsd-amd64,kfreebsd-i386: {
+                }
+                default: {
+                    package { acpid: ensure => installed }
+                    case getfromhash($nodeinfo, 'squeeze') {
+                        true:  { package { acpi-support-base: ensure => installed } }
+                    }
+                }
             }
         }
     }
@@ -115,6 +121,9 @@ node default {
     case getfromhash($nodeinfo, 'squeeze') {
         true:  { include unbound }
     }
+    case getfromhash($nodeinfo, 'wheezy') {
+        true:  { include unbound }
+    }
     include resolv
 
     case $kernel {
@@ -143,16 +152,8 @@ node default {
     include samhain
 
     case $hostname {
-        byrd,schuetz,tchaikovsky: {
+        byrd,schuetz,tchaikovsky,draghi,quantz,lamb,locke,rautavaara,rietz: {
             include krb
-        }
-        draghi,quantz: {
-            include krb
-            include afs
-        }
-        lamb,locke,rautavaara,rietz: {
-            include krb
-            include afs::server
         }
     }
 

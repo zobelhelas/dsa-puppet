@@ -6,6 +6,8 @@
 # The buildd default repository.
 <% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
 deb https://buildd.debian.org/apt/ squeeze main
+<% elsif nodeinfo.has_key?('wheezy') and nodeinfo['wheezy'] %>
+deb https://buildd.debian.org/apt/ wheezy main
 <% else %>
 deb https://buildd.debian.org/apt/ lenny main
 <% end %>

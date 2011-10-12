@@ -19,9 +19,12 @@
 
 Defaults	env_reset
 Defaults	passprompt="[sudo] password for %u on %h: "
+<% if nodeinfo.has_key?('wheezy') and nodeinfo['wheezy'] %>
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+<% end %>
 
 # Host alias specification
-Host_Alias	QAHOSTS		= master, merkel, quantz
+Host_Alias	QAHOSTS		= master, quantz, stabile
 Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
 Host_Alias	FTPHOSTS	= franck, morricone
@@ -85,6 +88,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %debvoip	cilea=(freeswitch)	ALL
 %debwww		ALL=(debwww)	ALL
 %btslink	ALL=(btslink)	ALL
+%emdebian	ALL=(emdebian)	ALL
 %forums		ALL=(forums)	ALL
 %keyring	ALL=(keyring)	ALL
 %lintian	ALL=(lintian)	ALL
@@ -109,6 +113,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki)	ALL
 %qa-core	QAHOSTS=(qa)	ALL
+%gobby		gombert=(gobby)	ALL
 
 # the dak user gets to run stuff as dak-unpriv (for things like lintian checks)
 dak		ALL=(dak-unpriv)	NOPASSWD: ALL

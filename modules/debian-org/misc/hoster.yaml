@@ -69,7 +69,7 @@ darmstadt:
     - 82.195.75.32/28
     - 2001:41b8:202:deb::/64
   searchpaths: [debprivate-darmstadt.debian.org]
-  nameservers: [82.195.75.81, 82.195.66.249, 217.198.242.225]
+  nameservers: [82.195.66.249, 217.198.242.225]
 dgi:
   netrange:
     - 93.94.130.128/26
@@ -129,8 +129,10 @@ sil:
   netrange:
     - 86.59.118.144/28
   searchpaths: [debprivate-sil.debian.org]
-  nameservers_break_dnssec: true
-  nameservers: [213.129.232.1, 213.129.226.2]
+  #nameservers_break_dnssec: true
+  #nameservers: [213.129.232.1, 213.129.226.2]
+  nameservers: [86.59.118.147, 86.59.118.148]
+  allow_dns_query: [86.59.118.144/28, 2001:858:2:2::/64]
 scanplus:
   netrange:
     - 212.211.132.0/26

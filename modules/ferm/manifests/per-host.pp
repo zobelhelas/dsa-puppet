@@ -81,6 +81,13 @@ class ferm::per-host {
                 rule            => "&SERVICE(tcp, 11371)"
             }
         }
+        gombert: {
+            @ferm::rule { "dsa-infinoted":
+                domain          => "(ip ip6)",
+                description     => "Allow infinoted access",
+                rule            => "&SERVICE(tcp, 6523)"
+            }
+        }
         liszt: {
             @ferm::rule { "smtp":
                 domain          => "(ip ip6)",
