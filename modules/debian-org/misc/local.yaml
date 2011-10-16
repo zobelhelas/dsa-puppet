@@ -223,6 +223,9 @@ host_settings:
     - goedel.debian.org
     - goetz.debian.org
     - hartmann.debian.org
+    - hasse.debian.org
+    - hebden.debian.org
+    - henze.debian.org
     - krenek.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
