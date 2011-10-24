@@ -138,6 +138,7 @@
 
    Userdir http://people.debian.org/~*/   
 
+   RedirectPermanent /doc/FAQ /doc/manuals/debian-faq
    RedirectPermanent /doc/manuals/debian-fr-howto /doc/manuals/fr/debian-fr-howto
    RedirectPermanent /doc/manuals/reference /doc/manuals/debian-reference
    RedirectPermanent /doc/packaging-manuals/developers-reference /doc/manuals/developers-reference
