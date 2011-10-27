@@ -365,6 +365,7 @@ host_settings:
     - vivaldi.debian.org
     - widor.debian.org
     - wieck.debian.org
+    - wolkenstein.debian.org
     - zandonai.debian.org
     - zelenka.debian.org
   smarthost:
