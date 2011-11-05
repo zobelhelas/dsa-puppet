@@ -19,9 +19,7 @@
 
 Defaults	env_reset
 Defaults	passprompt="[sudo] password for %u on %h: "
-<% if nodeinfo.has_key?('wheezy') and nodeinfo['wheezy'] %>
 Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-<% end %>
 
 # Host alias specification
 Host_Alias	QAHOSTS		= master, quantz, stabile
@@ -85,6 +83,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %debian-cd	ALL=(debian-cd)	ALL
 %debian-i18n	ALL=(debian-i18n)	ALL
 %debian-release	ALL=(release)	ALL
+%debtags	ALL=(debtags)	ALL
 %debvoip	cilea=(freeswitch)	ALL
 %debwww		ALL=(debwww)	ALL
 %btslink	ALL=(btslink)	ALL
