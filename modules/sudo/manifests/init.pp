@@ -16,7 +16,7 @@ class sudo {
                     owner   => root,
                     group   => root,
                     mode    => 440,
-                    source  => [ "puppet:///modules/sudo/common/sudoers" ],
+                    source  => [ "puppet:///modules/sudo/wheezy/sudoers" ],
                     require => Package["sudo"],
                     ;
             }
@@ -27,7 +27,7 @@ class sudo {
                     owner   => root,
                     group   => root,
                     mode    => 440,
-                    source  => [ "puppet:///modules/sudo/wheezy/sudoers" ],
+                    source  => [ "puppet:///modules/sudo/common/sudoers" ],
                     require => Package["sudo"],
                     ;
             }
