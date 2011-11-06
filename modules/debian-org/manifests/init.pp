@@ -169,9 +169,8 @@ class debian-proliant inherits debian-org {
         "hp-health": ensure => installed;
         "arrayprobe": ensure => installed;
     }
-    case getfromhash($nodeinfo, 'squeeze') {
-        true: {}
-        default: {
+    case $lsbdistcodename {
+        'lenny':    {
             package {
                 "cpqarrayd": ensure => installed;
             }

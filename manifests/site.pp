@@ -45,8 +45,9 @@ node default {
                 }
                 default: {
                     package { acpid: ensure => installed }
-                    case getfromhash($nodeinfo, 'squeeze') {
-                        true:  { package { acpi-support-base: ensure => installed } }
+                    case $lsbdistcodename {
+                        'lenny':    { }
+                        default:    { package { acpi-support-base: ensure => installed } }
                     }
                 }
             }
