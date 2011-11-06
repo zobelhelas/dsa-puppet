@@ -3,31 +3,22 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+<%
+  builddsuites = %w{lenny squeeze wheezy}
+  testingunstable = 'wheezy'
+  if builddsuites.include?(lsbdistcodename)
+    suite = lsbdistcodename
+  else
+    suite = testingunstable
+  end
+%>
+
 # The buildd default repository.
-<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
-deb https://buildd.debian.org/apt/ squeeze main
-<% elsif nodeinfo.has_key?('wheezy') and nodeinfo['wheezy'] %>
-deb https://buildd.debian.org/apt/ wheezy main
-<% else %>
-deb https://buildd.debian.org/apt/ lenny main
-<% end %>
+deb https://buildd.debian.org/apt/ <%= suite %> main
 
 <% if %w{alkman porpora zandonai}.include?(hostname) -%>
-
 # Include the current test version too.
-<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
-deb https://buildd.debian.org/apt/ squeeze-proposed main
-<% else %>
-deb https://buildd.debian.org/apt/ lenny-proposed main
-<% end %>
-
+deb https://buildd.debian.org/apt/ <%= suite %>-proposed main
 <% elsif %w{krenek}.include?(hostname) -%>
-
-# The buildd bleeding edge repository.
-<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
-deb https://buildd.debian.org/apt/ squeeze-experimental main
-<% else %>
-deb https://buildd.debian.org/apt/ lenny-experimental main
-<% end %>
-
+deb https://buildd.debian.org/apt/ <%= suite %>-experimental main
 <% end %>

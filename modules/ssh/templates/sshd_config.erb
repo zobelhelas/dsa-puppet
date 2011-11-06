@@ -76,10 +76,10 @@ AcceptEnv LANG LC_*
 Subsystem sftp /usr/lib/openssh/sftp-server
 
 UsePAM yes
-<% if nodeinfo.has_key?('wheezy') and nodeinfo['wheezy'] %>
-AuthorizedKeysFile /etc/ssh/userkeys/%u /var/lib/misc/userkeys/%u
-<% else %>
+<% if %w{lenny squeeze}.include?(lsbdistcodename) %>
 AuthorizedKeysFile /etc/ssh/userkeys/%u
 AuthorizedKeysFile2 /var/lib/misc/userkeys/%u
+<% else %>
+AuthorizedKeysFile /etc/ssh/userkeys/%u /var/lib/misc/userkeys/%u
 <% end %>
 PasswordAuthentication no

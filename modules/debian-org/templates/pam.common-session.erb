@@ -3,7 +3,7 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% if (nodeinfo.has_key?('squeeze') and nodeinfo['squeeze']) or (nodeinfo.has_key?('wheezy') and nodeinfo['wheezy']) %>
+<% unless lsbdistcodename == 'lenny' %>
 #
 # /etc/pam.d/common-session - session-related modules common to all services
 #
