@@ -118,11 +118,9 @@ node default {
     case $hostname {
         franck,master,lobos,samosa,spohr,widor:   { include unbound }
     }
-    case getfromhash($nodeinfo, 'squeeze') {
-        true:  { include unbound }
-    }
-    case getfromhash($nodeinfo, 'wheezy') {
-        true:  { include unbound }
+    case $lsbdistcodename {
+        'lenny':    { }
+        default:    { include unbound }
     }
     include resolv
 
