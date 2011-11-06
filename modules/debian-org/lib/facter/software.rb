@@ -83,3 +83,15 @@ Facter.add("unbound") do
 		FileTest.exist?("/var/lib/unbound/root.key")
 	end
 end
+Facter.add("release") do
+	setcode do
+		r = %x{lsb_release --short --codename}.chomp
+		if r == "n/a"
+			r = %x{lsb_release --short --release}.chomp
+			if r != "testing/unstable"
+				r = 'unknown'
+			end
+		end
+		r
+	end
+end
