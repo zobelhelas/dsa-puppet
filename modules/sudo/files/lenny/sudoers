@@ -19,7 +19,6 @@
 
 Defaults	env_reset
 Defaults	passprompt="[sudo] password for %u on %h: "
-Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Host alias specification
 Host_Alias	QAHOSTS		= master, quantz, stabile

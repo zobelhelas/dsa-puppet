@@ -9,14 +9,14 @@ class sudo {
             ;
     }
 
-    case getfromhash($nodeinfo, 'wheezy') {
-        true:  {
+    case $lsbdistcodename {
+        'lenny':  {
             file {
                 "/etc/sudoers":
                     owner   => root,
                     group   => root,
                     mode    => 440,
-                    source  => [ "puppet:///modules/sudo/wheezy/sudoers" ],
+                    source  => [ "puppet:///modules/sudo/lenny/sudoers" ],
                     require => Package["sudo"],
                     ;
             }
