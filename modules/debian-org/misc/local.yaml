@@ -159,7 +159,6 @@ host_settings:
     - draghi.debian.org
     - franck.debian.org
     - grieg.debian.org
-    - klecker.debian.org
     - kokkonen.debian.org
     - master.debian.org
     - merikanto.debian.org
@@ -184,7 +183,6 @@ host_settings:
     - bellini.debian.org
     - englund.debian.org
     - gluck.debian.org
-    - klecker.debian.org
     - kokkonen.debian.org
     - senfl.debian.org
     - santoro.debian.org
@@ -427,6 +425,7 @@ host_settings:
     jenkins.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
+    klecker.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
     lamb.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
