@@ -494,6 +494,7 @@ host_settings:
   mail_port:
     ancina.debian.org: 2025
     kassia.debian.org: 587
+    klecker.debian.org: 587
     piatti.debian.org: 2025
   no_munin:
     - agnesi.debian.org
