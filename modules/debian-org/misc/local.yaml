@@ -54,6 +54,7 @@ nameinfo:
   heininen.debian.org: Paavo Heininen (January 13th, 1938)
   hoiby.debian.org: Lee Henry Hoiby (February 17th, 1926 - March 28th, 2011)
   holter.debian.org: Iver Holter (December 13th, 1850 - January 27th, 1941)
+  jenkins.debian.org: John Jenkins (1592 - 1678)
   kassia.debian.org: Kassia (between 805 and 810 - bef. 867)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
@@ -158,7 +159,6 @@ host_settings:
     - draghi.debian.org
     - franck.debian.org
     - grieg.debian.org
-    - klecker.debian.org
     - kokkonen.debian.org
     - master.debian.org
     - merikanto.debian.org
@@ -183,7 +183,6 @@ host_settings:
     - bellini.debian.org
     - englund.debian.org
     - gluck.debian.org
-    - klecker.debian.org
     - kokkonen.debian.org
     - senfl.debian.org
     - santoro.debian.org
@@ -222,6 +221,9 @@ host_settings:
     - goedel.debian.org
     - goetz.debian.org
     - hartmann.debian.org
+    - hasse.debian.org
+    - hebden.debian.org
+    - henze.debian.org
     - krenek.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
@@ -240,128 +242,130 @@ host_settings:
     - vitry.debian.org
     - zandonai.debian.org
     - zee.debian.org
-  wheezy:
-    - harris.debian.org
-    - hartmann.debian.org
-    - hasse.debian.org
-    - hebden.debian.org
-    - henze.debian.org
-    - hoiby.debian.org
-  squeeze:
-    - abel.debian.org
-    - agricola.debian.org
-    - alain.debian.org
-    - alkman.debian.org
-    - alwyn.debian.org
-    - antheil.debian.org
-    - arcadelt.debian.org
-    - argento.debian.org
-    - arne.debian.org
-    - arnold.debian.org
-    - ball.debian.org
-    - barber.debian.org
-    - beethoven.debian.org
-    - bellini.debian.org
-    - berlioz.debian.org
-    - biber.debian.org
-    - brahms.debian.org
-    - busoni.debian.org
-    - byrd.debian.org
-    - caballero.debian.org
-    - chopin.debian.org
-    - cilea.debian.org
-    - danzi.debian.org
-    - diamond.debian.org
-    - dijkstra.debian.org
-    - draghi.debian.org
-    - duarte.debian.org
-    - dukas.debian.org
-    - eder.debian.org
-    - elgar.debian.org
-    - englund.debian.org
-    - eysler.debian.org
-    - fano.debian.org
-    - fasch.debian.org
-    - field.debian.org
-    - finzi.debian.org
-    - franck.debian.org
-    - geo1.debian.org
-    - geo2.debian.org
-    - geo3.debian.org
-    - glinka.debian.org
-    - gluck.debian.org
-    - gombert.debian.org
-    - grieg.debian.org
-    - handel.debian.org
-    - heininen.debian.org
-    - holter.debian.org
-    - kassia.debian.org
-    - kaufmann.debian.org
-    - kokkonen.debian.org
-    - krenek.debian.org
-    - lamb.debian.org
-    - lebrun.debian.org
-    - lindberg.debian.org
-    - lobos.debian.org
-    - locke.debian.org
-    - lotti.debian.org
-    - luchesi.debian.org
-    - master.debian.org
-    - merikanto.debian.org
-    - merulo.debian.org
-    - morricone.debian.org
-    - mundy.debian.org
-    - murphy.debian.org
-    - nono.debian.org
-    - orff.debian.org
-    - paganini.debian.org
-    - pescetti.debian.org
-    - pergolesi.debian.org
-    - pettersson.debian.org
-    - piatti.debian.org
-    - porpora.debian.org
-    - poulenc.debian.org
-    - praetorius.debian.org
-    - quantz.debian.org
-    - raff.debian.org
-    - rautavaara.debian.org
-    - ravel.debian.org
-    - reger.debian.org
-    - rem.debian.org
-    - respighi.debian.org
-    - ries.debian.org
-    - rietz.debian.org
-    - rore.debian.org
-    - rossini.debian.org
-    - saens.debian.org
-    - salieri.debian.org
-    - samosa.debian.org
-    - santoro.debian.org
-    - scelsi.debian.org
-    - schein.debian.org
-    - schroeder.debian.org
-    - schuetz.debian.org
-    - schumann.debian.org
-    - senfl.debian.org
-    - sibelius.debian.org
-    - smetana.debian.org
-    - soler.debian.org
-    - sperger.debian.org
-    - spohr.debian.org
-    - spontini.debian.org
-    - stabile.debian.org
-    - steffani.debian.org
-    - tchaikovsky.debian.org
-    - traetta.debian.org
-    - tye.debian.org
-    - unger.debian.org
-    - villa.debian.org
-    - vitry.debian.org
-    - vivaldi.debian.org
-    - widor.debian.org
-    - wieck.debian.org
-    - zandonai.debian.org
-    - zelenka.debian.org
+  #wheezy:
+  #  - harris.debian.org
+  #  - hartmann.debian.org
+  #  - hasse.debian.org
+  #  - hebden.debian.org
+  #  - henze.debian.org
+  #  - hoiby.debian.org
+  #squeeze:
+  #  - abel.debian.org
+  #  - agricola.debian.org
+  #  - alain.debian.org
+  #  - alkman.debian.org
+  #  - alwyn.debian.org
+  #  - antheil.debian.org
+  #  - arcadelt.debian.org
+  #  - argento.debian.org
+  #  - arne.debian.org
+  #  - arnold.debian.org
+  #  - ball.debian.org
+  #  - barber.debian.org
+  #  - beethoven.debian.org
+  #  - bellini.debian.org
+  #  - berlioz.debian.org
+  #  - biber.debian.org
+  #  - brahms.debian.org
+  #  - busoni.debian.org
+  #  - byrd.debian.org
+  #  - caballero.debian.org
+  #  - chopin.debian.org
+  #  - cilea.debian.org
+  #  - danzi.debian.org
+  #  - diamond.debian.org
+  #  - dijkstra.debian.org
+  #  - draghi.debian.org
+  #  - duarte.debian.org
+  #  - dukas.debian.org
+  #  - eder.debian.org
+  #  - elgar.debian.org
+  #  - englund.debian.org
+  #  - eysler.debian.org
+  #  - fano.debian.org
+  #  - fasch.debian.org
+  #  - field.debian.org
+  #  - finzi.debian.org
+  #  - franck.debian.org
+  #  - geo1.debian.org
+  #  - geo2.debian.org
+  #  - geo3.debian.org
+  #  - glinka.debian.org
+  #  - gluck.debian.org
+  #  - gombert.debian.org
+  #  - grieg.debian.org
+  #  - handel.debian.org
+  #  - heininen.debian.org
+  #  - holter.debian.org
+  #  - jenkins.debian.org
+  #  - kassia.debian.org
+  #  - kaufmann.debian.org
+  #  - kokkonen.debian.org
+  #  - krenek.debian.org
+  #  - lamb.debian.org
+  #  - lebrun.debian.org
+  #  - lindberg.debian.org
+  #  - lobos.debian.org
+  #  - locke.debian.org
+  #  - lotti.debian.org
+  #  - luchesi.debian.org
+  #  - master.debian.org
+  #  - merikanto.debian.org
+  #  - merulo.debian.org
+  #  - morricone.debian.org
+  #  - mundy.debian.org
+  #  - murphy.debian.org
+  #  - nono.debian.org
+  #  - orff.debian.org
+  #  - paganini.debian.org
+  #  - pescetti.debian.org
+  #  - pergolesi.debian.org
+  #  - pettersson.debian.org
+  #  - piatti.debian.org
+  #  - porpora.debian.org
+  #  - poulenc.debian.org
+  #  - praetorius.debian.org
+  #  - quantz.debian.org
+  #  - raff.debian.org
+  #  - rautavaara.debian.org
+  #  - ravel.debian.org
+  #  - reger.debian.org
+  #  - rem.debian.org
+  #  - respighi.debian.org
+  #  - ries.debian.org
+  #  - rietz.debian.org
+  #  - rore.debian.org
+  #  - rossini.debian.org
+  #  - saens.debian.org
+  #  - salieri.debian.org
+  #  - samosa.debian.org
+  #  - santoro.debian.org
+  #  - scelsi.debian.org
+  #  - schein.debian.org
+  #  - schroeder.debian.org
+  #  - schuetz.debian.org
+  #  - schumann.debian.org
+  #  - senfl.debian.org
+  #  - sibelius.debian.org
+  #  - smetana.debian.org
+  #  - soler.debian.org
+  #  - sperger.debian.org
+  #  - spohr.debian.org
+  #  - spontini.debian.org
+  #  - stabile.debian.org
+  #  - steffani.debian.org
+  #  - tchaikovsky.debian.org
+  #  - traetta.debian.org
+  #  - tye.debian.org
+  #  - unger.debian.org
+  #  - villa.debian.org
+  #  - vitry.debian.org
+  #  - vivaldi.debian.org
+  #  - widor.debian.org
+  #  - wieck.debian.org
+  #  - wolkenstein.debian.org
+  #  - zandonai.debian.org
+  #  - zelenka.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agnesi.debian.org: mailout.debian.org
@@ -418,8 +422,10 @@ host_settings:
     henze.debian.org: mailout.debian.org
     hoiby.debian.org: mailout.debian.org
     holter.debian.org: mailout.debian.org
+    jenkins.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
+    klecker.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
     lamb.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
@@ -488,6 +494,7 @@ host_settings:
   mail_port:
     ancina.debian.org: 2025
     kassia.debian.org: 587
+    klecker.debian.org: 587
     piatti.debian.org: 2025
   no_munin:
     - agnesi.debian.org

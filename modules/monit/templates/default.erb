@@ -11,7 +11,7 @@
 # You must set this variable to for monit to start
 startup=0
 
-<% unless (nodeinfo.has_key?('squeeze') and nodeinfo['squeeze']) or (nodeinfo.has_key?('wheezy') and nodeinfo['wheezy']) %>
+<% if lsbdistcodename == 'lenny' %>
 
 # To change the intervals which monit should run uncomment
 # and change this variable.

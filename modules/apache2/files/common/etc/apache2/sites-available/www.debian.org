@@ -138,6 +138,7 @@
 
    Userdir http://people.debian.org/~*/   
 
+   RedirectPermanent /doc/FAQ /doc/manuals/debian-faq
    RedirectPermanent /doc/manuals/debian-fr-howto /doc/manuals/fr/debian-fr-howto
    RedirectPermanent /doc/manuals/reference /doc/manuals/debian-reference
    RedirectPermanent /doc/packaging-manuals/developers-reference /doc/manuals/developers-reference
@@ -184,10 +185,17 @@
 # Compatibility after SGML -> DocBook
 # Debian Reference #624239
    RewriteMap reference txt:/srv/www.debian.org/www/doc/map-reference.txt
-   RewriteRule ^/doc/manuals/debian-reference/ch-support(.*)  /support$1 [R=301]
-   RewriteRule ^/doc/manuals/debian-reference/ch-([^\.]+)(.*) /doc/manuals/debian-reference/${reference:$1}$2 [R=301]
-   RewriteRule ^/doc/manuals/debian-reference/ap-appendix(.*) /doc/manuals/debian-reference/apa$1 [R=301]
-   RewriteRule ^/doc/manuals/debian-reference/footnotes(.*)   /doc/manuals/debian-reference/index$1 [R=301]
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/ch-support$1 !-f
+   RewriteRule ^/doc/manuals/debian-reference/ch-support(.*)  /support$1 [L,R=301]
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/${reference:$1}$2 -f
+   RewriteRule ^/doc/manuals/debian-reference/ch-([^\.]+)(.+) /doc/manuals/debian-reference/${reference:$1}$2 [L,R=301]
+   RewriteRule ^/doc/manuals/debian-reference/ch-([^\.]+)$    /doc/manuals/debian-reference/${reference:$1}     [R=301]
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/apa$1 -f
+   RewriteRule ^/doc/manuals/debian-reference/ap-appendix(.+) /doc/manuals/debian-reference/apa$1 [L,R=301]
+   RewriteRule ^/doc/manuals/debian-reference/ap-appendix$    /doc/manuals/debian-reference/apa     [R=301]
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/footnotes$1 !-f
+   RewriteRule ^/doc/manuals/debian-reference/footnotes(.+)   /doc/manuals/debian-reference/index$1 [L,R=301]
+   RewriteRule ^/doc/manuals/debian-reference/footnotes$      /doc/manuals/debian-reference/          [R=301]
 # New Maintainers' Guide
    RewriteRule ^/doc/(manuals/)?maint-guide/ch-(.*) /doc/manuals/maint-guide/$2 [R=301]
    RewriteRule ^/doc/(manuals/)?maint-guide/footnotes(.*) /doc/manuals/maint-guide/index$2 [R=301]

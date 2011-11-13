@@ -3,8 +3,8 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% if nodeinfo.has_key?('squeeze') and nodeinfo['squeeze'] %>
-deb	http://ftp.debian.org/debian	squeeze-updates		main contrib non-free
-<% else %>
+<% if lsbdistcodename == 'lenny' %>
 deb     http://volatile.debian.org/debian-volatile lenny/volatile   main contrib non-free
+<% elsif lsbdistcodename != 'n/a' %>
+deb	http://ftp.debian.org/debian	<%= lsbdistcodename %>-updates		main contrib non-free
 <% end %>

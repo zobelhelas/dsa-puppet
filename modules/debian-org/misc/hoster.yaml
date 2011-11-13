@@ -101,7 +101,9 @@ isc:
   netrange:
     - 149.20.0.0/16
     - 2001:4F8::/32
-  nameservers: [149.20.64.2, 204.152.184.67]
+  #nameservers: [149.20.64.2, 204.152.184.67]
+  # sometimes very slow?
+  nameservers: []
 nmmn:
   netrange:
     - 217.114.76.80/29
@@ -128,6 +130,7 @@ rapidswitch:
 sil:
   netrange:
     - 86.59.118.144/28
+    - 2001:858:2:2::/64
   searchpaths: [debprivate-sil.debian.org]
   #nameservers_break_dnssec: true
   #nameservers: [213.129.232.1, 213.129.226.2]
