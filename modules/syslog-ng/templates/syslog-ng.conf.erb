@@ -1,5 +1,8 @@
-<%- if has_variable?("syslogversion") and syslogversion.to_s == "3" -%>
+<%- if has_variable?("syslogversion") and syslogversion.to_s == "3.1" -%>
 @version: 3.0
+<%- end -%>
+<%- if has_variable?("syslogversion") and syslogversion.to_s == "3.3" -%>
+@version: 3.3
 <%- end -%>
 ##
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
@@ -42,7 +45,12 @@ options {
         #sync(0);
 
         # the number of lines fitting in the output queue
+<%- if has_variable?("syslogversion") and syslogversion.to_s == "3.1" -%>
         log_fifo_size(2048);
+<%- end -%>
+<%- if has_variable?("syslogversion") and syslogversion.to_s == "3.3" -%>
+        log_fifo_size(10000);
+<%- end -%>
 
         # enable or disable directory creation for destination files
         create_dirs(yes);
@@ -98,21 +106,13 @@ source s_local {
         # function to send logs to)
         unix-stream("/dev/log");
         # messages from the kernel
-<%- if has_variable?("syslogversion") and syslogversion.to_s == "2" -%>
-        file("/proc/kmsg" log_prefix("kernel: "));
-<%- else -%>
         file("/proc/kmsg" program_override("kernel: "));
-<%- end -%>
 <%- else -%>
         # standard Linux log source (this is the default place for the syslog()
         # function to send logs to)
         unix-dgram("/var/run/log");
         # messages from the kernel
-<%- if has_variable?("syslogversion") and syslogversion.to_s == "2" -%>
-        file("/dev/klog" log_prefix("kernel: "));
-<%- else -%>
         file("/dev/klog" program_override("kernel: "));
-<%- end -%>
 <%- end -%>
 <%- if hostname == "paganini" -%>
         # use the following line if you want to receive remote UDP logging messages
@@ -399,7 +399,7 @@ log {
 <%- end -%>
 
 
-<%- if has_variable?("syslogversion") and syslogversion.to_s == "3" -%>
+<%- if has_variable?("syslogversion") and syslogversion.to_s == "3.1" -%>
   <%- if hostname != "heininen" -%>
 destination loghost-heininen {
 	tcp("heininen.debian.org" port (5140)
