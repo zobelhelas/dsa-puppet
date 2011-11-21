@@ -191,6 +191,7 @@ host_settings:
   'apache2_ftp-upcoming_mirror':
     - rietz.debian.org
     - kassia.debian.org
+    - klecker.debian.org
     - merikanto.debian.org
   apache2_backports_mirror:
     - englund.debian.org
