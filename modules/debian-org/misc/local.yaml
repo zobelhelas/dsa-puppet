@@ -130,6 +130,7 @@ nameinfo:
   wolkenstein.debian.org: Oswald von Wolkenstein (1377 - August 2nd, 1445)
   zandonai.debian.org: Riccardo Zandonai (May 30th, 1883 - June 5th, 1944)
   zelenka.debian.org: Jan Dismas Zelenka (October 16th, 1679 - December 23rd, 1745)
+  zemlinsky.debian.org: Alexander von Zemlinsky (October 14th, 1871 - March 15th 1942)
 footer:
   zandonai.debian.org: "Debian s390 buildd system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
   zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
@@ -243,6 +244,7 @@ host_settings:
     - spontini.debian.org
     - vitry.debian.org
     - zandonai.debian.org
+    - zemlinsky.debian.org
     - zee.debian.org
   #wheezy:
   #  - harris.debian.org
@@ -493,6 +495,7 @@ host_settings:
     zandonai.debian.org: mailout.debian.org
     zee.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
+    zemlinsky.debian.org: mailout.debian.org
   mail_port:
     ancina.debian.org: 2025
     kassia.debian.org: 587
