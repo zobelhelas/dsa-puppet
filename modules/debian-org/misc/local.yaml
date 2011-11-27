@@ -23,6 +23,7 @@ nameinfo:
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
+  czerny.debian.org: Carl Czerny (February 21st, 1791 - July 15th, 1857)
   danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
   diamond.debian.org: David Leo Diamond (July 9, 1915 - June 13, 2005)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
@@ -392,6 +393,7 @@ host_settings:
     cilea.debian.org: mailout.debian.org
     corelli.debian.org: mailout.debian.org
     crest.debian.org: mailout.debian.org
+    czerny.debian.org: mailout.debian.org
     danzi.debian.org: mailout.debian.org
     diamond.debian.org: mailout.debian.org
     dijkstra.debian.org: mailout.debian.org
