@@ -195,6 +195,14 @@ class apache2 {
                                     mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP;
                                     jump http_limit'
             }
+            @ferm::rule { "dsa-http-baidu":
+                prio            => "21",
+                description     => "slow baidu spider",
+                chain           => 'limit_baidu',
+                rule            => '
+                                    mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP;
+                                    jump http_limit'
+            }
             @ferm::rule { "dsa-http-rules":
                 prio            => "22",
                 description     => "http subchain",
@@ -204,6 +212,7 @@ class apache2 {
                                     saddr 124.115.0.0/21 jump limit_sosospider;
                                     saddr (65.52.0.0/14 207.46.0.0/16) jump limit_bing;
                                     saddr (66.249.64.0/19) jump limit_google;
+                                    saddr (119.63.192.0/21 180.76.0.0/16) jump limit_baidu;
 
                                     mod recent name HTTPDOS update seconds 1800 jump log_or_drop;
                                     mod hashlimit hashlimit-name HTTPDOS hashlimit-mode srcip hashlimit-burst 600 hashlimit 30/minute jump ACCEPT;
