@@ -62,9 +62,9 @@ server:
 	end
 
 
-	<% if hostname == "zappa" -%>
-	edns-buffer-size: 512
-	<% end -%>
+	if hostname == "zappa"
+		out << "edns-buffer-size: 512"
+	end
 
 	out.join("\n")
 %>
