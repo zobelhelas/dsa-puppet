@@ -60,5 +60,11 @@ server:
 			out << "	forward-addr: #{ns}"
 		end
 	end
+
+
+	<% if hostname == "zappa" -%>
+	edns-buffer-size: 512
+	<% end -%>
+
 	out.join("\n")
 %>
