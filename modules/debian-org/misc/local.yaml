@@ -508,6 +508,7 @@ host_settings:
     kassia.debian.org: 587
     klecker.debian.org: 587
     piatti.debian.org: 2025
+    zappa.debian.org: 587
   no_munin:
     - agnesi.debian.org
     - allegri.debian.org
