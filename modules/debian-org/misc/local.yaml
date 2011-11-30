@@ -247,6 +247,7 @@ host_settings:
     - spontini.debian.org
     - vitry.debian.org
     - zandonai.debian.org
+    - zappa.debian.org
     - zemlinsky.debian.org
     - zee.debian.org
   #wheezy:
