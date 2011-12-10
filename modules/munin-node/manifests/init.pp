@@ -26,9 +26,6 @@ class munin-node {
 
     activate_munin_check {
         "cpu":;
-        "df":;
-        "df_abs":;
-        "df_inode":;
         "entropy":;
         "forks":;
         "interrupts":;
@@ -74,6 +71,25 @@ class munin-node {
             content => template("munin-node/munin-node.plugin.conf.erb"),
             require => Package["munin-node"],
             notify  => Exec["munin-node restart"];
+
+        "/etc/munin/plugins/df":
+            source  => "puppet:///modules/munin/df-wrap",
+            mode    => 555,
+            require => Package["munin-node"],
+            notify  => Exec["munin-node restart"]
+            ;
+        "/etc/munin/plugins/df_abs":
+            source  => "puppet:///modules/munin/df-wrap",
+            mode    => 555,
+            require => Package["munin-node"],
+            notify  => Exec["munin-node restart"]
+            ;
+        "/etc/munin/plugins/df_inode":
+            source  => "puppet:///modules/munin/df-wrap",
+            mode    => 555,
+            require => Package["munin-node"],
+            notify  => Exec["munin-node restart"]
+            ;
     }
 
     exec { "munin-node restart":
