@@ -102,3 +102,7 @@ out = case hostname
 end
 out
 %>
+
+# filter out all the short-lived sbuild/schroot filesystems for diskstats:
+[diskstats]
+env.exclude sbuild,schroot
