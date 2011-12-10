@@ -30,10 +30,10 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 case "${0##*/}" in
-	df)		plugin=/usr/share/munin/plugins/df ;;
-	df_abs)		plugin=/usr/share/munin/plugins/df_abs ;;
-	df_node)	plugin=/usr/share/munin/plugins/df_inode ;;
+	df)		plugin=/usr/share/munin/plugins/df       ; filter='^_dev\.|^_run|^_lib_init_rw|_sbuild_|_schroot_' ;;
+	df_abs)		plugin=/usr/share/munin/plugins/df_abs   ; filter='^tmpfs|^udev|_sbuild_|_schroot_' ;;
+	df_inode)	plugin=/usr/share/munin/plugins/df_inode ; filter='^_dev\.|^_run|^_lib_init_rw|_sbuild_|_schroot_' ;;
 	*)		echo >&2 "$0: Do not know which plugin to call based on script name."; exit 1 ;;
 esac
 
-"$plugin" "$@" | egrep -v '^_dev\.|^_run|^_lib_init_rw|_sbuild_|_schroot_'
+"$plugin" "$@" | egrep -v "$filter"
