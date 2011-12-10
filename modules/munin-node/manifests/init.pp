@@ -73,19 +73,19 @@ class munin-node {
             notify  => Exec["munin-node restart"];
 
         "/etc/munin/plugins/df":
-            source  => "puppet:///modules/munin/df-wrap",
+            source  => "puppet:///modules/munin-node/df-wrap",
             mode    => 555,
             require => Package["munin-node"],
             notify  => Exec["munin-node restart"]
             ;
         "/etc/munin/plugins/df_abs":
-            source  => "puppet:///modules/munin/df-wrap",
+            source  => "puppet:///modules/munin-node/df-wrap",
             mode    => 555,
             require => Package["munin-node"],
             notify  => Exec["munin-node restart"]
             ;
         "/etc/munin/plugins/df_inode":
-            source  => "puppet:///modules/munin/df-wrap",
+            source  => "puppet:///modules/munin-node/df-wrap",
             mode    => 555,
             require => Package["munin-node"],
             notify  => Exec["munin-node restart"]
