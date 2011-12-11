@@ -59,3 +59,8 @@ wagner.debian.org:
     target_host: samosa.debian.org
     target_port: 5441
 
+blavet.debian.org:
+  # emdebian->projectb mirror
+  - source_bind_port: 5433
+    target_host: ries.debian.org
+    target_port: 5433
