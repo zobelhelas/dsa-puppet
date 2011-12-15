@@ -886,7 +886,7 @@ check_message:
 
   # Some people put from hostmaster@something.debian.org in the From
   # header.  Take their crack pipe away.
-  drop   condition = ${if match{${lc:$h_From:}}{\Npostmaster@([^.]+.)?debian\.org\N}}
+  drop   condition = ${if match{${lc:$h_From:}}{\Npostmaster@([^.]+\.)?debian\.org\N}}
 
 <%- if nodeinfo['rtmaster'] -%>
   deny    condition = ${if eq {$acl_m_prf}{RTMail}}
