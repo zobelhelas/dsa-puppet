@@ -453,6 +453,7 @@ host_settings:
     merulo.debian.org: mailout.debian.org
     mundy.debian.org: mailout.debian.org
     murphy.debian.org: mailout.debian.org
+    new-master.debian.org: mailout.debian.org
     nielsen.debian.org: mailout.debian.org
     orff.debian.org: mailout.debian.org
     paer.debian.org: mailout.debian.org
