@@ -883,6 +883,11 @@ acl_check_predata:
 
 #!!# ACL that is used after the DATA command
 check_message:
+
+  # Some people put from hostmaster@something.debian.org in the From
+  # header.  Take their crack pipe away.
+  drop   condition = ${if match{${lc:$h_from:}}{\Npostmaster@(\[^.\].)?debian\.org\N}}
+
 <%- if nodeinfo['rtmaster'] -%>
   deny    condition = ${if eq {$acl_m_prf}{RTMail}}
           condition = ${if and{{!match {${lc:$rh_Subject:}} {debian rt}} \
