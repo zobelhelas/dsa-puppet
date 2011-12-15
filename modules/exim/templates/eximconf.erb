@@ -530,7 +530,7 @@ check_recipient:
           log_message   = Only one profile at a time, please
 
   # Defer after too many bad RCPT TO's.  Legit MTAs will retry later.
-  # This is a rough pass at preventing addres harvesting or other mail blasts.
+  # This is a rough pass at preventing address harvesting or other mail blasts.
 
   defer  log_message   = Too many bad recipients ${eval:$rcpt_fail_count} out of $rcpt_count
          !acl          = acl_spamlovers
