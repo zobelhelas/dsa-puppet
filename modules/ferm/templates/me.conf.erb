@@ -10,8 +10,8 @@ restricted_purposes = {'kvm host', 'central syslog server', 'puppet master', 'ju
 restrict_ssh = %w{lebrun logtest01 geo1 geo2 geo3 beethoven tchaikovsky schroeder rossini draghi}
 
 if (nodeinfo['ldap'].has_key?('purpose')) then
-	restricted_purposes.each do |purp|
-		if nodeinfo['ldap']['purpose'].include?(purp) then
+	nodeinfo['ldap']['purpose'].each do |purp|
+		if restricted_purposes.include?(purp) then
 			restrict_ssh << hostname
 		end
 	end
