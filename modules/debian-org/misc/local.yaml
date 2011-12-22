@@ -430,15 +430,18 @@ host_settings:
     hebden.debian.org: mailout.debian.org
     heininen.debian.org: mailout.debian.org
     henze.debian.org: mailout.debian.org
+    hildegard.debian.org: mailout.debian.org
     hoiby.debian.org: mailout.debian.org
     holter.debian.org: mailout.debian.org
+    howells.debian.org: mailout.debian.org
+    hummel.debian.org: mailout.debian.org
     jenkins.debian.org: mailout.debian.org
     kassia.debian.org: mailout.debian.org
     kaufmann.debian.org: mailout.debian.org
     klecker.debian.org: mailout.debian.org
     krenek.debian.org: mailout.debian.org
-    lamb.debian.org: mailout.debian.org
     lafayette.debian.org: mailout.debian.org
+    lamb.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
     lindberg.debian.org: mailout.debian.org
@@ -481,8 +484,8 @@ host_settings:
     scelsi.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
-    schumann.debian.org: mailout.debian.org
     schuetz.debian.org: mailout.debian.org
+    schumann.debian.org: mailout.debian.org
     senfl.debian.org: mailout.debian.org
     sibelius.debian.org: mailout.debian.org
     smetana.debian.org: mailout.debian.org
