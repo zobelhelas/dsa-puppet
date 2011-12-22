@@ -6,7 +6,16 @@
 <%=
 out = []
 
-restrict_ssh = %w{lebrun logtest01 geo1 geo2 geo3 beethoven tchaikovsky schroeder heininen handel lotti dijkstra luchesi salieri schumann traetta unger rossini draghi jenkins}
+restricted_purposes = {'kvm host', 'central syslog server', 'puppet master', 'jumphost'}
+restrict_ssh = %w{lebrun logtest01 geo1 geo2 geo3 beethoven tchaikovsky schroeder rossini draghi}
+
+if (nodeinfo['ldap'].has_key?('purpose')) then
+	restricted_purposes.each do |purp|
+		if nodeinfo['ldap']['purpose'].include?(purp) then
+			restrict_ssh << hostname
+		end
+	end
+end
 
 ssh4allowed = []
 ssh6allowed = []
