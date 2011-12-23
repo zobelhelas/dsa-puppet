@@ -21,7 +21,7 @@ class ferm::per-host {
         danzi: {
                 @ferm::rule { "dsa-postgres-danzi":
                     description     => "Allow postgress access",
-                    rule            => "&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 ))"
+                    rule            => "&SERVICE_RANGE(tcp, (5433, 5437), ( 206.12.19.0/24 ))"
                 }
 
         }
