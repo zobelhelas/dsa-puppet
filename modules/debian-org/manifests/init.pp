@@ -78,6 +78,8 @@ class debian-org {
         "/etc/apt/sources.list.d/debian.org.list":
             content => template("debian-org/etc/apt/sources.list.d/debian.org.list.erb"),
             notify  => Exec["apt-get update"];
+        "/etc/apt/apt.conf.d/local-compression":
+            source => "puppet:///modules/debian-org/apt.conf.d/local-compression";
         "/etc/apt/apt.conf.d/local-recommends":
             source => "puppet:///modules/debian-org/apt.conf.d/local-recommends";
         "/etc/apt/apt.conf.d/local-pdiffs":
