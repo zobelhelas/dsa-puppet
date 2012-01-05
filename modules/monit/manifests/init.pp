@@ -1,11 +1,16 @@
 class monit {
     package { "monit": ensure => installed }
 
+    $cmd = $::lsbdistcodename == sid or $lsbmajdistrelease > 6 ? {
+         true    => /usr/bin/monit,
+         default => /usr/sbin/monit,
+    }
+
     augeas { "inittab":
         context => "/files/etc/inittab",
         changes => [ "set mo/runlevels 2345",
                      "set mo/action respawn",
-                     "set mo/process \"/usr/sbin/monit -d 300 -I -c /etc/monit/monitrc -s /var/lib/monit/monit.state\"",
+                     "set mo/process \"$cmd -d 300 -I -c /etc/monit/monitrc -s /var/lib/monit/monit.state\"",
                    ],
         onlyif => "match mo size == 0",
         notify => Exec["init q"],
