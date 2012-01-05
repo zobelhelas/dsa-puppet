@@ -2,8 +2,8 @@ class monit {
     package { "monit": ensure => installed }
 
     $cmd = $::lsbdistcodename == sid or $lsbmajdistrelease > 6 ? {
-         true    => /usr/bin/monit,
-         default => /usr/sbin/monit,
+         true    => '/usr/bin/monit',
+         default => '/usr/sbin/monit',
     }
 
     augeas { "inittab":
