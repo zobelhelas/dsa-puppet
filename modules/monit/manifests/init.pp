@@ -1,9 +1,10 @@
 class monit {
     package { "monit": ensure => installed }
 
-    $cmd = $::lsbdistcodename == 'sid' or $::lsbmajdistrelease > '6' ? {
-         true    => '/usr/bin/monit',
-         default => '/usr/sbin/monit',
+    $cmd = $::lsbdistcodename ? {
+         'sid'      => '/usr/bin/monit',
+         'wheezy'   => '/usr/bin/monit',
+         default  => '/usr/sbin/monit',
     }
 
     augeas { "inittab":
@@ -12,10 +13,8 @@ class monit {
                      "set mo/action respawn",
                      "set mo/process \"$cmd -d 300 -I -c /etc/monit/monitrc -s /var/lib/monit/monit.state\"",
                    ],
-        onlyif => "match mo size == 0",
         notify => Exec["init q"],
     }
-
 
     file {
         #"/etc/rc2.d/K99monit":
