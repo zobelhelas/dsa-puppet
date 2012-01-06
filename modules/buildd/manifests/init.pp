@@ -12,6 +12,7 @@ class buildd {
     file {
         "/etc/apt/preferences.d/buildd":
              source  => "puppet:///modules/buildd/apt-preferences",
+             before  => File["/etc/apt/sources.list.d/buildd.list"],
              ;
 
         "/etc/apt/sources.list.d/buildd.list":
