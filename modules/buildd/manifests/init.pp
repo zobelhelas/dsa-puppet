@@ -10,6 +10,10 @@ class buildd {
     }
    
     file {
+        "/etc/apt/preferences.d/buildd":
+             source  => "puppet:///modules/buildd/apt-preferences",
+             ;
+
         "/etc/apt/sources.list.d/buildd.list":
              content => template("buildd/etc/apt/sources.list.d/buildd.list.erb"),
              require => Package["apt-transport-https"],
