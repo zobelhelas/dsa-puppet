@@ -84,7 +84,6 @@ nameinfo:
   penalosa.debian.org: Francisco de Peñalosa (c. 1470 - April 1st, 1528)
   pergolesi.debian.org: Giovanni Battista Pergolesi (January 4th, 1710 - March 16th or 17th, 1736)
   peri.debian.org: Jacopo Peri (August 20th, 1561 - August 12th, 1633)
-  pescetti.debian.org: Giovanni Battista Pescetti (ca. 1704  - 1766)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   piatti.debian.org: Carlo Alfredo Piatti (January 8th, 1822 - July 18th, 1901)
   porpora.debian.org: Niccolò (Antonio) Porpora (17 August 1686 - 3 March 1768)
@@ -329,7 +328,6 @@ host_settings:
   #  - nono.debian.org
   #  - orff.debian.org
   #  - paganini.debian.org
-  #  - pescetti.debian.org
   #  - pergolesi.debian.org
   #  - pettersson.debian.org
   #  - piatti.debian.org
@@ -467,7 +465,6 @@ host_settings:
     penalosa.debian.org: mailout.debian.org
     pergolesi.debian.org: mailout.debian.org
     peri.debian.org: mailout.debian.org
-    pescetti.debian.org: mailout.debian.org
     pettersson.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
     porpora.debian.org: mailout.debian.org
