@@ -165,7 +165,11 @@ node default {
     case $kernel {
         Linux: { include entropykey }
     }
-
+    if $::postgres84 {
+        include postgres
+    } elsif $::postgres90 {
+        include postgres
+    }
 }
 
 # vim:set et:
