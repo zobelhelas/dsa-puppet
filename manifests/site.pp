@@ -165,9 +165,9 @@ node default {
     case $kernel {
         Linux: { include entropykey }
     }
-    if $::postgres84 {
+    if $::postgres84 == "true" {
         include postgres
-    } elsif $::postgres90 {
+    } elsif $::postgres90 == "true" {
         include postgres
     }
 }
