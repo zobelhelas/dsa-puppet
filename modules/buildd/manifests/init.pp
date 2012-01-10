@@ -11,14 +11,11 @@ class buildd {
    
     file {
         "/etc/apt/preferences.d/buildd":
-             source  => "puppet:///modules/buildd/apt-preferences",
-             before  => File["/etc/apt/sources.list.d/buildd.list"],
+             ensure => absent,
              ;
 
         "/etc/apt/sources.list.d/buildd.list":
-             content => template("buildd/etc/apt/sources.list.d/buildd.list.erb"),
-             require => Package["apt-transport-https"],
-             notify  => Exec["apt-get update"],
+             ensure => absent,
              ;
        
         "/etc/apt/trusted-keys.d/buildd.debian.org.asc":
