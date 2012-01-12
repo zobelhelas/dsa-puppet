@@ -30,6 +30,9 @@ case fqdn
 when /geo[123].debian.org/: ignore << %w{geoip-database}
 end
 
+if nodeinfo['ldap']['purpose'].include?('buildd')
+	ignore << %w{libsbuild-perl buildd-builder-meta}
+end
 #case fqdn
 #when /(draghi|orff|ravel|klecker|geo[123]).debian.org/: ignore << %w{libdns69 libdns66 libdns64 bind9 libbind9-60 liblwres60 bind9-host libisccfg62 libisccfg60 libisc62 libisc60 dnsutils bind9utils libisccc60}
 #end
