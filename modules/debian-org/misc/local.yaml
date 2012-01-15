@@ -203,6 +203,8 @@ host_settings:
     - orff.debian.org
     - ravel.debian.org
     - busoni.debian.org
+  broken-rtc:
+    - sompek.debian.org
   buildd:
     - alain.debian.org
     - alkman.debian.org
