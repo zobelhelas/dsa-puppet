@@ -84,7 +84,6 @@ nameinfo:
   penalosa.debian.org: Francisco de Peñalosa (c. 1470 - April 1st, 1528)
   pergolesi.debian.org: Giovanni Battista Pergolesi (January 4th, 1710 - March 16th or 17th, 1736)
   peri.debian.org: Jacopo Peri (August 20th, 1561 - August 12th, 1633)
-  pescetti.debian.org: Giovanni Battista Pescetti (ca. 1704  - 1766)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   piatti.debian.org: Carlo Alfredo Piatti (January 8th, 1822 - July 18th, 1901)
   porpora.debian.org: Niccolò (Antonio) Porpora (17 August 1686 - 3 March 1768)
@@ -114,6 +113,7 @@ nameinfo:
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
   soler.debian.org: Padre Antonio Soler (December 3rd, 1729 (baptized) - December 20th, 1783)
+  sompek.debian.org: Ernst Sompek (Juni 11th 1876 - August 2nd 1954)
   sperger.debian.org: Johannes Matthias Sperger (March 23th, 1750 - May 13th, 1812)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
@@ -205,6 +205,8 @@ host_settings:
     - orff.debian.org
     - ravel.debian.org
     - busoni.debian.org
+  broken-rtc:
+    - sompek.debian.org
   buildd:
     - alain.debian.org
     - alkman.debian.org
@@ -231,7 +233,10 @@ host_settings:
     - hasse.debian.org
     - hebden.debian.org
     - henze.debian.org
+    - hildegard.debian.org
     - hoiby.debian.org
+    - howells.debian.org
+    - hummel.debian.org
     - krenek.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
@@ -250,8 +255,8 @@ host_settings:
     - vitry.debian.org
     - zandonai.debian.org
     - zappa.debian.org
-    - zemlinsky.debian.org
     - zee.debian.org
+    - zemlinsky.debian.org
   #wheezy:
   #  - harris.debian.org
   #  - hartmann.debian.org
@@ -328,7 +333,6 @@ host_settings:
   #  - nono.debian.org
   #  - orff.debian.org
   #  - paganini.debian.org
-  #  - pescetti.debian.org
   #  - pergolesi.debian.org
   #  - pettersson.debian.org
   #  - piatti.debian.org
@@ -466,7 +470,6 @@ host_settings:
     penalosa.debian.org: mailout.debian.org
     pergolesi.debian.org: mailout.debian.org
     peri.debian.org: mailout.debian.org
-    pescetti.debian.org: mailout.debian.org
     pettersson.debian.org: mailout.debian.org
     piatti.debian.org: mailout.debian.org
     porpora.debian.org: mailout.debian.org
@@ -492,6 +495,7 @@ host_settings:
     sibelius.debian.org: mailout.debian.org
     smetana.debian.org: mailout.debian.org
     soler.debian.org: mailout.debian.org
+    sompek.debian.org: mailout.debian.org
     sperger.debian.org: mailout.debian.org
     spontini.debian.org: mailout.debian.org
     stabile.debian.org: mailout.debian.org
