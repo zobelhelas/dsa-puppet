@@ -146,7 +146,9 @@ services:
   mailrelay:
     - kokkonen.debian.org
     - merikanto.debian.org
-  muninmaster: spohr.debian.org
+  muninmaster:
+    - spohr.debian.org
+    - rossini.debian.org
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
     - orff.debian.org
