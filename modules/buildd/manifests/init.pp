@@ -8,14 +8,18 @@ class buildd {
         "debootstrap": ensure => installed;
         "dupload": ensure => installed;
     }
-   
+
     file {
+        "/etc/apt/preferences.d/buildd":
+            ensure  => absent
+            ;
+
         "/etc/apt/sources.list.d/buildd.list":
              content => template("buildd/etc/apt/sources.list.d/buildd.list.erb"),
              require => Package["apt-transport-https"],
              notify  => Exec["apt-get update"],
              ;
-       
+
         "/etc/apt/trusted-keys.d/buildd.debian.org.asc":
              source  => "puppet:///modules/buildd/buildd.debian.org.asc",
              mode    => 664,
