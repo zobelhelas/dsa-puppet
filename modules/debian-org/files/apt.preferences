@@ -22,6 +22,14 @@ Package: libsbuild-perl
 Pin: release o=buildd.debian.org
 Pin-Priority: 500
 
+Package: schroot
+Pin: release o=buildd.debian.org
+Pin-Priority: 500
+
+Package: schroot-common
+Pin: release o=buildd.debian.org
+Pin-Priority: 500
+
 Package: *
 Pin: release o=buildd.debian.org
 Pin-Priority: -1
