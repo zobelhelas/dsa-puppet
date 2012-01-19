@@ -28,6 +28,7 @@ class ntp {
             group   => ntp,
             mode    => 750,
             ensure  => directory,
+            require => Package["ntp"]
             ;
     }
     case getfromhash($nodeinfo, 'timeserver') {
