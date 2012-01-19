@@ -2,8 +2,6 @@ class buildd {
     package {
         "schroot": ensure => installed;
         "sbuild": ensure => installed;
-        "buildd": ensure => installed;
-        "buildd-builder-meta": ensure => installed;
         "apt-transport-https": ensure => installed;
         "debootstrap": ensure => installed;
         "dupload": ensure => installed;
