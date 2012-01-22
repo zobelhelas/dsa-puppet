@@ -211,6 +211,12 @@ host_settings:
     - busoni.debian.org
   broken-rtc:
     - sompek.debian.org
+    - abel.debian.org
+    - arne.debian.org
+    - arnold.debian.org
+    - alain.debian.org
+    - alwyn.debian.org
+    - antheil.debian.org
   buildd:
     - alain.debian.org
     - alkman.debian.org
