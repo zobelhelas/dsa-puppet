@@ -115,7 +115,7 @@ node default {
     case $hostname {
         ravel,senfl,orff,draghi,diamond: { include named::authoritative }
         geo1,geo2,geo3:                          { include named::geodns }
-        liszt,bendel:                            { include named::recursor }
+        liszt:                                   { include named::recursor }
     }
     case $hostname {
         franck,master,lobos,samosa,spohr,widor:   { include unbound }
