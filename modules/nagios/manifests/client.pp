@@ -54,6 +54,10 @@ class nagios::client inherits nagios {
             refreshonly => true,
             ;
         "service nagios-nrpe-server reload":
+# remove after lenny EOL (lenny has no service binary)
+# -cut-
+            command    => "/etc/init.d/nagios-nrpe-server reload",
+# -cut-
             refreshonly => true,
             ;
     }
