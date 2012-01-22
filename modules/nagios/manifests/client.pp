@@ -18,7 +18,7 @@ class nagios::client inherits nagios {
         "/etc/nagios/nrpe.cfg":
             content => template("nagios/nrpe.cfg.erb"),
             require => Package["nagios-nrpe-server"],
-            notify  => Exec["nagios-nrpe-server reload"],
+            notify  => Exec["service nagios-nrpe-server reload"],
             ;
         "/etc/nagios/nrpe.d":
             mode    => 755,
@@ -28,12 +28,12 @@ class nagios::client inherits nagios {
         "/etc/nagios/nrpe.d/debianorg.cfg":
             content => template("nagios/inc-debian.org.erb"),
             require => Package["nagios-nrpe-server"],
-            notify  => Exec["nagios-nrpe-server reload"],
+            notify  => Exec["service nagios-nrpe-server reload"],
             ;
         "/etc/nagios/nrpe.d/nrpe_dsa.cfg":
             source  => [ "puppet:///modules/nagios/dsa-nagios/generated/nrpe_dsa.cfg" ],
             require => Package["dsa-nagios-checks"],
-            notify  => Exec["nagios-nrpe-server reload"],
+            notify  => Exec["service nagios-nrpe-server reload"],
             ;
 
         "/etc/nagios/obsolete-packages-ignore":
@@ -53,9 +53,7 @@ class nagios::client inherits nagios {
             path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
             refreshonly => true,
             ;
-        "nagios-nrpe-server reload":
-            command     => "service ${name}",
-            path        => "/usr/bin:/usr/sbin:/bin:/sbin",
+        "service nagios-nrpe-server reload":
             refreshonly => true,
             ;
     }
