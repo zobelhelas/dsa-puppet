@@ -23,6 +23,7 @@ when "zee.debian.org":                  ignore << %w{dpkg-dev dpkg}
 when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/: ignore << %w{flash-kernel linux-firmware-image}
 when /(harris|hoiby).debian.org/:       ignore << %w{flash-kernel puppet puppet-common kernel linux-firmware-image}
 when /(hartmann|hasse|hebden|henze).debian.org/: ignore << %w{flash-kernel puppet puppet-common kernel linux-firmware-image schroot schroot-common}
+when /(parry|partch|piston).debian.org/: ignore << "yaboot"
 
 when "grieg.debian.org":                ignore << %w{dpkg}
 when "blavet.debian.org":               ignore << %w{dpkg-dev libdpkg-perl dpkg}
