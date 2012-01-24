@@ -262,6 +262,7 @@ host_settings:
     - praetorius.debian.org
     - rem.debian.org
     - schroeder.debian.org
+    - sompek.debian.org
     - spontini.debian.org
     - vitry.debian.org
     - zandonai.debian.org
