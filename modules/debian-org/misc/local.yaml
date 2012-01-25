@@ -197,26 +197,28 @@ host_settings:
     - senfl.debian.org
     - santoro.debian.org
   'apache2_ftp-upcoming_mirror':
-    - rietz.debian.org
     - kassia.debian.org
     - klecker.debian.org
     - merikanto.debian.org
+    - rietz.debian.org
   apache2_backports_mirror:
     - englund.debian.org
     - morricone.debian.org
   timeserver:
+    - busoni.debian.org
     - merikanto.debian.org
     - orff.debian.org
     - ravel.debian.org
-    - busoni.debian.org
   broken-rtc:
-    - sompek.debian.org
     - abel.debian.org
-    - arne.debian.org
-    - arnold.debian.org
     - alain.debian.org
     - alwyn.debian.org
     - antheil.debian.org
+    - arne.debian.org
+    - arnold.debian.org
+    - ball.debian.org
+    - rem.debian.org
+    - sompek.debian.org
   buildd:
     - alain.debian.org
     - alkman.debian.org
