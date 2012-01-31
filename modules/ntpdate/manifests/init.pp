@@ -10,7 +10,7 @@ class ntpdate {
                     owner   => root,
                     group   => root,
                     mode    => 444,
-                    source  => [ "puppet:///modules/ntpdate/etc-default-ntpdate" ],
+                    content => template("ntpdate/etc-default-ntpdate.erb"),
                     ;
             }
         }
