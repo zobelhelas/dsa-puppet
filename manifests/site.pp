@@ -27,6 +27,7 @@ node default {
     include monit
     include apt-keys
     include ntp
+    include ntpdate
     include ssl
 
     include motd
@@ -165,7 +166,11 @@ node default {
     case $kernel {
         Linux: { include entropykey }
     }
-
+    if $::postgres84 == "true" {
+        include postgres
+    } elsif $::postgres90 == "true" {
+        include postgres
+    }
 }
 
 # vim:set et:

@@ -5,13 +5,15 @@ class ntp {
             ensure  => directory,
             owner   => ntp,
             group   => ntp,
-            mode    => 755
+            mode    => 755,
+            require => Package["ntp"]
             ;
         "/var/lib/ntpstats":
             ensure  => directory,
             owner   => ntp,
             group   => ntp,
-            mode    => 755
+            mode    => 755,
+            require => Package["ntp"]
             ;
         "/etc/ntp.conf":
             owner   => root,
@@ -26,6 +28,7 @@ class ntp {
             group   => ntp,
             mode    => 750,
             ensure  => directory,
+            require => Package["ntp"]
             ;
     }
     case getfromhash($nodeinfo, 'timeserver') {

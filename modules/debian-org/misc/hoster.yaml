@@ -48,6 +48,10 @@ brown:
     - 128.148.0.0/16
   # all hosts have their own recursor
   nameservers: []
+conova:
+  netrange:
+    - 217.196.146.0/24
+  nameservers: [217.196.144.129, 217.196.144.229]
 carnet:
   netrange:
     - 193.198.0.0/16

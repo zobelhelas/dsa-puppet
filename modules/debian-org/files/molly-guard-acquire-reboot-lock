@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Copyright 2012 Peter Palfrader
+
+l=/var/run/reboot-lock
+exec 3> $l
+
+if ! flock --exclusive -w 0  3; then
+	echo 2>&1 "Cannot acquire reboot lock."
+	exit 1
+fi
+echo "Reboot lock acquired."
+
+ppid="$PPID"
+(
+	while kill -0 "$ppid" 2>/dev/null; do
+		sleep 1
+	done
+) &
+disown
+exit 0

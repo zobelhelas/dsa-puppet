@@ -530,7 +530,7 @@ check_recipient:
           log_message   = Only one profile at a time, please
 
   # Defer after too many bad RCPT TO's.  Legit MTAs will retry later.
-  # This is a rough pass at preventing addres harvesting or other mail blasts.
+  # This is a rough pass at preventing address harvesting or other mail blasts.
 
   defer  log_message   = Too many bad recipients ${eval:$rcpt_fail_count} out of $rcpt_count
          !acl          = acl_spamlovers
@@ -709,7 +709,10 @@ check_recipient:
 <%- end -%>
 <%- if nodeinfo['rtmaster'] -%>
   warn    condition     = ${if eq{$acl_m_prf}{RTMail}}
-          set acl_m12   = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}} {RTMailRecipientHasSubaddress}}}}
+          set acl_m12   = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}{match{$local_part}{3520}}} {RTMailRecipientHasSubaddress}}}}
+  # temporary hack because weasel screwed up and gave people an rt-3520@ address, which doesn't really work normally.
+  #set acl_m12  = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}} {RTMailRecipientHasSubaddress}}}}
+
 
 <%- end -%>
 <%- if has_variable?("greylistd") && greylistd == "true" -%>
@@ -880,6 +883,11 @@ acl_check_predata:
 
 #!!# ACL that is used after the DATA command
 check_message:
+
+  # Some people put from hostmaster@something.debian.org in the From
+  # header.  Take their crack pipe away.
+  drop   condition = ${if match{${lc:$h_From:}}{\Npostmaster@([^.]+\.)?debian\.org\N}}
+
 <%- if nodeinfo['rtmaster'] -%>
   deny    condition = ${if eq {$acl_m_prf}{RTMail}}
           condition = ${if and{{!match {${lc:$rh_Subject:}} {debian rt}} \

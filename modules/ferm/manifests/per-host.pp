@@ -19,9 +19,15 @@ class ferm::per-host {
             }
         }
         danzi: {
-                @ferm::rule { "dsa-postgres-danzi":
-                    description     => "Allow postgress access",
-                    rule            => "&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 ))"
+                @ferm::rule {
+                    "dsa-postgres-danzi":
+                        description     => "Allow postgress access",
+                        rule            => "&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 ))"
+                        ;
+                    "dsa-postgres2-danzi":
+                        description     => "Allow postgress access2",
+                        rule            => "&SERVICE_RANGE(tcp, 5437, ( 206.12.19.0/24 ))"
+                        ;
                 }
 
         }
@@ -88,7 +94,7 @@ class ferm::per-host {
                 rule            => "&SERVICE(tcp, 6523)"
             }
         }
-        liszt: {
+        bendel,liszt: {
             @ferm::rule { "smtp":
                 domain          => "(ip ip6)",
                 description     => "Allow smtp access",
