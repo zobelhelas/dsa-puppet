@@ -145,6 +145,11 @@ node default {
     case $brokenhosts {
         "true":    { include hosts }
     }
+    case $hostname {
+        harris: {
+            include hosts::special
+        }
+    }
     case $portforwarder_user_exists {
         "true":    { include portforwarder }
     }
