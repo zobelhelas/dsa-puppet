@@ -218,6 +218,7 @@ host_settings:
     - arne.debian.org
     - arnold.debian.org
     - ball.debian.org
+    - lucatelli.debian.org
     - rem.debian.org
     - sompek.debian.org
   buildd:

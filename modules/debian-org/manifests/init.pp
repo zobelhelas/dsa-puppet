@@ -57,6 +57,13 @@ class debian-org {
         "rsyslog": ensure => purged;
         "sysklogd": ensure => purged;
     }
+    case getfromhash($nodeinfo, 'broken-rtc') {
+        true: {
+            package {
+                fake-hwclock: ensure => installed;
+            }
+        }
+    }
     case $debarchitecture {
         "armhf": {}
         default: {
