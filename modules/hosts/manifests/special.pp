@@ -1,4 +1,4 @@
-class host::special {
+class hosts::special {
     host { 'heininen.debian.org':
         ensure       => present,
         ip           => '82.195.75.98',
