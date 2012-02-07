@@ -50,11 +50,19 @@ class debian-org {
         "less": ensure => installed;
         "lsb-release": ensure => installed;
         "libfilesystem-ruby1.8": ensure => installed;
+        "molly-guard": ensure => installed;
         "mtr-tiny": ensure => installed;
         "nload": ensure => installed;
         "pciutils": ensure => installed;
         "rsyslog": ensure => purged;
         "sysklogd": ensure => purged;
+    }
+    case getfromhash($nodeinfo, 'broken-rtc') {
+        true: {
+            package {
+                fake-hwclock: ensure => installed;
+            }
+        }
     }
     case $debarchitecture {
         "armhf": {}
@@ -112,6 +120,11 @@ class debian-org {
             mode   => 0755,
             source => "puppet:///modules/debian-org/rc.local",
             notify => Exec["rc.local start"],
+            ;
+        "/etc/molly-guard/run.d/15-acquire-reboot-lock":
+            mode   => 0755,
+            source => "puppet:///modules/debian-org/molly-guard-acquire-reboot-lock",
+            require => Package["molly-guard"],
             ;
 
         "/etc/dsa":

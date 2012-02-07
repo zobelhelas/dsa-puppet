@@ -11,11 +11,26 @@ NTPDATE_USE_NTP_CONF=no
 
 # List of NTP servers to use  (Separate multiple servers with spaces.)
 # Not used if NTPDATE_USE_NTP_CONF is yes.
-# merikanto	86.59.118.147
-# orff		194.177.211.209
-# ravel		206.12.19.5
-# busoni	140.211.15.34
-NTPSERVERS="86.59.118.147 194.177.211.209 206.12.19.5 140.211.15.34"
+NTPSERVERS=""
+<%=
+	out = []
+	if fqdn == "ancina.debian.org"
+		ntpservers = %w{ntp.ugent.be}
+	else
+		ntpservers = %w{merikanto.debian.org orff.debian.org ravel.debian.org busoni.debian.org}
+	end
+
+	require 'resolv'
+	ntpservers.each do |n|
+		begin
+			ip = Resolv.getaddress(n)
+			out << "NTPSERVERS=\"$NTPSERVERS #{ip}\" # #{n}"
+		rescue Resolv::ResolvError => e
+			out << "# Failed to resolve #{n}"
+		end
+	end
+	out.join("\n")
+%>
 
 # Additional options to pass to ntpdate
 NTPOPTIONS=""
