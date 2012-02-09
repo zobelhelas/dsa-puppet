@@ -8,7 +8,7 @@ class ntp {
             mode    => 755,
             require => Package["ntp"]
             ;
-        "/var/lib/ntpstats":
+        "/var/lib/ntp":
             ensure  => directory,
             owner   => ntp,
             group   => ntp,
@@ -32,7 +32,18 @@ class ntp {
             ;
     }
     case getfromhash($nodeinfo, 'timeserver') {
-        true: { }
+        true: {
+            file {
+                "/var/lib/ntp/leap-seconds.list":
+                    owner   => root,
+                    group   => root,
+                    mode    => 444,
+                    source  => [ "puppet:///modules/ntp/leap-seconds.list" ],
+                    require => Package["ntp"],
+                    notify  => Exec["ntp restart"],
+                    ;
+            }
+        }
         default: {
             file {
                 "/etc/default/ntp":
