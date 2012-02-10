@@ -70,6 +70,26 @@ class ferm {
         $munin_ips: script => "ip_";
     }
 
+    define munin_ipv6_plugin() {
+        file {
+            "/etc/munin/plugins/$name":
+                content =>  "#!/bin/bash\n# This file is under puppet control\n. /usr/share/munin/plugins/ip_\n",
+                mode => 555,
+                notify => Exec["munin-node restart"],
+                ;
+        }
+    }
+    case $v6ips {
+        'no': {}
+        default: {
+           $munin6_ips = split(regsubst($v6ips, '([^,]+)', 'ip_\1', 'G'), ',')
+            munin_ipv6_plugin {
+                $munin6_ips: ;
+            }
+        }
+    }
+
+
     case getfromhash($nodeinfo, 'buildd') {
         true: {
             file {
@@ -77,16 +97,6 @@ class ferm {
                     source => "puppet:///modules/ferm/conntrack_ftp.conf",
                     require => Package["ferm"],
                     notify  => Exec["ferm restart"];
-            }
-        }
-    }
-
-    case $v6ips {
-        'no': {}
-        default: {
-            $munin6_ips = split(regsubst($v6ips, '([^,]+)', 'ip6_\1', 'G'), ',')
-            activate_munin_check {
-                $munin6_ips: script => "ip6_";
             }
         }
     }
