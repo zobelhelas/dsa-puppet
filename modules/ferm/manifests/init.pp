@@ -86,6 +86,11 @@ class ferm {
             munin_ipv6_plugin {
                 $munin6_ips: ;
             }
+           # get rid of old stuff
+           $munin6_ip6s = split(regsubst($v6ips, '([^,]+)', 'ip_\1', 'G'), ',')
+           activate_munin_check {
+               $munin6_ips: ensure => absent;
+           }
         }
     }
 
