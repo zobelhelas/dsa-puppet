@@ -89,7 +89,7 @@ class ferm {
            # get rid of old stuff
            $munin6_ip6s = split(regsubst($v6ips, '([^,]+)', 'ip_\1', 'G'), ',')
            activate_munin_check {
-               $munin6_ips: ensure => absent;
+               $munin6_ip6s: ensure => absent;
            }
         }
     }
