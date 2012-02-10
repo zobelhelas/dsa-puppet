@@ -119,6 +119,7 @@ nameinfo:
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
   soler.debian.org: Padre Antonio Soler (December 3rd, 1729 (baptized) - December 20th, 1783)
   sompek.debian.org: Ernst Sompek (Juni 11th 1876 - August 2nd 1954)
+  stadler.debian.org: Maximilian Johann Karl Dominik Stadler, Abbé Stadler (August 4th 1748 - November 8th 1833)
   sperger.debian.org: Johannes Matthias Sperger (March 23th, 1750 - May 13th, 1812)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
@@ -269,6 +270,7 @@ host_settings:
     - schroeder.debian.org
     - sompek.debian.org
     - spontini.debian.org
+    - stadler.debian.org
     - vitry.debian.org
     - zandonai.debian.org
     - zappa.debian.org
@@ -520,6 +522,7 @@ host_settings:
     sperger.debian.org: mailout.debian.org
     spontini.debian.org: mailout.debian.org
     stabile.debian.org: mailout.debian.org
+    stadler.debian.org: mailout.debian.org
     steffani.debian.org: mailout.debian.org
     tchaikovsky.debian.org: mailout.debian.org
     traetta.debian.org: mailout.debian.org
