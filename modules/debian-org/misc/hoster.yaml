@@ -32,6 +32,7 @@ arm:
     - 217.140.96.58/29
   nameservers_break_dnssec: true
   nameservers: [158.43.128.1, 217.140.108.113]
+  entropy_provider_hoster: sil
 br:
   # University Federal do Parana (.br)
   netrange:

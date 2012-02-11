@@ -31,14 +31,26 @@ module Puppet::Parser::Functions
       end
 
       # figure out which entropy provider to use
-      consumer_hoster = nodeinfo['hoster']['name']
+      consumer_hoster = nodeinfo['hoster']
+      consumer_hoster_name = nodeinfo['hoster']['name']
+
+      if consumer_hoster['entropy_provider_hoster'] and hoster[consumer_hoster['entropy_provider_hoster']]
+        # if we have a preferred entropy provider hoster for hosts at this one.
+        entropy_provider_hoster = consumer_hoster['entropy_provider_hoster']
+      elsif hoster[consumer_hoster_name]
+        # if there are any at the same hoster, use one of them
+        entropy_provider_hoster = consumer_hoster_name
+      else
+        entropy_provider_hoster = nil
+      end
+
       if provider.include?(fqdn) # if the host has an ekeyd
         ans = 'local'
-      elsif hoster[consumer_hoster] # if there are any at the same hoster, use one of them
+      elsif entropy_provider_hoster
         # if there are more than one ekeys at this hoster pick an arbitrary
         # one, but the same every time
-        index = fqdn.hash % hoster[consumer_hoster].length
-        ans = hoster[consumer_hoster][index]
+        index = fqdn.hash % hoster[entropy_provider_hoster].length
+        ans = hoster[entropy_provider_hoster][index]
       else # pick an arbitrary provider from all providers
         index = fqdn.hash % provider.size
         ans = provider[index]
