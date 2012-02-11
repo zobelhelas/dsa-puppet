@@ -33,6 +33,9 @@ case fqdn
 when /geo[123].debian.org/: ignore << %w{geoip-database}
 end
 
+if fqdn == "arne.debian.org"
+	ignore << %w{/linux-headers-.*/}
+end
 #case fqdn
 #when /(draghi|orff|ravel|klecker|geo[123]).debian.org/: ignore << %w{libdns69 libdns66 libdns64 bind9 libbind9-60 liblwres60 bind9-host libisccfg62 libisccfg60 libisc62 libisc60 dnsutils bind9utils libisccc60}
 #end
