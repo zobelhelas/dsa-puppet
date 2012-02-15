@@ -1,0 +1,9 @@
+<acl_rule status="enabled">
+  <services>
+      <service url_pattern="/public/*"/>
+  </services>
+  <rule order="allow,deny">
+   <allow>
+   </allow>
+  </rule>
+</acl_rule>
