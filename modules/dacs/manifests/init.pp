@@ -86,6 +86,21 @@ class dacs {
              group   => www-data
              notify  => Exec["dacsacl"]
              ;
+
+        "/etc/dacs/federations/debian.org/federation_keyfile":
+             source  => "puppet:///modules/dacs/private/debian.org_federation_keyfile",
+             mode    => 640,
+             owner   => root,
+             group   => www-data
+             ;
+
+        "/etc/dacs/federations/debian.org/DEBIAN/jurisdiction_keyfile":
+             source  => "puppet:///modules/dacs/private/DEBIAN_jurisdiction_keyfile",
+             mode    => 640,
+             owner   => root,
+             group   => www-data
+             ;
+
     }
 
     exec {
