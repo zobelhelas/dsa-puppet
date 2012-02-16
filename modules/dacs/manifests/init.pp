@@ -45,6 +45,14 @@ class dacs {
              purge   => true
              ;
 
+        "/etc/dacs/federations/debian.org/DEBIAN/groups/DACS":
+             ensure  => directory,
+             owner   => root,
+             group   => www-data,
+             mode    => 750,
+             purge   => true
+             ;
+
         "/etc/dacs/federations/site.conf":
              source  => [ "puppet:///modules/dacs/per-host/$fqdn/site.conf",
                           "puppet:///modules/dacs/common/site.conf" ],
@@ -64,6 +72,14 @@ class dacs {
         "/etc/dacs/federations/debian.org/DEBIAN/acls/revocations":
              source  => [ "puppet:///modules/dacs/per-host/$fqdn/revocations",
                           "puppet:///modules/dacs/common/revocations" ],
+             mode    => 640,
+             owner   => root,
+             group   => www-data
+             ;
+
+        "/etc/dacs/federations/debian.org/DEBIAN/groups/DACS/jurisdictions.grp":
+             source  => [ "puppet:///modules/dacs/per-host/$fqdn/jurisdictions.grp",
+                          "puppet:///modules/dacs/common/jurisdictions.grp" ],
              mode    => 640,
              owner   => root,
              group   => www-data
