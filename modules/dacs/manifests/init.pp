@@ -74,7 +74,7 @@ class dacs {
                           "puppet:///modules/dacs/common/acl-noauth.0" ],
              mode    => 640,
              owner   => root,
-             group   => www-data
+             group   => www-data,
              notify  => Exec["dacsacl"]
              ;
 
@@ -83,7 +83,7 @@ class dacs {
                           "puppet:///modules/dacs/common/acl-private.0" ],
              mode    => 640,
              owner   => root,
-             group   => www-data
+             group   => www-data,
              notify  => Exec["dacsacl"]
              ;
 
