@@ -137,6 +137,10 @@ node default {
     }
 
     case $hostname {
+        diabelli: { include dacs}
+    }
+
+    case $hostname {
         beethoven,duarte,ravel,spohr,stabile: {
             include nfs-server
         }
