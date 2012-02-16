@@ -1,6 +1,6 @@
 <acl_rule status="enabled">
   <services>
-      <service url_expr="https://munin.debian.org"/>
+      <service url_expr='https://munin.debian.org'/>
       <service url_pattern="/nagios3/*"/>
   </services>
   <rule order="allow,deny" pass_http_cookie="yes">
