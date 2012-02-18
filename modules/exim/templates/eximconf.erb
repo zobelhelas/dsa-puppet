@@ -621,6 +621,13 @@ check_recipient:
 	  hosts         = !+debianhosts
 	  message       = mail from <$sender_address> not allowed externally
 
+<%- if nodeinfo['mailrelay'] -%>
+  deny    local_parts   = +local_only_users
+          domains       = +mailhubdomains
+          !hosts        = +debianhosts
+          message       = mail for <$local_part@$domain> not allowed externally
+
+<%- end -%>
   deny    condition     = ${if match_domain{$sender_address_domain}{+virtual_domains}{1}{0}}
           condition     = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/neversenders}}}{1}{0}}
           condition     = ${if match_local_part {$sender_address_local_part}{${extract{directory}{VDOMAINDATA}{${value}/neversenders}}}{1}{0}}
