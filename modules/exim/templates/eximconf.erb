@@ -289,6 +289,13 @@ acl_getprofile:
           hosts          = !+debianhosts
           set acl_m_rprf = localonly
 
+<%- if nodeinfo['mailrelay'] -%>
+  warn    local_parts    = +local_only_users
+          domains        = +mailhubdomains
+          hosts          = !+debianhosts
+          set acl_m_rprf = localonly
+
+<%- end -%>
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
 <%- if nodeinfo['rtmaster'] -%>
