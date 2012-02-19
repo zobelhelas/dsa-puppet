@@ -173,6 +173,7 @@ host_settings:
     - chopin.debian.org
     - draghi.debian.org
     - franck.debian.org
+    - gombert.debian.org
     - grieg.debian.org
     - kokkonen.debian.org
     - master.debian.org
