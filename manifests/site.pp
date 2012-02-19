@@ -27,6 +27,7 @@ node default {
     include monit
     include apt-keys
     include ntp
+    include ntpdate
     include ssl
 
     include motd
@@ -136,6 +137,10 @@ node default {
     }
 
     case $hostname {
+        diabelli,rossini: { include dacs}
+    }
+
+    case $hostname {
         beethoven,duarte,ravel,spohr,stabile: {
             include nfs-server
         }
@@ -165,7 +170,11 @@ node default {
     case $kernel {
         Linux: { include entropykey }
     }
-
+    if $::postgres84 == "true" {
+        include postgres
+    } elsif $::postgres90 == "true" {
+        include postgres
+    }
 }
 
 # vim:set et:

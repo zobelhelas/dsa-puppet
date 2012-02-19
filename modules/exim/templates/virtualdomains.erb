@@ -32,6 +32,8 @@ vdoms = case fqdn
         when "franck.debian.org" then "release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
 ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp-master.debian.org/mail group_writable=true"
 
+        when "gombert.debian.org" then "gobby.debian.org: user=gobby group=gobby directory=/srv/gobby.debian.org/mail"
+
         when "grieg.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail"
 #logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail"
 
@@ -40,19 +42,20 @@ ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp-master.debian.
         when "kaufmann.debian.org" then "keyring.debian.org: user=keyring group=Debian directory=/srv/keyring.debian.org/mail"
 
         when "master.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/org/vote.debian.org/mail
-packages.qa.debian.org: user=qa group=qa directory=/org/packages.qa.debian.org/mail
 bugs.qa.debian.org: user=cjwatson group=qa directory=/org/bugs.qa.debian.org/mail
 debian.org: user=debian group=Debian directory=/org/debian.org/mail
 debian.com: user=nobody group=Debian directory=/org/star.debian.star/
 debian.net: user=nobody group=Debian directory=/org/star.debian.star/"
 
         when "morricone.debian.org" then "backports.debian.org: user=dak group=backports directory=/srv/backports-master.debian.org/mail/"
+        when "bizet.debian.org"     then "backports.debian.org: user=dak group=backports directory=/srv/backports-master.debian.org/mail/"
 
         when "nono.debian.org" then "nm.debian.org: user=nm group=nm directory=/srv/nm.debian.org/mail/"
 
         when "powell.debian.org" then "packages.debian.org: user=pkg_user group=Debian directory=/org/packages.debian.org/mail/"
 
-        when "quantz.debian.org" then "qa.debian.org: user=qa group=qa directory=/srv/qa.debian.org/mail/"
+        when "quantz.debian.org" then "qa.debian.org: user=qa group=qa directory=/srv/qa.debian.org/mail/
+packages.qa.debian.org: user=qa group=qa directory=/srv/packages.qa.debian.org/mail"
 
         when "ravel.debian.org" then "women.debian.org: user=nobody group=mujeres directory=/org/women.debian.org/mail"
 

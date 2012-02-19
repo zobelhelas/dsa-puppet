@@ -25,12 +25,13 @@ Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
 Host_Alias	QAHOSTS		= master, quantz, stabile
 Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
-Host_Alias	FTPHOSTS	= franck, morricone
+Host_Alias	FTPHOSTS	= franck, morricone, bizet
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, vivaldi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= master, fasch, holter, barber, biber, cilea, vitry, krenek, scelsi, orff, field
-Host_Alias	MEGACTLHOSTS	= lindberg, englund, heininen
+Host_Alias	MEGACTLHOSTS	= lindberg, englund, heininen, nielsen
+Host_Alias  LISTHOSTS   = liszt, bendel
 
 # Cmnd alias specification
 
@@ -92,7 +93,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %keyring	ALL=(keyring)	ALL
 %lintian	ALL=(lintian)	ALL
 %listweb	ALL=(listweb)	ALL
-%list		liszt=(list)	ALL
+%list		LISTHOSTS=(list)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %nm		ALL=(nm)	ALL
 %patch-tracker	ALL=(patch-tracker)	ALL
@@ -158,11 +159,11 @@ dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %press		WEBHOSTS=(debwww)	/org/www.debian.org/update-part News
 # more list stuff
-%list		liszt=(root)		/usr/sbin/postfix reload
-%list		liszt=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
-%list		liszt=(root)		/etc/init.d/spamassassin, /etc/init.d/amavis
-%list		liszt=(amavis)		NOPASSWD: /usr/bin/sa-learn
-%list		liszt=(amavis)		ALL
+%list		LISTHOSTS=(root)		/usr/sbin/postfix reload
+%list		LISTHOSTS=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
+%list		LISTHOSTS=(root)		/etc/init.d/spamassassin, /etc/init.d/amavis
+%list		LISTHOSTS=(amavis)		NOPASSWD: /usr/bin/sa-learn
+%list		LISTHOSTS=(amavis)		ALL
 # geodns may reload bind
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
@@ -177,7 +178,7 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 %porter-amd64	pergolesi=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-hppa	paer=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-ia64	merulo=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-mips	gabrielli=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-ppc	pescetti=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-mips	eder,gabrielli=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-ppc	partch=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-s390	zelenka=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-sparc	smetana,sperger,zee=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot

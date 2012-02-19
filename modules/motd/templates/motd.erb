@@ -12,12 +12,8 @@ def wrap(s, width=78)
 end
 
 def markup(l)
-  if l =~ /\[\[(\*|-)?(.*?)\]\]/
-    l = $2
-  end
-  if l =~ /\[\[(.*?)\|(.*?)\]\]/
-    l = $2
-  end
+  l = l.gsub(/\[\[(.*?)\|(.*?)\]\]/, '\2')
+  l = l.gsub(/\[\[(\*|-)?(.*?)\]\]/, '\2')
   return l
 end
 
@@ -41,7 +37,7 @@ if (nodeinfo['ldap'].has_key?('purpose'))
     end
     purp += " porterbox\n"
     purp += "\n"
-    purp += "See 'dchroot -l' for a list of available chroots.\n"
+    purp += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
     if nodeinfo['ldap'].has_key?('admin')
       purp += "Please contact #{nodeinfo['ldap']['admin'][0]} for install requests,\n"
       purp += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"

@@ -173,6 +173,7 @@
 @def $weasel  = ($weasel 86.59.21.32/29); # anguilla1
 @def $weasel  = ($weasel 86.59.30.32/28); # anguilla2
 @def $weasel  = ($weasel 141.201.27.0/24); # came
+@def $weasel  = ($weasel 141.201.123.0/24); # cosy
 @def $weasel  = ($weasel 62.99.152.176/28); # campus sbg
 @def $zobel   = ();
 @def $zobel   = ($zobel 87.139.82.80/32); # exit.credativ.com
@@ -182,13 +183,14 @@
 @def $paravoid = (83.212.9.72); # faidon.noc.grnet.gr
 @def $tfheen   = ();
 @def $tfheen   = ($tfheen 87.238.43.224/27); # office network
-@def $tfheen   = ($tfheen 77.40.198.10); # home
+@def $tfheen   = ($tfheen 195.159.200.122); # home
+@def $tfheen   = ($tfheen 77.40.254.120/29); # home
 @def $DSA_IPS = ($sgran $weasel $zobel $luca $paravoid $tfheen);
 
 @def $sgran6     = (2001:4b10:100b::/48);
 @def $sgran6     = ($sgran6 2001:4b10:0000:810b::/64);
 @def $weasel6    = ();
-@def $weasel6    = ($weasel6 2001:826:408:200::/56); # came
+@def $weasel6    = ($weasel6 2001:826:408::/48); # unisbg
 @def $weasel6    = ($weasel6 2001:858:10f::/48); # anguilla
 @def $zobel6     = ();
 @def $zobel6     = ($zobel6 2001:6f8:1215::/48); # baldur
@@ -198,8 +200,9 @@
 @def $luca6      = ();
 @def $paravoid6  = (2001:648:2340:1:225:64ff:fea4:8590); # faidon.noc.grnet.gr
 @def $tfheen6    = ();
-@def $tfheen6    = ($tfheen6 2a02:c0:1013:1::/64);
-@def $tfheen6    = ($tfheen6 2001:16d8:ee48::/48); # home
+@def $tfheen6    = ($tfheen6 2a02:c0:1013:1::/64); # Office
+@def $tfheen6    = ($tfheen6 2001:840:f000:4007::/64); # Home, link
+@def $tfheen6    = ($tfheen6 2001:840:4007::/48); # Home
 @def $DSA_V6_IPS = ($sgran6 $weasel6 $zobel6 $luca6 $paravoid6 $tfheen6);
 
 @def $USER_christoph = ();

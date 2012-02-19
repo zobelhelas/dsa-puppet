@@ -28,6 +28,16 @@ Facter.add("postgres83") do
 		FileTest.exist?("/usr/lib/postgresql/8.3/bin/postgres")
 	end
 end
+Facter.add("postgres84") do
+	setcode do
+		FileTest.exist?("/usr/lib/postgresql/8.4/bin/postgres")
+	end
+end
+Facter.add("postgres90") do
+	setcode do
+		FileTest.exist?("/usr/lib/postgresql/9.0/bin/postgres")
+	end
+end
 Facter.add("postgrey") do
 	setcode do
 		FileTest.exist?("/usr/sbin/postgrey")
@@ -69,7 +79,7 @@ Facter.add("php5suhosin") do
 end
 Facter.add("syslogversion") do
 	setcode do
-		%x{dpkg-query -W -f='${Version}\n' syslog-ng | cut -b1}.chomp
+		%x{dpkg-query -W -f='${Version}\n' syslog-ng | cut -b1-3}.chomp
 	end
 end
 Facter.add("rsyncd") do

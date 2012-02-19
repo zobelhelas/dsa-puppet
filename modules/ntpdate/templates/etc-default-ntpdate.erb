@@ -1,0 +1,36 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+##
+
+# The settings in this file are used by the program ntpdate-debian, but not
+# by the upstream program ntpdate.
+
+# Set to "yes" to take the server list from /etc/ntp.conf, from package ntp,
+# so you only have to keep it in one place.
+NTPDATE_USE_NTP_CONF=no
+
+# List of NTP servers to use  (Separate multiple servers with spaces.)
+# Not used if NTPDATE_USE_NTP_CONF is yes.
+NTPSERVERS=""
+<%=
+	out = []
+	if fqdn == "ancina.debian.org"
+		ntpservers = %w{ntp.ugent.be}
+	else
+		ntpservers = %w{merikanto.debian.org orff.debian.org ravel.debian.org busoni.debian.org}
+	end
+
+	require 'resolv'
+	ntpservers.each do |n|
+		begin
+			ip = Resolv.getaddress(n)
+			out << "NTPSERVERS=\"$NTPSERVERS #{ip}\" # #{n}"
+		rescue Resolv::ResolvError => e
+			out << "# Failed to resolve #{n}"
+		end
+	end
+	out.join("\n")
+%>
+
+# Additional options to pass to ntpdate
+NTPOPTIONS=""
