@@ -121,7 +121,7 @@ class dacs {
 
     exec {
         "dacsacl":
-            command     => "dacsacl -sc /etc/dacs/federations/site.conf -c /etc/dacs/federations/debian.org/DEBIAN/dacs.conf -uj DEBIAN && chown root:www-data /etc/dacs/federations/debian.org/DEBIAN/acls/INDEX"
+            command     => "dacsacl -sc /etc/dacs/federations/site.conf -c /etc/dacs/federations/debian.org/DEBIAN/dacs.conf -uj DEBIAN && chown root:www-data /etc/dacs/federations/debian.org/DEBIAN/acls/INDEX",
             refreshonly => true,
     }
 
