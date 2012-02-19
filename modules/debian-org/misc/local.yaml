@@ -173,6 +173,7 @@ host_settings:
     - chopin.debian.org
     - draghi.debian.org
     - franck.debian.org
+    - gombert.debian.org
     - grieg.debian.org
     - kokkonen.debian.org
     - master.debian.org
@@ -453,7 +454,6 @@ host_settings:
     gluck.debian.org: mailout.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
-    gombert.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
     harris.debian.org: mailout.debian.org
     hartmann.debian.org: mailout.debian.org
