@@ -137,7 +137,7 @@ class apache2 {
             refreshonly => true;
     }
     case $hostname {
-        chopin,franck,morricone: {
+        chopin,franck,morricone,bizet: {
             package {
                 "libapache2-mod-macro": ensure => installed;
             }
