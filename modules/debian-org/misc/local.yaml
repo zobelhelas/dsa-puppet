@@ -454,7 +454,6 @@ host_settings:
     gluck.debian.org: mailout.debian.org
     goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
-    gombert.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
     harris.debian.org: mailout.debian.org
     hartmann.debian.org: mailout.debian.org
