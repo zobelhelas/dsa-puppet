@@ -7,7 +7,7 @@ class dacs {
     file {
         "/var/log/dacs":
              ensure  => directory,
-             owner   => root
+             owner   => root,
              group   => www-data,
              mode    => 770,
              purge   => true
