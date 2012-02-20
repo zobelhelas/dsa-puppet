@@ -1,0 +1,10 @@
+<acl_rule status="enabled">
+  <services>
+      <service url_pattern="/*"/>
+  </services>
+  <rule order="allow,deny" pass_http_cookie="yes">
+   <allow>
+       user("auth")
+   </allow>
+  </rule>
+</acl_rule>
