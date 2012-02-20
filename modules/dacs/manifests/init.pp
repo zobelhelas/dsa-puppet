@@ -5,6 +5,13 @@ class dacs {
     }
 
     file {
+        "/var/log/dacs":
+             ensure  => directory,
+             owner   => www-data,
+             group   => root,
+             mode    => 750,
+             purge   => true
+             ;
         "/etc/dacs/federations":
              ensure  => directory,
              owner   => root,
