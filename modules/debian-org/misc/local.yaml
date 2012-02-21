@@ -236,7 +236,6 @@ host_settings:
     - hummel.debian.org
     - lucatelli.debian.org
     - rem.debian.org
-    - sompek.debian.org
   buildd:
     - alain.debian.org
     - alkman.debian.org
