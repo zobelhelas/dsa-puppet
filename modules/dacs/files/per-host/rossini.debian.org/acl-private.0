@@ -4,6 +4,9 @@
   </services>
   <rule order="allow,deny" pass_http_cookie="yes">
    <allow>
+       from("206.12.19.118")
+   </allow>
+   <allow>
        user("auth")
    </allow>
   </rule>
