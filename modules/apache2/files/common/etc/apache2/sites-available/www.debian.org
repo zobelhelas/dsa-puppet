@@ -177,6 +177,7 @@
    RewriteRule ^/ports/freebsd(.*) /ports/kfreebsd-gnu/ [R=301]
    RewriteRule ^/devel/debian-installer/report-template(.*) /releases/stable/i386/ch05s04.html#submit-bug [NE,R=301]
    RewriteRule ^/devel/debian-installer/hooks(.*) http://d-i.alioth.debian.org/doc/internals/apb.html [R=301]
+   RewriteRule ^/doc/packaging-manuals/mime-policy(.*) /doc/debian-policy/ch-opersys.html#s-mime [NE,R=301]
 
 # Offer a Redirect to DSA without knowing year #474730
    RewriteMap dsa txt:/srv/www.debian.org/www/security/map-dsa.txt
