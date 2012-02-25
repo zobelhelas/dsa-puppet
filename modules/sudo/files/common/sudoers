@@ -119,8 +119,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 dak		ALL=(dak-unpriv)	NOPASSWD: ALL
 
 # some groups are in apachectrl on "their" hosts so they can reload apache and update their vhost
-%atlas		vescum=(root)	/usr/local/sbin/apache2-vhost-update
-%check		sergii=(root)	/usr/local/sbin/apache2-vhost-update
+%apachectrl	ALL=(root)	/usr/sbin/apache2-vhost-update
 
 # buildd
 # FIXME: change that ALL for hosts to a hostlist of buildds?
