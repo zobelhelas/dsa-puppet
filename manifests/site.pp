@@ -137,11 +137,11 @@ node default {
     }
 
     case $hostname {
-        diabelli,rossini: { include dacs}
+        diabelli,rossini,spohr: { include dacs }
     }
 
     case $hostname {
-        beethoven,duarte,ravel,spohr,stabile: {
+        beethoven,duarte,spohr,stabile: {
             include nfs-server
         }
     }

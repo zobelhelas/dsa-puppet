@@ -28,6 +28,10 @@ class ferm::per-host {
                         description     => "Allow postgress access2",
                         rule            => "&SERVICE_RANGE(tcp, 5437, ( 206.12.19.0/24 ))"
                         ;
+                    "dsa-postgres3-danzi":
+                        description     => "Allow postgress access2",
+                        rule            => "&SERVICE_RANGE(tcp, 5436, ( 206.12.19.0/24 ))"
+                        ;
                 }
 
         }
