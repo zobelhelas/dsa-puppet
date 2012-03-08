@@ -1,6 +1,7 @@
 <acl_rule status="enabled">
   <services>
       <service url_pattern="/sso/*"/>
+      <service url_pattern="/static/*"/>
   </services>
   <rule order="allow,deny">
    <allow>
