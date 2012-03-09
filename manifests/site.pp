@@ -137,7 +137,7 @@ node default {
     }
 
     case $hostname {
-        diabelli,rossini,spohr: { include dacs }
+        diabelli,nono,rossini,spohr: { include dacs }
     }
 
     case $hostname {
