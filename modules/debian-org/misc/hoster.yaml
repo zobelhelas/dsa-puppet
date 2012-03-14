@@ -51,7 +51,7 @@ brown:
   nameservers: []
 conova:
   netrange:
-    - 217.196.146.0/24
+    - 217.196.149.224/28
   nameservers: [217.196.144.129, 217.196.144.229]
 carnet:
   netrange:
