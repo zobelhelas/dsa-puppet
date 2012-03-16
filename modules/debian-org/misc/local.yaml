@@ -156,7 +156,6 @@ services:
     - merikanto.debian.org
   muninmaster:
     - spohr.debian.org
-    - rossini.debian.org
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
     - orff.debian.org
