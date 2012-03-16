@@ -106,6 +106,12 @@ class apache2 {
             require => Package["apache2"],
             notify  => Exec["reload-apache2"];
 
+        "/etc/apache2/sites-available/common-ssl.inc":
+            source  => [ "puppet:///modules/apache2/per-host/$fqdn//etc/apache2/sites-available/common-ssl.inc",
+                         "puppet:///modules/apache2/common/etc/apache2/sites-available/common-ssl.inc" ],
+            require => Package["apache2"],
+            notify  => Exec["reload-apache2"];
+
         "/etc/logrotate.d/apache2":
             source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/logrotate.d/apache2",
                          "puppet:///modules/apache2/common/etc/logrotate.d/apache2" ];
