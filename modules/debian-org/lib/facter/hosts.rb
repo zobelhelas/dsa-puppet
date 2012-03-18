@@ -11,7 +11,11 @@ Facter.add("brokenhosts") do
 		end
 	end
 	setcode do
-		brokenhosts
+		if brokenhosts
+			true
+		else
+			''
+		end
 	end
 end
 

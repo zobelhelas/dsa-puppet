@@ -14,7 +14,7 @@ begin
 
     Facter.add("portforwarder_user_exists") do
         setcode do
-            result = false
+            result = ''
             begin
                 if Etc.getpwnam('portforwarder')
                     result = true
