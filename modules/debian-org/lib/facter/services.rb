@@ -10,7 +10,7 @@
 					Facter.interfaces.split(',').each do |my_interface|
 						my_ip = Facter.value("ipaddress_" + my_interface)
 						if my_ip == service_ip
-							active = "true"
+							active = true
 						end
 					end
 				end
