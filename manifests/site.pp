@@ -35,7 +35,7 @@ node default {
         finzi,fano,fasch,field:    { include kfreebsd }
     }
 
-    if $::smartarraycontroller {
+    if $::smartarraycontroller == 'true' {
         include debian-proliant
     }
 
@@ -43,11 +43,11 @@ node default {
         include megactl
     }
 
-    if $::mptraid {
+    if $::mptraid == 'true' {
         include raidmpt
     }
 
-    if $::kvmdomain {
+    if $::kvmdomain == 'true' {
         include acpi
     }
 
@@ -71,7 +71,7 @@ node default {
         default: { include nagios::client }
     }
 
-    if $::apache2 {
+    if $::apache2 == 'true' {
          if getfromhash($nodeinfo, 'apache2_security_mirror') {
                 include apache2::security_mirror
          }
@@ -87,7 +87,7 @@ node default {
          include apache2
     }
 
-    if $::rsyncd {
+    if $::rsyncd == 'true' {
         include rsyncd-log
     }
 
@@ -127,11 +127,11 @@ node default {
         }
     }
 
-    if $::brokenhosts {
+    if $::brokenhosts == 'true' {
         include hosts
     }
 
-    if $::portforwarder_user_exists {
+    if $::portforwarder_user_exists == 'true' {
         include portforwarder
     }
 

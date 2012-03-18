@@ -244,7 +244,7 @@ class ferm::per-host {
         }
     }
 
-    if $::rsyncd {
+    if $::rsyncd == 'true' {
         include ferm::rsync
     }
 }
