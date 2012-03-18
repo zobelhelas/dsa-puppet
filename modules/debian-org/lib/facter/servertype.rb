@@ -5,5 +5,6 @@ Facter.add("kvmdomain") do
 		else
 			result = false
 		end
+		result
 	end
 end
