@@ -15,9 +15,9 @@ Exec {
 
 node default {
     $localinfo = yamlinfo('*', "/etc/puppet/modules/debian-org/misc/local.yaml")
-    $nodeinfo  = nodeinfo($fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
+    $nodeinfo  = nodeinfo($::fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
     $allnodeinfo = allnodeinfo("sshRSAHostKey ipHostNumber", "purpose mXRecord physicalHost purpose")
-    notice( sprintf("hoster for %s is %s", $fqdn, getfromhash($nodeinfo, 'hoster', 'name') ) )
+    notice( sprintf("hoster for %s is %s", $::fqdn, getfromhash($nodeinfo, 'hoster', 'name') ) )
 
     include munin-node
     include syslog-ng
@@ -29,53 +29,41 @@ node default {
     include ntp
     include ntpdate
     include ssl
-
     include motd
 
-    case $hostname {
+    case $::hostname {
         finzi,fano,fasch,field:    { include kfreebsd }
     }
 
-    case $smartarraycontroller {
-        "true":    { include debian-proliant }
-    }
-    case $kvmdomain {
-        "true": {
-            case $debarchitecture {
-                kfreebsd-amd64,kfreebsd-i386: {
-                }
-                default: {
-                    package { acpid: ensure => installed }
-                    case $lsbdistcodename {
-                        'lenny':    { }
-                        default:    { package { acpi-support-base: ensure => installed } }
-                    }
-                }
-            }
-        }
-    }
-    case $mptraid {
-        "true":    { include "raidmpt" }
-    }
-    case $productname {
-        "PowerEdge 2850": { include megactl }
+    if $::smartarraycontroller {
+        include debian-proliant
     }
 
-    case $mta {
-        "exim4":   {
-             case getfromhash($nodeinfo, 'heavy_exim') {
-                  true:  { include exim::mx }
-                  default: { include exim }
-             }
+    if $::productname == 'PowerEdge 2850' {
+        include megactl
+    }
+
+    if $::mptraid {
+        include raidmpt
+    }
+
+    if $::kvmdomain {
+        include acpi
+    }
+
+    if $::mta == 'exim4' {
+        case getfromhash($nodeinfo, 'heavy_exim') {
+             true:  { include exim::mx }
+             default: { include exim }
         }
     }
 
-    case getfromhash($nodeinfo, 'puppetmaster') {
-        true: { include puppetmaster }
+    if getfromhash($nodeinfo, 'puppetmaster') {
+        include puppetmaster
     }
 
-    case getfromhash($nodeinfo, 'muninmaster') {
-        true: { include munin-node::master }
+    if getfromhash($nodeinfo, 'muninmaster') {
+        include munin-node::master
     }
 
     case getfromhash($nodeinfo, 'nagiosmaster') {
@@ -83,93 +71,88 @@ node default {
         default: { include nagios::client }
     }
 
-    case $apache2 {
-         "true":  {
-              case getfromhash($nodeinfo, 'apache2_security_mirror') {
-                     true:    { include apache2::security_mirror }
-              }
-              case getfromhash($nodeinfo, 'apache2_www_mirror') {
-                     true:    { include apache2::www_mirror }
-              }
-              case getfromhash($nodeinfo, 'apache2_backports_mirror') {
-                     true:    { include apache2::backports_mirror }
-              }
-              case getfromhash($nodeinfo, 'apache2_ftp-upcoming_mirror') {
-                     true:    { include apache2::ftp-upcoming_mirror }
-              }
-              include apache2
+    if $::apache2 {
+         if getfromhash($nodeinfo, 'apache2_security_mirror') {
+                include apache2::security_mirror
          }
-    }
-
-    case $rsyncd {
-         "true": { include rsyncd-log }
-    }
-
-
-    case getfromhash($nodeinfo, 'buildd') {
-         true:  {
-             include buildd
+         if getfromhash($nodeinfo, 'apache2_www_mirror') {
+                include apache2::www_mirror
          }
+         if getfromhash($nodeinfo, 'apache2_backports_mirror') {
+                include apache2::backports_mirror
+         }
+         if getfromhash($nodeinfo, 'apache2_ftp-upcoming_mirror') {
+                include apache2::ftp-upcoming_mirror
+         }
+         include apache2
     }
 
-    case $hostname {
+    if $::rsyncd {
+        include rsyncd-log
+    }
+
+
+    if getfromhash($nodeinfo, 'buildd') {
+        include buildd
+    }
+
+    case $::hostname {
         ravel,senfl,orff,draghi,diamond: { include named::authoritative }
-        geo1,geo2,geo3:                          { include named::geodns }
-        liszt:                                   { include named::recursor }
+        geo1,geo2,geo3:                  { include named::geodns }
+        liszt:                           { include named::recursor }
     }
-    case $hostname {
+
+    case $::hostname {
         franck,master,lobos,samosa,spohr,widor:   { include unbound }
     }
-    case $lsbdistcodename {
-        'lenny':    { }
-        default:    { include unbound }
+
+    if $::lsbdistcodename != 'lenny' {
+        include unbound
     }
+
     include resolv
 
-    case $kernel {
-        Linux: {
-            include ferm
-            include ferm::per-host
-            case $rsyncd {
-                "true": { include ferm::rsync }
-            }
-        }
+    if $::kernel == 'Linux' {
+        include ferm
+        include ferm::per-host
     }
 
-    case $hostname {
+    case $::hostname {
         diabelli,nono,spohr: { include dacs }
     }
 
-    case $hostname {
+    case $::hostname {
         beethoven,duarte,spohr,stabile: {
             include nfs-server
         }
     }
 
-    case $brokenhosts {
-        "true":    { include hosts }
+    if $::brokenhosts {
+        include hosts
     }
-    case $portforwarder_user_exists {
-        "true":    { include portforwarder }
+
+    if $::portforwarder_user_exists {
+        include portforwarder
     }
 
     include samhain
 
-    case $hostname {
+    case $::hostname {
         byrd,schuetz,tchaikovsky,draghi,quantz,lamb,locke,rautavaara,rietz: {
             include krb
         }
     }
 
-    case $hostname {
+    case $::hostname {
         chopin,geo3,soler,wieck: {
             include debian-radvd
         }
     }
 
-    case $kernel {
-        Linux: { include entropykey }
+    if $::kernel == 'Linux' {
+        include entropykey
     }
+
     if $::postgres84 == "true" {
         include postgres
     } elsif $::postgres90 == "true" {

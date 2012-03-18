@@ -1,4 +1,5 @@
-class apache2::www_mirror inherits apache2 {
+class apache2::www_mirror {
+    include apache2
     file {
         "/etc/apache2/sites-available/www.debian.org":
             source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/sites-available/www.debian.org",

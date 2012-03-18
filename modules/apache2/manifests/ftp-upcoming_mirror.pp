@@ -1,4 +1,5 @@
-class apache2::ftp-upcoming_mirror inherits apache2 {
+class apache2::ftp-upcoming_mirror {
+    include apache2
     file {
         "/etc/apache2/sites-available/ftp-upcoming.debian.org":
             source  => [ "puppet:///modules/apache2/per-host/$fqdn/etc/apache2/sites-available/ftp-upcoming.debian.org",

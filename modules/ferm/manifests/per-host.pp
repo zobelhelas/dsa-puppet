@@ -1,17 +1,17 @@
 class ferm::per-host {
-    case $hostname {
+    case $::hostname {
         ancina,zandonai,zelenka: {
             include ferm::zivit
         }
     }
 
-    case $hostname {
+    case $::hostname {
         chopin,franck,gluck,kassia,klecker,lobos,morricone,ravel,ries,rietz,saens,schein,santoro,steffani,valente,villa,wieck,stabile,bizet: {
             include ferm::ftp
         }
     }
 
-    case $hostname {
+    case $::hostname {
         piatti,samosa: {
             @ferm::rule { "dsa-udd-stunnel":
                 description  => "port 8080 for udd stunnel",
@@ -221,7 +221,7 @@ class ferm::per-host {
     }
 
     # redirect snapshot into varnish
-    case $hostname {
+    case $::hostname {
         sibelius: {
             @ferm::rule { "dsa-snapshot-varnish":
                 rule            => '&SERVICE(tcp, 6081)',
@@ -242,6 +242,10 @@ class ferm::per-host {
                 rule            => 'proto tcp daddr 206.12.19.150 dport 80 REDIRECT to-ports 6081',
             }
         }
+    }
+
+    if $::rsyncd {
+        include ferm::rsync
     }
 }
 
