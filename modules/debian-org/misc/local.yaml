@@ -46,7 +46,6 @@ nameinfo:
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
   gombert.debian.org: Nicolas Gombert (c. 1495 – c. 1560)
   dukas.debian.org: Paul Dukas (1865 - 1935)
-  goedel.debian.org: Kurt Gödel (April 28th, 1906 - January 14th, 1978)
   goetz.debian.org: Hermann Gustav Goetz (December 7th, 1840 - December 3rd, 1876)
   grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
@@ -251,7 +250,6 @@ host_settings:
     - fasch.debian.org
     - field.debian.org
     - finzi.debian.org
-    - goedel.debian.org
     - goetz.debian.org
     - hartmann.debian.org
     - hasse.debian.org
@@ -450,7 +448,6 @@ host_settings:
     geo3.debian.org: mailout.debian.org
     glinka.debian.org: mailout.debian.org
     gluck.debian.org: mailout.debian.org
-    goedel.debian.org: mailout.debian.org
     goetz.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
     harris.debian.org: mailout.debian.org
