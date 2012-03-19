@@ -2,4 +2,4 @@ puppet.conf
 modules/nagios/files/dsa-nagios
 modules/exim/files/certs/
 modules/ssl/files/
-modules/dacs/private/
+modules/dacs/files/private
