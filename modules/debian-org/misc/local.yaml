@@ -96,7 +96,6 @@ nameinfo:
   powell.debian.org: Andrew Powell (b. April 18th, 1949)
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
   quantz.debian.org: Johann Joachim Quantz (January 30th, 1697 - July 12th, 1773)
-  raff.debian.org: Joseph Joachim Raff (May 27th, 1822 - June 24th or 25th, 1882)
   rautavaara.debian.org: Einojuhani Rautavaara (born October 9th, 1928)
   ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
   respighi.debian.org: Ottorino Respighi (July 9th, 1879 - April 18th, 1936)
@@ -367,7 +366,6 @@ host_settings:
   #  - poulenc.debian.org
   #  - praetorius.debian.org
   #  - quantz.debian.org
-  #  - raff.debian.org
   #  - rautavaara.debian.org
   #  - ravel.debian.org
   #  - reger.debian.org
@@ -503,7 +501,6 @@ host_settings:
     porpora.debian.org: mailout.debian.org
     poulenc.debian.org: mailout.debian.org
     praetorius.debian.org: mailout.debian.org
-    raff.debian.org: mailout.debian.org
     rautavaara.debian.org: mailout.debian.org
     rem.debian.org: mailout.debian.org
     respighi.debian.org: mailout.debian.org
