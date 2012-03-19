@@ -1,7 +1,6 @@
 ---
 nameinfo:
   abel.debian.org: Carl Friedrich Abel (1723 - 1787)
-  agnesi.debian.org: Maria Teresa Agnesi (October 17th, 1720 - January 19th, 1795)
   agricola.debian.org: Alexander Agricola (1445 or 1446 - August 15th, 1506)
   alain.debian.org: Jehan Alain (1911 - 1940)
   albeniz.debian.org: Isaac Manuel Francisco Albéniz i Pascual (May 29th, 1860 - May 18th, 1909)
@@ -413,7 +412,6 @@ host_settings:
   #  - zelenka.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
-    agnesi.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
     alain.debian.org: mailout.debian.org
     albeniz.debian.org: mailout.debian.org
@@ -556,7 +554,6 @@ host_settings:
     piatti.debian.org: 2025
     zappa.debian.org: 587
   no_munin:
-    - agnesi.debian.org
     - allegri.debian.org
     - escher.debian.org
     - fano.debian.org
