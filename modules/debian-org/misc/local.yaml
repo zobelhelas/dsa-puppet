@@ -22,7 +22,6 @@ nameinfo:
   blavet.debian.org: Michel Blavet (March 13, 1700 - October 28, 1768)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
-  byrd.debian.org: William Byrd (1543 - July 4th, 1623)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
@@ -114,7 +113,6 @@ nameinfo:
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
-  schuetz.debian.org: Heinrich Schütz (October 8th, 1585 - November 6th, 1672)
   senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
@@ -313,7 +311,6 @@ host_settings:
   #  - biber.debian.org
   #  - brahms.debian.org
   #  - busoni.debian.org
-  #  - byrd.debian.org
   #  - caballero.debian.org
   #  - chopin.debian.org
   #  - cilea.debian.org
@@ -387,7 +384,6 @@ host_settings:
   #  - scelsi.debian.org
   #  - schein.debian.org
   #  - schroeder.debian.org
-  #  - schuetz.debian.org
   #  - schumann.debian.org
   #  - senfl.debian.org
   #  - sibelius.debian.org
@@ -431,7 +427,6 @@ host_settings:
     biber.debian.org: mailout.debian.org
     blavet.debian.org: mailout.debian.org
     brahms.debian.org: mailout.debian.org
-    byrd.debian.org: mailout.debian.org
     caballero.debian.org: mailout.debian.org
     cilea.debian.org: mailout.debian.org
     corelli.debian.org: mailout.debian.org
@@ -522,7 +517,6 @@ host_settings:
     scelsi.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
     schroeder.debian.org: mailout.debian.org
-    schuetz.debian.org: mailout.debian.org
     schumann.debian.org: mailout.debian.org
     senfl.debian.org: mailout.debian.org
     sibelius.debian.org: mailout.debian.org

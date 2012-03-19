@@ -138,12 +138,6 @@ node default {
     include samhain
 
     case $::hostname {
-        byrd,schuetz,tchaikovsky,draghi,quantz,lamb,locke,rautavaara,rietz: {
-            include krb
-        }
-    }
-
-    case $::hostname {
         chopin,geo3,soler,wieck: {
             include debian-radvd
         }
