@@ -280,7 +280,6 @@ host_settings:
     - vitry.debian.org
     - zandonai.debian.org
     - zappa.debian.org
-    - zee.debian.org
     - zemlinsky.debian.org
   #wheezy:
   #  - harris.debian.org
@@ -532,7 +531,6 @@ host_settings:
     wieck.debian.org: mailout.debian.org
     zandonai.debian.org: mailout.debian.org
     zappa.debian.org: mailout.debian.org
-    zee.debian.org: mailout.debian.org
     zelenka.debian.org: mailout.debian.org
     zemlinsky.debian.org: mailout.debian.org
   mail_port:
