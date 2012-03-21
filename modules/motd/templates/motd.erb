@@ -24,37 +24,52 @@ end
 
 purp += 'Welcome to ' + fqdn
 if (nodeinfo['ldap'].has_key?('purpose'))
-  if nodeinfo['ldap']['purpose'].include?('buildd')
+  p = nodeinfo['ldap']['purpose'].clone()
+  extra = ''
+
+  if p.delete('buildd')
     purp += ", the Debian "
     if nodeinfo['ldap'].has_key?('architecture')
       purp += nodeinfo['ldap']['architecture'][0]
     end
     purp += " build daemon\n"
-  elsif nodeinfo['ldap']['purpose'].include?('porterbox')
+  end
+
+  if p.delete('porterbox')
     purp += ", the Debian "
     if nodeinfo['ldap'].has_key?('architecture')
       purp += nodeinfo['ldap']['architecture'][0]
     end
     purp += " porterbox\n"
-    purp += "\n"
-    purp += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
+    extra += "\n"
+    extra += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
     if nodeinfo['ldap'].has_key?('admin')
-      purp += "Please contact #{nodeinfo['ldap']['admin'][0]} for install requests,\n"
-      purp += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
+      extra += "Please contact #{nodeinfo['ldap']['admin'][0]} for install requests,\n"
+      extra += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
     end
-  else
+  end
+
+  if p.size() > 0
     purp += ", used for the following services:\n"
     nodeinfo['ldap']['purpose'].sort.each do |l|
       l = markup(l)
       purp += "\t" + l + "\n"
     end
+  else
+    purp += ".\n"
   end
+
+  purp += extra
 else
-  purp += "\n"
+  purp += ".\n"
 end
 
 if (nodeinfo['ldap'].has_key?('physicalHost'))
-  purp += "\nThis virtual server runs on the physical host #{nodeinfo['ldap']['physicalHost'][0]}.\n"
+  purp += wrap("This virtual server runs on the physical host #{nodeinfo['ldap']['physicalHost'][0]}." +
+               "It is hosted at #{nodeinfo['hoster']['longname']}."
+               )
+elsif nodeinfo['hoster']['name']
+  purp += wrap("This server is hosted at #{nodeinfo['hoster']['longname']}.")
 end
 
 
