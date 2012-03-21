@@ -68,13 +68,6 @@ cst:
   netrange:
     - 213.188.99.208/28
   nameservers: [213.157.0.194, 213.157.0.193]
-darmstadt:
-  netrange:
-    - 82.195.75.64/26
-    - 82.195.75.32/28
-    - 2001:41b8:202:deb::/64
-  searchpaths: [debprivate-darmstadt.debian.org]
-  nameservers: [82.195.66.249, 217.198.242.225]
 dgi:
   netrange:
     - 93.94.130.128/26
@@ -109,6 +102,14 @@ isc:
   #nameservers: [149.20.64.2, 204.152.184.67]
   # sometimes very slow?
   nameservers: []
+'man-da':
+  netrange:
+    - 82.195.75.64/26
+    - 82.195.75.32/28
+    - 2001:41b8:202:deb::/64
+  searchpaths: [debprivate-darmstadt.debian.org]
+  nameservers: [82.195.66.249, 217.198.242.225]
+  longname: Metropolitan Area Network Darmstadt (man-da)
 nmmn:
   netrange:
     - 217.114.76.80/29
