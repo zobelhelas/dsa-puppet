@@ -67,8 +67,8 @@ end
 purp += "\n"
 
 if (nodeinfo['ldap'].has_key?('physicalHost'))
-  purp += wrap("This virtual server runs on the physical host #{nodeinfo['ldap']['physicalHost'][0]}.  " +
-               "It is hosted at #{nodeinfo['hoster']['longname']}."
+  purp += wrap("This virtual server runs on the physical host #{nodeinfo['ldap']['physicalHost'][0]}, " +
+               "which is hosted at #{nodeinfo['hoster']['longname']}."
                )
 elsif nodeinfo['hoster']['name']
   purp += wrap("This server is hosted at #{nodeinfo['hoster']['longname']}.")
