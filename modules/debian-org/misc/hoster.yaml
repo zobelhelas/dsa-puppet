@@ -190,6 +190,7 @@ ynic:
     - 144.32.168.64/28
   nameservers: [144.32.169.74, 144.32.169.75, 144.32.169.76]
 zivit:
+  longname: Zentrum fuer Informationsverarbeitung und Informationstechnik (zivit)
   netrange:
     - 80.245.144.0/22
   nameservers_break_dnssec: true
