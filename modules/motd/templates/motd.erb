@@ -32,7 +32,7 @@ if (nodeinfo['ldap'].has_key?('purpose'))
     if nodeinfo['ldap'].has_key?('architecture')
       purp += nodeinfo['ldap']['architecture'][0]
     end
-    purp += " build daemon\n"
+    purp += " build daemon"
   end
 
   if p.delete('porterbox')
@@ -40,7 +40,7 @@ if (nodeinfo['ldap'].has_key?('purpose'))
     if nodeinfo['ldap'].has_key?('architecture')
       purp += nodeinfo['ldap']['architecture'][0]
     end
-    purp += " porterbox\n"
+    purp += " porterbox"
     extra += "\n"
     extra += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
     if nodeinfo['ldap'].has_key?('admin')
