@@ -180,6 +180,10 @@
    RewriteRule ^/devel/debian-installer/hooks(.*) http://d-i.alioth.debian.org/doc/internals/apb.html [R=301]
    RewriteRule ^/doc/packaging-manuals/mime-policy(.*) /doc/debian-policy/ch-opersys.html#s-mime [NE,R=301]
 
+   RewriteRule ^/volatile/index.* - [S=1]
+   RewriteRule ^/volatile/.+ /volatile/ [L,R=301]
+   RewriteRule ^/devel/debian-volatile/.* /volatile/ [R=301]
+
 # Offer a Redirect to DSA without knowing year #474730
    RewriteMap dsa txt:/srv/www.debian.org/www/security/map-dsa.txt
    RewriteRule ^/security/dsa-(\d+)(\..*)? /security/${dsa:$1}$2 [R=301]
