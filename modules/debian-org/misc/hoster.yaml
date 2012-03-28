@@ -68,7 +68,6 @@ dgi:
   netrange:
     - 93.94.130.128/26
   nameservers: [195.49.152.215, 195.49.152.213, 195.49.152.214]
-  longname: Dembach Goo Informatik GmbH & Co. KG [DG-i]
 freenet:
   netrange:
     - 62.104.0.0/16
