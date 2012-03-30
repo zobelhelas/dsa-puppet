@@ -105,7 +105,6 @@ isc:
     - 2001:41b8:202:deb::/64
   searchpaths: [debprivate-darmstadt.debian.org]
   nameservers: [82.195.66.249, 217.198.242.225]
-  longname: Metropolitan Area Network Darmstadt [man-da]
 osuosl:
   netrange:
     - 140.211.166.0/25
@@ -149,7 +148,6 @@ ubcece:
   nameservers: [206.12.19.214, 2607:f8f0:610:4000:224:81ff:fea7:e952, 206.12.19.20, 2607:f8f0:610:4000:218:feff:fe76:2ed0, 206.12.19.21, 2607:f8f0:610:4000:21c:c4ff:fee5:e890]
   allow_dns_query: [137.82.84.64/27, 206.12.19.0/24, 2607:f8f0:610:4000::/64]
 uni-karlsruhe:
-  longname: Karlsruhe Institute of Technology [uni-karlsruhe]
   netrange:
     - 129.143.160.0/29
     - 2001:7c0:400:1337::/64
@@ -179,7 +177,6 @@ ynic:
     - 144.32.168.64/28
   nameservers: [144.32.169.74, 144.32.169.75, 144.32.169.76]
 zivit:
-  longname: Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]
   netrange:
     - 80.245.144.0/22
   nameservers_break_dnssec: true
