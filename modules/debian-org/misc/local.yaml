@@ -3,7 +3,6 @@ nameinfo:
   abel.debian.org: Carl Friedrich Abel (1723 - 1787)
   agricola.debian.org: Alexander Agricola (1445 or 1446 - August 15th, 1506)
   alain.debian.org: Jehan Alain (1911 - 1940)
-  albeniz.debian.org: Isaac Manuel Francisco Albéniz i Pascual (May 29th, 1860 - May 18th, 1909)
   alwyn.debian.org: William Alwyn (1905 - 1985)
   ancina.debian.org: Giovanni Giovenale Ancina (October 19th, 1545 - August 30th, 1604)
   antheil.debian.org: George Antheil (1900 - 1959)
@@ -46,7 +45,6 @@ nameinfo:
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
   gombert.debian.org: Nicolas Gombert (c. 1495 – c. 1560)
   dukas.debian.org: Paul Dukas (1865 - 1935)
-  goetz.debian.org: Hermann Gustav Goetz (December 7th, 1840 - December 3rd, 1876)
   grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
   harris.debian.org: Sir William Henry Harris (March 28th, 1883 - September 6th, 1973)
@@ -251,7 +249,6 @@ host_settings:
     - fasch.debian.org
     - field.debian.org
     - finzi.debian.org
-    - goetz.debian.org
     - hartmann.debian.org
     - hasse.debian.org
     - hebden.debian.org
@@ -406,7 +403,6 @@ host_settings:
     abel.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
     alain.debian.org: mailout.debian.org
-    albeniz.debian.org: mailout.debian.org
     alkman.debian.org: mailout.debian.org
     alwyn.debian.org: mailout.debian.org
     ancina.debian.org: mailout.debian.org
@@ -448,7 +444,6 @@ host_settings:
     geo3.debian.org: mailout.debian.org
     glinka.debian.org: mailout.debian.org
     gluck.debian.org: mailout.debian.org
-    goetz.debian.org: mailout.debian.org
     handel.debian.org: mailout.debian.org
     harris.debian.org: mailout.debian.org
     hartmann.debian.org: mailout.debian.org
