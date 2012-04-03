@@ -146,11 +146,15 @@
    RedirectPermanent /doc/packaging-manuals/packaging-tutorial /doc/manuals/packaging-tutorial
    RedirectPermanent /doc/prospective-packages /devel/wnpp/
    RedirectPermanent /devel/maintainer_contacts /intro/organization
+   RedirectPermanent /devel/debian-installer/gtk-frontend http://wiki.debian.org/DebianInstaller/GUI
    RedirectPermanent /zh/ /international/Chinese/
    RedirectPermanent /chinese/ /international/Chinese/
    RedirectPermanent /devel/help /devel/join/
    RedirectPermanent /distrib/books /doc/books
+   RedirectPermanent /distrib/floppyinst /distrib/netinst
+   RedirectPermanent /distrib/netboot /distrib/netinst
    RedirectPermanent /distrib/vendors /CD/vendors/
+   RedirectPermanent /distrib/cd /CD/
    RedirectPermanent /distrib/cdinfo /CD/vendors/info
    RedirectPermanent /related_links /misc/related_links
    RedirectPermanent /ports/laptops /misc/laptops/
