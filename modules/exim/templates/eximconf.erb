@@ -32,7 +32,7 @@
 #           flushing' operations, but should be populated with a list
 #           of trusted machines. Wildcards are not permitted
 #  bsmtp_domains - Domains that we deliver locally via bsmtp
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
 #  mailhubdomains - Domains for which we are the MX, but the mail is relayed
 #           elsewhere.  This is designed for use with small volume or
 #           restricted machines that need to use a smarthost for mail
@@ -76,7 +76,7 @@
 #                    MAIN CONFIGURATION SETTINGS                     #
 ######################################################################
 
-<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
+<%- if scope.lookupvar('site::nodeinfo').has_key?('heavy_exim') and scope.lookupvar('site::nodeinfo')['heavy_exim'] -%>
 perl_startup = do '/etc/exim4/exim_surbl.pl'
 <%- end -%>
 
@@ -87,7 +87,7 @@ perl_startup = do '/etc/exim4/exim_surbl.pl'
 acl_smtp_helo = check_helo
 acl_smtp_rcpt = ${if ={$interface_port}{587} {check_submission}{check_recipient}}
 acl_smtp_data = check_message
-<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
+<%- if scope.lookupvar('site::nodeinfo').has_key?('heavy_exim') and scope.lookupvar('site::nodeinfo')['heavy_exim'] -%>
 acl_smtp_mime = acl_check_mime
 <%- end -%>
 acl_smtp_predata = acl_check_predata
@@ -121,9 +121,9 @@ localpartlist postmasterish = postmaster : abuse : hostmaster
 
 hostlist debianhosts = <; ; 127.0.0.1 ; ::1 ; /var/lib/misc/thishost/debianhosts ; 89.16.166.49 ; 82.195.75.76 ; 2001:41b8:202:deb:bab5:0:52c3:4b4c
 
-hostlist reservedaddrs = <%= nodeinfo['reservedaddrs'] %>
+hostlist reservedaddrs = <%= scope.lookupvar('site::nodeinfo')['reservedaddrs'] %>
 
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
 # Domains we relay for; that is domains that aren't considered local but we 
 # accept mail for them.
 domainlist mailhubdomains = lsearch;/etc/exim4/manualroute
@@ -169,7 +169,7 @@ timeout_frozen_after=14d
 message_size_limit = 100M
 message_logs = false
 smtp_accept_max_per_host = ${if match_ip {$sender_host_address}{+debianhosts}{0}{7}}
-<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
+<%- if scope.lookupvar('site::nodeinfo').has_key?('heavy_exim') and scope.lookupvar('site::nodeinfo')['heavy_exim'] -%>
 smtp_accept_max = 300
 smtp_accept_queue = 200
 smtp_accept_queue_per_connection = 50
@@ -188,7 +188,7 @@ check_spool_space  = 20M
 
 delay_warning =
 
-<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
+<%- if scope.lookupvar('site::nodeinfo').has_key?('heavy_exim') and scope.lookupvar('site::nodeinfo')['heavy_exim'] -%>
 message_body_visible = 5000
 queue_run_max = 50
 deliver_queue_load_max = 50
@@ -210,16 +210,16 @@ ports = []
 out = "daemon_smtp_ports = "
 ports << 25
 
-if nodeinfo['bugsmaster'] or nodeinfo['bugsmx']
+if scope.lookupvar('site::nodeinfo')['bugsmaster'] or scope.lookupvar('site::nodeinfo')['bugsmx']
   ports << 587
 end
 
-if not nodeinfo['mail_port'].to_s.empty?
-  ports << nodeinfo['mail_port']
+if not scope.lookupvar('site::nodeinfo')['mail_port'].to_s.empty?
+  ports << scope.lookupvar('site::nodeinfo')['mail_port']
 end
 
-if nodeinfo['mailrelay']
-  ports << nodeinfo['smarthost_port']
+if scope.lookupvar('site::nodeinfo')['mailrelay']
+  ports << scope.lookupvar('site::nodeinfo')['smarthost_port']
 end
 
 out += ports.uniq.sort.join(" : ")
@@ -289,7 +289,7 @@ acl_getprofile:
           hosts          = !+debianhosts
           set acl_m_rprf = localonly
 
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
   warn    local_parts    = +local_only_users
           domains        = +mailhubdomains
           hosts          = !+debianhosts
@@ -298,28 +298,28 @@ acl_getprofile:
 <%- end -%>
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
-<%- if nodeinfo['rtmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
   warn    domains        = rt.debian.org
           set acl_m_rprf = RTMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
 <%- end -%>
-<%- if nodeinfo['bugsmx'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['bugsmx'] -%>
   warn    domains        = bugs.debian.org
           set acl_m_rprf = BugsMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
 <%- end -%>
-<%- if nodeinfo['packagesmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['packagesmaster'] -%>
   warn    domains        = packages.debian.org
           set acl_m_rprf = PackagesMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
 <%- end -%>
-<%- if nodeinfo['packagesqamaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['packagesqamaster'] -%>
   warn    recipients     = owner@packages.qa.debian.org : postmaster@packages.qa.debian.org
           set acl_m_rprf = PTSOwner
 
@@ -391,11 +391,11 @@ check_helo:
 
   warn    set acl_c_scr    = 0
 
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
   accept  verify   = certificate
 
 <%- end -%>
-<%- if nodeinfo['smarthost'].empty? -%>
+<%- if scope.lookupvar('site::nodeinfo')['smarthost'].empty? -%>
   # These are in HELO acl so that they are only run once.  They increment a counter,
   # so we don't want it to increment per rcpt to.
 
@@ -487,7 +487,7 @@ check_submission:
   # We do this by testing for an empty sending host field.
   accept  hosts = +debianhosts
 
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
   accept  verify   = certificate
 
 <%- end -%>
@@ -508,7 +508,7 @@ check_submission:
           endpass
 	  verify   = recipient
 
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
   accept  domains  = +mailhubdomains
           endpass
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
@@ -523,7 +523,7 @@ check_submission:
 #!!# ACL that is used after the RCPT command
 check_recipient:
 
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
   accept  verify   = certificate
 
 <%- end -%>
@@ -636,7 +636,7 @@ check_recipient:
   warn    condition     = ${if eq{$acl_m_prf}{localonly}}
           set acl_m_lrc = ${if eq{$acl_m_lrc}{}{$local_part@$domain}{$acl_m_lrc, $local_part@$domain}}
 
-<%- if nodeinfo['packagesmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['packagesmaster'] -%>
   warn    condition      = ${if eq {$acl_m_prf}{PackagesMail}}
           condition      = ${if eq {$sender_address}{$local_part@$domain}}
           message        = X-Packages-FromTo-Same: yes
@@ -714,7 +714,7 @@ check_recipient:
          condition      = ${if eq{$acl_m_act}{450}{yes}{no}}
 
 <%- end -%>
-<%- if nodeinfo['rtmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
   warn    condition     = ${if eq{$acl_m_prf}{RTMail}}
           set acl_m12   = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}{match{$local_part}{3520}}{match{$local_part}{3645}}} {RTMailRecipientHasSubaddress}}}}
   # temporary hack because weasel screwed up and gave people an rt-3520@ address, which doesn't really work normally.  and rt-3645
@@ -805,7 +805,7 @@ check_recipient:
          senders       = ${if exists{/etc/exim4/blacklist}{/etc/exim4/blacklist}{}}
          message       = We have blacklisted <$sender_address>.  Please stop mailing us
 
-<%- if nodeinfo['smarthost'].empty? -%>
+<%- if scope.lookupvar('site::nodeinfo')['smarthost'].empty? -%>
   deny    message  = host $sender_host_address is listed in $dnslist_domain; see $dnslist_text
           dnslists = ${if match_domain{$domain}{+virtual_domains}\
 		     {${if exists {${extract{directory}{VDOMAINDATA}{${value}/rbllist}}}\
@@ -825,7 +825,7 @@ check_recipient:
 	  domains       = +handled_domains
 	  !hosts        = +debianhosts : WHITELIST
 
-<%- if nodeinfo['smarthost'].empty? -%>
+<%- if scope.lookupvar('site::nodeinfo')['smarthost'].empty? -%>
   deny    domains  = +handled_domains
           local_parts = ${if match_domain{$domain}{+virtual_domains}\
                         {${if exists {${extract{directory}{VDOMAINDATA}{${value}/callout_users}}}\
@@ -836,7 +836,7 @@ check_recipient:
 	  !verify  = sender/callout=90s,maxwait=300s
 
 <%- end -%>
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
   accept  domains  = +mailhubdomains
           endpass
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
@@ -852,7 +852,7 @@ check_recipient:
 
   deny    message = relay not permitted
 
-<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
+<%- if scope.lookupvar('site::nodeinfo').has_key?('heavy_exim') and scope.lookupvar('site::nodeinfo')['heavy_exim'] -%>
 acl_check_mime:
 
  accept  verify        = certificate
@@ -895,7 +895,7 @@ check_message:
   # header.  Take their crack pipe away.
   drop   condition = ${if match{${lc:$h_From:}}{\Npostmaster@([^.]+\.)?debian\.org\N}}
 
-<%- if nodeinfo['rtmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
   deny    condition = ${if eq {$acl_m_prf}{RTMail}}
           condition = ${if and{{!match {${lc:$rh_Subject:}} {debian rt}} \
                                {!match {${lc:$rh_Subject:]}} {\N\[rt.debian.org \N}} \
@@ -903,7 +903,7 @@ check_message:
           message  = messages to the Request Tracker system require a subject tag or a subaddress
 
 <%- end -%>
-<%- if nodeinfo['packagesqamaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['packagesqamaster'] -%>
   deny    !hosts  = +debianhosts : 217.196.43.134
           condition = ${if eq {$acl_m_prf}{PTSMail}}
           condition = ${if def:h_X-PTS-Approved:{false}{true}}
@@ -961,7 +961,7 @@ check_message:
           message         = X-malware detected: $malware_name
 
 <%- end -%>
-<%- if nodeinfo.has_key?('heavy_exim') and nodeinfo['heavy_exim'] -%>
+<%- if scope.lookupvar('site::nodeinfo').has_key?('heavy_exim') and scope.lookupvar('site::nodeinfo')['heavy_exim'] -%>
  discard condition     = ${if <{$message_size}{256000}}
          condition     = ${if eq {$acl_m_prf}{blackhole}}
          set acl_m_srb = ${perl{surblspamcheck}}
@@ -988,7 +988,7 @@ check_message:
           !verify      = header_sender
           message      = No valid sender found in the From:, Sender: and Reply-to: headers
 
-<%- if nodeinfo['packagesmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['packagesmaster'] -%>
   deny  message        = Congratulations, you scored $spam_score points.
         log_message    = spam: $spam_score points.
         condition      = ${if eq {$acl_m_prf}{PackagesMail}}
@@ -1036,7 +1036,7 @@ begin routers
 #     An address is passed to each in turn until it is accepted.     #
 ######################################################################
 
-<%- if nodeinfo['mailrelay'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
 relay_manualroute:
   driver = manualroute
   domains = +mailhubdomains
@@ -1067,15 +1067,15 @@ ipliteral:
 
 <%=
 out = ""
-if not nodeinfo['smarthost'].empty?
+if not scope.lookupvar('site::nodeinfo')['smarthost'].empty?
 out = '
 smarthost:
   debug_print = "R: smarthost for $local_part@$domain"
   driver = manualroute
   domains = !+handled_domains
   transport = remote_smtp_smarthost
-  route_list = * ' + nodeinfo['smarthost']
-  if nodeinfo['smarthost'] == 'mailout.debian.org'
+  route_list = * ' + scope.lookupvar('site::nodeinfo')['smarthost']
+  if scope.lookupvar('site::nodeinfo')['smarthost'] == 'mailout.debian.org'
     out += '/MX'
   end
   out += '
@@ -1310,7 +1310,7 @@ localuser:
 # Everything before here should apply only to the local domains with a 
 # domains= rule
 
-<%- if nodeinfo['packagesmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['packagesmaster'] -%>
 # This router delivers for packages.d.o
 packages:
   debug_print = "R: packages for $local_part@$domain"
@@ -1328,7 +1328,7 @@ packages:
   no_more
 
 <%- end -%>
-<%- if nodeinfo['rtmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
 # This router delivers for rt.d.o
 rt_force_new_verbose:
   debug_print = "R: rt for $local_part+new@$domain"
@@ -1452,9 +1452,9 @@ virt_users:
 
 <%=
 out = ""
-if nodeinfo['bugsmaster'] or nodeinfo['bugsmx']
+if scope.lookupvar('site::nodeinfo')['bugsmaster'] or scope.lookupvar('site::nodeinfo')['bugsmx']
   domain = 'bugs.debian.org'
-  if nodeinfo['bugsmaster']
+  if scope.lookupvar('site::nodeinfo')['bugsmaster']
     domain = 'bugs-master.debian.org'
   end
   out = '
@@ -1573,17 +1573,17 @@ remote_smtp:
 
 <%=
 out = ""
-if not nodeinfo['smarthost'].empty?
+if not scope.lookupvar('site::nodeinfo')['smarthost'].empty?
 out = '
 remote_smtp_smarthost:
   debug_print = "T: remote_smtp_smarthost for $local_part@$domain"
   driver = smtp
   delay_after_cutoff = false
   port = '
-  out += nodeinfo['smarthost_port'].to_s + "\n"
+  out += scope.lookupvar('site::nodeinfo')['smarthost_port'].to_s + "\n"
   if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
     out += '  tls_tempfail_tryclear = false
-  hosts_require_tls = ' + nodeinfo['smarthost'] + '
+  hosts_require_tls = ' + scope.lookupvar('site::nodeinfo')['smarthost'] + '
   tls_certificate = /etc/exim4/ssl/thishost.crt
   tls_privatekey = /etc/exim4/ssl/thishost.key
 '
@@ -1610,7 +1610,7 @@ bsmtp:
 		     {$value}fail}\
 		   }}
 
-<%- if nodeinfo['bugsmaster'] or nodeinfo['bugsmx'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['bugsmaster'] or scope.lookupvar('site::nodeinfo')['bugsmx'] -%>
 bugs_pipe:
   driver = pipe
   command = /org/bugs.debian.org/mail/run-procmail
@@ -1623,7 +1623,7 @@ bugs_pipe:
   user = debbugs
 
 <%- end -%>
-<%- if nodeinfo['rtmaster'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
 rt_pipe:
   debug_print = "T: rt_pipe for $local_part${local_part_suffix}@$domain"
   driver = pipe

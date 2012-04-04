@@ -1,157 +1,155 @@
 Package {
-    require => File["/etc/apt/apt.conf.d/local-recommends"]
+	require => File['/etc/apt/apt.conf.d/local-recommends']
 }
 
 File {
-    owner   => root,
-    group   => root,
-    mode    => 444,
-    ensure  => file,
+	owner   => root,
+	group   => root,
+	mode    => '0444',
+	ensure  => file,
 }
 
 Exec {
-    path => "/usr/bin:/usr/sbin:/bin:/sbin"
+	path => '/usr/bin:/usr/sbin:/bin:/sbin'
+}
+
+Service {
+	hasrestart => true,
+	hasstatus  => true,
 }
 
 node default {
-    $localinfo = yamlinfo('*', "/etc/puppet/modules/debian-org/misc/local.yaml")
-    $nodeinfo  = nodeinfo($::fqdn, "/etc/puppet/modules/debian-org/misc/local.yaml")
-    $allnodeinfo = allnodeinfo("sshRSAHostKey ipHostNumber", "purpose mXRecord physicalHost purpose")
-    notice( sprintf("hoster for %s is %s", $::fqdn, getfromhash($nodeinfo, 'hoster', 'name') ) )
+	include site
+	include munin
+	include syslog-ng
+	include sudo
+	include ssh
+	include debian-org
+	include monit
+	include apt-keys
+	include ntp
+	include ntpdate
+	include ssl
+	include motd
+	include hardware
+	include nagios::client
+	include resolv
 
-    include munin-node
-    include syslog-ng
-    include sudo
-    include ssh
-    include debian-org
-    include monit
-    include apt-keys
-    include ntp
-    include ntpdate
-    include ssl
-    include motd
+	if $::hostname in [finzi,fano,fasch,field] {
+		include kfreebsd
+	}
 
-    case $::hostname {
-        finzi,fano,fasch,field:    { include kfreebsd }
-    }
+	if $::kvmdomain {
+		include acpi
+	}
 
-    if $::smartarraycontroller {
-        include debian-proliant
-    }
+	if $::mta == 'exim4' {
+		if getfromhash($site::nodeinfo, 'heavy_exim') {
+			include exim::mx
+		} else {
+			include exim
+		}
+	}
 
-    if $::productname == 'PowerEdge 2850' {
-        include megactl
-    }
+	if $::lsbdistcodename != 'lenny' {
+		include unbound
+	}
 
-    if $::mptraid {
-        include raidmpt
-    }
+	if getfromhash($site::nodeinfo, 'puppetmaster') {
+		include puppetmaster
+	}
 
-    if $::kvmdomain {
-        include acpi
-    }
+	if getfromhash($site::nodeinfo, 'muninmaster') {
+		include munin::master
+	}
 
-    if $::mta == 'exim4' {
-        case getfromhash($nodeinfo, 'heavy_exim') {
-             true:  { include exim::mx }
-             default: { include exim }
-        }
-    }
+	if getfromhash($site::nodeinfo, 'nagiosmaster') {
+		include nagios::server
+	}
 
-    if getfromhash($nodeinfo, 'puppetmaster') {
-        include puppetmaster
-    }
+	if getfromhash($site::nodeinfo, 'buildd') {
+		include buildd
+	}
 
-    if getfromhash($nodeinfo, 'muninmaster') {
-        include munin-node::master
-    }
+	if $::hostname in [chopin,franck,morricone,bizet] {
+		include roles::dakmaster
+	}
 
-    case getfromhash($nodeinfo, 'nagiosmaster') {
-        true:    { include nagios::server }
-        default: { include nagios::client }
-    }
+	if getfromhash($site::nodeinfo, 'apache2_security_mirror') {
+		include roles::security_mirror
+	}
 
-    if $::apache2 {
-         if getfromhash($nodeinfo, 'apache2_security_mirror') {
-                include apache2::security_mirror
-         }
-         if getfromhash($nodeinfo, 'apache2_www_mirror') {
-                include apache2::www_mirror
-         }
-         if getfromhash($nodeinfo, 'apache2_backports_mirror') {
-                include apache2::backports_mirror
-         }
-         if getfromhash($nodeinfo, 'apache2_ftp-upcoming_mirror') {
-                include apache2::ftp-upcoming_mirror
-         }
-         include apache2
-    }
+	if getfromhash($site::nodeinfo, 'apache2_www_mirror') {
+		include roles::www_mirror
+	}
 
-    if $::rsyncd {
-        include rsyncd-log
-    }
+	if getfromhash($site::nodeinfo, 'apache2_backports_mirror') {
+		include roles::backports_mirror
+	}
 
+	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
+		include roles::ftp-upcoming_mirror
+	}
 
-    if getfromhash($nodeinfo, 'buildd') {
-        include buildd
-    }
+	if $::apache2 {
+		include apache2
+	}
 
-    case $::hostname {
-        ravel,senfl,orff,draghi,diamond: { include named::authoritative }
-        geo1,geo2,geo3:                  { include named::geodns }
-        liszt:                           { include named::recursor }
-    }
+	if $::rsyncd {
+		include rsyncd-log
+	}
 
-    case $::hostname {
-        franck,master,lobos,samosa,spohr,widor:   { include unbound }
-    }
+	if $::hostname in [ravel,senfl,orff,draghi,diamond] {
+		include named::authoritative
+	} elsif $::hostname in [geo1,geo2,geo3] {
+		include named::geodns
+	} elsif $::hostname == 'liszt' {
+		include named::recursor
+	}
 
-    if $::lsbdistcodename != 'lenny' {
-        include unbound
-    }
+	if $::kernel == 'Linux' {
+		include ferm
+		include ferm::per-host
+		include entropykey
+	}
 
-    include resolv
+	if $::hostname in [diabelli,nono,spohr] {
+		include dacs
+	}
 
-    if $::kernel == 'Linux' {
-        include ferm
-        include ferm::per-host
-    }
+	if $::hostname in [beethoven,duarte,spohr,stabile] {
+		include nfs-server
+	}
 
-    case $::hostname {
-        diabelli,nono,spohr: { include dacs }
-    }
+	if $::brokenhosts {
+		include hosts
+	}
 
-    case $::hostname {
-        beethoven,duarte,spohr,stabile: {
-            include nfs-server
-        }
-    }
+	if $::portforwarder_user_exists {
+		include portforwarder
+	}
 
-    if $::brokenhosts {
-        include hosts
-    }
+	include samhain
 
-    if $::portforwarder_user_exists {
-        include portforwarder
-    }
+	if $::hostname in [chopin,geo3,soler,wieck] {
+		include debian-org::radvd
+	}
 
-    include samhain
+	if ($::postgres84 or $::postgres90) {
+		include postgres
+	}
 
-    case $::hostname {
-        chopin,geo3,soler,wieck: {
-            include debian-radvd
-        }
-    }
+	if $::spamd {
+		munin::check { 'spamassassin': }
+	}
 
-    if $::kernel == 'Linux' {
-        include entropykey
-    }
-
-    if ($::postgres84 or $::postgres90) {
-        include postgres
-    }
+	if $::vsftpd {
+		package { 'logtail':
+			ensure => installed
+		}
+		munin::check { 'vsftpd': }
+		munin::check { 'ps_vsftpd':
+			script => 'ps_'
+		}
+	}
 }
-
-# vim:set et:
-# vim:set sts=4 ts=4:
-# vim:set shiftwidth=4:

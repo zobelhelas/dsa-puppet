@@ -7,7 +7,7 @@ end
 %>);
 def $MUNIN6_IPS = (<%=
 begin
-	v6ips == 'no' ? '' : v6ips.split(',').join(' ')
+	v6ips == '' ? '' : v6ips.split(',').join(' ')
 rescue
 	''
 end

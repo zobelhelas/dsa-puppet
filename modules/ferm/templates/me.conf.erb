@@ -9,8 +9,8 @@ out = []
 restricted_purposes = {'kvm host', 'central syslog server', 'puppet master', 'jumphost'}
 restrict_ssh = %w{lebrun logtest01 geo1 geo2 geo3 beethoven tchaikovsky schroeder rossini draghi}
 
-if (nodeinfo['ldap'].has_key?('purpose')) then
-	nodeinfo['ldap']['purpose'].each do |purp|
+if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose')) then
+	scope.lookupvar('site::nodeinfo')['ldap']['purpose'].each do |purp|
 		if restricted_purposes.include?(purp) then
 			restrict_ssh << hostname
 		end
@@ -49,7 +49,7 @@ out << "@def $SSH_V6_SOURCES = (#{ssh6allowed.join(' ')});"
 smtp4allowed = []
 smtp6allowed = []
 
-if not nodeinfo['smarthost'].empty?
+if not scope.lookupvar('site::nodeinfo')['smarthost'].empty?
   smtp4allowed << %w{$HOST_MAILRELAY_V4 $HOST_NAGIOS_V4}
   smtp6allowed << %w{$HOST_MAILRELAY_V6 $HOST_NAGIOS_V6}
 end

@@ -12,7 +12,7 @@ Facter.add("v4ips") do
 	end
 	ret = addrs.join(",")
 	if ret.empty?
-		ret = 'no'
+		ret = ''
 	end
 	setcode do
 		ret
@@ -37,7 +37,7 @@ Facter.add("v4ips") do
 
 		ret = addrs.join(",")
 		if ret.empty?
-			ret = 'no'
+			ret = ''
 		end
 		ret
 	end
@@ -57,7 +57,7 @@ Facter.add("v6ips") do
 	end
 	ret = addrs.join(",")
 	if ret.empty?
-		ret = 'no'
+		ret = ''
 	end
 	setcode do
 		ret

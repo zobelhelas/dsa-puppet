@@ -12,20 +12,20 @@ mxmatches = [ fqdn ]
 routes = []
 extraroutes = []
 
-if nodeinfo['mailrelay']
+if scope.lookupvar('site::nodeinfo')['mailrelay']
   mxmatches << 'mailout.debian.org'
   extraroutes = [ "keyring.debian.org:\t\tkaufmann.debian.org" ]
 end
 
 mxregex = Regexp.new('^\d+\s+(.*)\.$')
-allnodeinfo.keys.sort.each do |host|
-  next unless allnodeinfo[host]['mXRecord']
-  allnodeinfo[host]['mXRecord'].each do |mx|
+scope.lookupvar('site::allnodeinfo').keys.sort.each do |host|
+  next unless scope.lookupvar('site::allnodeinfo')[host]['mXRecord']
+  scope.lookupvar('site::allnodeinfo')[host]['mXRecord'].each do |mx|
     mxmatch = mxregex.match(mx)
     if mxmatches.include?(mxmatch[1])
       route = host + ":\t\t" + host
-      if localinfo.has_key?(host) and localinfo[host].has_key?('mail_port') and localinfo[host]['mail_port'].to_s != ''
-        route += "::" + localinfo[host]['mail_port'].to_s
+      if scope.lookupvar('site::localinfo').has_key?(host) and scope.lookupvar('site::localinfo')[host].has_key?('mail_port') and scope.lookupvar('site::localinfo')[host]['mail_port'].to_s != ''
+        route += "::" + scope.lookupvar('site::localinfo')[host]['mail_port'].to_s
       end
       routes << route
     end
