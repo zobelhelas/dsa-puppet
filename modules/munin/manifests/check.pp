@@ -7,7 +7,7 @@ define munin::check($ensure = present, $script = undef) {
 	}
 
 	$link_target = $ensure ? {
-		present => "/usr/share/munin/plugins/${link}"
+		present => "/usr/share/munin/plugins/${link}",
 		absent  => absent,
 		default => err ( "Unknown ensure value: '$ensure'" ),
 	}
@@ -18,5 +18,3 @@ define munin::check($ensure = present, $script = undef) {
 		notify  => Service['munin-node'],
 	}
 }
-
-
