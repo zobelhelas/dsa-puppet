@@ -5,7 +5,4 @@ class roles::security_mirror {
 		config => 'puppet:///modules/roles/security_mirror/security.debian.org'
 	}
 
-	apache2::site { 'security.debian.org':
-		ensure => absent,
-	}
 }
