@@ -2,11 +2,11 @@ define site::aptrepo ($key = undef, $template = undef, $config = undef, $ensure 
 
 	if $key {
 		exec { "apt-key-update-${name}":
-			command     => "apt-key add /etc/apt/trusted-keys.d/${name}",
+			command     => "apt-key add /etc/apt/trusted-keys.d/${name}.asc",
 			refreshonly => true,
 		}
 
-		file { "/etc/apt/trusted-keys.d/${name}":
+		file { "/etc/apt/trusted-keys.d/${name}.asc":
 			source => $key,
 			mode   => '0664',
 			notify => Exec["apt-key-update-${name}"]
