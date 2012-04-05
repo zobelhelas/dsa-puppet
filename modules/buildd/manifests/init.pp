@@ -23,10 +23,6 @@ class buildd {
 		content => template('buildd/etc/schroot/mount-defaults.erb'),
 		require => Package['sbuild'],
 	}
-	file { '/etc/schroot/mount-defaults':
-		content => template('buildd/etc/schroot/mount-defaults.erb'),
-		require => Package['sbuild'],
-	}
 	file { '/etc/cron.d/dsa-buildd':
 		source  => 'puppet:///modules/buildd/cron.d-dsa-buildd',
 		require => Package['debian.org']
