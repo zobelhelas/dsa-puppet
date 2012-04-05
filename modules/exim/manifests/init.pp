@@ -58,7 +58,7 @@ class exim {
 		content => template('exim/virtualdomains.erb'),
 	}
 	file { '/etc/exim4/submission-domains':
-		content => template('exim/common/submission-domains.erb'),
+		content => template('exim/submission-domains.erb'),
 	}
 	file { '/etc/exim4/host_blacklist':
 		source => 'puppet:///modules/exim/common/host_blacklist',
@@ -137,8 +137,8 @@ class exim {
 	}
 
 	# Do we actually want this?  I'm only doing it because it's harmless
-  # and makes the logs quiet.  There are better ways of making logs quiet,
-  # though.
+	# and makes the logs quiet.  There are better ways of making logs quiet,
+	# though.
 	@ferm::rule { 'dsa-ident':
 		domain      => '(ip ip6)',
 		description => 'Allow ident access',
