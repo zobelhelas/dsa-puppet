@@ -5,6 +5,8 @@ class syslog-ng {
 
 	service { 'syslog-ng':
 		ensure => running
+		hasstatus => false,
+		pattern   => 'syslog-ng',
 	}
 
 	file { '/etc/syslog-ng/syslog-ng.conf':

@@ -6,6 +6,8 @@ class unbound {
 
 	service { 'unbound':
 		ensure => running,
+		hasstatus => false,
+		pattern   => 'unbound',
 	}
 
 	file { '/var/lib/unbound':

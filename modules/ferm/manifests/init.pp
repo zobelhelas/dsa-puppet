@@ -37,6 +37,7 @@ class ferm {
 	}
 	file { '/etc/ferm/dsa.d':
 		ensure => directory,
+		mode   => '0555',
 		purge   => true,
 		force   => true,
 		recurse => true,
@@ -44,11 +45,13 @@ class ferm {
 	}
 	file { '/etc/ferm/conf.d':
 		ensure => directory,
+		mode   => '0555',
 	}
 	file { '/etc/default/ferm':
 		source  => 'puppet:///modules/ferm/ferm.default',
 		require => Package['ferm'],
 		notify  => Service['ferm'],
+		mode    => '0444',
 	}
 	file { '/etc/ferm/ferm.conf':
 		source  => 'puppet:///modules/ferm/ferm.conf',
@@ -63,7 +66,8 @@ class ferm {
 		content => template('ferm/interfaces.conf.erb'),
 	}
 	file { '/etc/logrotate.d/ulogd':
-		source => 'puppet:///modules/ferm/logrotate-ulogd',
+		source  => 'puppet:///modules/ferm/logrotate-ulogd',
+		mode    => '0444',
 		require => Package['debian.org'],
 	}
 

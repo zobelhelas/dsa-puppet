@@ -9,11 +9,14 @@ class named::geodns inherits named {
 
 	file { '/etc/bind/':
 		ensure  => directory,
+		group  => bind,
+		mode   => '2755',
 		require => Package['bind9'],
 		notify  => Service['bind9'],
 	}
 	file { '/etc/bind/geodns':
 		ensure => directory,
+		mode   => '0755',
 	}
 	file { '/etc/bind/named.conf.options':
 		content => template('named/named.conf.options.erb'),
@@ -28,12 +31,13 @@ class named::geodns inherits named {
 		ensure => directory,
 		owner  => geodnssync,
 		group  => geodnssync,
-		mode   => '0755',
+		mode   => '2755',
 	}
 	file { '/etc/bind/geodns/named.conf.geo':
 		source => 'puppet:///modules/named/common/named.conf.geo',
 	}
 	file { '/etc/bind/geodns/trigger':
+		mode   => '0555',
 		source => 'puppet:///modules/named/common/trigger',
 	}
 	file { '/etc/ssh/userkeys/geodnssync':

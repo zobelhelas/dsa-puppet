@@ -4,11 +4,6 @@ class ntp::client {
 		require => Package['ntp'],
 		notify  => Service['ntp']
 	}
-	file { '/etc/ntp.keys.d/':
-		ensure  => directory,
-		require => Package['ntp'],
-		notify  => Service['ntp']
-	}
 	file { '/etc/ntp.keys.d/ntpkey_iff_merikanto':
 		source => 'puppet:///modules/ntp/ntpkey_iff_merikanto.pub',
 	}

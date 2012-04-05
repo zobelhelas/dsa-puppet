@@ -25,14 +25,14 @@ class ntp {
 	file { '/etc/ntp.conf':
 		content => template('ntp/ntp.conf'),
 		notify  => Service['ntp'],
-		require => Package['ntp']
+		require => Package['ntp'],
 	}
 	file { '/etc/ntp.keys.d':
 		ensure  => directory,
-		group   => ntp,
+		group   => 'ntp',
 		mode    => '0750',
 		notify  => Service['ntp'],
-		require => Package['ntp']
+		require => Package['ntp'],
 	}
 
 	if getfromhash($site::nodeinfo, 'timeserver') {

@@ -9,12 +9,18 @@ class debian-org {
 	]
 
 	package { [
+			'klogd',
+			'sysklogd',
+			'rsyslog',
+		]:
+			ensure => purged,
+	}
+	package { [
 			'apt-utils',
 			'bash-completion',
 			'debian.org',
 			'dnsutils',
 			'dsa-munin-plugins',
-			'klogd',
 			'less',
 			'lsb-release',
 			'libfilesystem-ruby1.8',
@@ -22,8 +28,6 @@ class debian-org {
 			'mtr-tiny',
 			'nload',
 			'pciutils',
-			'rsyslog',
-			'sysklogd',
 		]:
 			ensure => installed,
 	}
@@ -131,8 +135,8 @@ class debian-org {
 		require => Package['debian.org']
 	}
 
-  # set mmap_min_addr to 4096 to mitigate
-  # Linux NULL-pointer dereference exploits
+	# set mmap_min_addr to 4096 to mitigate
+	# Linux NULL-pointer dereference exploits
 	site::sysctl { 'mmap_min_addr':
 		key   => 'vm.mmap_min_addr',
 		value => '4096',

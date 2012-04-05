@@ -6,6 +6,8 @@ class samhain {
 
 	service { 'samhain':
 		ensure => running
+		hasstatus => false,
+		pattern   => 'samhain',
 	}
 
 	file { '/etc/samhain/samhainrc':
