@@ -125,7 +125,7 @@ class ferm::per-host {
 				'/etc/ferm/conf.d/load_sip_conntrack.conf':
 					source => 'puppet:///modules/ferm/conntrack_sip.conf',
 					require => Package['ferm'],
-					notify  => Exec['ferm restart'];
+					notify  => Service['ferm'],
 			}
 			@ferm::rule { 'dsa-sip':
 				domain          => '(ip ip6)',
