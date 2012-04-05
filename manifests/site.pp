@@ -1,10 +1,8 @@
 Package {
-	noop    => true,
 	require => File['/etc/apt/apt.conf.d/local-recommends']
 }
 
 File {
-	noop   => true,
 	owner  => root,
 	group  => root,
 	mode   => '0444',
@@ -12,12 +10,10 @@ File {
 }
 
 Exec {
-	noop => true,
 	path => '/usr/bin:/usr/sbin:/bin:/sbin'
 }
 
 Service {
-	noop       => true,
 	hasrestart => true,
 	hasstatus  => true,
 }
