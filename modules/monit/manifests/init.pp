@@ -19,7 +19,7 @@ class monit {
 		notify => Exec['init q'],
 	}
 
-	file { [ '/etc/monit/', '/etc/monit/monit.d']:
+	file { '/etc/monit/':
 		ensure  => directory,
 		owner   => root,
 		group   => root,
@@ -27,6 +27,13 @@ class monit {
 		purge   => true,
 		notify  => Exec['monit stop'],
 		require => Package['monit'],
+	}
+	file { '/etc/monit/monit.d':
+		ensure  => directory,
+		owner   => root,
+		group   => root,
+		mode    => '0750',
+		purge   => true,
 	}
 	file { '/etc/monit/monitrc':
 		content => template('monit/monitrc.erb'),

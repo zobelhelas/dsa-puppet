@@ -36,6 +36,7 @@ class nagios::client inherits nagios {
 	}
 	file { '/etc/nagios/':
 		ensure  => directory,
+		mode    => '0755',
 		require => Package['nagios-nrpe-server'],
 		notify  => Service['nagios-nrpe-server'],
 	}

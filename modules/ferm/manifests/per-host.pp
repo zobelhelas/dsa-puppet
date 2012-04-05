@@ -238,7 +238,7 @@ REJECT reject-with icmp-admin-prohibited
 		default: {}
 	}
 
-	if $::rsyncd == true {
+	if $::rsyncd {
 		include ferm::rsync
 	}
 }
