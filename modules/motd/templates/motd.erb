@@ -22,6 +22,8 @@ if scope.lookupvar('site::nodeinfo').has_key?('nameinfo')
   purp += wrap(scope.lookupvar('site::nodeinfo')['nameinfo']) + "\n\n"
 end
 
+ninfo = scope.lookupvar('site::nodeinfo')
+
 purp += 'Welcome to ' + fqdn
 if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
   p = scope.lookupvar('site::nodeinfo')['ldap']['purpose'].clone()
@@ -44,7 +46,7 @@ if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
     extra += "\n"
     extra += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
     if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('admin')
-      extra += "Please contact #{nodeinfo['ldap']['admin'][0]} for install requests,\n"
+      extra += "Please contact #{ninfo['ldap']['admin'][0]} for install requests,\n"
       extra += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
     end
   end
@@ -67,11 +69,11 @@ end
 purp += "\n"
 
 if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('physicalHost'))
-  purp += wrap("This virtual server runs on the physical host #{nodeinfo['ldap']['physicalHost'][0]}, " +
-               "which is hosted at #{nodeinfo['hoster']['longname']}."
+  purp += wrap("This virtual server runs on the physical host #{ninfo['ldap']['physicalHost'][0]}, " +
+               "which is hosted at #{ninfo['hoster']['longname']}."
                )
 elsif scope.lookupvar('site::nodeinfo')['hoster']['name']
-  purp += wrap("This server is hosted at #{nodeinfo['hoster']['longname']}.")
+  purp += wrap("This server is hosted at #{ninfo['hoster']['longname']}.")
 end
 
 
