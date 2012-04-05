@@ -4,7 +4,7 @@ class syslog-ng {
 	}
 
 	service { 'syslog-ng':
-		ensure => running
+		ensure => running,
 		hasstatus => false,
 		pattern   => 'syslog-ng',
 	}

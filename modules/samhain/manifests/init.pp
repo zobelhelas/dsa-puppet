@@ -5,7 +5,7 @@ class samhain {
 	}
 
 	service { 'samhain':
-		ensure => running
+		ensure => running,
 		hasstatus => false,
 		pattern   => 'samhain',
 	}
