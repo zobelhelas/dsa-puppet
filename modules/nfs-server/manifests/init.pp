@@ -10,12 +10,10 @@ class nfs-server {
 	service { 'nfs-common':
 		hasstatus   => false,
 		status      => '/bin/true',
-		refreshonly => true,
 	}
 	service { 'nfs-kernel-server':
 		hasstatus   => false,
 		status      => '/bin/true',
-		refreshonly => true,
 	}
 
 	@ferm::rule { 'dsa-portmap':
