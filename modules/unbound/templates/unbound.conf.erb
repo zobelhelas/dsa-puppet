@@ -20,7 +20,7 @@ server:
 		out << "	access-control: ::0/0 refuse"
 		out << "	access-control: ::1 allow"
 		out << "	access-control: ::ffff:127.0.0.1 allow"
-		nodeinfo['hoster']['allow_dns_query'].each do |net|
+		scope.lookupvar('site::nodeinfo')['hoster']['allow_dns_query'].each do |net|
 			out << "	access-control: #{net} allow"
 		end
 	end
