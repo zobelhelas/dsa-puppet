@@ -41,8 +41,16 @@ define apache2::site (
 		}
 	}
 
-	file { "/etc/apache2/sites-enabled/${name}":
-		ensure => $link_target,
-		notify => Service['apache2'],
+	if $ensure == present {
+		file { "/etc/apache2/sites-enabled/${name}":
+			ensure => link,
+			target => $link_target,
+			notify => Service['apache2'],
+		}
+	} else {
+		file { "/etc/apache2/sites-enabled/${name}":
+			ensure => absent,
+			notify => Service['apache2'],
+		}
 	}
 }
