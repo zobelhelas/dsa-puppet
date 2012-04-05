@@ -22,7 +22,7 @@ class ferm {
 
 	if $v6ips {
 		$munin6_ips = split(regsubst($v6ips, '([^,]+)', 'ip_\1', 'G'), ',')
-		munin::check { $munin6_ips: script => 'ip_', }
+		munin::ipv6check { $munin6_ips: }
 	}
 
 	# get rid of old stuff

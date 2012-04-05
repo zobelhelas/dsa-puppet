@@ -1,5 +1,7 @@
 define munin::check($ensure = present, $script = undef) {
 
+	include munin
+
 	if $script {
 		$link = $script
 	} else {
