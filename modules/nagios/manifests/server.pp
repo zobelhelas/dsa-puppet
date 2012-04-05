@@ -5,7 +5,7 @@ class nagios::server {
 			'nagios-nrpe-plugin',
 			'nagios-plugins',
 			'nagios-images'
-		]
+		]:
 		ensure => installed
 	}
 
