@@ -15,9 +15,9 @@ module Puppet::Parser::Functions
       nodeinfo['hoster'] = function_whohosts(nodeinfo['ldap']['ipHostNumber'], "/etc/puppet/modules/debian-org/misc/hoster.yaml")
 
       nodeinfo['misc'] = {}
-      fqdn = lookupvar('fqdn')
+      fqdn = lookupvar('::fqdn')
       if fqdn and fqdn == host
-        v4ips = lookupvar('v4ips')
+        v4ips = lookupvar('::v4ips')
         if v4ips
           nodeinfo['misc']['v4addrs'] = v4ips.split(',')
 
@@ -26,7 +26,7 @@ module Puppet::Parser::Functions
           nodeinfo['misc']['natted'] = intersection.empty?
         end
 
-        v6ips = lookupvar('v6ips')
+        v6ips = lookupvar('::v6ips')
         if v6ips and v6ips != ""
           nodeinfo['misc']['v6addrs'] = v6ips.split(',')
         end
