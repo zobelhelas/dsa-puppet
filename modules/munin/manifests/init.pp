@@ -10,7 +10,7 @@ class munin {
 	}
 
 	file { '/etc/munin/munin-node.conf':
-		content => template('munin/munin-node.conf.erb')
+		content => template('munin/munin-node.conf.erb'),
 		require => Package['munin-node'],
 		notify  => Service['munin-node'],
 	}
