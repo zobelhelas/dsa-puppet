@@ -1,4 +1,5 @@
 puppet.conf
+.config-version
 modules/nagios/files/dsa-nagios
 modules/exim/files/certs/
 modules/ssl/files/
