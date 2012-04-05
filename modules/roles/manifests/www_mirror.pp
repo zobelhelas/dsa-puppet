@@ -4,8 +4,4 @@ class roles::www_mirror {
 		site   => 'www.debian.org',
 		config => 'puppet:///modules/roles/www_mirror/www.debian.org',
 	}
-
-	apache2::site { 'www.debian.org':
-		ensure => absent,
-	}
 }
