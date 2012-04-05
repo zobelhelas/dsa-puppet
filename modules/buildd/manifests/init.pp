@@ -1,6 +1,13 @@
 class buildd {
+
+	# sigh, sort this mess out, kids
+	if $::lsbdistcodename in [lenny,squeeze] {
+		package { 'schroot': ensure => installed }
+	} else {
+		package { 'schroot': ensure => held }
+	}
+
 	package { [
-			'schroot',
 			'sbuild',
 			'apt-transport-https',
 			'debootstrap',
