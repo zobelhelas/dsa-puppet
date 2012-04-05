@@ -30,7 +30,6 @@ node default {
 	include ssh
 	include debian-org
 	include monit
-	include apt-keys
 	include ntp
 	include ntpdate
 	include ssl
