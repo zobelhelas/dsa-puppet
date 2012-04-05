@@ -1,7 +1,8 @@
 class samhain {
 
 	package { 'samhain':
-		ensure => installed
+		ensure => installed,
+		noop   => true,
 	}
 
 	service { 'samhain':
