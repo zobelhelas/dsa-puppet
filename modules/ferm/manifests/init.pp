@@ -14,7 +14,6 @@ class ferm {
 	service { 'ferm':
 		hasstatus   => false,
 		status      => '/bin/true',
-		refreshonly => true,
 	}
 
 	$munin_ips = split(regsubst($v4ips, '([^,]+)', 'ip_\1', 'G'), ',')
