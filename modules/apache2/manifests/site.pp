@@ -1,6 +1,6 @@
 define apache2::site (
 	$config = undef,
-	$template = undef,
+	$template = false,
 	$ensure = present,
 	$site = undef
 ) {
@@ -25,19 +25,22 @@ define apache2::site (
 		default => err ( "Unknown ensure value: '$ensure'" ),
 	}
 
-	if $template {
-		file { $target:
-			ensure  => $ensure,
-			content => template($template),
-			require => Package['apache2'],
-			notify  => Service['apache2'],
+	case $template {
+		false: {
+			file { $target:
+				ensure  => $ensure,
+				source  => $config,
+				require => Package['apache2'],
+				notify  => Service['apache2'],
+			}
 		}
-	} else {
-		file { $target:
-			ensure  => $ensure,
-			source  => $config,
-			require => Package['apache2'],
-			notify  => Service['apache2'],
+		default: {
+			file { $target:
+				ensure  => $ensure,
+				content => template($template),
+				require => Package['apache2'],
+				notify  => Service['apache2'],
+			}
 		}
 	}
 
