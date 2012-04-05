@@ -8,7 +8,7 @@ define stunnel4::client($accept, $connecthost, $connectport) {
 		notify  => Exec["restart_stunnel_${name}"],
 	}
 
-	stunnel::generic { $name:
+	stunnel4::generic { $name:
 		client  => true,
 		verify  => 3,
 		cafile  => "/etc/stunnel/puppet-${name}-peer.pem",

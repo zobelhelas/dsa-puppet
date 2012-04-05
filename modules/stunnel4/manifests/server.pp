@@ -9,7 +9,7 @@ define stunnel4::server($accept, $connect, $local = '127.0.0.1') {
 
 	include stunnel4
 
-	stunnel::generic { $name:
+	stunnel4::generic { $name:
 		client  => false,
 		verify  => 2,
 		cafile  => '/etc/exim4/ssl/ca.crt',
