@@ -53,7 +53,7 @@ class dacs {
 		group   => www-data
 	}
 	file { '/etc/dacs/federations/debian.org/DEBIAN/acls/acl-noauth.0':
-		source  => [ 'puppet:///modules/dacs/per-host/$fqdn/acl-noauth.0',
+		source  => [ "puppet:///modules/dacs/per-host/${::fqdn}/acl-noauth.0",
 			'puppet:///modules/dacs/common/acl-noauth.0' ],
 		mode    => '0640',
 		owner   => root,
@@ -61,7 +61,7 @@ class dacs {
 		notify  => Exec['dacsacl']
 	}
 	file { '/etc/dacs/federations/debian.org/DEBIAN/acls/acl-private.0':
-		source  => [ 'puppet:///modules/dacs/per-host/$fqdn/acl-private.0',
+		source  => [ "puppet:///modules/dacs/per-host/${::fqdn}/acl-private.0",
 			'puppet:///modules/dacs/common/acl-private.0' ],
 		mode    => '0640',
 		owner   => root,
