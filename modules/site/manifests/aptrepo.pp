@@ -1,4 +1,4 @@
-class site::aptrepo ($key = undef, $template = undef, $config = undef, $ensure = present) {
+define site::aptrepo ($key = undef, $template = undef, $config = undef, $ensure = present) {
 
 	if $key {
 		exec { "apt-key-update-${name}":
