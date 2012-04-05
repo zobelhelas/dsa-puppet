@@ -2,14 +2,14 @@ define apache2::config($config = undef, $template = undef, $ensure = present) {
 
 	include apache2
 
-	if ! ($config or $template) {
-		err ( "No configuration found for ${name}" )
-	}
-
 	case $ensure {
-		present: {}
+		present: {
+			if ! ($config or $template) {
+				fail ( "No configuration found for ${name}" )
+			}
+		}
 		absent:  {}
-		default: { err ( "Unknown ensure value: '$ensure'" ) }
+		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
 	if $template {

@@ -12,6 +12,6 @@ define apache2::module ($ensure = present) {
 				notify => Service['apache2']
 			}
 		}
-		default: { err ( "Unknown ensure value: '$ensure'" ) }
+		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 }

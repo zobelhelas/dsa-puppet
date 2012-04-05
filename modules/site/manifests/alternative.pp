@@ -12,6 +12,6 @@ define site::alternative ($linkto, $ensure = present) {
 					unless => "[ $(update-alternatives --query ${name} | grep ^Value | awk '{print \$2}') != ${linkto} ]",
 			}
 		}
-		default: { err ( "Unknown ensure value: '$ensure'" ) }
+		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 }

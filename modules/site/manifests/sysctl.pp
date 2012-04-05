@@ -3,7 +3,7 @@ define site::sysctl ($key, $value, $ensure = present) {
 	case $ensure {
 		present: {}
 		absent:  {}
-		default: { err ( "Unknown ensure value: '$ensure'" ) }
+		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
 	file {

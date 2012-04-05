@@ -7,8 +7,10 @@ define apache2::site (
 
 	include apache2
 
-	if ! ($config or $template) {
-		err ( "No configuration found for ${name}" )
+	if $ensure == present {
+		if ! ($config or $template) {
+			fail ( "No configuration found for ${name}" )
+		}
 	}
 
 	if $site {
@@ -22,7 +24,7 @@ define apache2::site (
 	$link_target = $ensure ? {
 		present => $target,
 		absent  => absent,
-		default => err ( "Unknown ensure value: '$ensure'" ),
+		default => fail ( "Unknown ensure value: '$ensure'" ),
 	}
 
 	case $template {

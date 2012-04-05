@@ -16,11 +16,13 @@ define site::aptrepo ($key = undef, $template = undef, $config = undef, $ensure 
 	case $ensure {
 		present: {}
 		absent:  {}
-		default: { err ( "Unknown ensure value: '$ensure'" ) }
+		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
-	if ! ($template or $config) {
-		err ( "Can't find configuration for ${name}" )
+	if $ensure == present {
+		if ! ($config or $template) {
+			fail ( "No configuration found for ${name}" )
+		}
 	}
 
 	if $template {

@@ -11,7 +11,7 @@ define munin::check($ensure = present, $script = undef) {
 	$link_target = $ensure ? {
 		present => "/usr/share/munin/plugins/${link}",
 		absent  => absent,
-		default => err ( "Unknown ensure value: '$ensure'" ),
+		default => fail ( "Unknown ensure value: '$ensure'" ),
 	}
 
 	file { "/etc/munin/plugins/${name}":

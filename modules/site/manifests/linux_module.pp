@@ -13,9 +13,7 @@ define site::linux_module ($ensure = present) {
 					onlyif => "grep -q -F -x '${name}' /etc/modules",
 				}
 			}
-			default: {
-				err("invalid ensure value ${ensure}")
-			}
+			default: { fail ("invalid ensure value ${ensure}") }
 		}
 	}
 }
