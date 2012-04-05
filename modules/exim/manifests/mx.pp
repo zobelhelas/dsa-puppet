@@ -15,12 +15,12 @@ class exim::mx inherits exim {
 
 	@ferm::rule { 'dsa-exim-submission':
 		description => 'Allow SMTP',
-		rule        => '&SERVICE_RANGE(tcp, submission, \$SMTP_SOURCES)'
+		rule        => '&SERVICE_RANGE(tcp, submission, $SMTP_SOURCES)'
 	}
 	@ferm::rule { 'dsa-exim-v6-submission':
 		description => 'Allow SMTP',
 		domain      => 'ip6',
-		rule        => '&SERVICE_RANGE(tcp, submission, \$SMTP_V6_SOURCES)',
+		rule        => '&SERVICE_RANGE(tcp, submission, $SMTP_V6_SOURCES)',
 	}
 
 }

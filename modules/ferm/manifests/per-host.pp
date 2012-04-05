@@ -47,12 +47,12 @@ class ferm::per-host {
 		handel: {
 			@ferm::rule { 'dsa-puppet':
 				description     => 'Allow puppet access',
-				rule            => '&SERVICE_RANGE(tcp, 8140, \$HOST_DEBIAN_V4)'
+				rule            => '&SERVICE_RANGE(tcp, 8140, $HOST_DEBIAN_V4)'
 			}
 			@ferm::rule { 'dsa-puppet-v6':
 				domain          => 'ip6',
 				description     => 'Allow puppet access',
-				rule            => '&SERVICE_RANGE(tcp, 8140, \$HOST_DEBIAN_V6)'
+				rule            => '&SERVICE_RANGE(tcp, 8140, $HOST_DEBIAN_V6)'
 			}
 		}
 		powell: {
@@ -69,12 +69,12 @@ class ferm::per-host {
 		heininen,lotti: {
 			@ferm::rule { 'dsa-syslog':
 				description     => 'Allow syslog access',
-				rule            => '&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V4)'
+				rule            => '&SERVICE_RANGE(tcp, 5140, $HOST_DEBIAN_V4)'
 			}
 			@ferm::rule { 'dsa-syslog-v6':
 				domain          => 'ip6',
 				description     => 'Allow syslog access',
-				rule            => '&SERVICE_RANGE(tcp, 5140, \$HOST_DEBIAN_V6)'
+				rule            => '&SERVICE_RANGE(tcp, 5140, $HOST_DEBIAN_V6)'
 			}
 		}
 		kaufmann: {

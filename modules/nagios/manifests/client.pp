@@ -15,13 +15,13 @@ class nagios::client inherits nagios {
 
 	@ferm::rule { 'dsa-nagios-v4':
 		description => 'Allow nrpe from nagios master',
-		rule        => 'proto tcp mod state state (NEW) dport (5666) @subchain \'nagios\' { saddr (\$HOST_NAGIOS_V4) ACCEPT; }',
+		rule        => 'proto tcp mod state state (NEW) dport (5666) @subchain \'nagios\' { saddr ($HOST_NAGIOS_V4) ACCEPT; }',
 		notarule    => true,
 	}
 	@ferm::rule { 'dsa-nagios-v6':
 		description => 'Allow nrpe from nagios master',
 		domain      => 'ip6',
-		rule        => 'proto tcp mod state state (NEW) dport (5666) @subchain \'nagios\' { saddr (\$HOST_NAGIOS_V6) ACCEPT; }',
+		rule        => 'proto tcp mod state state (NEW) dport (5666) @subchain \'nagios\' { saddr ($HOST_NAGIOS_V6) ACCEPT; }',
 		notarule    => true,
 	}
 

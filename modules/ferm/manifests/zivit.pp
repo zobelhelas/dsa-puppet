@@ -9,7 +9,7 @@ class ferm::zivit {
 	}
 	@ferm::rule { 'dsa-time':
 		description => 'Allow time access',
-		rule        => '&SERVICE_RANGE(tcp, time, \$HOST_NAGIOS_V4)'
+		rule        => '&SERVICE_RANGE(tcp, time, $HOST_NAGIOS_V4)'
 	}
 }
 

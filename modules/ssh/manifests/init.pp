@@ -10,12 +10,12 @@ class ssh {
 
 	@ferm::rule { 'dsa-ssh':
 		description => 'Allow SSH from DSA',
-		rule        => '&SERVICE_RANGE(tcp, ssh, \$SSH_SOURCES)'
+		rule        => '&SERVICE_RANGE(tcp, ssh, $SSH_SOURCES)'
 	}
 	@ferm::rule { 'dsa-ssh-v6':
 		description => 'Allow SSH from DSA',
 		domain      => 'ip6',
-		rule        => '&SERVICE_RANGE(tcp, ssh, \$SSH_V6_SOURCES)'
+		rule        => '&SERVICE_RANGE(tcp, ssh, $SSH_V6_SOURCES)'
 	}
 
 	file { '/etc/ssh/ssh_config':
