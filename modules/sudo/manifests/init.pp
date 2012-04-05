@@ -5,7 +5,7 @@ class sudo {
 	}
 
 	file { '/etc/pam.d/sudo':
-		source  => 'puppet:///modules/sudo/common/pam',
+		source  => 'puppet:///modules/sudo/pam',
 		require => Package['sudo'],
 	}
 
