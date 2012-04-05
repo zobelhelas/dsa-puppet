@@ -20,7 +20,7 @@ class entropykey::provider {
 		require => File['/etc/entropykey/ekeyd.conf'],
 	}
 
-	stunnel4::stunnel_server { 'ekeyd':
+	stunnel4::server { 'ekeyd':
 		accept  => 18888,
 		connect => '127.0.0.1:8888',
 	}
