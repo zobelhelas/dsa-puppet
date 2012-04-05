@@ -1,19 +1,23 @@
 Package {
+	noop    => true,
 	require => File['/etc/apt/apt.conf.d/local-recommends']
 }
 
 File {
-	owner   => root,
-	group   => root,
-	mode    => '0444',
-	ensure  => file,
+	noop   => true,
+	owner  => root,
+	group  => root,
+	mode   => '0444',
+	ensure => file,
 }
 
 Exec {
+	noop => true,
 	path => '/usr/bin:/usr/sbin:/bin:/sbin'
 }
 
 Service {
+	noop       => true,
 	hasrestart => true,
 	hasstatus  => true,
 }
