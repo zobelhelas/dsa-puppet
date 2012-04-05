@@ -8,6 +8,5 @@ class site {
 	service { 'procps':
 		hasstatus   => false,
 		status      => '/bin/true',
-		refreshonly => true,
 	}
 }
