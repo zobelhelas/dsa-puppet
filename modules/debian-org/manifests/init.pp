@@ -73,6 +73,10 @@ class debian-org {
 		}
 	}
 
+	site::aptrepo { 'debian.org':
+		ensure => absent,
+	}
+
 	site::aptrepo { 'db.debian.org':
 		template => 'debian-org/etc/apt/sources.list.d/debian.org.list.erb',
 		key      => 'puppet:///modules/debian-org/db.debian.org.asc',
