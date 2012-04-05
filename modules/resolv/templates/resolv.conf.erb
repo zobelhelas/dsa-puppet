@@ -12,9 +12,9 @@ if %w{draghi liszt}.include?(hostname)
   nameservers << "127.0.0.1"
 end
 
-nameservers += nodeinfo['hoster']['nameservers'] if nodeinfo['hoster']['nameservers']
-searchpaths += nodeinfo['hoster']['searchpaths'] if nodeinfo['hoster']['searchpaths']
-options += nodeinfo['hoster']['resolvoptions'] if nodeinfo['hoster']['resolvoptions']
+nameservers += scope.lookupvar('site::nodeinfo')['hoster']['nameservers'] if scope.lookupvar('site::nodeinfo')['hoster']['nameservers']
+searchpaths += scope.lookupvar('site::nodeinfo')['hoster']['searchpaths'] if scope.lookupvar('site::nodeinfo')['hoster']['searchpaths']
+options += scope.lookupvar('site::nodeinfo')['hoster']['resolvoptions'] if scope.lookupvar('site::nodeinfo')['hoster']['resolvoptions']
 
 searchpaths << "debian.org"
 

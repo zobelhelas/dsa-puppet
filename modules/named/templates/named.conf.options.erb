@@ -6,9 +6,9 @@
 acl Nagios {
 <%=
   str = ''
-  localinfo.keys.sort.each do |node|
-      if localinfo[node]['nagiosmaster']
-          allnodeinfo[node]['ipHostNumber'].each do |ip|
+  scope.lookupvar('site::localinfo').keys.sort.each do |node|
+      if scope.lookupvar('site::localinfo')[node]['nagiosmaster']
+          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
               str += "\t" + ip + "/32;\n"
           end
       end

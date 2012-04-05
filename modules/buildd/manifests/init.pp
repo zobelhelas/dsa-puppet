@@ -1,51 +1,49 @@
 class buildd {
-    package {
-        "schroot": ensure => installed;
-        "sbuild": ensure => installed;
-        "apt-transport-https": ensure => installed;
-        "debootstrap": ensure => installed;
-        "dupload": ensure => installed;
-    }
 
-    file {
-        "/etc/apt/preferences.d/buildd":
-            ensure  => absent
-            ;
+	# sigh, sort this mess out, kids
+	if $::lsbdistcodename in [lenny,squeeze] {
+		package { 'schroot': ensure => installed }
+	} else {
+		package { 'schroot': ensure => held }
+	}
 
-        "/etc/apt/sources.list.d/buildd.list":
-             content => template("buildd/etc/apt/sources.list.d/buildd.list.erb"),
-             require => Package["apt-transport-https"],
-             notify  => Exec["apt-get update"],
-             ;
+	package { [
+			'sbuild',
+			'apt-transport-https',
+			'debootstrap',
+			'dupload'
+		]:
+			ensure => installed
+	}
 
-        "/etc/apt/trusted-keys.d/buildd.debian.org.asc":
-             source  => "puppet:///modules/buildd/buildd.debian.org.asc",
-             mode    => 664,
-             notify  => Exec["apt-keys-update"],
-             ;
-        "/etc/schroot/mount-defaults":
-             content => template("buildd/etc/schroot/mount-defaults.erb"),
-             require => Package["sbuild"]
-             ;
-        "/etc/cron.d/dsa-buildd":
-             source => "puppet:///modules/buildd/cron.d-dsa-buildd",
-             require => Package["debian.org"]
-             ;
-        "/etc/dupload.conf":
-             source => "puppet:///modules/buildd/dupload.conf",
-             require => Package["dupload"]
-             ;
-        "/etc/default/schroot":
-             source => "puppet:///modules/buildd/default-schroot",
-             require => Package["schroot"]
-             ;
-    }
+	site::linux_module { 'dm_snapshot': }
 
-    case $kernel {
-        Linux: { linux_module { "dm_snapshot": ensure => present; } }
-    }
+	site::aptrepo { 'buildd':
+		ensure => absent,
+	}
+	site::aptrepo { 'buildd.debian.org':
+		template => 'buildd/etc/apt/sources.list.d/buildd.list.erb',
+		key      => 'puppet:///modules/buildd/buildd.debian.org.asc',
+	}
+
+	file { '/etc/apt/preferences.d/buildd':
+		ensure  => absent
+	}
+	file { '/etc/schroot/mount-defaults':
+		content => template('buildd/etc/schroot/mount-defaults.erb'),
+		require => Package['sbuild'],
+	}
+	file { '/etc/cron.d/dsa-buildd':
+		source  => 'puppet:///modules/buildd/cron.d-dsa-buildd',
+		require => Package['debian.org']
+	}
+	file { '/etc/dupload.conf':
+		source  => 'puppet:///modules/buildd/dupload.conf',
+		require => Package['dupload'],
+	}
+	file { '/etc/default/schroot':
+		source  => 'puppet:///modules/buildd/default-schroot',
+		require => Package['schroot']
+	}
 
 }
-# vim:set et:
-# vim:set sts=4 ts=4:
-# vim:set shiftwidth=4:

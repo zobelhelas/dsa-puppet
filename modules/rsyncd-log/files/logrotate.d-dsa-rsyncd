@@ -10,5 +10,5 @@
         compress
         delaycompress
         notifempty
-        create 640 root archvsync
+        create 644 root root
 }

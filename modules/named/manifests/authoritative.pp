@@ -1,20 +1,15 @@
 class named::authoritative inherits named {
-    file {
-        "/etc/bind/named.conf.debian-zones":
-            source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.debian-zones",
-                         "puppet:///modules/named/common/named.conf.debian-zones" ],
-            notify  => Exec["bind9 reload"];
-        "/etc/bind/named.conf.options":
-            content => template("named/named.conf.options.erb"),
-            notify  => Exec["bind9 reload"];
-    }
-    file { "/etc/bind/named.conf.shared-keys":
-        mode    => 640,
-        owner   => root,
-        group   => bind,
-    }
+	file { '/etc/bind/named.conf.debian-zones':
+		source  => 'puppet:///modules/named/common/named.conf.debian-zones',
+		notify  => Service['bind9'],
+	}
+	file { '/etc/bind/named.conf.options':
+		content => template('named/named.conf.options.erb'),
+		notify  => Service['bind9'],
+	}
+	file { '/etc/bind/named.conf.shared-keys':
+		mode    => '0640',
+		owner   => root,
+		group   => bind,
+	}
 }
-
-# vim:set et:
-# vim:set sts=4 ts=4:
-# vim:set shiftwidth=4:

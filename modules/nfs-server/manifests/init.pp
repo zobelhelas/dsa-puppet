@@ -1,31 +1,58 @@
 class nfs-server {
 
-    include ferm::nfs-server
+	package { [
+			'nfs-common',
+			'nfs-kernel-server'
+		]:
+			ensure => installed
+	}
 
-    package {
-        nfs-common: ensure => installed;
-        nfs-kernel-server: ensure => installed;
-    }
+	service { 'nfs-common':
+		hasstatus   => false,
+		status      => '/bin/true',
+	}
+	service { 'nfs-kernel-server':
+		hasstatus   => false,
+		status      => '/bin/true',
+	}
 
-    file {
-        "/etc/default/nfs-common":
-            source  => "puppet:///modules/nfs-server/nfs-common.default",
-            require => Package["nfs-common"],
-            notify  => Exec["nfs-common restart"];
-        "/etc/default/nfs-kernel-server":
-            source  => "puppet:///modules/nfs-server/nfs-kernel-server.default",
-            require => Package["nfs-kernel-server"],
-            notify  => Exec["nfs-kernel-server restart"];
-        "/etc/modprobe.d/lockd.local":
-            source  => "puppet:///modules/nfs-server/lockd.local.modprobe";
-    }
+	@ferm::rule { 'dsa-portmap':
+		domain      => '(ip ip6)',
+		description => 'Allow portmap access',
+		rule        => '&TCP_UDP_SERVICE(111)'
+	}
+	@ferm::rule { 'dsa-nfs':
+		domain      => '(ip ip6)',
+		description => 'Allow nfsd access',
+		rule        => '&TCP_UDP_SERVICE(2049)'
+	}
+	@ferm::rule { 'dsa-status':
+		domain      => '(ip ip6)',
+		description => 'Allow statd access',
+		rule        => '&TCP_UDP_SERVICE(10000)'
+	}
+	@ferm::rule { 'dsa-mountd':
+		domain      => '(ip ip6)',
+		description => 'Allow mountd access',
+		rule        => '&TCP_UDP_SERVICE(10002)'
+	}
+	@ferm::rule { 'dsa-lockd':
+		domain      => '(ip ip6)',
+		description => 'Allow lockd access',
+		rule        => '&TCP_UDP_SERVICE(10003)'
+	}
 
-    exec {
-        "nfs-common restart":
-            path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-            refreshonly => true;
-        "nfs-kernel-server restart":
-            path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-            refreshonly => true;
-    }
+	file { '/etc/default/nfs-common':
+		source  => 'puppet:///modules/nfs-server/nfs-common.default',
+		require => Package['nfs-common'],
+		notify  => Service['nfs-common'],
+	}
+	file { '/etc/default/nfs-kernel-server':
+		source  => 'puppet:///modules/nfs-server/nfs-kernel-server.default',
+		require => Package['nfs-kernel-server'],
+		notify  => Service['nfs-kernel-server'],
+	}
+	file { '/etc/modprobe.d/lockd.local':
+		source => 'puppet:///modules/nfs-server/lockd.local.modprobe'
+	}
 }

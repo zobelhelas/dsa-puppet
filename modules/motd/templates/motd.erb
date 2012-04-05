@@ -18,49 +18,68 @@ def markup(l)
 end
 
 purp = ''
-if nodeinfo.has_key?('nameinfo')
-  purp += wrap(nodeinfo['nameinfo']) + "\n\n"
+if scope.lookupvar('site::nodeinfo').has_key?('nameinfo')
+  purp += wrap(scope.lookupvar('site::nodeinfo')['nameinfo']) + "\n\n"
 end
 
+ninfo = scope.lookupvar('site::nodeinfo')
+
 purp += 'Welcome to ' + fqdn
-if (nodeinfo['ldap'].has_key?('purpose'))
-  if nodeinfo['ldap']['purpose'].include?('buildd')
+if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
+  p = scope.lookupvar('site::nodeinfo')['ldap']['purpose'].clone()
+  extra = ''
+
+  if p.delete('buildd')
     purp += ", the Debian "
-    if nodeinfo['ldap'].has_key?('architecture')
-      purp += nodeinfo['ldap']['architecture'][0]
+    if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture')
+      purp += scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0]
     end
-    purp += " build daemon\n"
-  elsif nodeinfo['ldap']['purpose'].include?('porterbox')
+    purp += " build daemon"
+  end
+
+  if p.delete('porterbox')
     purp += ", the Debian "
-    if nodeinfo['ldap'].has_key?('architecture')
-      purp += nodeinfo['ldap']['architecture'][0]
+    if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture')
+      purp += scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0]
     end
-    purp += " porterbox\n"
-    purp += "\n"
-    purp += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
-    if nodeinfo['ldap'].has_key?('admin')
-      purp += "Please contact #{nodeinfo['ldap']['admin'][0]} for install requests,\n"
-      purp += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
+    purp += " porterbox"
+    extra += "\n"
+    extra += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
+    if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('admin')
+      extra += "Please contact #{ninfo['ldap']['admin'][0]} for install requests,\n"
+      extra += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
     end
-  else
+  end
+
+  if p.size() > 0
     purp += ", used for the following services:\n"
-    nodeinfo['ldap']['purpose'].sort.each do |l|
+    scope.lookupvar('site::nodeinfo')['ldap']['purpose'].sort.each do |l|
       l = markup(l)
       purp += "\t" + l + "\n"
     end
+  else
+    purp += ".\n"
   end
+
+  purp += extra
 else
-  purp += "\n"
+  purp += ".\n"
 end
 
-if (nodeinfo['ldap'].has_key?('physicalHost'))
-  purp += "\nThis virtual server runs on the physical host #{nodeinfo['ldap']['physicalHost'][0]}.\n"
+purp += "\n"
+
+if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('physicalHost'))
+  purp += wrap("This virtual server runs on the physical host #{ninfo['ldap']['physicalHost'][0]}, " +
+               "which is hosted at #{ninfo['hoster']['longname']}."
+               )
+elsif scope.lookupvar('site::nodeinfo')['hoster']['name']
+  purp += wrap("This server is hosted at #{ninfo['hoster']['longname']}.")
 end
 
 
 vms = []
-allnodeinfo.keys.sort.each do |node|
-  if allnodeinfo[node]['physicalHost'] and allnodeinfo[node]['physicalHost'].include?(fqdn)
+scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
+  if scope.lookupvar('site::allnodeinfo')[node]['physicalHost'] and scope.lookupvar('site::allnodeinfo')[node]['physicalHost'].include?(fqdn)
     vms << node
   end
 end
@@ -68,9 +87,9 @@ unless vms.empty?
   purp += "\nThe following virtual machines run on this system:\n"
   vms.each do |node|
     purp += "\t- #{node}"
-    if allnodeinfo[node]['purpose']
+    if scope.lookupvar('site::allnodeinfo')[node]['purpose']
       purp += ":\n"
-      allnodeinfo[node]['purpose'].sort.each do |l|
+      scope.lookupvar('site::allnodeinfo')[node]['purpose'].sort.each do |l|
         l = markup(l)
         purp += "\t    " + l + "\n"
       end
@@ -81,8 +100,8 @@ unless vms.empty?
 end
 
 
-if nodeinfo.has_key?('footer')
-  purp += "\n" + wrap(nodeinfo['footer']) + "\n"
+if scope.lookupvar('site::nodeinfo').has_key?('footer')
+  purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
 end
 purp
 -%>

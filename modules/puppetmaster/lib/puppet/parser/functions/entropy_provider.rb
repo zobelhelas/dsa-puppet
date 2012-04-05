@@ -6,8 +6,8 @@ module Puppet::Parser::Functions
       fqdn = args[0]
       nodeinfo = args[1]
 
-      localinfo = lookupvar('localinfo')
-      allnodeinfo = lookupvar('allnodeinfo')
+      localinfo = lookupvar('site::localinfo')
+      allnodeinfo = lookupvar('site::allnodeinfo')
 
       raise Puppet::ParseError, "entropy_provider: Cannot learn fqdn" unless fqdn
       raise Puppet::ParseError, "entropy_provider: Cannot learn nodeinfo" unless nodeinfo

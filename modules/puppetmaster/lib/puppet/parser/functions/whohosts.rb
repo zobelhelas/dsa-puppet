@@ -30,6 +30,9 @@ module Puppet::Parser::Functions
         end
       end
     end
+    if not ans['longname']
+      ans['longname'] = ans['name']
+    end
     return ans
   end
 end

@@ -3,6 +3,8 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% if lsbdistcodename != 'n/a' %>
+<% if lsbdistcodename == 'lenny' %>
+deb	http://archive.debian.org/debian-security/	lenny/updates     main contrib non-free
+<% elsif lsbdistcodename != 'n/a' %>
 deb     http://security.debian.org/     <%= lsbdistcodename %>/updates    main contrib non-free
 <% end %>

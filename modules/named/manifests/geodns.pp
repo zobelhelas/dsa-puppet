@@ -1,75 +1,51 @@
 class named::geodns inherits named {
-    activate_munin_check {
-        "bind_views": script => bind;
-    }
+	munin::check { 'bind_views':
+		script => bind
+	}
 
-    file {
-        "/etc/bind/named.conf.options":
-            content => template("named/named.conf.options.erb"),
-            notify  => Exec["bind9 reload"];
-        "/etc/apt/sources.list.d/geoip.list":
-            content => template("debian-org/etc/apt/sources.list.d/geoip.list.erb"),
-            notify  => Exec["apt-get update"],
-            ;
-        "/etc/bind/named.conf.local":
-            source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.local",
-                         "puppet:///modules/named/common/named.conf.local" ],
-            require => Package["bind9"],
-            notify  => Exec["bind9 restart"],
-            owner   => root,
-            group   => root,
-            ;
-        "/etc/bind/named.conf.acl":
-            source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.acl",
-                         "puppet:///modules/named/common/named.conf.acl" ],
-            require => Package["bind9"],
-            notify  => Exec["bind9 restart"],
-            owner   => root,
-            group   => root,
-            ;
-        "/etc/bind/geodns":
-            ensure  => directory,
-            owner   => root,
-            group   => root,
-            mode    => 755,
-            ;
-        "/etc/bind/geodns/zonefiles":
-            ensure  => directory,
-            owner   => geodnssync,
-            group   => geodnssync,
-            mode    => 755,
-            ;
-        "/etc/bind/geodns/named.conf.geo":
-            source  => [ "puppet:///modules/named/per-host/$fqdn/named.conf.geo",
-                         "puppet:///modules/named/common/named.conf.geo" ],
-            require => Package["bind9"],
-            notify  => Exec["bind9 restart"],
-            owner   => root,
-            group   => root,
-            ;
-        "/etc/bind/geodns/trigger":
-            source  => [ "puppet:///modules/named/per-host/$fqdn/trigger",
-                         "puppet:///modules/named/common/trigger" ],
-            owner   => root,
-            group   => root,
-            mode    => 555,
-            ;
-        "/etc/ssh/userkeys/geodnssync":
-            source  => [ "puppet:///modules/named/per-host/$fqdn/authorized_keys",
-                         "puppet:///modules/named/common/authorized_keys" ],
-            owner   => root,
-            group   => geodnssync,
-            mode    => 440,
-            ;
-        "/etc/cron.d/dsa-boot-geodnssync":
-            source  => [ "puppet:///modules/named/per-host/$fqdn/cron-geo",
-                         "puppet:///modules/named/common/cron-geo" ],
-            owner   => root,
-            group   => root,
-            ;
-    }
+	site::aptrepo { 'geoip':
+		template => 'debian-org/etc/apt/sources.list.d/geoip.list.erb',
+	}
+
+	file { '/etc/bind/':
+		ensure  => directory,
+		group  => bind,
+		mode   => '2755',
+		require => Package['bind9'],
+		notify  => Service['bind9'],
+	}
+	file { '/etc/bind/geodns':
+		ensure => directory,
+		mode   => '0755',
+	}
+	file { '/etc/bind/named.conf.options':
+		content => template('named/named.conf.options.erb'),
+	}
+	file { '/etc/bind/named.conf.local':
+		source => 'puppet:///modules/named/common/named.conf.local',
+	}
+	file { '/etc/bind/named.conf.acl':
+		source => 'puppet:///modules/named/common/named.conf.acl',
+	}
+	file { '/etc/bind/geodns/zonefiles':
+		ensure => directory,
+		owner  => geodnssync,
+		group  => geodnssync,
+		mode   => '2755',
+	}
+	file { '/etc/bind/geodns/named.conf.geo':
+		source => 'puppet:///modules/named/common/named.conf.geo',
+	}
+	file { '/etc/bind/geodns/trigger':
+		mode   => '0555',
+		source => 'puppet:///modules/named/common/trigger',
+	}
+	file { '/etc/ssh/userkeys/geodnssync':
+		source => 'puppet:///modules/named/common/authorized_keys',
+		group  => geodnssync,
+		mode   => '0440',
+	}
+	file { '/etc/cron.d/dsa-boot-geodnssync':
+		source => 'puppet:///modules/named/common/cron-geo'
+	}
 }
-
-# vim:set et:
-# vim:set sts=4 ts=4:
-# vim:set shiftwidth=4:

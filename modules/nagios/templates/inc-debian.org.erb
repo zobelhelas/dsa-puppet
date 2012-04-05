@@ -5,9 +5,9 @@
 
 <%=
 nagii = []
-localinfo.keys.sort.each do |node|
-  if localinfo[node]['nagiosmaster'] or localinfo[node]['extranrpeclient']
-    nagii << allnodeinfo[node]['ipHostNumber']
+scope.lookupvar('site::localinfo').keys.sort.each do |node|
+  if scope.lookupvar('site::localinfo')[node]['nagiosmaster'] or scope.lookupvar('site::localinfo')[node]['extranrpeclient']
+    nagii << scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber']
   end
 end
 

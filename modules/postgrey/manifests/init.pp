@@ -1,19 +1,17 @@
 class postgrey {
-    package { "postgrey": ensure => installed; }
 
-    file {
-        "/etc/default/postgrey":
-          source  => "puppet:///modules/postgrey/default",
-          require => Package["postgrey"],
-          notify  => Exec["postgrey restart"]
-          ;
-    }
+	package { 'postgrey':
+		ensure => installed
+	}
 
-    exec { "postgrey restart":
-        path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-        refreshonly => true,
-    }
+	service { 'postgrey':
+		ensure  => running,
+		require => Package['postgrey']
+	}
+
+	file { '/etc/default/postgrey':
+		source  => 'puppet:///modules/postgrey/default',
+		require => Package['postgrey'],
+		notify  => Service['postgrey']
+	}
 }
-# vim:set et:
-# vim:set sts=4 ts=4:
-# vim:set shiftwidth=4:

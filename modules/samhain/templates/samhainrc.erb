@@ -67,7 +67,7 @@
 # RedefIgnoreNone=(no default)
 # RedefUser0=(no default)
 # RedefUser1=(no default)
-<% if nodeinfo['buildd'] -%>
+<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
 IgnoreMissing=/etc/lvm/archive/.*.vg
 <% end -%>
 
@@ -133,11 +133,12 @@ file=/etc/nagios
 file=/etc/nagios/nrpe.d
 file=/etc/nagios/obsolete-packages-ignore.d
 file=/etc/bind/geodns
-<% if nodeinfo['nagiosmaster'] -%>
+<% if scope.lookupvar('site::nodeinfo')['nagiosmaster'] -%>
 file=/etc/nagios3/puppetconf.d
 <% end -%>
 file=/etc/puppet
 file=/etc/cron.d
+file=/etc/cron.weekly
 file=/usr/lib/nagios/plugins
 file=/usr/sbin
 file=/etc/monit
@@ -150,7 +151,7 @@ file=/etc/ferm/
 file=/etc/ferm/conf.d
 file=/etc/ferm/dsa.d
 file=/etc/rc.local
-<% unless lsbdistcodename == 'lenny' %>
+<% unless scope.lookupvar('::lsbdistcodename') == 'lenny' %>
 file=/etc/unbound
 <% end -%>
 file=/etc/dsa
@@ -159,9 +160,10 @@ file=/etc/dsa
 ##
 ## for these files, changes in signature, timestamps, and size are ignored 
 ##
-file=/var/run/utmp
 file=/etc/motd
 
+# is on tmpfs, ignore.
+#file=/var/run/utmp
 
 
 #####################################################################
@@ -216,7 +218,7 @@ file=/var/log/syslog
 ## This file might be created or removed by the system sometimes.
 ##
 file=/etc/resolv.conf
-<% if nodeinfo['buildd'] -%>
+<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
 file=/etc/dupload.conf
 <% end -%>
 file=/etc/resolv.conf.pcmcia.save
@@ -265,7 +267,7 @@ file=/etc/ssh/sshd_config
 file=/etc/dsa/cron.ignore.dsa-puppet-stuff
 <%=
 out=""
-if nodeinfo['heavy_exim']
+if scope.lookupvar('site::nodeinfo')['heavy_exim']
   out = '
 file=/etc/exim4/surbl_whitelist.txt
 file=/etc/exim4/exim_surbl.pl
@@ -322,7 +324,9 @@ file=/etc/apt/preferences
 file=/etc/apt/sources.list.d/volatile.list
 file=/etc/apt/sources.list.d/security.list
 file=/etc/apt/sources.list.d/buildd.list
+file=/etc/apt/sources.list.d/buildd.debian.org.list
 file=/etc/apt/sources.list.d/debian.org.list
+file=/etc/apt/sources.list.d/db.debian.org.list
 file=/etc/apt/sources.list.d/debian.restricted.list
 file=/etc/apt/sources.list.d/debian.list
 file=/etc/apt/sources.list.d/backports.org.list
@@ -372,7 +376,8 @@ file=/etc/monit/monit.d/01puppet
 file=/etc/monit/monit.d/00debian.org
 file=/etc/cron.d/dsa-puppet-stuff
 file=/etc/cron.d/dsa-buildd
-<% if nodeinfo['nagiosmaster'] -%>
+file=/etc/cron.weekly/stunnel-ekey-restart
+<% if scope.lookupvar('site::nodeinfo')['nagiosmaster'] -%>
 file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
 file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
 file=/etc/nagios3/puppetconf.d/auto-services.cfg
@@ -382,10 +387,10 @@ file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg
 file=/etc/nagios3/puppetconf.d/auto-servicegroups.cfg
 file=/etc/nagios3/puppetconf.d/contacts.cfg
 <% end -%>
-<% if nodeinfo['muninmaster'] -%>
+<% if scope.lookupvar('site::nodeinfo')['muninmaster'] -%>
 file=/etc/munin/munin.conf
 <% end -%>
-<% if nodeinfo['puppetmaster'] -%>
+<% if scope.lookupvar('site::nodeinfo')['puppetmaster'] -%>
 dir=8/etc/puppet
 <% end -%>  
 <% if classes.include?('named::geodns') -%>
@@ -395,10 +400,10 @@ dir=1/etc/bind/geodns
 dir=1/etc/bind
 file=/etc/bind/named.conf.debian-zones
 <% end -%>
-<% if fqdn == "dijkstra.debian.org" -%>
+<% if scope.lookupvar('::fqdn') == "dijkstra.debian.org" -%>
 dir=4/etc/dsa-kvm
 <% end -%>
-<% if nodeinfo['buildd'] -%>
+<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
 dir=3/etc/lvm
 <% end -%>
 dir=1/etc/ferm/dsa.d
@@ -406,7 +411,7 @@ file=/etc/ferm/conf.d/me.conf
 file=/etc/ferm/conf.d/defs.conf
 file=/etc/ferm/ferm.conf
 dir=2/etc/ssl/debian
-<% unless lsbdistcodename == 'lenny' %>
+<% unless scope.lookupvar('::lsbdistcodename') == 'lenny' %>
 file=/etc/unbound/unbound.conf
 <% end -%>
 

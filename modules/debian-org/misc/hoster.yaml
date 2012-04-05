@@ -20,24 +20,12 @@ accumu:
     - 2001:06B0:000E::/48
   searchpaths: [debprivate-accumu.debian.org]
   nameservers: [130.239.18.145, 130.239.1.90, 130.239.4.100]
-# Australian National University (ana.edu.au)
-ana:
-  netrange:
-    - 150.203.164.0/24
-    - 2001:388:1034:2900::64
-  nameservers_break_dnssec: true
-  nameservers: [150.203.1.10, 150.203.164.10, 150.203.164.9]
 arm:
   netrange:
     - 217.140.96.0/22
   nameservers_break_dnssec: true
   nameservers: [158.43.128.1, 217.140.108.113]
   entropy_provider_hoster: sil
-br:
-  # University Federal do Parana (.br)
-  netrange:
-    - 200.17.192.0/19
-  nameservers: [200.236.31.1, 200.17.202.3]
 brainfood:
   netrange:
     - 70.103.162.0/24
@@ -49,32 +37,33 @@ brown:
     - 128.148.0.0/16
   # all hosts have their own recursor
   nameservers: []
-conova:
+br:
+  # rename to c3sl
+  # University Federal do Parana (.br)
   netrange:
-    - 217.196.149.224/28
-  nameservers: [217.196.144.129, 217.196.144.229]
+    - 200.17.192.0/19
+  nameservers: [200.236.31.1, 200.17.202.3]
 carnet:
   netrange:
     - 193.198.0.0/16
   nameservers_break_dnssec: true
   nameservers: [161.53.160.3, 161.53.123.3]
+ana:
+  # rename to cecsit
+  netrange:
+    - 150.203.164.0/24
+    - 2001:388:1034:2900::64
+  nameservers_break_dnssec: true
+  nameservers: [150.203.1.10, 150.203.164.10, 150.203.164.9]
+conova:
+  netrange:
+    - 217.196.149.224/28
+  nameservers: [217.196.144.129, 217.196.144.229]
 csail:
-  # mit
   netrange:
     - 128.31.0.0/24
   searchpaths: [debprivate-csail.debian.org]
   nameservers: [128.30.2.24, 128.30.2.25, 128.30.0.125]
-cst:
-  netrange:
-    - 213.188.99.208/28
-  nameservers: [213.157.0.194, 213.157.0.193]
-darmstadt:
-  netrange:
-    - 82.195.75.64/26
-    - 82.195.75.32/28
-    - 2001:41b8:202:deb::/64
-  searchpaths: [debprivate-darmstadt.debian.org]
-  nameservers: [82.195.66.249, 217.198.242.225]
 dgi:
   netrange:
     - 93.94.130.128/26
@@ -109,10 +98,20 @@ isc:
   #nameservers: [149.20.64.2, 204.152.184.67]
   # sometimes very slow?
   nameservers: []
-nmmn:
+uni-karlsruhe:
+  # rename to karlsruhe
   netrange:
-    - 217.114.76.80/29
-  nameservers: [217.114.70.53, 217.114.77.53]
+    - 129.143.160.0/29
+    - 2001:7c0:400:1337::/64
+  nameservers: []
+'man-da':
+  netrange:
+    - 82.195.75.64/26
+    - 82.195.75.32/28
+    - 2001:41b8:202:deb::/64
+  searchpaths: [debprivate-darmstadt.debian.org]
+  nameservers: [82.195.66.249, 217.198.242.225]
+# add marist
 osuosl:
   netrange:
     - 140.211.166.0/25
@@ -132,6 +131,13 @@ rapidswitch:
   netrange:
     - 193.201.200.0/23
   nameservers: [87.117.198.200, 87.117.237.100, 87.117.196.200]
+scanplus:
+  netrange:
+    - 212.211.132.0/26
+    - 212.211.132.248/29
+    - 2001:a78::/64
+  nameservers_break_dnssec: true
+  nameservers: [212.211.132.4, 212.75.32.4]
 sil:
   netrange:
     - 86.59.118.144/28
@@ -141,22 +147,6 @@ sil:
   #nameservers: [213.129.232.1, 213.129.226.2]
   nameservers: [86.59.118.147, 86.59.118.148]
   allow_dns_query: [86.59.118.144/28, 2001:858:2:2::/64]
-scanplus:
-  netrange:
-    - 212.211.132.0/26
-    - 212.211.132.248/29
-    - 2001:a78::/64
-  nameservers_break_dnssec: true
-  nameservers: [212.211.132.4, 212.75.32.4]
-snowman:
-  netrange:
-    - 72.66.115.54
-  nameservers: [10.10.1.1]
-telegrafxs4all:
-  netrange:
-    - 82.94.249.152/29
-  nameservers_break_dnssec: true
-  nameservers: [194.109.6.66]
 ubcece:
   netrange:
     - 137.82.84.64/27
@@ -181,6 +171,7 @@ utwente:
   #nameservers: [130.89.2.2, 130.89.2.3]
   nameservers: []
 xs4all:
+  # should be deleted
   netrange:
     - 194.109.137.216/29
     - 2001:888:2000:12::/64
@@ -194,6 +185,4 @@ zivit:
   nameservers_break_dnssec: true
   nameservers: [80.245.147.53, 80.245.147.54]
 
-# vim:set et:
-# vim:set sts=2 ts=2:
-# vim:set shiftwidth=2:
+# vim:set et sts=2 ts=2 sw=2:
