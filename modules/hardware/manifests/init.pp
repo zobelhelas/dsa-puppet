@@ -1,6 +1,6 @@
 class hardware {
 	if $::smartarraycontroller {
-		include debian::proliant
+		include debian-org::proliant
 	}
 
 	if $::productname == 'PowerEdge 2850' {
