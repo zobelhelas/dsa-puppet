@@ -3,7 +3,7 @@ define site::alternative ($linkto, $ensure = present) {
 		present: {
 			if $::lsbdistcodename == 'lenny' {
 				exec { "/usr/sbin/update-alternatives --set ${name} ${linkto}":
-					unless => "[ $(basename $(readlink -f /etc/alternatives/${name})) = ${linkto} ]",
+					unless => "[ $(readlink -f /etc/alternatives/${name}) = ${linkto} ]",
 				}
 			} else {
 				exec { "/usr/sbin/update-alternatives --set ${name} ${linkto}":
@@ -14,7 +14,7 @@ define site::alternative ($linkto, $ensure = present) {
 		absent: {
 			if $::lsbdistcodename == 'lenny' {
 				exec { "/usr/sbin/update-alternatives --remove ${name} ${linkto}":
-					unless => "[ $(basename $(readlink -f /etc/alternatives/${name})) != ${linkto} ]",
+					unless => "[ $(readlink -f /etc/alternatives/${name}) != ${linkto} ]",
 				}
 			} else {
 				exec { "/usr/sbin/update-alternatives --remove ${name} ${linkto}":
