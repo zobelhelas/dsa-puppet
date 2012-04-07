@@ -64,12 +64,17 @@ class debian-org {
 		site::aptrepo { 'security':
 			template => 'debian-org/etc/apt/sources.list.d/security.list.erb',
 		}
-		site::aptrepo { 'backports.org':
-			template => 'debian-org/etc/apt/sources.list.d/backports.org.list.erb',
+		site::aptrepo { 'backports.debian.org':
+			template => 'debian-org/etc/apt/sources.list.d/backports.debian.org.list.erb',
 		}
 		site::aptrepo { 'volatile':
 			template => 'debian-org/etc/apt/sources.list.d/volatile.list.erb',
 		}
+	}
+	site::aptrepo { 'backports.org':
+		ensure => absent,
+		keyid => '16BA136C',
+		key => 'puppet:///modules/debian-org/backports.org.asc',
 	}
 
 	site::aptrepo { 'debian.org':
