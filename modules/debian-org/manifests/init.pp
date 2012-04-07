@@ -66,7 +66,6 @@ class debian-org {
 		}
 		site::aptrepo { 'backports.org':
 			template => 'debian-org/etc/apt/sources.list.d/backports.org.list.erb',
-			key      => 'puppet:///modules/debian-org/backports.org.asc',
 		}
 		site::aptrepo { 'volatile':
 			template => 'debian-org/etc/apt/sources.list.d/volatile.list.erb',
