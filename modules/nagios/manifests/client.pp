@@ -42,16 +42,20 @@ class nagios::client inherits nagios {
 	}
 	file { '/etc/nagios/nrpe.cfg':
 		content => template('nagios/nrpe.cfg.erb'),
+		notify  => Service['nagios-nrpe-server'],
 	}
 	file { '/etc/nagios/nrpe.d':
 		ensure  => directory,
 		mode    => '0755',
+		notify  => Service['nagios-nrpe-server'],
 	}
 	file { '/etc/nagios/nrpe.d/debianorg.cfg':
 		content => template('nagios/inc-debian.org.erb'),
+		notify  => Service['nagios-nrpe-server'],
 	}
 	file { '/etc/nagios/nrpe.d/nrpe_dsa.cfg':
 		source  => 'puppet:///modules/nagios/dsa-nagios/generated/nrpe_dsa.cfg',
+		notify  => Service['nagios-nrpe-server'],
 	}
 	file { '/etc/nagios/obsolete-packages-ignore':
 		source  => 'puppet:///modules/nagios/common/obsolete-packages-ignore',
