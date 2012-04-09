@@ -36,7 +36,8 @@ class nagios::client inherits nagios {
 	}
 	file { '/etc/nagios/':
 		ensure  => directory,
-		mode    => '0755',
+		recurse => remote,
+		source  => 'puppet:///files/empty/',
 		require => Package['nagios-nrpe-server'],
 		notify  => Service['nagios-nrpe-server'],
 	}
@@ -46,7 +47,8 @@ class nagios::client inherits nagios {
 	}
 	file { '/etc/nagios/nrpe.d':
 		ensure  => directory,
-		mode    => '0755',
+		recurse => remote,
+		source  => 'puppet:///files/empty/',
 		notify  => Service['nagios-nrpe-server'],
 	}
 	file { '/etc/nagios/nrpe.d/debianorg.cfg':
