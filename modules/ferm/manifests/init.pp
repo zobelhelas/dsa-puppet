@@ -55,15 +55,19 @@ class ferm {
 	}
 	file { '/etc/ferm/ferm.conf':
 		source  => 'puppet:///modules/ferm/ferm.conf',
+		notify  => Service['ferm'],
 	}
 	file { '/etc/ferm/conf.d/me.conf':
 		content => template('ferm/me.conf.erb'),
+		notify  => Service['ferm'],
 	}
 	file { '/etc/ferm/conf.d/defs.conf':
 		content => template('ferm/defs.conf.erb'),
+		notify  => Service['ferm'],
 	}
 	file { '/etc/ferm/conf.d/interfaces.conf':
 		content => template('ferm/interfaces.conf.erb'),
+		notify  => Service['ferm'],
 	}
 	file { '/etc/logrotate.d/ulogd':
 		source  => 'puppet:///modules/ferm/logrotate-ulogd',
@@ -74,6 +78,7 @@ class ferm {
 	if getfromhash($site::nodeinfo, 'buildd') {
 		file { '/etc/ferm/conf.d/load_ftp_conntrack.conf':
 			source => 'puppet:///modules/ferm/conntrack_ftp.conf',
+			notify  => Service['ferm'],
 		}
 	}
 
