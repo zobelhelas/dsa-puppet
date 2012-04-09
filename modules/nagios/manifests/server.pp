@@ -16,18 +16,21 @@ class nagios::server {
 	file { '/etc/nagios-plugins/config':
 		ensure  => directory,
 		recurse => remote,
+		source  => 'puppet:///files/empty/',
 		require => Package['nagios3'],
 		notify  => Service['nagios3'],
 	}
 	file { '/etc/nagios3':
 		ensure  => directory,
 		recurse => remote,
+		source  => 'puppet:///files/empty/',
 		require => Package['nagios3'],
 		notify  => Service['nagios3'],
 	}
 	file { '/etc/nagios3/puppetconf.d':
 		ensure => directory,
 		recurse => remote,
+		source  => 'puppet:///files/empty/',
 		require => Package['nagios3'],
 		notify  => Service['nagios3'],
 	}
