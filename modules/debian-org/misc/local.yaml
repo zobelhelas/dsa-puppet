@@ -198,7 +198,6 @@ host_settings:
     - senfl.debian.org
     - santoro.debian.org
   'apache2_ftp-upcoming_mirror':
-    - kassia.debian.org
     - klecker.debian.org
     - merikanto.debian.org
     - rietz.debian.org
