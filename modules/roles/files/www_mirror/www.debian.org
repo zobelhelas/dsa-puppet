@@ -215,3 +215,12 @@
    RewriteRule ^/doc/([^/]+)/?(.*)? /doc/manuals/$1/$2 [L,R=301]
 
 </VirtualHost>
+
+
+<VirtualHost *:80>
+   ServerName volatile.debian.org
+   ServerAdmin webmaster@debian.org
+   ErrorLog /var/log/apache2/volatile.debian.org-error.log
+   CustomLog /var/log/apache2/volatile.debian.org-access.log combined
+   RedirectMatch permanent . http://www.debian.org/volatile/
+</VirtualHost>
