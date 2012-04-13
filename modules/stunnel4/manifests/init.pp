@@ -18,7 +18,7 @@ class stunnel4 {
 	}
 
 	exec { 'enable_stunnel4':
-		command => 'sed -i -e \'s/^ENABLED=/#&/; \$a ENABLED=1 # added by puppet\' /etc/default/stunnel4',
+		command => 'sed -i -e \'s/^ENABLED=/#&/; $a ENABLED=1 # added by puppet\' /etc/default/stunnel4',
 		unless  => 'grep -q \'^ENABLED=1\' /etc/default/stunnel4',
 		require => Package['stunnel4'],
 	}
