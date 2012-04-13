@@ -127,7 +127,6 @@ nameinfo:
   tristano.debian.org: Gerardo Tristano (July 1st, 1955 - ongoing)
   tye.debian.org: Christopher Tye (c.1505 - 1573)
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
-  valente.debian.org: Vincenzo Valente (February 21st, 1855 - September 6th, 1921)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
   vivaldi.debian.org: Antonio Lucio Vivaldi (March 4th, 1678 - July 28th, 1741)
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21st, 1844 - March 12th, 1937)
@@ -180,7 +179,6 @@ host_settings:
     - ravel.debian.org
     - reger.debian.org
     - spohr.debian.org
-    - valente.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org
