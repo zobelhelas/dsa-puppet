@@ -64,6 +64,7 @@ nameinfo:
   lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
+  lilburn.debian.org: Douglas Gordon Lilburn (November 2nd, 1915 - June 6th, 2001)
   lindberg.debian.org: Magnus Lindberg (June 27th, 1958)
   liszt.debian.org: Franz Liszt (October 22nd, 1811 - July 31st, 1886)
   locke.debian.org: Matthew Locke (ca. 1621 - 1677)
@@ -464,6 +465,7 @@ host_settings:
     lamb.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
+    lilburn.debian.org: mailout.debian.org
     lindberg.debian.org: mailout.debian.org
     lobos.debian.org: mailout.debian.org
     locke.debian.org: mailout.debian.org
