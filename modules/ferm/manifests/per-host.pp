@@ -202,6 +202,7 @@ def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI);
 policy ACCEPT;
 mod state state (ESTABLISHED RELATED) ACCEPT;
 interface br0 outerface br0 ACCEPT;
+interface br1 outerface br1 ACCEPT;
 
 interface br2 outerface br0 jump from-kfreebsd;
 interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
