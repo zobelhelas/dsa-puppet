@@ -6,13 +6,15 @@ define site::sysctl ($key, $value, $ensure = present) {
 		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
-	file {
-		"/etc/sysctl.d/${name}.conf":
-			ensure  => $ensure,
-			owner   => root,
-			group   => root,
-			mode    => '0644',
-			content => "${key} = ${value}\n",
-			notify  => Service['procps']
+	if $::kernel == 'Linux' {
+		file {
+			"/etc/sysctl.d/${name}.conf":
+				ensure  => $ensure,
+				owner   => root,
+				group   => root,
+				mode    => '0644',
+				content => "${key} = ${value}\n",
+				notify  => Service['procps']
+		}
 	}
 }

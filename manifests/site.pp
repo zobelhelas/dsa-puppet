@@ -34,6 +34,10 @@ node default {
 	include nagios::client
 	include resolv
 
+	if $::hostname in [pasquini,tristano] {
+		include ganeti2
+	}
+
 	if $::hostname in [finzi,fano,fasch,field] {
 		include kfreebsd
 	}

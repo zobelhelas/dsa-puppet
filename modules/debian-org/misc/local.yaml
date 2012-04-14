@@ -64,6 +64,7 @@ nameinfo:
   lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
+  lilburn.debian.org: Douglas Gordon Lilburn (November 2nd, 1915 - June 6th, 2001)
   lindberg.debian.org: Magnus Lindberg (June 27th, 1958)
   liszt.debian.org: Franz Liszt (October 22nd, 1811 - July 31st, 1886)
   locke.debian.org: Matthew Locke (ca. 1621 - 1677)
@@ -81,7 +82,8 @@ nameinfo:
   paer.debian.org: Ferdinando Paër (July 1st, 1771 - May 3rd, 1839)
   paganini.debian.org: Niccolò Paganini (October 27th, 1782 - May 27th, 1840)
   parry.debian.org: Sir Charles Hubert Hastings Parry, 1st Baronet (February 27th, 1848 – October 7th, 1918)
-  partch.debian.org: Harry Partch (June 24th, 1901 – September 3rd, 1974)
+  partch.debian.org: Harry Partch (June 24th, 1901 - September 3rd, 1974)
+  pasquini.debian.org: Bernardo Pasquini (December 7th, 1637 - November 22nd, 1710)
   penalosa.debian.org: Francisco de Peñalosa (c. 1470 - April 1st, 1528)
   pergolesi.debian.org: Giovanni Battista Pergolesi (January 4th, 1710 - March 16th or 17th, 1736)
   peri.debian.org: Jacopo Peri (August 20th, 1561 - August 12th, 1633)
@@ -123,9 +125,9 @@ nameinfo:
   tartini.debian.org: Giuseppe Tartini (April 8th, 1692 - February 26th, 1770)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
   traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (March 30th, 1727 - April 6th, 1779)
+  tristano.debian.org: Gerardo Tristano (July 1st, 1955 - ongoing)
   tye.debian.org: Christopher Tye (c.1505 - 1573)
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
-  valente.debian.org: Vincenzo Valente (February 21st, 1855 - September 6th, 1921)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
   vivaldi.debian.org: Antonio Lucio Vivaldi (March 4th, 1678 - July 28th, 1741)
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21st, 1844 - March 12th, 1937)
@@ -178,7 +180,6 @@ host_settings:
     - ravel.debian.org
     - reger.debian.org
     - spohr.debian.org
-    - valente.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org
@@ -196,7 +197,6 @@ host_settings:
     - senfl.debian.org
     - santoro.debian.org
   'apache2_ftp-upcoming_mirror':
-    - kassia.debian.org
     - klecker.debian.org
     - merikanto.debian.org
     - rietz.debian.org
@@ -279,126 +279,6 @@ host_settings:
     - zandonai.debian.org
     - zappa.debian.org
     - zemlinsky.debian.org
-  #wheezy:
-  #  - harris.debian.org
-  #  - hartmann.debian.org
-  #  - hasse.debian.org
-  #  - hebden.debian.org
-  #  - henze.debian.org
-  #  - hoiby.debian.org
-  #squeeze:
-  #  - abel.debian.org
-  #  - agricola.debian.org
-  #  - alain.debian.org
-  #  - alkman.debian.org
-  #  - alwyn.debian.org
-  #  - antheil.debian.org
-  #  - arcadelt.debian.org
-  #  - argento.debian.org
-  #  - arne.debian.org
-  #  - arnold.debian.org
-  #  - ball.debian.org
-  #  - barber.debian.org
-  #  - beethoven.debian.org
-  #  - bellini.debian.org
-  #  - berlioz.debian.org
-  #  - biber.debian.org
-  #  - brahms.debian.org
-  #  - busoni.debian.org
-  #  - caballero.debian.org
-  #  - chopin.debian.org
-  #  - cilea.debian.org
-  #  - danzi.debian.org
-  #  - diamond.debian.org
-  #  - dijkstra.debian.org
-  #  - draghi.debian.org
-  #  - duarte.debian.org
-  #  - dukas.debian.org
-  #  - eder.debian.org
-  #  - elgar.debian.org
-  #  - englund.debian.org
-  #  - eysler.debian.org
-  #  - fano.debian.org
-  #  - fasch.debian.org
-  #  - field.debian.org
-  #  - finzi.debian.org
-  #  - franck.debian.org
-  #  - geo1.debian.org
-  #  - geo2.debian.org
-  #  - geo3.debian.org
-  #  - glinka.debian.org
-  #  - gluck.debian.org
-  #  - gombert.debian.org
-  #  - grieg.debian.org
-  #  - handel.debian.org
-  #  - heininen.debian.org
-  #  - holter.debian.org
-  #  - jenkins.debian.org
-  #  - kassia.debian.org
-  #  - kaufmann.debian.org
-  #  - kokkonen.debian.org
-  #  - krenek.debian.org
-  #  - lamb.debian.org
-  #  - lebrun.debian.org
-  #  - lindberg.debian.org
-  #  - lobos.debian.org
-  #  - locke.debian.org
-  #  - lotti.debian.org
-  #  - luchesi.debian.org
-  #  - master.debian.org
-  #  - merikanto.debian.org
-  #  - merulo.debian.org
-  #  - morricone.debian.org
-  #  - mundy.debian.org
-  #  - murphy.debian.org
-  #  - nono.debian.org
-  #  - orff.debian.org
-  #  - paganini.debian.org
-  #  - pergolesi.debian.org
-  #  - pettersson.debian.org
-  #  - piatti.debian.org
-  #  - porpora.debian.org
-  #  - poulenc.debian.org
-  #  - praetorius.debian.org
-  #  - quantz.debian.org
-  #  - rautavaara.debian.org
-  #  - ravel.debian.org
-  #  - reger.debian.org
-  #  - rem.debian.org
-  #  - respighi.debian.org
-  #  - ries.debian.org
-  #  - rietz.debian.org
-  #  - rore.debian.org
-  #  - rossini.debian.org
-  #  - saens.debian.org
-  #  - salieri.debian.org
-  #  - samosa.debian.org
-  #  - santoro.debian.org
-  #  - scelsi.debian.org
-  #  - schein.debian.org
-  #  - schroeder.debian.org
-  #  - schumann.debian.org
-  #  - senfl.debian.org
-  #  - sibelius.debian.org
-  #  - smetana.debian.org
-  #  - soler.debian.org
-  #  - sperger.debian.org
-  #  - spohr.debian.org
-  #  - spontini.debian.org
-  #  - stabile.debian.org
-  #  - steffani.debian.org
-  #  - tchaikovsky.debian.org
-  #  - traetta.debian.org
-  #  - tye.debian.org
-  #  - unger.debian.org
-  #  - villa.debian.org
-  #  - vitry.debian.org
-  #  - vivaldi.debian.org
-  #  - widor.debian.org
-  #  - wieck.debian.org
-  #  - wolkenstein.debian.org
-  #  - zandonai.debian.org
-  #  - zelenka.debian.org
   smarthost:
     abel.debian.org: mailout.debian.org
     agricola.debian.org: mailout.debian.org
@@ -465,6 +345,7 @@ host_settings:
     lamb.debian.org: mailout.debian.org
     lebrun.debian.org: mailout.debian.org
     leisner.debian.org: mailout.debian.org
+    lilburn.debian.org: mailout.debian.org
     lindberg.debian.org: mailout.debian.org
     lobos.debian.org: mailout.debian.org
     locke.debian.org: mailout.debian.org
@@ -484,6 +365,7 @@ host_settings:
     parry.debian.org: mailout.debian.org
     partch.debian.org: mailout.debian.org
     paganini.debian.org: mailout.debian.org
+    pasquini.debian.org: mailout.debian.org
     penalosa.debian.org: mailout.debian.org
     pergolesi.debian.org: mailout.debian.org
     peri.debian.org: mailout.debian.org
@@ -519,6 +401,7 @@ host_settings:
     steffani.debian.org: mailout.debian.org
     tchaikovsky.debian.org: mailout.debian.org
     traetta.debian.org: mailout.debian.org
+    tristano.debian.org: mailout.debian.org
     unger.debian.org: mailout.debian.org
     villa.debian.org: mailout.debian.org
     vitry.debian.org: mailout.debian.org
