@@ -68,6 +68,7 @@ class debian-org {
 			template => 'debian-org/etc/apt/sources.list.d/backports.debian.org.list.erb',
 		}
 		site::aptrepo { 'volatile':
+			noop     => true,
 			template => 'debian-org/etc/apt/sources.list.d/volatile.list.erb',
 		}
 	}
