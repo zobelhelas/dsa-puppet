@@ -111,7 +111,10 @@ uni-karlsruhe:
     - 2001:41b8:202:deb::/64
   searchpaths: [debprivate-darmstadt.debian.org]
   nameservers: [82.195.66.249, 217.198.242.225]
-# add marist
+marist:
+  netrange:
+    - 148.100.96.0/25
+  nameservers: []
 osuosl:
   netrange:
     - 140.211.166.0/25
