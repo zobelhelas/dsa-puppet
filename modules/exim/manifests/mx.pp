@@ -23,4 +23,7 @@ class exim::mx inherits exim {
 		rule        => '&SERVICE_RANGE(tcp, submission, $SMTP_V6_SOURCES)',
 	}
 
+	package { 'nagios-plugins-standard':
+		ensure => installed,
+	}
 }
