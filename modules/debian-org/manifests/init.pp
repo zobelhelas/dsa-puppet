@@ -86,6 +86,19 @@ class debian-org {
 		key      => 'puppet:///modules/debian-org/db.debian.org.asc',
 	}
 
+	file { '/etc/facter':
+		ensure  => directory,
+		purge   => true,
+		force   => true,
+		recurse => true,
+		source  => 'puppet:///files/empty/',
+	}
+	file { '/etc/facter/facts.d':
+		ensure => directory,
+	}
+	file { '/etc/facter/facts.d/debian_facts.yaml':
+		content => template('debian-org/debian_facts.yaml.erb')
+	}
 	file { '/etc/apt/preferences':
 		source => 'puppet:///modules/debian-org/apt.preferences',
 	}
