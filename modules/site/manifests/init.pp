@@ -5,7 +5,7 @@ class site {
 	$allnodeinfo = allnodeinfo('sshRSAHostKey ipHostNumber', 'purpose mXRecord physicalHost purpose')
 	notice( sprintf('hoster for %s is %s', $::fqdn, getfromhash($nodeinfo, 'hoster', 'name') ) )
 	notice( sprintf('facter hoster for %s is %s', $::fqdn, $::hoster) )
-	notice( sprintf('hiera resolver for %s is %s', $::fqdn, hiera('nameservers') ) )
+	notice( sprintf('hiera resolver for %s is %s', $::fqdn, join_spc(hiera('nameservers') ) ) )
 
 	service { 'procps':
 		hasstatus   => false,
