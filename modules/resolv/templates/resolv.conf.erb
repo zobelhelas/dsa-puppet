@@ -12,7 +12,7 @@ if %w{draghi liszt}.include?(hostname)
   nameservers << "127.0.0.1"
 end
 
-nameservers += scope.lookupvar('site::nodeinfo')['hoster']['nameservers'] if scope.lookupvar('site::nodeinfo')['hoster']['nameservers']
+nameservers += scope.lookupvar('ns')
 searchpaths += scope.lookupvar('site::nodeinfo')['hoster']['searchpaths'] if scope.lookupvar('site::nodeinfo')['hoster']['searchpaths']
 options += scope.lookupvar('site::nodeinfo')['hoster']['resolvoptions'] if scope.lookupvar('site::nodeinfo')['hoster']['resolvoptions']
 
@@ -31,7 +31,7 @@ else
     nameservers << '8.8.4.4'
   end
 
-  nameservers.each do |ns|
+  nameservers.to_a.flatten.each do |ns|
     resolvconf += "nameserver " + ns + "\n"
   end
 end
