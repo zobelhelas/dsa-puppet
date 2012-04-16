@@ -1,6 +1,6 @@
 define ferm::module (
-	$module,
 	$hookstage='pre',
+	$module=$title,
 	$ensure=present
 ) {
 	file { "/etc/ferm/conf.d/load_${module}.conf":
