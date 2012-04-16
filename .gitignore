@@ -1,6 +1,8 @@
 puppet.conf
 .config-version
+hiera.yaml
 modules/nagios/files/dsa-nagios
 modules/exim/files/certs/
 modules/ssl/files/
 modules/dacs/files/private
+modules/hiera-puppet
