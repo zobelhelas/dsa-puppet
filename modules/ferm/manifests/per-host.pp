@@ -121,12 +121,9 @@ class ferm::per-host {
 			}
 		}
 		cilea: {
-			file {
-				'/etc/ferm/conf.d/load_sip_conntrack.conf':
-					source => 'puppet:///modules/ferm/conntrack_sip.conf',
-					require => Package['ferm'],
-					notify  => Service['ferm'],
-			}
+			ferm::module { 'nf_conntrack_sip': }
+			ferm::module { 'nf_conntrack_h323': }
+
 			@ferm::rule { 'dsa-sip':
 				domain          => '(ip ip6)',
 				description     => 'Allow sip access',

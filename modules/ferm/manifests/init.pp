@@ -83,11 +83,4 @@ class ferm {
 		require => Package['debian.org'],
 	}
 
-	if getfromhash($site::nodeinfo, 'buildd') {
-		file { '/etc/ferm/conf.d/load_ftp_conntrack.conf':
-			source => 'puppet:///modules/ferm/conntrack_ftp.conf',
-			notify  => Service['ferm'],
-		}
-	}
-
 }

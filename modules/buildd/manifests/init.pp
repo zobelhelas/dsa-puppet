@@ -17,6 +17,7 @@ class buildd {
 	}
 
 	site::linux_module { 'dm_snapshot': }
+	ferm::module { 'ftp_conntrack': }
 
 	site::aptrepo { 'buildd':
 		ensure => absent,
