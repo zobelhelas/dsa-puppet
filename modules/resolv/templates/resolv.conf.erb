@@ -6,19 +6,19 @@
 <%=
 nameservers = []
 searchpaths = []
-options = []
+options     = []
+resolvconf  = ''
 
 if %w{draghi liszt}.include?(hostname)
   nameservers << "127.0.0.1"
 end
 
 nameservers += scope.lookupvar('ns')
-options += scope.lookupvar('site::nodeinfo')['hoster']['resolvoptions'] if scope.lookupvar('site::nodeinfo')['hoster']['resolvoptions']
-
 searchpaths += scope.lookupvar('sp')
+options     += scope.lookupvar('opts')
+
 searchpaths << "debian.org"
 
-resolvconf  = ''
 resolvconf += "search " + searchpaths.to_a.flatten.join(" ") + "\n"
 
 if has_variable?('unbound') and unbound and unbound == "true"
@@ -36,7 +36,7 @@ else
   end
 end
 
-options.each do |opt|
+options.to_a.flatten.each do |opt|
   resolvconf += "options " + opt + "\n"
 end
 
