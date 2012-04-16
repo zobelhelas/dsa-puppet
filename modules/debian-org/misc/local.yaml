@@ -336,6 +336,7 @@ host_settings:
     rossini.debian.org: mailout.debian.org
     saens.debian.org: mailout.debian.org
     salieri.debian.org: mailout.debian.org
+    samosa.debian.org: mailout.debian.org
     santoro.debian.org: mailout.debian.org
     scelsi.debian.org: mailout.debian.org
     schein.debian.org: mailout.debian.org
