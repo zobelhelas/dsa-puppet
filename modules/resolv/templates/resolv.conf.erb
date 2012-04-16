@@ -13,13 +13,13 @@ if %w{draghi liszt}.include?(hostname)
 end
 
 nameservers += scope.lookupvar('ns')
-searchpaths += scope.lookupvar('site::nodeinfo')['hoster']['searchpaths'] if scope.lookupvar('site::nodeinfo')['hoster']['searchpaths']
 options += scope.lookupvar('site::nodeinfo')['hoster']['resolvoptions'] if scope.lookupvar('site::nodeinfo')['hoster']['resolvoptions']
 
 searchpaths << "debian.org"
+searchpaths += scope.lookupvar('sp')
 
 resolvconf  = ''
-resolvconf += "search " + searchpaths.join(" ") + "\n"
+resolvconf += "search " + searchpaths.to_a.flatten.join(" ") + "\n"
 
 if has_variable?('unbound') and unbound and unbound == "true"
   resolvconf += "nameserver 127.0.0.1\n"

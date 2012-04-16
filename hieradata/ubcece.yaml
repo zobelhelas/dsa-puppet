@@ -6,3 +6,5 @@ nameservers:
   - 2607:f8f0:610:4000:218:feff:fe76:2ed0
   - 206.12.19.21
   - 2607:f8f0:610:4000:21c:c4ff:fee5:e890
+searchpaths:
+  - debprivate-ubc.debian.org

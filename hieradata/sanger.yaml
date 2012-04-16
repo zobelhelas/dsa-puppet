@@ -2,3 +2,5 @@
 nameservers:
   - 193.62.202.28
   - 193.62.202.29
+searchpaths:
+  - debprivate-sanger.debian.org
