@@ -54,6 +54,10 @@ class ferm {
 	file { '/etc/ferm/conf.d':
 		ensure => directory,
 		mode   => '0555',
+		purge   => true,
+		force   => true,
+		recurse => true,
+		source  => 'puppet:///files/empty/',
 	}
 	file { '/etc/default/ferm':
 		source  => 'puppet:///modules/ferm/ferm.default',
