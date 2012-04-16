@@ -1,3 +1,11 @@
+# = Class: motd
+#
+# This class configures a sensible motd
+#
+# == Sample Usage:
+#
+#   include motd
+#
 class motd {
 
 	file { '/etc/motd.tail':

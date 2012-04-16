@@ -1,3 +1,11 @@
+# = Class: dacs
+#
+# This class installs and configures dacs for web auth
+#
+# == Sample Usage:
+#
+#   include dacs
+#
 class dacs {
 	package { 'dacs':
 		ensure => installed,

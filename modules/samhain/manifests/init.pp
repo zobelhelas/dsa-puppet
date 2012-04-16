@@ -1,3 +1,11 @@
+# = Class: samhain
+#
+# This class installs and configures samhain
+#
+# == Sample Usage:
+#
+#   include samhain
+#
 class samhain {
 
 	package { 'samhain':

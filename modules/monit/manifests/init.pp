@@ -1,3 +1,11 @@
+# = Class: monit
+#
+# This class installs and configures monit
+#
+# == Sample Usage:
+#
+#   include monit
+#
 class monit {
 
 	package { 'monit':

@@ -1,3 +1,11 @@
+# = Class: unbound
+#
+# This class installs and configures unbound
+#
+# == Sample Usage:
+#
+#   include unbound
+#
 class unbound {
 
 	package { 'unbound':

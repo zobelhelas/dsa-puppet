@@ -1,3 +1,11 @@
+# = Class: ferm
+#
+# This class installs ferm and sets up rules
+#
+# == Sample Usage:
+#
+#   include ferm
+#
 class ferm {
 	# realize (i.e. enable) all @ferm::rule virtual resources
 	Ferm::Rule <| |>
