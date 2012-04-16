@@ -1,6 +1,5 @@
 define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config = undef, $ensure = present) {
 
-
 	case $ensure {
 		present: {
 			if $key {
@@ -32,7 +31,7 @@ define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config =
 				}
 			} elsif $keyid {
 				exec { "apt-key-del-${keyid}":
-					command     => "apt-key del ${keyid}",
+					command => "apt-key del ${keyid}",
 				}
 			}
 		}
@@ -43,19 +42,15 @@ define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config =
 		if ! ($config or $template) {
 			fail ( "No configuration found for ${name}" )
 		}
+		if ($config and $template) {
+			fail ( "Can't specify both config and template for ${name}" )
+		}
 	}
 
-	if $template {
-		file { "/etc/apt/sources.list.d/${name}.list":
-			ensure  => $ensure,
-			content => template($template),
-			notify => Exec['apt-get update'],
-		}
-	} else {
-		file { "/etc/apt/sources.list.d/${name}.list":
-			ensure => $ensure,
-			source => $config,
-			notify => Exec['apt-get update'],
-		}
+	file { "/etc/apt/sources.list.d/${name}.list":
+		ensure  => $ensure,
+		content => template($template),
+		source  => $config,
+		notify  => Exec['apt-get update'],
 	}
 }
