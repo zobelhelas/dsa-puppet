@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
 
       if lookupvar('::mta') == 'exim4'
         unless nodeinfo['heavy_exim']
-          nodeinfo['smarthost'] = true
+          nodeinfo['smarthost'] = 'mailout.debian.org'
         end
       end
 
