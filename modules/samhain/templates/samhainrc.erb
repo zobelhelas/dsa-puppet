@@ -155,6 +155,14 @@ file=/etc/rc.local
 file=/etc/unbound
 <% end -%>
 file=/etc/dsa
+<% if scope.lookupvar('site::nodeinfo')['puppetmaster'] %>
+
+# Damn you rails apps and your shoddy packaging
+file=/usr/share/puppet-dashboard/public/stylesheets
+file=/usr/share/puppet-dashboard/public/javascripts
+file=/usr/share/puppet-dashboard/public/stylesheets/all.css
+file=/usr/share/puppet-dashboard/public/javascripts/all.js
+<% end -%>
 
 [LogFiles]
 ##
