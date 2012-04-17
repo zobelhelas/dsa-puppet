@@ -17,7 +17,7 @@
 #    Finally the email will bounce.
 
 <%=
-vdoms = case fqdn
+vdoms = case scope.lookupvar('::fqdn')
 
         when "bellini.debian.org" then "popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/"
 
