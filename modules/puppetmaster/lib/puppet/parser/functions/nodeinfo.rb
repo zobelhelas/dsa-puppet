@@ -15,6 +15,12 @@ module Puppet::Parser::Functions
       nodeinfo['hoster'] = function_whohosts(nodeinfo['ldap']['ipHostNumber'], "/etc/puppet/modules/debian-org/misc/hoster.yaml")
       nodeinfo['buildd'] = nodeinfo['ldap']['purpose'].include?('buildd')
 
+      if lookupvar('::mta') == 'exim4'
+        unless nodeinfo['heavy_exim']
+          nodeinfo['smarthost'] = true
+        end
+      end
+
       nodeinfo['misc'] = {}
       fqdn = lookupvar('::fqdn')
       if fqdn and fqdn == host
