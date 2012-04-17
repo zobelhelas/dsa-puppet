@@ -23,8 +23,8 @@ class buildd {
 		ensure => absent,
 	}
 	site::aptrepo { 'buildd.debian.org':
-		template => 'buildd/etc/apt/sources.list.d/buildd.list.erb',
-		key      => 'puppet:///modules/buildd/buildd.debian.org.asc',
+		content => template('buildd/etc/apt/sources.list.d/buildd.list.erb'),
+		key     => 'puppet:///modules/buildd/buildd.debian.org.asc',
 	}
 
 	file { '/etc/apt/preferences.d/buildd':

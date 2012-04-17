@@ -62,13 +62,13 @@ class debian-org {
 
 	if $::debarchitecture != 'armhf' {
 		site::aptrepo { 'security':
-			template => 'debian-org/etc/apt/sources.list.d/security.list.erb',
+			content => template('debian-org/etc/apt/sources.list.d/security.list.erb'),
 		}
 		site::aptrepo { 'backports.debian.org':
-			template => 'debian-org/etc/apt/sources.list.d/backports.debian.org.list.erb',
+			content => template('debian-org/etc/apt/sources.list.d/backports.debian.org.list.erb'),
 		}
 		site::aptrepo { 'volatile':
-			template => 'debian-org/etc/apt/sources.list.d/volatile.list.erb',
+			content => template('debian-org/etc/apt/sources.list.d/volatile.list.erb'),
 		}
 	}
 	site::aptrepo { 'backports.org':
@@ -82,8 +82,8 @@ class debian-org {
 	}
 
 	site::aptrepo { 'db.debian.org':
-		template => 'debian-org/etc/apt/sources.list.d/debian.org.list.erb',
-		key      => 'puppet:///modules/debian-org/db.debian.org.asc',
+		content => template('debian-org/etc/apt/sources.list.d/debian.org.list.erb'),
+		key     => 'puppet:///modules/debian-org/db.debian.org.asc',
 	}
 
 	file { '/etc/facter':

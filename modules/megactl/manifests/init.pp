@@ -4,6 +4,6 @@ class megactl {
 	}
 
 	site::aptrepo { 'debian.restricted':
-		template => 'debian-org/etc/apt/sources.list.d/debian.restricted.list.erb',
+		content => template('debian-org/etc/apt/sources.list.d/debian.restricted.list.erb'),
 	}
 }
