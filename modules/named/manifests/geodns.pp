@@ -4,7 +4,7 @@ class named::geodns inherits named {
 	}
 
 	site::aptrepo { 'geoip':
-		content => template('debian-org/etc/apt/sources.list.d/geoip.list.erb'),
+		template => 'debian-org/etc/apt/sources.list.d/geoip.list.erb',
 	}
 
 	file { '/etc/bind/':

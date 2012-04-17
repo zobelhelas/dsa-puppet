@@ -1,7 +1,7 @@
 class debian-org::proliant {
 
 	site::aptrepo { 'debian.restricted':
-		content => template('debian-org/etc/apt/sources.list.d/debian.restricted.list.erb'),
+		template => 'debian-org/etc/apt/sources.list.d/debian.restricted.list.erb',
 	}
 
 	package { 'hpacucli':
@@ -26,3 +26,5 @@ class debian-org::proliant {
 		}
 	}
 }
+
+

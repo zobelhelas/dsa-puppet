@@ -1,4 +1,5 @@
-define site::aptrepo ($key = undef, $keyid = undef, $content = '', $source = '', $ensure = present) {
+define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config = undef, $ensure = present) {
+
 
 	case $ensure {
 		present: {
@@ -39,15 +40,22 @@ define site::aptrepo ($key = undef, $keyid = undef, $content = '', $source = '',
 	}
 
 	if $ensure == present {
-		if ! ($source or $content) {
+		if ! ($config or $template) {
 			fail ( "No configuration found for ${name}" )
 		}
 	}
 
-	file { "/etc/apt/sources.list.d/${name}.list":
-		ensure  => $ensure,
-		content => $content,
-		source  => $source,
-		notify  => Exec['apt-get update'],
+	if $template {
+		file { "/etc/apt/sources.list.d/${name}.list":
+			ensure  => $ensure,
+			content => template($template),
+			notify => Exec['apt-get update'],
+		}
+	} else {
+		file { "/etc/apt/sources.list.d/${name}.list":
+			ensure => $ensure,
+			source => $config,
+			notify => Exec['apt-get update'],
+		}
 	}
 }
