@@ -305,7 +305,7 @@ acl_getprofile:
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['bugsmx'] -%>
+<%- if scope.lookupvar('site::nodeinfo')['bugsmaster'] or scope.lookupvar('site::nodeinfo')['bugsmx'] -%>
   warn    domains        = bugs.debian.org
           set acl_m_rprf = BugsMail
 

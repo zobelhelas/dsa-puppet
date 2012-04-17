@@ -1,3 +1,11 @@
+# = Class: ferm
+#
+# This class installs ferm and sets up rules
+#
+# == Sample Usage:
+#
+#   include ferm
+#
 class ferm {
 	# realize (i.e. enable) all @ferm::rule virtual resources
 	Ferm::Rule <| |>
@@ -46,6 +54,10 @@ class ferm {
 	file { '/etc/ferm/conf.d':
 		ensure => directory,
 		mode   => '0555',
+		purge   => true,
+		force   => true,
+		recurse => true,
+		source  => 'puppet:///files/empty/',
 	}
 	file { '/etc/default/ferm':
 		source  => 'puppet:///modules/ferm/ferm.default',
@@ -73,13 +85,6 @@ class ferm {
 		source  => 'puppet:///modules/ferm/logrotate-ulogd',
 		mode    => '0444',
 		require => Package['debian.org'],
-	}
-
-	if getfromhash($site::nodeinfo, 'buildd') {
-		file { '/etc/ferm/conf.d/load_ftp_conntrack.conf':
-			source => 'puppet:///modules/ferm/conntrack_ftp.conf',
-			notify  => Service['ferm'],
-		}
 	}
 
 }

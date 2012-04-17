@@ -1,0 +1,6 @@
+---
+nameservers:
+  - 194.177.210.10
+  - 194.177.210.210
+searchpaths:
+  - debprivate-grnet.debian.org

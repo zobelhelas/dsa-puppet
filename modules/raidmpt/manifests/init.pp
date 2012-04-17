@@ -1,3 +1,11 @@
+# = Class: raidmpt
+#
+# This class installs mpt-status and ensures the daemon is not running
+#
+# == Sample Usage:
+#
+#   include raidmpt
+#
 class raidmpt {
 
 	package { 'mpt-status':

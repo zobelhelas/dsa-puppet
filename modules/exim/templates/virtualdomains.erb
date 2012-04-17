@@ -17,7 +17,7 @@
 #    Finally the email will bounce.
 
 <%=
-vdoms = case fqdn
+vdoms = case scope.lookupvar('::fqdn')
 
         when "bellini.debian.org" then "popcon.debian.org: user=popcon group=popcon directory=/org/popcon.debian.org/mail/"
 
@@ -26,8 +26,6 @@ vdoms = case fqdn
         when "chopin.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/srv/security-master.debian.org/mail/"
 
         when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
-
-        when "dukas.debian.org" then "ddtp.debian.org: user=ddtp group=ddtp directory=/srv/ddtp.debian.org/mail/"
 
         when "franck.debian.org" then "release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
 ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp-master.debian.org/mail group_writable=true"
@@ -52,6 +50,8 @@ debian.net: user=nobody group=Debian directory=/org/star.debian.star/"
 
         when "nono.debian.org" then "nm.debian.org: user=nm group=nm directory=/srv/nm.debian.org/mail/"
 
+        when "popov.debian.org" then "popcon.debian.org: user=popcon group=popcon directory=/srv/popcon.debian.org/mail/"
+
         when "powell.debian.org" then "packages.debian.org: user=pkg_user group=Debian directory=/org/packages.debian.org/mail/"
 
         when "quantz.debian.org" then "qa.debian.org: user=qa group=qa directory=/srv/qa.debian.org/mail/
@@ -64,10 +64,6 @@ packages.qa.debian.org: user=qa group=qa directory=/srv/packages.qa.debian.org/m
         when "spohr.debian.org" then "admin.debian.org: user=mail_admin group=mail_admin directory=/org/admin.debian.org/mail/"
 
         when "tartini.debian.org" then "forums.debian.net: user=forums group=forums directory=/srv/forums.debian.net/mail"
-
-        when "tye.debian.org" then "i18n.debian.org: user=debian-i18n group=debian-i18n directory=/srv/i18n.debian.org/mail"
-
-        when "valente.debian.org" then "volatile.debian.org: user=volatile group=volatile directory=/srv/volatile-master.debian.org/mail"
 
         when "wolkenstein.debian.org" then "www-master.debian.org: user=debwww group=debwww directory=/srv/www.debian.org/mail/"
 end

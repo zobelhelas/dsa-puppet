@@ -1,14 +1,22 @@
+# = Class: samhain
+#
+# This class installs and configures samhain
+#
+# == Sample Usage:
+#
+#   include samhain
+#
 class samhain {
 
 	package { 'samhain':
 		ensure => installed,
-		noop   => true,
 	}
 
 	service { 'samhain':
-		ensure => running,
+		ensure    => running,
 		hasstatus => false,
 		pattern   => 'samhain',
+		require   => Package['samhain'],
 	}
 
 	file { '/etc/samhain/samhainrc':

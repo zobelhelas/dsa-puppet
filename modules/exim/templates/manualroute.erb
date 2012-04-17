@@ -5,16 +5,17 @@
 ## Format:
 ## domain: hostname[::port] options
 ## example:
-## buildd.debian.org: raff.debian.org::587 byname
+## buildd.debian.org: grieg.debian.org::587 byname
 
 <%=
-mxmatches = [ fqdn ]
+mxmatches = [ scope.lookupvar('::fqdn') ]
 routes = []
 extraroutes = []
 
 if scope.lookupvar('site::nodeinfo')['mailrelay']
   mxmatches << 'mailout.debian.org'
   extraroutes = [ "keyring.debian.org:\t\tkaufmann.debian.org" ]
+  extraroutes << "www-master.debian.org:\t\twolkenstein.debian.org"
 end
 
 mxregex = Regexp.new('^\d+\s+(.*)\.$')

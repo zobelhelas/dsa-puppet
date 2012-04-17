@@ -13,6 +13,13 @@ module Puppet::Parser::Functions
         raise Puppet::ParseError, "Host #{host} does not have ipHostNumber values in ldap"
       end
       nodeinfo['hoster'] = function_whohosts(nodeinfo['ldap']['ipHostNumber'], "/etc/puppet/modules/debian-org/misc/hoster.yaml")
+      nodeinfo['buildd'] = nodeinfo['ldap']['purpose'].include?('buildd')
+
+      if lookupvar('::mta') == 'exim4'
+        unless nodeinfo['heavy_exim']
+          nodeinfo['smarthost'] = 'mailout.debian.org'
+        end
+      end
 
       nodeinfo['misc'] = {}
       fqdn = lookupvar('::fqdn')

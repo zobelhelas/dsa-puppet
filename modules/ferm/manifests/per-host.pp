@@ -121,12 +121,9 @@ class ferm::per-host {
 			}
 		}
 		cilea: {
-			file {
-				'/etc/ferm/conf.d/load_sip_conntrack.conf':
-					source => 'puppet:///modules/ferm/conntrack_sip.conf',
-					require => Package['ferm'],
-					notify  => Service['ferm'],
-			}
+			ferm::module { 'nf_conntrack_sip': }
+			ferm::module { 'nf_conntrack_h323': }
+
 			@ferm::rule { 'dsa-sip':
 				domain          => '(ip ip6)',
 				description     => 'Allow sip access',
@@ -202,6 +199,7 @@ def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI);
 policy ACCEPT;
 mod state state (ESTABLISHED RELATED) ACCEPT;
 interface br0 outerface br0 ACCEPT;
+interface br1 outerface br1 ACCEPT;
 
 interface br2 outerface br0 jump from-kfreebsd;
 interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
