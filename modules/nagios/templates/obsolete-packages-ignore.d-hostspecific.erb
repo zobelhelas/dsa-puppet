@@ -11,9 +11,8 @@ when "cilea.debian.org":                ignore << "/freeswitch.*/"
 when /draghi.debian.org/:               ignore << %w{userdir-ldap libheimdal-kadm5-perl}
 when /orff.debian.org/:                 ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
 when /liszt.debian.org/:                ignore << "amavisd-new"
-when "zelenka.debian.org":              ignore << %w{zabbix-agent rrdcollect}
-when "zandonai.debian.org":             ignore << %w{samhain zabbix-agent rrdcollect}
-when "zemlinsky.debian.org":            ignore << %w{samhain}
+when /(zandonai|zelenka).debian.org/:   ignore << %w{samhain zabbix-agent rrdcollect}
+when /(zappa|zemlinsky).debian.org/:    ignore << %w{samhain}
 when /(mayer|paer|peri|penalosa|corelli).debian.org/: ignore << "linux-base"
 when /(alkman|caballero|merulo|mundy).debian.org/: ignore << "samhain"
 when "powell.debian.org":               ignore << %w{e2fslibs e2fsprogs libblkid1 libcomerr2 libss2 libuuid1 uuid-runtime}
