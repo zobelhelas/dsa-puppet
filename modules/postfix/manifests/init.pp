@@ -1,4 +1,13 @@
 class postfix {
+
+	package { 'postfix':
+		ensure => installed
+	}
+
+	service { 'postfix':
+		ensure => running
+	}
+
 	munin::check { 'ps_exim4':       ensure => absent }
 	munin::check { 'exim_mailqueue': ensure => absent }
 	munin::check { 'exim_mailstats': ensure => absent }
