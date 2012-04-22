@@ -52,6 +52,8 @@ node default {
 		} else {
 			include exim
 		}
+	} elsif $::hostname == 'bendel' {
+		include postfix
 	}
 
 	if $::lsbdistcodename != 'lenny' {
