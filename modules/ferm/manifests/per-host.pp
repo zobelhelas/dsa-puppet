@@ -3,10 +3,6 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
-	if $::hostname in [chopin,franck,gluck,kassia,klecker,lobos,morricone,ravel,saens,schein,santoro,steffani,valente,villa,wieck,bizet] {
-		include ferm::ftp
-	}
-
 	case $::hostname {
 		piatti,samosa: {
 			@ferm::rule { 'dsa-udd-stunnel':

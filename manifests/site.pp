@@ -148,13 +148,7 @@ node default {
 		munin::check { 'spamassassin': }
 	}
 
-	if $::vsftpd {
-		package { 'logtail':
-			ensure => installed
-		}
-		munin::check { 'vsftpd': }
-		munin::check { 'ps_vsftpd':
-			script => 'ps_'
-		}
+	if $::hostname in [chopin,franck,gluck,kassia,klecker,lobos,morricone,ravel,saens,schein,santoro,steffani,valente,villa,wieck,bizet] {
+		include vsftpd
 	}
 }
