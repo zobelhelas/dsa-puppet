@@ -1,7 +1,7 @@
 class vsftpd::site (
 	$source='',
 	$content='',
-	$ensure=present,
+	$ensure=present
 ){
 
 	include vsftpd
