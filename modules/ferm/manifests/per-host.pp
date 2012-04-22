@@ -91,7 +91,7 @@ class ferm::per-host {
 				rule            => '&SERVICE(tcp, 6523)'
 			}
 		}
-		bendel,liszt: {
+		bendel: {
 			@ferm::rule { 'smtp':
 				domain          => '(ip ip6)',
 				description     => 'Allow smtp access',
