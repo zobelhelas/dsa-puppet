@@ -3,7 +3,7 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
-	if $::hostname in [chopin,franck,gluck,kassia,klecker,lobos,morricone,ravel,ries,rietz,saens,schein,santoro,steffani,valente,villa,wieck,stabile,bizet] {
+	if $::hostname in [chopin,franck,gluck,kassia,klecker,lobos,morricone,ravel,saens,schein,santoro,steffani,valente,villa,wieck,bizet] {
 		include ferm::ftp
 	}
 
