@@ -1,4 +1,4 @@
-define site::sysctl ($key, $value, $ensure = present) {
+define site::sysctl ($key, $value, $target=Linux, $ensure = present) {
 	include site
 	case $ensure {
 		present: {}
@@ -6,7 +6,7 @@ define site::sysctl ($key, $value, $ensure = present) {
 		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
-	if $::kernel == 'Linux' {
+	if $::kernel == $target {
 		file {
 			"/etc/sysctl.d/${name}.conf":
 				ensure  => $ensure,

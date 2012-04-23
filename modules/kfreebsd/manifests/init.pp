@@ -4,7 +4,8 @@ class kfreebsd {
 	}
 
 	site::sysctl { 'maxfiles':
-		key   => 'kern.maxfiles',
-		value => 65536,
+		key    => 'kern.maxfiles',
+		value  => 65536,
+		target => 'GNU/kFreeBSD',
 	}
 }

@@ -8,4 +8,10 @@ class site {
 		hasstatus   => false,
 		status      => '/bin/true',
 	}
+
+	file { '/etc/sysctl.d/':
+		ensure => directory,
+		mode   => '0755'
+	}
+
 }
