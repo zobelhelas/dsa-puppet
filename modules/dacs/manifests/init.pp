@@ -43,7 +43,8 @@ class dacs {
 		group   => www-data
 	}
 	file { '/etc/dacs/federations/debian.org/DEBIAN/dacs.conf':
-		source => 'puppet:///modules/dacs/common/dacs.conf',
+		source  => ['puppet:///modules/dacs/per-host/${::fqdn}/dacs.conf',
+			'puppet:///modules/dacs/common/dacs.conf', ],
 		mode    => '0640',
 		owner   => root,
 		group   => www-data
