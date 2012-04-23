@@ -144,7 +144,7 @@ node default {
 		munin::check { 'spamassassin': }
 	}
 
-	if $::hostname in [chopin,franck,kassia,klecker,morricone,ravel,bizet] {
+	if $::hostname in [chopin,franck,kassia,klecker,ravel] {
 		include vsftpd
 	}
 }

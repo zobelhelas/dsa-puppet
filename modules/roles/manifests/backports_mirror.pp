@@ -10,4 +10,9 @@ class roles::backports_mirror {
 	}
 
 	apache2::module { 'rewrite': }
+
+	class { 'vsftpd::site':
+		source => 'puppet:///modules/roles/backports_mirror/vsftpd.conf'
+	}
+
 }
