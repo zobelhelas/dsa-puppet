@@ -94,6 +94,10 @@ node default {
 		include roles::backports_mirror
 	}
 
+	if $::hostname in [bizet,morricone] {
+		include roles::backports_master
+	}
+
 	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
 		include roles::ftp-upcoming_mirror
 	}
