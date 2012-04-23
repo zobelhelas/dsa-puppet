@@ -1,107 +1,43 @@
 class ntp {
-    package { ntp: ensure => installed }
-    file {
-        "/var/lib/ntp/":
-            ensure  => directory,
-            owner   => ntp,
-            group   => ntp,
-            mode    => 755,
-            require => Package["ntp"]
-            ;
-        "/var/lib/ntp":
-            ensure  => directory,
-            owner   => ntp,
-            group   => ntp,
-            mode    => 755,
-            require => Package["ntp"]
-            ;
-        "/etc/ntp.conf":
-            owner   => root,
-            group   => root,
-            mode    => 444,
-            content => template("ntp/ntp.conf"),
-            notify  => Exec["ntp restart"],
-            require => Package["ntp"]
-            ;
-        "/etc/ntp.keys.d":
-            owner   => root,
-            group   => ntp,
-            mode    => 750,
-            ensure  => directory,
-            require => Package["ntp"]
-            ;
-    }
-    case getfromhash($nodeinfo, 'timeserver') {
-        true: {
-            file {
-                "/var/lib/ntp/leap-seconds.list":
-                    owner   => root,
-                    group   => root,
-                    mode    => 444,
-                    source  => [ "puppet:///modules/ntp/leap-seconds.list" ],
-                    require => Package["ntp"],
-                    notify  => Exec["ntp restart"],
-                    ;
-            }
-        }
-        default: {
-            file {
-                "/etc/default/ntp":
-                    owner   => root,
-                    group   => root,
-                    mode    => 444,
-                    source  => [ "puppet:///modules/ntp/etc-default-ntp" ],
-                    require => Package["ntp"],
-                    notify  => Exec["ntp restart"],
-                    ;
 
-                "/etc/ntp.keys.d/ntpkey_iff_merikanto":
-                    owner   => root,
-                    group   => root,
-                    mode    => 444,
-                    source  => [ "puppet:///modules/ntp/ntpkey_iff_merikanto.pub" ],
-                    require => Package["ntp"],
-                    notify  => Exec["ntp restart"],
-                    ;
-                "/etc/ntp.keys.d/ntpkey_iff_orff":
-                    owner   => root,
-                    group   => root,
-                    mode    => 444,
-                    source  => [ "puppet:///modules/ntp/ntpkey_iff_orff.pub" ],
-                    require => Package["ntp"],
-                    notify  => Exec["ntp restart"],
-                    ;
-                "/etc/ntp.keys.d/ntpkey_iff_ravel":
-                    owner   => root,
-                    group   => root,
-                    mode    => 444,
-                    source  => [ "puppet:///modules/ntp/ntpkey_iff_ravel.pub" ],
-                    require => Package["ntp"],
-                    notify  => Exec["ntp restart"],
-                    ;
-                "/etc/ntp.keys.d/ntpkey_iff_busoni":
-                    owner   => root,
-                    group   => root,
-                    mode    => 444,
-                    source  => [ "puppet:///modules/ntp/ntpkey_iff_busoni.pub" ],
-                    require => Package["ntp"],
-                    notify  => Exec["ntp restart"],
-                    ;
-            }
-        }
-    }
+	package { 'ntp':
+		ensure => installed
+	}
 
+	service { 'ntp':
+		ensure  => running,
+		require => Package['ntp']
+	}
 
-    exec { "ntp restart":
-        path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-        refreshonly => true,
-    }
-    @ferm::rule { "dsa-ntp":
-        domain          => "(ip ip6)",
-        description     => "Allow ntp access",
-        rule            => "&SERVICE(udp, 123)"
-    }
+	@ferm::rule { 'dsa-ntp':
+		domain      => '(ip ip6)',
+		description => 'Allow ntp access',
+		rule        => '&SERVICE(udp, 123)'
+	}
+
+	file { '/var/lib/ntp':
+		ensure  => directory,
+		owner   => ntp,
+		group   => ntp,
+		mode    => '0755',
+		require => Package['ntp']
+	}
+	file { '/etc/ntp.conf':
+		content => template('ntp/ntp.conf'),
+		notify  => Service['ntp'],
+		require => Package['ntp'],
+	}
+	file { '/etc/ntp.keys.d':
+		ensure  => directory,
+		group   => 'ntp',
+		mode    => '0750',
+		notify  => Service['ntp'],
+		require => Package['ntp'],
+	}
+
+	if getfromhash($site::nodeinfo, 'timeserver') {
+		include ntp::timeserver
+	} else {
+		include ntp::client
+	}
 }
-# vim:set et:
-# vim:set sts=4 ts=4:
-# vim:set shiftwidth=4:

@@ -1,0 +1,227 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# Need to turn on negotiation_module
+<Directory /srv/www.debian.org/www/>
+  Options +MultiViews +FollowSymLinks +Indexes
+  AddHandler type-map var
+  # Make sure that the srm.conf directive is commented out.
+  AddDefaultCharSet Off
+  AllowOverride AuthConfig FileInfo
+
+  # Serve icons as image/x-icon
+  AddType image/x-icon .ico
+
+  # Serve RSS feeds as application/rss+xml
+  AddType application/rss+xml .rdf
+
+  # Nice caching..
+  ExpiresActive On
+  ExpiresDefault "access plus 1 day"
+  ExpiresByType image/gif "access plus 1 week"
+  ExpiresByType image/jpeg "access plus 1 week"
+  ExpiresByType image/png "access plus 1 week"
+  ExpiresByType image/x-icon "access plus 1 week"
+
+  # FileEtag needs to be the same across mirrors (used for caching, ignore inode)
+  FileEtag MTime Size
+
+  # language stuff, for web site translations
+  # for boot-floppies docs only: sk
+  AddLanguage en .en
+  AddLanguage en-us .en-us
+  AddLanguage en-gb .en-gb
+  AddLanguage ar .ar
+  AddLanguage bg .bg
+  AddLanguage ca .ca
+  AddLanguage cs .cs
+  AddLanguage da .da
+  AddLanguage de .de
+  AddLanguage el .el
+  AddLanguage eo .eo
+  AddLanguage es .es
+  AddLanguage fi .fi
+  AddLanguage fr .fr
+  AddLanguage hr .hr
+  AddLanguage hu .hu
+  AddLanguage hy .hy
+  AddLanguage id .id
+  AddLanguage it .it
+  AddLanguage ja .ja
+  AddLanguage ko .ko
+  AddLanguage lt .lt
+  AddLanguage nl .nl
+  AddLanguage no .no
+  AddLanguage nb .nb
+  AddLanguage pl .pl
+  AddLanguage pt .pt
+  AddLanguage pt-br .pt
+  AddLanguage ro .ro
+  AddLanguage ru .ru
+  AddLanguage sk .sk
+  AddLanguage sl .sl
+  AddLanguage sv .sv
+  AddLanguage tr .tr
+  AddLanguage uk .uk
+  AddLanguage vi .vi
+  AddLanguage zh-CN .zh-cn
+  AddLanguage zh-HK .zh-hk
+  AddLanguage zh-TW .zh-tw
+  LanguagePriority en fr de it es ja pl hr da pt pt-br fi zh-cn zh-hk zh-tw cs sv ko no nb ru tr eo ar nl hu ro sk el ca en-us en-gb id lt sl bg uk hy vi
+
+  DirectoryIndex maintenance index index.html index.shtml index.htm
+
+  <Files *.html.es>
+    ForceType text/html
+  </Files>
+
+  <Files *.pdf.es>
+    ForceType application/pdf
+  </Files>
+
+  <Files *.txt.es>
+    ForceType text/plain
+  </Files>
+</Directory>
+
+<VirtualHost *:80>
+   ServerName www.nl.debian.org
+   ServerAdmin webmaster@debian.org
+   ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net debian.org www.debian.at www.debian.eu debian.eu
+   DocumentRoot /srv/www.debian.org/www/
+   ErrorLog /var/log/apache2/www-other.debian.org-error.log
+   CustomLog /var/log/apache2/www-other.debian.org-access.log combined
+   RewriteLog /var/log/apache2/www-other.debian.org-redirect.log
+   RewriteLogLevel 1
+
+   RewriteEngine on
+   RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
+</VirtualHost>
+
+<VirtualHost *:80>
+   ServerName www.debian.org
+   ServerAdmin webmaster@debian.org
+   ServerAlias www-*.debian.org
+   DocumentRoot /srv/www.debian.org/www/
+   ErrorLog /var/log/apache2/www.debian.org-error.log
+   CustomLog /var/log/apache2/www.debian.org-access.log combined
+
+   # CacheNegotiatedDocs: By default, Apache sends Pragma: no-cache with each
+   # document that was negotiated on the basis of content. This asks proxy
+   # servers not to cache the document. Uncommenting the following line disables
+   # this behavior, and proxies will be allowed to cache the documents.
+   CacheNegotiatedDocs On
+
+# Custom Error
+   ErrorDocument 404 /devel/website/errors/404
+   RewriteCond %{DOCUMENT_ROOT}/devel/website/errors/404.$2.html -f
+   RewriteRule ^/(?!devel/website/errors/)(.*/)?404\.(.+)\.html$ /devel/website/errors/404.$2.html [L]
+
+# the joys of backwards compatibility
+   RedirectPermanent /cgi-bin/cvsweb http://cvs.debian.org
+   RedirectPermanent /Lists-Archives http://lists.debian.org
+   RedirectPermanent /search http://search.debian.org
+   RedirectPermanent /Packages http://packages.debian.org
+   RedirectPermanent /lintian http://lintian.debian.org
+
+   RedirectPermanent /SPI http://www.spi-inc.org
+#   RedirectPermanent /OpenHardware http://www.openhardware.org
+   RedirectPermanent /OpenSource http://www.opensource.org
+
+   RedirectPermanent /Bugs/db/ix/pseudopackages.html /Bugs/pseudo-packages
+   RewriteEngine on
+   RewriteRule ^/Bugs/db/pa/l([^/]+).html$ http://bugs.debian.org/$1
+   RewriteRule ^/Bugs/db/[[:digit:]][[:digit:]]/([[:digit:]][[:digit:]][[:digit:]]+).html$ http://bugs.debian.org/$1
+   RewriteRule ^/Bugs/db/ma/l([^/]+).html$ http://bugs.debian.org/cgi-bin/pkgreport.cgi?maintenc=$1
+
+   Userdir http://people.debian.org/~*/   
+
+   RedirectPermanent /devel/todo/ /devel/wnpp/help_requested_bypop
+   RedirectPermanent /doc/FAQ /doc/manuals/debian-faq
+   RedirectPermanent /doc/manuals/debian-fr-howto /doc/manuals/fr/debian-fr-howto
+   RedirectPermanent /doc/manuals/reference /doc/manuals/debian-reference
+   RedirectPermanent /doc/packaging-manuals/developers-reference /doc/manuals/developers-reference
+   RedirectPermanent /doc/packaging-manuals/packaging-tutorial /doc/manuals/packaging-tutorial
+   RedirectPermanent /doc/prospective-packages /devel/wnpp/
+   RedirectPermanent /devel/maintainer_contacts /intro/organization
+   RedirectPermanent /devel/debian-installer/gtk-frontend http://wiki.debian.org/DebianInstaller/GUI
+   RedirectPermanent /zh/ /international/Chinese/
+   RedirectPermanent /chinese/ /international/Chinese/
+   RedirectPermanent /devel/help /devel/join/
+   RedirectPermanent /distrib/books /doc/books
+   RedirectPermanent /distrib/floppyinst /distrib/netinst
+   RedirectPermanent /distrib/netboot /distrib/netinst
+   RedirectPermanent /distrib/vendors /CD/vendors/
+   RedirectPermanent /distrib/cd /CD/
+   RedirectPermanent /distrib/cdinfo /CD/vendors/info
+   RedirectPermanent /related_links /misc/related_links
+   RedirectPermanent /ports/laptops /misc/laptops/
+   RedirectPermanent /misc/README.mirrors /mirror/list
+   RedirectPermanent /misc/README.non-US /mirror/list.non-US
+   RedirectPermanent /intl /international
+   RedirectPermanent /ports/armel  /ports/arm
+   RedirectPermanent /ports/mipsel /ports/mips
+   RedirectPermanent /ports/kfreebsd-amd64 /ports/kfreebsd-gnu
+   RedirectPermanent /ports/kfreebsd-i386  /ports/kfreebsd-gnu
+   RedirectPermanent /ports/sparc64 /ports/sparc
+   RedirectPermanent /mirror/mirrors_full.html /mirror/list-full.html
+   RedirectPermanent /mirrors /mirror
+   RedirectPermanent /News/project /News/weekly
+   RedirectPermanent /releases/2.0 /releases/hamm
+   RedirectPermanent /releases/2.1 /releases/slink
+   RedirectPermanent /releases/2.2 /releases/potato
+   RedirectPermanent /releases/3.0 /releases/woody
+   RedirectPermanent /releases/3.1 /releases/sarge
+   RedirectPermanent /releases/4.0 /releases/etch
+   RedirectPermanent /releases/5.0 /releases/lenny
+   RedirectPermanent /releases/6.0 /releases/squeeze
+   RedirectPermanent /releases/unstable /releases/sid
+
+   RewriteRule ^/ports/freebsd(.*) /ports/kfreebsd-gnu/ [R=301]
+   RewriteRule ^/devel/debian-installer/report-template(.*) /releases/stable/i386/ch05s04.html#submit-bug [NE,R=301]
+   RewriteRule ^/devel/debian-installer/hooks(.*) http://d-i.alioth.debian.org/doc/internals/apb.html [R=301]
+   RewriteRule ^/doc/packaging-manuals/mime-policy(.*) /doc/debian-policy/ch-opersys.html#s-mime [NE,R=301]
+
+   RewriteRule ^/volatile/index.* - [S=1]
+   RewriteRule ^/volatile/.+ /volatile/ [L,R=301]
+   RewriteRule ^/devel/debian-volatile/.* /volatile/ [R=301]
+
+# Offer a Redirect to DSA without knowing year #474730
+   RewriteMap dsa txt:/srv/www.debian.org/www/security/map-dsa.txt
+   RewriteRule ^/security/dsa-(\d+)(\..*)? /security/${dsa:$1}$2 [R=301]
+
+# Compatibility after SGML -> DocBook
+# Debian Reference #624239
+   RewriteMap reference txt:/srv/www.debian.org/www/doc/map-reference.txt
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/ch-support$1 !-f
+   RewriteRule ^/doc/manuals/debian-reference/ch-support(.*)  /support$1 [L,R=301]
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/${reference:$1}$2 -f
+   RewriteRule ^/doc/manuals/debian-reference/ch-([^\.]+)(.+) /doc/manuals/debian-reference/${reference:$1}$2 [L,R=301]
+   RewriteRule ^/doc/manuals/debian-reference/ch-([^\.]+)$    /doc/manuals/debian-reference/${reference:$1}     [R=301]
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/apa$1 -f
+   RewriteRule ^/doc/manuals/debian-reference/ap-appendix(.+) /doc/manuals/debian-reference/apa$1 [L,R=301]
+   RewriteRule ^/doc/manuals/debian-reference/ap-appendix$    /doc/manuals/debian-reference/apa     [R=301]
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/footnotes$1 !-f
+   RewriteRule ^/doc/manuals/debian-reference/footnotes(.+)   /doc/manuals/debian-reference/index$1 [L,R=301]
+   RewriteRule ^/doc/manuals/debian-reference/footnotes$      /doc/manuals/debian-reference/          [R=301]
+# New Maintainers' Guide
+   RewriteRule ^/doc/(manuals/)?maint-guide/ch-(.*) /doc/manuals/maint-guide/$2 [R=301]
+   RewriteRule ^/doc/(manuals/)?maint-guide/footnotes(.*) /doc/manuals/maint-guide/index$2 [R=301]
+
+# Canonical place for manuals under /doc/manuals/
+   RewriteCond %{DOCUMENT_ROOT}/doc/manuals/$1 -d
+   RewriteRule ^/doc/([^/]+)/?(.*)? /doc/manuals/$1/$2 [L,R=301]
+
+</VirtualHost>
+
+
+<VirtualHost *:80>
+   ServerName volatile.debian.org
+   ServerAlias volatile-master.debian.org
+   ServerAdmin webmaster@debian.org
+   ErrorLog /var/log/apache2/volatile.debian.org-error.log
+   CustomLog /var/log/apache2/volatile.debian.org-access.log combined
+   RedirectMatch permanent . http://www.debian.org/volatile/
+</VirtualHost>

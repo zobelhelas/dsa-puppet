@@ -2,7 +2,7 @@
 	Facter.add(service + "_host") do
                 confine :kernel => :linux
 		service_name = "#{service}." + Facter.domain
-		active = false
+		active = ''
 
 		setcode do
 			if FileTest.exist?("/usr/bin/dig")
@@ -10,7 +10,7 @@
 					Facter.interfaces.split(',').each do |my_interface|
 						my_ip = Facter.value("ipaddress_" + my_interface)
 						if my_ip == service_ip
-							active = "true"
+							active = true
 						end
 					end
 				end

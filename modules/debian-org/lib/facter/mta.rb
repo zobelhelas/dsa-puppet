@@ -9,11 +9,16 @@ Facter.add("mta") do
 end
 
 Facter.add("exim_ssl_certs") do
-	setcode do
-		FileTest.exist?("/etc/exim4/ssl/") &&
+	certs = FileTest.exist?("/etc/exim4/ssl/") &&
 		FileTest.exist?("/etc/exim4/ssl/ca.crl") &&
 		FileTest.exist?("/etc/exim4/ssl/thishost.crt") &&
 		FileTest.exist?("/etc/exim4/ssl/ca.crt") &&
 		FileTest.exist?("/etc/exim4/ssl/thishost.key")
+	setcode do
+		if certs
+			true
+		else
+			''
+		end
 	end
 end

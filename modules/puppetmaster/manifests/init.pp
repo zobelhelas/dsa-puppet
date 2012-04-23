@@ -1,5 +1,5 @@
 class puppetmaster {
+	file { '/etc/puppet/hiera.yaml':
+		source => 'puppet:///modules/puppetmaster/hiera.yaml'
+	}
 }
-# vim:set et:
-# vim:set sts=4 ts=4:
-# vim:set shiftwidth=4:

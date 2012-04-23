@@ -144,7 +144,7 @@ destination df_daemon { file("/var/log/daemon.log"); };
 destination df_kern { file("/var/log/kern.log"); };
 destination df_lpr { file("/var/log/lpr.log"); };
 destination df_mail { file("/var/log/mail.log" group(maillog)); };
-destination df_mail_info { file("/var/log/mail.info" group(maillog)); };
+# destination df_mail_info { file("/var/log/mail.info" group(maillog)); };
 destination df_mail_warn { file("/var/log/mail.warn" group(maillog)); };
 destination df_mail_err { file("/var/log/mail.err" group(maillog)); };
 destination df_user { file("/var/log/user.log" perm(0644)); };
@@ -310,12 +310,12 @@ log {
 };
 
 # mail.info                       -/var/log/mail.info
-log {
-        source(s_local);
-        filter(f_mail);
-        filter(f_at_least_info);
-        destination(df_mail_info);
-};
+#log {
+#        source(s_local);
+#        filter(f_mail);
+#        filter(f_at_least_info);
+#        destination(df_mail_info);
+#};
 
 # mail.warn                       -/var/log/mail.warn
 log {

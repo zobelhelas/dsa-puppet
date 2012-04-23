@@ -1,5 +1,5 @@
 # local admin
-<%= hosterkeys = case nodeinfo['hoster']['name']
+<%= hosterkeys = case scope.lookupvar('site::nodeinfo')['hoster']['name']
          when "ubcece" then
          "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvEEyxznxleAhk98K7SkAeAKWibijL5uFjIl1+tr8rz+XmFsjabTK2+hQXkgzmU+jqQ2+MPp6btfAq9Oe27GQYWUFfsAZMRb907dReFQYPKbPhQZoo5LUfkrCiR3tD0Nm2JfepTV0079K1+Q50EMImttwbI94FfSoSgTxgF4rCoLpUgmF0IHDR1+kTGow7YnuS1Y/I1zKAbofg8KBGXOLArkcZbxArt25Y2wlnE+ZHIb3Rn3pYc3/KmPPvEQy9IkR/uzzkWSaCBVMFJEO0ejjWrV4HR64GlKUPQ0CekSYn1EErY55CF5sWkasXhflluwSf7b+/jedDM1A1Vrp9Z/F8Q== chrisd"
     end
@@ -16,9 +16,13 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAt3g97cGfOA9DnAKF6h8RlFDppPtyKfjlyvG4f+gTTYAk
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwbRijHuvIC6cZUZwUfqLT5t/4GRvqiBBmYXkRRhwMajTOBeaR6vRx9mZ+UdTAUKno8LuMNvFoovvwXBqqwH7yMa/SHgpA0wXl+bcYUbtoRbOVQEXwX/70Yoo0HLMGwoeuddjUICYZQomLYYLlkrWt1in9g4AGzqtmyCcDrxaneGYOvwJIm4sBhhJfns3j8AK7wIAaOA5fU9azR6JofX8g7QhqVrTlww0yOTlHsqheGUnLVzqPTzcJTPLDWKs9DOZT8a+IOc1R5TS2k07IFZk4TjCodW+iLCKHdudqpS8MKOY9EtfDaANl7JeCNa0NUZRVeXX9H4jtPIJ5/naa6m1XQ== Florian.Lohoff(flo,mW-N,RSA,2048)"
          when "sperger.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAuXKdZTW+Ju0p+4pBXPFSEF9lyav7x5yR0P0Gk6NijfWIbx6DQKbCccR0PobDL+To1dtCP9JbOr3zZjV0VaRpMqlfjH1DR/SkI7orcomwh0fFYzygx2OZ9HJCYv2UERRsKEt3GJr2yFEaNSLg25tIOpvwsHSIQHt8hg5h6sdyzgCrEvwfCImncdyp1WssqFp70TXyRWnSSzq8cMH1zE8B9uoPATTVjcFB6E8+HuY5KSd8Thg2jQ+2pFLj8D0VNMj9nCVRlDOhunkfMzS7rx3eBl3oqxgIL8SWfB7aZKdEb77RXemUBvNDghWTaQxgXlOQP4v/cVrg03TNlcM5kbZqIeBidfzF5C1lcZOuAMlZYSq+bpdBC9j+dT2Lr/blNatN7LKLYVaQ+W7a6zAvmfubr+vjhO+JUY8XT9wmFlY+o1wYaup455LA3pmKhBPGpcNtaZ7FEotGNYTXjpTbpzMp6vvOXf3n325GWS9so9e6PTbuvdJdRO5Et69kV5dqP4XwUT3d3SQs5W16Rj6QF0Aod2QFEaIpZu52fkyt4dAn0WCRnDR2PB9n99CDZ4f4mKg66u6oNT3RUcMtK1lHyhxlFdjG7qJ2EwnqLbTpvWq8qD5zzc/uJwy9eK5RqQhXMtIP+2FN7o2cfw2n8tUx4LIeCMZ8pcVHgY17M2v/oBLn+IU= bzed@think"
          when "tartini.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAmXjNW2OoDl7mwAyzHHNMMfuGGor6Vgr2LiKdlVmRCk6EeqrYrRY4ZYsJ2c0nBNzvzgxLO/deau/LBYdpNIO5341GvSWWIA+2khXY+Fzb35UGt4J5eZWOLYsJmplM3xm9lde404WOgqqu0ywsXJMxYmQtqzUjI/tFA5zyE2baPpMjnYyfmxPPOXdv7L6uK5qaWGZFBp8iVJxYwvUTADstAz077kiBpaZoEG1jr8kEzwd2so9cNDGq4wmjF2xv3M2i/rmSLgoLGeI6GtgTL3BU39CXFXa9y5sMRf4opxSzV2JwGtXbhmtqkHZAXufMndRmEy9IyOkFsJvUJoUe0n+Hhwo/JGiXC2vBGA0ueeMXtUgjYs11cprd6rVI8+WZMND9YOdwS71aWXiX5zN36F3JdaND4yblLpATprHp6/npYCSI5IC/42m4AbWu6aj85SC9Bnegb+FkLCUIcXQ/STPr9ptaaRCNBucbSAovJ84k6Ny2qwUfSYT3zWkL6hl5JnIv9y4HbfFHAD2e4dCXidb8H3/X8H/giwPvtOLwiHf8r+Kxya6JuYzo/ZoGhQhP2MnfyxapoqG+kixU0pPaPN39trraTOzZNXIPOxyyuGhu77x4oh4uNBqnpr2aR1xi+/qvSK0f/BO0AyHLRZXtTbn9Bjr588Vb/Cx9t0aKGJCSPoE= jeroen@eee.wolffelaar.nl 2008-05-14"
-
 end
 localkeys
+%>
+<%= ganetikeys = case fqdn
+         when "tristano.debian.org", "pasquini.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDiT6Asr5mK3wR8hjB1gSqJYqWUrQfi1+jtMuZggQcD7VIpabIy0zYSaUP63Oam96BE96qSHUZDEp1EGPoh64rK/9WxGXX/0sRZXJURkOpCO3U2zDAhRbAGqAAYyWS4TPHVUt3g5g+rrHAGgXzc/y2sYChADWJaQ59ga1MyrYGi1VIPAuAaidM01RyFagR1/UmVGP8jCkSD4nGmho4UuFn9Fopnhk5V0YjEEjhjUkPCVe11ckc+fYPiEPFnzgaWJPAycJwF/YmpgjLSKB+mNXqpU4m+jHhpGQ4lK1l0VVf2xOUpbN74uOxThtwPSpgIyq3eG99PkbBGUUweIcSTsZ8h root@pasquini.debian.org (for ganeti)\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC44glHFs5fdojQOUZaR1xwORfVxpmthmjOBgahz3RTCYzX8g0Y4v3rSBTiFOUzgfaY1qyHJX94HDzIq95Unig5ZHZZ2q0V3m3ksIiMQQbiElIqH4w7Yrqc2PICkjzttGwCziNUCIvxuy9pnKqRkpzx4TmorEVhRBjGTM0iAimWcZ5bpZ1E2nWHVtvsMs5nQziRdAiG8hoE2UKzQbpf+AeltZPSIw2LVEAdTmmEWrmyLGaIWY2R5lirwPOTbZsfpLDUD3CLntZbqCFoTOb1xuWvf0SdmpChY7cigaFgwz+ozATxFuLqdW9/YTa/fP1uvid3rSvHkNgojndm0S3/sYTh root@tristano.debian.org (for ganeti)"
+end
+ganetikeys
 %>
 #
 # DSA
@@ -36,9 +40,9 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAuGJnElqbhgLtmJp/de8s42cAwKrkAhFq5u8EAkauEv6B
 <%= machine_keys = case fqdn
    when "beethoven.debian.org" then
      out = ''
-     allnodeinfo.keys.sort.each do |node|
-       out += '# ' + allnodeinfo[node]['hostname'].to_s + '
-command="/usr/lib/da-backup/da-backup-ssh-wrap ' + allnodeinfo[node]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + allnodeinfo[node]['ipHostNumber'].join(',') + '" ' + allnodeinfo[node]['sshRSAHostKey'].to_s + '
+     scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
+       out += '# ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'].to_s + '
+command="/usr/lib/da-backup/da-backup-ssh-wrap ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].join(',') + '" ' + scope.lookupvar('site::allnodeinfo')[node]['sshRSAHostKey'].to_s + '
 
 '
      end
