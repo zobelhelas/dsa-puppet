@@ -9,9 +9,4 @@ class site {
 		status      => '/bin/true',
 	}
 
-	file { '/etc/sysctl.d/':
-		ensure => directory,
-		mode   => '0755'
-	}
-
 }
