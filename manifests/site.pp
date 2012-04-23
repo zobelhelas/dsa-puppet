@@ -54,7 +54,7 @@ node default {
 		} else {
 			include exim
 		}
-	} elsif $::hostname == 'bendel' {
+	} else {
 		include postfix
 	}
 
