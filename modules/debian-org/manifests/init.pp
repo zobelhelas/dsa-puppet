@@ -137,6 +137,10 @@ class debian-org {
 		require => Package['debian.org'],
 		content => template('debian-org/pam.common-session.erb'),
 	}
+	file { '/etc/pam.d/common-session-noninteractive':
+		require => Package['debian.org'],
+		content => template('debian-org/pam.common-session-noninteractive.erb'),
+	}
 	file { '/etc/rc.local':
 		mode   => '0755',
 		source => 'puppet:///modules/debian-org/rc.local',
