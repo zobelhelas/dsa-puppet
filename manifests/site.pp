@@ -38,7 +38,9 @@ node default {
 		include ganeti2
 	}
 
-	if $::hostname in [finzi,fano,fasch,field] {
+	if $::kernel == Linux {
+		include linux
+	} elsif $::kernel == 'GNU/kFreeBSD' {
 		include kfreebsd
 	}
 
@@ -110,12 +112,6 @@ node default {
 		include named::geodns
 	} elsif $::hostname == 'liszt' {
 		include named::recursor
-	}
-
-	if $::kernel == 'Linux' {
-		include ferm
-		include ferm::per-host
-		include entropykey
 	}
 
 	if $::hostname in [diabelli,nono,spohr] {
