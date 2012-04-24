@@ -1,4 +1,4 @@
-class vsftpd::nolisten {
+class vsftpd::nolisten inherits vsftpd {
 
 	Service['vsftpd'] {
 		ensure => stopped,

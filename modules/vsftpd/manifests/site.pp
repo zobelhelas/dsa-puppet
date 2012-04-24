@@ -5,7 +5,6 @@ class vsftpd::site (
 	$ensure=present
 ){
 
-	include vsftpd
 	include vsftpd::nolisten
 
 	if ($source and $content) {
