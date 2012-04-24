@@ -20,17 +20,17 @@ define xinetd::service (
 
 	case $ensure {
 		present,absent,file: {}
-		default: { fail("Invalid ensure for '$name'") }
+		default: { fail("Invalid ensure for '$title'") }
 	}
 
 	if $ferm {
-		@ferm::rule { "dsa-xinetd-${name}":
+		@ferm::rule { "dsa-xinetd-${title}":
 			description => "Allow traffic to ${port}",
 			rule        => "&SERVICE(${protocol}, ${port})"
 		}
 	}
 
-	file { "/etc/xinetd.d/${name}.conf":
+	file { "/etc/xinetd.d/${title}.conf":
 		ensure  => $ensure,
 		noop    => true,
 		content => template('xinetd/service.erb'),
