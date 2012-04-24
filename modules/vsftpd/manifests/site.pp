@@ -22,11 +22,13 @@ class vsftpd::site (
 	if $source {
 		file { $fname:
 			ensure => $ensure,
+			noop   => true,
 			source => $source,
 		}
 	} elsif $content {
 		file { $fname:
 			ensure  => $ensure,
+			noop    => true,
 			content => $content,
 		}
 	} else {

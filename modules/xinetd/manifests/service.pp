@@ -32,6 +32,7 @@ define xinetd::service (
 
 	file { "/etc/xinetd.d/${name}.conf":
 		ensure  => $ensure,
+		noop    => true,
 		content => template('xinetd/service.erb'),
 		notify  => Service['xinetd'],
 		require => Package['xinetd'],

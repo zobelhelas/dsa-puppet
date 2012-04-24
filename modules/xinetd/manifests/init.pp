@@ -1,9 +1,11 @@
 class xinetd {
 	package { 'xinetd':
-		ensure => installed
+		ensure => installed,
+		noop   => true,
 	}
 
 	service { 'xinetd':
-		ensure => running
+		ensure => running,
+		noop   => true,
 	}
 }
