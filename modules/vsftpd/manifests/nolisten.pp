@@ -7,7 +7,7 @@ class vsftpd::nolisten {
 
 	file { '/etc/vsftpd.conf':
 		noop    => true,
-		content => 'listen=NO'
+		content => 'listen=NO',
 		notify  => Service['vsftpd']
 	}
 }
