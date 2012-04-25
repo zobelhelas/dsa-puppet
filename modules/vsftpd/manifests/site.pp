@@ -1,5 +1,4 @@
 define vsftpd::site (
-	$name,
 	$source='',
 	$content='',
 	$bind=$::ipaddress,
