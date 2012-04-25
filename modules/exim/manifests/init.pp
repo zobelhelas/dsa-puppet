@@ -14,7 +14,7 @@ class exim {
 		ensure  => running,
 		require => [
 			File['/etc/exim4/exim4.conf'],
-			Package['exim4'],
+			Package['exim4-daemon-heavy'],
 		]
 	}
 
