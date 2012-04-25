@@ -1,7 +1,7 @@
 define vsftpd::site (
 	$source='',
 	$content='',
-	$bind=$::ipaddress,
+	$bind='',
 	$ensure=present
 ){
 

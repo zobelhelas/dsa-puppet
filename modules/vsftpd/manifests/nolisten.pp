@@ -9,7 +9,7 @@ class vsftpd::nolisten inherits vsftpd {
 
 	file { '/etc/vsftpd.conf':
 		noop    => true,
-		content => 'listen=NO',
+		content => "listen=NO\n",
 		notify  => Service['vsftpd']
 	}
 }
