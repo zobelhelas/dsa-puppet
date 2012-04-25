@@ -5,7 +5,8 @@ class xinetd {
 	}
 
 	service { 'xinetd':
-		ensure => running,
-		noop   => true,
+		ensure  => running,
+		noop    => true,
+		require => Package['xinetd']
 	}
 }

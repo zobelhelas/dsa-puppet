@@ -8,7 +8,8 @@ class vsftpd {
 	}
 
 	service { 'vsftpd':
-		ensure => running
+		ensure  => running,
+		require => Package['vsftpd']
 	}
 
 	munin::check { 'vsftpd': }

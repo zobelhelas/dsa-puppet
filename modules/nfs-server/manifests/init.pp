@@ -4,7 +4,7 @@ class nfs-server {
 			'nfs-common',
 			'nfs-kernel-server'
 		]:
-			ensure => installed
+		ensure => installed
 	}
 
 	service { 'nfs-common':
@@ -44,15 +44,17 @@ class nfs-server {
 
 	file { '/etc/default/nfs-common':
 		source  => 'puppet:///modules/nfs-server/nfs-common.default',
-		require => Package['nfs-common'],
+		before  => Package['nfs-common'],
 		notify  => Service['nfs-common'],
 	}
 	file { '/etc/default/nfs-kernel-server':
 		source  => 'puppet:///modules/nfs-server/nfs-kernel-server.default',
-		require => Package['nfs-kernel-server'],
+		before  => Package['nfs-kernel-server'],
 		notify  => Service['nfs-kernel-server'],
 	}
 	file { '/etc/modprobe.d/lockd.local':
-		source => 'puppet:///modules/nfs-server/lockd.local.modprobe'
+		source => 'puppet:///modules/nfs-server/lockd.local.modprobe',
+		before => Package['nfs-common'],
+		notify => Service['nfs-common'],
 	}
 }

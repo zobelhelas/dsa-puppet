@@ -4,6 +4,11 @@ class acpi {
 			ensure => installed
 		}
 
+		service { 'acpid':
+			ensure  => running,
+			require => Package['acpid'],
+		}
+
 		if $::lsbdistcodename != 'lenny' {
 			package { 'acpi-support-base':
 				ensure => installed

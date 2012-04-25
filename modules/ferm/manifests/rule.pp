@@ -1,4 +1,4 @@
-define ferm::rule(
+define ferm::rule (
 	$rule,
 	$domain='ip',
 	$table='filter',
@@ -15,5 +15,3 @@ define ferm::rule(
 			notify  => Service['ferm'],
 	}
 }
-
-

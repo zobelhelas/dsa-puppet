@@ -29,8 +29,6 @@ class monit {
 
 	file { '/etc/monit/':
 		ensure  => directory,
-		owner   => root,
-		group   => root,
 		mode    => '0755',
 		purge   => true,
 		notify  => Exec['monit stop'],
@@ -38,8 +36,6 @@ class monit {
 	}
 	file { '/etc/monit/monit.d':
 		ensure  => directory,
-		owner   => root,
-		group   => root,
 		mode    => '0750',
 		purge   => true,
 	}
