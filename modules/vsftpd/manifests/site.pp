@@ -1,4 +1,5 @@
-class vsftpd::site (
+define vsftpd::site (
+	$name,
 	$source='',
 	$content='',
 	$bind=$::ipaddress,
