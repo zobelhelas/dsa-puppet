@@ -129,14 +129,12 @@ hostlist reservedaddrs = <%= scope.lookupvar('site::nodeinfo')['reservedaddrs'] 
 domainlist mailhubdomains = lsearch;/etc/exim4/manualroute
 
 <%- end -%>
-<%- if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" -%>
 tls_certificate = /etc/exim4/ssl/thishost.crt
 tls_privatekey = /etc/exim4/ssl/thishost.key
 tls_try_verify_hosts = *
 tls_verify_certificates = /etc/exim4/ssl/ca.crt
 tls_crl = /etc/exim4/ssl/ca.crl
 
-<%- end -%>
 # The setting below causes Exim to do a reverse DNS lookup on all incoming
 # IP calls, in order to get the true host name. If you feel this is too
 # expensive, you can specify the networks for which a lookup is done, or
@@ -230,9 +228,7 @@ admin_groups = adm
 remote_sort_domains = *.debian.org:*.debian.net
 
 pipelining_advertise_hosts = !*
-<%- if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" -%>
 tls_advertise_hosts = *
-<%- end -%>
 smtp_enforce_sync = true
 
 log_selector = +tls_cipher +tls_peerdn +queue_time +deliver_time +smtp_connection +smtp_incomplete_transaction +smtp_confirmation
@@ -1566,10 +1562,8 @@ remote_smtp:
   driver = smtp
   connect_timeout = 1m
   delay_after_cutoff = false
-<%- if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true" -%>
   tls_certificate = /etc/exim4/ssl/thishost.crt
   tls_privatekey = /etc/exim4/ssl/thishost.key
-<%- end -%>
 
 <%=
 out = ""
@@ -1581,13 +1575,11 @@ remote_smtp_smarthost:
   delay_after_cutoff = false
   port = '
   out += scope.lookupvar('site::nodeinfo')['smarthost_port'].to_s + "\n"
-  if has_variable?("exim_ssl_certs") && exim_ssl_certs == "true"
-    out += '  tls_tempfail_tryclear = false
+  out += '  tls_tempfail_tryclear = false
   hosts_require_tls = ' + scope.lookupvar('site::nodeinfo')['smarthost'] + '
   tls_certificate = /etc/exim4/ssl/thishost.crt
   tls_privatekey = /etc/exim4/ssl/thishost.key
 '
-  end
 end
 out
 %>

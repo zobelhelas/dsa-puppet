@@ -12,7 +12,10 @@ class exim {
 
 	service { 'exim4':
 		ensure  => running,
-		require => File['/etc/exim4/exim4.conf'],
+		require => [
+			File['/etc/exim4/exim4.conf'],
+			Package['exim4'],
+		]
 	}
 
 	file { '/etc/exim4/':
@@ -43,6 +46,7 @@ class exim {
 	}
 	file { '/etc/exim4/exim4.conf':
 		content => template('exim/eximconf.erb'),
+		require => File['/etc/exim4/ssl/thishost.crt'],
 		notify  => Service['exim4'],
 	}
 	file { '/etc/mailname':
