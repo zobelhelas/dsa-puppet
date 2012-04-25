@@ -5,8 +5,10 @@ class xinetd {
 	}
 
 	service { 'xinetd':
-		ensure  => running,
-		noop    => true,
-		require => Package['xinetd']
+		ensure    => running,
+		hasstatus => false,
+		pattern   => '/usr/sbin/xinetd',
+		noop      => true,
+		require   => Package['xinetd']
 	}
 }
