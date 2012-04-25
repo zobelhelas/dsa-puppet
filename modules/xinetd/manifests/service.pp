@@ -1,8 +1,8 @@
 define xinetd::service (
-	$bind,
 	$id,
 	$server,
 	$port,
+	$bind='',
 	$socket_type=stream,
 	$protocol=tcp,
 	$flags=IPv6,
@@ -30,7 +30,7 @@ define xinetd::service (
 		}
 	}
 
-	file { "/etc/xinetd.d/${name}.conf":
+	file { "/etc/xinetd.d/${name}":
 		ensure  => $ensure,
 		noop    => true,
 		content => template('xinetd/service.erb'),

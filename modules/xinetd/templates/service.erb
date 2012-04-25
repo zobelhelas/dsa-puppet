@@ -1,6 +1,8 @@
 service <%= scope.lookupvar('port') %>
 {
+<%- if scope.lookupvar('bind') != '' -%>
 	bind		= <%= scope.lookupvar('bind') %>
+<%- end -%>
 	id		= <%= scope.lookupvar('id') %>
 
 	socket_type	= <%= scope.lookupvar('stream') %>
