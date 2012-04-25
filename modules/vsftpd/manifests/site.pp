@@ -35,7 +35,7 @@ class vsftpd::site (
 	}
 
 	# We don't need a firewall rule because it's added in vsftp.pp
-	xinetd::service { "vsftpd-${title}":
+	xinetd::service { "vsftpd-${name}":
 		bind        => $bind,
 		id          => $name,
 		server      => '/usr/sbin/vsftpd',
