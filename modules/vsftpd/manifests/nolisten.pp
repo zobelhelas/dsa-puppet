@@ -5,6 +5,8 @@ class vsftpd::nolisten inherits vsftpd {
 		noop   => true,
 	}
 
+	Service['vsftpd']->Service['xinetd']
+
 	file { '/etc/vsftpd.conf':
 		noop    => true,
 		content => 'listen=NO',
