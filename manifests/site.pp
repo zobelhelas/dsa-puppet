@@ -98,6 +98,10 @@ node default {
 		include roles::ftp
 	}
 
+	if getfromhash($site::nodeinfo, 'ftp.upload.d.o') {
+		include roles::ftp_upload
+	}
+
 	if $::hostname in [bizet,morricone] {
 		include roles::backports_master
 	}

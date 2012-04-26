@@ -150,6 +150,9 @@ services:
   ftp.d.o:
     - kassia.debian.org
     - klecker.debian.org
+  ftp.upload.d.o:
+    - franck.debian.org
+    - ravel.debian.org
   mailrelay:
     - kokkonen.debian.org
     - merikanto.debian.org
