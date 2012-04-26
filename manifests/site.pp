@@ -94,6 +94,10 @@ node default {
 		include roles::backports_mirror
 	}
 
+	if getfromhash($site::nodeinfo, 'ftp.d.o') {
+		include roles::ftp
+	}
+
 	if $::hostname in [bizet,morricone] {
 		include roles::backports_master
 	}
@@ -148,7 +152,7 @@ node default {
 		munin::check { 'spamassassin': }
 	}
 
-	if $::hostname in [chopin,franck,kassia,klecker,ravel] {
+	if $::hostname in [chopin,franck,ravel] {
 		include vsftpd
 	}
 }

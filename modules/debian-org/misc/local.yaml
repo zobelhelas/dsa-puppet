@@ -147,6 +147,9 @@ services:
     - busoni.debian.org
   dbmaster:
     - draghi.debian.org
+  ftp.d.o:
+    - kassia.debian.org
+    - klecker.debian.org
   mailrelay:
     - kokkonen.debian.org
     - merikanto.debian.org
