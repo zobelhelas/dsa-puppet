@@ -1,5 +1,4 @@
-define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config = undef, $ensure = present, $require = []) {
-
+define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config = undef, $ensure = present) {
 
 	case $ensure {
 		present: {
@@ -50,14 +49,12 @@ define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config =
 			ensure  => $ensure,
 			content => template($template),
 			notify => Exec['apt-get update'],
-			require => $require,
 		}
 	} else {
 		file { "/etc/apt/sources.list.d/${name}.list":
 			ensure => $ensure,
 			source => $config,
 			notify => Exec['apt-get update'],
-			require => $require,
 		}
 	}
 }
