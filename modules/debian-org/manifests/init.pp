@@ -179,7 +179,6 @@ class debian-org {
 
 	exec { 'apt-get update':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		stage       => setup_infra,
 		refreshonly => true,
 	}
 

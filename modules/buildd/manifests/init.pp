@@ -7,16 +7,13 @@ class buildd {
 		package { 'schroot': ensure => held }
 	}
 
-	package { 'apt-transport-https':
-		ensure => installed,
-		stage  => setup,
-	}
 	package { [
 			'sbuild',
+			'apt-transport-https',
 			'debootstrap',
 			'dupload'
 		]:
-		ensure => installed
+			ensure => installed
 	}
 
 	site::linux_module { 'dm_snapshot': }
