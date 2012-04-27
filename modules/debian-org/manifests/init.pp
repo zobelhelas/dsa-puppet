@@ -169,6 +169,9 @@ class debian-org {
 	site::alternative { 'editor':
 		linkto => '/usr/bin/vim.basic',
 	}
+	site::alternative { 'view':
+		linkto => '/usr/bin/vim.basic',
+	}
 	mailalias { 'samhain-reports':
 		ensure => present,
 		recipient => $debianadmin,
