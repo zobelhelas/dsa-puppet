@@ -1,5 +1,6 @@
 Package {
-	require => File['/etc/apt/apt.conf.d/local-recommends']
+	require => File['/etc/apt/apt.conf.d/local-recommends'],
+	stage   => deploy_infra
 }
 
 File {
