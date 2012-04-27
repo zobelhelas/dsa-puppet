@@ -13,14 +13,22 @@ class debian-org {
 			'sysklogd',
 			'rsyslog',
 		]:
-			ensure => purged,
+		ensure => purged,
+	}
+	package { [
+			'debian.org',
+			'dsa-munin-plugins',
+		]:
+		ensure => installed,
+		require => [
+			File['/etc/apt/sources.list.d/db.debian.org.list'],
+			Exec['apt-get update']
+		]
 	}
 	package { [
 			'apt-utils',
 			'bash-completion',
-			'debian.org',
 			'dnsutils',
-			'dsa-munin-plugins',
 			'less',
 			'lsb-release',
 			'libfilesystem-ruby1.8',
@@ -29,7 +37,7 @@ class debian-org {
 			'nload',
 			'pciutils',
 		]:
-			ensure => installed,
+		ensure => installed,
 	}
 
 	munin::check { [
@@ -54,7 +62,11 @@ class debian-org {
 
 	if getfromhash($site::nodeinfo, 'broken-rtc') {
 		package { 'fake-hwclock':
-			ensure => installed
+			ensure => installed,
+			require => [
+				File['/etc/apt/sources.list.d/db.debian.org.list'],
+				Exec['apt-get update']
+			]
 		}
 	}
 

@@ -2,18 +2,30 @@ class buildd {
 
 	# sigh, sort this mess out, kids
 	if $::lsbdistcodename in [lenny,squeeze] {
-		package { 'schroot': ensure => installed }
+		package { 'schroot':
+			ensure => installed,
+			require => [
+				File['/etc/apt/sources.list.d/db.debian.org.list'],
+				Exec['apt-get update']
+			]
+		}
 	} else {
 		package { 'schroot': ensure => held }
 	}
 
+	package { 'apt-transport-https':
+		ensure => installed,
+	}
 	package { [
 			'sbuild',
-			'apt-transport-https',
 			'debootstrap',
 			'dupload'
 		]:
-			ensure => installed
+		ensure => installed,
+		require => [
+			File['/etc/apt/sources.list.d/db.debian.org.list'],
+			Exec['apt-get update']
+		]
 	}
 
 	site::linux_module { 'dm_snapshot': }
