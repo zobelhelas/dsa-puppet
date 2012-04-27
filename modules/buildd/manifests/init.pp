@@ -25,7 +25,7 @@ class buildd {
 	site::aptrepo { 'buildd.debian.org':
 		template => 'buildd/etc/apt/sources.list.d/buildd.list.erb',
 		key      => 'puppet:///modules/buildd/buildd.debian.org.asc',
-		require => Package['apt-transport-https'],
+		require  => Package['apt-transport-https'],
 	}
 
 	file { '/etc/apt/preferences.d/buildd':
