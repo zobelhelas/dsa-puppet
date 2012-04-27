@@ -180,7 +180,7 @@ class debian-org {
 	exec { 'apt-get update':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		refreshonly => true,
-	}-> Package <| |>
+	}
 
 	exec { 'dpkg-reconfigure tzdata -pcritical -fnoninteractive':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
