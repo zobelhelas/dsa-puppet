@@ -1,11 +1,13 @@
 class roles::ftp {
 
 	$bind = $::hostname ? {
+		kassia  => '::ffff:130.89.149.226',
 		klecker => '::ffff:130.89.148.12',
 		default => '',
 	}
 
 	$bind6 = $::hostname ? {
+		kassia  => '2001:610:1908:a000::149:226',
 		klecker => '2001:610:1908:b000::148:12',
 		default => '',
 	}
