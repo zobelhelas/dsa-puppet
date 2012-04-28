@@ -20,7 +20,7 @@ class roles::backports_master {
 
 	if $bind6 {
 		vsftpd::site { 'backports-v6':
-			source  => template('roles/backports_mirror/vsftpd.conf.erb'),
+			content => template('roles/backports_mirror/vsftpd.conf.erb'),
 			logfile => $logfile,
 			bind    => $bind6,
 		}

@@ -15,14 +15,14 @@ class roles::ftp {
 	$logfile = '/var/log/ftp/vsftpd-ftp.debian.org.log'
 
 	vsftpd::site { 'ftp':
-		source  => template('roles/ftp/vsftpd.conf.erb'),
+		content => template('roles/ftp/vsftpd.conf.erb'),
 		logfile => $logfile,
 		bind    => $bind,
 	}
 
 	if $bind6 {
 		vsftpd::site { 'ftp-v6':
-			source  => template('roles/ftp/vsftpd.conf.erb'),
+			content => template('roles/ftp/vsftpd.conf.erb'),
 			logfile => $logfile,
 			bind    => $bind6,
 		}
