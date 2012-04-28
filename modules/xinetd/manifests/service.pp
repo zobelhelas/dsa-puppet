@@ -19,15 +19,16 @@ define xinetd::service (
 	include xinetd
 
 	$noop = $::hostname ? {
-		gluck    => false,
-		lobos    => false,
-		saens    => false,
-		santoro  => false,
-		schein   => false,
-		steffani => false,
-		villa    => false,
-		wieck    => false,
-		default  => true
+		gluck     => false,
+		lobos     => false,
+		saens     => false,
+		santoro   => false,
+		schein    => false,
+		steffani  => false,
+		villa     => false,
+		wieck     => false,
+		morricone => false,
+		default   => true
 	}
 
 	case $ensure {
