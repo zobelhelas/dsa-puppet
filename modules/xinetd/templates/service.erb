@@ -5,7 +5,7 @@ service <%= scope.lookupvar('port') %>
 <%- end -%>
 	id		= <%= scope.lookupvar('id') %>
 
-	socket_type	= <%= scope.lookupvar('stream') %>
+	socket_type	= <%= scope.lookupvar('socket_type') %>
 	protocol	= <%= scope.lookupvar('protocol') %>
 	flags		= <%= scope.lookupvar('flags') %>
 	wait		= <%= scope.lookupvar('wait') %>
