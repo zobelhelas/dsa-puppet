@@ -16,7 +16,7 @@ class roles::backports_master {
 	}
 
 	if $bind6 {
-		vsftpd::site { 'security-v6':
+		vsftpd::site { 'backports-v6':
 			source => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
 			bind   => $bind6,
 		}

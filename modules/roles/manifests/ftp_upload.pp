@@ -14,7 +14,7 @@ class roles::ftp_upload {
 	}
 
 	if $bind6 {
-		vsftpd::site { 'security-v6':
+		vsftpd::site { 'ftp-upload-v6':
 			source => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
 			bind   => $bind6,
 		}
