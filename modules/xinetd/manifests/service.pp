@@ -19,9 +19,10 @@ define xinetd::service (
 	include xinetd
 
 	$noop = $::hostname ? {
-		villa   => false,
-		lobos   => false,
-		default => true
+		villa    => false,
+		lobos    => false,
+		steffani => false,
+		default  => true
 	}
 
 	case $ensure {

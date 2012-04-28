@@ -1,9 +1,10 @@
 class vsftpd::nolisten inherits vsftpd {
 
 	$noop = $::hostname ? {
-		villa   => false,
-		lobos   => false,
-		default => true
+		villa    => false,
+		lobos    => false,
+		steffani => false,
+		default  => true
 	}
 
 	Service['vsftpd'] {
