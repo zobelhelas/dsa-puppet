@@ -23,6 +23,7 @@ define vsftpd::site (
 		franck    => false,
 		gluck     => false,
 		lobos     => false,
+		kassia    => false,
 		klecker   => false,
 		ravel     => false,
 		saens     => false,
