@@ -22,6 +22,7 @@ define vsftpd::site (
 		bizet     => false,
 		gluck     => false,
 		lobos     => false,
+		ravel     => false,
 		saens     => false,
 		santoro   => false,
 		schein    => false,

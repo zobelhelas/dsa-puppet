@@ -4,6 +4,7 @@ class vsftpd::nolisten inherits vsftpd {
 		bizet     => false,
 		gluck     => false,
 		lobos     => false,
+		ravel     => false,
 		saens     => false,
 		santoro   => false,
 		schein    => false,
