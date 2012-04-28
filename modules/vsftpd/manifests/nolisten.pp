@@ -1,14 +1,19 @@
 class vsftpd::nolisten inherits vsftpd {
 
+	$noop = $::hostname ? {
+		villa   => false,
+		default => true
+	}
+
 	Service['vsftpd'] {
 		ensure => stopped,
-		noop   => true,
+		noop   => $noop,
 	}
 
 	Service['vsftpd']->Service['xinetd']
 
 	file { '/etc/vsftpd.conf':
-		noop    => true,
+		noop    => $noop,
 		content => "listen=NO\n",
 		notify  => Service['vsftpd']
 	}
