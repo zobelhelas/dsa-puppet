@@ -18,16 +18,21 @@ define vsftpd::site (
 
 	$fname = "/etc/vsftpd-${name}.conf"
 
+	$noop = $::hostname ? {
+		villa   => false,
+		default => true
+	}
+
 	if $source {
 		file { $fname:
 			ensure => $ensure,
-			noop   => true,
+			noop   => $noop,
 			source => $source,
 		}
 	} elsif $content {
 		file { $fname:
 			ensure  => $ensure,
-			noop    => true,
+			noop    => $noop,
 			content => $content,
 		}
 	} else {
