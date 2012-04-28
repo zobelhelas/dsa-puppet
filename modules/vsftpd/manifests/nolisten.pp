@@ -1,12 +1,13 @@
 class vsftpd::nolisten inherits vsftpd {
 
 	$noop = $::hostname ? {
-		villa    => false,
+		gluck    => false,
 		lobos    => false,
 		saens    => false,
 		santoro  => false,
 		schein   => false,
 		steffani => false,
+		villa    => false,
 		wieck    => false,
 		default  => true
 	}
