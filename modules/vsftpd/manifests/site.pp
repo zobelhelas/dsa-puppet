@@ -42,7 +42,7 @@ define vsftpd::site (
 	# We don't need a firewall rule because it's added in vsftp.pp
 	xinetd::service { "vsftpd-${name}":
 		bind        => $bind,
-		id          => $name,
+		id          => "${name}-ftp",
 		server      => '/usr/sbin/vsftpd',
 		port        => 'ftp',
 		server_args => $fname,
