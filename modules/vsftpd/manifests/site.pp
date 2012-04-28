@@ -22,6 +22,7 @@ define vsftpd::site (
 		villa    => false,
 		lobos    => false,
 		steffani => false,
+		wieck    => false,
 		default  => true
 	}
 

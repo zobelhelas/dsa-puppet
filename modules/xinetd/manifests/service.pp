@@ -22,6 +22,7 @@ define xinetd::service (
 		villa    => false,
 		lobos    => false,
 		steffani => false,
+		wieck    => false,
 		default  => true
 	}
 
