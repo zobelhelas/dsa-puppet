@@ -48,6 +48,7 @@ define vsftpd::site (
 		port        => 'ftp',
 		server_args => $fname,
 		ferm        => false,
+		require     => File[$fname]
 	}
 
 }
