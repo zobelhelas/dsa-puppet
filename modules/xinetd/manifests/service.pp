@@ -21,6 +21,7 @@ define xinetd::service (
 	$noop = $::hostname ? {
 		villa    => false,
 		lobos    => false,
+		saens    => false,
 		schein   => false,
 		steffani => false,
 		wieck    => false,
