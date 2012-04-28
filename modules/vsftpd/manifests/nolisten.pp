@@ -2,6 +2,7 @@ class vsftpd::nolisten inherits vsftpd {
 
 	$noop = $::hostname ? {
 		villa   => false,
+		lobos   => false,
 		default => true
 	}
 

@@ -20,6 +20,7 @@ define vsftpd::site (
 
 	$noop = $::hostname ? {
 		villa   => false,
+		lobos   => false,
 		default => true
 	}
 

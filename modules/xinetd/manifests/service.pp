@@ -20,6 +20,7 @@ define xinetd::service (
 
 	$noop = $::hostname ? {
 		villa   => false,
+		lobos   => false,
 		default => true
 	}
 
