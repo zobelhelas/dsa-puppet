@@ -12,16 +12,18 @@ class roles::ftp {
 		default => '',
 	}
 
+	$logfile = '/var/log/ftp/vsftpd-ftp.debian.org.log'
+
 	vsftpd::site { 'ftp':
-		source  => 'puppet:///modules/roles/ftp/vsftpd.conf',
-		logfile => '/var/log/ftp/vsftpd-ftp.debian.org.log',
+		source  => template('roles/ftp/vsftpd.conf.erb'),
+		logfile => $logfile,
 		bind    => $bind,
 	}
 
 	if $bind6 {
 		vsftpd::site { 'ftp-v6':
-			source  => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
-			logfile => '/var/log/ftp/vsftpd-ftp.debian.org.log',
+			source  => template('roles/ftp/vsftpd.conf.erb'),
+			logfile => $logfile,
 			bind    => $bind6,
 		}
 	}
