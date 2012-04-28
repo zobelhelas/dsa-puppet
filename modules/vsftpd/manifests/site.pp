@@ -2,6 +2,7 @@ define vsftpd::site (
 	$source='',
 	$content='',
 	$bind='',
+	$logfile="/var/log/ftp/vsftpd-${name}.debian.org.log",
 	$ensure=present
 ){
 
@@ -50,6 +51,11 @@ define vsftpd::site (
 		}
 	} else {
 		fail ( "Need one of source or content for $name" )
+	}
+
+	file { "/etc/logrotate.d/vsftpd-${name}":
+		ensure  => $ensure,
+		content => template('vsftpd/logrotate.erb')
 	}
 
 	# We don't need a firewall rule because it's added in vsftp.pp

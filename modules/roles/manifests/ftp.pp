@@ -13,14 +13,16 @@ class roles::ftp {
 	}
 
 	vsftpd::site { 'ftp':
-		source => 'puppet:///modules/roles/ftp/vsftpd.conf',
-		bind   => $bind,
+		source  => 'puppet:///modules/roles/ftp/vsftpd.conf',
+		logfile => '/var/log/ftp/vsftpd-ftp.debian.org.log',
+		bind    => $bind,
 	}
 
 	if $bind6 {
 		vsftpd::site { 'ftp-v6':
-			source => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
-			bind   => $bind6,
+			source  => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
+			logfile => '/var/log/ftp/vsftpd-ftp.debian.org.log',
+			bind    => $bind6,
 		}
 	}
 }

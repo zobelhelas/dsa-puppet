@@ -14,14 +14,16 @@ class roles::security_mirror {
 	}
 
 	vsftpd::site { 'security':
-		source => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
-		bind   => $bind,
+		source  => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
+		logfile => '/var/log/ftp/vsftpd-security.debian.org.log',
+		bind    => $bind,
 	}
 
 	if $bind6 {
 		vsftpd::site { 'security-v6':
-			source => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
-			bind   => $bind6,
+			source  => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
+			logfile => '/var/log/ftp/vsftpd-security.debian.org.log',
+			bind    => $bind6,
 		}
 	}
 

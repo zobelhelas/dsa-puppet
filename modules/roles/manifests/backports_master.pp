@@ -11,14 +11,16 @@ class roles::backports_master {
 	}
 
 	vsftpd::site { 'backports':
-		source => 'puppet:///modules/roles/backports_master/vsftpd.conf',
-		bind   => $bind,
+		source  => 'puppet:///modules/roles/backports_master/vsftpd.conf',
+		logfile => '/var/log/ftp/vsftpd-backports-master.debian.org.log',
+		bind    => $bind,
 	}
 
 	if $bind6 {
 		vsftpd::site { 'backports-v6':
-			source => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
-			bind   => $bind6,
+			source  => 'puppet:///modules/roles/security_mirror/vsftpd.conf',
+			logfile => '/var/log/ftp/vsftpd-backports-master.debian.org.log',
+			bind    => $bind6,
 		}
 	}
 
