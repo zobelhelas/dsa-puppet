@@ -23,6 +23,7 @@ define xinetd::service (
 		franck    => false,
 		gluck     => false,
 		lobos     => false,
+		klecker   => false,
 		ravel     => false,
 		saens     => false,
 		santoro   => false,
