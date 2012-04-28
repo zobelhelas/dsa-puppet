@@ -19,6 +19,7 @@ define xinetd::service (
 	include xinetd
 
 	$noop = $::hostname ? {
+		bizet     => false,
 		gluck     => false,
 		lobos     => false,
 		saens     => false,

@@ -19,6 +19,7 @@ define vsftpd::site (
 	$fname = "/etc/vsftpd-${name}.conf"
 
 	$noop = $::hostname ? {
+		bizet     => false,
 		gluck     => false,
 		lobos     => false,
 		saens     => false,
