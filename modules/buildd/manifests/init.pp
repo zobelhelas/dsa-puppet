@@ -41,7 +41,11 @@ class buildd {
 	}
 
 	file { '/etc/apt/preferences.d/buildd':
+		ensure => absent,
+	}
+	file { '/etc/apt/preferences.d/buildd.debian.org':
 		source  => "puppet:///modules/buildd/apt-preferences",
+		content => template('buildd/etc/apt/preferences.d/buildd.debian.org'),
 		before  => File["/etc/apt/sources.list.d/buildd.list"],
 		;
 	}
