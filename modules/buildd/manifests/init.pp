@@ -40,7 +40,7 @@ class buildd {
 	file { '/etc/apt/preferences.d/buildd.debian.org':
 		ensure => absent,
 	}
-	file { '/etc/apt/preferences.d/buildd.debian.org':
+	file { '/etc/apt/preferences.d/buildd':
 		content => template('buildd/etc/apt/preferences.d/buildd'),
 		before  => File["/etc/apt/sources.list.d/buildd.debian.org.list"],
 		;
