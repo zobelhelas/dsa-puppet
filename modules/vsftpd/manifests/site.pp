@@ -19,34 +19,14 @@ define vsftpd::site (
 
 	$fname = "/etc/vsftpd-${name}.conf"
 
-	$noop = $::hostname ? {
-		bizet     => false,
-		franck    => false,
-		gluck     => false,
-		lobos     => false,
-		kassia    => false,
-		klecker   => false,
-		ravel     => false,
-		saens     => false,
-		santoro   => false,
-		schein    => false,
-		steffani  => false,
-		villa     => false,
-		wieck     => false,
-		morricone => false,
-		default   => true
-	}
-
 	if $source {
 		file { $fname:
 			ensure => $ensure,
-			noop   => $noop,
 			source => $source,
 		}
 	} elsif $content {
 		file { $fname:
 			ensure  => $ensure,
-			noop    => $noop,
 			content => $content,
 		}
 	} else {

@@ -18,24 +18,6 @@ define xinetd::service (
 ) {
 	include xinetd
 
-	$noop = $::hostname ? {
-		bizet     => false,
-		franck    => false,
-		gluck     => false,
-		lobos     => false,
-		kassia    => false,
-		klecker   => false,
-		ravel     => false,
-		saens     => false,
-		santoro   => false,
-		schein    => false,
-		steffani  => false,
-		villa     => false,
-		wieck     => false,
-		morricone => false,
-		default   => true
-	}
-
 	case $ensure {
 		present,absent,file: {}
 		default: { fail("Invalid ensure for '$name'") }
@@ -50,7 +32,6 @@ define xinetd::service (
 
 	file { "/etc/xinetd.d/${name}":
 		ensure  => $ensure,
-		noop    => $noop,
 		content => template('xinetd/service.erb'),
 		notify  => Service['xinetd'],
 		require => Package['xinetd'],

@@ -18,7 +18,6 @@ class dacs {
 		owner => root,
 		group => www-data,
 		mode  => '0640',
-		noop  => true,
 	}
 
 	file { '/var/log/dacs':
