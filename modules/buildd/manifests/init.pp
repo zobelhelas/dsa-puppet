@@ -5,8 +5,8 @@ class buildd {
 		package { 'schroot':
 			ensure => installed,
 		}
-	} else {
-		// package { 'schroot': ensure => held }
+	#} else {
+	#	package { 'schroot': ensure => held }
 	}
 
 	package { 'apt-transport-https':
