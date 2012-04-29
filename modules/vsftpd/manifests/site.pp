@@ -20,7 +20,6 @@ define vsftpd::site (
 
 	file { $fname:
 		ensure  => $ensure,
-		noop    => true,
 		content => template('vsftpd/vsftpd.conf.erb')
 	}
 
