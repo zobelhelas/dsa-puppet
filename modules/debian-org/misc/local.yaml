@@ -142,11 +142,16 @@ footer:
   #zandonai.debian.org: "Debian s390 buildd system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
   #zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
+  backports_master:
+    - bizet.debian.org
+    - morricone.debian.org
   bugsmaster:
   bugsmx:
     - busoni.debian.org
   dbmaster:
     - draghi.debian.org
+  ftp_master:
+    - franck.debian.org
   ftp.d.o:
     - kassia.debian.org
     - klecker.debian.org

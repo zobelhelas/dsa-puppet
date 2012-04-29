@@ -16,7 +16,7 @@ class roles {
 		include buildd
 	}
 
-	if $::hostname in [chopin,franck,morricone,bizet] {
+	if getfromhash($site::nodeinfo, 'ftp_master') {
 		include roles::dakmaster
 	}
 
@@ -40,12 +40,14 @@ class roles {
 		include roles::ftp_upload
 	}
 
-	if $::hostname in [bizet,morricone] {
+	if getfromhash($site::nodeinfo, 'backports_master') {
 		include roles::backports_master
+		include roles::dakmaster
 	}
 
 	if getfromhash($site::nodeinfo, 'security_master') {
 		include roles::security_master
+		include roles::dakmaster
 	}
 
 	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
