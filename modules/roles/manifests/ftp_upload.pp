@@ -10,19 +10,23 @@ class roles::ftp_upload {
 		default => '',
 	}
 
-	$logfile = '/var/log/ftp/vsftpd-ftp.upload.debian.org.log'
-
 	vsftpd::site { 'ftp-upload':
-		content => template('roles/ftp_upload/vsftpd.conf.erb'),
-		logfile => $logfile,
-		bind    => $bind,
+		banner     => 'ftp.upload.debian.org FTP server',
+		logfile    => '/var/log/ftp/vsftpd-ftp.upload.debian.org.log',
+		writable   => true,
+		chown_user => dak,
+		bind       => $bind,
+		root       => '/srv/upload.debian.org/ftp',
 	}
 
 	if $bind6 {
 		vsftpd::site { 'ftp-upload-v6':
-			content => template('roles/ftp_upload/vsftpd.conf.erb'),
-			logfile => $logfile,
-			bind    => $bind6,
+			banner     => 'ftp.upload.debian.org FTP server',
+			logfile    => '/var/log/ftp/vsftpd-ftp.upload.debian.org.log',
+			writable   => true,
+			chown_user => dak,
+			bind       => $bind6,
+			root       => '/srv/upload.debian.org/ftp',
 		}
 	}
 }

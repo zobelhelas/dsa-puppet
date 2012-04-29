@@ -1,16 +1,15 @@
 define vsftpd::site (
-	$source='',
-	$content='',
+	$root,
 	$bind='',
+	$chown_user='',
+	$writable=false,
+	$banner="${name} FTP Server",
+	$max_clients=100,
 	$logfile="/var/log/ftp/vsftpd-${name}.debian.org.log",
 	$ensure=present
 ){
 
 	include vsftpd::nolisten
-
-	if ($source and $content) {
-		fail ( "Can't have both source and content for $name" )
-	}
 
 	case $ensure {
 		present,absent: {}
@@ -19,18 +18,10 @@ define vsftpd::site (
 
 	$fname = "/etc/vsftpd-${name}.conf"
 
-	if $source {
-		file { $fname:
-			ensure => $ensure,
-			source => $source,
-		}
-	} elsif $content {
-		file { $fname:
-			ensure  => $ensure,
-			content => $content,
-		}
-	} else {
-		fail ( "Need one of source or content for $name" )
+	file { $fname:
+		ensure  => $ensure,
+		noop    => true,
+		content => template('vsftpd/vsftpd.conf.erb')
 	}
 
 	file { "/etc/logrotate.d/vsftpd-${name}":
@@ -46,7 +37,7 @@ define vsftpd::site (
 		port        => 'ftp',
 		server_args => $fname,
 		ferm        => false,
-		instances   => 200,
+		instances   => $max_clients,
 		require     => File[$fname]
 	}
 

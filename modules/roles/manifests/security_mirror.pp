@@ -5,28 +5,10 @@ class roles::security_mirror {
 		config => 'puppet:///modules/roles/security_mirror/security.debian.org'
 	}
 
-	$bind = $::hostname ? {
-		default => '',
-	}
-
-	$bind6 = $::hostname ? {
-		default => '',
-	}
-
-	$logfile = '/var/log/ftp/vsftpd-security.debian.org.log'
-
 	vsftpd::site { 'security':
-		content => template('roles/security_mirror/vsftpd.conf.erb'),
-		logfile => $logfile,
-		bind    => $bind,
+		banner       => 'security.debian.org FTP server (vsftpd)',
+		logfile      => '/var/log/ftp/vsftpd-security.debian.org.log',
+		max_clients  => 200,
+		root         => '/srv/ftp.root/',
 	}
-
-	if $bind6 {
-		vsftpd::site { 'security-v6':
-			content => template('roles/security_mirror/vsftpd.conf.erb'),
-			logfile => $logfile,
-			bind    => $bind6,
-		}
-	}
-
 }

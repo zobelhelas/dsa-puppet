@@ -12,19 +12,21 @@ class roles::ftp {
 		default => '',
 	}
 
-	$logfile = '/var/log/ftp/vsftpd-ftp.debian.org.log'
-
 	vsftpd::site { 'ftp':
-		content => template('roles/ftp/vsftpd.conf.erb'),
-		logfile => $logfile,
-		bind    => $bind,
+		banner       => 'ftp.debian.org FTP server',
+		logfile      => '/var/log/ftp/vsftpd-ftp.debian.org.log',
+		bind         => $bind,
+		max_clients  => 200,
+		root         => '/srv/ftp.debian.org/ftp.root',
 	}
 
 	if $bind6 {
 		vsftpd::site { 'ftp-v6':
-			content => template('roles/ftp/vsftpd.conf.erb'),
-			logfile => $logfile,
-			bind    => $bind6,
+			banner       => 'ftp.debian.org FTP server',
+			logfile      => '/var/log/ftp/vsftpd-ftp.debian.org.log',
+			bind         => $bind6,
+			max_clients  => 200,
+			root         => '/srv/ftp.debian.org/ftp.root',
 		}
 	}
 }
