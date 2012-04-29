@@ -40,11 +40,12 @@ class buildd {
 		require  => Package['apt-transport-https'],
 	}
 
-	file { '/etc/apt/preferences.d/buildd':
+	# "bad" extension
+	file { '/etc/apt/preferences.d/buildd.debian.org':
 		ensure => absent,
 	}
 	file { '/etc/apt/preferences.d/buildd.debian.org':
-		content => template('buildd/etc/apt/preferences.d/buildd.debian.org'),
+		content => template('buildd/etc/apt/preferences.d/buildd'),
 		before  => File["/etc/apt/sources.list.d/buildd.debian.org.list"],
 		;
 	}
