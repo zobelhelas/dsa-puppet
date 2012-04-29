@@ -4,13 +4,9 @@ class buildd {
 	if $::lsbdistcodename in [lenny,squeeze] {
 		package { 'schroot':
 			ensure => installed,
-			require => [
-				File['/etc/apt/sources.list.d/db.debian.org.list'],
-				Exec['apt-get update']
-			]
 		}
 	} else {
-		package { 'schroot': ensure => held }
+		// package { 'schroot': ensure => held }
 	}
 
 	package { 'apt-transport-https':
