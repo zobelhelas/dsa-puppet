@@ -5,7 +5,7 @@ anon_umask=027
 write_enable=YES
 anon_upload_enable=YES
 chown_uploads=YES
-chown_username=scope.lookupvar('chown_user')
+chown_username=<%= scope.lookupvar('chown_user') %>
 <%- end -%>
 
 xferlog_enable=YES
