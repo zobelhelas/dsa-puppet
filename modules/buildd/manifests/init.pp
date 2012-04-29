@@ -41,7 +41,9 @@ class buildd {
 	}
 
 	file { '/etc/apt/preferences.d/buildd':
-		ensure  => absent
+		source  => "puppet:///modules/buildd/apt-preferences",
+		before  => File["/etc/apt/sources.list.d/buildd.list"],
+		;
 	}
 	file { '/etc/schroot/mount-defaults':
 		content => template('buildd/etc/schroot/mount-defaults.erb'),

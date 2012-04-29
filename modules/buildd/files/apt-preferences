@@ -1,0 +1,7 @@
+Package: schroot
+Pin: release o=buildd.debian.org
+Pin-Priority: 500
+
+Package: schroot-common
+Pin: release o=buildd.debian.org
+Pin-Priority: 500
