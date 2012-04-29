@@ -27,16 +27,10 @@ group maillog"
 end
 out
 %>
-<%=
-out = ""
-if has_variable?("vsftpd") and vsftpd == "true"
-  out="
+
 [vsftpd]
 user root
-"
-end
-out
-%>
+
 [fw_conntrack]
 user root
 
