@@ -44,6 +44,10 @@ class roles {
 		include roles::backports_master
 	}
 
+	if getfromhash($site::nodeinfo, 'security_master') {
+		include roles::security_master
+	}
+
 	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
 		include roles::ftp-upcoming_mirror
 	}

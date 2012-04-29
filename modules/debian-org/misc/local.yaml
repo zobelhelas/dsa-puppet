@@ -167,6 +167,8 @@ services:
   puppetmaster: handel.debian.org
   rtmaster:
     - reger.debian.org
+  security_master:
+    - chopin.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org

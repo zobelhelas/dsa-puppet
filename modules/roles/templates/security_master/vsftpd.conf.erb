@@ -1,0 +1,24 @@
+max_clients=100
+
+# from default package config
+secure_chroot_dir=/var/run/vsftpd
+pam_service_name=vsftpd
+
+anonymous_enable=YES
+one_process_model=YES
+setproctitle_enable=YES
+dirmessage_enable=NO
+xferlog_enable=YES
+connect_from_port_20=NO
+xferlog_file=<%= scope.lookupvar('logfile') %>
+ls_recurse_enable=NO
+ftpd_banner=security-master.debian.org FTP server (vsftpd)
+
+#
+# Queue daemon needs anon uploads
+#
+write_enable=YES
+anon_umask=027
+anon_upload_enable=YES
+chown_uploads=YES
+chown_username=dak
