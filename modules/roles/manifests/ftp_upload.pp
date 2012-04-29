@@ -1,10 +1,12 @@
 class roles::ftp_upload {
 
 	$bind = $::hostname ? {
+		kassia  => '::ffff:130.89.149.224',
 		default => '',
 	}
 
 	$bind6 = $::hostname ? {
+		kassia  => '2001:610:1908:a000:21b:78ff:fe75:3d46',
 		default => '',
 	}
 
