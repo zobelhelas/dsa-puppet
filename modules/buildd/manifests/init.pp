@@ -44,9 +44,8 @@ class buildd {
 		ensure => absent,
 	}
 	file { '/etc/apt/preferences.d/buildd.debian.org':
-		source  => "puppet:///modules/buildd/apt-preferences",
 		content => template('buildd/etc/apt/preferences.d/buildd.debian.org'),
-		before  => File["/etc/apt/sources.list.d/buildd.list"],
+		before  => File["/etc/apt/sources.list.d/buildd.debian.org.list"],
 		;
 	}
 	file { '/etc/schroot/mount-defaults':
