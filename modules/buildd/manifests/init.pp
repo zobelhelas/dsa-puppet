@@ -1,19 +1,20 @@
 class buildd {
 
-	# sigh, sort this mess out, kids
-	if $::lsbdistcodename in [lenny,squeeze] {
-		package { 'schroot':
-			ensure => installed,
-		}
-	} else {
-		package { 'schroot': }
+	package { [
+			'schroot',
+			'sbuild'
+		]:
+		ensure  => installed,
+		require => [
+			File['etc/apt/sources.list.d/buildd.debian.org.list'],
+			Exec['apt-get update']
+		]
 	}
 
 	package { 'apt-transport-https':
 		ensure => installed,
 	}
 	package { [
-			'sbuild',
 			'debootstrap',
 			'dupload'
 		]:
@@ -36,14 +37,17 @@ class buildd {
 		require  => Package['apt-transport-https'],
 	}
 
-	# "bad" extension
+	# 'bad' extension
 	file { '/etc/apt/preferences.d/buildd.debian.org':
 		ensure => absent,
 	}
+	file { '/etc/apt/preferences.d':
+		ensure => directory,
+		mode   => '0755'
+	}
 	file { '/etc/apt/preferences.d/buildd':
 		content => template('buildd/etc/apt/preferences.d/buildd'),
-		before  => File["/etc/apt/sources.list.d/buildd.debian.org.list"],
-		;
+		before  => File['etc/apt/sources.list.d/buildd.debian.org.list']
 	}
 	file { '/etc/schroot/mount-defaults':
 		content => template('buildd/etc/schroot/mount-defaults.erb'),
