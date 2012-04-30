@@ -6,7 +6,7 @@ class buildd {
 		]:
 		ensure  => installed,
 		require => [
-			File['etc/apt/sources.list.d/buildd.debian.org.list'],
+			File['/etc/apt/sources.list.d/buildd.debian.org.list'],
 			Exec['apt-get update']
 		]
 	}
@@ -47,7 +47,7 @@ class buildd {
 	}
 	file { '/etc/apt/preferences.d/buildd':
 		content => template('buildd/etc/apt/preferences.d/buildd'),
-		before  => File['etc/apt/sources.list.d/buildd.debian.org.list']
+		before  => File['/etc/apt/sources.list.d/buildd.debian.org.list']
 	}
 	file { '/etc/schroot/mount-defaults':
 		content => template('buildd/etc/schroot/mount-defaults.erb'),
