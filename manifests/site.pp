@@ -59,9 +59,7 @@ node default {
 		include postfix
 	}
 
-	if $::lsbdistcodename != 'lenny' {
-		include unbound
-	}
+	include unbound
 
 	if $::apache2 {
 		include apache2
@@ -75,8 +73,6 @@ node default {
 		include named::authoritative
 	} elsif $::hostname in [geo1,geo2,geo3] {
 		include named::geodns
-	} elsif $::hostname == 'liszt' {
-		include named::recursor
 	}
 
 	if $::hostname in [diabelli,nono,spohr] {

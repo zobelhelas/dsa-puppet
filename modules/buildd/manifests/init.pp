@@ -41,10 +41,6 @@ class buildd {
 	file { '/etc/apt/preferences.d/buildd.debian.org':
 		ensure => absent,
 	}
-	file { '/etc/apt/preferences.d':
-		ensure => directory,
-		mode   => '0755'
-	}
 	file { '/etc/apt/preferences.d/buildd':
 		content => template('buildd/etc/apt/preferences.d/buildd'),
 		before  => File['/etc/apt/sources.list.d/buildd.debian.org.list']

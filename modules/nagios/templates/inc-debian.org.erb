@@ -12,7 +12,7 @@ scope.lookupvar('site::localinfo').keys.sort.each do |node|
 end
 
 case fqdn when
-  'mundy.debian.org', 'penalosa.debian.org', 'caballero.debian.org', 'peri.debian.org' then
+  'mundy.debian.org', 'caballero.debian.org' then
     nagii << '192.34.35.49'
 end
 

@@ -22,12 +22,6 @@ class debian-org::proliant {
 		ensure => installed,
 	}
 
-	if $::lsbdistcodename == 'lenny' {
-		package { 'cpqarrayd':
-			ensure => installed,
-		}
-	}
-
 	if $::debarchitecture == 'amd64' {
 		package { 'lib32gcc1':
 			ensure => installed,

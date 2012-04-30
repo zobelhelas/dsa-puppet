@@ -90,7 +90,6 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %keyring	ALL=(keyring)	ALL
 %lintian	ALL=(lintian)	ALL
 %listweb	ALL=(listweb)	ALL
-%list		liszt=(list)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %nm		ALL=(nm)	ALL
 %patch-tracker	ALL=(patch-tracker)	ALL
@@ -155,12 +154,6 @@ dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %press		WEBHOSTS=(debwww)	/org/www.debian.org/update-part News
-# more list stuff
-%list		liszt=(root)		/usr/sbin/postfix reload
-%list		liszt=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
-%list		liszt=(root)		/etc/init.d/spamassassin, /etc/init.d/amavis
-%list		liszt=(amavis)		NOPASSWD: /usr/bin/sa-learn
-%list		liszt=(amavis)		ALL
 # geodns may reload bind
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig

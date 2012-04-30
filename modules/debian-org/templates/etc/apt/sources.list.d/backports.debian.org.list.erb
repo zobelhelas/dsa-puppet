@@ -3,8 +3,4 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% if lsbdistcodename == 'lenny' %>
-deb     http://archive.debian.org/debian-backports/     lenny-backports main contrib non-free
-<% elsif lsbdistcodename != 'n/a' %>
 deb	http://backports.debian.org/debian-backports/	<%= lsbdistcodename %>-backports main contrib non-free
-<% end %>
