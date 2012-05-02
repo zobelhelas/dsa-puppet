@@ -9,7 +9,7 @@ define vsftpd::site (
 	$ensure=present
 ){
 
-	include vsftpd::nolisten
+	include vsftpd
 
 	case $ensure {
 		present,absent: {}
@@ -40,4 +40,5 @@ define vsftpd::site (
 		require     => File[$fname]
 	}
 
+	Service['vsftpd']->Service['xinetd']
 }

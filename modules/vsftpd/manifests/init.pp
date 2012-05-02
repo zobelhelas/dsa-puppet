@@ -8,8 +8,14 @@ class vsftpd {
 	}
 
 	service { 'vsftpd':
-		ensure  => running,
+		ensure  => stopped,
 		require => Package['vsftpd']
+	}
+
+	file { '/etc/vsftpd.conf':
+		content => "listen=NO\n",
+		require => Package['vsftpd'],
+		notify  => Service['vsftpd']
 	}
 
 	munin::check { 'vsftpd': }
