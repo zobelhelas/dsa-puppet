@@ -1,6 +1,6 @@
 define site::aptrepo (
-	$url,
-	$suite,
+	$url='',
+	$suite='',
 	$components=[],
 	$key = undef,
 	$keyid = undef,
@@ -43,6 +43,15 @@ define site::aptrepo (
 			}
 		}
 		default: { fail ( "Unknown ensure value: '$ensure'" ) }
+	}
+
+	case $ensure {
+		present: {
+			if !($url and $suite) {
+				fail ( "Need both url and suite for $name" )
+			}
+		}
+		default: {}
 	}
 
 	file { "/etc/apt/sources.list.d/${name}.list":
