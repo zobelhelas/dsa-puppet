@@ -8,6 +8,8 @@ class megactl {
 	}
 
 	site::aptrepo { 'debian.restricted':
-		template => 'debian-org/etc/apt/sources.list.d/debian.restricted.list.erb',
+		url        => 'http://db.debian.org/debian-admin',
+		suite      => 'lenny-restricted',
+		components => 'non-free',
 	}
 }

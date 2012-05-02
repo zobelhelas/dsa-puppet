@@ -74,13 +74,21 @@ class debian-org {
 
 	if $::debarchitecture != 'armhf' {
 		site::aptrepo { 'security':
-			template => 'debian-org/etc/apt/sources.list.d/security.list.erb',
+			url        => 'http://security.debian.org/',
+			suite      => "${::lsbdistcodename}/updates",
+			components => ['main','contrib','non-free']
 		}
+
 		site::aptrepo { 'backports.debian.org':
-			template => 'debian-org/etc/apt/sources.list.d/backports.debian.org.list.erb',
+			url        => 'http://backports.debian.org/debian-backports/',
+			suite      => "${::lsbdistcodename}-backports",
+			components => ['main','contrib','non-free']
 		}
+
 		site::aptrepo { 'volatile':
-			template => 'debian-org/etc/apt/sources.list.d/volatile.list.erb',
+			url        => 'http://ftp.debian.org/debian',
+			suite      => "${::lsbdistcodename}-updates",
+			components => ['main','contrib','non-free']
 		}
 	}
 	site::aptrepo { 'backports.org':
@@ -94,8 +102,10 @@ class debian-org {
 	}
 
 	site::aptrepo { 'db.debian.org':
-		template => 'debian-org/etc/apt/sources.list.d/debian.org.list.erb',
-		key      => 'puppet:///modules/debian-org/db.debian.org.asc',
+		url        => 'http://db.debian.org/debian-admin',
+		suite      => 'lenny',
+		components => 'main',
+		key        => 'puppet:///modules/debian-org/db.debian.org.asc',
 	}
 
 	file { '/etc/facter':

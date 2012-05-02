@@ -31,10 +31,37 @@ class buildd {
 	site::aptrepo { 'buildd':
 		ensure => absent,
 	}
+
+	if $::lsbdistcodename in [squeeze,wheezy] {
+		$suite = $::lsbdistcodename
+	} else {
+		$suite = 'wheezy'
+	}
+
 	site::aptrepo { 'buildd.debian.org':
-		template => 'buildd/etc/apt/sources.list.d/buildd.list.erb',
-		key      => 'puppet:///modules/buildd/buildd.debian.org.asc',
-		require  => Package['apt-transport-https'],
+		key        => 'puppet:///modules/buildd/buildd.debian.org.asc',
+		url        => 'https://buildd.debian.org/apt/',
+		suite      => $suite,
+		components => 'main',
+		require    => Package['apt-transport-https'],
+	}
+
+	if $::hostname in [alkman,porpora,zandonai] {
+		site::aptrepo { 'buildd.debian.org-proposed':
+			url        => 'https://buildd.debian.org/apt/',
+			suite      => "${suite}-proposed",
+			components => 'main',
+			require    => Package['apt-transport-https'],
+		}
+	}
+
+	if $::hostname in [krenek] {
+		site::aptrepo { 'buildd.debian.org-experimental':
+			url        => 'https://buildd.debian.org/apt/',
+			suite      => "${suite}-experimental",
+			components => 'main',
+			require    => Package['apt-transport-https'],
+		}
 	}
 
 	# 'bad' extension
