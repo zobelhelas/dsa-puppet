@@ -34,6 +34,7 @@ node default {
 	include nagios::client
 	include resolv
 	include roles
+	include unbound
 
 	if $::hostname in [pasquini,tristano] {
 		include ganeti2
@@ -41,12 +42,11 @@ node default {
 
 	if $::kernel == Linux {
 		include linux
+		if $::kvmdomain {
+			include acpi
+		}
 	} elsif $::kernel == 'GNU/kFreeBSD' {
 		include kfreebsd
-	}
-
-	if $::kvmdomain {
-		include acpi
 	}
 
 	if $::mta == 'exim4' {
@@ -58,8 +58,6 @@ node default {
 	} else {
 		include postfix
 	}
-
-	include unbound
 
 	if $::apache2 {
 		include apache2
