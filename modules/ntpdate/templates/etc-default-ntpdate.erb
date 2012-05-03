@@ -14,14 +14,9 @@ NTPDATE_USE_NTP_CONF=no
 NTPSERVERS=""
 <%=
 	out = []
-	if fqdn == "ancina.debian.org"
-		ntpservers = %w{ntp.ugent.be}
-	else
-		ntpservers = %w{merikanto.debian.org orff.debian.org ravel.debian.org busoni.debian.org}
-	end
 
 	require 'resolv'
-	ntpservers.each do |n|
+	scope.lookupvar('ntpservers').to_a.flatten.each do |n|
 		begin
 			ip = Resolv.getaddress(n)
 			out << "NTPSERVERS=\"$NTPSERVERS #{ip}\" # #{n}"
