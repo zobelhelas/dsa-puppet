@@ -1,12 +1,12 @@
-# = Class: raidmpt
+# = Class: hardware::raid::raidmpt
 #
 # This class installs mpt-status and ensures the daemon is not running
 #
 # == Sample Usage:
 #
-#   include raidmpt
+#   include hardware::raid::raidmpt
 #
-class raidmpt {
+class hardware::raid::raidmpt {
 
 	package { 'mpt-status':
 		ensure => installed

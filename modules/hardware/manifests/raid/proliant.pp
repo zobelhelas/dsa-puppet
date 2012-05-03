@@ -1,4 +1,4 @@
-class debian-org::proliant {
+class hardware::raid::proliant {
 
 	site::aptrepo { 'debian.restricted':
 		url        => 'http://db.debian.org/debian-admin',

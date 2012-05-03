@@ -1,4 +1,5 @@
-class megactl {
+class hardware::raid::megactl {
+
 	package { 'megactl':
 		ensure => installed,
 		require => [
