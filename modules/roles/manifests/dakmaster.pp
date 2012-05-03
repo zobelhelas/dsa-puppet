@@ -7,7 +7,7 @@ class roles::dakmaster {
 	apache2::module { 'macro': }
 
 	apache2::config { 'puppet-builddlist':
-		template => 'roles/dakmaster/conf-builddlist.erb',
+		content => template('roles/dakmaster/conf-builddlist.erb'),
 	}
 
 }

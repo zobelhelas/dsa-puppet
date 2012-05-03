@@ -22,19 +22,19 @@ class apache2 {
 	}
 
 	apache2::config { 'ressource-limits':
-		template => 'apache2/ressource-limits.erb',
+		content => template('apache2/ressource-limits.erb'),
 	}
 
 	apache2::config { 'security':
-		config => 'puppet:///modules/apache2/security',
+		source => 'puppet:///modules/apache2/security',
 	}
 
 	apache2::config { 'local-serverinfo':
-		config => 'puppet:///modules/apache2/local-serverinfo',
+		source => 'puppet:///modules/apache2/local-serverinfo',
 	}
 
 	apache2::config { 'server-status':
-		config => 'puppet:///modules/apache2/server-status',
+		source => 'puppet:///modules/apache2/server-status',
 	}
 
 	file { '/etc/apache2/sites-available/common-ssl.inc':
