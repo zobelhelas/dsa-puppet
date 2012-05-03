@@ -40,17 +40,6 @@ class ferm::per-host {
 				rule            => '&SERVICE(udp, 69)'
 			}
 		}
-		handel: {
-			@ferm::rule { 'dsa-puppet':
-				description     => 'Allow puppet access',
-				rule            => '&SERVICE_RANGE(tcp, 8140, $HOST_DEBIAN_V4)'
-			}
-			@ferm::rule { 'dsa-puppet-v6':
-				domain          => 'ip6',
-				description     => 'Allow puppet access',
-				rule            => '&SERVICE_RANGE(tcp, 8140, $HOST_DEBIAN_V6)'
-			}
-		}
 		powell: {
 			@ferm::rule { 'dsa-powell-v6-tunnel':
 				description     => 'Allow powell to use V6 tunnel broker',
