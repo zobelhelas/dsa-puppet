@@ -14,7 +14,7 @@ class apache2 {
 
 	apache2::site { '00-default':
 		site     => 'default-debian.org',
-		template => 'apache2/default-debian.org.erb',
+		content  => template('apache2/default-debian.org.erb'),
 	}
 
 	apache2::site { '000-default':

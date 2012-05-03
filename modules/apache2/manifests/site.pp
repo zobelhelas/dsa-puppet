@@ -1,16 +1,20 @@
 define apache2::site (
-	$config = undef,
-	$template = false,
-	$ensure = present,
-	$site = undef
+	$source=undef,
+	$content=false,
+	$ensure=present,
+	$site=undef
 ) {
 
 	include apache2
 
-	if $ensure == present {
-		if ! ($config or $template) {
-			fail ( "No configuration found for ${name}" )
+	case $ensure {
+		present: {
+			if ! ($source or $content) {
+				fail ( "No configuration found for ${name}" )
+			}
 		}
+		absent:  {}
+		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
 	if $site {
@@ -27,22 +31,19 @@ define apache2::site (
 		default => fail ( "Unknown ensure value: '$ensure'" ),
 	}
 
-	case $template {
-		false: {
-			file { $target:
-				ensure  => $ensure,
-				source  => $config,
-				require => Package['apache2'],
-				notify  => Service['apache2'],
-			}
+	if $content {
+		file { $target:
+			ensure  => $ensure,
+			content => $content,
+			require => Package['apache2'],
+			notify  => Service['apache2'],
 		}
-		default: {
-			file { $target:
-				ensure  => $ensure,
-				content => template($template),
-				require => Package['apache2'],
-				notify  => Service['apache2'],
-			}
+	} else {
+		file { $target:
+			ensure  => $ensure,
+			source  => $source,
+			require => Package['apache2'],
+			notify  => Service['apache2'],
 		}
 	}
 
