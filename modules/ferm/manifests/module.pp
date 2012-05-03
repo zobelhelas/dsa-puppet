@@ -3,6 +3,12 @@ define ferm::module (
 	$mod=undef,
 	$ensure=present
 ) {
+
+	case $ensure {
+		present,absent: {}
+		default: { fail ( "Invalid ensure `${ensure}' for ${name}" ) }
+	}
+
 	if $mod {
 		$module = $mod
 	} else {
