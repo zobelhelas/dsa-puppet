@@ -5,7 +5,6 @@
 
 ^do\.not\.use\.this\.dns\.server\.anymore\.\d+\.in-addr\.arpa
 *.localdomain
-*.google.com
 google.com
 gmail.com
 *.hinet.net
