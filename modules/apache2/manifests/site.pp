@@ -1,6 +1,6 @@
 define apache2::site (
 	$source=undef,
-	$content=false,
+	$content=undef,
 	$ensure=present,
 	$site=undef
 ) {
@@ -27,8 +27,7 @@ define apache2::site (
 
 	$link_target = $ensure ? {
 		present => $target,
-		absent  => absent,
-		default => fail ( "Unknown ensure value: '$ensure'" ),
+		absent  => absent
 	}
 
 	if $content {
