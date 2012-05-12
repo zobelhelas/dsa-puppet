@@ -7,7 +7,11 @@ class clamav {
 			ensure => installed
 	}
 
-	file { '/var/lib/clamav/mbl.ndb':
+	file { [
+		'/var/lib/clamav/mbl.ndb',
+		'/var/lib/clamav/MSRBL-Images.hdb',
+		'/var/lib/clamav/MSRBL-SPAM.ndb',
+	]:
 		ensure  => absent
 	}
 	file { '/etc/clamav-unofficial-sigs.dsa.conf':
