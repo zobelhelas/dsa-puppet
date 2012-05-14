@@ -242,6 +242,7 @@ host_settings:
     - hummel.debian.org
     - lucatelli.debian.org
     - rem.debian.org
+    - sompek.debian.org
   mail_port:
     ancina.debian.org: 2025
     kassia.debian.org: 587
