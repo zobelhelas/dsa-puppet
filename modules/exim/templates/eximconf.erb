@@ -194,8 +194,8 @@ queue_only_load = 35
 smtp_load_reserve = 20
 <%- else -%>
 queue_run_max = 5
-deliver_queue_load_max = <%= scope.lookupvar('::processorcount').to_i * 5 %>
-queue_only_load = <%= scope.lookupvar('::processorcount').to_i * 4 %>
+deliver_queue_load_max = <%= [scope.lookupvar('::processorcount').to_i,2].max * 5 %>
+queue_only_load = <%= [scope.lookupvar('::processorcount').to_i,2].max * 4 %>
 <%- end -%>
 queue_list_requires_admin = false
 
