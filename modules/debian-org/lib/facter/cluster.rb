@@ -8,5 +8,6 @@ Facter.add('cluster') do
       else
         ''
       end
+    end
   end
 end
