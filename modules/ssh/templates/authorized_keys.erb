@@ -24,13 +24,6 @@ localkeys
 end
 ganetikeys
 %>
-<% Puppet::Parser::Functions.function('hiera') -%>
-<% Puppet::Parser::Functions.function('hiera_array') -%>
-# <%= 
-	cluster = scope.function_hiera('cluster')
-	# nodes = scope.merge('cluster' => cluster).function_hiera_array('nodes')
-	#nodes.collect{|x| scope.function_hiera('rootkey')}.join("\n")
-%>
 #
 # DSA
 #
