@@ -101,13 +101,16 @@ end
 
 
 if scope.lookupvar('::cluster')
-  purp += "\nThis machine is ember of ganeti cluster: "
+  purp += "\nThis machine is a node in ganeti cluster: "
   purp += scope.lookupvar('::cluster') + ".\n"
 end
 
 
 if scope.lookupvar('site::nodeinfo').has_key?('footer')
   purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
+  scope.hiera_array('nodes').each do |node|
+    purp += "\t" + node + "\n"
+  end
 end
 
 purp
