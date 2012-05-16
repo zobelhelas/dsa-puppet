@@ -1,8 +1,6 @@
 ---
 :hierarchy:
   - %{hoster}
-  - machines/%{fqdn}
-  - clusters/%{cluster}
   - common
 :backends:
   - yaml
