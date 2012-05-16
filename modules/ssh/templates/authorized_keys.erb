@@ -24,6 +24,9 @@ localkeys
 end
 ganetikeys
 %>
+<% Puppet::Parser::Functions.function('hiera') -%>
+<% Puppet::Parser::Functions.function('hiera_array') -%>
+#<%= scope.function_hiera('cluster') %>
 #
 # DSA
 #
