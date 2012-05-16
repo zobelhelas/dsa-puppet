@@ -1,15 +1,15 @@
 if FileTest.exist?('/usr/sbin/gnt-cluster')
   if system('/usr/sbin/gnt-cluster getmaster >/dev/null')
     require 'json'
-    config = '/var/lib/ganeti/config.data'
+    json = JSON.parse(File.read('/var/lib/ganeti/config.data'))
     Facter.add('cluster') do
       setcode do
-        JSON.parse(File.read(config))['cluster']['cluster_name']
+        json['cluster']['cluster_name']
       end
     end
     Facter.add('cluster_nodes') do
       setcode do
-        JSON.parse(File.read(config))['nodes'].keys
+        json['nodes'].keys.join(' ')
       end
     end
   end
