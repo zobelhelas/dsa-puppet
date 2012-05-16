@@ -256,7 +256,7 @@ host_settings:
     - fano.debian.org
     - malo.debian.org
   entropy_key:
-    - heininen.debian.org
+    #- heininen.debian.org
     - englund.debian.org
     - rautavaara.debian.org
     - salieri.debian.org
