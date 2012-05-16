@@ -9,4 +9,9 @@ class roles::backports_master {
 		chown_user => dak,
 		root       => '/srv/backports-upload',
 	}
+
+	rsync::site { 'backports_master':
+		source        => 'puppet:///modules/roles/backports_master/rsyncd.conf',
+		max_clients => 100,
+	}
 }
