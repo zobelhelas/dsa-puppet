@@ -107,6 +107,9 @@ if scope.lookupvar('::cluster')
   scope.function_hiera_array('nodes').each do |node|
     purp += "\t" + node + "\n"
   end
+  scope.lookupvar('::cluster_nodes').each do |node|
+    purp += "\t" + node + "\n"
+  end
 end
 
 

@@ -7,5 +7,10 @@ if FileTest.exist?('/usr/sbin/gnt-cluster')
         JSON.parse(File.read(config))['cluster']['cluster_name']
       end
     end
+    Facter.add('cluster_nodes') do
+      setcode do
+        JSON.parse(File.read(config))['nodes'].keys
+      end
+    end
   end
 end
