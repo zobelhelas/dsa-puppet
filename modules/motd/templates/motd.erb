@@ -103,11 +103,7 @@ end
 if scope.lookupvar('::cluster')
   purp += "\nThis server is a node in ganeti cluster: "
   purp += scope.lookupvar('::cluster') + ".\n"
-  Puppet::Parser::Functions.function('hiera_array')
-  scope.function_hiera_array('nodes').each do |node|
-    purp += "\t" + node + "\n"
-  end
-  scope.lookupvar('::cluster_nodes').each do |node|
+  scope.lookupvar('::cluster_nodes').split.each do |node|
     purp += "\t" + node + "\n"
   end
 end
