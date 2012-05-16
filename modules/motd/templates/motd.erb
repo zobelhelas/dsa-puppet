@@ -100,7 +100,7 @@ unless vms.empty?
 end
 
 
-if scope.lookupvar('::cluster')
+if not scope.lookupvar('::cluster').empty?
   purp += "\nThis server is a node in ganeti cluster: "
   purp += scope.lookupvar('::cluster') + ".\n"
   scope.lookupvar('::cluster_nodes').split.each do |node|
