@@ -100,8 +100,9 @@ unless vms.empty?
 end
 
 
-if @cluster
-  purp += "\nMember of a ganeti cluster.\n"
+if scope.lookupvar('::cluster')
+  purp += "\nThis machine is ember of ganeti cluster: "
+  purp += scope.lookupvar('::cluster') + ".\n"
 end
 
 
