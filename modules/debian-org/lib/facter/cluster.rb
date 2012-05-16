@@ -1,6 +1,6 @@
 Facter.add('cluster') do
   setcode do
-    if system('/usr/sbin/gnt-cluster getmaster')
+    if system('/usr/sbin/gnt-cluster getmaster >/dev/null')
       require 'json'
       config = '/var/lib/ganeti/config.data'
       if FileTest.exist?(config)

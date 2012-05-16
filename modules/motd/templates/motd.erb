@@ -100,9 +100,23 @@ unless vms.empty?
 end
 
 
+if hiera('cluster')
+  purp += "\nganeti cluster: " + hiera('cluster') + " contains these nodes:\n"
+  hiera_array('nodes').each do |node|
+    purp += "\t" + node
+    if node.eql?(fqdn)
+      purp += " (this system)"
+    end
+    purp += "\n"
+  end
+  purp += "\n"
+end
+
+
 if scope.lookupvar('site::nodeinfo').has_key?('footer')
   purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
 end
+
 purp
 -%>
 

@@ -1,6 +1,7 @@
 ---
 :hierarchy:
   - %{hoster}
+  - clusters/%{cluster}
   - common
 :backends:
   - yaml
