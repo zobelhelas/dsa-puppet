@@ -52,11 +52,11 @@ node default {
 	if $::mta == 'exim4' {
 		if getfromhash($site::nodeinfo, 'heavy_exim') {
 			include exim::mx
-		} else {
-			include exim
 		}
-	} else {
+	} elsif $::mta == 'postfix' {
 		include postfix
+	} else {
+		include exim
 	}
 
 	if $::apache2 {
