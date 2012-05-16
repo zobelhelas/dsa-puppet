@@ -1,5 +1,8 @@
 class ssh {
 
+	nodes = hiera('nodes', nil, {'cluster' => hiera('cluster')})
+	$rootkeys = nodes.collect{|x| hiera('rootkey', nil, {'hostname' => x})}
+
 	package { [ 'openssh-client', 'openssh-server']:
 		ensure => installed
 	}

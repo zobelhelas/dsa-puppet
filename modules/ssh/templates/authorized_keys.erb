@@ -24,10 +24,7 @@ localkeys
 end
 ganetikeys
 %>
-<%=
-	nodes = hiera('nodes', nil, {'cluster' => hiera('cluster')})
-	nodes.collect{|x| hiera('rootkey', nil, {'hostname' => x})}
-%>
+<%= rootkeys.join("\n") %>
 #
 # DSA
 #
