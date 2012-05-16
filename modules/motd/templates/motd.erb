@@ -100,6 +100,8 @@ unless vms.empty?
 end
 
 
+Puppet::Parser::Functions.function(:hiera) 
+Puppet::Parser::Functions.function(:hiera_array) 
 if hiera('cluster')
   purp += "\nganeti cluster: " + hiera('cluster') + " contains these nodes:\n"
   hiera_array('nodes').each do |node|
