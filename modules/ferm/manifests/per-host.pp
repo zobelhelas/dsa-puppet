@@ -51,7 +51,7 @@ class ferm::per-host {
 				rule            => 'proto tcp dport 8000:8100 jump ACCEPT'
 			}
 		}
-		heininen,lotti: {
+		lotti,lully: {
 			@ferm::rule { 'dsa-syslog':
 				description     => 'Allow syslog access',
 				rule            => '&SERVICE_RANGE(tcp, 5140, $HOST_DEBIAN_V4)'
