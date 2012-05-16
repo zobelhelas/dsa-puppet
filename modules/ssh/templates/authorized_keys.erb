@@ -26,7 +26,11 @@ ganetikeys
 %>
 <% Puppet::Parser::Functions.function('hiera') -%>
 <% Puppet::Parser::Functions.function('hiera_array') -%>
-#<%= scope.function_hiera('cluster') %>
+# <%= 
+	cluster = scope.function_hiera('cluster')
+	nodes = scope.merge('cluster' => cluster).function_hiera_array('nodes')
+	nodes.join("\n") 
+%>
 #
 # DSA
 #
