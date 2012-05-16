@@ -100,7 +100,7 @@ unless vms.empty?
 end
 
 
-if cluster
+if scope.lookupvar('site::nodeinfo').has_key?('cluster')
   purp += "\nMember of a ganeti cluster.\n"
 end
 
