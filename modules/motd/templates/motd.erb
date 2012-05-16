@@ -108,7 +108,7 @@ end
 
 if scope.lookupvar('site::nodeinfo').has_key?('footer')
   purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
-  scope.hiera_array('nodes').each do |node|
+  scope.function_hiera_array('nodes').each do |node|
     purp += "\t" + node + "\n"
   end
 end
