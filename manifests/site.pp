@@ -65,10 +65,6 @@ node default {
 		include apache2
 	}
 
-	if $::rsyncd {
-		include rsyncd-log
-	}
-
 	if $::hostname in [ravel,senfl,orff,draghi,diamond] {
 		include named::authoritative
 	} elsif $::hostname in [geo1,geo2,geo3] {
