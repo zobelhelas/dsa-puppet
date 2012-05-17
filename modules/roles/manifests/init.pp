@@ -17,6 +17,7 @@ class roles {
 	}
 
 	if getfromhash($site::nodeinfo, 'ftp_master') {
+		include roles::ftp_master
 		include roles::dakmaster
 	}
 
