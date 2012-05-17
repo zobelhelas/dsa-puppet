@@ -7,4 +7,9 @@ class roles::security_master {
 		chown_user => dak,
 		root       => '/srv/ftp.root/',
 	}
+
+	rsync::site { 'security_master':
+		source        => 'puppet:///modules/roles/security_master/rsyncd.conf',
+		max_clients => 100,
+	}
 }
