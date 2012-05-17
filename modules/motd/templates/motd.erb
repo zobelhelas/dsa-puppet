@@ -107,7 +107,7 @@ if not scope.lookupvar('::cluster').empty?
   nodes.each do |node|
     purp += "\t" + node + "\n"
   end
-  nodes.reject{|node| node.eql?(fqdn)}.each do
+  nodes.reject{|node| node.eql?(fqdn)}.each do |node|
     purp += "\t" + node + "\n"
     scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
       purp += "\t\t" + ip + "\n"
