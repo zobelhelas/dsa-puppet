@@ -69,9 +69,11 @@ class apache2 {
 			ensure  => installed,
 			require => Package['apache2'],
 		}
-		apache2::config { 'suhosin.ini':
-			content => 'puppet:///modules/apache2/suhosin.ini',
+
+		file { '/etc/php5/conf.d/suhosin.ini':
+			source  => 'puppet:///modules/apache2/suhosin.ini',
 			require => Package['php5-suhosin'],
+			notify  => Service['apache2'],
 		}
 	}
 
