@@ -7,6 +7,27 @@ class clamav {
 			ensure => installed
 	}
 
+	$extra_groups = $::mta ? {
+		'postfix' => 'amavis',
+		default   => 'Debian-exim'
+	}
+
+	user { 'clamav':
+		gid     => clamav,
+		groups  => [$extra_groups],
+		require => Package['clamav-daemon']
+	}
+
+	service { 'clamav-daemon':
+		ensure  => running,
+		require => Package['clamav-daemon']
+	}
+
+	service { 'clamav-freshclam':
+		ensure  => running,
+		require => Package['clamav-freshclam']
+	}
+
 	file { [
 		'/var/lib/clamav/mbl.ndb',
 		'/var/lib/clamav/MSRBL-Images.hdb',
