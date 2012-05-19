@@ -181,7 +181,7 @@ interface br0 outerface br0 ACCEPT;
 interface br1 outerface br1 ACCEPT;
 
 interface br2 outerface br0 jump from-kfreebsd;
-interface br0 destination ($ADDRESS_FISCHER) proto tcp dport 22 ACCESS;
+interface br0 destination ($ADDRESS_FISCHER) proto tcp dport 22 ACCEPT;
 interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
 ULOG ulog-prefix "REJECT FORWARD: ";
 REJECT reject-with icmp-admin-prohibited
