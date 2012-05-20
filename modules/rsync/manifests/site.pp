@@ -2,13 +2,18 @@ define rsync::site (
 	$bind='',
 	$source='',
 	$content='',
-	$fname="/etc/rsyncd-${title}.conf",
+	$fname='',
 	$max_clients=200,
 	$ensure=present
 ){
 
 	include rsync
 
+	if ! $fname {
+		$fname_real = "/etc/rsyncd-${name}.conf"
+	} else {
+		$fname_real = $fname
+	}
 	case $ensure {
 		present,absent: {}
 		default: { fail ( "Invald ensure `${ensure}' for ${name}" ) }
@@ -19,12 +24,12 @@ define rsync::site (
 	}
 
 	if $source {
-		file { $fname:
+		file { $fname_real:
 			ensure => $ensure,
 			source => $source
 		}
 	} elsif $content {
-		file { $fname:
+		file { $fname_real:
 			ensure  => $ensure,
 			content => $content,
 		}
@@ -37,10 +42,10 @@ define rsync::site (
 		id          => "${name}-rsync",
 		server      => '/usr/sbin/rsyncd',
 		port        => 'rsync',
-		server_args => $fname,
+		server_args => $fname_real,
 		ferm        => false,
 		instances   => $max_clients,
-		require     => File[$fname]
+		require     => File[$fname_real]
 	}
 
 	Service['rsync']->Service['xinetd']
