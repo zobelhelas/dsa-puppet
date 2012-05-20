@@ -29,6 +29,13 @@ define vsftpd::site (
 		ensure => absent
 	}
 
+	munin::check { "vsftpd-${name}":
+		script => 'vsftpd'
+	}
+	munin::conf { "vsftpd-${name}":
+		content => template('vsftpd/munin.erb')
+	}
+
 	# We don't need a firewall rule because it's added in vsftp.pp
 	xinetd::service { "vsftpd-${name}":
 		bind        => $bind,

@@ -18,7 +18,9 @@ class vsftpd {
 		notify  => Service['vsftpd']
 	}
 
-	munin::check { 'vsftpd': }
+	munin::check { "vsftpd-${name}":
+		ensure => absent
+	}
 	munin::check { 'ps_vsftpd':
 		script => 'ps_'
 	}
