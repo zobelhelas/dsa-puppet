@@ -1360,14 +1360,13 @@ rt_otherwise:
   driver = redirect
   domains = rt.debian.org
   require_files = /usr/bin/rt-mailgate : RT_QUEUE_MAP
-  local_parts = ${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}{$local_part}{}}
+  local_parts = ${lookup{${sg{$local_part}{-(comment|done)}{}}}lsearch{RT_QUEUE_MAP}{$local_part}{}}
   local_part_suffix = +*
   local_part_suffix_optional
   pipe_transport = rt_pipe
-  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --extension ticket --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
+  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-(comment|done)}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --extension ticket --action ${if match{$local_part}{.*-comment.*}{comment}{${if match{$local_part}{.*-done.*}{correspond-resolve}{correspond}}}}"
   headers_remove = Subject
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\\\[?debian rt\\\\]?[:\\s]*(.*)}}} {$1$2}{$h_subject:}}"
-
 <%- end -%>
 
 # exim4 fails the router if it can't change to the user/group for delivery
