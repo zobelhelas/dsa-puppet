@@ -10,6 +10,7 @@ chown_username=<%= scope.lookupvar('chown_user') %>
 
 xferlog_enable=YES
 xferlog_file=<%= scope.lookupvar('logfile') %>
+vsftpd_log_file=/var/log/ftp/<%= scope.lookupvar('ftpsite') %>
 
 ftpd_banner=<%= scope.lookupvar('banner') %>
 secure_chroot_dir=/var/run/vsftpd

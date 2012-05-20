@@ -16,6 +16,8 @@ define vsftpd::site (
 		default: { fail ( "Invald ensure `$ensure' for $name" ) }
 	}
 
+	$ftpsite = $name
+
 	$fname = "/etc/vsftpd-${name}.conf"
 
 	file { $fname:
