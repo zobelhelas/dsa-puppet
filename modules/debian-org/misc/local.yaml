@@ -175,6 +175,8 @@ services:
     - reger.debian.org
   security_master:
     - chopin.debian.org
+  www_master:
+    - wolkenstein.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org

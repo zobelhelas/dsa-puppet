@@ -55,6 +55,10 @@ class roles {
 		include roles::dakmaster
 	}
 
+	if getfromhash($site::nodeinfo, 'www_master') {
+		include roles::www_master
+	}
+
 	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
 		include roles::ftp-upcoming_mirror
 	}
