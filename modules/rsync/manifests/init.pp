@@ -2,23 +2,19 @@ class rsync {
 
 	package { 'rsync':
 		ensure => installed,
-		noop   => true,
 	}
 
 	service { 'rsync':
 		ensure  => stopped,
-		noop    => true,
 		require => Package['rsync'],
 	}
 
 	file { '/etc/logrotate.d/dsa-rsyncd':
 		source  => 'puppet:///modules/rsync/logrotate.d-dsa-rsyncd',
-		noop    => true,
 		require => Package['debian.org'],
 	}
 	file { '/var/log/rsyncd':
 		ensure => directory,
-		noop   => true,
 		mode   => '0755',
 	}
 

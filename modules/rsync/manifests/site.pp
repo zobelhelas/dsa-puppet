@@ -21,13 +21,11 @@ define rsync::site (
 	if $source {
 		file { $fname:
 			ensure => $ensure,
-			noop   => true,
 			source => $source
 		}
 	} elsif $content {
 		file { $fname:
 			ensure  => $ensure,
-			noop    => true,
 			content => $content,
 		}
 	} else {
@@ -35,7 +33,6 @@ define rsync::site (
 	}
 
 	xinetd::service { "rsync-${name}":
-		noop        => true,
 		bind        => $bind,
 		id          => "${name}-rsync",
 		server      => '/usr/sbin/rsyncd',
