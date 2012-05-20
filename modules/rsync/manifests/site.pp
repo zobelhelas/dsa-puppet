@@ -2,7 +2,7 @@ define rsync::site (
 	$bind='',
 	$source='',
 	$content='',
-	$fname='/etc/rsyncd.conf',
+	$fname="/etc/rsyncd-${name}.conf",
 	$max_clients=200,
 	$ensure=present
 ){
