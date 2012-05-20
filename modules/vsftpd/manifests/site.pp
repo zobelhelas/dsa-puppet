@@ -24,8 +24,7 @@ define vsftpd::site (
 	}
 
 	file { "/etc/logrotate.d/vsftpd-${name}":
-		ensure  => $ensure,
-		content => template('vsftpd/logrotate.erb')
+		ensure => absent
 	}
 
 	# We don't need a firewall rule because it's added in vsftp.pp

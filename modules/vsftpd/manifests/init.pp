@@ -28,4 +28,17 @@ class vsftpd {
 		description => 'Allow ftp access',
 		rule        => '&SERVICE(tcp, 21)',
 	}
+
+	file { '/var/log/ftp':
+		ensure => directory,
+		mode   => '0755'
+	}
+	file { '/etc/logrotate.d/vsftpd':
+		source  => 'puppet:///modules/vsftpd/logrotate.conf',
+		require => [
+			Package['vsftpd'],
+			Package['debian-org']
+		]
+	}
+
 }
