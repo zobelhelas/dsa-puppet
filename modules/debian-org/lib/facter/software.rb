@@ -131,15 +131,6 @@ Facter.add("syslogversion") do
 		%x{dpkg-query -W -f='${Version}\n' syslog-ng | cut -b1-3}.chomp
 	end
 end
-Facter.add("rsyncd") do
-	setcode do
-		if FileTest.exist?("/etc/rsyncd.conf")
-			true
-		else
-			''
-		end
-	end
-end
 Facter.add("unbound") do
 	unbound=FileTest.exist?("/usr/sbin/unbound") and
 		FileTest.exist?("/var/lib/unbound/root.key")

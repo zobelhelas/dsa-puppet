@@ -11,4 +11,9 @@ class roles::security_mirror {
 		max_clients  => 200,
 		root         => '/srv/ftp.root/',
 	}
+
+	rsync::site { 'security':
+		source      => 'puppet:///modules/roles/security_mirror/rsyncd.conf',
+		max_clients => 100,
+	}
 }

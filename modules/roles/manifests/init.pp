@@ -16,7 +16,12 @@ class roles {
 		include buildd
 	}
 
+	if getfromhash($site::nodeinfo, 'bugs_search') {
+		include roles::bugs_search
+	}
+
 	if getfromhash($site::nodeinfo, 'ftp_master') {
+		include roles::ftp_master
 		include roles::dakmaster
 	}
 
@@ -48,6 +53,14 @@ class roles {
 	if getfromhash($site::nodeinfo, 'security_master') {
 		include roles::security_master
 		include roles::dakmaster
+	}
+
+	if getfromhash($site::nodeinfo, 'www_master') {
+		include roles::www_master
+	}
+
+	if getfromhash($site::nodeinfo, 'keyring') {
+		include roles::keyring
 	}
 
 	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
