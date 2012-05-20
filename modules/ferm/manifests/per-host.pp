@@ -3,6 +3,14 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
+	if $::hostname in [klecker,merikanto,powell,ravel,rietz,senfl,sibelius,stabile] {
+		ferm::rule { 'dsa-rsync':
+			domain      => '(ip ip6)',
+			description => 'Allow rsync access',
+			rule        => '&SERVICE(tcp, 873)'
+		}
+	}
+
 	case $::hostname {
 		piatti,samosa: {
 			@ferm::rule { 'dsa-udd-stunnel':
