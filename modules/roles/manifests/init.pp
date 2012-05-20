@@ -59,6 +59,10 @@ class roles {
 		include roles::www_master
 	}
 
+	if getfromhash($site::nodeinfo, 'keyring') {
+		include roles::keyring
+	}
+
 	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
 		include roles::ftp-upcoming_mirror
 	}

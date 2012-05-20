@@ -177,6 +177,8 @@ services:
     - chopin.debian.org
   www_master:
     - wolkenstein.debian.org
+  keyring:
+    - kaufmann.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org
