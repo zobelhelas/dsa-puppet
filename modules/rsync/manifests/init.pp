@@ -12,7 +12,7 @@ class rsync {
 	}
 
 	file { '/etc/logrotate.d/dsa-rsyncd':
-		source  => 'puppet:///modules/rsyncd-log/logrotate.d-dsa-rsyncd',
+		source  => 'puppet:///modules/rsync/logrotate.d-dsa-rsyncd',
 		noop    => true,
 		require => Package['debian.org'],
 	}
