@@ -173,7 +173,8 @@ REJECT reject-with icmp-admin-prohibited
 				rule            => 'def $ADDRESS_FANO=206.12.19.110;
 def $ADDRESS_FINZI=206.12.19.111;
 def $ADDRESS_FISCHER=206.12.19.112;
-def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI $ADDRESS_FISCHER);
+def $ADDRESS_FALLA=206.12.19.117;
+def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI $ADDRESS_FISCHER $ADDRESS_FALLA);
 
 policy ACCEPT;
 mod state state (ESTABLISHED RELATED) ACCEPT;
@@ -181,7 +182,7 @@ interface br0 outerface br0 ACCEPT;
 interface br1 outerface br1 ACCEPT;
 
 interface br2 outerface br0 jump from-kfreebsd;
-interface br0 destination ($ADDRESS_FISCHER) proto tcp dport 22 ACCEPT;
+interface br0 destination ($ADDRESS_FISCHER $ADDRESS_FALLA) proto tcp dport 22 ACCEPT;
 interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
 ULOG ulog-prefix "REJECT FORWARD: ";
 REJECT reject-with icmp-admin-prohibited
