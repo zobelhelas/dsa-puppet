@@ -37,7 +37,7 @@ class vsftpd {
 		source  => 'puppet:///modules/vsftpd/logrotate.conf',
 		require => [
 			Package['vsftpd'],
-			Package['debian-org']
+			Package['debian.org']
 		]
 	}
 
