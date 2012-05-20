@@ -16,9 +16,19 @@ define munin::conf (
 		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
-	file { "/etc/munin/plugin-conf.d/${name}":
-		ensure  => $ensure,
-		require => Package['munin-node'],
-		notify  => Service['munin-node'],
+	if $source {
+		file { "/etc/munin/plugin-conf.d/${name}":
+			ensure  => $ensure,
+			source  => $source,
+			require => Package['munin-node'],
+			notify  => Service['munin-node'],
+		}
+	} elsif $content {
+		file { "/etc/munin/plugin-conf.d/${name}":
+			ensure  => $ensure,
+			content => $content,
+			require => Package['munin-node'],
+			notify  => Service['munin-node'],
+		}
 	}
 }
