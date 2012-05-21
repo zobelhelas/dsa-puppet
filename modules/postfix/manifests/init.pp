@@ -8,6 +8,8 @@ class postfix {
 		ensure => running
 	}
 
+	include clamav
+
 	munin::check { 'ps_exim4':       ensure => absent }
 	munin::check { 'exim_mailqueue': ensure => absent }
 	munin::check { 'exim_mailstats': ensure => absent }
