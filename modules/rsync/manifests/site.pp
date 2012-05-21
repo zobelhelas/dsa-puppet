@@ -40,7 +40,7 @@ define rsync::site (
 	xinetd::service { "rsync-${name}":
 		bind        => $bind,
 		id          => "${name}-rsync",
-		server      => '/usr/sbin/rsyncd',
+		server      => '/usr/bin/rsync',
 		port        => 'rsync',
 		server_args => $fname_real,
 		ferm        => false,
