@@ -42,7 +42,7 @@ define rsync::site (
 		id          => "${name}-rsync",
 		server      => '/usr/bin/rsync',
 		port        => 'rsync',
-		server_args => $fname_real,
+		server_args => "--daemon --config=${fname_real}",
 		ferm        => false,
 		instances   => $max_clients,
 		require     => File[$fname_real]
