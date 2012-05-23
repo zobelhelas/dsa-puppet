@@ -1,4 +1,4 @@
-if FileTest.exist?('/usr/sbin/gnt-cluster')
+if FileTest.exist?('/usr/sbin/gnt-cluster') and FileTest.exist?('/var/lib/ganeti/config.data')
   if system('/usr/sbin/gnt-cluster getmaster >/dev/null')
     require 'json'
     json = JSON.parse(File.read('/var/lib/ganeti/config.data'))
