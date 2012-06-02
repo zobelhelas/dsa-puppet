@@ -30,7 +30,7 @@ Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, vivaldi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= master, fasch, holter, barber, biber, cilea, vitry, krenek, scelsi, orff, field
-Host_Alias	MEGACTLHOSTS	= lindberg, englund, heininen, nielsen
+Host_Alias	MEGACTLHOSTS	= lindberg, englund, nielsen
 Host_Alias  LISTHOSTS   = bendel
 
 # Cmnd alias specification
