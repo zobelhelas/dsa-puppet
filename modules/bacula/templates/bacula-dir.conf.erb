@@ -216,26 +216,26 @@ Pool {
 # Generic jobs                                                         #
 ########################################################################
 # Backup the catalog database (after the nightly save)
-Job {
-  Name = "BackupCatalog"
-  JobDefs = "Standardbackup"
-  Level = Full
-  FileSet="Catalog"
-  Schedule = "WeeklyCycleAfterBackup"
-  # This creates an ASCII copy of the catalog
-  # Arguments to make_catalog_backup.pl are:
-  #  make_catalog_backup.pl <catalog-name>
-  RunBeforeJob = "/etc/bacula/scripts/make_catalog_backup.pl MyCatalog"
-  # This deletes the copy of the catalog
-  RunAfterJob  = "/etc/bacula/scripts/delete_catalog_backup"
-  Write Bootstrap = "/var/lib/bacula/%n.bsr"
-  Priority = 15    # run after main backup
-  RunScript {
-        RunsWhen=After
-	    RunsOnClient=No
-	    Console = "purge volume action=all allpools storage=File"
-  }
-}
+#Job {
+#  Name = "BackupCatalog"
+#  JobDefs = "Standardbackup"
+#  Level = Full
+#  FileSet="Catalog"
+#  Schedule = "WeeklyCycleAfterBackup"
+#  # This creates an ASCII copy of the catalog
+#  # Arguments to make_catalog_backup.pl are:
+#  #  make_catalog_backup.pl <catalog-name>
+#  RunBeforeJob = "/etc/bacula/scripts/make_catalog_backup.pl MyCatalog"
+#  # This deletes the copy of the catalog
+#  RunAfterJob  = "/etc/bacula/scripts/delete_catalog_backup"
+#  Write Bootstrap = "/var/lib/bacula/%n.bsr"
+#  Priority = 15    # run after main backup
+#  RunScript {
+#        RunsWhen=After
+#	    RunsOnClient=No
+#	    Console = "purge volume action=all allpools storage=File"
+#  }
+#}
 
 ########################################################################
 # And now include all the generated configs                            #
