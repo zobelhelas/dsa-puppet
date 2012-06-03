@@ -21,7 +21,7 @@ class bacula::director inherits bacula {
       notify  => Exec["bacula-director restart"]
       ;
     "/etc/bacula/bacula-dir.conf":
-      content => template("bacula/etc/bacula/bacula-dir.conf.erb"),
+      content => template("bacula/bacula-dir.conf.erb"),
       mode => 440,
       group => bacula,
       require => Package["bacula-director-pgsql"],
