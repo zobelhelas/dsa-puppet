@@ -40,6 +40,10 @@ node default {
 		include ganeti2
 	}
 
+	if $::hostname == 'dinis' {
+		include bacula-director
+	}
+
 	if $::kernel == Linux {
 		include linux
 		if $::kvmdomain {
