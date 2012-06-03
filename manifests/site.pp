@@ -41,7 +41,7 @@ node default {
 	}
 
 	if $::hostname == 'dinis' {
-		include bacula-director
+		include bacula::director
 	}
 
 	if $::kernel == Linux {

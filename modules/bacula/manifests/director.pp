@@ -1,4 +1,4 @@
-class bacula-director inherits bacula {
+class bacula::director inherits bacula {
 
   package {
     "bacula-director-pgsql": ensure => installed;
