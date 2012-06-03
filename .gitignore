@@ -7,3 +7,4 @@ modules/ssl/files/
 modules/dacs/files/private
 modules/hiera-puppet
 *.swp
+*~
