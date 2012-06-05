@@ -9,12 +9,12 @@ class munin {
 		require => Package['munin-node'],
 	}
 
-	$owner = lsbdistcodename ? {
+	$owner = $::lsbdistcodename ? {
 		squeeze => munin,
 		wheezy  => root
 	}
 
-	$gid = lsbdistcodename ? {
+	$gid = $::lsbdistcodename ? {
 		squeeze => adm,
 		wheezy  => 'www-data',
 	}
