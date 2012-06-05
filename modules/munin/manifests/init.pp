@@ -9,6 +9,23 @@ class munin {
 		require => Package['munin-node'],
 	}
 
+	$owner = lsbdistcodename ? {
+		squeeze => munin,
+		wheezy  => root
+	}
+
+	$gid = lsbdistcodename ? {
+		squeeze => adm,
+		wheezy  => 'www-data',
+	}
+
+	file { '/var/log/munin':
+		ensure => directory,
+		owner  => $owner,
+		group  => $gid,
+		mode   => '0755',
+	}
+
 	file { '/etc/munin/munin-node.conf':
 		content => template('munin/munin-node.conf.erb'),
 		require => Package['munin-node'],
