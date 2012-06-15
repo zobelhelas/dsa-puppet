@@ -201,6 +201,8 @@ host_settings:
     - ravel.debian.org
     - reger.debian.org
     - spohr.debian.org
+    - tye.debian.org
+    - dukas.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org
