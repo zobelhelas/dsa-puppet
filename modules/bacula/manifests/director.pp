@@ -34,4 +34,20 @@ class bacula::director inherits bacula {
       path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
       refreshonly => true;
   }
+
+  define bacula_client($client) {
+    # These must be kept in sync with the settings in bacula.pp
+    $bacula_client_name       = "$client-fd"
+    $bacula_client_secret     = hmac("/etc/puppet/secret", "bacula-fd-$client")
+
+    file {
+      "/etc/bacula/conf.d/$client.conf":
+      content => template("bacula/per-client.conf.erb"),
+      mode => 440,
+      group => bacula,
+      notify  => Exec["bacula-director restart"]
+      ;
+  }
+
+  bacula_client(allnodeinfo('hostname', ''))
 }
