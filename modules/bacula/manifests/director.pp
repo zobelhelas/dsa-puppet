@@ -35,13 +35,13 @@ class bacula::director inherits bacula {
       refreshonly => true;
   }
 
-  define bacula_client($client) {
+  define bacula_client() {
     # These must be kept in sync with the settings in bacula.pp
-    $bacula_client_name       = "$client-fd"
-    $bacula_client_secret     = hmac("/etc/puppet/secret", "bacula-fd-$client")
+    $bacula_client_name       = "${name}-fd"
+    $bacula_client_secret     = hmac("/etc/puppet/secret", "bacula-fd-${name}")
 
     file {
-      "/etc/bacula/conf.d/$client.conf":
+      "/etc/bacula/conf.d/${name}.conf":
       content => template("bacula/per-client.conf.erb"),
       mode => 440,
       group => bacula,
@@ -49,6 +49,7 @@ class bacula::director inherits bacula {
       ;
     }
   }
+  $allhosts = keys($site::allnodeinfo)
 
-  bacula_client { allnodeinfo('hostname', '') }
+  bacula_client { $allhosts: }
 }
