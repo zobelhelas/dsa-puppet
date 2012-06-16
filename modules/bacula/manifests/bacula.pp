@@ -20,9 +20,9 @@ class bacula {
 
   $bacula_backup_path       = "/srv/backup.debian.org/bacula"
 
-  $bacula_director_secret   = hmac("/etc/puppet/secret", "bacula-dir-$hostname")
+  $bacula_director_secret   = hmac("/etc/puppet/secret", "bacula-dir-$bacula_director_name")
   $bacula_db_secret         = hmac("/etc/puppet/secret", "bacula-db-$hostname")
-  $bacula_storage_secret    = hmac("/etc/puppet/secret", "bacula-sd-$hostname")
+  $bacula_storage_secret    = hmac("/etc/puppet/secret", "bacula-sd-$bacula_storage_name")
   $bacula_client_secret     = hmac("/etc/puppet/secret", "bacula-fd-$hostname")
   $bacula_monitor_secret    = hmac("/etc/puppet/secret", "bacula-monitor-$hostname")
 
