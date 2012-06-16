@@ -39,6 +39,7 @@ class bacula::director inherits bacula {
     # These must be kept in sync with the settings in bacula.pp
     $bacula_client_name       = "${name}-fd"
     $bacula_client_secret     = hmac("/etc/puppet/secret", "bacula-fd-${name}")
+    $client = $name
 
     file {
       "/etc/bacula/conf.d/${name}.conf":
