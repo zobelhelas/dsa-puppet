@@ -47,6 +47,7 @@ class bacula::director inherits bacula {
       group => bacula,
       notify  => Exec["bacula-director restart"]
       ;
+    }
   }
 
   bacula_client(allnodeinfo('hostname', ''))
