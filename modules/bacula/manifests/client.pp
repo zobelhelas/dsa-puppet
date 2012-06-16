@@ -29,4 +29,10 @@ class bacula::client inherits bacula {
       path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
       refreshonly => true;
   }
+
+  @ferm::rule { 'dsa-bacula-fd':
+    domain      => '(ip ip6)',
+    description => 'Allow bacula access from storage and director',
+    rule        => 'proto tcp mod state state (NEW) dport (bacula-fd) @subchain \'bacula\' { saddr ($bacula_director_address) ACCEPT; }',
+  }
 }
