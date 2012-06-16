@@ -26,6 +26,7 @@ Job {
 # Client (File Services) to backup
 Client {
   Name = <%= bacula_client_name %>
+  Address = <%= client %>
   FDPort = <%= bacula_client_port %>
   Catalog = MyCatalog
   Password = "<%= bacula_client_secret %>"
