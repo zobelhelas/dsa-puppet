@@ -18,6 +18,7 @@ class bacula::director inherits bacula {
       ensure  => directory,
       mode => 755,
       group => bacula,
+      purge => true
       notify  => Exec["bacula-director restart"]
       ;
     "/etc/bacula/bacula-dir.conf":
