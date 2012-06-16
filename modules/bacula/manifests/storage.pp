@@ -9,7 +9,7 @@ class bacula::storage inherits bacula {
       ensure => running,
       enable => true,
       hasstatus => true,
-      require => Package["bacula-sd-pgsql"];
+      ;
   }
   file {
     "/etc/bacula/bacula-sd.conf":
