@@ -12,7 +12,7 @@ class bacula {
 
   $bacula_director_address  = "dinis.debian.org"
   $bacula_director_port     = 9101
-  $bacula_storage_address   = "jommeli.debian.org"
+  $bacula_storage_address   = "beethoven.debian.org"
   $bacula_storage_port      = 9103
   $bacula_client_port       = 9102
 
