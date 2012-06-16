@@ -53,4 +53,11 @@ class bacula::director inherits bacula {
   $allhosts = keys($site::allnodeinfo)
 
   bacula_client { $allhosts: }
+
+  @ferm::rule { 'dsa-bacula-dir':
+    domain      => '(ip ip6)',
+    description => 'Allow bacula access from localhost,
+    rule        => "proto tcp mod state state (NEW) dport (bacula-dir) saddr ($bacula_director_address localhost) ACCEPT",
+  }
+
 }
