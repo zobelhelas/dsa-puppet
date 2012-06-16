@@ -50,5 +50,5 @@ class bacula::director inherits bacula {
     }
   }
 
-  bacula_client(allnodeinfo('hostname', ''))
+  bacula_client { allnodeinfo('hostname', '') }
 }
