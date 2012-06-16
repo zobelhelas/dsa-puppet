@@ -51,8 +51,8 @@ class bacula::director inherits bacula {
       ;
     }
   }
-  $allhosts = keys($site::allnodeinfo)
-
+#  $allhosts = keys($site::allnodeinfo)
+  $allhosts = [ "berlioz.debian.org" ]
   bacula_client { $allhosts: }
 
   @ferm::rule { 'dsa-bacula-dir':
