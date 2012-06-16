@@ -1,0 +1,36 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+#  For Bacula release 5.0.1 (24 February 2010) -- debian 5.0.4
+
+Job {
+  Name = "Backup <%= client %>"
+  JobDefs = "Standardbackup"
+  Client = <%= bacula_client_name %>
+}
+
+Job {
+  Name = "Restore <%= client %>"
+  Type = Restore
+  Client= <%= bacula_client_name %>
+  FileSet = "Standard Set"
+  Storage = <%= bacula_filestor_name %>
+  Pool = <%= bacula_pool_name %>
+  Differential Backup Pool = <%= bacula_pool_name %>diff
+  Incremental Backup Pool = <%= bacula_pool_name %>inc
+  Messages = Standard
+  Where = /var/tmp/bacula-restores
+}
+
+# Client (File Services) to backup
+Client {
+  Name = <%= bacula_client_name %>
+  Address = <%= client %>
+  FDPort = <%= bacula_client_port %>
+  Catalog = MyCatalog
+  Password = "<%= bacula_client_secret %>"
+  File Retention = 30 days            # 30 days
+  Job Retention = 6 months            # six months
+  AutoPrune = yes                     # Prune expired Jobs/Files
+}

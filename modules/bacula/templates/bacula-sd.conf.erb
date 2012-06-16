@@ -1,0 +1,45 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+#  For Bacula release 5.0.1 (24 February 2010) -- debian 5.0.4
+
+Storage {
+  Name = <%= bacula_storage_name %>
+  SDPort = <%= bacula_storage_port %>
+  WorkingDirectory = "/var/lib/bacula"
+  Pid Directory = "/var/run/bacula"
+  Maximum Concurrent Jobs = 21
+  SDAddress = <%= bacula_storage_address %>
+}
+
+# List Directors who are permitted to contact Storage daemon
+#
+Director {
+  Name = <%= bacula_director_name %>
+  Password = "<%= bacula_storage_secret %>"
+}
+
+
+# To connect, the Director's bacula-dir.conf must have the
+#  same Name and MediaType.
+#
+Device {
+  Name = <%= bacula_filestor_device %>
+  Media Type = <%= bacula_filestor_name %>
+  Archive Device = <%= bacula_backup_path %>
+  LabelMedia = yes;
+  Random Access = Yes;
+  AutomaticMount = yes;
+  RemovableMedia = no;
+  AlwaysOpen = no;
+  Maximum Network Buffer Size = 65536
+}
+
+# Send all messages to the Director,
+# mount messages also are sent to the email address
+#
+Messages {
+  Name = Standard
+  director = <%= bacula_director_name %> = all
+}

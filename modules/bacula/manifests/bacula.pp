@@ -12,13 +12,16 @@ class bacula {
 
   $bacula_director_address  = "dinis.debian.org"
   $bacula_director_port     = 9101
-  $bacula_storage_address   = "jommeli.debian.org"
+  $bacula_storage_address   = "beethoven.debian.org"
   $bacula_storage_port      = 9103
   $bacula_client_port       = 9102
+  $bacula_db_address        = "danzi.debian.org"
+  $bacula_db_port           = 5433
 
   $bacula_backup_path       = "/srv/backup.debian.org/bacula"
 
   $bacula_director_secret   = hmac("/etc/puppet/secret", "bacula-dir-$hostname")
+  $bacula_db_secret         = hmac("/etc/puppet/secret", "bacula-db-$hostname")
   $bacula_storage_secret    = hmac("/etc/puppet/secret", "bacula-sd-$hostname")
   $bacula_client_secret     = hmac("/etc/puppet/secret", "bacula-fd-$hostname")
   $bacula_monitor_secret    = hmac("/etc/puppet/secret", "bacula-monitor-$hostname")

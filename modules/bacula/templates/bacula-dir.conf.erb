@@ -95,7 +95,11 @@ Schedule {
 ########################################################################
 Catalog {
   Name = MyCatalog
-  dbname = bacula; DB Address = ""; dbuser = "bacula"; dbpassword = "s3kr1t"
+  dbname = bacula;
+  DB Address = "<%= bacula_db_address %>";
+  DB Port = <%= bacula_db_port %>;
+  dbuser = "bacula";
+  dbpassword = "<%= bacula_db_secret %>"
 }
 
 ########################################################################
