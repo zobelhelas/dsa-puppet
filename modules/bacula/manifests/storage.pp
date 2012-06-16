@@ -16,7 +16,6 @@ class bacula::storage inherits bacula {
       content => template("bacula/bacula-sd.conf.erb"),
       mode => 640,
       group => bacula,
-      require => Package["bacula-sd-pgsql"],
       notify  => Exec["bacula-sd restart"]
       ;
   }
