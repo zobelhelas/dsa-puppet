@@ -44,6 +44,10 @@ node default {
 		include bacula::director
 	}
 
+	if $::hostname == 'beethoven' {
+		include bacula::storage
+	}
+
 	if $::kernel == Linux {
 		include linux
 		if $::kvmdomain {
