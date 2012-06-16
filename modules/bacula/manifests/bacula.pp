@@ -18,7 +18,7 @@ class bacula {
   $bacula_db_address        = "danzi.debian.org"
   $bacula_db_port           = 5433
 
-  $bacula_backup_path       = "/srv/backup.debian.org/bacula"
+  $bacula_backup_path       = "/srv/bacula"
 
   $bacula_director_secret   = hmac("/etc/puppet/secret", "bacula-dir-$hostname")
   $bacula_db_secret         = hmac("/etc/puppet/secret", "bacula-db-$hostname")
