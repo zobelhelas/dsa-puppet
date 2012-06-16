@@ -31,7 +31,7 @@ class ferm::per-host {
 				description     => 'Allow postgress access3',
 				rule            => '&SERVICE_RANGE(tcp, 5436, ( 206.12.19.0/24 ))'
 			}
-			@ferm::rule { 'dsa-postgres3-danzi':
+			@ferm::rule { 'dsa-postgres4-danzi':
 				description     => 'Allow postgress access4',
 				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
 			}
