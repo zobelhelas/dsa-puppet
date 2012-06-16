@@ -2,7 +2,6 @@ class bacula::storage inherits bacula {
 
   package {
     "bacula-sd": ensure => installed;
-    "bacula-sd-pgsql": ensure => installed;
   }
 
   service {
