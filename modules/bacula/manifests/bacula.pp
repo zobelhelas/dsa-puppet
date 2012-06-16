@@ -4,7 +4,7 @@ class bacula {
 
   $bacula_director_name     = "debian-dir"
   $bacula_storage_name      = "debian-sd"
-  $bacula_client_name       = "$hostname-fd"
+  $bacula_client_name       = "$fqdn-fd"
   $bacula_monitor_name      = "debian-mon"
   $bacula_filestor_name     = "File"
   $bacula_filestor_device   = "FileStorage"
