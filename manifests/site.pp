@@ -44,6 +44,10 @@ node default {
 		include bacula::director
 	}
 
+	if $::hostname in [berlioz] {
+		include bacula::client
+	}
+
 	if $::hostname == 'beethoven' {
 		include bacula::storage
 	}
