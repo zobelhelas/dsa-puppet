@@ -151,9 +151,7 @@ file=/etc/ferm/
 file=/etc/ferm/conf.d
 file=/etc/ferm/dsa.d
 file=/etc/rc.local
-<% unless scope.lookupvar('::lsbdistcodename') == 'lenny' %>
 file=/etc/unbound
-<% end -%>
 file=/etc/dsa
 <% if scope.lookupvar('site::nodeinfo')['puppetmaster'] %>
 
@@ -334,6 +332,10 @@ file=/etc/apt/sources.list.d/volatile.list
 file=/etc/apt/sources.list.d/security.list
 file=/etc/apt/sources.list.d/buildd.list
 file=/etc/apt/sources.list.d/buildd.debian.org.list
+file=/etc/apt/sources.list.d/buildd.debian.org-proposed.list
+file=/etc/apt/sources.list.d/buildd.debian.org-experimental.list
+file=/etc/apt/sources.list.d/geoip.list
+file=/etc/apt/sources.list.d/backports.debian.org.list
 file=/etc/apt/sources.list.d/debian.org.list
 file=/etc/apt/sources.list.d/db.debian.org.list
 file=/etc/apt/sources.list.d/debian.restricted.list
@@ -422,9 +424,7 @@ file=/etc/ferm/conf.d/me.conf
 file=/etc/ferm/conf.d/defs.conf
 file=/etc/ferm/ferm.conf
 dir=2/etc/ssl/debian
-<% unless scope.lookupvar('::lsbdistcodename') == 'lenny' %>
 file=/etc/unbound/unbound.conf
-<% end -%>
 
 [IgnoreNone]
 ##

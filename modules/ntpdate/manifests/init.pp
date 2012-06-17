@@ -8,6 +8,11 @@ class ntpdate {
 			ensure => installed
 		}
 
+		$ntpservers = $::hostname ? {
+			ancina  => 'ntp.ugent.be',
+			default => ['merikanto.debian.org','orff.debian.org','ravel.debian.org','busoni.debian.org']
+		}
+
 		file { '/etc/default/ntpdate':
 			content => template('ntpdate/etc-default-ntpdate.erb'),
 		}

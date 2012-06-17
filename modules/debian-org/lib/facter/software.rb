@@ -93,15 +93,6 @@ Facter.add("policydweight") do
 		end
 	end
 end
-Facter.add("vsftpd") do
-	setcode do
-		if FileTest.exist?("/usr/sbin/vsftpd")
-			true
-		else
-			''
-		end
-	end
-end
 Facter.add("spamd") do
 	setcode do
 		if FileTest.exist?("/usr/sbin/spamd")
@@ -138,15 +129,6 @@ end
 Facter.add("syslogversion") do
 	setcode do
 		%x{dpkg-query -W -f='${Version}\n' syslog-ng | cut -b1-3}.chomp
-	end
-end
-Facter.add("rsyncd") do
-	setcode do
-		if FileTest.exist?("/etc/rsyncd.conf")
-			true
-		else
-			''
-		end
 	end
 end
 Facter.add("unbound") do

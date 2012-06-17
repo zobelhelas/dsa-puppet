@@ -14,7 +14,7 @@ class apache2 {
 
 	apache2::site { '00-default':
 		site     => 'default-debian.org',
-		template => 'apache2/default-debian.org.erb',
+		content  => template('apache2/default-debian.org.erb'),
 	}
 
 	apache2::site { '000-default':
@@ -22,19 +22,19 @@ class apache2 {
 	}
 
 	apache2::config { 'ressource-limits':
-		template => 'apache2/ressource-limits.erb',
+		content => template('apache2/ressource-limits.erb'),
 	}
 
 	apache2::config { 'security':
-		config => 'puppet:///modules/apache2/security',
+		source => 'puppet:///modules/apache2/security',
 	}
 
 	apache2::config { 'local-serverinfo':
-		config => 'puppet:///modules/apache2/local-serverinfo',
+		source => 'puppet:///modules/apache2/local-serverinfo',
 	}
 
 	apache2::config { 'server-status':
-		config => 'puppet:///modules/apache2/server-status',
+		source => 'puppet:///modules/apache2/server-status',
 	}
 
 	file { '/etc/apache2/sites-available/common-ssl.inc':
@@ -77,7 +77,7 @@ class apache2 {
 		}
 	}
 
-	if $::hostname in [busoni,duarte,holter,lindberg,master,powell,rore] {
+	if $::hostname in [busoni,duarte,holter,lindberg,master,powell] {
 		include apache2::dynamic
 	} else {
 		@ferm::rule { 'dsa-http':

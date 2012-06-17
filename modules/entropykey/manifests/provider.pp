@@ -17,7 +17,10 @@ class entropykey::provider {
 
 	service { 'ekeyd':
 		ensure  => running,
-		require => File['/etc/entropykey/ekeyd.conf'],
+		require => [
+			File['/etc/entropykey/ekeyd.conf'],
+			Package['ekeyd']
+		]
 	}
 
 	stunnel4::server { 'ekeyd':

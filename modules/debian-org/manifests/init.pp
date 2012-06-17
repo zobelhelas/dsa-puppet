@@ -13,14 +13,22 @@ class debian-org {
 			'sysklogd',
 			'rsyslog',
 		]:
-			ensure => purged,
+		ensure => purged,
+	}
+	package { [
+			'debian.org',
+			'dsa-munin-plugins',
+		]:
+		ensure => installed,
+		require => [
+			File['/etc/apt/sources.list.d/db.debian.org.list'],
+			Exec['apt-get update']
+		]
 	}
 	package { [
 			'apt-utils',
 			'bash-completion',
-			'debian.org',
 			'dnsutils',
-			'dsa-munin-plugins',
 			'less',
 			'lsb-release',
 			'libfilesystem-ruby1.8',
@@ -29,7 +37,7 @@ class debian-org {
 			'nload',
 			'pciutils',
 		]:
-			ensure => installed,
+		ensure => installed,
 	}
 
 	munin::check { [
@@ -54,7 +62,11 @@ class debian-org {
 
 	if getfromhash($site::nodeinfo, 'broken-rtc') {
 		package { 'fake-hwclock':
-			ensure => installed
+			ensure => installed,
+			require => [
+				File['/etc/apt/sources.list.d/db.debian.org.list'],
+				Exec['apt-get update']
+			]
 		}
 	}
 
@@ -62,13 +74,21 @@ class debian-org {
 
 	if $::debarchitecture != 'armhf' {
 		site::aptrepo { 'security':
-			template => 'debian-org/etc/apt/sources.list.d/security.list.erb',
+			url        => 'http://security.debian.org/',
+			suite      => "${::lsbdistcodename}/updates",
+			components => ['main','contrib','non-free']
 		}
+
 		site::aptrepo { 'backports.debian.org':
-			template => 'debian-org/etc/apt/sources.list.d/backports.debian.org.list.erb',
+			url        => 'http://backports.debian.org/debian-backports/',
+			suite      => "${::lsbdistcodename}-backports",
+			components => ['main','contrib','non-free']
 		}
+
 		site::aptrepo { 'volatile':
-			template => 'debian-org/etc/apt/sources.list.d/volatile.list.erb',
+			url        => 'http://ftp.debian.org/debian',
+			suite      => "${::lsbdistcodename}-updates",
+			components => ['main','contrib','non-free']
 		}
 	}
 	site::aptrepo { 'backports.org':
@@ -82,8 +102,10 @@ class debian-org {
 	}
 
 	site::aptrepo { 'db.debian.org':
-		template => 'debian-org/etc/apt/sources.list.d/debian.org.list.erb',
-		key      => 'puppet:///modules/debian-org/db.debian.org.asc',
+		url        => 'http://db.debian.org/debian-admin',
+		suite      => 'lenny',
+		components => 'main',
+		key        => 'puppet:///modules/debian-org/db.debian.org.asc',
 	}
 
 	file { '/etc/facter':
@@ -137,6 +159,10 @@ class debian-org {
 		require => Package['debian.org'],
 		content => template('debian-org/pam.common-session.erb'),
 	}
+	file { '/etc/pam.d/common-session-noninteractive':
+		require => Package['debian.org'],
+		content => template('debian-org/pam.common-session-noninteractive.erb'),
+	}
 	file { '/etc/rc.local':
 		mode   => '0755',
 		source => 'puppet:///modules/debian-org/rc.local',
@@ -165,6 +191,9 @@ class debian-org {
 	site::alternative { 'editor':
 		linkto => '/usr/bin/vim.basic',
 	}
+	site::alternative { 'view':
+		linkto => '/usr/bin/vim.basic',
+	}
 	mailalias { 'samhain-reports':
 		ensure => present,
 		recipient => $debianadmin,
@@ -173,7 +202,7 @@ class debian-org {
 	exec { 'apt-get update':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		refreshonly => true,
-	}-> Package <| |>
+	}
 
 	exec { 'dpkg-reconfigure tzdata -pcritical -fnoninteractive':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',

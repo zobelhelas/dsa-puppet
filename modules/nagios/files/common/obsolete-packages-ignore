@@ -7,3 +7,4 @@
 /kernel-image-.*/
 buildd
 sbuild
+postgresql-9.0-debversion

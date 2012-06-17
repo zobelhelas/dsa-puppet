@@ -24,17 +24,17 @@ class ferm {
 		status      => '/bin/true',
 	}
 
-	$munin_ips = split(regsubst($v4ips, '([^,]+)', 'ip_\1', 'G'), ',')
+	$munin_ips = split(regsubst($::v4ips, '([^,]+)', 'ip_\1', 'G'), ',')
 
 	munin::check { $munin_ips: script => 'ip_', }
 
 	if $v6ips {
-		$munin6_ips = split(regsubst($v6ips, '([^,]+)', 'ip_\1', 'G'), ',')
+		$munin6_ips = split(regsubst($::v6ips, '([^,]+)', 'ip_\1', 'G'), ',')
 		munin::ipv6check { $munin6_ips: }
 	}
 
 	# get rid of old stuff
-	$munin6_ip6s = split(regsubst($v6ips, '([^,]+)', 'ip6_\1', 'G'), ',')
+	$munin6_ip6s = split(regsubst($::v6ips, '([^,]+)', 'ip6_\1', 'G'), ',')
 	munin::check { $munin6_ip6s: ensure => absent }
 
 	file { '/etc/ferm':

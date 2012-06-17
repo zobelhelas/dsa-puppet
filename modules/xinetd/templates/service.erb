@@ -1,0 +1,19 @@
+service <%= scope.lookupvar('port') %>
+{
+<%- if scope.lookupvar('bind') != '' -%>
+	bind		= <%= scope.lookupvar('bind') %>
+<%- end -%>
+	id		= <%= scope.lookupvar('id') %>
+
+	socket_type	= <%= scope.lookupvar('socket_type') %>
+	protocol	= <%= scope.lookupvar('protocol') %>
+	flags		= <%= scope.lookupvar('flags') %>
+	wait		= <%= scope.lookupvar('wait') %>
+	user		= <%= scope.lookupvar('user') %>
+	server		= <%= scope.lookupvar('server') %>
+	server_args	= <%= scope.lookupvar('server_args') %>
+	nice		= <%= scope.lookupvar('nice') %>
+	instances	= <%= scope.lookupvar('instances') %>
+	per_source	= <%= scope.lookupvar('per_source') %>
+	cps		= <%= scope.lookupvar('cps') %>
+}

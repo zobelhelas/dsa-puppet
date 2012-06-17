@@ -3,7 +3,6 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% unless lsbdistcodename == 'lenny' %>
 #
 # /etc/pam.d/common-session - session-related modules common to all services
 #
@@ -29,16 +28,6 @@ session	required			pam_permit.so
 # and here are more per-package modules (the "Additional" block)
 session	required	pam_unix.so 
 # end of pam-auth-update config
-session	optional	pam_mkhomedir.so skel=/etc/skel umask=0022
-<% else %>
-#
-# /etc/pam.d/common-session - session-related modules common to all services
-#
-# This file is included from other service-specific PAM config files,
-# and should contain a list of modules that define tasks to be performed
-# at the start and end of sessions of *any* kind (both interactive and
-# non-interactive).  The default is pam_unix.
-#
-session	required	pam_unix.so
-session	optional	pam_mkhomedir.so skel=/etc/skel umask=0022
-<% end %>
+session	[success=1 default=ignore]	pam_succeed_if.so quiet_fail quiet_success home = /nonexistent
+session	optional			pam_mkhomedir.so skel=/etc/skel umask=0022
+session	optional			pam_permit.so

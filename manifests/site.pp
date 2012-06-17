@@ -33,19 +33,32 @@ node default {
 	include hardware
 	include nagios::client
 	include resolv
+	include roles
+	include unbound
 
 	if $::hostname in [pasquini,tristano] {
 		include ganeti2
 	}
 
-	if $::kernel == Linux {
-		include linux
-	} elsif $::kernel == 'GNU/kFreeBSD' {
-		include kfreebsd
+	if $::hostname == 'dinis' {
+		include bacula::director
 	}
 
-	if $::kvmdomain {
-		include acpi
+	if $::hostname in [berlioz] {
+		include bacula::client
+	}
+
+	if $::hostname == 'beethoven' {
+		include bacula::storage
+	}
+
+	if $::kernel == Linux {
+		include linux
+		if $::kvmdomain {
+			include acpi
+		}
+	} elsif $::kernel == 'GNU/kFreeBSD' {
+		include kfreebsd
 	}
 
 	if $::mta == 'exim4' {
@@ -54,68 +67,20 @@ node default {
 		} else {
 			include exim
 		}
-	} else {
+	} elsif $::mta == 'postfix' {
 		include postfix
-	}
-
-	if $::lsbdistcodename != 'lenny' {
-		include unbound
-	}
-
-	if getfromhash($site::nodeinfo, 'puppetmaster') {
-		include puppetmaster
-	}
-
-	if getfromhash($site::nodeinfo, 'muninmaster') {
-		include munin::master
-	}
-
-	if getfromhash($site::nodeinfo, 'nagiosmaster') {
-		include nagios::server
-	}
-
-	if getfromhash($site::nodeinfo, 'buildd') {
-		include buildd
-	}
-
-	if $::hostname in [chopin,franck,morricone,bizet] {
-		include roles::dakmaster
-	}
-
-	if getfromhash($site::nodeinfo, 'apache2_security_mirror') {
-		include roles::security_mirror
-	}
-
-	if getfromhash($site::nodeinfo, 'apache2_www_mirror') {
-		include roles::www_mirror
-	}
-
-	if getfromhash($site::nodeinfo, 'apache2_backports_mirror') {
-		include roles::backports_mirror
-	}
-
-	if $::hostname in [bizet,morricone] {
-		include roles::backports_master
-	}
-
-	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
-		include roles::ftp-upcoming_mirror
+	} else {
+		include exim
 	}
 
 	if $::apache2 {
 		include apache2
 	}
 
-	if $::rsyncd {
-		include rsyncd-log
-	}
-
 	if $::hostname in [ravel,senfl,orff,draghi,diamond] {
 		include named::authoritative
 	} elsif $::hostname in [geo1,geo2,geo3] {
 		include named::geodns
-	} elsif $::hostname == 'liszt' {
-		include named::recursor
 	}
 
 	if $::hostname in [diabelli,nono,spohr] {
@@ -146,9 +111,5 @@ node default {
 
 	if $::spamd {
 		munin::check { 'spamassassin': }
-	}
-
-	if $::hostname in [chopin,franck,kassia,klecker,ravel] {
-		include vsftpd
 	}
 }

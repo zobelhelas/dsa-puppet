@@ -27,11 +27,7 @@ log_facility=daemon
 # number.  The file is only written if the NRPE daemon is started by the root
 # user and is running in standalone mode.
 
-<% unless lsbdistcodename == 'lenny' %>
 pid_file=/var/run/nagios/nrpe.pid
-<% else %>
-pid_file=/var/run/nrpe.pid
-<% end %>
 
 
 # PORT NUMBER

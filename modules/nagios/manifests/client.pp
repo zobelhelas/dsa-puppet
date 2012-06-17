@@ -4,7 +4,11 @@ class nagios::client inherits nagios {
 		ensure => purged
 	}
 	package { 'dsa-nagios-checks':
-		ensure => installed
+		ensure => installed,
+		require => [
+			File['/etc/apt/sources.list.d/db.debian.org.list'],
+			Exec['apt-get update']
+		]
 	}
 
 	service { 'nagios-nrpe-server':

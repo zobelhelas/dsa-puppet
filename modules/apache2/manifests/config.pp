@@ -1,10 +1,14 @@
-define apache2::config($config = undef, $template = undef, $ensure = present) {
+define apache2::config (
+	$source=undef,
+	$content=undef,
+	$ensure=present
+) {
 
 	include apache2
 
 	case $ensure {
 		present: {
-			if ! ($config or $template) {
+			if ! ($source or $content) {
 				fail ( "No configuration found for ${name}" )
 			}
 		}
@@ -12,17 +16,17 @@ define apache2::config($config = undef, $template = undef, $ensure = present) {
 		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
-	if $template {
+	if $content {
 		file { "/etc/apache2/conf.d/${name}":
 			ensure  => $ensure,
-			content => template($template),
+			content => $content,
 			require => Package['apache2'],
 			notify  => Service['apache2'],
 		}
 	} else {
 		file { "/etc/apache2/conf.d/${name}":
 			ensure  => $ensure,
-			source  => $config,
+			source  => $source,
 			require => Package['apache2'],
 			notify  => Service['apache2'],
 		}

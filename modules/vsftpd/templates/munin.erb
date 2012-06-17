@@ -1,0 +1,3 @@
+[vsftpd-<%= scope.lookupvar('ftpsite') %>]
+user root
+env.logfile /var/log/ftp/<%= scope.lookupvar('ftpsite') %>.log

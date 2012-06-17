@@ -9,6 +9,9 @@ class entropykey::local_consumer {
 	}
 
 	service { 'ekeyd-egd-linux':
-		require => File['/etc/default/ekeyd-egd-linux'],
+		require => [
+			File['/etc/default/ekeyd-egd-linux'],
+			Package['ekeyd-egd-linux']
+		]
 	}
 }

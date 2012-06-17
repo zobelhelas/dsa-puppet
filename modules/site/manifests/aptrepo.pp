@@ -1,5 +1,11 @@
-define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config = undef, $ensure = present) {
-
+define site::aptrepo (
+	$url='',
+	$suite='',
+	$components=[],
+	$key = undef,
+	$keyid = undef,
+	$ensure = present
+) {
 
 	case $ensure {
 		present: {
@@ -39,23 +45,18 @@ define site::aptrepo ($key = undef, $keyid = undef, $template = undef, $config =
 		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
 
-	if $ensure == present {
-		if ! ($config or $template) {
-			fail ( "No configuration found for ${name}" )
+	case $ensure {
+		present: {
+			if !($url and $suite) {
+				fail ( "Need both url and suite for $name" )
+			}
 		}
+		default: {}
 	}
 
-	if $template {
-		file { "/etc/apt/sources.list.d/${name}.list":
+	file { "/etc/apt/sources.list.d/${name}.list":
 			ensure  => $ensure,
-			content => template($template),
+			content => template('site/aptrepo.erb'),
 			notify => Exec['apt-get update'],
-		}
-	} else {
-		file { "/etc/apt/sources.list.d/${name}.list":
-			ensure => $ensure,
-			source => $config,
-			notify => Exec['apt-get update'],
-		}
 	}
 }

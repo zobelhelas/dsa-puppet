@@ -5,7 +5,8 @@ class ssh {
 	}
 
 	service { 'ssh':
-		ensure => running
+		ensure  => running,
+		require => Package['openssh-server']
 	}
 
 	@ferm::rule { 'dsa-ssh':

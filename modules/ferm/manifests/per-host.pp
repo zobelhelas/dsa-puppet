@@ -3,6 +3,14 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
+	if $::hostname in [klecker,merikanto,powell,ravel,rietz,senfl,sibelius,stabile] {
+		ferm::rule { 'dsa-rsync':
+			domain      => '(ip ip6)',
+			description => 'Allow rsync access',
+			rule        => '&SERVICE(tcp, 873)'
+		}
+	}
+
 	case $::hostname {
 		piatti,samosa: {
 			@ferm::rule { 'dsa-udd-stunnel':
@@ -20,8 +28,12 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5437, ( 206.12.19.0/24 ))'
 			}
 			@ferm::rule { 'dsa-postgres3-danzi':
-				description     => 'Allow postgress access2',
+				description     => 'Allow postgress access3',
 				rule            => '&SERVICE_RANGE(tcp, 5436, ( 206.12.19.0/24 ))'
+			}
+			@ferm::rule { 'dsa-postgres4-danzi':
+				description     => 'Allow postgress access4',
+				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
 			}
 		}
 		abel,alwyn,rietz: {
@@ -40,17 +52,6 @@ class ferm::per-host {
 				rule            => '&SERVICE(udp, 69)'
 			}
 		}
-		handel: {
-			@ferm::rule { 'dsa-puppet':
-				description     => 'Allow puppet access',
-				rule            => '&SERVICE_RANGE(tcp, 8140, $HOST_DEBIAN_V4)'
-			}
-			@ferm::rule { 'dsa-puppet-v6':
-				domain          => 'ip6',
-				description     => 'Allow puppet access',
-				rule            => '&SERVICE_RANGE(tcp, 8140, $HOST_DEBIAN_V6)'
-			}
-		}
 		powell: {
 			@ferm::rule { 'dsa-powell-v6-tunnel':
 				description     => 'Allow powell to use V6 tunnel broker',
@@ -62,7 +63,7 @@ class ferm::per-host {
 				rule            => 'proto tcp dport 8000:8100 jump ACCEPT'
 			}
 		}
-		heininen,lotti: {
+		lotti,lully: {
 			@ferm::rule { 'dsa-syslog':
 				description     => 'Allow syslog access',
 				rule            => '&SERVICE_RANGE(tcp, 5140, $HOST_DEBIAN_V4)'
@@ -153,7 +154,7 @@ source ($HOST_NAGIOS_V4) proto udp dport ntp ACCEPT
 proto tcp dport (21 22 80 53 443) ACCEPT;
 proto udp dport (53 123) ACCEPT;
 proto tcp dport 8140 daddr 82.195.75.104 ACCEPT; # puppethost
-proto tcp dport 5140 daddr (82.195.75.98 206.12.19.121) ACCEPT; # loghost
+proto tcp dport 5140 daddr (82.195.75.99 206.12.19.121) ACCEPT; # loghost
 proto tcp dport 11371 daddr 82.195.75.107 ACCEPT; # keyring host
 proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT
 '
@@ -183,7 +184,9 @@ REJECT reject-with icmp-admin-prohibited
 				chain           => 'FORWARD',
 				rule            => 'def $ADDRESS_FANO=206.12.19.110;
 def $ADDRESS_FINZI=206.12.19.111;
-def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI);
+def $ADDRESS_FISCHER=206.12.19.112;
+def $ADDRESS_FALLA=206.12.19.117;
+def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI $ADDRESS_FISCHER $ADDRESS_FALLA);
 
 policy ACCEPT;
 mod state state (ESTABLISHED RELATED) ACCEPT;
@@ -191,6 +194,7 @@ interface br0 outerface br0 ACCEPT;
 interface br1 outerface br1 ACCEPT;
 
 interface br2 outerface br0 jump from-kfreebsd;
+interface br0 destination ($ADDRESS_FISCHER $ADDRESS_FALLA) proto tcp dport 22 ACCEPT;
 interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
 ULOG ulog-prefix "REJECT FORWARD: ";
 REJECT reject-with icmp-admin-prohibited
@@ -225,7 +229,4 @@ REJECT reject-with icmp-admin-prohibited
 		default: {}
 	}
 
-	if $::rsyncd {
-		include ferm::rsync
-	}
 }

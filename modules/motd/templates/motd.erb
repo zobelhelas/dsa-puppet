@@ -100,9 +100,26 @@ unless vms.empty?
 end
 
 
+if not scope.lookupvar('::cluster').empty?
+  purp += "\nThis server is a node in ganeti cluster: "
+  purp += scope.lookupvar('::cluster') + ".\n"
+  nodes = scope.lookupvar('::cluster_nodes').split.sort
+  nodes.each do |node|
+    purp += "\t" + node + "\n"
+  end
+  nodes.reject{|node| node.eql?(fqdn)}.each do |node|
+    purp += "\t" + node + "\n"
+    scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
+      purp += "\t\t" + ip + "\n"
+    end
+  end
+end
+
+
 if scope.lookupvar('site::nodeinfo').has_key?('footer')
   purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
 end
+
 purp
 -%>
 

@@ -30,8 +30,8 @@ Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, vivaldi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= master, fasch, holter, barber, biber, cilea, vitry, krenek, scelsi, orff, field
-Host_Alias	MEGACTLHOSTS	= lindberg, englund, heininen, nielsen
-Host_Alias  LISTHOSTS   = liszt, bendel
+Host_Alias	MEGACTLHOSTS	= lindberg, englund, nielsen
+Host_Alias  LISTHOSTS   = bendel
 
 # Cmnd alias specification
 
@@ -171,12 +171,12 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 %fossy		vivaldi=(fossy)		ALL
 
 # Porter work
-%porter-armel	abel,agricola=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-armel	harris=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-amd64	barriere,pergolesi=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-hppa	paer=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-ia64	merulo=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-mips	eder,gabrielli=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-ppc	partch=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-s390	zelenka=(root)		NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-sparc	smetana,sperger=(root)	NOPASSWD: /usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-armel	abel,agricola=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-armel	harris=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-amd64	barriere,pergolesi=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-bsd	falla,fischer=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-ia64	merulo=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-mips	eder,gabrielli=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-ppc	partch=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-s390	zelenka=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%porter-sparc	smetana,sperger=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot

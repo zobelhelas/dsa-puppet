@@ -1,0 +1,247 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+##
+#  For Bacula release 5.0.1 (24 February 2010) -- debian 5.0.4
+
+########################################################################
+# Bacula Director itself                                               #
+########################################################################
+
+Director {
+  Name = <%= bacula_director_name %>
+  Description = <%= hostname %> - <%= domain %> Bacula Director
+  QueryFile = "/etc/bacula/scripts/query.sql"
+  WorkingDirectory = "/var/lib/bacula"
+  PidDirectory = "/var/run/bacula"
+  Maximum Concurrent Jobs = 20
+  Password = "<%= bacula_director_secret %>"
+  Messages = Daemon
+  DirAddresses = {
+     # Always have localhost in, then the configured IP
+     ip = { addr = 127.0.0.1; port = 9101 }
+	 ip = { addr = <%=bacula_director_address%>; port = <%=bacula_director_port%> }
+  }
+}
+
+########################################################################
+# Standard Fileset                                                     #
+########################################################################
+FileSet {
+  Name = "Standard Set"
+  Include {
+    Options {
+      signature = SHA1
+      compression = GZIP9
+    }
+    File = "\\|bash -c \"df -Pkl -x tmpfs | tail -n +2 | awk '{print \$NF}' \""
+    # Dont backup directories that contain .nobackup files
+    Exclude Dir Containing = .nobackup
+  }
+
+  Exclude {
+    File = /var/lib/bacula
+    File = /var/cache/apt/
+    File = /nonexistant
+    File = /proc
+    File = /tmp
+    File = /.journal
+    File = /.fsck
+    File = /sys
+    File = /lib/init/rw
+    File = /var/run
+    File = /var/lock
+    File = /dev
+  }
+}
+
+########################################################################
+# A fileset for the catalog, one sql dump of the db                    #
+########################################################################
+FileSet {
+  Name = "Catalog"
+  Include {
+    Options {
+      signature = SHA1
+      compression = GZIP9
+    }
+    File = "/var/lib/bacula/bacula.sql"
+  }
+}
+
+########################################################################
+# The job schedules                                                    #
+########################################################################
+
+# When to do the backups, full backup on first sunday of the month,
+#  differential (i.e. incremental since full) every other sunday,
+#  and incremental backups other days
+Schedule {
+  Name = "WeeklyCycle"
+  Run = Full 1st sat at 00:35
+  Run = Differential 2nd-5th sat at 00:35
+  Run = Incremental sun-fri at 00:35
+}
+
+# This schedule does the catalog. It starts after the WeeklyCycle
+Schedule {
+  Name = "WeeklyCycleAfterBackup"
+  Run = Full sun-sat at 02:10
+}
+
+########################################################################
+# Generic catalog service                                              #
+########################################################################
+Catalog {
+  Name = MyCatalog
+  dbname = bacula;
+  DB Address = "<%= bacula_db_address %>";
+  DB Port = <%= bacula_db_port %>;
+  dbuser = "bacula";
+  dbpassword = "<%= bacula_db_secret %>"
+}
+
+########################################################################
+# Message delivery                                                     #
+########################################################################
+Messages {
+  Name = Standard
+  mailcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula: %t %e of %c %l\" %r"
+  operatorcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula: Intervention needed for %j\" %r"
+  mail = <%= bacula_operator_email %> = all, !skipped
+  operator = <%= bacula_operator_email %> = mount
+  console = all, !skipped, !saved
+  append = "/var/lib/bacula/log" = all, !skipped
+  catalog = all
+}
+
+# Message delivery for daemon messages (no job).
+Messages {
+  Name = Daemon
+  mailcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula daemon message\" %r"
+  mail = <%= bacula_operator_email %> = all, !skipped
+  console = all, !skipped, !saved
+  append = "/var/lib/bacula/log" = all, !skipped
+}
+
+########################################################################
+# Storage config                                                       #
+########################################################################
+
+Storage {
+  Name = <%= bacula_filestor_name %>
+  Address = <%= bacula_storage_address %>
+  SDPort = <%= bacula_storage_port %>
+  Password = "<%= bacula_storage_secret %>"
+  Device = <%= bacula_filestor_device %>
+  Media Type = <%= bacula_filestor_name %>
+  Maximum Concurrent Jobs = 10
+}
+
+########################################################################
+# Console, limited                                                     #
+########################################################################
+Console {
+  Name = <%= bacula_monitor_name %>
+  Password = "<%= bacula_monitor_secret %>"
+  CommandACL = status, .status
+}
+
+########################################################################
+# Jobdefinitions with defaults and stuff                               #
+########################################################################
+JobDefs {
+  Name = "Standardbackup"
+  Type = Backup
+  Level = Incremental
+  FileSet = "Standard Set"
+  Schedule = "WeeklyCycle"
+  Storage = <%=bacula_filestor_name%>
+  Messages = Standard
+  Pool = <%=bacula_pool_name%>
+  Differential Backup Pool = <%=bacula_pool_name%>diff
+  Incremental Backup Pool = <%=bacula_pool_name%>inc
+  Max Full Interval = 1 month
+  Priority = 10
+  Write Bootstrap = "/var/lib/bacula/%c.bsr"
+  Maximum Concurrent Jobs = 20
+}
+
+########################################################################
+# Pool definition                                                      #
+########################################################################
+Pool {
+  Name = <%= bacula_pool_name %>
+  Pool Type = Backup
+  Recycle = no
+  AutoPrune = yes
+  Volume Retention = 1 year
+  Label Format = "${Client}-${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Volume Use Duration = 23h
+  Maximum Volume Jobs = 1
+  Maximum Volume Bytes = 50G
+  Action On Purge = Truncate
+}
+
+Pool {
+  Name = <%= bacula_pool_name %>diff
+  Pool Type = Backup
+  Recycle = no
+  AutoPrune = yes
+  Volume Retention = 1 year
+  Label Format = "${Client}-${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Volume Use Duration = 23h
+  Maximum Volume Jobs = 1
+  Maximum Volume Bytes = 50G
+  Action On Purge = Truncate
+}
+
+Pool {
+  Name = <%= bacula_pool_name %>inc
+  Pool Type = Backup
+  Recycle = no
+  AutoPrune = yes
+  Volume Retention = 1 year
+  Label Format = "${Client}-${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Volume Use Duration = 23h
+  Maximum Volume Jobs = 1
+  Maximum Volume Bytes = 50G
+  Action On Purge = Truncate
+}
+
+# Scratch pool definition
+Pool {
+  Name = Scratch
+  Pool Type = Backup
+}
+
+########################################################################
+# Generic jobs                                                         #
+########################################################################
+# Backup the catalog database (after the nightly save)
+#Job {
+#  Name = "BackupCatalog"
+#  JobDefs = "Standardbackup"
+#  Level = Full
+#  FileSet="Catalog"
+#  Schedule = "WeeklyCycleAfterBackup"
+#  # This creates an ASCII copy of the catalog
+#  # Arguments to make_catalog_backup.pl are:
+#  #  make_catalog_backup.pl <catalog-name>
+#  RunBeforeJob = "/etc/bacula/scripts/make_catalog_backup.pl MyCatalog"
+#  # This deletes the copy of the catalog
+#  RunAfterJob  = "/etc/bacula/scripts/delete_catalog_backup"
+#  Write Bootstrap = "/var/lib/bacula/%n.bsr"
+#  Priority = 15    # run after main backup
+#  RunScript {
+#        RunsWhen=After
+#	    RunsOnClient=No
+#	    Console = "purge volume action=all allpools storage=File"
+#  }
+#}
+
+########################################################################
+# And now include all the generated configs                            #
+########################################################################
+@|"sh -c 'for f in /etc/bacula/conf.d/*.conf ; do echo @${f} ; done'"

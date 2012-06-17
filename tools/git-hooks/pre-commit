@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if ! cmp -s ${PWD}/.git/hooks/pre-commit ${PWD}/tools/git-hooks/pre-commit ; then
+	rm -f ${PWD}/.git/hooks/pre-commit
+	ln -sf ../../tools/git-hooks/pre-commit ${PWD}/.git/hooks/pre-commit
+	exec ${PWD}/.git/hooks/pre-commit
+fi
+
 if git rev-parse --verify HEAD &>/dev/null; then
 	against=HEAD
 else
@@ -15,7 +21,7 @@ check_puppet_manifest () {
         git cat-file blob :0:${file} | sed 's/^import .*/#&/' >${pp}
         trap "rm -f ${pp}" RETURN
 
-        local output=$(puppet apply --noop --ignoreimport ${pp} 2>&1)
+        local output=$(puppet parser validate ${pp} 2>&1)
         if [ $? -ne 0 ] || [ -n "${output}" ]; then
                 echo '** Syntax check failed:' >&2
                 echo "${output}" >&2

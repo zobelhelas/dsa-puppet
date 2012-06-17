@@ -1,19 +1,24 @@
 class buildd {
 
-	# sigh, sort this mess out, kids
-	if $::lsbdistcodename in [lenny,squeeze] {
-		package { 'schroot': ensure => installed }
-	} else {
-		package { 'schroot': ensure => held }
+	package { [
+			'schroot',
+			'sbuild'
+		]:
+		ensure  => installed,
+		require => [
+			File['/etc/apt/sources.list.d/buildd.debian.org.list'],
+			Exec['apt-get update']
+		]
 	}
 
+	package { 'apt-transport-https':
+		ensure => installed,
+	}
 	package { [
-			'sbuild',
-			'apt-transport-https',
 			'debootstrap',
 			'dupload'
 		]:
-			ensure => installed
+		ensure => installed,
 	}
 
 	site::linux_module { 'dm_snapshot': }
@@ -22,13 +27,46 @@ class buildd {
 	site::aptrepo { 'buildd':
 		ensure => absent,
 	}
-	site::aptrepo { 'buildd.debian.org':
-		template => 'buildd/etc/apt/sources.list.d/buildd.list.erb',
-		key      => 'puppet:///modules/buildd/buildd.debian.org.asc',
+
+	if $::lsbdistcodename in [squeeze,wheezy] {
+		$suite = $::lsbdistcodename
+	} else {
+		$suite = 'wheezy'
 	}
 
+	site::aptrepo { 'buildd.debian.org':
+		key        => 'puppet:///modules/buildd/buildd.debian.org.asc',
+		url        => 'https://buildd.debian.org/apt/',
+		suite      => $suite,
+		components => 'main',
+		require    => Package['apt-transport-https'],
+	}
+
+	if $::hostname in [alkman,porpora,zandonai] {
+		site::aptrepo { 'buildd.debian.org-proposed':
+			url        => 'https://buildd.debian.org/apt/',
+			suite      => "${suite}-proposed",
+			components => 'main',
+			require    => Package['apt-transport-https'],
+		}
+	}
+
+	if $::hostname in [krenek] {
+		site::aptrepo { 'buildd.debian.org-experimental':
+			url        => 'https://buildd.debian.org/apt/',
+			suite      => "${suite}-experimental",
+			components => 'main',
+			require    => Package['apt-transport-https'],
+		}
+	}
+
+	# 'bad' extension
+	file { '/etc/apt/preferences.d/buildd.debian.org':
+		ensure => absent,
+	}
 	file { '/etc/apt/preferences.d/buildd':
-		ensure  => absent
+		content => template('buildd/etc/apt/preferences.d/buildd'),
+		before  => File['/etc/apt/sources.list.d/buildd.debian.org.list']
 	}
 	file { '/etc/schroot/mount-defaults':
 		content => template('buildd/etc/schroot/mount-defaults.erb'),

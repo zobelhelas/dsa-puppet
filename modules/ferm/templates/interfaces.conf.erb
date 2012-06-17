@@ -1,13 +1,13 @@
 def $MUNIN_IPS = (<%=
 begin
-	v4ips.split(',').join(' ')
+	scope.lookupvar('::v4ips').split(',').join(' ')
 rescue
 	''
 end
 %>);
 def $MUNIN6_IPS = (<%=
 begin
-	v6ips == '' ? '' : v6ips.split(',').join(' ')
+	scope.lookupvar('::v6ips') == '' ? '' : scope.lookupvar('::v6ips').split(',').join(' ')
 rescue
 	''
 end

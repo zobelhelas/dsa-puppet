@@ -7,8 +7,36 @@ class clamav {
 			ensure => installed
 	}
 
-	file { '/var/lib/clamav/mbl.ndb':
-		ensure  => absent
+	$extra_groups = $::mta ? {
+		'postfix' => 'amavis',
+		default   => 'Debian-exim'
+	}
+
+	user { 'clamav':
+		gid     => clamav,
+		groups  => [$extra_groups],
+		require => Package['clamav-daemon']
+	}
+
+	service { 'clamav-daemon':
+		ensure  => running,
+		require => Package['clamav-daemon']
+	}
+
+	service { 'clamav-freshclam':
+		ensure  => running,
+		require => Package['clamav-freshclam']
+	}
+
+	file { [
+		'/var/lib/clamav/mbl.ndb',
+		'/var/lib/clamav/MSRBL-Images.hdb',
+		'/var/lib/clamav/MSRBL-SPAM.ndb',
+		'/var/lib/clamav/msrbl-images.hdb',
+		'/var/lib/clamav/msrbl-spam.ndb',
+	]:
+		ensure => absent,
+		notify => Service['clamav-daemon']
 	}
 	file { '/etc/clamav-unofficial-sigs.dsa.conf':
 		require => Package['clamav-unofficial-sigs'],

@@ -7,6 +7,8 @@
 #
 NTPD_OPTS='-g'
 
+rm -vf /var/lib/ntp/ntp.conf.dhcp
+
 #
 # make sure this host already has ntp keys:
 #
