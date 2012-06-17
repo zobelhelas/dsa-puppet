@@ -18,6 +18,7 @@ class bacula::director inherits bacula {
       ensure  => directory,
       mode => 755,
       group => bacula,
+      purge => true,
       notify  => Exec["bacula-director restart"]
       ;
     "/etc/bacula/bacula-dir.conf":
@@ -50,7 +51,14 @@ class bacula::director inherits bacula {
       ;
     }
   }
-  $allhosts = keys($site::allnodeinfo)
-
+#  $allhosts = keys($site::allnodeinfo)
+  $allhosts = [ "berlioz.debian.org" ]
   bacula_client { $allhosts: }
+
+  @ferm::rule { 'dsa-bacula-dir':
+    domain      => '(ip ip6)',
+    description => 'Allow bacula access from localhost',
+    rule        => "proto tcp mod state state (NEW) dport (bacula-dir) saddr ($bacula_director_address localhost) ACCEPT",
+  }
+
 }

@@ -1,6 +1,6 @@
 class named::authoritative inherits named {
 	file { '/etc/bind/named.conf.debian-zones':
-		source  => 'puppet:///modules/named/common/named.conf.debian-zones',
+		content => template('named/named.conf.debian-zones.erb'),
 		notify  => Service['bind9'],
 	}
 	file { '/etc/bind/named.conf.options':

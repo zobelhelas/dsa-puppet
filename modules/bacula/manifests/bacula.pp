@@ -4,7 +4,7 @@ class bacula {
 
   $bacula_director_name     = "debian-dir"
   $bacula_storage_name      = "debian-sd"
-  $bacula_client_name       = "$hostname-fd"
+  $bacula_client_name       = "$fqdn-fd"
   $bacula_monitor_name      = "debian-mon"
   $bacula_filestor_name     = "File"
   $bacula_filestor_device   = "FileStorage"
@@ -18,12 +18,12 @@ class bacula {
   $bacula_db_address        = "danzi.debian.org"
   $bacula_db_port           = 5433
 
-  $bacula_backup_path       = "/srv/backup.debian.org/bacula"
+  $bacula_backup_path       = "/srv/bacula"
 
   $bacula_director_secret   = hmac("/etc/puppet/secret", "bacula-dir-$hostname")
   $bacula_db_secret         = hmac("/etc/puppet/secret", "bacula-db-$hostname")
   $bacula_storage_secret    = hmac("/etc/puppet/secret", "bacula-sd-$bacula_storage_name")
-  $bacula_client_secret     = hmac("/etc/puppet/secret", "bacula-fd-$hostname")
+  $bacula_client_secret     = hmac("/etc/puppet/secret", "bacula-fd-$fqdn")
   $bacula_monitor_secret    = hmac("/etc/puppet/secret", "bacula-monitor-$bacula_director_name")
 
   package {
