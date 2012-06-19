@@ -36,7 +36,7 @@ class ganeti2 {
 
 	@ferm::rule { 'dsa-drbd-v4':
 		description => 'allow drbd communication',
-		rule        => 'proto tcp mod state state (NEW) dport (11000:11999) @subchain \'drbd\' { saddr ($HOST_DRBD_V4) daddr ($HOST_DRBD_V4) ACCEPT; }',
+		rule        => 'proto tcp mod state state (NEW) dport (11000:11999) @subchain \'drbd\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
 		notarule    => true,
 	}
 }
