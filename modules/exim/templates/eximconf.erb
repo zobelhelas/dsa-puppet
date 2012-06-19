@@ -613,10 +613,6 @@ check_recipient:
           hosts         = 65.110.39.147 : 64.39.31.15
           message       = <mendoza@kenny.linuxsis.net> cannot forward here while mailer-daemon mail is not caught
 
-  deny    recipients    = risko@debian.org
-	  senders       = :
-	  message       = please stop joe-jobbing this user now
-
   deny    condition     = ${lookup{$sender_address_local_part}lsearch{/etc/exim4/localusers}{true}}
 	  sender_domains= +local_domains
 	  hosts         = !+debianhosts
