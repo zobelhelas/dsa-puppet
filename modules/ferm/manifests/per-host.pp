@@ -229,4 +229,13 @@ REJECT reject-with icmp-admin-prohibited
 		default: {}
 	}
 
+
+	# live ganeti migration
+	case $::hostname {
+		tristano: { @ferm::rule { 'dsa-ganeti-migrate': rule => 'interface br1 proto tcp dport 8102 src 192.168.2.217 ACCEPT'; } }
+		pasquini: { @ferm::rule { 'dsa-ganeti-migrate': rule => 'interface br1 proto tcp dport 8102 src 192.168.2.213 ACCEPT'; } }
+		bertali:  { @ferm::rule { 'dsa-ganeti-migrate': rule => 'interface br1 proto tcp dport 8102 src 192.168.2.216 ACCEPT'; } }
+		boito:    { @ferm::rule { 'dsa-ganeti-migrate': rule => 'interface br1 proto tcp dport 8102 src 192.168.2.212 ACCEPT'; } }
+		default: {}
+	}
 }
