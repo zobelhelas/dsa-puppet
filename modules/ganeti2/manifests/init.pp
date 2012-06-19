@@ -39,4 +39,10 @@ class ganeti2 {
 		rule        => 'proto tcp mod state state (NEW) dport (11000:11999) @subchain \'drbd\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
 		notarule    => true,
 	}
+
+	@ferm::rule { 'dsa-ganeti-migrate':
+		description => 'allow kvm to migrate instances',
+		rule        => 'proto tcp dport 8102 @subchain \'kvm-migrate\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
+		notarule    => true,
+	}
 }
