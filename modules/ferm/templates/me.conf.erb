@@ -37,14 +37,6 @@ if %w{geo1 geo2 geo3}.include?(hostname) then
 	ssh4allowed << '194.177.211.209' # orff - master
 	ssh6allowed << '2001:648:2ffc:deb:213:72ff:fe69:e188' # orff - master
 end
-if %w{pasquini tristano}.include?(hostname) then
-	ssh4allowed << '206.12.19.23'    # ganeti2.debian.org
-	ssh4allowed << '206.12.19.213'   # tristano.debian.org
-	ssh4allowed << '206.12.19.217'   # pasquini.debian.org
-	ssh4allowed << '192.168.2.23'    # ganeti2.debprivate-ubc.debian.org
-	ssh4allowed << '192.168.2.213'   # tristano-mnt.debprivate-ubc.debian.org
-	ssh4allowed << '192.168.2.217'   # pasquini-mnt.debprivate-ubc.debian.org
-end
 ssh4allowed.length == 0 and ssh4allowed << '0.0.0.0/0'
 ssh6allowed.length == 0 and ssh6allowed << '::/0'
 
