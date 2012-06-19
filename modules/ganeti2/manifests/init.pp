@@ -61,15 +61,19 @@ class ganeti2 {
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/00-dsa-configure-networking':
 			content => template('ganeti2/instance-debootstrap/hooks/00-dsa-configure-networking.erb'),
+			mode   => '0555',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/10-dsa-install-extra-packages':
 			content => template('ganeti2/instance-debootstrap/hooks/10-dsa-install-extra-packages.erb'),
+			mode   => '0555',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/20-dsa-install-bootloader':
 			content => template('ganeti2/instance-debootstrap/hooks/20-dsa-install-bootloader.erb'),
+			mode   => '0555',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/30-dsa-install-ssh-keys':
 			content => template('ganeti2/instance-debootstrap/hooks/30-dsa-install-ssh-keys.erb'),
+			mode   => '0555',
 			;
 	}
 
