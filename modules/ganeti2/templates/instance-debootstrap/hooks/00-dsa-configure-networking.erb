@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -e
+
+if [ -z "$TARGET" -o ! -d "$TARGET" ]; then
+  echo "Missing target directory"
+  exit 1
+fi
+
+if [ ! -d "$TARGET/etc/network" ]; then
+  echo "Missing target network directory"
+  exit 1
+fi
+
+if [ -z "$NIC_COUNT" ]; then
+  echo "Missing NIC COUNT"
+  exit 1
+fi
+
+rm -f $TARGET/etc/udev/rules.d/70-persistent-net.rules
+
+if [ "$NIC_COUNT" -gt 0 ]; then
+
+  cat > $TARGET/etc/network/interfaces <<EOF
+# /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+  address ${NIC_0_IP}
+  netmask 255.255.255.0
+  gateway 206.12.19.254
+
+EOF
+
+fi
+
+cat > $TARGET/etc/resolv.conf <<EOF
+# /etc/resolv.conf
+search debprivate-ubc.debian.org debian.org
+nameserver 206.12.19.20
+nameserver 206.12.19.21
+EOF
+
+exit 0

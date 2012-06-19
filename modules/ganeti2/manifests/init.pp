@@ -51,4 +51,26 @@ class ganeti2 {
 		rule        => 'proto tcp dport ssh @subchain \'ganeti-ssh\' { saddr ( $HOST_GANETI_V4 $HOST_GANETI_BACKEND_V4) ACCEPT; }',
 		notarule    => true,
 	}
+
+	file {
+		'/etc/ganeti/instance-debootstrap/variants.list':
+			content => template('ganeti2/instance-debootstrap/variants.list.erb'),
+			;
+		'/etc/ganeti/instance-debootstrap/variants/dsa.conf':
+			content => template('ganeti2/instance-debootstrap/variants/dsa.conf.erb'),
+			;
+		'/etc/ganeti/instance-debootstrap/hooks/00-dsa-configure-networking':
+			content => template('ganeti2/instance-debootstrap/hooks/00-dsa-configure-networking.erb'),
+			;
+		'/etc/ganeti/instance-debootstrap/hooks/10-dsa-install-extra-packages':
+			content => template('ganeti2/instance-debootstrap/hooks/10-dsa-install-extra-packages.erb'),
+			;
+		'/etc/ganeti/instance-debootstrap/hooks/20-dsa-install-bootloader':
+			content => template('ganeti2/instance-debootstrap/hooks/20-dsa-install-bootloader.erb'),
+			;
+		'/etc/ganeti/instance-debootstrap/hooks/30-dsa-install-ssh-keys':
+			content => template('ganeti2/instance-debootstrap/hooks/30-dsa-install-ssh-keys.erb'),
+			;
+	}
+
 }
