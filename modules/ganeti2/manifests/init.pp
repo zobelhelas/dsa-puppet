@@ -42,7 +42,13 @@ class ganeti2 {
 
 	@ferm::rule { 'dsa-ganeti-migrate':
 		description => 'allow kvm to migrate instances',
-		rule        => 'proto tcp dport 8102 @subchain \'kvm-migrate\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
+		rule        => 'proto tcp dport 8102 @subchain \'ganeti-migrate\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
+		notarule    => true,
+	}
+
+	@ferm::rule { 'dsa-ganeti-ssh':
+		description => 'allow ganeti to ssh around',
+		rule        => 'proto tcp dport ssh @subchain \'ganeti-ssh\' { saddr ( $HOST_GANETI_V4 $HOST_GANETI_BACKEND_V4) ACCEPT; }',
 		notarule    => true,
 	}
 }
