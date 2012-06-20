@@ -197,7 +197,7 @@ class debian-org {
 	mailalias { 'samhain-reports':
 		ensure => present,
 		recipient => $debianadmin,
-		onlyif  => "test -e /etc/aliases",
+		require => Package['debian.org']
 	}
 
 	exec { 'apt-get update':
