@@ -46,6 +46,7 @@ fi
 
 if [ "$NIC_COUNT" -ge 2 ]; then
   cat >> $TARGET/etc/network/interfaces << EOF
+
 auto eth1
 iface eth1 inet static
   address ${NIC_1_IP}
