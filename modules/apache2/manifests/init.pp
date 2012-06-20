@@ -77,7 +77,7 @@ class apache2 {
 		}
 	}
 
-	if $::hostname in [busoni,duarte,holter,lindberg,master,powell] {
+	if $::hostname in [busoni,duarte,holter,lindberg,master,powell,beach] {
 		include apache2::dynamic
 	} else {
 		@ferm::rule { 'dsa-http':
