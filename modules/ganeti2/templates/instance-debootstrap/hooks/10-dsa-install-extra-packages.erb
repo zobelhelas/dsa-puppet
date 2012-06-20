@@ -11,7 +11,7 @@ chroot "$TARGET" apt-get -qq update
 chroot "$TARGET" apt-get -qq install vim ssh extlinux
 
 hostname="$(hostname)"
-set -e "s#root@$hostname#root@$instance#" -i /etc/ssh/ssh*pub
+sed -e "s#root@$hostname#root@$instance#" -i /etc/ssh/ssh*pub
 
 if [ "$ARCH" = "amd64" ]; then
     chroot "$TARGET" apt-get -qq install linux-image-amd64
