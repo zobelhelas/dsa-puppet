@@ -75,6 +75,10 @@ class ganeti2 {
 			content => template('ganeti2/instance-debootstrap/hooks/30-dsa-install-ssh-keys.erb'),
 			mode   => '0555',
 			;
+		'/etc/ganeti/instance-debootstrap/hooks/40-dsa-setup-swapfile':
+			content => template('ganeti2/instance-debootstrap/hooks/40-dsa-setup-swapfile.erb'),
+			mode   => '0555',
+			;
 	}
 
 }
