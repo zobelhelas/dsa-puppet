@@ -17,7 +17,7 @@ class ganeti2 {
 	}
 
 	@ferm::rule { 'dsa-ganeti-noded-v4':
-		description => 'allow ganeti-noded communication between',
+		description => 'allow ganeti-noded communication',
 		rule        => 'proto tcp mod state state (NEW) dport (1811) @subchain \'ganeti-noded\' { saddr ($HOST_GANETI_V4) daddr ($HOST_GANETI_V4) ACCEPT; }',
 		notarule    => true,
 	}
@@ -34,19 +34,19 @@ class ganeti2 {
 		notarule    => true,
 	}
 
-	@ferm::rule { 'dsa-drbd-v4':
-		description => 'allow drbd communication',
-		rule        => 'proto tcp mod state state (NEW) dport (11000:11999) @subchain \'drbd\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
+	@ferm::rule { 'dsa-ganeti-drbd-v4':
+		description => 'allow ganeti drbd communication',
+		rule        => 'proto tcp mod state state (NEW) dport (11000:11999) @subchain \'ganeti-drbd\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
 		notarule    => true,
 	}
 
-	@ferm::rule { 'dsa-ganeti-migrate':
-		description => 'allow kvm to migrate instances',
-		rule        => 'proto tcp dport 8102 @subchain \'ganeti-migrate\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
+	@ferm::rule { 'dsa-ganeti-kvm-migration-v4':
+		description => 'allow ganeti kvm migration ',
+		rule        => 'proto tcp dport 8102 @subchain \'ganeti-kvm-migration\' { saddr ($HOST_GANETI_BACKEND_V4) daddr ($HOST_GANETI_BACKEND_V4) ACCEPT; }',
 		notarule    => true,
 	}
 
-	@ferm::rule { 'dsa-ganeti-ssh':
+	@ferm::rule { 'dsa-ganeti-ssh-v4':
 		description => 'allow ganeti to ssh around',
 		rule        => 'proto tcp dport ssh @subchain \'ganeti-ssh\' { saddr ( $HOST_GANETI_V4 $HOST_GANETI_BACKEND_V4) ACCEPT; }',
 		notarule    => true,
