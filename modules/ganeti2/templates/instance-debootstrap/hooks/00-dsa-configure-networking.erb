@@ -33,6 +33,12 @@ iface eth0 inet static
   netmask 255.255.255.0
   gateway 206.12.19.254
 
+  pre-up /sbin/sysctl -w net.ipv6.conf.\$IFACE.accept_ra=0 || true
+  up   ip addr add 2607:f8f0:610:4000:6564:0a62:\$IF_ADDRESS/64 dev \$IFACE
+  up   ip r add default via 2607:f8f0:610:4000::1 src 2607:f8f0:610:4000:6564:0a62:\$IF_ADDRESS dev \$IFACE
+  down ip r del default via 2607:f8f0:610:4000::1 src 2607:f8f0:610:4000:6564:0a62:\$IF_ADDRESS dev \$IFACE
+  down ip addr del 2607:f8f0:610:4000:6564:0a62:\$IF_ADDRESS/64 dev \$IFACE
+
 EOF
 
 fi
