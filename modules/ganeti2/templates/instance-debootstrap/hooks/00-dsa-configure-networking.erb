@@ -19,9 +19,8 @@ fi
 
 rm -f $TARGET/etc/udev/rules.d/70-persistent-net.rules
 
-if [ "$NIC_COUNT" -gt 0 ]; then
-
-  cat > $TARGET/etc/network/interfaces <<EOF
+if [ "$NIC_COUNT" -ge 1 ]; then
+  cat > $TARGET/etc/network/interfaces << EOF
 # /etc/network/interfaces
 
 auto lo
@@ -38,10 +37,20 @@ iface eth0 inet static
   up   ip r add default via 2607:f8f0:610:4000::1 src 2607:f8f0:610:4000:6564:0a62:\$IF_ADDRESS dev \$IFACE
   down ip r del default via 2607:f8f0:610:4000::1 src 2607:f8f0:610:4000:6564:0a62:\$IF_ADDRESS dev \$IFACE
   down ip addr del 2607:f8f0:610:4000:6564:0a62:\$IF_ADDRESS/64 dev \$IFACE
-
 EOF
 
 fi
+
+if [ "$NIC_COUNT" -ge 2 ]; then
+  cat >> $TARGET/etc/network/interfaces << EOF
+auto eth1
+iface eth1 inet static
+  address ${NIC_0_IP}
+  netmask 255.255.255.0
+EOF
+
+fi
+
 
 cat > $TARGET/etc/resolv.conf <<EOF
 # /etc/resolv.conf
@@ -51,3 +60,5 @@ nameserver 206.12.19.21
 EOF
 
 exit 0
+
+# vim:set syn=sh:
