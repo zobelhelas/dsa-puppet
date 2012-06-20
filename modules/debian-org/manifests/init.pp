@@ -32,7 +32,6 @@ class debian-org {
 			'less',
 			'lsb-release',
 			'libfilesystem-ruby1.8',
-			'molly-guard',
 			'mtr-tiny',
 			'nload',
 			'pciutils',
@@ -68,6 +67,21 @@ class debian-org {
 				Exec['apt-get update']
 			]
 		}
+	}
+
+
+	package { 'molly-guard':
+		ensure => installed,
+	}
+	file { '/etc/molly-guard/run.d/10-check-kvm':
+		mode    => '0755',
+		source  => 'puppet:///modules/debian-org/molly-guard/10-check-kvm',
+		require => Package['molly-guard'],
+	}
+	file { '/etc/molly-guard/run.d/15-acquire-reboot-lock':
+		mode    => '0755',
+		source  => 'puppet:///modules/debian-org/molly-guard/15-acquire-reboot-lock',
+		require => Package['molly-guard'],
 	}
 
 	# This really means 'not wheezy'
@@ -167,11 +181,6 @@ class debian-org {
 		mode   => '0755',
 		source => 'puppet:///modules/debian-org/rc.local',
 		notify => Exec['rc.local start'],
-	}
-	file { '/etc/molly-guard/run.d/15-acquire-reboot-lock':
-		mode    => '0755',
-		source  => 'puppet:///modules/debian-org/molly-guard-acquire-reboot-lock',
-		require => Package['molly-guard'],
 	}
 	file { '/etc/dsa':
 		ensure => directory,
