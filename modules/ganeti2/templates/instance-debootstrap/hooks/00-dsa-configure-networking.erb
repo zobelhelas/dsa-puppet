@@ -55,6 +55,8 @@ EOF
 
 fi
 
+fqdn=$(cat $TARGET/etc/hostname)
+echo ${fqdn%%.*} > $TARGET/etc/hostname
 
 cat > $TARGET/etc/resolv.conf <<EOF
 # /etc/resolv.conf
