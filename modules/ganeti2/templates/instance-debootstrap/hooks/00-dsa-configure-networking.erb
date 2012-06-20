@@ -19,6 +19,9 @@ fi
 
 rm -f $TARGET/etc/udev/rules.d/70-persistent-net.rules
 
+touch $TARGET/etc/udev/rules.d/75-cd-aliases-generator.rules
+touch $TARGET/etc/udev/rules.d/75-persistent-net-generator.rules
+
 if [ "$NIC_COUNT" -ge 1 ]; then
   cat > $TARGET/etc/network/interfaces << EOF
 # /etc/network/interfaces
