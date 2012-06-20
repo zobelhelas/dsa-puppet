@@ -79,6 +79,12 @@ class ganeti2 {
 			content => template('ganeti2/instance-debootstrap/hooks/40-dsa-setup-swapfile.erb'),
 			mode   => '0555',
 			;
+		'/etc/ganeti/instance-debootstrap/hooks/clear-root-password':
+			mode   => '0444',
+			;
+		'/etc/ganeti/instance-debootstrap/hooks/xen-hvc0':
+			mode   => '0444',
+			;
 	}
 
 }
