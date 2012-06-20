@@ -66,7 +66,7 @@ nameserver 206.12.19.21
 EOF
 
 # clean up etc/hosts
-cat > $TARGET/etc/hosts
+cat > $TARGET/etc/hosts << EOF
 127.0.0.1       localhost
 
 # The following lines are desirable for IPv6 capable hosts
