@@ -16,8 +16,8 @@ class roles {
 		include buildd
 	}
 
-	if getfromhash($site::nodeinfo, 'bugs_search') {
-		include roles::bugs_search
+	if getfromhash($site::nodeinfo, 'bugs_mirror') {
+		include roles::bugs_mirror
 	}
 
 	if getfromhash($site::nodeinfo, 'ftp_master') {

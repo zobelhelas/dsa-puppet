@@ -152,7 +152,7 @@ services:
   bugsmaster:
   bugsmx:
     - busoni.debian.org
-  bugs_search:
+  bugs_mirror:
     - glinka.debian.org
   dbmaster:
     - draghi.debian.org
