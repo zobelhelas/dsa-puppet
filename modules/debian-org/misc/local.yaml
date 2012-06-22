@@ -153,6 +153,7 @@ services:
   bugsmx:
     - busoni.debian.org
   bugs_mirror:
+    - beach.debian.org
     - glinka.debian.org
   dbmaster:
     - draghi.debian.org
