@@ -19,6 +19,8 @@ class bacula::director inherits bacula {
 		notify => Service['bacula-director']
 	}
 
+	Bacula::Node<<| |>>
+
 	file { '/etc/bacula/bacula-dir.conf':
 		content => template('bacula/bacula-dir.conf.erb'),
 		mode    => '0440',
