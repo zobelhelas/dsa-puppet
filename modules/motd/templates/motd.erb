@@ -102,8 +102,8 @@ end
 
 if not scope.lookupvar('::cluster').to_s.empty?
   purp += "\nThis server is a node in ganeti cluster: "
-  purp += scope.lookupvar('::cluster') + ".\n"
-  nodes = scope.lookupvar('::cluster_nodes').split.sort
+  purp += scope.lookupvar('::cluster').to_s + ".\n"
+  nodes = scope.lookupvar('::cluster_nodes').to_s.split.sort
   nodes.each do |node|
     purp += "\t" + node + "\n"
   end
