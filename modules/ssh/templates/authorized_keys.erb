@@ -22,15 +22,17 @@ localkeys
 <%=
   ganetikeys = []
   allnodeinfo = scope.lookupvar('site::allnodeinfo')
-  scope.lookupvar('::cluster_nodes').split.sort.each do |node|
-    if allnodeinfo.has_key?(node)
-      ganetikeys << "# for ganeti: #{allnodeinfo[node]['hostname'].to_s}"
-      ganetikeys << "from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\" #{allnodeinfo[node]['sshRSAHostKey'].to_s}"
-    else
-      ganetikeys << "# host #{node} not found in allnodeinfo"
+  if scope.lookupvar('::cluster_nodes')
+    scope.lookupvar('::cluster_nodes').split.sort.each do |node|
+      if allnodeinfo.has_key?(node)
+        ganetikeys << "# for ganeti: #{allnodeinfo[node]['hostname'].to_s}"
+        ganetikeys << "from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\" #{allnodeinfo[node]['sshRSAHostKey'].to_s}"
+      else
+        ganetikeys << "# host #{node} not found in allnodeinfo"
+      end
     end
+    ganetikeys.join("\n");
   end
-  ganetikeys.join("\n");
 %>
 #
 # DSA
