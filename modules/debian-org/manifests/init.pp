@@ -69,7 +69,6 @@ class debian-org {
 		}
 	}
 
-
 	package { 'molly-guard':
 		ensure => installed,
 	}
@@ -156,7 +155,7 @@ class debian-org {
 		notify => Exec['dpkg-reconfigure tzdata -pcritical -fnoninteractive'],
 	}
 	file { '/etc/puppet/puppet.conf':
-		source => 'puppet:///modules/debian-org/puppet.conf',
+		content => template('debian-org/puppet.conf.erb'),
 	}
 	file { '/etc/default/puppet':
 		source => 'puppet:///modules/debian-org/puppet.default',
