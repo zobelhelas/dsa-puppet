@@ -34,7 +34,7 @@ module Puppet::Parser::Functions
         end
 
         v6ips = lookupvar('::v6ips')
-        if v6ips and v6ips != "" and v6ips != 'undefined'
+        if v6ips and v6ips.to_s != "" and v6ips.to_s != 'undefined'
           nodeinfo['misc']['v6addrs'] = v6ips.split(',')
         end
       end
