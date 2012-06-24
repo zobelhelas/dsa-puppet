@@ -1,1 +1,1 @@
-import "*.pp"
+class bacula {}
