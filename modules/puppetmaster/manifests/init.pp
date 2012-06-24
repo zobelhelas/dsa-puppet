@@ -4,12 +4,7 @@ class puppetmaster {
 
 	package { 'puppetmaster':
 		ensure => $site::params::puppetversion,
-		notify => Service['puppetmaster']
 	}
-	service { 'puppetmaster':
-		ensure => running,
-	}
-
 	file { '/etc/puppet/hiera.yaml':
 		source => 'puppet:///modules/puppetmaster/hiera.yaml'
 	}
