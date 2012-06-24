@@ -12,11 +12,14 @@ class bacula::director inherits bacula {
 	}
 
 	file { '/etc/bacula/conf.d':
-		ensure => directory,
-		mode   => '0755',
-		group  => bacula,
-		purge  => true,
-		notify => Service['bacula-director']
+		ensure  => directory,
+		mode    => '0755',
+		group   => bacula,
+		purge   => true,
+		force   => true,
+		recurse => true,
+		source  => 'puppet:///files/empty/',
+		notify  => Service['bacula-director']
 	}
 
 	Bacula::Node<<| |>>
