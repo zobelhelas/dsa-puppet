@@ -46,7 +46,6 @@ node default {
 
 	if $::hostname in [berlioz, biber, draghi] {
 		include bacula::client
-		@@bacula::node { $::fqdn: }
 	}
 
 	if $::hostname == 'beethoven' {

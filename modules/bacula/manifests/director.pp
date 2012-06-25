@@ -22,8 +22,6 @@ class bacula::director inherits bacula {
 		notify  => Service['bacula-director']
 	}
 
-	Bacula::Node<<| |>>
-
 	file { '/etc/bacula/bacula-dir.conf':
 		content => template('bacula/bacula-dir.conf.erb'),
 		mode    => '0440',
@@ -37,4 +35,8 @@ class bacula::director inherits bacula {
 		description => 'Allow bacula access from localhost',
 		rule        => "proto tcp mod state state (NEW) dport (bacula-dir) saddr (${bacula_director_address} localhost) ACCEPT",
 	}
+
+	$clients = ['berlioz.debian.org', 'biber.debian.org', 'draghi.debian.org']
+	bacula::node { $clients: }
+
 }
