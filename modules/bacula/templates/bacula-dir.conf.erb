@@ -111,7 +111,7 @@ Messages {
   Name = Standard
   mailcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula: %t %e of %c %l\" %r"
   operatorcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula: Intervention needed for %j\" %r"
-  mail = <%= bacula_operator_email %> = all, !skipped
+  mail on error = <%= bacula_operator_email %> = all, !skipped
   operator = <%= bacula_operator_email %> = mount
   console = all, !skipped, !saved
   append = "/var/lib/bacula/log" = all, !skipped
