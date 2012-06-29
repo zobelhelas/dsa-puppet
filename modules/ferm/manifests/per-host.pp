@@ -19,13 +19,15 @@ class ferm::per-host {
 			}
 		}
 		ullmann: {
-			@ferm::rule { 'dsa-postgres-quantz':
+			@ferm::rule { 'dsa-postgres-udd':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 ))'
+				# quantz, wagner
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 217.196.43.134/32 ))'
 			}
-			@ferm::rule { 'dsa-postgres-quantz6':
+			@ferm::rule { 'dsa-postgres-udd6':
 				domain          => '(ip6)',
 				description     => 'Allow postgress access',
+				# quantz
 				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 ))'
 			}
 		}
