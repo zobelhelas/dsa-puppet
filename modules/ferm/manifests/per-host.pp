@@ -22,7 +22,7 @@ class ferm::per-host {
 			@ferm::rule { 'dsa-postgres-udd':
 				description     => 'Allow postgress access',
 				# quantz, wagner
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 217.196.43.134/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 217.196.43.134/32 217.196.43.132/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-udd6':
 				domain          => '(ip6)',
