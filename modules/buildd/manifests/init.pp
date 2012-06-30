@@ -28,10 +28,11 @@ class buildd {
 		ensure => absent,
 	}
 
-	if $::lsbdistcodename in [squeeze,wheezy] {
-		$suite = $::lsbdistcodename
-	} else {
-		$suite = 'wheezy'
+	$suite = $::lsbdistcodename ? {
+		squeeze => $::lsbdistcodename,
+		wheezy => $::lsbdistcodename,
+		undef => 'squeeze',
+		default => 'wheezy'
 	}
 
 	site::aptrepo { 'buildd.debian.org':
