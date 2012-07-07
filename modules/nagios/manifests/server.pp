@@ -9,8 +9,15 @@ class nagios::server {
 		ensure => installed
 	}
 
+	file { '/etc/init.d/nagios3':
+		source  => 'puppet:///modules/nagios/nagios3.init',
+		require => Package['nagios3'],
+		before  => Service['nagios3'],
+	}
+
 	service { 'nagios3':
-		ensure => running,
+		ensure  => running,
+		require => Package['nagios3'],
 	}
 
 	file { '/etc/nagios-plugins/config':
