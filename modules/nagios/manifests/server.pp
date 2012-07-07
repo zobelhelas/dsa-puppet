@@ -11,6 +11,7 @@ class nagios::server {
 
 	file { '/etc/init.d/nagios3':
 		source  => 'puppet:///modules/nagios/nagios3.init',
+		mode    => '0755',
 		require => Package['nagios3'],
 		before  => Service['nagios3'],
 	}
