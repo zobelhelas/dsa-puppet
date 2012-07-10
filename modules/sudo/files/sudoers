@@ -27,7 +27,7 @@ Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
 Host_Alias	FTPHOSTS	= franck, morricone, bizet
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
-Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, vivaldi, beethoven, pettersson
+Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= master, fasch, holter, barber, biber, cilea, vitry, krenek, scelsi, orff, field
 Host_Alias	MEGACTLHOSTS	= lindberg, englund, nielsen
@@ -166,9 +166,6 @@ debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 # geodns may reload bind
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
-# fossology
-%fossy		vivaldi=(root)		/etc/init.d/fossology
-%fossy		vivaldi=(fossy)		ALL
 
 # Porter work
 %porter-armel	abel,agricola=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
