@@ -154,6 +154,7 @@ services:
   bugsmaster:
   bugsmx:
     - busoni.debian.org
+    - buxtehude.debian.org
   bugs_mirror:
     - beach.debian.org
   dbmaster:
@@ -191,6 +192,7 @@ host_settings:
     - bellini.debian.org
     - bizet.debian.org
     - busoni.debian.org
+    - buxtehude.debian.org
     - chopin.debian.org
     - draghi.debian.org
     - franck.debian.org
