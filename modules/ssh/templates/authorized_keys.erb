@@ -25,7 +25,7 @@ localkeys
   if scope.lookupvar('::cluster').to_s != 'undefined'
     scope.lookupvar('::cluster_nodes').to_s.split.sort.each do |node|
       if allnodeinfo.has_key?(node)
-        ganetikeys << "# for ganeti cluster #{scope.lookupvar('::cluster').to_s} : #{allnodeinfo[node]['hostname'].to_s}"
+        ganetikeys << "# for ganeti cluster #{scope.lookupvar('::cluster').to_s}: #{allnodeinfo[node]['hostname'].to_s}"
         ganetikeys << "from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\" #{allnodeinfo[node]['sshRSAHostKey'].to_s}"
       else
         ganetikeys << "# host #{node} not found in allnodeinfo"
