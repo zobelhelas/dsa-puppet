@@ -40,7 +40,7 @@ EOF
 
 ###########################################
 ###########################################
-<% if scope.lookupvar('::cluster') == 'ganeti2.debian.org' -%>
+<% if scope.lookupvar('::cluster').to_s == 'ganeti2.debian.org' -%>
 
 ###########################################
 if [ "$NIC_COUNT" -ge 1 ]; then
@@ -70,7 +70,7 @@ EOF
 
 ###########################################
 ###########################################
-<% elif scope.lookupvar('::cluster') == 'ganeti-osuosl.debian.org' -%>
+<% elif scope.lookupvar('::cluster').to_s == 'ganeti-osuosl.debian.org' -%>
 #
 ###########################################
 if [ "$NIC_COUNT" -ge 1 ]; then
