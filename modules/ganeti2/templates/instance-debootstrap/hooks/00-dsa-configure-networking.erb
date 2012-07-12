@@ -22,6 +22,12 @@ rm -f $TARGET/etc/udev/rules.d/70-persistent-net.rules
 touch $TARGET/etc/udev/rules.d/75-cd-aliases-generator.rules
 touch $TARGET/etc/udev/rules.d/75-persistent-net-generator.rules
 
+
+###########################################
+fqdn=$(cat $TARGET/etc/hostname)
+echo ${fqdn%%.*} > $TARGET/etc/hostname
+
+###########################################
 if [ "$NIC_COUNT" -ge 1 ]; then
   cat > $TARGET/etc/network/interfaces << EOF
 # /etc/network/interfaces
@@ -29,6 +35,16 @@ if [ "$NIC_COUNT" -ge 1 ]; then
 auto lo
 iface lo inet loopback
 
+EOF
+
+
+###########################################
+###########################################
+<% if scope.lookupvar('::cluster') == 'ganeti2.debian.org' -%>
+
+###########################################
+if [ "$NIC_COUNT" -ge 1 ]; then
+  cat >> $TARGET/etc/network/interfaces << EOF
 auto eth0
 iface eth0 inet static
   address ${NIC_0_IP}
@@ -44,6 +60,50 @@ EOF
 
 fi
 
+###########################################
+cat > $TARGET/etc/resolv.conf <<EOF
+# /etc/resolv.conf
+search debprivate-ubc.debian.org debian.org
+nameserver 206.12.19.20
+nameserver 206.12.19.21
+EOF
+
+###########################################
+###########################################
+<% elif scope.lookupvar('::cluster') == 'ganeti-osuosl.debian.org' -%>
+#
+###########################################
+if [ "$NIC_COUNT" -ge 1 ]; then
+  cat >> $TARGET/etc/network/interfaces << EOF
+auto eth0
+iface eth0 inet static
+  address ${NIC_0_IP}
+  netmask 255.255.255.128
+  gateway 140.211.166.1
+
+  pre-up /sbin/sysctl -w net.ipv6.conf.\$IFACE.accept_ra=0 || true
+EOF
+
+fi
+
+###########################################
+cat > $TARGET/etc/resolv.conf <<EOF
+# /etc/resolv.conf
+search debian.org
+nameserver 140.211.166.130
+nameserver 140.211.166.131
+EOF
+
+<% else -%>
+
+cp /etc/resolv.conf $TARGET/etc/resolv.conf
+
+<% end -%>
+
+
+
+
+###########################################
 if [ "$NIC_COUNT" -ge 2 ]; then
   cat >> $TARGET/etc/network/interfaces << EOF
 
@@ -55,16 +115,7 @@ EOF
 
 fi
 
-fqdn=$(cat $TARGET/etc/hostname)
-echo ${fqdn%%.*} > $TARGET/etc/hostname
-
-cat > $TARGET/etc/resolv.conf <<EOF
-# /etc/resolv.conf
-search debprivate-ubc.debian.org debian.org
-nameserver 206.12.19.20
-nameserver 206.12.19.21
-EOF
-
+###########################################
 # clean up etc/hosts
 cat > $TARGET/etc/hosts << EOF
 127.0.0.1       localhost
