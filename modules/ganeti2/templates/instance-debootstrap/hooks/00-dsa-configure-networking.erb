@@ -96,6 +96,7 @@ EOF
 
 <% else -%>
 
+# No config for cluster <%= scope.lookupvar('::cluster').to_s %>
 cp /etc/resolv.conf $TARGET/etc/resolv.conf
 
 <% end -%>
