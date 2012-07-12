@@ -13,7 +13,7 @@ class ganeti2 {
 	}
 
 	case $::cluster {
-		ganeti2.debian.org: {
+		'ganeti2.debian.org': {
 			package { 'drbd8-utils':
 				ensure => installed
 			}
