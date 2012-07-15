@@ -1,3 +1,9 @@
-MIRROR="http://mirror-ubc.debian.org/debian"
+<%=
+case scope.lookupvar('::cluster')
+        when "ganeti2.debian.org" then 'MIRROR="http://mirror-ubc.debian.org/debian"'
+        when "ganeti-osuosl.debian.org" then 'MIRROR="http://debian.osuosl.org/debian"'
+        else 'MIRROR="http://http.debian.net/debian"'
+end
+%>
 ARCH="amd64"
 SUITE="squeeze"

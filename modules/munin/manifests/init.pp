@@ -11,12 +11,14 @@ class munin {
 
 	$owner = $::lsbdistcodename ? {
 		squeeze => munin,
-		wheezy  => root
+		wheezy  => root,
+		undef => munin,
 	}
 
 	$gid = $::lsbdistcodename ? {
 		squeeze => adm,
 		wheezy  => 'www-data',
+		undef => adm,
 	}
 
 	file { '/var/log/munin':

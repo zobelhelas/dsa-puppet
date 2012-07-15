@@ -24,6 +24,8 @@ nameinfo:
   boiti.debian.org: Arrigo Boito (February 24th, 1842 - June 10th, 1918)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
+  buxtehude.debian.org: Dieterich Buxtehude (c. 1637 to 1639 -—May 9th, 1707)
+  byrd.debian.org: William Byrd (1543 - July 4th, 1623)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
@@ -42,6 +44,7 @@ nameinfo:
   fano.debian.org: Guido Alberto Fano (March 18th, 1875 - August 14th, 1961)
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
   field.debian.org: John Field (1782 - 1837)
+  fils.debian.org: Anton Fils (September 22nd, 1733 (baptized) - March 14th, 1760 (buried))
   finzi.debian.org: Gerald Raphael Finzi (July 14th, 1901 - September 27th, 1956)
   fischer.debian.org: Johann Caspar Ferdinand Fischer (September 9th, 1656 - August 27th, 1746)
   franck.debian.org: Melchior Franck (1579 - June 1st, 1639)
@@ -119,6 +122,7 @@ nameinfo:
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
   soler.debian.org: Padre Antonio Soler (December 3rd, 1729 (baptized) - December 20th, 1783)
   sompek.debian.org: Ernst Sompek (Juni 11th 1876 - August 2nd 1954)
+  sonntag.debian.org: Brunhilde Sonntag (27 September 1936 - 18 December 2002) 
   stadler.debian.org: Maximilian Johann Karl Dominik Stadler, Abbé Stadler (August 4th 1748 - November 8th 1833)
   sperger.debian.org: Johannes Matthias Sperger (March 23th, 1750 - May 13th, 1812)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
@@ -134,7 +138,6 @@ nameinfo:
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
   vento.debian.org: Ivo de Vento (1543/1545 - 1575)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
-  vivaldi.debian.org: Antonio Lucio Vivaldi (March 4th, 1678 - July 28th, 1741)
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21st, 1844 - March 12th, 1937)
   wieck.debian.org: Clara Josephine Wieck (September 13th, 1819 - May 20th, 1896)
   wolkenstein.debian.org: Oswald von Wolkenstein (1377 - August 2nd, 1445)
@@ -153,6 +156,7 @@ services:
   bugsmaster:
   bugsmx:
     - busoni.debian.org
+    - buxtehude.debian.org
   bugs_mirror:
     - beach.debian.org
   dbmaster:
@@ -190,6 +194,7 @@ host_settings:
     - bellini.debian.org
     - bizet.debian.org
     - busoni.debian.org
+    - buxtehude.debian.org
     - chopin.debian.org
     - draghi.debian.org
     - franck.debian.org

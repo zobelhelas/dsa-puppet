@@ -18,6 +18,19 @@ class ferm::per-host {
 				rule         => '&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))'
 			}
 		}
+		ullmann: {
+			@ferm::rule { 'dsa-postgres-udd':
+				description     => 'Allow postgress access',
+				# quantz, wagner
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 217.196.43.134/32 217.196.43.132/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-udd6':
+				domain          => '(ip6)',
+				description     => 'Allow postgress access',
+				# quantz
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 ))'
+			}
+		}
 		grieg: {
 			@ferm::rule { 'dsa-postgres-ullmann':
 				description     => 'Allow postgress access',
@@ -146,7 +159,7 @@ class ferm::per-host {
 		default: {}
 	}
 
-	if $::hostname in [rautavaara,luchesi] {
+	if $::hostname in [rautavaara,luchesi,czerny] {
 		@ferm::rule { 'dsa-to-kfreebsd':
 			description     => 'Traffic routed to kfreebsd hosts',
 			chain           => 'to-kfreebsd',
@@ -206,6 +219,25 @@ interface br1 outerface br1 ACCEPT;
 
 interface br2 outerface br0 jump from-kfreebsd;
 interface br0 destination ($ADDRESS_FISCHER $ADDRESS_FALLA) proto tcp dport 22 ACCEPT;
+interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
+ULOG ulog-prefix "REJECT FORWARD: ";
+REJECT reject-with icmp-admin-prohibited
+'
+			}
+		}
+		czerny: {
+			@ferm::rule { 'dsa-routing':
+				description     => 'forward chain',
+				chain           => 'FORWARD',
+				rule            => 'def $ADDRESS_FILS=82.195.75.89;
+def $FREEBSD_HOSTS=($ADDRESS_FILS);
+
+policy ACCEPT;
+mod state state (ESTABLISHED RELATED) ACCEPT;
+interface br0 outerface br0 ACCEPT;
+interface br1 outerface br1 ACCEPT;
+
+interface br2 outerface br0 jump from-kfreebsd;
 interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
 ULOG ulog-prefix "REJECT FORWARD: ";
 REJECT reject-with icmp-admin-prohibited

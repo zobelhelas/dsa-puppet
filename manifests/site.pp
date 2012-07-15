@@ -36,7 +36,7 @@ node default {
 	include roles
 	include unbound
 
-	if $::hostname in [pasquini,tristano,bertali,boito] {
+	if $::hostname in [pasquini,tristano,bertali,boito,byrd] {
 		include ganeti2
 	}
 

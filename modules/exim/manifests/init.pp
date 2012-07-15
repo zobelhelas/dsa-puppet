@@ -10,6 +10,8 @@ class exim {
 
 	package { 'exim4-daemon-heavy': ensure => installed }
 
+	Package['exim4-daemon-heavy']->Mailalias<| |>
+
 	service { 'exim4':
 		ensure  => running,
 		require => [
