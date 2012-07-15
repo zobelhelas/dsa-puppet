@@ -197,6 +197,7 @@ host_settings:
     - buxtehude.debian.org
     - chopin.debian.org
     - draghi.debian.org
+    - dukas.debian.org
     - franck.debian.org
     - gombert.debian.org
     - grieg.debian.org
@@ -212,7 +213,6 @@ host_settings:
     - reger.debian.org
     - spohr.debian.org
     - tye.debian.org
-    - dukas.debian.org
     - vento.debian.org
   apache2_security_mirror:
     - gluck.debian.org
@@ -228,8 +228,8 @@ host_settings:
     - englund.debian.org
     - gluck.debian.org
     - kokkonen.debian.org
-    - senfl.debian.org
     - santoro.debian.org
+    - senfl.debian.org
   'apache2_ftp-upcoming_mirror':
     - klecker.debian.org
     - merikanto.debian.org
