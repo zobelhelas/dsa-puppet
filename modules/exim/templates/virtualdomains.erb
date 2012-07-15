@@ -70,6 +70,8 @@ packages.qa.debian.org: user=qa group=qa directory=/srv/packages.qa.debian.org/m
         when "tye.debian.org" then "i18n.debian.org: user=debian-i18n group=debian-i18n directory=/srv/i18n.debian.org/mail
 l10n.debian.org: user=debian-i18n group=debian-i18n directory=/srv/l10n.debian.org/mail"
 
+	when "vento.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/org/vote.debian.org/mail/"
+
         when "wolkenstein.debian.org" then "www-master.debian.org: user=debwww group=debwww directory=/srv/www.debian.org/mail/"
 end
 vdoms
