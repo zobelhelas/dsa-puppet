@@ -106,7 +106,7 @@ node default {
 		include postgres
 	}
 
-	if $::hostname in ['berlioz.debian.org', 'biber.debian.org', 'draghi.debian.org', 'widor.debian.org', 'wolkenstein.debian.org'] {
+	if $::hostname in ['berlioz', 'biber', 'draghi', 'widor', 'wolkenstein'] {
 		@@bacula::node { $::fqdn: }
 	}
 
