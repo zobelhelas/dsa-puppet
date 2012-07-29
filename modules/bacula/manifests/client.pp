@@ -1,6 +1,6 @@
 class bacula::client inherits bacula {
 
-	package { ['bacula-client', 'bacula-fd']:
+	package { ['bacula-fd']:
 		ensure => installed
 	}
 
