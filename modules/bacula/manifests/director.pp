@@ -36,7 +36,7 @@ class bacula::director inherits bacula {
 		rule        => "proto tcp mod state state (NEW) dport (bacula-dir) saddr (${bacula_director_address} localhost) ACCEPT",
 	}
 
-	$clients = ['berlioz.debian.org', 'biber.debian.org', 'draghi.debian.org', 'widor.debian.org']
+	$clients = ['berlioz.debian.org', 'biber.debian.org', 'draghi.debian.org', 'widor.debian.org', 'wolkenstein.debian.org']
 	bacula::node { $clients: }
 
 }
