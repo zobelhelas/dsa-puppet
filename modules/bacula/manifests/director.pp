@@ -36,7 +36,7 @@ class bacula::director inherits bacula {
 		rule        => "proto tcp mod state state (NEW) dport (bacula-dir) saddr (${bacula_director_address} localhost) ACCEPT",
 	}
 
-	file { '/etc/bacula/conf.d/empty':
+	file { '/etc/bacula/conf.d/empty.conf':
 		content => '',
 		mode    => '0440',
 		group   => bacula,
