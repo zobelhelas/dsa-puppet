@@ -36,6 +36,14 @@ class bacula::director inherits bacula {
 		rule        => "proto tcp mod state state (NEW) dport (bacula-dir) saddr (${bacula_director_address} localhost) ACCEPT",
 	}
 
+	file { '/etc/bacula/conf.d/empty':
+		content => '',
+		mode    => '0440',
+		group   => bacula,
+		require => Package['bacula-director-pgsql'],
+		notify  => Service['bacula-director']
+	}
+
 	Bacula::Node<<| |>>
 
 }
