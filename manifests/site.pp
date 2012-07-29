@@ -35,6 +35,7 @@ node default {
 	include resolv
 	include roles
 	include unbound
+	include bacula::client
 
 	if $::hostname in [pasquini,tristano,bertali,boito,byrd] {
 		include ganeti2
@@ -42,10 +43,6 @@ node default {
 
 	if $::hostname == 'dinis' {
 		include bacula::director
-	}
-
-	if $::hostname in [berlioz, biber, draghi, widor, wolkenstein] {
-		include bacula::client
 	}
 
 	if $::hostname == 'beethoven' {
