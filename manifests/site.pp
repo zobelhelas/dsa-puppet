@@ -44,7 +44,7 @@ node default {
 		include bacula::director
 	}
 
-	if $::hostname in [berlioz, biber, draghi, widor] {
+	if $::hostname in [berlioz, biber, draghi, widor, wolkenstein] {
 		include bacula::client
 	}
 
