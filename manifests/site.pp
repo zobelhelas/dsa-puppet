@@ -106,6 +106,10 @@ node default {
 		include postgres
 	}
 
+	if $::hostname in ['berlioz.debian.org', 'biber.debian.org', 'draghi.debian.org', 'widor.debian.org', 'wolkenstein.debian.org'] {
+		@@bacula::node { $::fqdn: }
+	}
+
 	if $::spamd {
 		munin::check { 'spamassassin': }
 	}
