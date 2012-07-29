@@ -19,6 +19,11 @@ environments = development,testing,production,staging
 reports = store, http
 reporturl = http://puppet-dashboard.debian.org:3000/reports/upload
 config_version = cat /etc/puppet/.config-version
+thin_storeconfigs = true
+dbadapter=mysql
+dbuser=puppet
+dbpassword=<% scope.lookupvar('dbpassword') %>
+dbserver=localhost
 <%- end -%>
 
 [agent]

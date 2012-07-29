@@ -154,6 +154,10 @@ class debian-org {
 		source => 'puppet:///modules/debian-org/timezone',
 		notify => Exec['dpkg-reconfigure tzdata -pcritical -fnoninteractive'],
 	}
+	if $::hostname == handel {
+		include puppetmaster::db
+		$dbpassword = $puppetmaster::db::password
+	}
 	file { '/etc/puppet/puppet.conf':
 		content => template('debian-org/puppet.conf.erb'),
 	}
