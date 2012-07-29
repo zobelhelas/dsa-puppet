@@ -22,7 +22,7 @@ config_version = cat /etc/puppet/.config-version
 thin_storeconfigs = true
 dbadapter=mysql
 dbuser=puppet
-dbpassword=<% scope.lookupvar('dbpassword') %>
+dbpassword=<%= scope.lookupvar('dbpassword') %>
 dbserver=localhost
 <%- end -%>
 
