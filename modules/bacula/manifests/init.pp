@@ -10,7 +10,9 @@ class bacula {
 	$bacula_filestor_device   = 'FileStorage'
 	$bacula_pool_name         = 'debian'
 
-	$bacula_director_address  = 'dinis.debian.org'
+	# $bacula_director_address  = 'dinis.debian.org'
+	# use IP address for ferm.
+	$bacula_director_address  = '206.12.19.139'
 	$bacula_director_port     = 9101
 	$bacula_storage_address   = 'beethoven.debian.org'
 	$bacula_storage_port      = 9103
