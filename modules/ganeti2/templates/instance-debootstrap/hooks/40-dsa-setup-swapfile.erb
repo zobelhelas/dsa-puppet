@@ -12,7 +12,6 @@ chmod 400 "$TARGET/swapfile"
 mkswap "$TARGET/swapfile"
 
 cat >> "$TARGET/etc/fstab" <<EOF
-# /etc/resolv.conf
 /swapfile none swap sw 0 0
 EOF
 
