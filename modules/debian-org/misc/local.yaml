@@ -168,7 +168,6 @@ services:
     - kassia.debian.org
     - ravel.debian.org
   mailrelay:
-    - kokkonen.debian.org
     - merikanto.debian.org
   muninmaster:
     - spohr.debian.org
