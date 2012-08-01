@@ -46,4 +46,14 @@ class bacula::director inherits bacula {
 
 	Bacula::Node<<| |>>
 
+	package { 'bacula-console':
+		ensure => installed;
+	}
+
+	file { '/etc/bacula/bconsole.conf':
+		content => template('bacula/bconsole.conf.erb'),
+		mode    => '0640',
+		group   => bacula,
+		require => Package['bacula-console']
+	}
 }

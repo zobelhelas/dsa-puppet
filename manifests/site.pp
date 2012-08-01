@@ -43,6 +43,14 @@ node default {
 
 	if $::hostname == 'dinis' {
 		include bacula::director
+	} else {
+		package { 'bacula-console':
+			ensure => purged;
+		}
+
+		file { '/etc/bacula/bconsole.conf':
+			ensure => absent;
+		}
 	}
 
 	if $::hostname == 'beethoven' {

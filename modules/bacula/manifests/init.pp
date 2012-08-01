@@ -27,15 +27,4 @@ class bacula {
 	$bacula_storage_secret    = hmac('/etc/puppet/secret', "bacula-sd-${bacula_storage_name}")
 	$bacula_client_secret     = hmac('/etc/puppet/secret', "bacula-fd-${::fqdn}")
 	$bacula_monitor_secret    = hmac('/etc/puppet/secret', "bacula-monitor-${bacula_director_name}")
-
-	package { 'bacula-console':
-		ensure => installed;
-	}
-
-	file { '/etc/bacula/bconsole.conf':
-		content => template('bacula/bconsole.conf.erb'),
-		mode    => '0640',
-		group   => bacula,
-		require => Package['bacula-console']
-	}
 }
