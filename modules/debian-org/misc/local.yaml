@@ -172,6 +172,7 @@ services:
     - merikanto.debian.org
   muninmaster:
     - spohr.debian.org
+    - menotti.debian.org
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
     - orff.debian.org
