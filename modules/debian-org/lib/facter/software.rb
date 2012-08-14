@@ -103,10 +103,10 @@ Facter.add("spamd") do
 	end
 end
 Facter.add("php5") do
-	php =   FileTest.exist?("/usr/lib/apache2/modules/libphp5.so") or
+	php =   (FileTest.exist?("/usr/lib/apache2/modules/libphp5.so") or
 		FileTest.exist?("/usr/bin/php5") or
 		FileTest.exist?("/usr/bin/php5-cgi") or
-		FileTest.exist?("/usr/lib/cgi-bin/php5")
+		FileTest.exist?("/usr/lib/cgi-bin/php5"))
 	setcode do
 		if php
 			true
@@ -116,8 +116,8 @@ Facter.add("php5") do
 	end
 end
 Facter.add("php5suhosin") do
-	suhosin=FileTest.exist?("/usr/lib/php5/20060613/suhosin.so") or
-		FileTest.exist?("/usr/lib/php5/20060613+lfs/suhosin.so")
+	suhosin=(FileTest.exist?("/usr/lib/php5/20060613/suhosin.so") or
+		FileTest.exist?("/usr/lib/php5/20060613+lfs/suhosin.so"))
 	setcode do
 		if suhosin
 			true
@@ -132,8 +132,8 @@ Facter.add("syslogversion") do
 	end
 end
 Facter.add("unbound") do
-	unbound=FileTest.exist?("/usr/sbin/unbound") and
-		FileTest.exist?("/var/lib/unbound/root.key")
+	unbound=(FileTest.exist?("/usr/sbin/unbound") and
+		FileTest.exist?("/var/lib/unbound/root.key"))
 	setcode do
 		if unbound
 			true
