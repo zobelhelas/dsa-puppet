@@ -56,7 +56,7 @@ class apache2::dynamic {
 		                saddr (124.115.0.0/21 119.63.192.0/21) jump limit_sosospider;
 		                saddr (65.52.0.0/14 207.46.0.0/16) jump limit_bing;
 		                saddr (66.249.64.0/19) jump limit_google;
-		                saddr (123.125.71.0/24 119.63.192.0/21 180.76.0.0/16) jump limit_baidu;
+		                saddr (123.125.71.0/24 119.63.192.0/21 180.76.0.0/16 220.181.0.0/16) jump limit_baidu;
 
 		                mod recent name HTTPDOS update seconds 1800 jump log_or_drop;
 		                mod hashlimit hashlimit-name HTTPDOS hashlimit-mode srcip hashlimit-burst 600 hashlimit 30/minute jump ACCEPT;
