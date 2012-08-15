@@ -40,6 +40,9 @@ class dacs {
 	}
 	file { '/etc/logrotate.d/dacs':
 		source  => 'puppet:///modules/dacs/common/dacs.logrotate',
+		owner => root,
+		group => root,
+		mode  => '0640',
 	}
 	file { '/etc/dacs/federations/site.conf':
 		source  => 'puppet:///modules/dacs/common/site.conf',
