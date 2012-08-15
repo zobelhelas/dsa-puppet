@@ -38,6 +38,9 @@ class dacs {
 		require => Package['libapache2-mod-dacs'],
 		purge   => true
 	}
+	file { '/etc/logrotate.d/dacs':
+		source  => 'puppet:///modules/dacs/common/dacs.logrotate',
+	}
 	file { '/etc/dacs/federations/site.conf':
 		source  => 'puppet:///modules/dacs/common/site.conf',
 	}
