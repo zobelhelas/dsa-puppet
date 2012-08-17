@@ -159,7 +159,6 @@ JobDefs {
   Level = Incremental
   FileSet = "Standard Set"
   Schedule = "WeeklyCycle"
-  Storage = <%=bacula_filestor_name%>
   Messages = Standard
   Pool = <%=bacula_pool_name%>
   Differential Backup Pool = <%=bacula_pool_name%>diff
@@ -180,7 +179,7 @@ Job {
   Type = Restore
   Client = draghi.debian.org-fd
   FileSet = "Standard Set"
-  Pool = Restore
+  Pool = <%=bacula_pool_name%>
   Messages = Standard
   Where = /var/tmp/bacula-restores
 }
@@ -191,6 +190,7 @@ Job {
 Pool {
   Name = <%= bacula_pool_name %>
   Pool Type = Backup
+  Storage = <%=bacula_filestor_name%>
   Recycle = no
   AutoPrune = yes
   Volume Retention = 1 year
@@ -204,6 +204,7 @@ Pool {
 Pool {
   Name = <%= bacula_pool_name %>diff
   Pool Type = Backup
+  Storage = <%=bacula_filestor_name%>
   Recycle = no
   AutoPrune = yes
   Volume Retention = 1 year
@@ -217,6 +218,7 @@ Pool {
 Pool {
   Name = <%= bacula_pool_name %>inc
   Pool Type = Backup
+  Storage = <%=bacula_filestor_name%>
   Recycle = no
   AutoPrune = yes
   Volume Retention = 1 year
