@@ -171,6 +171,20 @@ JobDefs {
 }
 
 ########################################################################
+# Standard Restore template, to be changed by Console program          #
+#  Only one such job is needed for all Jobs/Clients/Storage ...        #
+########################################################################
+Job {
+  Name = "RestoreFiles"
+  Type = Restore
+  Client = draghi.debian.org-fd
+  FileSet = "Standard Set"
+  Pool = Restore
+  Messages = Standard
+  Where = /var/tmp/bacula-restores
+}
+
+########################################################################
 # Pool definition                                                      #
 ########################################################################
 Pool {
