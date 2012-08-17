@@ -1,5 +1,4 @@
 class bacula::director inherits bacula {
-	bacula::node { $::fqdn: }
 
 	package { ['bacula-director-pgsql', 'bacula-common', 'bacula-common-pgsql']:
 		ensure => installed
