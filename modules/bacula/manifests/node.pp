@@ -1,6 +1,4 @@
 define bacula::node() {
-	include bacula::director
-
 	$bacula_client_name   = "${name}-fd"
 	$bacula_client_secret = hmac('/etc/puppet/secret', "bacula-fd-${name}")
 	$client               = $name
