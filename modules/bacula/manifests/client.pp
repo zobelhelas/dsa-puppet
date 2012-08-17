@@ -11,13 +11,19 @@ class bacula::client inherits bacula {
 		require   => Package['bacula-fd']
 	}
 
-	file { '/etc/bacula/bacula-fd.conf':
-		content => template('bacula/bacula-fd.conf.erb'),
-		mode    => '0640',
-		owner   => root,
-		group   => bacula,
-		require => Package['bacula-fd'],
-		notify  => Service['bacula-fd']
+	file {
+		'/etc/bacula/bacula-fd.conf':
+			content => template('bacula/bacula-fd.conf.erb'),
+			mode    => '0640',
+			owner   => root,
+			group   => bacula,
+			require => Package['bacula-fd'],
+			notify  => Service['bacula-fd'],
+			;
+		'/usr/local/sbin/postbaculajob':
+			mode    => '0775',
+			source  => 'puppet:///modules/bacula/postbaculajob',
+			;
 	}
 
 	@ferm::rule { 'dsa-bacula-fd-v4':
