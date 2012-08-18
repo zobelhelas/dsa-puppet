@@ -46,7 +46,7 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/certs/thishost-server.key':
 		source  => "puppet:///modules/exim/certs/${::fqdn}.key",
-		group   => ssl-certm,
+		group   => ssl-cert,
 		mode    => '0640',
 	}
 
