@@ -30,7 +30,7 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/keys/thishost.key':
 		source => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
-		mode   => '0640'
+		mode   => '0440'
 	}
 	file { '/etc/ssl/debian/certs/ca.crt':
 		source => 'puppet:///modules/ssl/clientcerts/ca.crt',
@@ -44,10 +44,10 @@ class ssl {
 		source  => "puppet:///modules/exim/certs/${::fqdn}.crt",
 		notify => Exec['c_rehash /etc/ssl/debian/certs'],
 	}
-	file { '/etc/ssl/debian/certs/thishost-server.key':
+	file { '/etc/ssl/debian/keys/thishost-server.key':
 		source  => "puppet:///modules/exim/certs/${::fqdn}.key",
 		group   => ssl-cert,
-		mode    => '0640',
+		mode    => '0440',
 	}
 
 	exec { 'c_rehash /etc/ssl/debian/certs':
