@@ -37,7 +37,7 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/keys/thishost.key':
 		source => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
-		mode   => '0440'
+		mode   => '0440',
 		group   => ssl-cert,
 		require => Package['ssl-cert'],
 	}
