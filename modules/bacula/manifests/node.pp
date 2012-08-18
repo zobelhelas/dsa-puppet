@@ -12,7 +12,7 @@ define bacula::node() {
 		content => template('bacula/per-client.conf.erb'),
 		mode    => '0440',
 		group   => bacula,
-		notify  => Service['bacula-director']
+		notify  => Exec['bacula-director reload']
 	}
 }
 

@@ -11,6 +11,13 @@ class bacula::director inherits bacula {
 		require   => Package['bacula-director-pgsql']
 	}
 
+	exec { 'bacula-director reload':
+		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
+		command     => 'service bacula-director reload',
+		refreshonly => true,
+        }
+
+
 	file { '/etc/bacula/conf.d':
 		ensure  => directory,
 		mode    => '0755',
@@ -19,7 +26,7 @@ class bacula::director inherits bacula {
 		force   => true,
 		recurse => true,
 		source  => 'puppet:///files/empty/',
-		notify  => Service['bacula-director']
+		notify  => Exec['bacula-director reload']
 	}
 
 	file { '/etc/bacula/bacula-dir.conf':
@@ -27,7 +34,7 @@ class bacula::director inherits bacula {
 		mode    => '0440',
 		group   => bacula,
 		require => Package['bacula-director-pgsql'],
-		notify  => Service['bacula-director']
+		notify  => Exec['bacula-director reload']
 	}
 
 	@ferm::rule { 'dsa-bacula-dir':
@@ -41,7 +48,7 @@ class bacula::director inherits bacula {
 		mode    => '0440',
 		group   => bacula,
 		require => Package['bacula-director-pgsql'],
-		notify  => Service['bacula-director']
+		notify  => Exec['bacula-director reload']
 	}
 
 	Bacula::Node<<| |>>
