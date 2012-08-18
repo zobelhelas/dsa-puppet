@@ -29,6 +29,7 @@ class ssl {
 		ensure => directory,
 		group  => ssl-cert,
 		mode   => '0750',
+		require => Package['ssl-cert'],
 	}
 	file { '/etc/ssl/debian/certs/thishost.crt':
 		source => "puppet:///modules/ssl/clientcerts/${::fqdn}.client.crt",
@@ -37,6 +38,8 @@ class ssl {
 	file { '/etc/ssl/debian/keys/thishost.key':
 		source => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
 		mode   => '0440'
+		group   => ssl-cert,
+		require => Package['ssl-cert'],
 	}
 	file { '/etc/ssl/debian/certs/ca.crt':
 		source => 'puppet:///modules/ssl/clientcerts/ca.crt',
@@ -52,8 +55,9 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/keys/thishost-server.key':
 		source  => "puppet:///modules/exim/certs/${::fqdn}.key",
-		group   => ssl-cert,
 		mode    => '0440',
+		group   => ssl-cert,
+		require => Package['ssl-cert'],
 	}
 
 	exec { 'c_rehash /etc/ssl/debian/certs':
