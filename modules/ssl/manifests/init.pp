@@ -1,7 +1,12 @@
 class ssl {
 
-	package { 'openssl':
-		ensure => installed
+	package {
+		'openssl':
+			ensure => installed,
+			;
+		'ssl-cert':
+			ensure => installed,
+			;
 	}
 
 	file { '/etc/ssl/debian':
