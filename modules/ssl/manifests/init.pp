@@ -40,6 +40,16 @@ class ssl {
 		source  => 'puppet:///modules/ssl/clientcerts/ca.crl',
 	}
 
+	file { '/etc/ssl/debian/certs/thishost-server.crt':
+		source  => "puppet:///modules/exim/certs/${::fqdn}.crt",
+		notify => Exec['c_rehash /etc/ssl/debian/certs'],
+	}
+	file { '/etc/ssl/debian/certs/thishost-server.key':
+		source  => "puppet:///modules/exim/certs/${::fqdn}.key",
+		group   => ssl-certm,
+		mode    => '0640',
+	}
+
 	exec { 'c_rehash /etc/ssl/debian/certs':
 		refreshonly => true,
 	}
