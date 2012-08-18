@@ -5,7 +5,7 @@ define bacula::node() {
 	$bacula_client_port   = $bacula::bacula_client_port
 
 	$bacula_client_name   = "${name}-fd"
-	$bacula_client_secret = hmac('/etc/puppet/secret', "bacula-fd-${name}")
+	$bacula_client_secret = hkdf('/etc/puppet/secret', "bacula-fd-${name}")
 	$client               = $name
 
 	file { "/etc/bacula/conf.d/${name}.conf":
