@@ -22,6 +22,7 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/keys':
 		ensure => directory,
+		group  => ssl-cert,
 		mode   => '0750',
 	}
 	file { '/etc/ssl/debian/certs/thishost.crt':
