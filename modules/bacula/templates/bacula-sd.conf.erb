@@ -11,6 +11,7 @@ Storage {
   Pid Directory = "/var/run/bacula"
   Maximum Concurrent Jobs = 21
   SDAddress = <%= bacula_storage_address %>
+  Heartbeat Interval = 180
 }
 
 # List Directors who are permitted to contact Storage daemon
