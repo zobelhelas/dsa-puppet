@@ -8,7 +8,14 @@ Job {
   Name = "<%= client %>"
   JobDefs = "Standardbackup"
   Client = <%= bacula_client_name %>
-  Maximum Concurrent Jobs = 1
+
+  Rerun Failed Levels = yes
+  Reschedule On Error = yes
+  Reschedule Interval = 4 hours
+  Reschedule Times = 2
+
+  Cancel Lower Level Duplicates = yes
+  Cancel Queued Duplicates = yes
 }
 
 # Client (File Services) to backup
