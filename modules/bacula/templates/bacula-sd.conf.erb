@@ -35,6 +35,9 @@ Device {
   RemovableMedia = no;
   AlwaysOpen = no;
   Maximum Network Buffer Size = 65536
+  Maximum Spool Size = 250G
+  Maximum Job Spool Size = 50G
+  Spool Directory = <%= bacula_backup_path %>/spool
 }
 
 # Send all messages to the Director,
