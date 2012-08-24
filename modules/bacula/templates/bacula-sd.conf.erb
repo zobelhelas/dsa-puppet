@@ -39,22 +39,6 @@ Director {
   TLS Key = "<%= bacula_ssl_server_key %>"
 }
 
-
-# To connect, the Director's bacula-dir.conf must have the
-#  same Name and MediaType.
-#
-Device {
-  Name = <%= bacula_filestor_device %>
-  Media Type = <%= bacula_filestor_name %>
-  Archive Device = <%= bacula_backup_path %>
-  LabelMedia = yes;
-  Random Access = Yes;
-  AutomaticMount = yes;
-  RemovableMedia = no;
-  AlwaysOpen = no;
-  Maximum Network Buffer Size = 524288
-}
-
 # Send all messages to the Director,
 # mount messages also are sent to the email address
 #
