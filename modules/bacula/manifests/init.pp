@@ -27,4 +27,10 @@ class bacula {
 	$bacula_storage_secret    = hkdf('/etc/puppet/secret', "bacula-sd-${bacula_storage_name}")
 	$bacula_client_secret     = hkdf('/etc/puppet/secret', "bacula-fd-${::fqdn}")
 	$bacula_monitor_secret    = hkdf('/etc/puppet/secret', "bacula-monitor-${bacula_director_name}")
+
+	$bacula_ca_path           = '/etc/ssl/debian/certs/ca.crt'
+	$bacula_ssl_client_cert   = '/etc/ssl/debian/certs/thishost.crt'
+	$bacula_ssl_client_key    = '/etc/ssl/debian/keys/thishost.key'
+	$bacula_ssl_server_cert   = '/etc/ssl/debian/certs/thishost-server.crt'
+	$bacula_ssl_server_key    = '/etc/ssl/debian/keys/thishost-server.key'
 }

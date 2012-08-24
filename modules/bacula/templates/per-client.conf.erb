@@ -30,4 +30,11 @@ Client {
   AutoPrune = yes                     # Prune expired Jobs/Files
 
   Heartbeat Interval = 180
+
+  TLS Enable = yes
+  TLS Require = yes
+  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  # This is a client certificate, used by the director to connect to the client's file daemon
+  TLS Certificate = "<%= bacula_ssl_client_cert %>"
+  TLS Key = "<%= bacula_ssl_client_key %>"
 }

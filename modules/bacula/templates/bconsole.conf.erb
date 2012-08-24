@@ -11,4 +11,12 @@ Director {
   DIRport = 9101
   address = <%= bacula_director_address %>
   Password = "<%= bacula_director_secret %>"
+
+  TLS Enable = yes
+  TLS Require = yes
+
+  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  # This is a client certificate, used for console connections to the director.
+  TLS Certificate = "<%= bacula_ssl_client_cert %>"
+  TLS Key = "<%= bacula_ssl_client_key %>"
 }

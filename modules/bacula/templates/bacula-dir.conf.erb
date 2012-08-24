@@ -23,6 +23,15 @@ Director {
      ip = { addr = 127.0.0.1; port = 9101 }
 	 ip = { addr = <%=bacula_director_address%>; port = <%=bacula_director_port%> }
   }
+
+  TLS Enable = yes
+  TLS Require = yes
+  TLS Verify Peer = yes
+  TLS Allowed CN = "clientcerts/<%= bacula_director_address %>"
+  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  # This is a server certificate, used for incoming console connections.
+  TLS Certificate = "<%= bacula_ssl_server_cert %>"
+  TLS Key = "<%= bacula_ssl_server_key %>"
 }
 
 ########################################################################
@@ -139,6 +148,13 @@ Storage {
   Device = <%= bacula_filestor_device %>
   Media Type = <%= bacula_filestor_name %>
   Maximum Concurrent Jobs = 10
+
+  TLS Enable = yes
+  TLS Require = yes
+  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  # This is a client certificate, used by the director to connect to the storage daemon
+  TLS Certificate = "<%= bacula_ssl_client_cert %>"
+  TLS Key = "<%= bacula_ssl_client_key %>"
 }
 
 ########################################################################
