@@ -171,7 +171,7 @@ Job {
   Type = Restore
   Client = <%=bacula_director_address%>-fd
   FileSet = "Standard Set"
-  Pool = full-<%=bacula_pool_name%>-<%=bacula_director_address%>
+  Pool = poolfull-<%=bacula_pool_name%>-<%=bacula_director_address%>
   Messages = Standard
   Where = /var/tmp/bacula-restores
 }
