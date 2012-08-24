@@ -2,6 +2,13 @@ define bacula::node() {
 
 	include bacula
 
+	$bacula_pool_name         = $bacula::bacula_pool_name
+	$bacula_filestor_name     = $bacula::bacula_filestor_name
+	$bacula_filestor_device   = $bacula::bacula_filestor_device
+	$bacula_storage_address   = $bacula::bacula_storage_address
+	$bacula_storage_port      = $bacula::bacula_storage_port
+	$bacula_storage_secret    = $bacula::bacula_storage_secret
+
 	$bacula_client_port   = $bacula::bacula_client_port
 	$bacula_ca_path       = $bacula::bacula_ca_path
 	$bacula_ssl_client_cert = $bacula::bacula_ssl_client_cert

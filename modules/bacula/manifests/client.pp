@@ -1,4 +1,5 @@
 class bacula::client inherits bacula {
+	@@bacula::storage-per-node { $::fqdn: }
 
 	package { ['bacula-fd']:
 		ensure => installed

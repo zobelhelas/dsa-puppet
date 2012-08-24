@@ -62,3 +62,4 @@ Messages {
   Name = Standard
   director = <%= bacula_director_name %> = all
 }
+@|"sh -c 'for f in /etc/bacula/storage-conf.d/*.conf ; do echo @${f} ; done'"

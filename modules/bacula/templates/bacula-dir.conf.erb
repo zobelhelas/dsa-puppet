@@ -137,27 +137,6 @@ Messages {
 }
 
 ########################################################################
-# Storage config                                                       #
-########################################################################
-
-Storage {
-  Name = <%= bacula_filestor_name %>
-  Address = <%= bacula_storage_address %>
-  SDPort = <%= bacula_storage_port %>
-  Password = "<%= bacula_storage_secret %>"
-  Device = <%= bacula_filestor_device %>
-  Media Type = <%= bacula_filestor_name %>
-  Maximum Concurrent Jobs = 10
-
-  TLS Enable = yes
-  TLS Require = yes
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
-  # This is a client certificate, used by the director to connect to the storage daemon
-  TLS Certificate = "<%= bacula_ssl_client_cert %>"
-  TLS Key = "<%= bacula_ssl_client_key %>"
-}
-
-########################################################################
 # Console, limited                                                     #
 ########################################################################
 Console {
@@ -176,9 +155,6 @@ JobDefs {
   FileSet = "Standard Set"
   Schedule = "WeeklyCycle"
   Messages = Standard
-  Pool = <%=bacula_pool_name%>
-  Differential Backup Pool = <%=bacula_pool_name%>diff
-  Incremental Backup Pool = <%=bacula_pool_name%>inc
   Max Full Interval = 1 month
   Priority = 10
   Write Bootstrap = "/var/lib/bacula/%c.bsr"
@@ -193,57 +169,13 @@ JobDefs {
 Job {
   Name = "RestoreFiles"
   Type = Restore
-  Client = draghi.debian.org-fd
+  Client = <%=bacula_director_address%>-fd
   FileSet = "Standard Set"
-  Pool = <%=bacula_pool_name%>
+  Pool = full-<%=bacula_pool_name%>-<%=bacula_director_address%>
   Messages = Standard
   Where = /var/tmp/bacula-restores
 }
 
-########################################################################
-# Pool definition                                                      #
-########################################################################
-Pool {
-  Name = <%= bacula_pool_name %>
-  Pool Type = Backup
-  Storage = <%=bacula_filestor_name%>
-  Recycle = no
-  AutoPrune = yes
-  Volume Retention = 1 year
-  Label Format = "<%= bacula_pool_name %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
-  Volume Use Duration = 23h
-  #Maximum Volume Jobs = 1
-  Maximum Volume Bytes = 50G
-  Action On Purge = Truncate
-}
-
-Pool {
-  Name = <%= bacula_pool_name %>diff
-  Pool Type = Backup
-  Storage = <%=bacula_filestor_name%>
-  Recycle = no
-  AutoPrune = yes
-  Volume Retention = 1 year
-  Label Format = "<%= bacula_pool_name %>diff.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
-  Volume Use Duration = 23h
-  #Maximum Volume Jobs = 1
-  Maximum Volume Bytes = 50G
-  Action On Purge = Truncate
-}
-
-Pool {
-  Name = <%= bacula_pool_name %>inc
-  Pool Type = Backup
-  Storage = <%=bacula_filestor_name%>
-  Recycle = no
-  AutoPrune = yes
-  Volume Retention = 1 year
-  Label Format = "<%= bacula_pool_name %>inc.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
-  Volume Use Duration = 23h
-  #Maximum Volume Jobs = 1
-  Maximum Volume Bytes = 50G
-  Action On Purge = Truncate
-}
 
 # Scratch pool definition
 Pool {
