@@ -98,10 +98,18 @@ class debian-org {
 			components => ['main','contrib','non-free']
 		}
 
-		site::aptrepo { 'volatile':
-			url        => 'http://ftp.debian.org/debian',
-			suite      => "${::lsbdistcodename}-updates",
-			components => ['main','contrib','non-free']
+		if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
+			site::aptrepo { 'volatile':
+				url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
+				suite      => "${::lsbdistcodename}-updates",
+				components => ['main','contrib','non-free']
+			}
+		} else {
+			site::aptrepo { 'volatile':
+				url        => 'http://ftp.debian.org/debian',
+				suite      => "${::lsbdistcodename}-updates",
+				components => ['main','contrib','non-free']
+			}
 		}
 	}
 	site::aptrepo { 'backports.org':
@@ -119,6 +127,14 @@ class debian-org {
 		suite      => 'lenny',
 		components => 'main',
 		key        => 'puppet:///modules/debian-org/db.debian.org.asc',
+	}
+
+	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
+		site::aptrepo { 'debian':
+			url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
+			suite      => "${::lsbdistcodename}",
+			components => ['main','contrib','non-free']
+		}
 	}
 
 	file { '/etc/facter':
