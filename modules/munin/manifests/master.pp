@@ -8,4 +8,14 @@ class munin::master {
 		content => template('munin/munin.conf.erb'),
 		require => Package['munin'];
 	}
+
+	if $::hostname == 'menotti' {
+		file { '/etc/munin/munin-conf.d':
+			ensure => directory,
+			mode   => 755,
+			;
+		}
+
+		Munin::Master-per-node<<| |>>
+	}
 }

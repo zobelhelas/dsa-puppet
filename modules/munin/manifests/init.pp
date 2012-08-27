@@ -59,4 +59,6 @@ class munin {
 		rule            => 'proto tcp mod state state (NEW) dport (munin) @subchain \'munin\' { saddr ($HOST_MUNIN_V6 $HOST_NAGIOS_V6) ACCEPT; }',
 		notarule        => true,
 	}
+
+	@@munin::master-per-node { $::fqdn: }
 }
