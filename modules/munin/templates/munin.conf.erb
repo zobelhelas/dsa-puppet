@@ -3,6 +3,19 @@
 ### USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+<% if hostname != "menotti" -%>
+
+dbdir   /var/lib/munin
+htmldir /var/cache/munin/www
+logdir  /var/log/munin
+rundir  /var/run/munin
+tmpldir /etc/munin/templates
+
+<% end -%>
+
+
+graph_strategy cgi
+
 includedir /etc/munin/munin-conf.d
 
 <% if hostname != "menotti" -%>
@@ -12,7 +25,6 @@ htmldir /var/cache/munin/www
 logdir  /var/log/munin
 rundir  /var/run/munin
 tmpldir /etc/munin/templates
-graph_strategy cgi
 
 <%= out = ''
     scope.lookupvar('site::localinfo').keys.sort.each do |node|
