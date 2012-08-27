@@ -9,3 +9,5 @@ modules/hiera-puppet
 modules/puppetmaster/manifests/db.pp
 *.swp
 *~
+/secret
+/*.dpkg-dist
