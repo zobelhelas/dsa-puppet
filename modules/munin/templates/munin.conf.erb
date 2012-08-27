@@ -3,6 +3,10 @@
 ### USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+includedir /etc/munin/munin-conf.d
+
+<% if hostname != "menotti" -%>
+
 dbdir   /var/lib/munin
 htmldir /var/cache/munin/www
 logdir  /var/log/munin
@@ -21,3 +25,4 @@ graph_strategy cgi
     end
 out
 %>
+<% end -%>

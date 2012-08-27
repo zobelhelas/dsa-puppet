@@ -142,7 +142,7 @@ Facter.add("unbound") do
 		end
 	end
 end
-Facter.add("munin-async") do
+Facter.add("munin_async") do
 	setcode do
 		FileTest.exist?("/usr/share/munin/munin-async")
 	end

@@ -60,5 +60,20 @@ class munin {
 		notarule        => true,
 	}
 
-	@@munin::master-per-node { $::fqdn: }
+	@@munin::master-per-node {
+		$::fqdn:
+			ipaddress => $::ipaddress,
+			munin_async => $::munin_async,
+			;
+	}
+
+	if $munin_async and $munin_async == 'true' {
+		file { '/etc/ssh/userkeys/munin-async':
+			source => 'puppet:///modules/munin/munin-async-authkeys',
+		}
+	} else {
+		file { '/etc/ssh/userkeys/munin-async':
+			ensure => 'absent',
+		}
+	}
 }
