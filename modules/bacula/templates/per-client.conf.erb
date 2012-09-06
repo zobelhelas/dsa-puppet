@@ -29,7 +29,7 @@ Client {
   FDPort = <%= bacula_client_port %>
   Catalog = MyCatalog
   Password = "<%= bacula_client_secret %>"
-  File Retention = 30 days            # 30 days
+  File Retention = 70 days            # a bit over 2 months
   Job Retention = 6 months            # six months
   AutoPrune = yes                     # Prune expired Jobs/Files
 
@@ -87,7 +87,7 @@ Pool {
   Storage = "<%=bacula_filestor_name%>-<%= client %>"
   Recycle = no
   AutoPrune = yes
-  Volume Retention = 1 year
+  Volume Retention = 6 months
   Label Format = "<%= bacula_pool_name %>-diff-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
@@ -101,7 +101,7 @@ Pool {
   Storage = "<%=bacula_filestor_name%>-<%= client %>"
   Recycle = no
   AutoPrune = yes
-  Volume Retention = 2 months
+  Volume Retention = 70 days
   Label Format = "<%= bacula_pool_name %>-inc-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
