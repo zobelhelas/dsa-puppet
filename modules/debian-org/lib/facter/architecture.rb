@@ -3,8 +3,8 @@ Facter.add(:architecture) do
     setcode do
         model = Facter.value(:hardwaremodel)
         case model
-        when 'x86_64': "amd64" 
-        when /(i[3456]86|pentium)/: "i386"
+        when 'x86_64' then "amd64"
+        when /(i[3456]86|pentium)/ then "i386"
         else
             model
         end
