@@ -95,6 +95,31 @@ nameserver 140.211.166.130
 nameserver 140.211.166.131
 EOF
 
+<% elsif scope.lookupvar('::cluster').to_s == 'ganeti3.debian.org' -%>
+#
+###########################################
+if [ "$NIC_COUNT" -ge 1 ]; then
+  cat >> $TARGET/etc/network/interfaces << EOF
+auto eth0
+iface eth0 inet static
+  address ${NIC_0_IP}
+  netmask 255.255.255.192
+  gateway 82.195.75.126
+
+  pre-up /sbin/sysctl -w net.ipv6.conf.\$IFACE.accept_ra=0 || true
+EOF
+
+fi
+
+###########################################
+cat > $TARGET/etc/resolv.conf <<EOF
+# /etc/resolv.conf
+search debian.org
+nameserver 82.195.75.81
+nameserver 82.195.66.239
+nameserver 217.198.242.225
+EOF
+
 <% else -%>
 
 # No config for cluster <%= scope.lookupvar('::cluster').to_s %>

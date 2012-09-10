@@ -2,6 +2,7 @@
 case scope.lookupvar('::cluster')
         when "ganeti2.debian.org" then 'MIRROR="http://mirror-ubc.debian.org/debian"'
         when "ganeti-osuosl.debian.org" then 'MIRROR="http://debian.osuosl.org/debian"'
+	when "ganeti3.debian.org" then 'MIRROR="http://mirror.ayous.org/debian"'
         else 'MIRROR="http://http.debian.net/debian"'
 end
 %>
