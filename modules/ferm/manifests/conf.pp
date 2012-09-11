@@ -1,5 +1,7 @@
 define ferm::conf ($content=undef, $source=undef, $ensure=present) {
 
+	include ferm
+
 	case $ensure {
 		present,absent: {}
 		default: { fail ( "Invald ensure `${ensure}' for ${name}" ) }
@@ -14,12 +16,14 @@ define ferm::conf ($content=undef, $source=undef, $ensure=present) {
 	if $source {
 		file { $fname:
 			ensure => $ensure,
-			source => $source
+			source => $source,
+			notify => Service['ferm']
 		}
 	} elsif $content {
 		file { $fname:
 			ensure  => $ensure,
 			content => $content,
+			notify => Service['ferm']
 		}
 	}
 }
