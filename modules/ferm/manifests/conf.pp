@@ -1,4 +1,4 @@
-define ferm::conf ($content=undef, $source=undef) {
+define ferm::conf ($content=undef, $source=undef, $ensure=present) {
 
 	case $ensure {
 		present,absent: {}
