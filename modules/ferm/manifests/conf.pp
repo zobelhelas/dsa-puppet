@@ -9,13 +9,15 @@ define ferm::conf ($content=undef, $source=undef, $ensure=present) {
 		fail ( "Can't define both source and content for ${name}" )
 	}
 
+	$fname = "/etc/ferm/conf.d/${name}.conf"
+
 	if $source {
-		file { "/etc/ferm/conf.d/${name}":
+		file { $fname:
 			ensure => $ensure,
 			source => $source
 		}
 	} elsif $content {
-		file { "/etc/ferm/conf.d/${name}":
+		file { $fname:
 			ensure  => $ensure,
 			content => $content,
 		}
