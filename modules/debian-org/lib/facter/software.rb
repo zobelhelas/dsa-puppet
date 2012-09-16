@@ -34,36 +34,15 @@ Facter.add("postfix") do
 		end
 	end
 end
-Facter.add("postgres81") do
+Facter.add("postgres") do
 	setcode do
-		if FileTest.exist?("/usr/lib/postgresql/8.1/bin/postgres")
-			true
-		else
-			''
-		end
-	end
-end
-Facter.add("postgres83") do
-	setcode do
-		if FileTest.exist?("/usr/lib/postgresql/8.3/bin/postgres")
-			true
-		else
-			''
-		end
-	end
-end
-Facter.add("postgres84") do
-	setcode do
-		if FileTest.exist?("/usr/lib/postgresql/8.4/bin/postgres")
-			true
-		else
-			''
-		end
-	end
-end
-Facter.add("postgres90") do
-	setcode do
-		if FileTest.exist?("/usr/lib/postgresql/9.0/bin/postgres")
+		pg = (FileTest.exist?("/usr/lib/postgresql/8.1/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/8.3/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/8.4/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/9.0/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/9.1/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/9.2/bin/postgres"))
+		if pg
 			true
 		else
 			''

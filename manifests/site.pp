@@ -110,7 +110,7 @@ node default {
 		include debian-org::radvd
 	}
 
-	if ($::postgres84 or $::postgres90) {
+	if ($::postgres) {
 		include postgres
 	}
 
