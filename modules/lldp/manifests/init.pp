@@ -7,5 +7,6 @@ class lldp {
 		ensure    => running,
 		hasstatus => false,
 		pattern   => '/usr/sbin/lldpd',
+		require   => Package['lldpd']
 	}
 }
