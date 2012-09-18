@@ -117,4 +117,8 @@ node default {
 	if $::spamd {
 		munin::check { 'spamassassin': }
 	}
+
+	if $::hoster in [ynic] {
+		include lldp
+	}
 }
