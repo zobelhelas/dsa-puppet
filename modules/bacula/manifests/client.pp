@@ -38,7 +38,7 @@ class bacula::client inherits bacula {
 			notify  => Service['bacula-fd'],
 			;
 		'/etc/apt/preferences.d/dsa-bacula-client':
-			content => template('apt.preferences.bacula-client.erb'),
+			content => template('bacula/apt.preferences.bacula-client.erb'),
 			mode    => '0444',
 			owner   => root,
 			group   => root,
