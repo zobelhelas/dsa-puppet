@@ -69,7 +69,12 @@ end
 purp += "\n"
 
 if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('physicalHost'))
-  purp += wrap("This virtual server runs on the physical host #{ninfo['ldap']['physicalHost'][0]}, " +
+  if ninfo['ldap']['physicalHost'][0] =~ /ganeti/
+    phys_host = 'cluster'
+  else
+    phys_host = 'physical host'
+  end
+  purp += wrap("This virtual server runs on the #{phys_host} #{ninfo['ldap']['physicalHost'][0]}, " +
                "which is hosted at #{ninfo['hoster']['longname']}."
                )
 elsif scope.lookupvar('site::nodeinfo')['hoster']['name']
