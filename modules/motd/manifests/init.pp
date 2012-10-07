@@ -13,29 +13,26 @@ class motd {
 		$notify = undef
 		$mode   = '0555'
 
-		file { '/etc/motd':
-			ensure  => present,
-			replace => false
-		}
-
 	} elsif $::lsbdistcodename == 'squeeze' {
 		$fname  = '/etc/motd.tail'
 		$notify = Exec['updatemotd']
 		$mode   = '0444'
 
-		file { '/etc/motd':
-			ensure => link,
-			target => '/var/run/motd'
-		}
-		exec { 'updatemotd':
-			command     => 'uname -snrvm > /var/run/motd && cat /etc/motd.tail >> /var/run/motd',
-			refreshonly => true,
-		}
+	}
+
+	file { '/etc/motd':
+		ensure => link,
+		target => '/var/run/motd'
 	}
 
 	file { $fname:
 		notify  => $notify,
 		mode    => $mode,
 		content => template('motd/motd.erb')
+	}
+
+	exec { 'updatemotd':
+		command     => 'uname -snrvm > /var/run/motd && cat /etc/motd.tail >> /var/run/motd',
+		refreshonly => true,
 	}
 }
