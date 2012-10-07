@@ -13,6 +13,10 @@ class motd {
 		$notify = undef
 		$mode   = '0555'
 
+		file { '/etc/update-motd.d':
+			ensure => directory,
+		}
+
 	} elsif $::lsbdistcodename == 'squeeze' {
 		$fname  = '/etc/motd.tail'
 		$notify = Exec['updatemotd']

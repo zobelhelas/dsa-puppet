@@ -156,14 +156,6 @@ file=/etc/ferm/dsa.d
 file=/etc/rc.local
 file=/etc/unbound
 file=/etc/dsa
-<% if scope.lookupvar('site::nodeinfo')['puppetmaster'] %>
-
-# Damn you rails apps and your shoddy packaging
-file=/usr/share/puppet-dashboard/public/stylesheets
-file=/usr/share/puppet-dashboard/public/javascripts
-file=/usr/share/puppet-dashboard/public/stylesheets/all.css
-file=/usr/share/puppet-dashboard/public/javascripts/all.js
-<% end -%>
 
 [LogFiles]
 ##
@@ -247,6 +239,8 @@ file=/etc/resolv.conf.dhclient-new
 # We handle these files with puppet - please to not be bothering us
 file=/etc/timezone
 file=/etc/motd.tail
+file=/etc/update-motd.d/
+file=/etc/update-motd.d/puppet-motd
 file=/etc/ntp.conf
 file=/etc/samhain/samhainrc
 file=/etc/munin/munin-node.conf
@@ -429,6 +423,15 @@ file=/etc/ferm/conf.d/defs.conf
 file=/etc/ferm/ferm.conf
 dir=2/etc/ssl/debian
 file=/etc/unbound/unbound.conf
+
+<% if scope.lookupvar('site::nodeinfo')['puppetmaster'] %>
+
+# Damn you rails apps and your shoddy packaging
+file=/usr/share/puppet-dashboard/public/stylesheets
+file=/usr/share/puppet-dashboard/public/javascripts
+file=/usr/share/puppet-dashboard/public/stylesheets/all.css
+file=/usr/share/puppet-dashboard/public/javascripts/all.js
+<% end -%>
 
 [IgnoreNone]
 ##
