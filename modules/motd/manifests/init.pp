@@ -15,6 +15,7 @@ class motd {
 
 		file { '/etc/update-motd.d':
 			ensure => directory,
+			mode   => '0755'
 		}
 
 	} elsif $::lsbdistcodename == 'squeeze' {
