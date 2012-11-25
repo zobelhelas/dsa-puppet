@@ -33,9 +33,9 @@ if %w{beethoven draghi}.include?(hostname) then
 	ssh4allowed << '$HOST_DEBIAN_V4'
 	ssh6allowed << '$HOST_DEBIAN_V6'
 end
-if %w{geo1 geo2 geo3}.include?(hostname) then
-	ssh4allowed << '194.177.211.209' # orff - master
-	ssh6allowed << '2001:648:2ffc:deb:213:72ff:fe69:e188' # orff - master
+if %w{unger}.include?(hostname) then
+	ssh4allowed << '$UNGER_SSH_ACCESS'  # Ganneff
+	ssh6allowed << '$UNGER_SSH6_ACCESS' # Ganneff, but more address space
 end
 ssh4allowed.length == 0 and ssh4allowed << '0.0.0.0/0'
 ssh6allowed.length == 0 and ssh6allowed << '::/0'

@@ -216,6 +216,12 @@
 @def $USER_aurel32 = ();
 @def $USER_aurel32 = ($USER_aurel32 88.191.126.93); # hall.aurel32.net
 @def $USER_aurel32 = ($USER_aurel32 82.232.2.251); # farad.aurel32.net
+@def $USER_joerg   = ();
+@def $USER_joerg   = ($USER_joerg 213.146.108.160/29);
+@def $USER_joerg   = ($USER_joerg 46.4.205.32);
+@def $USER_joerg6  = ();
+@def $USER_joerg6  = ($USER_joerg6 2a02:248:1005::/48);
+@def $USER_joerg6  = ($USER_joerg6 2a01:4f8:131:1520::6667);
 
 @def $BUILDD_SSH_ACCESS = ();
 @def $BUILDD_SSH_ACCESS = ($BUILDD_SSH_ACCESS 194.177.211.200); # grieg
@@ -224,3 +230,7 @@
 @def $FREEBSD_SSH_ACCESS = ();
 @def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $DSA_IPS $BUILDD_SSH_ACCESS);
 @def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $USER_christoph $USER_aurel32); # buildd admins
+@def $UNGER_SSH_ACCESS = ();
+@def $UNGER_SSH_ACCESS ($UNGER_SSH_ACCESS $USER_joerg);
+@def $UNGER_SSH6_ACCESS ();
+@def $UNGER_SSH6_ACCESS ($UNGER_SSH6_ACCESS $USER_joerg6);
