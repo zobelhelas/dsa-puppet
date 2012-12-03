@@ -83,15 +83,13 @@ class debian-org {
 		require => Package['molly-guard'],
 	}
 
-	# This really means 'not wheezy'
+	site::aptrepo { 'security':
+		url        => 'http://security.debian.org/',
+		suite      => "${::lsbdistcodename}/updates",
+		components => ['main','contrib','non-free']
+	}
 
-	if $::debarchitecture != 'armhf' {
-		site::aptrepo { 'security':
-			url        => 'http://security.debian.org/',
-			suite      => "${::lsbdistcodename}/updates",
-			components => ['main','contrib','non-free']
-		}
-
+	if $::lsbdistcodename != 'wheezy' {
 		site::aptrepo { 'backports.debian.org':
 			url        => 'http://backports.debian.org/debian-backports/',
 			suite      => "${::lsbdistcodename}-backports",
@@ -132,7 +130,7 @@ class debian-org {
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
 		site::aptrepo { 'debian':
 			url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
-			suite      => "${::lsbdistcodename}",
+			suite      => $::lsbdistcodename,
 			components => ['main','contrib','non-free']
 		}
 	}
