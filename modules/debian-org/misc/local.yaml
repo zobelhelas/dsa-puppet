@@ -151,7 +151,6 @@ footer:
   #zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
   backports_master:
-    - bizet.debian.org
     - morricone.debian.org
   bugsmaster:
   bugsmx:
@@ -192,7 +191,6 @@ services:
 host_settings:
   heavy_exim:
     - bellini.debian.org
-    - bizet.debian.org
     - busoni.debian.org
     - buxtehude.debian.org
     - chopin.debian.org
@@ -234,7 +232,6 @@ host_settings:
     - merikanto.debian.org
     - rietz.debian.org
   apache2_backports_mirror:
-    - bizet.debian.org
     - englund.debian.org
     - morricone.debian.org
   timeserver:
