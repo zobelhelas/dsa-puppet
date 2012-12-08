@@ -1,4 +1,4 @@
-class roles::static_master inherits roles::mirror_base {
+class roles::static_master inherits roles::static_base {
     file {
         '/etc/ssh/userkeys/staticsync':
             content => template('roles/static-master-authorized_keys.erb'),
