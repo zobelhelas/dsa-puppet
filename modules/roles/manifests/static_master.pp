@@ -16,9 +16,6 @@ class roles::static_master inherits roles::static_base {
             mode => 555,
             ;
 
-        '/etc/static-components.conf':
-            source  => "puppet:///modules/roles/static-mirroring/static-components.conf",
-            ;
         '/etc/static-clients.conf':
             content => template('roles/static-clients.conf.erb'),
             ;
