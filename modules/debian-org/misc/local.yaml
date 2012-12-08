@@ -281,6 +281,7 @@ host_settings:
     - bizet.debian.org
   static_mirror:
     - klecker.debian.org
+    - rietz.debian.org
   static_source:
     - senfl.debian.org
 #  reservedaddrs:
