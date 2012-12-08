@@ -70,6 +70,14 @@ view "AF" {
     allow-transfer { };
   };
 
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org.AF";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.www.debian.org.AF";
@@ -141,6 +149,14 @@ view "AN" {
   zone "snapshot.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.AN";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -222,6 +238,14 @@ view "AS" {
     allow-transfer { };
   };
 
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org.AS";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.www.debian.org.AS";
@@ -293,6 +317,14 @@ view "EU" {
   zone "snapshot.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.EU";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -374,6 +406,14 @@ view "NA" {
     allow-transfer { };
   };
 
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org.NA";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.www.debian.org.NA";
@@ -445,6 +485,14 @@ view "OC" {
   zone "snapshot.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org.OC";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -526,6 +574,14 @@ view "SA" {
     allow-transfer { };
   };
 
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org.SA";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.www.debian.org.SA";
@@ -602,6 +658,14 @@ view "undef" {
     allow-transfer { };
   };
 
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org.undef";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
   zone "www.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.www.debian.org.undef";
@@ -673,6 +737,14 @@ view "default" {
   zone "snapshot.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.snapshot.debian.org";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "static.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.static.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
