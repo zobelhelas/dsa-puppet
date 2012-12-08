@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# This is a wrapper script for ssh access on Debian's static mirroring infrastructure.
+#
+# It limits the commands the master can run on static-mirroring mirrors (i.e.
+# the things running apache) on one hand, and also on static-mirroring sources,
+# that is the things that create the data.
+
 # Copyright (c) 2009, 2010, 2012 Peter Palfrader
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -25,6 +31,7 @@ set -e
 set -u
 
 MYLOGNAME="`basename "$0"`[$$]"
+COMPONENTLIST=/etc/static-components.conf
 
 usage() {
 	echo "local Usage: $0 <basedir> <host>"
@@ -61,23 +68,20 @@ do_mirror() {
 }
 
 do_rsync() {
-        local remote_host="$1"
-        shift
+	local remote_host="$1"
+	shift
 
 	local allowed_rsyncs
 	allowed_rsyncs=()
 
-	#case "`hostname`" in
-	#    vescum)
-	#	allowed_rsyncs=(
-	#		'^--server --sender -tre\.iLsf \. /srv/www-master\.torproject\.org/htdocs/\.$'
-	#	)
-	#	;;
-	#    *)
-	#esac
+	if [ -e "$COMPONENTLIST" ]; then
+		for path in $(awk -v host="$(hostname -f)" '$2 == host {print $3}' $COMPONENTLIST); do
+			allowed_rsyncs+=("--server --sender -tre.iLsf . $path")
+		done
+	fi
 	for cmd_idx in ${!allowed_rsyncs[*]}; do
 		allowed="${allowed_rsyncs[$cmd_idx]}"
-		if [[ "$*" =~ $allowed ]]; then # do !not! quote regex
+		if [ "$*" = "$allowed" ]; then
 			info "Running for host $remote_host: rsync $*"
 			exec rsync "$@"
 			echo >&2 "Exec failed"
