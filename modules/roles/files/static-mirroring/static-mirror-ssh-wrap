@@ -76,7 +76,7 @@ do_rsync() {
 
 	if [ -e "$COMPONENTLIST" ]; then
 		for path in $(awk -v host="$(hostname -f)" '$2 == host {print $3}' $COMPONENTLIST); do
-			allowed_rsyncs+=("--server --sender -tre.iLsf . $path/.")
+			allowed_rsyncs+=("--server --sender -ltrze.iLsf --safe-links . $path/.")
 		done
 	fi
 	for cmd_idx in ${!allowed_rsyncs[*]}; do

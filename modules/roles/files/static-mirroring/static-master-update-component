@@ -109,7 +109,8 @@ echo "$0: Got them."
 
 echo "$0: Updating master copy of $component..."
 rsync --delete \
-  -tr \
+  -trz \
+  --links --safe-links \
   --link-dest="$tgt" \
   "$src/." "$tmpdir_new/."
 echo "$0: Done.  Committing."

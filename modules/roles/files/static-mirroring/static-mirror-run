@@ -64,7 +64,7 @@ if [ -z "$BASEDIR" ]; then usage >&2; exit 1; fi
 if [ -z "$SYNC_SOURCE" ]; then usage >&2; exit 1; fi
 
 RSYNC="rsync"
-RSYNC_BASE_OPTIONS="-avz --delete"
+RSYNC_BASE_OPTIONS="-rtvz --delete --links --safe-links"
 RSYNC_SSH_OPTIONS="ssh -o AddressFamily=inet -o BatchMode=yes"
 
 LOGDIR="$HOME/logs"

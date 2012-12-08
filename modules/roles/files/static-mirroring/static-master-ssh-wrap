@@ -89,9 +89,9 @@ serve_dir() {
 do_rsync() {
 	local remote_host="$1"; shift
 
-	if [ "$*" = "--server --sender -vlogDtprze.iLsf . -new-/" ] ; then
+	if [ "$*" = "--server --sender -vltrze.iLsf --safe-links . -new-/" ] ; then
 		serve_dir "$remote_host" "$BASEDIR/current-push"
-	elif [ "$*" = "--server --sender -vlogDtprze.iLsf . -live-/" ] ; then
+	elif [ "$*" = "--server --sender -vltrze.iLsf --safe-links . -live-/" ] ; then
 		local p="$BASEDIR/current-live"
 		info "host $remote_host wants $p, acquiring lock"
 		lock 200 "$p" 0
