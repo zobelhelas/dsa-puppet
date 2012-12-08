@@ -1,19 +1,10 @@
-class roles::static_mirror inherits roles::static_base {
+class roles::static_mirror inherits roles::static_source {
     file {
-        '/etc/ssh/userkeys/staticsync':
-            content => template('roles/static-mirror-authorized_keys.erb'),
-            ;
         '/usr/local/bin/static-mirror-run':
             source  => "puppet:///modules/roles/static-mirroring/static-mirror-run",
             mode => 555,
             ;
-        '/usr/local/bin/static-mirror-ssh-wrap':
-            source  => "puppet:///modules/roles/static-mirroring/static-mirror-ssh-wrap",
-            mode => 555,
-            ;
-    }
 
-    file {
         "/srv/static.debian.org":
             ensure  => directory,
             owner   => staticsync,

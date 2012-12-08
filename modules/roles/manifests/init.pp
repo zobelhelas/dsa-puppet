@@ -73,5 +73,7 @@ class roles {
 
 	if getfromhash($site::nodeinfo, 'static_mirror') {
 		include roles::static_mirror
+	} elsif getfromhash($site::nodeinfo, 'static_source') {
+		include roles::static_source
 	}
 }
