@@ -84,6 +84,10 @@ if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
   exit 1
 fi
 tgt="$base/$component"
+if ! [ -d "$tgt" ]; then
+  echo "$0: Creating $tgt for $component";
+  mkdir "$tgt"
+fi
 
 if [ "$srchost" = "`hostname -f`" ]; then
   src="$srcdir"
