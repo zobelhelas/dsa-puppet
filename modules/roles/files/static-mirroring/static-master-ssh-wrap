@@ -74,11 +74,11 @@ do_rsync() {
 	local remote_host="$1"; shift
 
 	local args="--server --sender -vltrze.iLsf --safe-links ."
-	if [ "$*" = "$args -new-/" ] ; then
+	if [ "$*" = "$args -new-/" ] || [ "$*" = "$args ./-new-/" ] ; then
 		local path="$BASEDIR/current-push"
 		info "serving $remote_host with $path"
 		rsync $args "$path/."
-	elif [ "$*" = "$args . -live-/" ] ; then
+	elif [ "$*" = "$args . -live-/" ] || [ "$*" = "$args . ./-live-/" ] ; then
 		local path="$BASEDIR/current-live"
 		info "host $remote_host wants $path, acquiring lock"
 		lock 200 "$path" 0
