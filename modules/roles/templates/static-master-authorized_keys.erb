@@ -15,7 +15,7 @@ end
 
 mirrors = []
 scope.lookupvar('site::localinfo').keys.sort.each do |node|
-    if scope.lookupvar('site::localinfo')[node]['static_mirror']
+    if scope.lookupvar('site::localinfo')[node]['static_mirror'] or scope.lookupvar('site::localinfo')[node]['static_source']
         key = getstaticsynckey(node)
         mirrors << { 'node' => node, 'addr' => scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'], 'key' => key}
     end
