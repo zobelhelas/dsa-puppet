@@ -1,0 +1,174 @@
+#!/bin/bash
+
+# initiate a mirror staged mirror update from sync-source.
+#
+# if we have a serial file and we got a serial on the command line, only sync if the serial is different
+
+# Copyright (c) 2012 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+set -e
+set -u
+
+NAME="$(basename "$0")"
+
+usage() {
+	echo "Usage: $0 [--one-stage] <basedir> <sync-source> [<serial>]"
+}
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then usage; exit 0; fi
+
+one_stage=0
+while :; do
+	case "${1:-}" in
+		--)
+			shift
+			break;
+			;;
+		--one-stage)
+			shift
+			one_stage=1
+			;;
+		-*)	usage >&2
+			exit 1
+			;;
+		*)
+			break
+			;;
+	esac
+done
+
+BASEDIR=${1:-}; shift
+SYNC_SOURCE=${1:-}; shift
+SYNC_SERIAL=${1:-}; shift || true
+if [ -z "$BASEDIR" ]; then usage >&2; exit 1; fi
+if [ -z "$SYNC_SOURCE" ]; then usage >&2; exit 1; fi
+
+RSYNC="rsync"
+RSYNC_BASE_OPTIONS="-avz --delete"
+RSYNC_SSH_OPTIONS="ssh -o AddressFamily=inet -o BatchMode=yes"
+
+LOGDIR="$HOME/logs"
+LOGFILE="$LOGDIR/$NAME-run.log"
+
+
+ALPHA="tree-a"
+BRAVO="tree-b"
+ACTIVE="cur"
+
+CNF_FILE="$HOME/etc/$NAME.conf"
+! [ -e "$CNF_FILE" ] || . "$CNF_FILE"
+
+SOURCE="${SYNC_SOURCE}/"
+BASEDIR="${BASEDIR}/"
+
+###############################################
+
+# point stdout and stderr to the logfile if it's not a tty.
+# save stdout to fd5 for communications with the master
+
+log_setup() {
+	mkdir -p "$LOGDIR"
+	if ! [ -t 1 ]; then
+		# move current stdout to fd5 and reopen to logfile
+		exec 5>&1-
+		exec 1>> "$LOGFILE"
+	else
+		# duplicate stdout to fd5
+		exec 5>&1
+	fi
+	if ! [ -t 2 ]; then
+		exec 2>> "$LOGFILE"
+	fi
+}
+
+log() {
+	echo "[$(date)][$NAME][$$] $1"
+}
+
+lock() {
+	exec 200< "$BASEDIR"
+	if ! flock -e 200; then
+		log "Cannot acquire lock."
+		echo >&5 "[MSM] LOCK-ERROR"
+		exit 1
+	fi
+	log "Got the lock."
+}
+
+###############################################
+
+
+log_setup
+#log "called with $* and ${SSH_ORIGINAL_COMMAND:-no ssh original command options}."
+log "called with $*"
+lock
+
+if [ -e "${BASEDIR}${ACTIVE}" ] && [ "$(readlink "${BASEDIR}${ACTIVE}")" = "$ALPHA" ] ; then
+	staging="$BRAVO"
+	active="$ALPHA"
+else
+	staging="$ALPHA"
+	active="$BRAVO"
+fi
+log "active is $active; staging is $staging"
+
+rsync_source="${SOURCE}"
+rsync_curactive="${BASEDIR}${active}/"
+rsync_target="${BASEDIR}${staging}/"
+
+if [ -e "$rsync_curactive/.serial" ] && [ -n "$SYNC_SERIAL" ] && [ "$(cat $rsync_curactive/.serial)" = "$SYNC_SERIAL" ]; then
+	log "active is already at serial $SYNC_SERIAL.  No action required."
+	echo >&5 "[MSM] ALREADY-CURRENT"
+	exit 0
+fi
+
+echo >&5 "[MSM] STAGE1-START"
+log "Running $RSYNC $RSYNC_BASE_OPTIONS -e $RSYNC_SSH_OPTIONS --link-dest $rsync_curactive $rsync_source $rsync_target"
+$RSYNC $RSYNC_BASE_OPTIONS -e "$RSYNC_SSH_OPTIONS" --link-dest "$rsync_curactive" "$rsync_source" "$rsync_target"
+log "rsync done."
+echo >&5 "[MSM] STAGE1-DONE"
+if [ "$one_stage" -gt 0 ]; then
+	action="go"
+else
+	read action
+fi
+
+case "$action" in
+	go)
+		ln --symbolic --force --no-target-directory "$staging" "${BASEDIR}$ACTIVE"
+		rm -rf "$rsync_curactive"
+		echo >&5 "[MSM] STAGE2-DONE"
+		log "stage2 done"
+		;;
+	abort)
+		echo >&5 "[MSM] STAGE2-ABORT"
+		log "stage2 abort"
+		;;
+	*)
+		echo >&5 "[MSM] STAGE2-UNKNOWN-ACTION $action"
+		log "stage2 unknown action $action"
+		exit 1
+		;;
+esac
+
+savelog "$LOGFILE"

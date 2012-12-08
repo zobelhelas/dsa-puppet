@@ -1,0 +1,130 @@
+#!/bin/bash
+
+# Updates one component (i.e. subdirectory) in static-master/master
+
+# acquires a shared lock on the base directory (so that we know no updates are
+# outgoing, as those acquire an exclusive one).  Also acquired an exclusive lock
+# on the component directory in question.
+#
+# The config file is a list of component source-directory pairs.
+
+# Copyright (c) 2012 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+componentlist=/home/staticsync/etc/static-components
+base=/home/staticsync/static-master/master
+
+set -e
+set -u
+
+
+lock() {
+  local fd="$1"; shift
+  local path="$1"; shift
+  local exclusive="$1"; shift
+
+  eval "exec $fd< '$path'"
+
+  if [ "$exclusive" -gt 0 ]; then
+    locktype="-e"
+  else
+    locktype="-s"
+  fi
+
+  if ! flock "$locktype" "$fd"; then
+    echo >&2 "$0: Cannot acquire lock on $base (flock $locktype failed) - Very bad, we should have waited!"
+    exit 1
+  fi
+}
+
+unlock() {
+  local fd="$1"; shift
+
+  if ! flock -o "$fd"; then
+    echo >&2 "$0: Cannot release lock on fd $fd - This should not have happened!"
+    exit 1
+  fi
+  eval "exec $fd<&-"
+}
+
+if [ "$#" != 1 ]; then
+  echo >&2 "Usage: $0 <component>"
+  exit 1
+fi
+
+component="$1"
+
+if [ "${component%/*}" != "$component" ] ; then
+  echo >&2 "$0: Invalid component: $component";
+  exit 1
+fi
+
+src="$(awk -v component="$component" '$1 == component {print $2; exit}' "$componentlist")"
+if [ -z "$src" ]; then
+  echo >&2 "$0: Invalid component: $component (not found in $componentlist)";
+  exit 1
+fi
+tgt="$base/$component"
+if ! [ -d "$tgt" ]; then
+  echo >&2 "$0: Invalid component: $component ($tgt does not exist)";
+  exit 1
+fi
+
+echo "$0: Acquiring locks..."
+lock 200 "$base" 0
+lock 201 "$tgt" 1
+
+tmpdir_new="$(mktemp -d --tmpdir="$base" "${component}.new-XXXXXX")"
+tmpdir_old="$(mktemp -d --tmpdir="$base" "${component}.old-XXXXXX")"
+trap "rm -rf '$tmpdir_new' '$tmpdir_old'" EXIT
+chmod 0755 "$tmpdir_new"
+
+lock 202 "$tmpdir_new" 1
+echo "$0: Got them."
+
+echo "$0: Updating master copy of $component..."
+rsync --delete \
+  -tr \
+  --link-dest="$tgt" \
+  "$src/." "$tmpdir_new/."
+echo "$0: Done.  Committing."
+
+mv "$tgt" "$tmpdir_old/old"
+if ! mv "$tmpdir_new" "$tgt"; then
+  echo >&2 "$0: WARNING: could not move $tmpdir_new to $tgt.  Trying to recover"
+  rm -rf "$tgt"
+  mv "$tmpdir_old/old" "$tgt"
+  echo >&2 "$0: Rolled back to old tree maybe successfully."
+  exit 1
+fi
+
+rm -rf "$tmpdir_new" "$tmpdir_old"
+trap - EXIT
+
+date '+%s' > "$base/.serial"
+unlock 201
+unlock 200
+echo "$0: Triggering mirror runs..."
+exec static-master-run
+
+# vim:set et:
+# vim:set ts=2:
+# vim:set shiftwidth=2:

@@ -1,0 +1,157 @@
+#!/bin/bash
+
+# Copyright (c) 2009, 2010, 2012 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+set -e
+set -u
+
+MYLOGNAME="`basename "$0"`[$$]"
+BASEDIR="/home/staticsync/static-master"
+
+usage() {
+	echo "local Usage: $0 <host>"
+	echo "via ssh orig command:"
+	echo "                      rsync <stuff>"
+	echo "                      static-master-update-component <component>"
+}
+
+one_more_arg() {
+	if [ "$#" -lt 1 ]; then
+		usage >&2
+		exit 1
+	fi
+}
+
+info() {
+	logger -p daemon.info -t "$MYLOGNAME" "$1"
+}
+
+croak() {
+	logger -s -p daemon.warn -t "$MYLOGNAME" "$1"
+	exit 1
+}
+
+lock() {
+  local fd="$1"; shift
+  local path="$1"; shift
+  local exclusive="$1"; shift
+
+  eval "exec $fd< '$path'"
+
+  if [ "$exclusive" -gt 0 ]; then
+    locktype="-e"
+  else
+    locktype="-s"
+  fi
+
+  if ! flock "$locktype" "$fd"; then
+    echo >&2 "$0: Cannot acquire lock on $base (flock $locktype failed) - Very bad, we should have waited!"
+    exit 1
+  fi
+}
+
+serve_dir() {
+	local remote_host="$1"; shift
+	local path="$1"; shift
+
+	local sender='rsync --server --sender -vlogDtprze.iLsf . '
+
+	if [ -e "$path" ]; then
+		info "serving $remote_host with $path"
+		$sender "$path/"
+	else
+		info "$remote_host wants non-existing $path"
+		echo >&2 "$path does not exist."
+		exit 1
+	fi
+}
+
+do_rsync() {
+	local remote_host="$1"; shift
+
+	if [ "$*" = "--server --sender -vlogDtprze.iLsf . -new-/" ] ; then
+		serve_dir "$remote_host" "$BASEDIR/current-push"
+	elif [ "$*" = "--server --sender -vlogDtprze.iLsf . -live-/" ] ; then
+		local p="$BASEDIR/current-live"
+		info "host $remote_host wants $p, acquiring lock"
+		lock 200 "$p" 0
+		serve_dir "$remote_host" "$p"
+	else
+		info "NOT allowed for $remote_host: rsync $*"
+		echo >&2 "This rsync command ($@) not allowed."
+		exit 1
+	fi
+}
+
+do_update_component() {
+	local remote_host="$1"; shift
+
+	one_more_arg "$@"
+	component="$1"
+	shift
+
+	#if [ "$component" = "www.torproject.org" ] && [ "$remote_host" = "vescum.torproject.org" ]; then
+	#	exec static-master-update-component "$component"
+	#	echo >&2 "Exec failed"
+	#	croak "exec failed"
+	#else
+		info "Not whitelisted: $remote_host update $component"
+		echo >&2 "Not whitelisted: $remote_host update $component"
+		exit 1
+	#fi
+}
+
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+	usage
+	exit 0
+fi
+
+one_more_arg "$@"
+remote_host="$1"
+shift
+
+
+# check/parse remote command line
+if [ -z "${SSH_ORIGINAL_COMMAND:-}" ] ; then
+	croak "Did not find SSH_ORIGINAL_COMMAND"
+fi
+set "dummy" ${SSH_ORIGINAL_COMMAND}
+shift
+
+info "host $remote_host called with $*"
+
+one_more_arg "$@"
+action="$1"
+shift
+
+case "$action" in
+	rsync)
+		do_rsync "$remote_host" "$@"
+		;;
+	static-master-update-component)
+		do_update_component "$remote_host" "$@"
+		;;
+	*)
+		croak "Invalid operation '$action'"
+		;;
+esac

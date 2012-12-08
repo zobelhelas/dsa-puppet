@@ -1,0 +1,42 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+##
+
+<%=
+def getstaticsynckey(host)
+    key = nil
+    begin
+        facts = YAML.load(File.open("/var/lib/puppet/yaml/facts/#{host}.yaml").read)
+        return facts.values['staticsync_key']
+    rescue Exception => e
+    end
+    return key
+end
+
+mirrors = []
+scope.lookupvar('site::localinfo').keys.sort.each do |node|
+    if scope.lookupvar('site::localinfo')[node]['static_mirror']
+        key = getstaticsynckey(node)
+        mirrors << { 'node' => node, 'addr' => scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'], 'key' => key}
+    end
+end
+
+
+lines = []
+for m in mirrors:
+    lines << '# ' + m['node']
+    if m['key'].nil?
+        lines << "# no key for node"
+    else
+        lines << "command=\"/usr/local/bin/static-master-ssh-wrap #{m['node']}\"," +
+                 'no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-user-rc,' +
+                 'from="' + m['addr'].join(',') + '" ' +
+                 m['key']
+    end
+end
+
+lines.join("\n")
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:
+%>
