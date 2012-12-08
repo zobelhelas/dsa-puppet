@@ -70,32 +70,19 @@ lock() {
   fi
 }
 
-serve_dir() {
-	local remote_host="$1"; shift
-	local path="$1"; shift
-
-	local sender='rsync --server --sender -vlogDtprze.iLsf . '
-
-	if [ -e "$path" ]; then
-		info "serving $remote_host with $path"
-		$sender "$path/"
-	else
-		info "$remote_host wants non-existing $path"
-		echo >&2 "$path does not exist."
-		exit 1
-	fi
-}
-
 do_rsync() {
 	local remote_host="$1"; shift
 
-	if [ "$*" = "--server --sender -vltrze.iLsf --safe-links . -new-/" ] ; then
-		serve_dir "$remote_host" "$BASEDIR/current-push"
-	elif [ "$*" = "--server --sender -vltrze.iLsf --safe-links . -live-/" ] ; then
-		local p="$BASEDIR/current-live"
-		info "host $remote_host wants $p, acquiring lock"
-		lock 200 "$p" 0
-		serve_dir "$remote_host" "$p"
+	local args="--server --sender -vltrze.iLsf --safe-links ."
+	if [ "$*" = "$args -new-/" ] ; then
+		local path="$BASEDIR/current-push"
+		info "serving $remote_host with $path"
+		rsync $args "$path"
+	elif [ "$*" = "$args . -live-/" ] ; then
+		local path="$BASEDIR/current-live"
+		info "host $remote_host wants $path, acquiring lock"
+		lock 200 "$path" 0
+		rsync $args "$path"
 	else
 		info "NOT allowed for $remote_host: rsync $*"
 		echo >&2 "This rsync command ($@) not allowed."
