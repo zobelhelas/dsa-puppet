@@ -26,6 +26,7 @@ set -u
 
 MYLOGNAME="`basename "$0"`[$$]"
 BASEDIR="/home/staticsync/static-master"
+COMPONENTLIST=/etc/static-components.conf
 
 usage() {
 	echo "local Usage: $0 <host>"
@@ -109,15 +110,16 @@ do_update_component() {
 	component="$1"
 	shift
 
-	#if [ "$component" = "www.torproject.org" ] && [ "$remote_host" = "vescum.torproject.org" ]; then
-	#	exec static-master-update-component "$component"
-	#	echo >&2 "Exec failed"
-	#	croak "exec failed"
-	#else
+	hit="$(awk -v component="$component" -v host="$remote_host" '$1 == component && $2 == host {print $3; exit}' "$COMPONENTLIST")"
+	if [ -n "$hit" ]; then
+		exec static-master-update-component "$component"
+		echo >&2 "Exec failed"
+		croak "exec failed"
+	else
 		info "Not whitelisted: $remote_host update $component"
 		echo >&2 "Not whitelisted: $remote_host update $component"
 		exit 1
-	#fi
+	fi
 }
 
 
