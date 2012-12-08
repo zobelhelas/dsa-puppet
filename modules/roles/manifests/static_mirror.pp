@@ -14,6 +14,12 @@ class roles::static_mirror inherits roles::static_base {
     }
 
     file {
+        "/srv/static.debian.org":
+            ensure  => directory,
+            owner   => staticsync,
+            group   => staticsync,
+            mode    => '02755'
+            ;
         "/etc/cron.d/puppet-static-mirror":
             content => "PATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; static-mirror-run --one-stage /srv/static.debian.org bizet.debian.org:-live- > /dev/null\n",
             ;
