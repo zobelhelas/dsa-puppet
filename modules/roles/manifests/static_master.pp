@@ -15,6 +15,10 @@ class roles::static_master inherits roles::static_base {
             source  => "puppet:///modules/roles/static-mirroring/static-master-update-component",
             mode => 555,
             ;
+
+        '/etc/static-components.conf':
+            source  => "puppet:///modules/roles/static-mirroring/static-components.conf",
+            ;
     }
 }
 # vim:set et:

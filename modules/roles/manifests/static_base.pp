@@ -5,12 +5,6 @@ class roles::static_base {
             onlyif  => '/usr/bin/getent passwd staticsync > /dev/null && ! [ -e /home/staticsync/.ssh/id_rsa ]'
         }
     }
-
-    file {
-        '/etc/static-components.conf':
-            source  => "puppet:///modules/roles/static-mirroring/static-components.conf",
-            ;
-    }
 }
 # vim:set et:
 # vim:set sts=4 ts=4:
