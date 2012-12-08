@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 import string
+import sys
 import tempfile
 import time
 
@@ -162,15 +163,21 @@ def run_mirror():
     log("Cleaning up.")
     shutil.rmtree(tmpdir_old)
     log("Done.")
+    return True
   else:
     log("Aborted.")
+    return False
 
 
+ok = False
 try:
-  run_mirror()
+  ok = run_mirror()
 finally:
   for p in cleanup_dirs:
     if os.path.exists(p): shutil.rmtree(p)
+
+if not ok:
+  sys.exit(1)
 # vim:set et:
 # vim:set ts=2:
 # vim:set shiftwidth=2:
