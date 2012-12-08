@@ -84,10 +84,6 @@ if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
   exit 1
 fi
 tgt="$base/$component"
-if ! [ -d "$tgt" ]; then
-  echo >&2 "$0: Invalid component: $component ($tgt does not exist)";
-  exit 1
-fi
 
 if [ "$srchost" = "`hostname -f`" ]; then
   src="$srcdir"
