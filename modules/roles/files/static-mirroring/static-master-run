@@ -15,9 +15,12 @@ subdirs = { 'master': 'master',       # where updates from off-site end up going
 serialname = '.serial'
 
 clients = []
-with open('/home/staticsync/etc/static-clients') as f:
+with open('/etc/static-clients.conf') as f:
   for line in f:
-    clients.append(line.strip())
+    line = line.strip()
+    if line == "": continue
+    if line.startswith('#'): continue
+    clients.append(line)
 
 def log(m):
   t = time.strftime("[%Y-%m-%d %H:%M:%S]", time.gmtime())
