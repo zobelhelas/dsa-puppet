@@ -77,12 +77,12 @@ do_rsync() {
 	if [ "$*" = "$args -new-/" ] ; then
 		local path="$BASEDIR/current-push"
 		info "serving $remote_host with $path"
-		rsync $args "$path"
+		rsync $args "$path/."
 	elif [ "$*" = "$args . -live-/" ] ; then
 		local path="$BASEDIR/current-live"
 		info "host $remote_host wants $path, acquiring lock"
 		lock 200 "$path" 0
-		rsync $args "$path"
+		rsync $args "$path/."
 	else
 		info "NOT allowed for $remote_host: rsync $*"
 		echo >&2 "This rsync command ($@) not allowed."
