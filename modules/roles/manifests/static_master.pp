@@ -1,7 +1,7 @@
 class roles::static_master inherits roles::static_base {
     file {
         '/etc/ssh/userkeys/staticsync':
-            content => template('roles/static-master-authorized_keys.erb'),
+            content => template('roles/static-mirroring/static-master-authorized_keys.erb'),
             ;
         '/usr/local/bin/static-master-run':
             source  => "puppet:///modules/roles/static-mirroring/static-master-run",
@@ -17,7 +17,7 @@ class roles::static_master inherits roles::static_base {
             ;
 
         '/etc/static-clients.conf':
-            content => template('roles/static-clients.conf.erb'),
+            content => template('roles/static-mirroring/static-clients.conf.erb'),
             ;
     }
 }

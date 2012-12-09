@@ -1,7 +1,7 @@
 class roles::static_source inherits roles::static_base {
     file {
         '/etc/ssh/userkeys/staticsync':
-            content => template('roles/static-mirror-authorized_keys.erb'),
+            content => template('roles/static-mirroring/static-mirror-authorized_keys.erb'),
             ;
         '/usr/local/bin/static-mirror-ssh-wrap':
             source  => "puppet:///modules/roles/static-mirroring/static-mirror-ssh-wrap",
