@@ -1,4 +1,6 @@
 class roles::static_mirror inherits roles::static_source {
+    include apache2
+
     package { 'libapache2-mod-macro':
         ensure => installed,
     }
