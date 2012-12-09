@@ -25,26 +25,16 @@ class roles::static_mirror inherits roles::static_source {
             content => "PATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; static-mirror-run --one-stage /srv/static.debian.org bizet.debian.org:-live- > /dev/null\n",
             ;
 
-        #"/etc/apache2/sites-available/dist.torproject.org":
-        #    source  => "puppet:///modules/roles/static-mirroring/vhost/dist.torproject.org",
-        #    require => Package["apache2"],
-        #    notify  => Exec["reload-apache2"],
-        #    ;
-        #"/etc/apache2/sites-available/www.torproject.org":
-        #    source  => "puppet:///modules/roles/static-mirroring/vhost/www.torproject.org",
-        #    require => Package["apache2"],
-        #    notify  => Exec["reload-apache2"],
-        #    ;
     }
 
-    #apache2::activate_apache_site {
-    #    "10-dist.torproject.org":
-    #        site => "dist.torproject.org",
-    #        require => File['/etc/ssl/certs/apache-wildcard.torproject.org.pem'];
-    #    "10-www.torproject.org":
-    #        site => "www.torproject.org",
-    #        require => File['/etc/ssl/certs/apache-wildcard.torproject.org.pem'];
-    #}
+    apache2::config { 'static-mirror-macros':
+        content => template('roles/static-mirroring/apache-conf-static-mirror-macros.erb'),
+    }
+
+    apache2::site { '010-planet.debian.org':
+        site   => 'planet.debian.org',
+        source => 'puppet:///modules/roles/static-mirroring/vhost/planet.debian.org',
+    }
 }
 # vim:set et:
 # vim:set sts=4 ts=4:

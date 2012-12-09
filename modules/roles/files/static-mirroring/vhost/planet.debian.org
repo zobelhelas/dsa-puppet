@@ -1,0 +1,22 @@
+Use DebianStaticMirrorVhostLine
+	ServerName planet.debian.org
+	ServerAlias planet.debian.net planeta.debian.net
+	ServerAdmin planet@debian.org
+
+	ErrorLog /var/log/apache2/planet.debian.org-error.log
+	CustomLog /var/log/apache2/planet.debian.org-access.log combined
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+
+	DocumentRoot /srv/static.debian.org/cur/planet.debian.org
+	AddDefaultCharset utf-8
+
+	RewriteEngine On
+	RewriteCond %{HTTP_HOST} ^planeta.debian.net$ [NC]
+	RewriteRule ^/(.*)        http://planet.debian.org/es/$1  [R=permanent,L]
+	RewriteCond %{HTTP_HOST} ^planet.debian.net$ [NC]
+	RewriteRule ^/(.*)        http://planet.debian.org/$1  [R=permanent,L]
+</VirtualHost>
+# vim:set syn=apache:

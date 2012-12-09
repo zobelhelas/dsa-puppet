@@ -1,0 +1,11 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+##
+
+<Macro DebianStaticMirrorVhostLine>
+<% if hostname == "klecker" -%>
+  <VirtualHost 130.89.148.14:80 2001:610:1908:b000::148:14:80>
+<% else -%>
+  <VirtualHost *:80>
+<% end -%>
+</Macro>
