@@ -1,4 +1,4 @@
-Use DebianStaticMirrorVhostLine
+Include /etc/apache2/inc/static-mirror-vhost
 	ServerName planet.debian.org
 	ServerAlias planet.debian.net planeta.debian.net
 	ServerAdmin planet@debian.org

@@ -25,10 +25,12 @@ class roles::static_mirror inherits roles::static_source {
             content => "PATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; static-mirror-run --one-stage /srv/static.debian.org bizet.debian.org:-live- > /dev/null\n",
             ;
 
-    }
-
-    apache2::config { 'static-mirror-macros':
-        content => template('roles/static-mirroring/apache-conf-static-mirror-macros.erb'),
+        '/etc/apache2/inc':
+            ensure => directory,
+            ;
+        '/etc/apache2/inc/static-mirror-vhost':
+            content => template('roles/static-mirroring/apache-inc-static-mirror-vhost.erb'),
+            ;
     }
 
     apache2::site { '010-planet.debian.org':
