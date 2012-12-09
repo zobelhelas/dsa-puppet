@@ -24,18 +24,16 @@ class roles::static_mirror inherits roles::static_source {
         "/etc/cron.d/puppet-static-mirror":
             content => "PATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; static-mirror-run --one-stage /srv/static.debian.org bizet.debian.org:-live- > /dev/null\n",
             ;
+    }
 
-        '/etc/apache2/inc':
-            ensure => directory,
-            ;
-        '/etc/apache2/inc/static-mirror-vhost':
-            content => template('roles/static-mirroring/apache-inc-static-mirror-vhost.erb'),
-            ;
+    $vhost_listen = $::hostname ? {
+        klecker => '130.89.148.14:80 [2001:610:1908:b000::148:14]:80',
+        default => '*:80',
     }
 
     apache2::site { '010-planet.debian.org':
         site   => 'planet.debian.org',
-        source => 'puppet:///modules/roles/static-mirroring/vhost/planet.debian.org',
+        content => 'puppet:///modules/roles/static-mirroring/vhost/planet.debian.org.erb',
     }
 }
 # vim:set et:
