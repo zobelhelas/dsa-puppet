@@ -33,7 +33,7 @@ class roles::static_mirror inherits roles::static_source {
 
     apache2::site { '010-planet.debian.org':
         site   => 'planet.debian.org',
-        content => 'puppet:///modules/roles/static-mirroring/vhost/planet.debian.org.erb',
+        content => template('roles/static-mirroring/vhost/planet.debian.org.erb'),
     }
 }
 # vim:set et:
