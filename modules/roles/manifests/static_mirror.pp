@@ -1,4 +1,12 @@
 class roles::static_mirror inherits roles::static_source {
+    package { 'libapache2-mod-macro':
+        ensure => installed,
+    }
+
+    apache2::module { 'macro': require => Package['libapache2-mod-macro']; }
+    apache2::module { 'rewrite': }
+    apache2::module { 'expires': }
+
     file {
         '/usr/local/bin/static-mirror-run':
             source  => "puppet:///modules/roles/static-mirroring/static-mirror-run",
