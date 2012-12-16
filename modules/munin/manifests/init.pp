@@ -62,12 +62,12 @@ class munin {
 
 	@@munin::master-per-node {
 		$::fqdn:
-			ipaddress => $::ipaddress,
+			ipaddress   => $::ipaddress,
 			munin_async => $::munin_async,
 			;
 	}
 
-	if $munin_async and $munin_async == 'true' {
+	if $::munin_async and str2bool($::munin_async) == true {
 		file { '/etc/ssh/userkeys/munin-async':
 			source => 'puppet:///modules/munin/munin-async-authkeys',
 		}

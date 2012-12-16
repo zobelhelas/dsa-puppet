@@ -15,7 +15,7 @@ class bacula::storage inherits bacula {
 	# jobs
 	exec { 'bacula-sd reload':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		command     => 'true',
+		command     => '/bin/true',
 		refreshonly => true,
 	}
 
