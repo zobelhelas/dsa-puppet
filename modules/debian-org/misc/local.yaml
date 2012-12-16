@@ -44,7 +44,6 @@ nameinfo:
   falla.debian.org: Manuel de Falla y Matheu (November 23rd, 1876 - November 14th, 1946)
   fano.debian.org: Guido Alberto Fano (March 18th, 1875 - August 14th, 1961)
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
-  field.debian.org: John Field (1782 - 1837)
   fils.debian.org: Anton Fils (September 22nd, 1733 (baptized) - March 14th, 1760 (buried))
   finzi.debian.org: Gerald Raphael Finzi (July 14th, 1901 - September 27th, 1956)
   fischer.debian.org: Johann Caspar Ferdinand Fischer (September 9th, 1656 - August 27th, 1746)
@@ -57,7 +56,6 @@ nameinfo:
   grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
   harris.debian.org: Sir William Henry Harris (March 28th, 1883 - September 6th, 1973)
-  hartmann.debian.org: Karl Amadeus Hartmann (August 2nd, 1905 - December 5th, 1963)
   hasse.debian.org: Johann Adolph Hasse (March 25th, 1699 - December 16th, 1783)
   hebden.debian.org: John Hebden (1712 - 1765)
   henze.debian.org: Hans Werner Henze (July 1st, 1926 - October 27th, 2012)
@@ -112,7 +110,6 @@ nameinfo:
   salieri.debian.org: Antonio Salieri (August 18th, 1750 - May 7th, 1825)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   santoro.debian.org: Cláudio Santoro (November 23rd, 1919 - March 27th, 1989)
-  scelsi.debian.org: Giacinto Scelsi (January 8th, 1905 - August 9th, 1988)
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
@@ -247,7 +244,6 @@ host_settings:
     - arnold.debian.org
     - ball.debian.org
     - harris.debian.org
-    - hartmann.debian.org
     - hasse.debian.org
     - hebden.debian.org
     - henze.debian.org

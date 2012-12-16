@@ -155,13 +155,6 @@ class ferm::per-host {
 				rule            => '&TCP_UDP_SERVICE(5080)'
 			}
 		}
-		scelsi: {
-			@ferm::rule { 'dc11-icecast':
-				domain          => '(ip ip6)',
-				description     => 'Allow icecast access',
-				rule            => '&SERVICE(tcp, 8000)'
-			}
-		}
 		default: {}
 	}
 
