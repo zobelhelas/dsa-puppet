@@ -73,7 +73,7 @@ lock() {
 do_rsync() {
 	local remote_host="$1"; shift
 
-	local args="--server --sender -vltrze.iLsf --safe-links ."
+	local args="--server --sender -vlHtrze.iLsf --safe-links ."
 	if [ "$*" = "$args -new-/" ] || [ "$*" = "$args ./-new-/" ] ; then
 		local path="$BASEDIR/current-push"
 		info "serving $remote_host with $path"

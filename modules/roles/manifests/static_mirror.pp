@@ -40,7 +40,7 @@ class roles::static_mirror {
 		content => template('roles/static-mirroring/vhost/planet.debian.org.erb'),
 	}
 
-	apache2::site { '10-static-vhosts-simple':
+	apache2::site { '010-static-vhosts-simple':
 		site => "static-vhosts-simple",
 		content => template('roles/static-mirroring/vhost/static-vhosts-simple.erb'),
 	}
