@@ -10,10 +10,6 @@ class roles::static_mirror {
 	apache2::module { 'rewrite': }
 	apache2::module { 'expires': }
 
-	apache2::config { "local-static-vhost.conf":
-		content => template('roles/static-mirroring/static-vhost.conf.erb'),
-	}
-
 	file { '/usr/local/bin/static-mirror-run':
 		source => 'puppet:///modules/roles/static-mirroring/static-mirror-run',
 		mode   => '0555',
@@ -33,6 +29,10 @@ class roles::static_mirror {
 	$vhost_listen = $::hostname ? {
 		klecker => '130.89.148.14:80 [2001:610:1908:b000::148:14]:80',
 		default => '*:80',
+	}
+
+	apache2::config { "local-static-vhost.conf":
+		content => template('roles/static-mirroring/static-vhost.conf.erb'),
 	}
 
 	apache2::site { '010-planet.debian.org':
