@@ -11,7 +11,7 @@ class roles::static_mirror {
 	apache2::module { 'expires': }
 
 	apache2::config { "local-static-vhost.conf":
-		source  => "puppet:///modules/roles/static-mirroring/static-vhost.conf",
+		content => template('roles/static-mirroring/static-vhost.conf.erb'),
 	}
 
 	file { '/usr/local/bin/static-mirror-run':
