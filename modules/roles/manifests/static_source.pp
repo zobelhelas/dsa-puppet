@@ -3,8 +3,8 @@ class roles::static_source {
 	file { '/etc/ssh/userkeys/staticsync':
 		content => template('roles/static-mirroring/static-mirror-authorized_keys.erb'),
 	}
-	file { '/usr/local/bin/static-mirror-ssh-wrap':
-		source  => "puppet:///modules/roles/static-mirroring/static-mirror-ssh-wrap",
+	file { '/usr/local/bin/static-update-component':
+		content => template('roles/static-mirroring/static-update-component.erb'),
 		mode    => '0555',
 	}
 	file { '/usr/local/bin/static-mirror-ssh-wrap':
