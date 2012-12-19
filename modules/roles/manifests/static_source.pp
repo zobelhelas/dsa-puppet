@@ -7,6 +7,10 @@ class roles::static_source inherits roles::static_base {
             source  => "puppet:///modules/roles/static-mirroring/static-mirror-ssh-wrap",
             mode => 555,
             ;
+        '/usr/local/bin/static-update-component':
+            content => template('roles/static-mirroring/static-update-component.erb'),
+            mode => 555,
+            ;
     }
 }
 # vim:set et:
