@@ -61,7 +61,7 @@ lines = []
 masters = []
 scope.lookupvar('site::localinfo').keys.sort.each do |node|
     if scope.lookupvar('site::localinfo')[node]['static_master']
-        lines << "masters+=(\"#{node}\"}"
+        lines << "  masters+=(\"#{node}\")"
     end
 end
 lines.join("\n")
