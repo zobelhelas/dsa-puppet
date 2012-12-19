@@ -125,6 +125,8 @@ dak		ALL=(dak-unpriv)	NOPASSWD: ALL
 Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
+%planet		senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
+
 # The piuparts slave needs to handle chroots
 piupartss	piatti=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
