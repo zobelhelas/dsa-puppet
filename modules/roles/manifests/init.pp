@@ -8,9 +8,9 @@ class roles {
 		include munin::master
 	}
 
-	if getfromhash($site::nodeinfo, 'nagiosmaster') {
-		include nagios::server
-	}
+	#if getfromhash($site::nodeinfo, 'nagiosmaster') {
+	#	include nagios::server
+	#}
 
 	if getfromhash($site::nodeinfo, 'buildd') {
 		include buildd
