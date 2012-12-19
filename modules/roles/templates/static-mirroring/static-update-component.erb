@@ -68,7 +68,7 @@ lines.join("\n")
 %>
 
   for master_idx in ${!masters[*]}; do
-    ssh "${masters[$master_idx]}" static-master-update-component "$component"
+    ssh -t -o BatchMode=yes "${masters[$master_idx]}" static-master-update-component "$component"
   done
 fi
 
