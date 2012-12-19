@@ -42,9 +42,7 @@ if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
   exit 1
 fi
 
-if [ "$srchost" = "`hostname -f`" ]; then
-  src="$srcdir"
-else
+if ! [ "$srchost" = "`hostname -f`" ]; then
   echo >&2 "Component $component is sourced from $srchost, not this host."
   exit 1
 fi
