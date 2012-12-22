@@ -35,6 +35,10 @@ base=/home/staticsync/static-master/master
 set -e
 set -u
 
+if [ "`id -u`" != "`stat -c %u "$base"`" ]; then
+  echo >&2 "You are probably running this as the wrong user."
+  exit 1
+fi
 
 lock() {
   local fd="$1"; shift
