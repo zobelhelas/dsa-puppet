@@ -68,7 +68,7 @@ lines.join("\n")
 %>
 
   for master_idx in ${!masters[*]}; do
-    ssh -t -o ServerAliveInterval=300 -o PreferredAuthentications=publickey "${masters[$master_idx]}" static-master-update-component "$component"
+    ssh -o AddressFamily=inet -t -o ServerAliveInterval=300 -o PreferredAuthentications=publickey "${masters[$master_idx]}" static-master-update-component "$component"
   done
 fi
 
