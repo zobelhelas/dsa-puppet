@@ -15,6 +15,11 @@ define ferm::module (
 		$module = $title
 	}
 
+	$hook_prefix = $::lsbdistcodename ? {
+		squeeze => '',
+		default => '@',
+	}
+
 	if $::kernel == 'Linux' {
 		file { "/etc/ferm/conf.d/load_${module}.conf":
 			ensure  => $ensure,
