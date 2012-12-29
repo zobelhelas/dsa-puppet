@@ -111,7 +111,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %volatile	ALL=(volatile)	ALL
 %wbadm		ALL=(wbadm)	ALL
 %mujeres	ALL=(women)	ALL
-%wikiadm	ALL=(wiki)	ALL
+%wikiadm	ALL=(wiki,wikiweb)	ALL
 %qa-core	QAHOSTS=(qa)	ALL
 %gobby		gombert=(gobby)	ALL
 
