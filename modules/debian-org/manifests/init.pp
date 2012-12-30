@@ -39,6 +39,12 @@ class debian-org {
 		ensure => installed,
 	}
 
+	if $::lsbmajdistrelease >= 7 {
+		package { 'libfilesystem-ruby1.9':
+			ensure => installed,
+		}
+	}
+
 	munin::check { [
 			'cpu',
 			'entropy',
