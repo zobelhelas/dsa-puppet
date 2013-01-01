@@ -1,13 +1,14 @@
 class buildd {
 
-	package { [
-			'schroot',
-			'sbuild'
-		]:
-		ensure  => installed,
-		require => [
-			Exec['apt-get update']
-		]
+	package { 'schroot':
+		ensure => installed
+	}
+	package { 'sbuild':
+		ensure => installed,
+	}
+	package { 'libsbuild-perl':
+		ensure => installed,
+		before => Package['sbuild']
 	}
 
 	package { 'apt-transport-https':
