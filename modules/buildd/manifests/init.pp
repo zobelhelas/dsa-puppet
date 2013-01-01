@@ -34,15 +34,13 @@ class buildd {
 		default => 'wheezy'
 	}
 
-	if $suite == 'squeeze' {
-		site::aptrepo { 'buildd.debian.org':
-			key        => 'puppet:///modules/buildd/buildd.debian.org.asc',
-			url        => 'https://buildd.debian.org/apt/',
-			suite      => $suite,
-			components => 'main',
-			require    => Package['apt-transport-https'],
-			before     => Package[schroot,sbuild]
-		}
+	site::aptrepo { 'buildd.debian.org':
+		key        => 'puppet:///modules/buildd/buildd.debian.org.asc',
+		url        => 'https://buildd.debian.org/apt/',
+		suite      => $suite,
+		components => 'main',
+		require    => Package['apt-transport-https'],
+		before     => Package[schroot,sbuild]
 	}
 
 	if $::hostname in [alkman,porpora,zandonai] {
