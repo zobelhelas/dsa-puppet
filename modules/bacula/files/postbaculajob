@@ -40,12 +40,12 @@ client=nil
 output=nil
 ARGV.options do |opts|
         opts.on_tail("-h", "--help" , "Display this help screen")                                               { show_help(opts) }
-        opts.on("-d", "--director=AGE"   , String, "name of the director running this job")    { |director| }
-        opts.on("-i", "--jobid=JOBID"     , String, "Job ID")                                  { |jobid| }
-        opts.on("-l", "--joblevel=LEVEL"  , String, "Job Level")                               { |joblevel| }
-        opts.on("-n", "--jobname=NAME"    , String, "Job Name")                                { |jobname| }
-        opts.on("-c", "--client=NAME"     , String, "Client Name")                             { |client| }
-        opts.on("-o", "--output=FILE"     , String, "output File")                             { |output| }
+        opts.on("-d", "--director=AGE"   , String, "name of the director running this job")    { |x| director = x }
+        opts.on("-i", "--jobid=JOBID"     , String, "Job ID")                                  { |x| jobid = x }
+        opts.on("-l", "--joblevel=LEVEL"  , String, "Job Level")                               { |x| joblevel = x }
+        opts.on("-n", "--jobname=NAME"    , String, "Job Name")                                { |x| jobname = x }
+        opts.on("-c", "--client=NAME"     , String, "Client Name")                             { |x| client = x }
+        opts.on("-o", "--output=FILE"     , String, "output File")                             { |x| output = x }
         opts.parse!
 end
 show_help(ARGV.options, 1, STDERR) if ARGV.length != 0
