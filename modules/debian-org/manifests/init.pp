@@ -20,11 +20,8 @@ class debian-org {
 			'dsa-munin-plugins',
 		]:
 		ensure => installed,
-		require => [
-			File['/etc/apt/sources.list.d/db.debian.org.list'],
-			Exec['apt-get update']
-		]
 	}
+
 	package { [
 			'apt-utils',
 			'bash-completion',
@@ -68,10 +65,6 @@ class debian-org {
 	if getfromhash($site::nodeinfo, 'broken-rtc') {
 		package { 'fake-hwclock':
 			ensure => installed,
-			require => [
-				File['/etc/apt/sources.list.d/db.debian.org.list'],
-				Exec['apt-get update']
-			]
 		}
 	}
 
@@ -236,6 +229,7 @@ class debian-org {
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		refreshonly => true,
 	}
+	Exec['apt-get update']->Package<| |>
 
 	exec { 'dpkg-reconfigure tzdata -pcritical -fnoninteractive':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',

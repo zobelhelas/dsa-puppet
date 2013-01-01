@@ -57,6 +57,6 @@ define site::aptrepo (
 	file { "/etc/apt/sources.list.d/${name}.list":
 			ensure  => $ensure,
 			content => template('site/aptrepo.erb'),
-			notify => Exec['apt-get update'],
+			notify  => Exec['apt-get update'],
 	}
 }

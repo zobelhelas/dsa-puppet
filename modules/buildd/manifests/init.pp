@@ -40,7 +40,6 @@ class buildd {
 		suite      => $suite,
 		components => 'main',
 		require    => Package['apt-transport-https'],
-		before     => Package[schroot,sbuild]
 	}
 
 	if $::hostname in [alkman,porpora,zandonai] {
@@ -67,7 +66,7 @@ class buildd {
 	}
 	file { '/etc/apt/preferences.d/buildd':
 		content => template('buildd/etc/apt/preferences.d/buildd'),
-		before  => File['/etc/apt/sources.list.d/buildd.debian.org.list']
+		before  => Site::Aptrepo['buildd.debian.org']
 	}
 	file { '/etc/schroot/mount-defaults':
 		content => template('buildd/etc/schroot/mount-defaults.erb'),

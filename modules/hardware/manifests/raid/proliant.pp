@@ -8,17 +8,9 @@ class hardware::raid::proliant {
 
 	package { 'hpacucli':
 		ensure  => installed,
-		require => [
-			File['/etc/apt/sources.list.d/debian.restricted.list'],
-			Exec['apt-get update']
-		]
 	}
 	package { 'hp-health':
 		ensure => installed,
-		require => [
-			File['/etc/apt/sources.list.d/debian.restricted.list'],
-			Exec['apt-get update']
-		]
 	}
 	package { 'arrayprobe':
 		ensure => installed,
