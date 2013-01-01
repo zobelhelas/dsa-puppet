@@ -5,6 +5,7 @@ class nagios::client inherits nagios {
 	}
 	package { 'dsa-nagios-checks':
 		ensure => installed,
+		tag    => extra_repo,
 	}
 
 	service { 'nagios-nrpe-server':

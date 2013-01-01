@@ -15,8 +15,7 @@ class bacula::director inherits bacula {
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		command     => 'service bacula-director reload',
 		refreshonly => true,
-        }
-
+	}
 
 	file { '/etc/bacula/conf.d':
 		ensure  => directory,

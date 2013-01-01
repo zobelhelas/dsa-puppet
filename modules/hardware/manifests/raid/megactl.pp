@@ -2,6 +2,7 @@ class hardware::raid::megactl {
 
 	package { 'megactl':
 		ensure => installed,
+		tag    => extra_repo,
 	}
 
 	site::aptrepo { 'debian.restricted':

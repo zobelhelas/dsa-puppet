@@ -1,13 +1,16 @@
 class buildd {
 
 	package { 'schroot':
-		ensure => installed
+		ensure => installed,
+		tag    => extra_repo,
 	}
 	package { 'sbuild':
 		ensure => installed,
+		tag    => extra_repo,
 	}
 	package { 'libsbuild-perl':
 		ensure => installed,
+		tag    => extra_repo,
 		before => Package['sbuild']
 	}
 

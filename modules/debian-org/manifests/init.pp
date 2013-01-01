@@ -20,6 +20,7 @@ class debian-org {
 			'dsa-munin-plugins',
 		]:
 		ensure => installed,
+		tag    => extra_repo,
 	}
 
 	package { [
@@ -65,6 +66,7 @@ class debian-org {
 	if getfromhash($site::nodeinfo, 'broken-rtc') {
 		package { 'fake-hwclock':
 			ensure => installed,
+			tag    => extra_repo,
 		}
 	}
 
@@ -229,7 +231,7 @@ class debian-org {
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		refreshonly => true,
 	}
-	Exec['apt-get update']->Package<| |>
+	Exec['apt-get update']->Package<| tag == extra_repo |>
 
 	exec { 'dpkg-reconfigure tzdata -pcritical -fnoninteractive':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',

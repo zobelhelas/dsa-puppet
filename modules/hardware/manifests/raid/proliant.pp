@@ -8,9 +8,11 @@ class hardware::raid::proliant {
 
 	package { 'hpacucli':
 		ensure  => installed,
+		tag    => extra_repo,
 	}
 	package { 'hp-health':
 		ensure => installed,
+		tag    => extra_repo,
 	}
 	package { 'arrayprobe':
 		ensure => installed,
