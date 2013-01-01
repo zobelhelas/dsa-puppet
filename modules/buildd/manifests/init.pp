@@ -6,7 +6,6 @@ class buildd {
 		]:
 		ensure  => installed,
 		require => [
-			File['/etc/apt/sources.list.d/buildd.debian.org.list'],
 			Exec['apt-get update']
 		]
 	}
@@ -30,17 +29,20 @@ class buildd {
 
 	$suite = $::lsbdistcodename ? {
 		squeeze => $::lsbdistcodename,
-		wheezy => $::lsbdistcodename,
-		undef => 'squeeze',
+		wheezy  => $::lsbdistcodename,
+		undef   => 'squeeze',
 		default => 'wheezy'
 	}
 
-	site::aptrepo { 'buildd.debian.org':
-		key        => 'puppet:///modules/buildd/buildd.debian.org.asc',
-		url        => 'https://buildd.debian.org/apt/',
-		suite      => $suite,
-		components => 'main',
-		require    => Package['apt-transport-https'],
+	if $suite == 'squeeze' {
+		site::aptrepo { 'buildd.debian.org':
+			key        => 'puppet:///modules/buildd/buildd.debian.org.asc',
+			url        => 'https://buildd.debian.org/apt/',
+			suite      => $suite,
+			components => 'main',
+			require    => Package['apt-transport-https'],
+			before     => Package[schroot,sbuild]
+		}
 	}
 
 	if $::hostname in [alkman,porpora,zandonai] {
