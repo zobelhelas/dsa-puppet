@@ -1,6 +1,6 @@
 class bacula {
 
-	$bacula_operator_email    = 'debian-admin@debian.org'
+	$bacula_operator_email    = 'bacula-reports@debian.org'
 
 	$bacula_director_name     = 'debian-dir'
 	$bacula_storage_name      = 'debian-sd'
