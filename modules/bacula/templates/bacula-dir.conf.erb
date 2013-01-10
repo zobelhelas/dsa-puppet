@@ -121,10 +121,10 @@ Messages {
   mailcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula: %t %e of %c %l\" %r"
   operatorcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula: Intervention needed for %j\" %r"
   #mail on error = <%= bacula_operator_email %> = all, !skipped
-  mail = <%= bacula_operator_email %> = all, !skipped
+  mail = <%= bacula_operator_email %> = all
   operator = <%= bacula_operator_email %> = mount
   console = all, !skipped, !saved
-  append = "/var/lib/bacula/log" = all, !skipped
+  append = "/var/lib/bacula/log" = all
   catalog = all
 }
 
@@ -132,9 +132,9 @@ Messages {
 Messages {
   Name = Daemon
   mailcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula daemon message\" %r"
-  mail = <%= bacula_operator_email %> = all, !skipped
+  mail = <%= bacula_operator_email %> = all
   console = all, !skipped, !saved
-  append = "/var/lib/bacula/log" = all, !skipped
+  append = "/var/lib/bacula/log" = all
 }
 
 ########################################################################
