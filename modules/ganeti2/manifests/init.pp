@@ -30,6 +30,9 @@ class ganeti2 {
 		'/etc/ganeti/instance-debootstrap/variants/dsa.conf':
 			content => template('ganeti2/instance-debootstrap/variants/dsa.conf.erb'),
 			;
+		'/etc/ganeti/instance-debootstrap/variants/dsa-wheezy.conf':
+			content => template('ganeti2/instance-debootstrap/variants/dsa-wheezy.conf.erb'),
+			;
 		'/etc/ganeti/instance-debootstrap/hooks/00-dsa-configure-networking':
 			content => template('ganeti2/instance-debootstrap/hooks/00-dsa-configure-networking.erb'),
 			mode   => '0555',
