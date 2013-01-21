@@ -161,14 +161,14 @@ class ferm::per-host {
 				description => 'NOTRACK for nameserver traffic',
 				table       => 'raw',
 				chain       => 'PREROUTING',
-				rule        => 'destination 82.195.75.102 proto (tcp udp) dport 53 jump NOTRACK'
+				rule        => 'destination 82.195.75.108 proto (tcp udp) dport 53 jump NOTRACK'
 			}
 			@ferm::rule { 'dsa-notrack-dns-diamond-out':
 				domain      => 'ip',
 				description => 'NOTRACK for nameserver traffic',
 				table       => 'raw',
 				chain       => 'PREROUTING',
-				rule        => 'source 82.195.75.102 proto (tcp udp) sport 53 jump NOTRACK'
+				rule        => 'source 82.195.75.108 proto (tcp udp) sport 53 jump NOTRACK'
 			}
 		}
 		default: {}
