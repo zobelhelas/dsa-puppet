@@ -12,7 +12,7 @@
 }
 
 @def &TCP_UDP_SERVICE($port) = {
- proto (tcp udp) mod state state (NEW) dport $port ACCEPT;
+ proto (tcp udp) dport $port ACCEPT;
 }
 
 @def &TCP_UDP_SERVICE_RANGE($port, $srange) = {
