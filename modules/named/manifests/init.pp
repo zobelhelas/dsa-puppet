@@ -28,7 +28,7 @@ class named {
 		domain      => '(ip ip6)',
 		description => 'NOTRACK for nameserver traffic',
 		table       => 'raw',
-		chain       => 'PREROUTING',
+		chain       => 'OUTPUT',
 		rule        => 'proto (tcp udp) sport 53 jump NOTRACK'
 	}
 
