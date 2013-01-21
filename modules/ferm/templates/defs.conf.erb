@@ -16,7 +16,7 @@
 }
 
 @def &TCP_UDP_SERVICE_RANGE($port, $srange) = {
- proto (tcp udp) mod state state (NEW) dport $port @subchain "$port" { saddr ($srange) ACCEPT; }"
+ proto (tcp udp) dport $port @subchain "$port" { saddr ($srange) ACCEPT; }"
 }
 
 @def $HOST_MAILRELAY_V4 = (<%=
