@@ -4,7 +4,7 @@ class roles::security_master {
 		banner     => 'security-master.debian.org FTP server (vsftpd)',
 		logfile    => '/var/log/ftp/vsftpd-security-master.debian.org.log',
 		writable   => true,
-		chown_user => dak,
+		chown_user => dak-unpriv,
 		root       => '/srv/ftp.root/',
 	}
 
