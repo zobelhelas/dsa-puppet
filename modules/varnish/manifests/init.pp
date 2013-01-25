@@ -11,7 +11,7 @@ class varnish {
         @ferm::rule { 'dsa-varnish':
                 domain      => '(ip ip6)',
                 description => 'Allow http access',
-                rule        => '&TCP_SERVICE(80)'
+		rule        => '&SERVICE(tcp, 80)'
         }
 
         file { '/etc/default/varnish':
