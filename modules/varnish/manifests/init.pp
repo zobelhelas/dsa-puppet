@@ -1,7 +1,7 @@
 class varnish {
 
         package { 'varnish':
-                ensure => installed
+                ensure => installed,
         }
 
         service { 'varnish':
@@ -16,12 +16,12 @@ class varnish {
 
         file { '/etc/default/varnish':
 		source => 'puppet:///modules/varnish/files/varnish.default'
-                notify  => Service['varnish'],
+                notify  => Exec['varnish restart'],
         }
 
         file { '/etc/varnish/default.vcl':
 		source => 'puppet:///modules/varnish/files/default.vcl'
-                notify  => Service['varnish'],
+                notify  => Exec['varnish restart'],
         }
 }
 
