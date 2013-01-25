@@ -16,12 +16,12 @@ class varnish {
 
         file { '/etc/default/varnish':
 		source => 'puppet:///modules/varnish/files/varnish.default',
-                notify => Exec['varnish restart'],
+                notify =>  Service['varnish'],
         }
 
         file { '/etc/varnish/default.vcl':
 		source => 'puppet:///modules/varnish/files/default.vcl',
-                notify => Exec['varnish restart'],
+                notify =>  Service['varnish'],
         }
 }
 
