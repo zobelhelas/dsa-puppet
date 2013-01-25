@@ -3,6 +3,18 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+
+director packages_debian_org {
+	{
+		.backend = holter
+		.weight = 10000;
+	}
+	{
+		.backend = powell
+		.weight = 1;
+	}
+}
+
 backend holter {
         # holter.debian.org
         .host = "194.177.211.202";
@@ -20,17 +32,7 @@ sub vcl_recv {
         remove req.http.X-Forwarded-For;
         set    req.http.X-Forwarded-For = req.http.rlnclientipaddr;
 
-        ### restart logic, this will redefine the backends if vcl_restart has been triggered
-        if (req.restarts == 0) {
-                set req.backend = holter;
-        } else if (req.restarts == 1) {
-                set req.backend = powell;
-        } else if (req.restarts == 2) {
-                set req.backend = holter;
-        } else {
-                set req.backend = holter;
-        }
-
+	set req.backend = packages_debian_org;
 
 	return(lookup);
 }
