@@ -15,13 +15,17 @@ class varnish {
         }
 
         file { '/etc/default/varnish':
-		source => 'puppet:///modules/varnish/files/varnish.default',
-                notify =>  Service['varnish'],
+		source  => 'puppet:///modules/varnish/varnish.default',
+		require =>  Package['varnish'],
+                notify  =>  Service['varnish'],
+		mode    => '0444',
         }
 
         file { '/etc/varnish/default.vcl':
-		source => 'puppet:///modules/varnish/files/default.vcl',
-                notify =>  Service['varnish'],
+		source => 'puppet:///modules/varnish/default.vcl',
+		require =>  Package['varnish'],
+		notify =>  Service['varnish'],
+		mode    => '0444',
         }
 }
 
