@@ -32,12 +32,7 @@ sub vcl_recv {
         }
 
 
-        if (req.request == "GET" && req.url ~ "^/search?") {
-                return(pass);
-        }
-        if (req.request == "GET" && req.url ~ "^/(squeeze|wheezy|sid|experimental|stable|testing|unstable|rc-buggy|squeezy-backports|lenny-backports|Pics)/") {
-                return(lookup);
-        }
+	return(lookup);
 }
 
 sub vcl_fetch {
@@ -49,22 +44,9 @@ sub vcl_fetch {
         set beresp.ttl = 600s;
         set beresp.grace = 600s;
 
-        if (beresp.status == 404) {
-                set beresp.ttl = 0s;
-        }
-
         if (beresp.status >= 500) {
                 set beresp.ttl = 0s;
         }
-
-        if (req.request == "GET" && req.url ~ "^/search?") {
-                set beresp.ttl = 0s;
-        }
-
-        if (req.request == "GET" && req.url ~ "^/(squeeze|wheezy|sid|experimental|stable|testing|unstable|rc-buggy|squeezy-backports|lenny-backports|Pics)/") {
-                set beresp.ttl = 3600s;
-        }
-
 
         set beresp.http.X-Cacheable = "YES";
         return(deliver);
