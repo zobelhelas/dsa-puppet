@@ -96,6 +96,10 @@ node default {
 		include nfs-server
 	}
 
+	if $::hostname == 'vieuxtemps' {
+		include varnish
+	}
+
 	if $::brokenhosts {
 		include hosts
 	}
