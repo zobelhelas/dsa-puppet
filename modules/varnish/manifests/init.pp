@@ -8,6 +8,8 @@ class varnish {
                 ensure => running,
         }
 
+	include apache2::dynamic
+
         @ferm::rule { 'dsa-varnish':
                 domain      => '(ip ip6)',
                 description => 'Allow http access',
