@@ -4,27 +4,23 @@
 ##
 
 
-director packages_debian_org {
+director packages_debian_org random {
 	{
-		.backend = holter
+		.backend = {
+			.host = "194.177.211.202";
+			.port = "80";
+		}
 		.weight = 10000;
 	}
-	{
-		.backend = powell
-		.weight = 1;
-	}
+        {
+                .backend = {
+                        .host = "87.106.64.223";
+                        .port = "80";
+                }
+                .weight = 1;
+        }
 }
 
-backend holter {
-        # holter.debian.org
-        .host = "194.177.211.202";
-        .port = "80";
-}
-backend powell {
-        # powell.debian.org
-        .host = "87.106.64.223";
-        .port = "80";
-}
 
 sub vcl_recv {
 
@@ -32,9 +28,9 @@ sub vcl_recv {
         remove req.http.X-Forwarded-For;
         set    req.http.X-Forwarded-For = req.http.rlnclientipaddr;
 
-	set req.backend = packages_debian_org;
+        set req.backend = packages_debian_org;
 
-	return(lookup);
+        return(lookup);
 }
 
 sub vcl_fetch {
@@ -67,3 +63,4 @@ sub vcl_deliver {
 
         return(deliver);
 }
+
