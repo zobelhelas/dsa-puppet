@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# Copyright (c) 2012 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+componentlist=/etc/static-components.conf
+
+if [ "$#" != 1 ]; then
+  echo >&2 "Usage: $0 <component>"
+  exit 1
+fi
+
+component="$1"
+
+if [ "${component%/*}" != "$component" ] ; then
+  echo >&2 "$0: Invalid component: $component";
+  exit 1
+fi
+
+srchost="$(awk -v component="$component" '$1 == component {print $2; exit}' "$componentlist")"
+srcdir="$(awk -v component="$component" '$1 == component {print $3; exit}' "$componentlist")"
+if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
+  echo >&2 "$0: Invalid component: $component (not found in $componentlist)";
+  exit 1
+fi
+
+if ! [ "$srchost" = "`hostname -f`" ]; then
+  echo >&2 "Component $component is sourced from $srchost, not this host."
+  exit 1
+fi
+
+if ! [ -d "$srcdir" ]; then
+  echo >&2 "Component source directory $srcdir does not exist or is not a directory, or is not accessible."
+  exit 1
+fi
+
+if [ "`id -nu`" != "staticsync" ]; then
+  sudo -u staticsync static-update-component "$component"
+else
+  masters=()
+<%=
+lines = []
+masters = []
+scope.lookupvar('site::localinfo').keys.sort.each do |node|
+    if scope.lookupvar('site::localinfo')[node]['static_master']
+        lines << "  masters+=(\"#{node}\")"
+    end
+end
+lines.join("\n")
+%>
+
+  for master_idx in ${!masters[*]}; do
+    ssh -o AddressFamily=inet -t -o ServerAliveInterval=300 -o PreferredAuthentications=publickey "${masters[$master_idx]}" static-master-update-component "$component"
+  done
+fi
+
+# vim:set et:
+# vim:set ts=2:
+# vim:set shiftwidth=2:
+# vim:set syn=sh:

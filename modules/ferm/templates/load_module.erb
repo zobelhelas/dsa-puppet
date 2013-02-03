@@ -1,1 +1,1 @@
-hook <%= scope.lookupvar('hookstage') %> 'modprobe <%= scope.lookupvar('module') %> || true';
+<%= @hook_prefix -%>hook <%= @hookstage -%> 'modprobe <%= @module -%> || true';

@@ -7,6 +7,9 @@ define ferm::rule (
 	$prio='00',
 	$notarule=false
 ) {
+
+	include ferm
+
 	file {
 		"/etc/ferm/dsa.d/${prio}_${name}":
 			ensure  => present,

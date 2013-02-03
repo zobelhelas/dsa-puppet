@@ -1,0 +1,58 @@
+#!/usr/bin/ruby
+
+# Copyright 2009 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+require 'optparse'
+
+NAGIOS_STATUS = { "OK" => 0, "WARNING" => 1, "CRITICAL" => 2, "UNKNOWN" => 3 }
+
+def show_help(parser, code=0, io=STDOUT)
+  program_name = File.basename($0, '.*')
+  io.puts "Usage: #{program_name} <options>"
+  io.puts parser.summarize
+  exit(code)
+end
+
+director=nil
+jobid=nil
+joblevel=nil
+jobname=nil
+client=nil
+output=nil
+ARGV.options do |opts|
+        opts.on_tail("-h", "--help" , "Display this help screen")                                               { show_help(opts) }
+        opts.on("-d", "--director=AGE"   , String, "name of the director running this job")    { |x| director = x }
+        opts.on("-i", "--jobid=JOBID"     , String, "Job ID")                                  { |x| jobid = x }
+        opts.on("-l", "--joblevel=LEVEL"  , String, "Job Level")                               { |x| joblevel = x }
+        opts.on("-n", "--jobname=NAME"    , String, "Job Name")                                { |x| jobname = x }
+        opts.on("-c", "--client=NAME"     , String, "Client Name")                             { |x| client = x }
+        opts.on("-o", "--output=FILE"     , String, "output File")                             { |x| output = x }
+        opts.parse!
+end
+show_help(ARGV.options, 1, STDERR) if ARGV.length != 0
+show_help(ARGV.options, 1, STDERR) unless director and jobid and joblevel and jobname and client and output
+
+status = File.new(output, "w")
+status.chmod(0644)
+status.puts "OK"
+status.puts "#{joblevel} Job #{jobname} (#{jobid}) by director #{director} on #{client} finished successfully at #{Time.now}"
+

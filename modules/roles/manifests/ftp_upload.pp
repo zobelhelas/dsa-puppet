@@ -1,21 +1,10 @@
 class roles::ftp_upload {
 
-	$bind = $::hostname ? {
-		kassia  => '::ffff:130.89.149.224',
-		default => '',
-	}
-
-	$bind6 = $::hostname ? {
-		kassia  => '2001:610:1908:a000:21b:78ff:fe75:3d46',
-		default => '',
-	}
-
 	vsftpd::site { 'ftp-upload':
 		banner     => 'ftp.upload.debian.org FTP server',
 		logfile    => '/var/log/ftp/vsftpd-ftp.upload.debian.org.log',
 		writable   => true,
-		chown_user => dak,
-		bind       => $bind,
+		chown_user => dak-unpriv,
 		root       => '/srv/upload.debian.org/ftp',
 	}
 
@@ -24,8 +13,7 @@ class roles::ftp_upload {
 			banner     => 'ftp.upload.debian.org FTP server',
 			logfile    => '/var/log/ftp/vsftpd-ftp.upload.debian.org.log',
 			writable   => true,
-			chown_user => dak,
-			bind       => $bind6,
+			chown_user => dak-unpriv,
 			root       => '/srv/upload.debian.org/ftp',
 		}
 	}

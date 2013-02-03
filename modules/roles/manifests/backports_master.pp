@@ -6,7 +6,7 @@ class roles::backports_master {
 		banner     => 'backports-master.debian.org FTP server',
 		logfile    => '/var/log/ftp/vsftpd-backports-master.debian.org.log',
 		writable   => true,
-		chown_user => dak,
+		chown_user => dak-unpriv,
 		root       => '/srv/backports-upload',
 	}
 

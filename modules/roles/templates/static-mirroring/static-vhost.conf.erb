@@ -1,0 +1,35 @@
+# puppet maintained
+
+<Macro common-static-vhost $name>
+<Macro common-$name>
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+	ServerSignature On
+
+	DocumentRoot /srv/static.debian.org/cur/$name/
+	<Directory /srv/static.debian.org/cur/$name/>
+		AllowOverride FileInfo
+		Options Multiviews Indexes FollowSymLinks
+		IndexOptions FancyIndexing NameWidth=*
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+</Macro>
+
+<Virtualhost <%= vhost_listen %> >
+	ServerName $name
+	ServerAdmin debian-admin@lists.debian.org
+
+
+	ErrorLog /var/log/apache2/$name-error.log
+	CustomLog /var/log/apache2/$name-access.log combined
+
+	Use common-$name
+</VirtualHost>
+
+</Macro>
+
+# vim:ft=apache:

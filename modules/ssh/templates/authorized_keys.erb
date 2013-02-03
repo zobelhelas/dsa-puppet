@@ -19,10 +19,20 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwbRijHuvIC6cZUZwUfqLT5t/4GRvqiBBmYXkRRhwMajT
 end
 localkeys
 %>
-<%= ganetikeys = case fqdn
-         when "tristano.debian.org", "pasquini.debian.org" then "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDiT6Asr5mK3wR8hjB1gSqJYqWUrQfi1+jtMuZggQcD7VIpabIy0zYSaUP63Oam96BE96qSHUZDEp1EGPoh64rK/9WxGXX/0sRZXJURkOpCO3U2zDAhRbAGqAAYyWS4TPHVUt3g5g+rrHAGgXzc/y2sYChADWJaQ59ga1MyrYGi1VIPAuAaidM01RyFagR1/UmVGP8jCkSD4nGmho4UuFn9Fopnhk5V0YjEEjhjUkPCVe11ckc+fYPiEPFnzgaWJPAycJwF/YmpgjLSKB+mNXqpU4m+jHhpGQ4lK1l0VVf2xOUpbN74uOxThtwPSpgIyq3eG99PkbBGUUweIcSTsZ8h root@pasquini.debian.org (for ganeti)\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC44glHFs5fdojQOUZaR1xwORfVxpmthmjOBgahz3RTCYzX8g0Y4v3rSBTiFOUzgfaY1qyHJX94HDzIq95Unig5ZHZZ2q0V3m3ksIiMQQbiElIqH4w7Yrqc2PICkjzttGwCziNUCIvxuy9pnKqRkpzx4TmorEVhRBjGTM0iAimWcZ5bpZ1E2nWHVtvsMs5nQziRdAiG8hoE2UKzQbpf+AeltZPSIw2LVEAdTmmEWrmyLGaIWY2R5lirwPOTbZsfpLDUD3CLntZbqCFoTOb1xuWvf0SdmpChY7cigaFgwz+ozATxFuLqdW9/YTa/fP1uvid3rSvHkNgojndm0S3/sYTh root@tristano.debian.org (for ganeti)"
-end
-ganetikeys
+<%=
+  ganetikeys = []
+  allnodeinfo = scope.lookupvar('site::allnodeinfo')
+  if scope.lookupvar('::cluster').to_s != 'undefined'
+    scope.lookupvar('::cluster_nodes').to_s.split.sort.each do |node|
+      if allnodeinfo.has_key?(node)
+        ganetikeys << "# for ganeti cluster #{scope.lookupvar('::cluster').to_s}: #{allnodeinfo[node]['hostname'].to_s}"
+        ganetikeys << "from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\" #{allnodeinfo[node]['sshRSAHostKey'].to_s}"
+      else
+        ganetikeys << "# host #{node} not found in allnodeinfo"
+      end
+    end
+  end
+  ganetikeys.join("\n");
 %>
 #
 # DSA

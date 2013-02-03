@@ -59,6 +59,7 @@ conova:
   netrange:
     - 217.196.149.224/28
   nameservers: [217.196.144.129, 217.196.144.229]
+  mirror-debian: http://debian.inode.at/debian/
 csail:
   netrange:
     - 128.31.0.0/24
@@ -111,6 +112,7 @@ uni-karlsruhe:
     - 2001:41b8:202:deb::/64
   searchpaths: [debprivate-darmstadt.debian.org]
   nameservers: [82.195.66.249, 217.198.242.225]
+  mirror-debian: http://debian.netcologne.de/debian/
 marist:
   netrange:
     - 148.100.96.0/25
@@ -150,6 +152,7 @@ sil:
   #nameservers: [213.129.232.1, 213.129.226.2]
   nameservers: [86.59.118.147, 86.59.118.148]
   allow_dns_query: [86.59.118.144/28, 2001:858:2:2::/64]
+  mirror-debian: http://ftp.at.debian.org/debian/
 ubcece:
   netrange:
     - 137.82.84.64/27

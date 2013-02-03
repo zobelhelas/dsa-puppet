@@ -2,10 +2,7 @@ class hardware::raid::megactl {
 
 	package { 'megactl':
 		ensure => installed,
-		require => [
-			File['/etc/apt/sources.list.d/debian.restricted.list'],
-			Exec['apt-get update']
-		]
+		tag    => extra_repo,
 	}
 
 	site::aptrepo { 'debian.restricted':

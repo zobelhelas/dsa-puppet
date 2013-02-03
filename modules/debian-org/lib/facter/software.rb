@@ -34,36 +34,15 @@ Facter.add("postfix") do
 		end
 	end
 end
-Facter.add("postgres81") do
+Facter.add("postgres") do
 	setcode do
-		if FileTest.exist?("/usr/lib/postgresql/8.1/bin/postgres")
-			true
-		else
-			''
-		end
-	end
-end
-Facter.add("postgres83") do
-	setcode do
-		if FileTest.exist?("/usr/lib/postgresql/8.3/bin/postgres")
-			true
-		else
-			''
-		end
-	end
-end
-Facter.add("postgres84") do
-	setcode do
-		if FileTest.exist?("/usr/lib/postgresql/8.4/bin/postgres")
-			true
-		else
-			''
-		end
-	end
-end
-Facter.add("postgres90") do
-	setcode do
-		if FileTest.exist?("/usr/lib/postgresql/9.0/bin/postgres")
+		pg = (FileTest.exist?("/usr/lib/postgresql/8.1/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/8.3/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/8.4/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/9.0/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/9.1/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/9.2/bin/postgres"))
+		if pg
 			true
 		else
 			''
@@ -103,10 +82,10 @@ Facter.add("spamd") do
 	end
 end
 Facter.add("php5") do
-	php =   FileTest.exist?("/usr/lib/apache2/modules/libphp5.so") or
+	php =   (FileTest.exist?("/usr/lib/apache2/modules/libphp5.so") or
 		FileTest.exist?("/usr/bin/php5") or
 		FileTest.exist?("/usr/bin/php5-cgi") or
-		FileTest.exist?("/usr/lib/cgi-bin/php5")
+		FileTest.exist?("/usr/lib/cgi-bin/php5"))
 	setcode do
 		if php
 			true
@@ -116,8 +95,8 @@ Facter.add("php5") do
 	end
 end
 Facter.add("php5suhosin") do
-	suhosin=FileTest.exist?("/usr/lib/php5/20060613/suhosin.so") or
-		FileTest.exist?("/usr/lib/php5/20060613+lfs/suhosin.so")
+	suhosin=(FileTest.exist?("/usr/lib/php5/20060613/suhosin.so") or
+		FileTest.exist?("/usr/lib/php5/20060613+lfs/suhosin.so"))
 	setcode do
 		if suhosin
 			true
@@ -132,13 +111,18 @@ Facter.add("syslogversion") do
 	end
 end
 Facter.add("unbound") do
-	unbound=FileTest.exist?("/usr/sbin/unbound") and
-		FileTest.exist?("/var/lib/unbound/root.key")
+	unbound=(FileTest.exist?("/usr/sbin/unbound") and
+		FileTest.exist?("/var/lib/unbound/root.key"))
 	setcode do
 		if unbound
 			true
 		else
 			''
 		end
+	end
+end
+Facter.add("munin_async") do
+	setcode do
+		FileTest.exist?("/usr/share/munin/munin-async")
 	end
 end

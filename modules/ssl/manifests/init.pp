@@ -1,7 +1,12 @@
 class ssl {
 
-	package { 'openssl':
-		ensure => installed
+	package {
+		'openssl':
+			ensure => installed,
+			;
+		'ssl-cert':
+			ensure => installed,
+			;
 	}
 
 	file { '/etc/ssl/debian':
@@ -22,7 +27,9 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/keys':
 		ensure => directory,
+		group  => ssl-cert,
 		mode   => '0750',
+		require => Package['ssl-cert'],
 	}
 	file { '/etc/ssl/debian/certs/thishost.crt':
 		source => "puppet:///modules/ssl/clientcerts/${::fqdn}.client.crt",
@@ -30,7 +37,9 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/keys/thishost.key':
 		source => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
-		mode   => '0640'
+		mode   => '0440',
+		group   => ssl-cert,
+		require => Package['ssl-cert'],
 	}
 	file { '/etc/ssl/debian/certs/ca.crt':
 		source => 'puppet:///modules/ssl/clientcerts/ca.crt',
@@ -38,6 +47,17 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/crls/ca.crl':
 		source  => 'puppet:///modules/ssl/clientcerts/ca.crl',
+	}
+
+	file { '/etc/ssl/debian/certs/thishost-server.crt':
+		source  => "puppet:///modules/exim/certs/${::fqdn}.crt",
+		notify => Exec['c_rehash /etc/ssl/debian/certs'],
+	}
+	file { '/etc/ssl/debian/keys/thishost-server.key':
+		source  => "puppet:///modules/exim/certs/${::fqdn}.key",
+		mode    => '0440',
+		group   => ssl-cert,
+		require => Package['ssl-cert'],
 	}
 
 	exec { 'c_rehash /etc/ssl/debian/certs':

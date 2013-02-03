@@ -78,6 +78,7 @@ IgnoreMissing=/etc/lvm/archive/.*.vg
 file=/etc/mtab
 file=/etc/ssh_random_seed
 file=/etc/asound.conf
+file=/etc/bacula/bacula-fd.conf
 file=/etc/localtime
 file=/etc/ioctl.save
 file=/etc/passwd.backup
@@ -117,10 +118,12 @@ file=/etc/spamassassin/sa-update-keys
 # These are the directories for the files we handle with puppet
 file=/etc/apache2/conf.d
 files=/etc/apache2/mods-enabled
+file=/etc/bacula
 file=/etc/samhain
 file=/etc/munin
 file=/etc/munin/plugins
 file=/etc/munin/plugin-conf.d
+file=/etc/munin/munin-conf.d
 file=/etc/exim4
 file=/etc/exim4/ssl
 file=/etc/apt
@@ -153,13 +156,9 @@ file=/etc/ferm/dsa.d
 file=/etc/rc.local
 file=/etc/unbound
 file=/etc/dsa
-<% if scope.lookupvar('site::nodeinfo')['puppetmaster'] %>
-
-# Damn you rails apps and your shoddy packaging
-file=/usr/share/puppet-dashboard/public/stylesheets
-file=/usr/share/puppet-dashboard/public/javascripts
-file=/usr/share/puppet-dashboard/public/stylesheets/all.css
-file=/usr/share/puppet-dashboard/public/javascripts/all.js
+<% if scope.lookupvar('site::nodeinfo')['static_mirror'] or scope.lookupvar('site::nodeinfo')['static_source'] or scope.lookupvar('site::nodeinfo')['static_master'] -%>
+file=/etc/ssh/userkeys
+file=/etc/ssh/userkeys/staticsync
 <% end -%>
 
 [LogFiles]
@@ -244,10 +243,13 @@ file=/etc/resolv.conf.dhclient-new
 # We handle these files with puppet - please to not be bothering us
 file=/etc/timezone
 file=/etc/motd.tail
+file=/etc/update-motd.d/
+file=/etc/update-motd.d/puppet-motd
 file=/etc/ntp.conf
 file=/etc/samhain/samhainrc
 file=/etc/munin/munin-node.conf
 file=/etc/munin/plugin-conf.d/munin-node
+dir=2/etc/munin/munin-conf.d
 file=/etc/userdir-ldap.confc
 file=/etc/exim4/blacklist
 file=/etc/exim4/host_blacklist
@@ -425,6 +427,15 @@ file=/etc/ferm/conf.d/defs.conf
 file=/etc/ferm/ferm.conf
 dir=2/etc/ssl/debian
 file=/etc/unbound/unbound.conf
+
+<% if scope.lookupvar('site::nodeinfo')['puppetmaster'] %>
+
+# Damn you rails apps and your shoddy packaging
+file=/usr/share/puppet-dashboard/public/stylesheets
+file=/usr/share/puppet-dashboard/public/javascripts
+file=/usr/share/puppet-dashboard/public/stylesheets/all.css
+file=/usr/share/puppet-dashboard/public/javascripts/all.js
+<% end -%>
 
 [IgnoreNone]
 ##

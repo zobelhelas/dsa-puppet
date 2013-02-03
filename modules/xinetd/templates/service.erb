@@ -3,6 +3,9 @@ service <%= scope.lookupvar('port') %>
 <%- if scope.lookupvar('bind') != '' -%>
 	bind		= <%= scope.lookupvar('bind') %>
 <%- end -%>
+<%- if scope.lookupvar('type') != '' -%>
+	type		= <%= scope.lookupvar('type') %>
+<%- end -%>
 	id		= <%= scope.lookupvar('id') %>
 
 	socket_type	= <%= scope.lookupvar('socket_type') %>
@@ -10,6 +13,9 @@ service <%= scope.lookupvar('port') %>
 	flags		= <%= scope.lookupvar('flags') %>
 	wait		= <%= scope.lookupvar('wait') %>
 	user		= <%= scope.lookupvar('user') %>
+<%- if scope.lookupvar('group') != '' -%>
+	group		= <%= scope.lookupvar('group') %>
+<%- end -%>
 	server		= <%= scope.lookupvar('server') %>
 	server_args	= <%= scope.lookupvar('server_args') %>
 	nice		= <%= scope.lookupvar('nice') %>

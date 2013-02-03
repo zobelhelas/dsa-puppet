@@ -1,0 +1,183 @@
+#!/usr/bin/python
+
+import fcntl
+import os
+import shutil
+import subprocess
+import string
+import sys
+import tempfile
+import time
+
+base='/home/staticsync/static-master'
+subdirs = { 'master': 'master',       # where updates from off-site end up going, the source of everything we do here
+            'cur':    'current-push', # where clients rsync from during a mirror push
+            'live':   'current-live'} # what is currently on the mirrors, and what they rsync from when they come back from being down
+serialname = '.serial'
+
+clients = []
+with open('/etc/static-clients.conf') as f:
+  for line in f:
+    line = line.strip()
+    if line == "": continue
+    if line.startswith('#'): continue
+    clients.append(line)
+
+def log(m):
+  t = time.strftime("[%Y-%m-%d %H:%M:%S]", time.gmtime())
+  print t, m
+
+def stage1(pipes, status):
+  for c in clients:
+    p = pipes[c]
+    while 1:
+      line = p.stdout.readline()
+      if line == '':
+        status[c] = 'failed'
+        p.stdout.close()
+        p.stdin.close()
+        p.wait()
+        log("%s: failed with returncode %d"%(c,p.returncode))
+        break
+
+      line = line.strip()
+      log("%s >> %s"%(c, line))
+      if not line.startswith('[MSM]'): continue
+      kw = string.split(line, ' ', 2)[1]
+
+      if kw == 'ALREADY-CURRENT':
+        pipes[c].stdout.close()
+        pipes[c].stdin.close()
+        p.wait()
+        if p.returncode == 0:
+          log("%s: already current"%(c,))
+          status[c] = 'ok'
+        else:
+          log("%s: said ALREADY-CURRENT but returncode %d"%(c,p.returncode))
+          status[c] = 'failed'
+        break
+      elif kw == 'STAGE1-DONE':
+        log("%s: waiting"%(c,))
+        status[c] = 'waiting'
+        break
+      elif kw in ['STAGE1-START']:
+        pass
+      else:
+        log("%s: ignoring unknown line"%(c,))
+
+def count_statuses(status):
+  cnt = {}
+  for k in status:
+    v = status[k]
+    if v not in cnt: cnt[v] = 1
+    else: cnt[v] += 1
+  return cnt
+
+def stage2(pipes, status, command):
+  for c in clients:
+    if status[c] != 'waiting': continue
+    log("%s << %s"%(c, command))
+    pipes[c].stdin.write("%s\n"%(command,))
+
+  for c in clients:
+    if status[c] != 'waiting': continue
+    p = pipes[c]
+
+    (o, dummy) = p.communicate('')
+    for l in string.split(o, "\n"):
+      log("%s >> %s"%(c, l))
+    log("%s: returned %d"%(c, p.returncode))
+
+def callout(serial):
+  log("Calling clients...")
+  pipes = {}
+  status = {}
+  for c in clients:
+    args = ['ssh', '-o', 'BatchMode=yes', c, 'mirror', "%d"%(serial,)]
+    p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    pipes[c] = p
+    status[c] = 'in-progress'
+
+  log("Stage 1...")
+  stage1(pipes, status)
+  log("Stage 1 done.")
+  cnt = count_statuses(status)
+
+  if 'failed' in cnt > 0:
+    log("Some clients failed, aborting...")
+    stage2(pipes, status, 'abort')
+    return False
+  elif 'waiting' in cnt > 0:
+    log("Committing...")
+    stage2(pipes, status, 'go')
+    return True
+  else:
+    log("All clients up to date.")
+    return True
+
+
+cleanup_dirs = []
+def run_mirror():
+  # setup
+  master = os.path.join(base, subdirs['master'])
+  cur = os.path.join(base, subdirs['cur'])
+  live = os.path.join(base, subdirs['live'])
+  tmpdir_new = tempfile.mkdtemp(prefix='live.new-', dir=base); cleanup_dirs.append(tmpdir_new);
+  tmpdir_old = tempfile.mkdtemp(prefix='live.new-', dir=base); cleanup_dirs.append(tmpdir_old);
+  os.chmod(tmpdir_new, 0755)
+
+  locks = []
+  for p in (master, live, tmpdir_new):
+    if not os.path.exists(p): os.mkdir(p, 0755)
+    fd = os.open(p, os.O_RDONLY)
+    log("Acquiring lock for %s(%d)."%(p,fd))
+    fcntl.flock(fd, fcntl.LOCK_EX)
+    locks.append(fd)
+  log("All locks acquired.")
+
+  serialfile = os.path.join(master, serialname)
+  try:
+    with open(serialfile) as f: serial = int(f.read())
+  except:
+    serial = int(time.time())
+    with open(serialfile, "w") as f: f.write("%d\n"%(serial,))
+  log("Serial is %s."%(serial,))
+
+  log("Populating %s."%(tmpdir_new,))
+  subprocess.check_call(['cp', '-al', os.path.join(master, '.'), tmpdir_new])
+
+  if os.path.exists(cur):
+    log("Removing existing %s."%(cur,))
+    shutil.rmtree(cur)
+
+  log("Renaming %s to %s."%(tmpdir_new, cur))
+  os.rename(tmpdir_new, cur)
+
+  proceed = callout(serial)
+
+  if proceed:
+    log("Moving %s aside."%(live,))
+    os.rename(live, os.path.join(tmpdir_old, 'old'))
+    log("Renaming %s to %s."%(cur, live))
+    os.rename(cur, live)
+    log("Cleaning up.")
+    shutil.rmtree(tmpdir_old)
+    log("Done.")
+    return True
+  else:
+    log("Aborted.")
+    return False
+
+
+ok = False
+try:
+  ok = run_mirror()
+finally:
+  for p in cleanup_dirs:
+    if os.path.exists(p): shutil.rmtree(p)
+
+if not ok:
+  sys.exit(1)
+# vim:set et:
+# vim:set ts=2:
+# vim:set shiftwidth=2:

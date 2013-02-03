@@ -8,18 +8,18 @@ ignore = []
 case fqdn
 when "bellini.debian.org":              ignore << "mcelog"
 when "cilea.debian.org":                ignore << "/freeswitch.*/"
-when /draghi.debian.org/:               ignore << %w{userdir-ldap libheimdal-kadm5-perl}
+when /draghi.debian.org/:               ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl}
 when /orff.debian.org/:                 ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
 when /(zandonai|zelenka).debian.org/:   ignore << %w{samhain zabbix-agent rrdcollect}
 when /(zappa|zemlinsky).debian.org/:    ignore << %w{samhain}
-when /(mayer|paer|corelli).debian.org/: ignore << "linux-base"
+when /(mayer|corelli).debian.org/: ignore << "linux-base"
 when /(alkman|caballero|merulo|mundy).debian.org/: ignore << "samhain"
 when "powell.debian.org":               ignore << %w{e2fslibs e2fsprogs libblkid1 libcomerr2 libss2 libuuid1 uuid-runtime}
 when "rossini.debian.org":              ignore << %w{ganeti2}
 when "franck.debian.org":               ignore << %w{python-apt}
 when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/: ignore << %w{flash-kernel linux-firmware-image}
-when /(harris|hoiby).debian.org/:       ignore << %w{flash-kernel puppet puppet-common kernel linux-firmware-image}
-when /(hartmann|hasse|hebden|henze).debian.org/: ignore << %w{flash-kernel puppet puppet-common kernel linux-firmware-image schroot schroot-common}
+when /(harris|hoiby).debian.org/:       ignore << %w{flash-kernel kernel linux-firmware-image}
+when /(hasse|hebden|henze).debian.org/: ignore << %w{flash-kernel kernel linux-firmware-image schroot schroot-common}
 when /(parry|partch|piston).debian.org/: ignore << "yaboot"
 
 when "grieg.debian.org":                ignore << %w{dpkg}

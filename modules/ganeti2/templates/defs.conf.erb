@@ -1,0 +1,2 @@
+@def $HOST_GANETI_V4         = (<%= scope.lookupvar('ganeti_hosts').to_a.flatten.join(' ') -%>);
+@def $HOST_GANETI_BACKEND_V4 = (<%= scope.lookupvar('ganeti_priv').to_a.flatten.join(' ')-%>);

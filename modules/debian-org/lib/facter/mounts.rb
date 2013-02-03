@@ -5,7 +5,7 @@ begin
 		ignorefs = ["NFS", "nfs", "nfs4", "nfsd", "afs", "binfmt_misc", "proc", "smbfs", 
 			    "autofs", "iso9660", "ncpfs", "coda", "devpts", "ftpfs", "devfs", 
 			    "mfs", "shfs", "sysfs", "cifs", "lustre_lite", "tmpfs", "usbfs", "udf",
-			    "fusectl", "fuse.snapshotfs", "rpc_pipefs"]
+			    "fusectl", "fuse.snapshotfs", "rpc_pipefs", "devtmpfs"]
 		mountpoints = []
 		FileSystem.mounts.each do |m|
 			if ((not ignorefs.include?(m.fstype)) && (m.options !~ /bind/))
@@ -13,7 +13,7 @@ begin
 			end
 		end
 		setcode do
-			mountpoints.join(',')
+			mountpoints.uniq.sort.join(',')
 		end
 	end
 

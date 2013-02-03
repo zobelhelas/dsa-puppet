@@ -20,11 +20,9 @@ class debian-org {
 			'dsa-munin-plugins',
 		]:
 		ensure => installed,
-		require => [
-			File['/etc/apt/sources.list.d/db.debian.org.list'],
-			Exec['apt-get update']
-		]
+		tag    => extra_repo,
 	}
+
 	package { [
 			'apt-utils',
 			'bash-completion',
@@ -32,12 +30,17 @@ class debian-org {
 			'less',
 			'lsb-release',
 			'libfilesystem-ruby1.8',
-			'molly-guard',
 			'mtr-tiny',
 			'nload',
 			'pciutils',
 		]:
 		ensure => installed,
+	}
+
+	if $::lsbmajdistrelease >= 7 {
+		package { 'libfilesystem-ruby1.9':
+			ensure => installed,
+		}
 	}
 
 	munin::check { [
@@ -63,32 +66,49 @@ class debian-org {
 	if getfromhash($site::nodeinfo, 'broken-rtc') {
 		package { 'fake-hwclock':
 			ensure => installed,
-			require => [
-				File['/etc/apt/sources.list.d/db.debian.org.list'],
-				Exec['apt-get update']
-			]
+			tag    => extra_repo,
 		}
 	}
 
-	# This really means 'not wheezy'
+	package { 'molly-guard':
+		ensure => installed,
+	}
+	file { '/etc/molly-guard/run.d/10-check-kvm':
+		mode    => '0755',
+		source  => 'puppet:///modules/debian-org/molly-guard/10-check-kvm',
+		require => Package['molly-guard'],
+	}
+	file { '/etc/molly-guard/run.d/15-acquire-reboot-lock':
+		mode    => '0755',
+		source  => 'puppet:///modules/debian-org/molly-guard/15-acquire-reboot-lock',
+		require => Package['molly-guard'],
+	}
 
-	if $::debarchitecture != 'armhf' {
-		site::aptrepo { 'security':
-			url        => 'http://security.debian.org/',
-			suite      => "${::lsbdistcodename}/updates",
-			components => ['main','contrib','non-free']
-		}
+	site::aptrepo { 'security':
+		url        => 'http://security.debian.org/',
+		suite      => "${::lsbdistcodename}/updates",
+		components => ['main','contrib','non-free']
+	}
 
+	if $::lsbdistcodename != 'wheezy' {
 		site::aptrepo { 'backports.debian.org':
 			url        => 'http://backports.debian.org/debian-backports/',
 			suite      => "${::lsbdistcodename}-backports",
 			components => ['main','contrib','non-free']
 		}
 
-		site::aptrepo { 'volatile':
-			url        => 'http://ftp.debian.org/debian',
-			suite      => "${::lsbdistcodename}-updates",
-			components => ['main','contrib','non-free']
+		if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
+			site::aptrepo { 'volatile':
+				url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
+				suite      => "${::lsbdistcodename}-updates",
+				components => ['main','contrib','non-free']
+			}
+		} else {
+			site::aptrepo { 'volatile':
+				url        => 'http://ftp.debian.org/debian',
+				suite      => "${::lsbdistcodename}-updates",
+				components => ['main','contrib','non-free']
+			}
 		}
 	}
 	site::aptrepo { 'backports.org':
@@ -106,6 +126,14 @@ class debian-org {
 		suite      => 'lenny',
 		components => 'main',
 		key        => 'puppet:///modules/debian-org/db.debian.org.asc',
+	}
+
+	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
+		site::aptrepo { 'debian':
+			url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
+			suite      => $::lsbdistcodename,
+			components => ['main','contrib','non-free']
+		}
 	}
 
 	file { '/etc/facter':
@@ -141,8 +169,12 @@ class debian-org {
 		source => 'puppet:///modules/debian-org/timezone',
 		notify => Exec['dpkg-reconfigure tzdata -pcritical -fnoninteractive'],
 	}
+	if $::hostname == handel {
+		include puppetmaster::db
+		$dbpassword = $puppetmaster::db::password
+	}
 	file { '/etc/puppet/puppet.conf':
-		source => 'puppet:///modules/debian-org/puppet.conf',
+		content => template('debian-org/puppet.conf.erb'),
 	}
 	file { '/etc/default/puppet':
 		source => 'puppet:///modules/debian-org/puppet.default',
@@ -168,11 +200,6 @@ class debian-org {
 		source => 'puppet:///modules/debian-org/rc.local',
 		notify => Exec['rc.local start'],
 	}
-	file { '/etc/molly-guard/run.d/15-acquire-reboot-lock':
-		mode    => '0755',
-		source  => 'puppet:///modules/debian-org/molly-guard-acquire-reboot-lock',
-		require => Package['molly-guard'],
-	}
 	file { '/etc/dsa':
 		ensure => directory,
 		mode   => '0755',
@@ -197,12 +224,14 @@ class debian-org {
 	mailalias { 'samhain-reports':
 		ensure => present,
 		recipient => $debianadmin,
+		require => Package['debian.org']
 	}
 
 	exec { 'apt-get update':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		refreshonly => true,
 	}
+	Exec['apt-get update']->Package<| tag == extra_repo |>
 
 	exec { 'dpkg-reconfigure tzdata -pcritical -fnoninteractive':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',

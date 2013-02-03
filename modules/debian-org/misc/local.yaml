@@ -12,6 +12,7 @@ nameinfo:
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
   barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
   barriere.debian.org: Jean-Baptiste Barrière (May 2nd, 1707 - June 6th, 1747)
+  beach.debian.org: Amy Marcy Cheney Beach (September 5, 1867 - December 27, 1944)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
   bellini.debian.org: Vincenzo Salvatore Carmelo Francesco Bellini (November 3rd, 1801 - September 23rd, 1835)
   bendel.debian.org: Franz Bendel (March 23, 1833 - July 3, 1874)
@@ -23,16 +24,19 @@ nameinfo:
   boiti.debian.org: Arrigo Boito (February 24th, 1842 - June 10th, 1918)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
+  buxtehude.debian.org: Dieterich Buxtehude (c. 1637 to 1639 -—May 9th, 1707)
+  byrd.debian.org: William Byrd (1543 - July 4th, 1623)
+  clementi.debian.org: Muzio Clementi (January 23rd, 1752 - March 10th, 1832)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
+  coincy.debian.org: Gautier de Coincy (1177 - 1236)
   czerny.debian.org: Carl Czerny (February 21st, 1791 - July 15th, 1857)
   danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
   diabelli.debian.org: Anton Diabelli (September 5th, 1781 - April 7th, 1858)
   diamond.debian.org: David Leo Diamond (July 9, 1915 - June 13, 2005)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   draghi.debian.org: Antonio Draghi (1635 - January 16th, 1700)
-  duarte.debian.org: Leonora Duarte (July 28th, 1610 - 1678)
   eder.debian.org: Helmut Eder (December 26th, 1916 - February 8th, 2005)
   elgar.debian.org: Edward Elgar (1857 - 1934)
   englund.debian.org: Sven Einar Englund (June 17th, 1916 - June 27th, 1999)
@@ -40,7 +44,7 @@ nameinfo:
   falla.debian.org: Manuel de Falla y Matheu (November 23rd, 1876 - November 14th, 1946)
   fano.debian.org: Guido Alberto Fano (March 18th, 1875 - August 14th, 1961)
   fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
-  field.debian.org: John Field (1782 - 1837)
+  fils.debian.org: Anton Fils (September 22nd, 1733 (baptized) - March 14th, 1760 (buried))
   finzi.debian.org: Gerald Raphael Finzi (July 14th, 1901 - September 27th, 1956)
   fischer.debian.org: Johann Caspar Ferdinand Fischer (September 9th, 1656 - August 27th, 1746)
   franck.debian.org: Melchior Franck (1579 - June 1st, 1639)
@@ -52,14 +56,12 @@ nameinfo:
   grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
   harris.debian.org: Sir William Henry Harris (March 28th, 1883 - September 6th, 1973)
-  hartmann.debian.org: Karl Amadeus Hartmann (August 2nd, 1905 - December 5th, 1963)
   hasse.debian.org: Johann Adolph Hasse (March 25th, 1699 - December 16th, 1783)
   hebden.debian.org: John Hebden (1712 - 1765)
-  henze.debian.org: Hans Werner Henze (July 1st, 1926)
+  henze.debian.org: Hans Werner Henze (July 1st, 1926 - October 27th, 2012)
   hoiby.debian.org: Lee Henry Hoiby (February 17th, 1926 - March 28th, 2011)
   holter.debian.org: Iver Holter (December 13th, 1850 - January 27th, 1941)
   jenkins.debian.org: John Jenkins (1592 - 1678)
-  kassia.debian.org: Kassia (between 805 and 810 - bef. 867)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
   kokkonen.debian.org: Joonas Kokkonen (November 13th, 1921 - October 1st, 1996)
@@ -75,6 +77,7 @@ nameinfo:
   lully.debian.org: Jean-Baptiste de Lully (November 28th, 1632 - March 22nd, 1687)
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
+  menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st,, 2007)
   merikanto.debian.org: Oskar Merikanto (August 5th, 1868 - February 17th, 1924)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
@@ -82,13 +85,11 @@ nameinfo:
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
   nono.debian.org: Luigi Nono (January 29, 1924 - May 8, 1990)
   orff.debian.org: Carl Orff (July 10th, 1895 - March 29th, 1982)
-  paer.debian.org: Ferdinando Paër (July 1st, 1771 - May 3rd, 1839)
   paganini.debian.org: Niccolò Paganini (October 27th, 1782 - May 27th, 1840)
   parry.debian.org: Sir Charles Hubert Hastings Parry, 1st Baronet (February 27th, 1848 – October 7th, 1918)
   partch.debian.org: Harry Partch (June 24th, 1901 - September 3rd, 1974)
   pasquini.debian.org: Bernardo Pasquini (December 7th, 1637 - November 22nd, 1710)
   pergolesi.debian.org: Giovanni Battista Pergolesi (January 4th, 1710 - March 16th or 17th, 1736)
-  peri.debian.org: Jacopo Peri (August 20th, 1561 - August 12th, 1633)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   piatti.debian.org: Carlo Alfredo Piatti (January 8th, 1822 - July 18th, 1901)
   piston.debian.org: Walter Hamor Piston Jr. (January 20th, 1894 – November 12th, 1976)
@@ -109,7 +110,6 @@ nameinfo:
   salieri.debian.org: Antonio Salieri (August 18th, 1750 - May 7th, 1825)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   santoro.debian.org: Cláudio Santoro (November 23rd, 1919 - March 27th, 1989)
-  scelsi.debian.org: Giacinto Scelsi (January 8th, 1905 - August 9th, 1988)
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
@@ -118,7 +118,9 @@ nameinfo:
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
   soler.debian.org: Padre Antonio Soler (December 3rd, 1729 (baptized) - December 20th, 1783)
   sompek.debian.org: Ernst Sompek (Juni 11th 1876 - August 2nd 1954)
+  sonntag.debian.org: Brunhilde Sonntag (September 27th, 1936 - December 18th, 2002)
   stadler.debian.org: Maximilian Johann Karl Dominik Stadler, Abbé Stadler (August 4th 1748 - November 8th 1833)
+  stanley.debian.org: Charles John Stanley (January 17th, 1712 - May 19th, 1786)
   sperger.debian.org: Johannes Matthias Sperger (March 23th, 1750 - May 13th, 1812)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
@@ -131,10 +133,12 @@ nameinfo:
   tye.debian.org: Christopher Tye (c.1505 - 1573)
   ullmann.debian.org: Viktor Ullmann (January 1st, 1898 - October 17th, 1944)
   unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
+  vento.debian.org: Ivo de Vento (1543/1545 - 1575)
+  vieuxtemps.debian.org: Henri Vieuxtemps (February 17th, 1820 - June 6th, 1881)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
-  vivaldi.debian.org: Antonio Lucio Vivaldi (March 4th, 1678 - July 28th, 1741)
   widor.debian.org: Charles-Marie Jean Albert Widor (February 21st, 1844 - March 12th, 1937)
   wieck.debian.org: Clara Josephine Wieck (September 13th, 1819 - May 20th, 1896)
+  wilder.debian.org: Alec Wilder (February 16th, 1907 - December 24th, 1980)
   wolkenstein.debian.org: Oswald von Wolkenstein (1377 - August 2nd, 1445)
   zandonai.debian.org: Riccardo Zandonai (May 30th, 1883 - June 5th, 1944)
   zappa.debian.org: Frank Vincent Zappa (December 21st, 1940 - December 4th, 1993)
@@ -146,29 +150,27 @@ footer:
   #zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
   backports_master:
-    - bizet.debian.org
     - morricone.debian.org
   bugsmaster:
   bugsmx:
     - busoni.debian.org
-  bugs_search:
-    - glinka.debian.org
+    - buxtehude.debian.org
+  bugs_mirror:
+    - beach.debian.org
   dbmaster:
     - draghi.debian.org
   ftp_master:
     - franck.debian.org
   ftp.d.o:
-    - kassia.debian.org
     - klecker.debian.org
   ftp.upload.d.o:
     - franck.debian.org
-    - kassia.debian.org
     - ravel.debian.org
   mailrelay:
-    - kokkonen.debian.org
     - merikanto.debian.org
   muninmaster:
     - spohr.debian.org
+    - menotti.debian.org
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
     - orff.debian.org
@@ -186,14 +188,14 @@ services:
 host_settings:
   heavy_exim:
     - bellini.debian.org
-    - bizet.debian.org
     - busoni.debian.org
+    - buxtehude.debian.org
     - chopin.debian.org
     - draghi.debian.org
+    - dukas.debian.org
     - franck.debian.org
     - gombert.debian.org
     - grieg.debian.org
-    - kokkonen.debian.org
     - master.debian.org
     - merikanto.debian.org
     - morricone.debian.org
@@ -205,7 +207,7 @@ host_settings:
     - reger.debian.org
     - spohr.debian.org
     - tye.debian.org
-    - dukas.debian.org
+    - vento.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org
@@ -220,14 +222,13 @@ host_settings:
     - englund.debian.org
     - gluck.debian.org
     - kokkonen.debian.org
-    - senfl.debian.org
     - santoro.debian.org
+    - senfl.debian.org
   'apache2_ftp-upcoming_mirror':
     - klecker.debian.org
     - merikanto.debian.org
     - rietz.debian.org
   apache2_backports_mirror:
-    - bizet.debian.org
     - englund.debian.org
     - morricone.debian.org
   timeserver:
@@ -245,7 +246,6 @@ host_settings:
     - arnold.debian.org
     - ball.debian.org
     - harris.debian.org
-    - hartmann.debian.org
     - hasse.debian.org
     - hebden.debian.org
     - henze.debian.org
@@ -258,7 +258,6 @@ host_settings:
     - sompek.debian.org
   mail_port:
     ancina.debian.org: 2025
-    kassia.debian.org: 587
     klecker.debian.org: 587
     piatti.debian.org: 2025
     zappa.debian.org: 587
@@ -273,5 +272,14 @@ host_settings:
     - rautavaara.debian.org
     - salieri.debian.org
     - widor.debian.org
+  static_master:
+    - bizet.debian.org
+  static_mirror:
+    - klecker.debian.org
+    - rietz.debian.org
+    - stanley.debian.org
+  static_source:
+    - senfl.debian.org
+    - wolkenstein.debian.org
 #  reservedaddrs:
 #    ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"

@@ -25,7 +25,7 @@ module Puppet::Parser::Functions
       fqdn = lookupvar('::fqdn')
       if fqdn and fqdn == host
         v4ips = lookupvar('::v4ips')
-        if v4ips
+        if v4ips and v4ips.to_s != "" and v4ips.to_s != 'undefined'
           nodeinfo['misc']['v4addrs'] = v4ips.split(',')
 
           # find out if we are behind nat
@@ -34,7 +34,7 @@ module Puppet::Parser::Functions
         end
 
         v6ips = lookupvar('::v6ips')
-        if v6ips and v6ips != ""
+        if v6ips and v6ips.to_s != "" and v6ips.to_s != 'undefined'
           nodeinfo['misc']['v6addrs'] = v6ips.split(',')
         end
       end

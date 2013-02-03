@@ -1,0 +1,7 @@
+#!/bin/sh
+
+KVMCOUNT=`pgrep -cx '^(qemu-)?kvm$'`
+if [ $KVMCOUNT != 0 ]; then
+	echo "Found $KVMCOUNT qemu-kvm instances running, aborting $MOLLYGUARD_CMD!"
+	exit 1
+fi

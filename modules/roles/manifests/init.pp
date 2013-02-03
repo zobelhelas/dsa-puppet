@@ -8,16 +8,16 @@ class roles {
 		include munin::master
 	}
 
-	if getfromhash($site::nodeinfo, 'nagiosmaster') {
-		include nagios::server
-	}
+	#if getfromhash($site::nodeinfo, 'nagiosmaster') {
+	#	include nagios::server
+	#}
 
 	if getfromhash($site::nodeinfo, 'buildd') {
 		include buildd
 	}
 
-	if getfromhash($site::nodeinfo, 'bugs_search') {
-		include roles::bugs_search
+	if getfromhash($site::nodeinfo, 'bugs_mirror') {
+		include roles::bugs_mirror
 	}
 
 	if getfromhash($site::nodeinfo, 'ftp_master') {
@@ -65,5 +65,15 @@ class roles {
 
 	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
 		include roles::ftp-upcoming_mirror
+	}
+
+	if getfromhash($site::nodeinfo, 'static_master') {
+		include roles::static_master
+	}
+
+	if getfromhash($site::nodeinfo, 'static_mirror') {
+		include roles::static_mirror
+	} elsif getfromhash($site::nodeinfo, 'static_source') {
+		include roles::static_source
 	}
 }

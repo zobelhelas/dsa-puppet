@@ -11,12 +11,14 @@ class munin {
 
 	$owner = $::lsbdistcodename ? {
 		squeeze => munin,
-		wheezy  => root
+		wheezy  => root,
+		undef => munin,
 	}
 
 	$gid = $::lsbdistcodename ? {
 		squeeze => adm,
 		wheezy  => 'www-data',
+		undef => adm,
 	}
 
 	file { '/var/log/munin':
@@ -56,5 +58,22 @@ class munin {
 		domain          => 'ip6',
 		rule            => 'proto tcp mod state state (NEW) dport (munin) @subchain \'munin\' { saddr ($HOST_MUNIN_V6 $HOST_NAGIOS_V6) ACCEPT; }',
 		notarule        => true,
+	}
+
+	@@munin::master-per-node {
+		$::fqdn:
+			ipaddress   => $::ipaddress,
+			munin_async => $::munin_async,
+			;
+	}
+
+	if $::munin_async and str2bool($::munin_async) == true {
+		file { '/etc/ssh/userkeys/munin-async':
+			source => 'puppet:///modules/munin/munin-async-authkeys',
+		}
+	} else {
+		file { '/etc/ssh/userkeys/munin-async':
+			ensure => 'absent',
+		}
 	}
 }

@@ -1,3 +1,8 @@
+<% if @lsbdistcodename == 'wheezy' -%>
+#!/bin/bash
+
+cat <<EOD
+<% end -%>
 
 This device is for authorized users only.  All traffic on this device
 is monitored and will be used as evidence for prosecutions.  By using
@@ -69,7 +74,12 @@ end
 purp += "\n"
 
 if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('physicalHost'))
-  purp += wrap("This virtual server runs on the physical host #{ninfo['ldap']['physicalHost'][0]}, " +
+  if ninfo['ldap']['physicalHost'][0] =~ /ganeti/
+    phys_host = 'cluster'
+  else
+    phys_host = 'physical host'
+  end
+  purp += wrap("This virtual server runs on the #{phys_host} #{ninfo['ldap']['physicalHost'][0]}, " +
                "which is hosted at #{ninfo['hoster']['longname']}."
                )
 elsif scope.lookupvar('site::nodeinfo')['hoster']['name']
@@ -100,10 +110,10 @@ unless vms.empty?
 end
 
 
-if not scope.lookupvar('::cluster').empty?
+if scope.lookupvar('::cluster').to_s != 'undefined'
   purp += "\nThis server is a node in ganeti cluster: "
-  purp += scope.lookupvar('::cluster') + ".\n"
-  nodes = scope.lookupvar('::cluster_nodes').split.sort
+  purp += scope.lookupvar('::cluster').to_s + ".\n"
+  nodes = scope.lookupvar('::cluster_nodes').to_s.split.sort
   nodes.each do |node|
     purp += "\t" + node + "\n"
   end
@@ -125,6 +135,9 @@ purp
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+<% if @lsbdistcodename == 'wheezy' -%>
+EOD
+<% end -%>
 <%
 # vim:set et:
 # vim:set sts=2 ts=2:

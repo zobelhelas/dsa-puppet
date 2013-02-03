@@ -115,6 +115,8 @@ domainlist bsmtp_domains = ${if exists {/etc/exim4/bsmtp}{partial-lsearch;/etc/e
 
 domainlist handled_domains = +local_domains : +virtual_domains : +bsmtp_domains
 
+domainlist ourself_and_handled = $primary_hostname : +handled_domains
+
 localpartlist local_only_users = lsearch;/etc/exim4/localusers
 
 localpartlist postmasterish = postmaster : abuse : hostmaster
@@ -194,8 +196,13 @@ queue_only_load = 35
 smtp_load_reserve = 20
 <%- else -%>
 queue_run_max = 5
+<%- if scope.lookupvar('::processorcount').to_s != 'undefined' -%>
 deliver_queue_load_max = <%= [scope.lookupvar('::processorcount').to_i,2].max * 5 %>
 queue_only_load = <%= [scope.lookupvar('::processorcount').to_i,2].max * 4 %>
+<%- else -%>
+deliver_queue_load_max = 10
+queue_only_load = 8
+<%- end -%>
 <%- end -%>
 queue_list_requires_admin = false
 
@@ -552,7 +559,7 @@ check_recipient:
 
   drop   !hosts        = +debianhosts
          !acl          = acl_spamlovers
-         condition     = ${if match_domain{$sender_helo_name}{$primary_hostname:+handled_domains}}
+         condition     = ${if match_domain{$sender_helo_name}{+ourself_and_handled}}
          condition     = ${if !match{$sender_host_name}{${rxquote:$sender_helo_name}\N$\N}}
          message       = HELO mismatch Forged HELO for ($sender_helo_name)
 

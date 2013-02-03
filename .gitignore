@@ -6,5 +6,8 @@ modules/exim/files/certs/
 modules/ssl/files/
 modules/dacs/files/private
 modules/hiera-puppet
+modules/puppetmaster/manifests/db.pp
 *.swp
 *~
+/secret
+/*.dpkg-dist

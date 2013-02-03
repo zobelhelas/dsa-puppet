@@ -5,22 +5,21 @@
 #  For Bacula release 5.0.1 (24 February 2010) -- debian 5.0.4
 
 Job {
-  Name = "Backup <%= client %>"
+  Name = "<%= client %>"
   JobDefs = "Standardbackup"
   Client = <%= bacula_client_name %>
-}
 
-Job {
-  Name = "Restore <%= client %>"
-  Type = Restore
-  Client= <%= bacula_client_name %>
-  FileSet = "Standard Set"
-  Storage = <%= bacula_filestor_name %>
-  Pool = <%= bacula_pool_name %>
-  Differential Backup Pool = <%= bacula_pool_name %>diff
-  Incremental Backup Pool = <%= bacula_pool_name %>inc
-  Messages = Standard
-  Where = /var/tmp/bacula-restores
+  Pool = "poolfull-<%= bacula_pool_name %>-<%= client %>"
+  Differential Backup Pool = "pooldiff-<%= bacula_pool_name %>-<%= client %>"
+  Incremental Backup Pool = "poolinc-<%= bacula_pool_name %>-<%= client %>"
+
+  #Rerun Failed Levels = yes
+  Reschedule On Error = yes
+  Reschedule Interval = 4 hours
+  Reschedule Times = 2
+
+  Cancel Lower Level Duplicates = yes
+  Cancel Queued Duplicates = yes
 }
 
 # Client (File Services) to backup
@@ -30,7 +29,82 @@ Client {
   FDPort = <%= bacula_client_port %>
   Catalog = MyCatalog
   Password = "<%= bacula_client_secret %>"
-  File Retention = 30 days            # 30 days
+  File Retention = 70 days            # a bit over 2 months
   Job Retention = 6 months            # six months
   AutoPrune = yes                     # Prune expired Jobs/Files
+
+  Heartbeat Interval = 180
+
+  TLS Enable = yes
+  TLS Require = yes
+  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  # This is a client certificate, used by the director to connect to the client's file daemon
+  TLS Certificate = "<%= bacula_ssl_client_cert %>"
+  TLS Key = "<%= bacula_ssl_client_key %>"
+}
+
+########################################################################
+# Storage config                                                       #
+########################################################################
+
+Storage {
+  Name = "<%= bacula_filestor_name %>-<%= client %>"
+  Address = <%= bacula_storage_address %>
+  SDPort = <%= bacula_storage_port %>
+  Password = "<%= bacula_storage_secret %>"
+  Device = "<%= bacula_filestor_device %>-<%= client %>"
+  Media Type = "<%= bacula_filestor_name %>-<%= client %>"
+  Maximum Concurrent Jobs = 10
+
+  TLS Enable = yes
+  TLS Require = yes
+  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  # This is a client certificate, used by the director to connect to the storage daemon
+  TLS Certificate = "<%= bacula_ssl_client_cert %>"
+  TLS Key = "<%= bacula_ssl_client_key %>"
+}
+
+########################################################################
+# Pool definition                                                      #
+########################################################################
+Pool {
+  Name = "poolfull-<%=bacula_pool_name%>-<%= client %>"
+  Pool Type = Backup
+  Storage = "<%=bacula_filestor_name%>-<%= client %>"
+  Recycle = no
+  AutoPrune = yes
+  Volume Retention = 1 year
+  Label Format = "<%= bacula_pool_name %>-full-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Volume Use Duration = 23h
+  Maximum Volume Jobs = 1
+  Maximum Volume Bytes = 50G
+  Action On Purge = Truncate
+}
+
+Pool {
+  Name = "pooldiff-<%=bacula_pool_name%>-<%= client %>"
+  Pool Type = Backup
+  Storage = "<%=bacula_filestor_name%>-<%= client %>"
+  Recycle = no
+  AutoPrune = yes
+  Volume Retention = 6 months
+  Label Format = "<%= bacula_pool_name %>-diff-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Volume Use Duration = 23h
+  Maximum Volume Jobs = 1
+  Maximum Volume Bytes = 50G
+  Action On Purge = Truncate
+}
+
+Pool {
+  Name = "poolinc-<%=bacula_pool_name%>-<%= client %>"
+  Pool Type = Backup
+  Storage = "<%=bacula_filestor_name%>-<%= client %>"
+  Recycle = no
+  AutoPrune = yes
+  Volume Retention = 70 days
+  Label Format = "<%= bacula_pool_name %>-inc-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Volume Use Duration = 23h
+  Maximum Volume Jobs = 1
+  Maximum Volume Bytes = 50G
+  Action On Purge = Truncate
 }

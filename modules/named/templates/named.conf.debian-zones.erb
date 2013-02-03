@@ -12,6 +12,7 @@ zones << "debian.org"
 zones << "debian.net"
 zones << "mirror.debian.net"
 zones << "debian.com"
+zones << "debian.eu"
 
 zones << "debian.ch"
 zones << "debian.li"
@@ -48,6 +49,10 @@ zones << "1.0.0.0.5.0.0.0.8.7.a.0.1.0.0.2.ip6.arpa"
 
 # 0.0.0.4.6.0.2.0.0.3.6.0.1.0.0.2.ip6.arpa - reverse for 2001:630:206:4000::/64 (sanger)
 zones << "0.0.0.4.6.0.2.0.0.3.6.0.1.0.0.2.ip6.arpa"
+
+# debian rack with manda
+zones << "64-26.75.195.82.in-addr.arpa"
+zones << "2.0.2.0.8.b.1.4.1.0.0.2.ip6.arpa"
 
 zones.each do |zone|
 -%>

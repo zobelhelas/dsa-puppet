@@ -35,17 +35,22 @@ node default {
 	include resolv
 	include roles
 	include unbound
+	include bacula::client
 
-	if $::hostname in [pasquini,tristano] {
+	if $::hostname in [pasquini,tristano,bertali,boito,byrd,clementi] {
 		include ganeti2
 	}
 
 	if $::hostname == 'dinis' {
 		include bacula::director
-	}
+	} else {
+		package { 'bacula-console':
+			ensure => purged;
+		}
 
-	if $::hostname in [berlioz] {
-		include bacula::client
+		file { '/etc/bacula/bconsole.conf':
+			ensure => absent;
+		}
 	}
 
 	if $::hostname == 'beethoven' {
@@ -87,8 +92,12 @@ node default {
 		include dacs
 	}
 
-	if $::hostname in [beethoven,duarte,spohr,stabile] {
+	if $::hostname in [beethoven,spohr,stabile,beach] {
 		include nfs-server
+	}
+
+	if $::hostname == 'vieuxtemps' {
+		include varnish
 	}
 
 	if $::brokenhosts {
@@ -105,11 +114,17 @@ node default {
 		include debian-org::radvd
 	}
 
-	if ($::postgres84 or $::postgres90) {
+	if ($::postgres) {
 		include postgres
 	}
 
 	if $::spamd {
 		munin::check { 'spamassassin': }
+	}
+
+        if $::hoster {
+		if $::hoster in [ynic] {
+			include lldp
+		}
 	}
 }

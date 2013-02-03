@@ -1,14 +1,17 @@
 class buildd {
 
-	package { [
-			'schroot',
-			'sbuild'
-		]:
-		ensure  => installed,
-		require => [
-			File['/etc/apt/sources.list.d/buildd.debian.org.list'],
-			Exec['apt-get update']
-		]
+	package { 'schroot':
+		ensure => installed,
+		tag    => extra_repo,
+	}
+	package { 'sbuild':
+		ensure => installed,
+		tag    => extra_repo,
+	}
+	package { 'libsbuild-perl':
+		ensure => installed,
+		tag    => extra_repo,
+		before => Package['sbuild']
 	}
 
 	package { 'apt-transport-https':
@@ -28,10 +31,11 @@ class buildd {
 		ensure => absent,
 	}
 
-	if $::lsbdistcodename in [squeeze,wheezy] {
-		$suite = $::lsbdistcodename
-	} else {
-		$suite = 'wheezy'
+	$suite = $::lsbdistcodename ? {
+		squeeze => $::lsbdistcodename,
+		wheezy  => $::lsbdistcodename,
+		undef   => 'squeeze',
+		default => 'wheezy'
 	}
 
 	site::aptrepo { 'buildd.debian.org':
@@ -66,7 +70,7 @@ class buildd {
 	}
 	file { '/etc/apt/preferences.d/buildd':
 		content => template('buildd/etc/apt/preferences.d/buildd'),
-		before  => File['/etc/apt/sources.list.d/buildd.debian.org.list']
+		before  => Site::Aptrepo['buildd.debian.org']
 	}
 	file { '/etc/schroot/mount-defaults':
 		content => template('buildd/etc/schroot/mount-defaults.erb'),

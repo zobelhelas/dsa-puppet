@@ -9,6 +9,7 @@
 class ferm {
 	# realize (i.e. enable) all @ferm::rule virtual resources
 	Ferm::Rule <| |>
+	Ferm::Conf <| |>
 
 	File { mode => '0400' }
 

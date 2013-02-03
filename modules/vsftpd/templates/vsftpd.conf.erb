@@ -1,3 +1,8 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
 anonymous_enable=YES
 anon_root=<%= scope.lookupvar('root') %>
 <%- if scope.lookupvar('writable') -%>

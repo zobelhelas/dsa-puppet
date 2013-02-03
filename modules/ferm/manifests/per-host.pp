@@ -18,11 +18,41 @@ class ferm::per-host {
 				rule         => '&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))'
 			}
 		}
+		ullmann: {
+			@ferm::rule { 'dsa-postgres-udd':
+				description     => 'Allow postgress access',
+				# quantz, wagner
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 217.196.43.134/32 217.196.43.132/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-udd6':
+				domain          => '(ip6)',
+				description     => 'Allow postgress access',
+				# quantz
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 ))'
+			}
+		}
+		grieg: {
+			@ferm::rule { 'dsa-postgres-ullmann':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 206.12.19.141/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-ullmann6':
+				domain          => '(ip6)',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2607:f8f0:610:4000:6564:a62:ce0c:138d/128 ))'
+			}
+		}
 		danzi: {
 			@ferm::rule { 'dsa-postgres-danzi':
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 ))'
 			}
+			@ferm::rule { 'dsa-postgres-danzi6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2607:f8f0:610:4000::/64 ))'
+			}
+
 			@ferm::rule { 'dsa-postgres2-danzi':
 				description     => 'Allow postgress access2',
 				rule            => '&SERVICE_RANGE(tcp, 5437, ( 206.12.19.0/24 ))'
@@ -125,17 +155,26 @@ class ferm::per-host {
 				rule            => '&TCP_UDP_SERVICE(5080)'
 			}
 		}
-		scelsi: {
-			@ferm::rule { 'dc11-icecast':
-				domain          => '(ip ip6)',
-				description     => 'Allow icecast access',
-				rule            => '&SERVICE(tcp, 8000)'
+		unger: {
+			@ferm::rule { 'dsa-notrack-dns-diamond-in':
+				domain      => 'ip',
+				description => 'NOTRACK for nameserver traffic',
+				table       => 'raw',
+				chain       => 'PREROUTING',
+				rule        => 'destination 82.195.75.108 proto (tcp udp) dport 53 jump NOTRACK'
+			}
+			@ferm::rule { 'dsa-notrack-dns-diamond-out':
+				domain      => 'ip',
+				description => 'NOTRACK for nameserver traffic',
+				table       => 'raw',
+				chain       => 'PREROUTING',
+				rule        => 'source 82.195.75.108 proto (tcp udp) sport 53 jump NOTRACK'
 			}
 		}
 		default: {}
 	}
 
-	if $::hostname in [rautavaara,luchesi] {
+	if $::hostname in [rautavaara,luchesi,czerny] {
 		@ferm::rule { 'dsa-to-kfreebsd':
 			description     => 'Traffic routed to kfreebsd hosts',
 			chain           => 'to-kfreebsd',
@@ -201,6 +240,25 @@ REJECT reject-with icmp-admin-prohibited
 '
 			}
 		}
+		czerny: {
+			@ferm::rule { 'dsa-routing':
+				description     => 'forward chain',
+				chain           => 'FORWARD',
+				rule            => 'def $ADDRESS_FILS=82.195.75.89;
+def $FREEBSD_HOSTS=($ADDRESS_FILS);
+
+policy ACCEPT;
+mod state state (ESTABLISHED RELATED) ACCEPT;
+interface br0 outerface br0 ACCEPT;
+interface br1 outerface br1 ACCEPT;
+
+interface br2 outerface br0 jump from-kfreebsd;
+interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
+ULOG ulog-prefix "REJECT FORWARD: ";
+REJECT reject-with icmp-admin-prohibited
+'
+			}
+		}
 		default: {}
 	}
 
@@ -228,5 +286,4 @@ REJECT reject-with icmp-admin-prohibited
 		}
 		default: {}
 	}
-
 }

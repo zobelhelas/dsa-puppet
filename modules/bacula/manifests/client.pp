@@ -1,38 +1,60 @@
 class bacula::client inherits bacula {
+	@@bacula::storage-per-node { $::fqdn: }
 
-  package {
-    "bacula-client": ensure => installed;
-    "bacula-fd": ensure => installed;
-  }
+	if $::hostname in [beethoven, berlioz, biber, diabelli, dinis, draghi, geo3, lully, master, new-master, schumann, soler, widor, wilder, wolkenstein] {
+		@@bacula::node { $::fqdn: }
+	}
 
-  service {
-    "bacula-fd":
-      ensure => running,
-      enable => true,
-      hasstatus => true,
-      require => Package["bacula-fd"];
-  }
+	package { ['bacula-fd']:
+		ensure => installed
+	}
 
-  file {
-    "/etc/bacula/bacula-fd.conf":
-      content => template("bacula/bacula-fd.conf.erb"),
-      mode => 640,
-      owner => root,
-      group => bacula,
-      require => Package["bacula-fd"],
-      notify  => Exec["bacula-fd restart"]
-      ;
-  }
+	service { 'bacula-fd':
+		ensure    => running,
+		enable    => true,
+		hasstatus => true,
+		require   => Package['bacula-fd']
+	}
 
-  exec {
-    "bacula-fd restart":
-      path        => "/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin",
-      refreshonly => true;
-  }
+	file {
+		'/etc/bacula/bacula-fd.conf':
+			content => template('bacula/bacula-fd.conf.erb'),
+			mode    => '0640',
+			owner   => root,
+			group   => bacula,
+			require => Package['bacula-fd'],
+			notify  => Service['bacula-fd'],
+			;
+		'/usr/local/sbin/postbaculajob':
+			mode    => '0775',
+			source  => 'puppet:///modules/bacula/postbaculajob',
+			;
+		'/etc/default/bacula-fd':
+			content => template('bacula/default.bacula-fd.erb'),
+			mode    => '0400',
+			owner   => root,
+			group   => root,
+			require => Package['bacula-fd'],
+			notify  => Service['bacula-fd'],
+			;
+		'/etc/apt/preferences.d/dsa-bacula-client':
+			content => template('bacula/apt.preferences.bacula-client.erb'),
+			mode    => '0444',
+			owner   => root,
+			group   => root,
+			;
 
-  @ferm::rule { 'dsa-bacula-fd':
-    domain      => '(ip)',
-    description => 'Allow bacula access from storage and director',
-    rule        => "proto tcp mod state state (NEW) dport (bacula-fd) saddr ($bacula_director_address) ACCEPT",
-  }
+	}
+
+	@ferm::rule { 'dsa-bacula-fd-v4':
+		domain      => '(ip)',
+		description => 'Allow bacula access from storage and director',
+		rule        => "proto tcp mod state state (NEW) dport (bacula-fd) saddr (${bacula_director_ip}) ACCEPT",
+	}
+
+	#@ferm::rule { 'dsa-bacula-fd-v6':
+	#	domain      => '(ip6)',
+	#	description => 'Allow bacula access from storage and director',
+	#	rule        => "proto tcp mod state state (NEW) dport (bacula-fd) saddr (${bacula_director_ip6}) ACCEPT",
+	#}
 }

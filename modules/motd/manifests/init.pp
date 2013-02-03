@@ -8,13 +8,32 @@
 #
 class motd {
 
-	file { '/etc/motd.tail':
-		notify  => Exec['updatemotd'],
-		content => template('motd/motd.erb')
+	if $::lsbdistcodename == 'wheezy' {
+		$fname  = '/etc/update-motd.d/puppet-motd'
+		$notify = undef
+		$mode   = '0555'
+
+		file { '/etc/update-motd.d':
+			ensure => directory,
+			mode   => '0755'
+		}
+
+	} elsif $::lsbdistcodename == 'squeeze' {
+		$fname  = '/etc/motd.tail'
+		$notify = Exec['updatemotd']
+		$mode   = '0444'
+
 	}
+
 	file { '/etc/motd':
 		ensure => link,
 		target => '/var/run/motd'
+	}
+
+	file { $fname:
+		notify  => $notify,
+		mode    => $mode,
+		content => template('motd/motd.erb')
 	}
 
 	exec { 'updatemotd':
