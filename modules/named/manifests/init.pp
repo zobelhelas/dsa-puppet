@@ -2,6 +2,12 @@ class named {
 
 	munin::check { 'bind': }
 
+	site::aptrepo { 'bind-ratelimit':
+		url        => 'http://db.debian.org/debian-admin',
+		suite      => 'bind-ratelimit',
+		components => 'main',
+	}
+
 	package { 'bind9':
 		ensure => installed
 	}
