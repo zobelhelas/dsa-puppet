@@ -38,7 +38,7 @@ class debian-org {
 	}
 
 	if $::lsbmajdistrelease >= 7 {
-		package { 'libfilesystem-ruby1.9':
+		package { 'libfilesystem-ruby1.9.1':
 			ensure => installed,
 		}
 	}
