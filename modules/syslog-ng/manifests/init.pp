@@ -23,4 +23,10 @@ class syslog-ng {
 		source  => 'puppet:///modules/syslog-ng/syslog-ng.logrotate',
 		require => Package['syslog-ng']
 	}
+	if $::hostname in [lotty,lully] {
+		file { '/etc/logrotate.d/syslog-ng-loggers':
+			source  => 'puppet:///modules/syslog-ng/syslog-ng.logrotate.loggers',
+			require => Package['syslog-ng']
+		}
+	}
 }

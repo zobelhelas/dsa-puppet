@@ -174,7 +174,7 @@ class ferm::per-host {
 		default: {}
 	}
 
-	if $::hostname in [rautavaara,luchesi,czerny] {
+	if $::hostname in [rautavaara,luchesi] {
 		@ferm::rule { 'dsa-to-kfreebsd':
 			description     => 'Traffic routed to kfreebsd hosts',
 			chain           => 'to-kfreebsd',
@@ -234,25 +234,6 @@ interface br1 outerface br1 ACCEPT;
 
 interface br2 outerface br0 jump from-kfreebsd;
 interface br0 destination ($ADDRESS_FISCHER $ADDRESS_FALLA) proto tcp dport 22 ACCEPT;
-interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
-ULOG ulog-prefix "REJECT FORWARD: ";
-REJECT reject-with icmp-admin-prohibited
-'
-			}
-		}
-		czerny: {
-			@ferm::rule { 'dsa-routing':
-				description     => 'forward chain',
-				chain           => 'FORWARD',
-				rule            => 'def $ADDRESS_FILS=82.195.75.89;
-def $FREEBSD_HOSTS=($ADDRESS_FILS);
-
-policy ACCEPT;
-mod state state (ESTABLISHED RELATED) ACCEPT;
-interface br0 outerface br0 ACCEPT;
-interface br1 outerface br1 ACCEPT;
-
-interface br2 outerface br0 jump from-kfreebsd;
 interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
 ULOG ulog-prefix "REJECT FORWARD: ";
 REJECT reject-with icmp-admin-prohibited
