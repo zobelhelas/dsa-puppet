@@ -52,6 +52,7 @@ class apache2::dynamic {
 		description => 'http subchain',
 		chain       => 'http',
 		rule        => '
+				saddr (82.195.75.113) jump ACCEPT;
 		                saddr (74.6.22.182 74.6.18.240 67.195.0.0/16) jump limit_yahoo;
 		                saddr (124.115.0.0/21 119.63.192.0/21) jump limit_sosospider;
 		                saddr (65.52.0.0/14 207.46.0.0/16) jump limit_bing;
