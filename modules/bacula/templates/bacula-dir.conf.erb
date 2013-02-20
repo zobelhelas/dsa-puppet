@@ -197,12 +197,12 @@ Storage {
   Media Type = "<%= bacula_filestor_name %>-catalog"
   Maximum Concurrent Jobs = 10
 
-#  TLS Enable = yes
-#  TLS Require = yes
-#  TLS CA Certificate File = "<%= bacula_ca_path %>"
-#  # This is a client certificate, used by the director to connect to the storage daemon
-#  TLS Certificate = "<%= bacula_ssl_client_cert %>"
-#  TLS Key = "<%= bacula_ssl_client_key %>"
+  TLS Enable = yes
+  TLS Require = yes
+  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  # This is a client certificate, used by the director to connect to the storage daemon
+  TLS Certificate = "<%= bacula_ssl_client_cert %>"
+  TLS Key = "<%= bacula_ssl_client_key %>"
 }
 Pool {
   Name = "poolcatalog-<%=bacula_pool_name%>"
