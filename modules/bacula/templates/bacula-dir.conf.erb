@@ -188,26 +188,66 @@ Pool {
 # Generic jobs                                                         #
 ########################################################################
 # Backup the catalog database (after the nightly save)
-#Job {
-#  Name = "BackupCatalog"
-#  JobDefs = "Standardbackup"
-#  Level = Full
-#  FileSet="Catalog"
-#  Schedule = "WeeklyCycleAfterBackup"
+Storage {
+  Name = "<%= bacula_filestor_name %>-catalog"
+  Address = <%= bacula_storage_address %>
+  SDPort = <%= bacula_storage_port %>
+  Password = "<%= bacula_storage_secret %>"
+  Device = "<%= bacula_filestor_device %>-catalog"
+  Media Type = "<%= bacula_filestor_name %>-catalog"
+  Maximum Concurrent Jobs = 10
+
+#  TLS Enable = yes
+#  TLS Require = yes
+#  TLS CA Certificate File = "<%= bacula_ca_path %>"
+#  # This is a client certificate, used by the director to connect to the storage daemon
+#  TLS Certificate = "<%= bacula_ssl_client_cert %>"
+#  TLS Key = "<%= bacula_ssl_client_key %>"
+}
+Pool {
+  Name = "poolcatalog-<%=bacula_pool_name%>"
+  Pool Type = Backup
+  Storage = "<%=bacula_filestor_name%>-catalog"
+  AutoPrune = yes
+  Volume Retention = 2 months
+  Label Format = "<%= bacula_pool_name %>-catalog.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Volume Use Duration = 23h
+  Maximum Volume Jobs = 1
+  Maximum Volume Bytes = 50G
+  Action On Purge = Truncate
+  Recycle = yes
+  RecyclePool = "poolcataloggraveyard-<%=bacula_pool_name%>"
+}
+Pool {
+  Name = "poolcataloggraveyard-<%=bacula_pool_name%>"
+  Pool Type = Backup
+  Storage = "<%=bacula_filestor_name%>-catalog"
+  Recycle = yes
+  RecyclePool = "poolcataloggraveyard-<%=bacula_pool_name%>"
+}
+
+Job {
+  Name = "BackupCatalog"
+  JobDefs = "Standardbackup"
+  Client = <%=bacula_director_address%>-fd
+  Level = Full
+  FileSet = "Catalog"
+  Schedule = "WeeklyCycleAfterBackup"
 #  # This creates an ASCII copy of the catalog
 #  # Arguments to make_catalog_backup.pl are:
 #  #  make_catalog_backup.pl <catalog-name>
-#  RunBeforeJob = "/etc/bacula/scripts/make_catalog_backup.pl MyCatalog"
+  RunBeforeJob = "/etc/bacula/scripts/make_catalog_backup.pl MyCatalog"
 #  # This deletes the copy of the catalog
-#  RunAfterJob  = "/etc/bacula/scripts/delete_catalog_backup"
-#  Write Bootstrap = "/var/lib/bacula/%n.bsr"
-#  Priority = 15    # run after main backup
-#  RunScript {
-#        RunsWhen=After
-#	    RunsOnClient=No
-#	    Console = "purge volume action=all allpools storage=File"
-#  }
-#}
+  RunAfterJob  = "/etc/bacula/scripts/delete_catalog_backup"
+  Write Bootstrap = "/var/lib/bacula/%n.bsr"
+  Priority = 15    # run after main backup
+  Pool = "poolcatalog-<%=bacula_pool_name%>"
+  RunScript {
+    RunsWhen=After
+    RunsOnClient=No
+    Console = "purge volume action=all allpools storage=%w"
+  }
+}
 
 ########################################################################
 # And now include all the generated configs                            #

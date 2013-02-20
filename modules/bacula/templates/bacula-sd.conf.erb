@@ -46,4 +46,16 @@ Messages {
   Name = Standard
   director = <%= bacula_director_name %> = all
 }
+
+Device {
+  Name = "<%= bacula_filestor_device %>-catalog"
+  Media Type = "<%= bacula_filestor_name %>-catalog"
+  Archive Device = "<%= bacula_backup_path %>/Catalog"
+  LabelMedia = yes;
+  Random Access = Yes;
+  AutomaticMount = yes;
+  RemovableMedia = no;
+  AlwaysOpen = no;
+}
+
 @|"sh -c 'for f in /etc/bacula/storage-conf.d/*.conf ; do echo @${f} ; done'"
