@@ -75,6 +75,7 @@ nameinfo:
   lotti.debian.org: Antonio Lotti (ca. 1667 - January 5th, 1740)
   luchesi.debian.org: Andrea Luca Luchesi (May 23rd, 1741 - March 21st, 1801)
   lully.debian.org: Jean-Baptiste de Lully (November 28th, 1632 - March 22nd, 1687)
+  mailly.debian.org: Alphonse Jean Ernest Mailly (November 27th, 1833 - January 10th, 1918)
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
   menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st,, 2007)
@@ -167,6 +168,7 @@ services:
     - franck.debian.org
     - ravel.debian.org
   mailrelay:
+    - mailly.debian.org
     - merikanto.debian.org
     - muffat.debian.org
   muninmaster:
@@ -197,6 +199,7 @@ host_settings:
     - franck.debian.org
     - gombert.debian.org
     - grieg.debian.org
+    - mailly.debian.org
     - master.debian.org
     - merikanto.debian.org
     - morricone.debian.org
