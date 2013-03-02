@@ -24,4 +24,8 @@ class samhain {
 		require => Package['samhain'],
 		notify  => Service['samhain']
 	}
+
+	file { '/etc/logrotate.d/samhain':
+		content => template('samhain/logrotate.d-samhain'),
+	}
 }

@@ -91,6 +91,9 @@ options {
 	bad_hostname("^gconfd$");
 
 	keep_hostname(no);
+
+	# We believe our own clock more than we believe the client clock.
+	keep_timestamp(no);
 };
 
 

@@ -82,7 +82,7 @@ node default {
 		include apache2
 	}
 
-	if $::hostname in [ravel,senfl,orff,draghi,diamond] {
+	if $::hostname in [ravel,senfl,orff,draghi,diamond,rietz] {
 		include named::authoritative
 	} elsif $::hostname in [geo1,geo2,geo3] {
 		include named::geodns

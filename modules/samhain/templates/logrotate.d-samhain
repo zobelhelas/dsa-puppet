@@ -1,0 +1,20 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+/var/log/samhain/*.log {
+	daily
+	missingok
+	rotate 14
+	dateext
+	compress
+	delaycompress
+	notifempty
+	create 640 root adm
+	sharedscripts
+	postrotate
+	   if [ -f /var/run/samhain/samhain.pid ]; then \
+		/etc/init.d/samhain reload > /dev/null; fi
+	endscript
+}
