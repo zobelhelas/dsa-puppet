@@ -14,10 +14,6 @@ class roles {
 
 	if getfromhash($site::nodeinfo, 'buildd') {
 		include buildd
-	} else {
-		class { 'buildd':
-			ensure => absent
-		}
 	}
 
 	if getfromhash($site::nodeinfo, 'bugs_mirror') {
