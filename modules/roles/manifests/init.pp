@@ -13,9 +13,11 @@ class roles {
 	#}
 
 	if getfromhash($site::nodeinfo, 'buildd') {
-		$foo = getfromhash($site::nodeinfo, 'buildd')
-		notice("Buildd is ${foo}")
 		include buildd
+	} else {
+		class { 'buildd':
+			ensure => absent
+		}
 	}
 
 	if getfromhash($site::nodeinfo, 'bugs_mirror') {
