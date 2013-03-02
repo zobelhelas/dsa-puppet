@@ -13,8 +13,6 @@ class roles {
 	#}
 
 	if getfromhash($site::nodeinfo, 'buildd') {
-		$foo = getfromhash($site::nodeinfo, 'buildd')
-		notice("Buildd is ${foo}")
 		include buildd
 	}
 
