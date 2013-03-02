@@ -1,21 +1,26 @@
-class buildd {
+class buildd ($ensure=present) {
+
+	$package_ensure = $ensure ? {
+		present => installed,
+		absent  => $ensure
+	}
 
 	package { 'schroot':
-		ensure => installed,
+		ensure => $package_ensure,
 		tag    => extra_repo,
 	}
 	package { 'sbuild':
-		ensure => installed,
+		ensure => $package_ensure,
 		tag    => extra_repo,
 	}
 	package { 'libsbuild-perl':
-		ensure => installed,
+		ensure => $package_ensure,
 		tag    => extra_repo,
 		before => Package['sbuild']
 	}
 
 	package { 'apt-transport-https':
-		ensure => installed,
+		ensure => $package_ensure,
 	}
 	package { [
 			'debootstrap',
@@ -24,8 +29,12 @@ class buildd {
 		ensure => installed,
 	}
 
-	site::linux_module { 'dm_snapshot': }
-	ferm::module { 'nf_conntrack_ftp': }
+	site::linux_module { 'dm_snapshot':
+		ensure => $ensure
+	}
+	ferm::module { 'nf_conntrack_ftp':
+		ensure => $ensure
+	}
 
 	site::aptrepo { 'buildd':
 		ensure => absent,
@@ -39,6 +48,7 @@ class buildd {
 	}
 
 	site::aptrepo { 'buildd.debian.org':
+		ensure     => $ensure,
 		key        => 'puppet:///modules/buildd/buildd.debian.org.asc',
 		url        => 'https://buildd.debian.org/apt/',
 		suite      => $suite,
@@ -69,24 +79,28 @@ class buildd {
 		ensure => absent,
 	}
 	file { '/etc/apt/preferences.d/buildd':
+		ensure  => $ensure,
 		content => template('buildd/etc/apt/preferences.d/buildd'),
 		before  => Site::Aptrepo['buildd.debian.org']
 	}
 	file { '/etc/schroot/mount-defaults':
+		ensure  => $ensure,
 		content => template('buildd/etc/schroot/mount-defaults.erb'),
 		require => Package['sbuild'],
 	}
 	file { '/etc/cron.d/dsa-buildd':
+		ensure  => $ensure,
 		source  => 'puppet:///modules/buildd/cron.d-dsa-buildd',
 		require => Package['debian.org']
 	}
 	file { '/etc/dupload.conf':
+		ensure  => $ensure,
 		source  => 'puppet:///modules/buildd/dupload.conf',
 		require => Package['dupload'],
 	}
 	file { '/etc/default/schroot':
+		ensure  => $ensure,
 		source  => 'puppet:///modules/buildd/default-schroot',
 		require => Package['schroot']
 	}
-
 }
