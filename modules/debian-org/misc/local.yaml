@@ -81,6 +81,7 @@ nameinfo:
   merikanto.debian.org: Oskar Merikanto (August 5th, 1868 - February 17th, 1924)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
+  muffat.debian.org: George Muffat (June 1st, 1653 - February 23rd, 1704)
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
   nono.debian.org: Luigi Nono (January 29, 1924 - May 8, 1990)
@@ -167,6 +168,7 @@ services:
     - ravel.debian.org
   mailrelay:
     - merikanto.debian.org
+    - muffat.debian.org
   muninmaster:
     - spohr.debian.org
     - menotti.debian.org
@@ -198,6 +200,7 @@ host_settings:
     - master.debian.org
     - merikanto.debian.org
     - morricone.debian.org
+    - muffat.debian.org
     - nono.debian.org
     - popov.debian.org
     - powell.debian.org
