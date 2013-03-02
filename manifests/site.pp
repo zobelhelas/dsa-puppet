@@ -108,7 +108,9 @@ node default {
 		include portforwarder
 	}
 
-	include samhain
+	if $::samhain {
+		include samhain
+	}
 
 	if $::hostname in [chopin,geo3,soler,wieck] {
 		include debian-org::radvd
@@ -122,7 +124,7 @@ node default {
 		munin::check { 'spamassassin': }
 	}
 
-        if $::hoster {
+	if $::hoster {
 		if $::hoster in [ynic] {
 			include lldp
 		}

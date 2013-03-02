@@ -126,3 +126,12 @@ Facter.add("munin_async") do
 		FileTest.exist?("/usr/share/munin/munin-async")
 	end
 end
+Facter.add("samhain") do
+	setcode do
+		if FileTest.exist?("/usr/sbin/samhain")
+			true
+		else
+			''
+		end
+	end
+end
