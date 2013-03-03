@@ -22,11 +22,18 @@ class buildd ($ensure=present) {
 	package { 'apt-transport-https':
 		ensure => $package_ensure,
 	}
-	package { [
-			'debootstrap',
-			'dupload'
-		]:
-		ensure => installed,
+	if $ensure == present {
+		package { [
+				'debootstrap',
+				'dupload'
+			]:
+			ensure => installed,
+		}
+		file { '/etc/dupload.conf':
+			ensure  => $ensure,
+			source  => 'puppet:///modules/buildd/dupload.conf',
+			require => Package['dupload'],
+		}
 	}
 
 	site::linux_module { 'dm_snapshot':
@@ -92,11 +99,6 @@ class buildd ($ensure=present) {
 		ensure  => $ensure,
 		source  => 'puppet:///modules/buildd/cron.d-dsa-buildd',
 		require => Package['debian.org']
-	}
-	file { '/etc/dupload.conf':
-		ensure  => $ensure,
-		source  => 'puppet:///modules/buildd/dupload.conf',
-		require => Package['dupload'],
 	}
 	file { '/etc/default/schroot':
 		ensure  => $ensure,
