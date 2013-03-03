@@ -34,13 +34,12 @@ class buildd ($ensure=present) {
 			source  => 'puppet:///modules/buildd/dupload.conf',
 			require => Package['dupload'],
 		}
-	}
-
-	site::linux_module { 'dm_snapshot':
-		ensure => $ensure
-	}
-	ferm::module { 'nf_conntrack_ftp':
-		ensure => $ensure
+		site::linux_module { 'dm_snapshot':
+			ensure => $ensure
+		}
+		ferm::module { 'nf_conntrack_ftp':
+			ensure => $ensure
+		}
 	}
 
 	site::aptrepo { 'buildd':
