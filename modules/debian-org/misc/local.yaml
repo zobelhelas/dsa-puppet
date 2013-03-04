@@ -75,12 +75,14 @@ nameinfo:
   lotti.debian.org: Antonio Lotti (ca. 1667 - January 5th, 1740)
   luchesi.debian.org: Andrea Luca Luchesi (May 23rd, 1741 - March 21st, 1801)
   lully.debian.org: Jean-Baptiste de Lully (November 28th, 1632 - March 22nd, 1687)
+  mailly.debian.org: Alphonse Jean Ernest Mailly (November 27th, 1833 - January 10th, 1918)
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
   menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st,, 2007)
   merikanto.debian.org: Oskar Merikanto (August 5th, 1868 - February 17th, 1924)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
+  muffat.debian.org: George Muffat (June 1st, 1653 - February 23rd, 1704)
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
   nono.debian.org: Luigi Nono (January 29, 1924 - May 8, 1990)
@@ -166,7 +168,9 @@ services:
     - franck.debian.org
     - ravel.debian.org
   mailrelay:
+    - mailly.debian.org
     - merikanto.debian.org
+    - muffat.debian.org
   muninmaster:
     - spohr.debian.org
     - menotti.debian.org
@@ -195,9 +199,11 @@ host_settings:
     - franck.debian.org
     - gombert.debian.org
     - grieg.debian.org
+    - mailly.debian.org
     - master.debian.org
     - merikanto.debian.org
     - morricone.debian.org
+    - muffat.debian.org
     - nono.debian.org
     - popov.debian.org
     - powell.debian.org
@@ -257,7 +263,7 @@ host_settings:
     - sompek.debian.org
   mail_port:
     ancina.debian.org: 2025
-    klecker.debian.org: 587
+    klecker.debian.org: 2025
     piatti.debian.org: 2025
     zappa.debian.org: 587
   no_munin:

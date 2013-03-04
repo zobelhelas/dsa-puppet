@@ -1,9 +1,7 @@
-class buildd {
+class buildd ($ensure=present) {
 
-	package { 'schroot':
-		ensure => installed,
-		tag    => extra_repo,
-	}
+	include schroot
+
 	package { 'sbuild':
 		ensure => installed,
 		tag    => extra_repo,
@@ -17,15 +15,17 @@ class buildd {
 	package { 'apt-transport-https':
 		ensure => installed,
 	}
-	package { [
-			'debootstrap',
-			'dupload'
-		]:
-		ensure => installed,
+	if $ensure == present {
+		package { 'dupload':
+			ensure => installed,
+		}
+		file { '/etc/dupload.conf':
+			source  => 'puppet:///modules/buildd/dupload.conf',
+			require => Package['dupload'],
+		}
+		site::linux_module { 'dm_snapshot': }
+		ferm::module { 'nf_conntrack_ftp': }
 	}
-
-	site::linux_module { 'dm_snapshot': }
-	ferm::module { 'nf_conntrack_ftp': }
 
 	site::aptrepo { 'buildd':
 		ensure => absent,
@@ -72,21 +72,8 @@ class buildd {
 		content => template('buildd/etc/apt/preferences.d/buildd'),
 		before  => Site::Aptrepo['buildd.debian.org']
 	}
-	file { '/etc/schroot/mount-defaults':
-		content => template('buildd/etc/schroot/mount-defaults.erb'),
-		require => Package['sbuild'],
-	}
 	file { '/etc/cron.d/dsa-buildd':
 		source  => 'puppet:///modules/buildd/cron.d-dsa-buildd',
 		require => Package['debian.org']
 	}
-	file { '/etc/dupload.conf':
-		source  => 'puppet:///modules/buildd/dupload.conf',
-		require => Package['dupload'],
-	}
-	file { '/etc/default/schroot':
-		source  => 'puppet:///modules/buildd/default-schroot',
-		require => Package['schroot']
-	}
-
 }
