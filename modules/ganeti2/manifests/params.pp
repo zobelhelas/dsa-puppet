@@ -1,6 +1,7 @@
 class ganeti2::params {
-
-	case $::cluster {
+	
+	$cluster = hiera('cluster')
+	case $luster {
 		'ganeti-osuosl.debian.org': {
 			$ganeti_hosts = ['140.211.166.20/32']
 			$ganeti_priv  = ['140.211.166.20/32']

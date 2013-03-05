@@ -4,3 +4,4 @@ nameservers:
   - 217.198.242.225
 searchpaths:
   - debprivate-darmstadt.debian.org
+cluster: ganeti3.debian.org
