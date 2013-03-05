@@ -8,4 +8,3 @@ nameservers:
   - 2607:f8f0:610:4000:21c:c4ff:fee5:e890
 searchpaths:
   - debprivate-ubc.debian.org
-cluster: 'ganeti2.debian.org'
