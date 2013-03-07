@@ -1,7 +1,7 @@
 class bacula::client inherits bacula {
 	@@bacula::storage-per-node { $::fqdn: }
 
-	if $::hostname in [beethoven, berlioz, biber, diabelli, dinis, draghi, geo3, lully, master, new-master, schumann, soler, wilder, wolkenstein] {
+	if $::hostname in [beethoven, berlioz, biber, diabelli, dinis, draghi, geo3, kaufmann, lully, master, new-master, reger, schumann, soler, vento, vieuxtemps, wilder, wolkenstein] {
 		@@bacula::node { $::fqdn: }
 	}
 
