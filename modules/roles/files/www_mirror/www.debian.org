@@ -57,7 +57,7 @@
   AddLanguage nb .nb
   AddLanguage pl .pl
   AddLanguage pt .pt
-  AddLanguage pt-br .pt
+  AddLanguage pt-br .pt-br
   AddLanguage ro .ro
   AddLanguage ru .ru
   AddLanguage sk .sk
