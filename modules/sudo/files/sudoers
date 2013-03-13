@@ -137,6 +137,7 @@ Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
 %planet		senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
+%debbits	master=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
 
 # The piuparts slave needs to handle chroots
 piupartss	piatti=(ALL)		NOPASSWD: ALL
