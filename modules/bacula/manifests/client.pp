@@ -36,11 +36,17 @@ class bacula::client inherits bacula {
 		require => Package['bacula-fd'],
 		notify  => Service['bacula-fd'],
 	}
-	file { '/etc/apt/preferences.d/dsa-bacula-client':
-		content => template('bacula/apt.preferences.bacula-client.erb'),
-		mode    => '0444',
-		owner   => root,
-		group   => root,
+	if $::lsbmajdistrelease < 7 {
+		file { '/etc/apt/preferences.d/dsa-bacula-client':
+			content => template('bacula/apt.preferences.bacula-client.erb'),
+			mode    => '0444',
+			owner   => root,
+			group   => root,
+		}
+	} else {
+		file { '/etc/apt/preferences.d/dsa-bacula-client':
+			ensure => absent
+		}
 	}
 
 	@ferm::rule { 'dsa-bacula-fd-v4':
