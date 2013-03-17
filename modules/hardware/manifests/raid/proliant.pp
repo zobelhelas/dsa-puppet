@@ -2,7 +2,7 @@ class hardware::raid::proliant {
 
 	site::aptrepo { 'debian.restricted':
 		url        => 'http://db.debian.org/debian-admin',
-		suite      => "${::lsbdistcodename}-updates",
+		suite      => "${::lsbdistcodename}-restricted",
 		components => 'non-free',
 	}
 
