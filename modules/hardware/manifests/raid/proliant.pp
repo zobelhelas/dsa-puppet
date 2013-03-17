@@ -14,9 +14,6 @@ class hardware::raid::proliant {
 		ensure => installed,
 		tag    => extra_repo,
 	}
-	package { 'arrayprobe':
-		ensure => installed,
-	}
 
 	if $::debarchitecture == 'amd64' {
 		package { 'lib32gcc1':

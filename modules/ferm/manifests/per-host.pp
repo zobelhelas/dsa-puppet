@@ -42,6 +42,12 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2607:f8f0:610:4000:6564:a62:ce0c:138d/128 ))'
 			}
 		}
+		czerny,clementi: {
+			@ferm::rule { 'dsa-upsmon':
+				description     => 'Allow upsmon access',
+				rule            => '&SERVICE_RANGE(tcp, 3493, ( 82.195.75.64/26 192.168.43.0/24 ))'
+			}
+		}
 		danzi: {
 			@ferm::rule { 'dsa-postgres-danzi':
 				description     => 'Allow postgress access',

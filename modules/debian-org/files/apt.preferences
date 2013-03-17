@@ -6,10 +6,6 @@ Package: *
 Pin: release o=Debian Backports
 Pin-Priority: 200
 
-Package: ekeyd-egd-linux
-Pin: release o=Debian Backports
-Pin-Priority: 500
-
 Package: sbuild
 Pin: release o=buildd.debian.org
 Pin-Priority: 500
