@@ -1,5 +1,5 @@
 class ganeti2::params {
-	
+
 	$cluster = hiera('cluster')
 	case $cluster {
 		'ganeti-osuosl.debian.org': {
