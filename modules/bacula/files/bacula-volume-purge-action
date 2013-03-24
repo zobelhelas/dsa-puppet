@@ -1,0 +1,62 @@
+#!/usr/bin/python
+
+# sends purge volume action=all to bacula using bconsole.
+# list of storages is read from stdin
+
+# Copyright 2013 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+import optparse
+import subprocess
+import sys
+
+
+parser = optparse.OptionParser()
+parser.set_usage("%prog [options]")
+parser.add_option("-v", "--verbose", dest="verbose",
+  default=False, action="store_true",
+  help="Be more verbose.")
+(options, args) = parser.parse_args()
+
+if len(args) >= 1:
+    parser.print_help()
+    sys.exit(1)
+
+cmd = []
+for storage in sys.stdin:
+    s = storage.rstrip()
+    c = 'purge volume action=all allpools storage=%s'%(s,)
+    cmd.append(c)
+if options.verbose:
+    for c in cmd:
+      print "Will run: %s"%(c,)
+
+p = subprocess.Popen(['bconsole'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+(out, err) = p.communicate("\n".join(cmd))
+if p.returncode != 0:
+    raise Exception("bconsole failed.  stdout:\n%s\nstderr:%s\n"%(out, err))
+
+if options.verbose:
+    print "stdout:\n%s"%(out,)
+
+if err != "":
+  print >> sys.stderr, "bconsole said on stderr:\n%s\n"%(err,)
+  sys.exit(1)
