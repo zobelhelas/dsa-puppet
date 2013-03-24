@@ -77,7 +77,7 @@ class bacula::director inherits bacula {
 		recurse => true,
 		source  => 'puppet:///files/empty/',
 	}
-	file { "/etc/cron.d/debian-bacula-stuff":
+	file { "/etc/cron.d/dsa-bacula-stuff":
 		content => "@daily root (cat /etc/bacula/storages-list.d/*.storage; echo '$bacula::bacula_filestor_name-catalog') | /etc/bacula/bacula-volume-purge-action\n";
 	}
 }
