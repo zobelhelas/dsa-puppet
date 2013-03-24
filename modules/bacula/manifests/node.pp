@@ -26,7 +26,7 @@ define bacula::node() {
 	}
 
 	file { "/etc/bacula/storages-list.d/${name}.storage":
-		content => "$bacula::bacula_filestor_device-$client\n",
+		content => "$bacula::bacula_filestor_name-$client\n",
 		mode    => '0440',
 		group   => bacula,
 		notify  => Exec['bacula-director reload']
