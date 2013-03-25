@@ -10,7 +10,7 @@
 
    ErrorLog /var/log/apache2/ftp-upcoming.debian.org-error.log
    LogLevel warn
-   CustomLog /var/log/apache2/ftp-upcoming.debian.org-access.log combined
+   CustomLog /var/log/apache2/ftp-upcoming.debian.org-access.log privacy
 
    IndexOptions FancyIndexing NameWidth=*
 </VirtualHost>

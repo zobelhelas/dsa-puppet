@@ -8,7 +8,7 @@
 	ServerAdmin debian-admin@debian.org
 
 	ErrorLog /var/log/apache2/backports.debian.org-error.log
-	CustomLog /var/log/apache2/backports.debian.org-access.log combined
+	CustomLog /var/log/apache2/backports.debian.org-access.log privacy
 
 	<IfModule mod_userdir.c>
 		UserDir disabled
