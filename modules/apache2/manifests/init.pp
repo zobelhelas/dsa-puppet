@@ -29,6 +29,10 @@ class apache2 {
 		source => 'puppet:///modules/apache2/security',
 	}
 
+	apache2::config { 'logformat-privacy':
+		source => 'puppet:///modules/apache2/logformat-privacy',
+	}
+
 	apache2::config { 'local-serverinfo':
 		source => 'puppet:///modules/apache2/local-serverinfo',
 	}
