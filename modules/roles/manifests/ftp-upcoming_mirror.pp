@@ -4,11 +4,4 @@ class roles::ftp-upcoming_mirror {
 		site   => 'ftp-upcoming.debian.org',
 		source => 'puppet:///modules/roles/ftp-upcoming_mirror/ftp-upcoming.debian.org',
 	}
-
-        file { '/srv/mirrors/buildd-all':
-                ensure  => directory,
-		owner => archvsync,
-		group => mirroradm,
-        }
-
 }
