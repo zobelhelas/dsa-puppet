@@ -2,5 +2,11 @@
 
 Use common-static-vhost mozilla.debian.net
 Use common-static-vhost bits.debian.org
+Use common-static-vhost backports.debian.org
 
+<Virtualhost <%= vhost_listen %> >
+	ServerName backports-master.debian.org
+	ServerAdmin debian-admin@debian.org
+	Redirect permanent / http://backports.debian.org/
+</VirtualHost>
 # vim:ft=apache:

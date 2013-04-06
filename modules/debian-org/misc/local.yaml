@@ -284,6 +284,7 @@ host_settings:
     - stanley.debian.org
   static_source:
     - master.debian.org
+    - ries.debian.org
     - senfl.debian.org
     - wolkenstein.debian.org
 #  reservedaddrs:
