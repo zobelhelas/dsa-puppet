@@ -123,7 +123,7 @@ def run_mirror():
   cur = os.path.join(base, subdirs['cur'])
   live = os.path.join(base, subdirs['live'])
   tmpdir_new = tempfile.mkdtemp(prefix='live.new-', dir=base); cleanup_dirs.append(tmpdir_new);
-  tmpdir_old = tempfile.mkdtemp(prefix='live.new-', dir=base); cleanup_dirs.append(tmpdir_old);
+  tmpdir_old = tempfile.mkdtemp(prefix='live.old-', dir=base); cleanup_dirs.append(tmpdir_old);
   os.chmod(tmpdir_new, 0755)
 
   locks = []
@@ -163,10 +163,15 @@ def run_mirror():
     log("Cleaning up.")
     shutil.rmtree(tmpdir_old)
     log("Done.")
-    return True
+    ret = True
   else:
     log("Aborted.")
-    return False
+    ret = False
+
+  for fd in locks:
+    fd.close()
+
+  return ret
 
 
 ok = False
