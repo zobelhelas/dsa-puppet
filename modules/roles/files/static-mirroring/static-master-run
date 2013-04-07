@@ -169,7 +169,7 @@ def run_mirror():
     ret = False
 
   for fd in locks:
-    fd.close()
+    os.close(fd)
 
   return ret
 
