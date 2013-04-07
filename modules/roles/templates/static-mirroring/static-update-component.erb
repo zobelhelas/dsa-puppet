@@ -22,7 +22,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 usage() {
-  echo >&2 "Usage: $0 [-f] <component>"
+  echo >&2 "Usage: $0 <component>"
   exit 1
 }
 
@@ -30,10 +30,6 @@ componentlist=/etc/static-components.conf
 
 if [ "$#" = 1 ]; then
   component="$1"
-elif [ "$#" = 2 ]; then
-  if [ "$1" = "-f" ]; then force=1
-  else usage; fi
-  component="$2"
 else
   usage
 fi
@@ -44,19 +40,33 @@ if [ "${component%/*}" != "$component" ] ; then
   exit 1
 fi
 
+thishost=$(hostname -f)
 srchost="$(awk -v component="$component" '$1 == component {print $2; exit}' "$componentlist")"
 srcdir="$(awk -v component="$component" '$1 == component {print $3; exit}' "$componentlist")"
+inextralist="$(
+               awk -v component="$component" -v host="$thishost" '
+                 $1 == component {
+                   split($4,extra,",")
+                   for (i in extra) {
+                     if (host == extra[i]) {
+                       printf "%s:%s\n", $2, $3
+                       exit
+                     }
+                   }
+                   exit
+                 }' "$componentlist"
+              )"
 if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
   echo >&2 "$0: Invalid component: $component (not found in $componentlist)";
   exit 1
 fi
 
-if ! [ "$srchost" = "`hostname -f`" ] && ! [ "$force" = 1 ]; then
-  echo >&2 "Component $component is sourced from $srchost, not this host."
+if ! [ "$srchost" = "$thisthost" ] && [ -z "$inextralist" ]; then
+  echo >&2 "Component $component is sourced from $srchost, and this host is neither that nor in the extra allowed list."
   exit 1
 fi
 
-if ! [ -d "$srcdir" ] && ! [ "$force" = 1 ]; then
+if [ "$srchost" = "$thisthost" ] && ! [ -d "$srcdir" ]; then
   echo >&2 "Component source directory $srcdir does not exist or is not a directory, or is not accessible."
   exit 1
 fi
