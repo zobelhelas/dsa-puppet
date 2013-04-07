@@ -21,14 +21,23 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+usage() {
+  echo >&2 "Usage: $0 [-f] <component>"
+  exit 1
+}
+
 componentlist=/etc/static-components.conf
 
-if [ "$#" != 1 ]; then
-  echo >&2 "Usage: $0 <component>"
-  exit 1
+if [ "$#" = 1 ]; then
+  component="$1"
+elif [ "$#" = 2 ]; then
+  if [ "$1" = "-f" ]; then force=1
+  else usage; fi
+  component="$2"
+else
+  usage
 fi
 
-component="$1"
 
 if [ "${component%/*}" != "$component" ] ; then
   echo >&2 "$0: Invalid component: $component";
@@ -42,18 +51,18 @@ if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
   exit 1
 fi
 
-if ! [ "$srchost" = "`hostname -f`" ]; then
+if ! [ "$srchost" = "`hostname -f`" ] && ! [ "$force" = 1 ]; then
   echo >&2 "Component $component is sourced from $srchost, not this host."
   exit 1
 fi
 
-if ! [ -d "$srcdir" ]; then
+if ! [ -d "$srcdir" ] && ! [ "$force" = 1 ]; then
   echo >&2 "Component source directory $srcdir does not exist or is not a directory, or is not accessible."
   exit 1
 fi
 
 if [ "`id -nu`" != "staticsync" ]; then
-  sudo -u staticsync static-update-component "$component"
+  sudo -u staticsync static-update-component "$@"
 else
   masters=()
 <%=
