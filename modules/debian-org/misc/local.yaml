@@ -231,7 +231,6 @@ host_settings:
     - senfl.debian.org
   'apache2_ftp-upcoming_mirror':
     - klecker.debian.org
-    - merikanto.debian.org
     - rietz.debian.org
   apache2_backports_mirror:
     - englund.debian.org
