@@ -10,7 +10,7 @@ director packages_debian_org random {
 			.host = "194.177.211.202";
 			.port = "80";
 		}
-		.weight = 1;
+		.weight = 10000;
 	}
         {
                 .backend = {
