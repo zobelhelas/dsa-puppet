@@ -145,6 +145,29 @@ class ferm::per-host {
 				description     => 'Allow ldaps access',
 				rule            => '&SERVICE(tcp, 636)'
 			}
+			@ferm::rule { 'dsa-vpn':
+				description     => 'Allow openvpn access',
+				rule            => '&SERVICE(udp, 17257)'
+			}
+			@ferm::rule { 'dsa-routing':
+				description     => 'forward chain',
+				chain           => 'FORWARD',
+				rule            => 'policy ACCEPT;
+mod state state (ESTABLISHED RELATED) ACCEPT;
+interface tun+ ACCEPT;
+REJECT reject-with icmp-admin-prohibited
+'
+			}
+			@ferm::rule { 'dsa-vpn-mark':
+				table           => 'mangle',
+				chain           => 'PREROUTING',
+				rule            => 'interface tun+ MARK set-mark 1',
+			}
+			@ferm::rule { 'dsa-vpn-nat':
+				table           => 'nat',
+				chain           => 'POSTROUTING',
+				rule            => 'outerface !tun+ mod mark mark 1 MASQUERADE',
+			}
 		}
 		cilea: {
 			ferm::module { 'nf_conntrack_sip': }
