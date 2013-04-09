@@ -9,4 +9,19 @@ Use common-static-vhost backports.debian.org
 	ServerAdmin debian-admin@debian.org
 	Redirect permanent / http://backports.debian.org/
 </VirtualHost>
+#
+# www.backports.org is the historical place for the backports
+# website and archive.  It is now a CNAME to backports.debian.org -
+# redirect http requests.
+<VirtualHost <%= vhost_listen %> >
+	ServerName www.backports.org
+	ServerAlias lists.backports.org
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent /debian/           http://backports.debian.org/debian-backports/
+	RedirectPermanent /backports.org/    http://backports.debian.org/debian-backports/
+	RedirectPermanent /debian-backports/ http://backports.debian.org/debian-backports/
+	RedirectPermanent / http://backports.debian.org/
+</VirtualHost>
+# vim:set syn=apache:
+
 # vim:ft=apache:
