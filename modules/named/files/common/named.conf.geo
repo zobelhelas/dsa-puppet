@@ -14,14 +14,6 @@ view "AF" {
     allow-transfer { };
   };
 
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org.AF";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.AF";
@@ -93,14 +85,6 @@ view "AN" {
   zone "archive.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.archive.debian.org.AN";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -182,14 +166,6 @@ view "AS" {
     allow-transfer { };
   };
 
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org.AS";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.AS";
@@ -261,14 +237,6 @@ view "EU" {
   zone "archive.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.archive.debian.org.EU";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -350,14 +318,6 @@ view "NA" {
     allow-transfer { };
   };
 
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org.NA";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.NA";
@@ -429,14 +389,6 @@ view "OC" {
   zone "archive.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.archive.debian.org.OC";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -518,14 +470,6 @@ view "SA" {
     allow-transfer { };
   };
 
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org.SA";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.SA";
@@ -602,14 +546,6 @@ view "undef" {
     allow-transfer { };
   };
 
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org.undef";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.undef";
@@ -681,14 +617,6 @@ view "default" {
   zone "archive.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.archive.debian.org";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
-  zone "backports.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.backports.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };
