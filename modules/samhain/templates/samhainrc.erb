@@ -107,6 +107,9 @@ file=/etc/apache2/conf.d/puppet-builddlist
 <% if classes.include?("roles::static_base") -%>
 file=/etc/static-components.conf
 <% end -%>
+<% if classes.include?("roles::static_mirror") -%>
+file=/etc/apache2/sites-available/static-vhosts-simple
+<% end -%>
 
 #
 # There are files in /etc that might change, thus changing the directory
