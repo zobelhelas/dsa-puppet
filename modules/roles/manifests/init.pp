@@ -33,21 +33,12 @@ class roles {
 		include roles::www_mirror
 	}
 
-	if getfromhash($site::nodeinfo, 'apache2_backports_mirror') {
-		include roles::backports_mirror
-	}
-
 	if getfromhash($site::nodeinfo, 'ftp.d.o') {
 		include roles::ftp
 	}
 
 	if getfromhash($site::nodeinfo, 'ftp.upload.d.o') {
 		include roles::ftp_upload
-	}
-
-	if getfromhash($site::nodeinfo, 'backports_master') {
-		include roles::backports_master
-		include roles::dakmaster
 	}
 
 	if getfromhash($site::nodeinfo, 'security_master') {
