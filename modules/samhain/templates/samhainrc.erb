@@ -104,6 +104,9 @@ file=/etc/bind/geodns/recvconf.files
 file=/etc/bind/named.conf.options
 <% end -%>
 file=/etc/apache2/conf.d/puppet-builddlist
+<% if classes.include?("roles::static_base") -%>
+file=/etc/static-components.conf
+<% end -%>
 
 #
 # There are files in /etc that might change, thus changing the directory
