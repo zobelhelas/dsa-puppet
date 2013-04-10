@@ -5,30 +5,12 @@
 # port on the remote instead of just encoding it in authkeys.
 
 # from host:port to host:port
-#master.debian.org:
-#  - source_bind_port: 5441
-#    target_host: samosa.debian.org
-#    target_port: 5441
-
-samosa.debian.org:
-  - source_bind_port: 5433
-    target_host: grieg.debian.org
-    target_port: 5433
-
-paganini.debian.org:
-  - source_bind_port: 5441
-    target_host: samosa.debian.org
-    target_port: 5441
 
 quantz.debian.org:
   # qa->projectb mirror
   - source_bind_port: 5433
     target_host: ries.debian.org
     target_port: 5433
-  # qa->udd
-  - source_bind_port: 5441
-    target_host: samosa.debian.org
-    target_port: 5441
 
 nono.debian.org:
   # nm->projectb mirror
@@ -59,11 +41,6 @@ ries.debian.org:
   - source_bind_port: 15433
     target_host: franck.debian.org
     target_port: 5433
-
-wagner.debian.org:
-  - source_bind_port: 5441
-    target_host: samosa.debian.org
-    target_port: 5441
 
 blavet.debian.org:
   # emdebian->projectb mirror

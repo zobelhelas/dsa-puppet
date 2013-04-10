@@ -1,7 +1,7 @@
 class bacula::client inherits bacula {
 	@@bacula::storage-per-node { $::fqdn: }
 
-	if $::hostname in [beethoven, berlioz, biber, diabelli, dinis, draghi, geo3, lully, master, new-master, schumann, soler, wilder, wolkenstein] {
+	if $::hostname in [beethoven, berlioz, biber, diabelli, dinis, draghi, geo3, kaufmann, lully, master, new-master, reger, schumann, soler, vento, vieuxtemps, wilder, wolkenstein] {
 		@@bacula::node { $::fqdn: }
 	}
 
@@ -16,34 +16,37 @@ class bacula::client inherits bacula {
 		require   => Package['bacula-fd']
 	}
 
-	file {
-		'/etc/bacula/bacula-fd.conf':
-			content => template('bacula/bacula-fd.conf.erb'),
-			mode    => '0640',
-			owner   => root,
-			group   => bacula,
-			require => Package['bacula-fd'],
-			notify  => Service['bacula-fd'],
-			;
-		'/usr/local/sbin/postbaculajob':
-			mode    => '0775',
-			source  => 'puppet:///modules/bacula/postbaculajob',
-			;
-		'/etc/default/bacula-fd':
-			content => template('bacula/default.bacula-fd.erb'),
-			mode    => '0400',
-			owner   => root,
-			group   => root,
-			require => Package['bacula-fd'],
-			notify  => Service['bacula-fd'],
-			;
-		'/etc/apt/preferences.d/dsa-bacula-client':
+	file { '/etc/bacula/bacula-fd.conf':
+		content => template('bacula/bacula-fd.conf.erb'),
+		mode    => '0640',
+		owner   => root,
+		group   => bacula,
+		require => Package['bacula-fd'],
+		notify  => Service['bacula-fd'],
+	}
+	file { '/usr/local/sbin/postbaculajob':
+		mode    => '0775',
+		source  => 'puppet:///modules/bacula/postbaculajob',
+	}
+	file { '/etc/default/bacula-fd':
+		content => template('bacula/default.bacula-fd.erb'),
+		mode    => '0400',
+		owner   => root,
+		group   => root,
+		require => Package['bacula-fd'],
+		notify  => Service['bacula-fd'],
+	}
+	if $::lsbmajdistrelease < 7 {
+		file { '/etc/apt/preferences.d/dsa-bacula-client':
 			content => template('bacula/apt.preferences.bacula-client.erb'),
 			mode    => '0444',
 			owner   => root,
 			group   => root,
-			;
-
+		}
+	} else {
+		file { '/etc/apt/preferences.d/dsa-bacula-client':
+			ensure => absent
+		}
 	}
 
 	@ferm::rule { 'dsa-bacula-fd-v4':

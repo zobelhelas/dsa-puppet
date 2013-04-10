@@ -2,7 +2,7 @@ class hardware::raid::proliant {
 
 	site::aptrepo { 'debian.restricted':
 		url        => 'http://db.debian.org/debian-admin',
-		suite      => 'lenny-restricted',
+		suite      => "${::lsbdistcodename}-restricted",
 		components => 'non-free',
 	}
 
@@ -13,9 +13,6 @@ class hardware::raid::proliant {
 	package { 'hp-health':
 		ensure => installed,
 		tag    => extra_repo,
-	}
-	package { 'arrayprobe':
-		ensure => installed,
 	}
 
 	if $::debarchitecture == 'amd64' {

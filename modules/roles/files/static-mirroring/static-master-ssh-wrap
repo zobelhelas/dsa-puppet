@@ -97,7 +97,23 @@ do_update_component() {
 	component="$1"
 	shift
 
-	hit="$(awk -v component="$component" -v host="$remote_host" '$1 == component && $2 == host {print $3; exit}' "$COMPONENTLIST")"
+	hit="$(
+		awk -v component="$component" -v host="$remote_host" '
+		  $1 == component {
+			  if ($2 == host) {
+				  print $3
+				  exit
+			  }
+			  split($4,extra,",")
+			  for (i in extra) {
+				  if (host == extra[i]) {
+					  printf "%s:%s\n", $2, $3
+					  exit
+				  }
+			  }
+			  exit
+		  }' "$COMPONENTLIST"
+		)"
 	if [ -n "$hit" ]; then
 		exec static-master-update-component "$component"
 		echo >&2 "Exec failed"

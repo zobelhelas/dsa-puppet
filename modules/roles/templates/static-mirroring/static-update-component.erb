@@ -21,39 +21,58 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-componentlist=/etc/static-components.conf
-
-if [ "$#" != 1 ]; then
+usage() {
   echo >&2 "Usage: $0 <component>"
   exit 1
+}
+
+componentlist=/etc/static-components.conf
+
+if [ "$#" = 1 ]; then
+  component="$1"
+else
+  usage
 fi
 
-component="$1"
 
 if [ "${component%/*}" != "$component" ] ; then
   echo >&2 "$0: Invalid component: $component";
   exit 1
 fi
 
+thishost=$(hostname -f)
 srchost="$(awk -v component="$component" '$1 == component {print $2; exit}' "$componentlist")"
 srcdir="$(awk -v component="$component" '$1 == component {print $3; exit}' "$componentlist")"
+inextralist="$(
+               awk -v component="$component" -v host="$thishost" '
+                 $1 == component {
+                   split($4,extra,",")
+                   for (i in extra) {
+                     if (host == extra[i]) {
+                       printf "%s:%s\n", $2, $3
+                       exit
+                     }
+                   }
+                   exit
+                 }' "$componentlist"
+              )"
 if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
   echo >&2 "$0: Invalid component: $component (not found in $componentlist)";
   exit 1
 fi
 
-if ! [ "$srchost" = "`hostname -f`" ]; then
-  echo >&2 "Component $component is sourced from $srchost, not this host."
+if ! [ "$srchost" = "$thishost" ] && [ -z "$inextralist" ]; then
+  echo >&2 "Component $component is sourced from $srchost, and this host is neither that nor in the extra allowed list."
   exit 1
 fi
 
-if ! [ -d "$srcdir" ]; then
+if [ "$srchost" = "$thishost" ] && ! [ -d "$srcdir" ]; then
   echo >&2 "Component source directory $srcdir does not exist or is not a directory, or is not accessible."
   exit 1
 fi
 
 if [ "`id -nu`" != "staticsync" ]; then
-  sudo -u staticsync static-update-component "$component"
+  sudo -u staticsync static-update-component "$@"
 else
   masters=()
 <%=

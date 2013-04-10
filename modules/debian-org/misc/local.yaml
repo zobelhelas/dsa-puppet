@@ -150,8 +150,6 @@ footer:
   #zandonai.debian.org: "Debian s390 buildd system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
   #zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 services:
-  backports_master:
-    - morricone.debian.org
   bugsmaster:
   bugsmx:
     - busoni.debian.org
@@ -231,11 +229,7 @@ host_settings:
     - senfl.debian.org
   'apache2_ftp-upcoming_mirror':
     - klecker.debian.org
-    - merikanto.debian.org
     - rietz.debian.org
-  apache2_backports_mirror:
-    - englund.debian.org
-    - morricone.debian.org
   timeserver:
     - busoni.debian.org
     - merikanto.debian.org
@@ -283,6 +277,9 @@ host_settings:
     - rietz.debian.org
     - stanley.debian.org
   static_source:
+    - master.debian.org
+    - ries.debian.org
+    - franck.debian.org
     - senfl.debian.org
     - wolkenstein.debian.org
 #  reservedaddrs:

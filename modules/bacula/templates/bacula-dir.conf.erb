@@ -242,11 +242,6 @@ Job {
   Write Bootstrap = "/var/lib/bacula/%n.bsr"
   Priority = 15    # run after main backup
   Pool = "poolcatalog-<%=bacula_pool_name%>"
-  RunScript {
-    RunsWhen=After
-    RunsOnClient=No
-    Console = "purge volume action=all allpools storage=%w"
-  }
 }
 
 ########################################################################

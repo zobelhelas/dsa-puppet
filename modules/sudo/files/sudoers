@@ -48,7 +48,6 @@ root	ALL=(ALL) ALL
 # nagios
 nagios		ALL=(ALL)	NOPASSWD: /etc/init.d/ekeyd-egd-linux restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
-nagios		dinis=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-bacula
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-filesystems ""
 # with smartarray controllers
 nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
@@ -129,6 +128,8 @@ Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
 %planet		senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
+%debbits	master=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
+%backports	franck,ries=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
 
 # The piuparts slave needs to handle chroots
 piupartss	piatti=(ALL)		NOPASSWD: ALL

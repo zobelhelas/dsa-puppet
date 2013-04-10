@@ -20,12 +20,6 @@ Job {
 
   Cancel Lower Level Duplicates = yes
   Cancel Queued Duplicates = yes
-
-  RunScript {
-    RunsWhen = After
-    RunsOnClient = No
-    Console = "purge volume action=all allpools storage=%w"
-  }
 }
 
 # Client (File Services) to backup

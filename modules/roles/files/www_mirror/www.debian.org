@@ -57,7 +57,7 @@
   AddLanguage nb .nb
   AddLanguage pl .pl
   AddLanguage pt .pt
-  AddLanguage pt-br .pt
+  AddLanguage pt-br .pt-br
   AddLanguage ro .ro
   AddLanguage ru .ru
   AddLanguage sk .sk
@@ -92,7 +92,7 @@
    ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net debian.org www.debian.at www.debian.eu debian.eu debian.com
    DocumentRoot /srv/www.debian.org/www/
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
-   CustomLog /var/log/apache2/www-other.debian.org-access.log combined
+   CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
    RewriteLog /var/log/apache2/www-other.debian.org-redirect.log
    RewriteLogLevel 1
 
@@ -106,7 +106,7 @@
    ServerAlias www-*.debian.org
    DocumentRoot /srv/www.debian.org/www/
    ErrorLog /var/log/apache2/www.debian.org-error.log
-   CustomLog /var/log/apache2/www.debian.org-access.log combined
+   CustomLog /var/log/apache2/www.debian.org-access.log privacy
 
    # CacheNegotiatedDocs: By default, Apache sends Pragma: no-cache with each
    # document that was negotiated on the basis of content. This asks proxy
@@ -222,6 +222,6 @@
    ServerAlias volatile-master.debian.org
    ServerAdmin webmaster@debian.org
    ErrorLog /var/log/apache2/volatile.debian.org-error.log
-   CustomLog /var/log/apache2/volatile.debian.org-access.log combined
+   CustomLog /var/log/apache2/volatile.debian.org-access.log privacy
    RedirectMatch permanent . http://www.debian.org/volatile/
 </VirtualHost>

@@ -3,7 +3,7 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
-	if $::hostname in [klecker,merikanto,powell,ravel,rietz,senfl,sibelius,stabile] {
+	if $::hostname in [glinka,klecker,merikanto,powell,ravel,rietz,senfl,sibelius,stabile] {
 		ferm::rule { 'dsa-rsync':
 			domain      => '(ip ip6)',
 			description => 'Allow rsync access',
@@ -40,6 +40,12 @@ class ferm::per-host {
 				domain          => '(ip6)',
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2607:f8f0:610:4000:6564:a62:ce0c:138d/128 ))'
+			}
+		}
+		czerny,clementi: {
+			@ferm::rule { 'dsa-upsmon':
+				description     => 'Allow upsmon access',
+				rule            => '&SERVICE_RANGE(tcp, 3493, ( 82.195.75.64/26 192.168.43.0/24 ))'
 			}
 		}
 		danzi: {
@@ -138,6 +144,29 @@ class ferm::per-host {
 				domain          => '(ip ip6)',
 				description     => 'Allow ldaps access',
 				rule            => '&SERVICE(tcp, 636)'
+			}
+			@ferm::rule { 'dsa-vpn':
+				description     => 'Allow openvpn access',
+				rule            => '&SERVICE(udp, 17257)'
+			}
+			@ferm::rule { 'dsa-routing':
+				description     => 'forward chain',
+				chain           => 'FORWARD',
+				rule            => 'policy ACCEPT;
+mod state state (ESTABLISHED RELATED) ACCEPT;
+interface tun+ ACCEPT;
+REJECT reject-with icmp-admin-prohibited
+'
+			}
+			@ferm::rule { 'dsa-vpn-mark':
+				table           => 'mangle',
+				chain           => 'PREROUTING',
+				rule            => 'interface tun+ MARK set-mark 1',
+			}
+			@ferm::rule { 'dsa-vpn-nat':
+				table           => 'nat',
+				chain           => 'POSTROUTING',
+				rule            => 'outerface !tun+ mod mark mark 1 MASQUERADE',
 			}
 		}
 		cilea: {

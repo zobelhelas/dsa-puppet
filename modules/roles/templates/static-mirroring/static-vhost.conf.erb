@@ -23,9 +23,8 @@
 	ServerName $name
 	ServerAdmin debian-admin@lists.debian.org
 
-
 	ErrorLog /var/log/apache2/$name-error.log
-	CustomLog /var/log/apache2/$name-access.log combined
+	CustomLog /var/log/apache2/$name-access.log privacy
 
 	Use common-$name
 </VirtualHost>

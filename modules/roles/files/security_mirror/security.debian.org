@@ -31,7 +31,7 @@
    # alert, emerg.
    LogLevel warn
 
-   CustomLog /var/log/apache2/security.debian.org-access.log combined
+   CustomLog /var/log/apache2/security.debian.org-access.log privacy
    ServerSignature On
 
 </VirtualHost>

@@ -3,6 +3,8 @@ Facter.add("smartarraycontroller") do
 	setcode do
 		if FileTest.exist?("/dev/cciss/")
 			true
+		elsif FileTest.exist?("/sys/module/hpsa/")
+			true
 		else
 			''
 		end

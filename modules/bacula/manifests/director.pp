@@ -62,4 +62,22 @@ class bacula::director inherits bacula {
 		group   => bacula,
 		require => Package['bacula-console']
 	}
+
+	file { '/etc/bacula/scripts/volume-purge-action':
+		mode    => '0555',
+		source  => 'puppet:///modules/bacula/volume-purge-action',
+		;
+	}
+	file { '/etc/bacula/storages-list.d':
+		ensure  => directory,
+		mode    => '0755',
+		group   => bacula,
+		purge   => true,
+		force   => true,
+		recurse => true,
+		source  => 'puppet:///files/empty/',
+	}
+	file { "/etc/cron.d/puppet-bacula-stuff":
+		content => "@daily root (cat /etc/bacula/storages-list.d/*.storage; echo '$bacula::bacula_filestor_name-catalog') | /etc/bacula/scripts/volume-purge-action\n";
+	}
 }
