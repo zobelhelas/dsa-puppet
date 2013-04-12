@@ -1,0 +1,7 @@
+---
+nameservers:
+  - 8.8.8.8
+  - 8.8.4.4
+searchpaths:
+  - debprivate-bytemark.debian.org
+cluster: ganeti-bytemark.debian.org

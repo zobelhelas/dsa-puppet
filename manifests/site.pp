@@ -37,7 +37,7 @@ node default {
 	include unbound
 	include bacula::client
 
-	if $::hostname in [pasquini,tristano,bertali,boito,byrd,clementi,czerny,rossini] {
+	if $::hostname in [pasquini,tristano,bertali,boito,byrd,clementi,czerny,rossini,bm-bl1,bm-bl9] {
 		include ganeti2
 	}
 
