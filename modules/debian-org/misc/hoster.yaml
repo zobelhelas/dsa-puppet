@@ -46,7 +46,7 @@ br:
 bytemark:
   netrange:
     - 5.153.231.0/24
-    - 2001:41c8:1000:::/48
+    - 2001:41c8:1000::/48
   searchpaths: [debprivate-bytemark.debian.org]
   nameservers: []
 carnet:
