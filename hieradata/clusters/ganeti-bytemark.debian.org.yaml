@@ -1,0 +1,4 @@
+---
+nodes:
+  - 'bm-bl1.debian.org'
+  - 'bm-bl9.debian.org'

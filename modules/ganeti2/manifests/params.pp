@@ -17,6 +17,11 @@ class ganeti2::params {
 			$ganeti_priv  = ['192.168.75.103/32', '192.168.75.109/32']
 			$drbd         = true
 		}
+		'ganeti-bytemark.debian.org': {
+			$ganeti_hosts = ['5.153.231.1/32', '5.153.231.9/32']
+			$ganeti_priv  = ['192.168.231.1/32', '192.168.231.9/32']
+			$drbd         = false
+		}
 		default: {
 			$ganeti_hosts = []
 			$ganeti_priv  = []
