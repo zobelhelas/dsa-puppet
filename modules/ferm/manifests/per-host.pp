@@ -301,6 +301,9 @@ REJECT reject-with icmp-admin-prohibited
 			@ferm::rule { 'dsa-vrrp':
 				rule            => 'proto vrrp daddr 224.0.0.18 jump ACCEPT',
 			}
+			@ferm::rule { 'dsa-conntrackd':
+				rule            => 'interface vlan2 daddr 225.0.0.50 jump ACCEPT',
+			}
 		}
 		default: {}
 	}
