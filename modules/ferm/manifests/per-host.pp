@@ -297,7 +297,7 @@ REJECT reject-with icmp-admin-prohibited
 		default: {}
 	}
 	case $::hostname {
-		bm-bl1,bm-bl9: {
+		bm-bl1,bm-bl2: {
 			@ferm::rule { 'dsa-vrrp':
 				rule            => 'proto vrrp daddr 224.0.0.18 jump ACCEPT',
 			}
