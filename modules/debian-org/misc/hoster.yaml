@@ -52,6 +52,7 @@ bytemark:
   #searchpaths: [debprivate-bytemark.debian.org]
   nameservers: [5.153.231.241, 5.153.231.242]
   allow_dns_query: [5.153.231.0/24]
+  mirror-debian: http://mirror.bytemark.co.uk/debian
 carnet:
   netrange:
     - 193.198.0.0/16
