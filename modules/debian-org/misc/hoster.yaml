@@ -50,7 +50,8 @@ bytemark:
     - 2001:41c8:1000::/48
     - 2001:41c8:61::/125
   #searchpaths: [debprivate-bytemark.debian.org]
-  nameservers: [89.16.160.117, 89.16.160.118]
+  nameservers: [5.153.231.241, 5.153.231.242]
+  allow_dns_query: [5.153.231.0/24]
 carnet:
   netrange:
     - 193.198.0.0/16
