@@ -10,7 +10,6 @@ class unbound {
 
 	$is_recursor   = getfromhash($site::nodeinfo, 'misc', 'resolver-recursive')
 	$client_ranges = getfromhash($site::nodeinfo, 'hoster', 'allow_dns_query')
-	$dodgy_ns      = getfromhash($site::nodeinfo, 'hoster', 'nameservers_break_dnssec')
 	$ns            = hiera('nameservers')
 
 	package { 'unbound':
