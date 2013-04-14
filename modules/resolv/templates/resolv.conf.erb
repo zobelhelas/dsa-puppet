@@ -3,42 +3,35 @@
 ### USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ###
 
-<%=
-nameservers = []
+<%
 searchpaths = []
-options     = []
-resolvconf  = ''
-
+searchpaths += @sp
+searchpaths << "debian.org" -%>
+search <%= searchpaths.to_a.flatten.join(" ") %>
+<%
+nameservers = []
 if %w{draghi}.include?(hostname)
   nameservers << "127.0.0.1"
 end
+nameservers += @ns
 
-nameservers += scope.lookupvar('ns')
-searchpaths += scope.lookupvar('sp')
-options     += scope.lookupvar('opts')
-
-searchpaths << "debian.org"
-
-resolvconf += "search " + searchpaths.to_a.flatten.join(" ") + "\n"
-
-if has_variable?('unbound') and unbound and unbound == "true"
-  resolvconf += "nameserver 127.0.0.1\n"
-else
-  if nameservers.empty?
-    #raise Puppet::ParseError, "Something has gone wrong writing resolv.conf.  No nameservers to use!"
-    scope.function_warning(["Something has gone wrong writing resolv.conf.  No nameservers to use - using google's!"])
-    nameservers << '8.8.8.8'
-    nameservers << '8.8.4.4'
-  end
-
-  nameservers.to_a.flatten.each do |ns|
-    resolvconf += "nameserver " + ns + "\n"
-  end
+if @unbound && @unbound == "true"
+  nameservers = ['127.0.0.1']
 end
 
-options.to_a.flatten.each do |opt|
-  resolvconf += "options " + opt + "\n"
+if nameservers.empty?
+  #raise Puppet::ParseError, "Something has gone wrong writing resolv.conf.  No nameservers to use!"
+  scope.function_warning(["Something has gone wrong writing resolv.conf.  No nameservers to use - using google's!"])
+  nameservers << '8.8.8.8'
+  nameservers << '8.8.4.4'
 end
 
-resolvconf
-%>
+nameservers.to_a.flatten.each do |nms| -%>
+nameserver <%= nms %>
+<% end -%>
+<%
+options  = []
+options += @opts -%>
+<% options.to_a.flatten.each do |opt| -%>
+options <%= opt %>
+<% end -%>
