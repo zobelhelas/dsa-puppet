@@ -1,7 +1,3 @@
 ---
-nameservers:
-  - 195.20.224.99
-  - 195.20.224.234
-  - 87.106.64.251
 searchpaths:
   - debprivate-oneandone.debian.org

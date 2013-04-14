@@ -1,6 +1,2 @@
 ---
-nameservers:
-  - 140.211.166.130
-  - 140.211.166.131
-  - 216.165.191.54
 cluster: ganeti-osuosl.debian.org
