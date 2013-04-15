@@ -15,7 +15,7 @@ class ganeti2::params {
 			$ganeti_priv  = ['192.168.75.103/32', '192.168.75.109/32']
 			$drbd         = true
 		}
-		'ganeti-bm.debian.org': {
+		'ganeti.bm.debian.org': {
 			$ganeti_hosts = ['5.153.231.240/28']
 			$ganeti_priv  = ['172.29.121.0/24']
 			$drbd         = false
