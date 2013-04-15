@@ -40,7 +40,7 @@ module Puppet::Parser::Functions
       end
 
       ns = function_hiera('nameservers')
-      if not ns or ns.empty?
+      if ns.empty?
         # no nameservers known for this hoster
         nodeinfo['misc']['resolver-recursive'] = true
 
