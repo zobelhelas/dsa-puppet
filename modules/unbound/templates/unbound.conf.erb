@@ -44,7 +44,8 @@ server:
 	auto-trust-anchor-file: "/var/lib/unbound/root.key"
 	auto-trust-anchor-file: "/var/lib/unbound/debian.org.key"
 
-<% if (not @is_recursor) and @ns -%>
+# recursive: <%= @is_recursor ? "y" : "n" %>
+<% if (not @is_recursor) and (not @ns.empty?) -%>
 forward-zone:
 	name: "."
 <% @ns.to_a.flatten.each do |nms| -%>
