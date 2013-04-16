@@ -177,7 +177,7 @@ services:
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
     - orff.debian.org
-  packagesmaster: powell.debian.org
+  #packagesmaster: powell.debian.org
   packagesqamaster: quantz.debian.org
   puppetmaster: handel.debian.org
   rtmaster:
@@ -206,7 +206,6 @@ host_settings:
     - muffat.debian.org
     - nono.debian.org
     - popov.debian.org
-    - powell.debian.org
     - quantz.debian.org
     - ravel.debian.org
     - reger.debian.org

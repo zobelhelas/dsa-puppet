@@ -62,7 +62,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] show statu
 nagios		franck=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=1 enclosure 1E\:1 show detail
 
 # other raid controllers
-nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
+#nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
 nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 nagios		MPTRAIDHOSTS=(ALL)	NOPASSWD: /usr/sbin/mpt-status -s
 nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
@@ -134,7 +134,7 @@ buildd		ALL=(ALL)		NOPASSWD: ALL
 # The piuparts slave needs to handle chroots
 piupartss	piatti=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
-pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
+#pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # on draghi, the domains git thing will run bind9 reload afterwards
 %dnsadm		draghi,orff=(root)		NOPASSWD: /etc/init.d/bind9 reload
 %dnsadm		draghi,orff=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo

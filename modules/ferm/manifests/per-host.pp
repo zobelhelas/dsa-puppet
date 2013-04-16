@@ -3,7 +3,7 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
-	if $::hostname in [glinka,klecker,merikanto,powell,ravel,rietz,senfl,sibelius,stabile] {
+	if $::hostname in [glinka,klecker,merikanto,ravel,rietz,senfl,sibelius,stabile] {
 		ferm::rule { 'dsa-rsync':
 			domain      => '(ip ip6)',
 			description => 'Allow rsync access',
@@ -86,17 +86,6 @@ class ferm::per-host {
 			@ferm::rule { 'dsa-tftp':
 				description     => 'Allow tftp access',
 				rule            => '&SERVICE(udp, 69)'
-			}
-		}
-		powell: {
-			@ferm::rule { 'dsa-powell-v6-tunnel':
-				description     => 'Allow powell to use V6 tunnel broker',
-				rule            => 'proto ipv6 saddr 212.227.117.6 jump ACCEPT'
-			}
-			@ferm::rule { 'dsa-powell-btseed':
-				domain          => '(ip ip6)',
-				description     => 'Allow powell to seed BT',
-				rule            => 'proto tcp dport 8000:8100 jump ACCEPT'
 			}
 		}
 		lotti,lully: {
