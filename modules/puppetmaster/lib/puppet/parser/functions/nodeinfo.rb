@@ -45,7 +45,7 @@ module Puppet::Parser::Functions
         # no nameservers known for this hoster
         nodeinfo['misc']['resolver-recursive'] = true
 
-        if not allow_dns_q.empty?
+        if allow_dns_q.empty?
           raise Puppet::ParseError, "No nameservers listed for #{nodeinfo['hoster']['name']} yet we should answer somebody's queries?  That makes no sense."
         end
       elsif (nodeinfo['misc']['v4addrs'] and (ns & nodeinfo['misc']['v4addrs']).size > 0) or
