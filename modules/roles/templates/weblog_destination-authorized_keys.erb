@@ -19,7 +19,7 @@ allnodeinfo = scope.lookupvar('site::allnodeinfo')
 mirrors = []
 localinfo.keys.sort.each do |node|
     if localinfo[node]['weblog_provider']
-        key = getstaticsynckey(node)
+        key = getweblogsynckey(node)
         mirrors << { 'node' => node, 'addr' => allnodeinfo[node]['ipHostNumber'], 'key' => key}
     end
 end
