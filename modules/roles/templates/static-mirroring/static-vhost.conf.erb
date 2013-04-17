@@ -1,7 +1,6 @@
 # puppet maintained
 
-<Macro common-static-vhost $name>
-<Macro common-$name>
+<Macro common-static-base $name>
 	<IfModule mod_userdir.c>
 		UserDir disabled
 	</IfModule>
@@ -19,16 +18,33 @@
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
 </Macro>
 
-<Virtualhost <%= vhost_listen %> >
-	ServerName $name
-	ServerAdmin debian-admin@lists.debian.org
 
-	ErrorLog /var/log/apache2/$name-error.log
-	CustomLog /var/log/apache2/$name-access.log privacy
+<Macro common-static-vhost $name>
+	<Virtualhost <%= vhost_listen %> >
+		ServerName $name
+		ServerAdmin debian-admin@lists.debian.org
 
-	Use common-$name
-</VirtualHost>
+		ErrorLog /var/log/apache2/$name-error.log
+		CustomLog /var/log/apache2/$name-access.log privacy
 
+		Use common-static-base $name
+	</VirtualHost>
 </Macro>
+
+<Macro common-static-vhost-publiclog $name>
+	<Virtualhost <%= vhost_listen %> >
+		ServerName $name
+		ServerAdmin debian-admin@lists.debian.org
+
+		ErrorLog /var/log/apache2/$name-error.log
+		CustomLog /var/log/apache2/$name-access.log privacy
+		<IfModule mod_geoip.c>
+			CustomLog /var/log/apache2/$name-public-access.log privacy+geo
+		</IfModule>
+
+		Use common-static-base $name
+	</VirtualHost>
+</Macro>
+
 
 # vim:ft=apache:
