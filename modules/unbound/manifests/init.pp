@@ -55,7 +55,7 @@ class unbound {
 		notify  => Service['unbound']
 	}
 
-	if ($is_recursor and not $client_ranges.empty?) {
+	if ($is_recursor and not empty($client_ranges)) {
 		@ferm::rule { 'dsa-dns':
 			domain      => 'ip',
 			description => 'Allow nameserver access',
