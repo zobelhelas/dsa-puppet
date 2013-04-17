@@ -8,3 +8,7 @@ nameservers:
   - 2607:f8f0:610:4000:21c:c4ff:fee5:e890
 searchpaths:
   - debprivate-ubc.debian.org
+allow_dns_query:
+  - 137.82.84.64/27
+  - 206.12.19.0/24
+  - 2607:f8f0:610:4000::/64

@@ -9,7 +9,7 @@
 class unbound {
 
 	$is_recursor   = getfromhash($site::nodeinfo, 'misc', 'resolver-recursive')
-	$client_ranges = getfromhash($site::nodeinfo, 'hoster', 'allow_dns_query')
+	$client_ranges = hiera('allow_dns_query')
 	$ns            = hiera('nameservers')
 
 	package { 'unbound':
@@ -59,12 +59,12 @@ class unbound {
 		@ferm::rule { 'dsa-dns':
 			domain      => 'ip',
 			description => 'Allow nameserver access',
-			rule        => sprintf('&TCP_UDP_SERVICE_RANGE(53, (%s))', join_spc(filter_ipv4(getfromhash($site::nodeinfo, 'hoster', 'allow_dns_query')))),
+			rule        => sprintf('&TCP_UDP_SERVICE_RANGE(53, (%s))', join_spc(filter_ipv4($client_ranges))),
 		}
 		@ferm::rule { 'dsa-dns6':
 			domain      => 'ip6',
 			description => 'Allow nameserver access',
-			rule        => sprintf('&TCP_UDP_SERVICE_RANGE(53, (%s))', join_spc(filter_ipv6(getfromhash($site::nodeinfo, 'hoster', 'allow_dns_query')))),
+			rule        => sprintf('&TCP_UDP_SERVICE_RANGE(53, (%s))', join_spc(filter_ipv6($client_ranges))),
 		}
 	}
 }

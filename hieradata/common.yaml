@@ -2,3 +2,4 @@
 nameservers: []
 searchpaths: []
 resolvoptions: []
+allow_dns_query: []

@@ -46,7 +46,6 @@ bytemark:
     - 2001:41c8:61::/125
   #searchpaths: [debprivate-bytemark.debian.org]
   nameservers: [5.153.231.241, 5.153.231.242]
-  allow_dns_query: [5.153.231.0/24]
   mirror-debian: http://mirror.bm.debian.org/debian
 carnet:
   netrange:
@@ -80,7 +79,6 @@ ftcollins:
   searchpaths: [debprivate-ftcollins.debian.org]
   nameservers: [192.25.206.33, 192.25.206.57]
   # only applicable for hosts that are recursive anyway:
-  allow_dns_query: [192.25.206.0/24]
 grnet:
   netrange:
     - 194.177.211.192/27
@@ -128,7 +126,6 @@ sanger:
   #resolvoptions: [single-request]
   nameservers: [193.62.202.28, 193.62.202.29]
   searchpaths: [debprivate-sanger.debian.org]
-  allow_dns_query: [193.62.202.24/29]
 rapidswitch:
   netrange:
     - 193.201.200.0/23
@@ -144,7 +141,6 @@ sil:
     - 2001:858:2:2::/64
   searchpaths: [debprivate-sil.debian.org]
   nameservers: [86.59.118.147, 86.59.118.148]
-  allow_dns_query: [86.59.118.144/28, 2001:858:2:2::/64]
   mirror-debian: http://ftp.at.debian.org/debian/
 ubcece:
   netrange:
@@ -153,7 +149,6 @@ ubcece:
   searchpaths: [debprivate-ubc.debian.org]
   mirror-debian: http://mirror-ubc.debian.org/debian/
   nameservers: [206.12.19.214, 2607:f8f0:610:4000:224:81ff:fea7:e952, 206.12.19.20, 2607:f8f0:610:4000:218:feff:fe76:2ed0, 206.12.19.21, 2607:f8f0:610:4000:21c:c4ff:fee5:e890]
-  allow_dns_query: [137.82.84.64/27, 206.12.19.0/24, 2607:f8f0:610:4000::/64]
 ugent:
   netrange:
     - 157.193.0.0/16

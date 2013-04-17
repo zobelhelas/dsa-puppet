@@ -4,3 +4,6 @@ nameservers:
   - 86.59.118.148
 searchpaths:
   - debprivate-sil.debian.org
+allow_dns_query:
+  - 86.59.118.144/28
+  - 2001:858:2:2::/64
