@@ -71,4 +71,7 @@ class roles {
 	if getfromhash($site::nodeinfo, 'weblog_provider') {
 		include roles::weblog_provider
 	}
+	if $::hostname in [ravel] {
+		include roles::weblog_destination
+	}
 }
