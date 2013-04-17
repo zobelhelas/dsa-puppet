@@ -10,6 +10,7 @@ class unbound {
 
 	$is_recursor   = getfromhash($site::nodeinfo, 'misc', 'resolver-recursive')
 	$client_ranges = hiera('allow_dns_query')
+	$empty_client_range = empty($client_ranges)
 	$ns            = hiera('nameservers')
 
 	package { 'unbound':
@@ -55,7 +56,7 @@ class unbound {
 		notify  => Service['unbound']
 	}
 
-	if ($is_recursor and not empty($client_ranges)) {
+	if ($is_recursor and not $empty_client_range) { 
 		@ferm::rule { 'dsa-dns':
 			domain      => 'ip',
 			description => 'Allow nameserver access',
