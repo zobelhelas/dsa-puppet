@@ -46,7 +46,7 @@ module Puppet::Parser::Functions
         nodeinfo['misc']['resolver-recursive'] = true
 
         if not allow_dns_q.empty?
-          raise Puppet::ParseError, "No nameservers listed for #{nodeinfo['hoster']['name']} yet we should answer somebody's queries?  That makes no sense."
+          raise Puppet::ParseError, "No nameservers listed for #{nodeinfo['hoster']['name']} yet we should answer somebody's queries?  That makes no sense.  allow_dns_q: #{allow_dns_q}."
         end
       elsif (nodeinfo['misc']['v4addrs'] and (ns & nodeinfo['misc']['v4addrs']).size > 0) or
             (nodeinfo['misc']['v6addrs'] and (ns & nodeinfo['misc']['v6addrs']).size > 0)
