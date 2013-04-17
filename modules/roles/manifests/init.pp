@@ -67,4 +67,8 @@ class roles {
 	} elsif getfromhash($site::nodeinfo, 'static_source') {
 		include roles::static_source
 	}
+
+	if getfromhash($site::nodeinfo, 'weblog_provider') {
+		include roles::weblog_provider
+	}
 }
