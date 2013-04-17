@@ -278,6 +278,7 @@ host_settings:
     - klecker.debian.org
     - rietz.debian.org
     - stanley.debian.org
+    - senfter.debian.org
   static_source:
     - master.debian.org
     - ries.debian.org
