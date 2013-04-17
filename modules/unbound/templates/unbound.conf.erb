@@ -6,7 +6,7 @@
 server:
 	verbosity: 1
 
-<% if @is_recursor && @client_ranges -%>
+<% if @is_recursor && not @client_ranges.empty? -%>
 	interface: 0.0.0.0
 	interface: ::0
 
