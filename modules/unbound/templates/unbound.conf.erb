@@ -43,6 +43,7 @@ server:
 	# auto-trust-anchor-file: ""
 	auto-trust-anchor-file: "/var/lib/unbound/root.key"
 	auto-trust-anchor-file: "/var/lib/unbound/debian.org.key"
+	auto-trust-anchor-file: "/var/lib/unbound/29.172.in-addr.arpa.key"
 
 # recursive: <%= @is_recursor ? "y" : "n" %>
 <% if not @is_recursor -%>
