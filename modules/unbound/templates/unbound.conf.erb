@@ -54,6 +54,7 @@ forward-zone:
 # XXX : we probably ought to forward 172.29 reverse queries to our nameserver
 # if our forwarders are not ours.
 <% else -%>
+local-zone: "29.172.in-addr.arpa" nodefault
 forward-zone:
 	name: "29.172.in-addr.arpa"
 	forward-host: ns1.debian.org
