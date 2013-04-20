@@ -46,6 +46,14 @@ class unbound {
 		mode    => '0644',
 		source  => 'puppet:///modules/unbound/debian.org.key'
 	}
+	file { '/var/lib/unbound/29.172.in-addr.arpa.key':
+		ensure  => present,
+		replace => false,
+		owner   => unbound,
+		group   => unbound,
+		mode    => '0644',
+		source  => 'puppet:///modules/unbound/29.172.in-addr.arpa.key'
+	}
 	file { '/etc/unbound/unbound.conf':
 		content => template('unbound/unbound.conf.erb'),
 		require => [

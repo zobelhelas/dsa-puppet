@@ -179,7 +179,7 @@ services:
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
     - orff.debian.org
-  #packagesmaster: powell.debian.org
+  packagesmaster: picconi.debian.org
   packagesqamaster: quantz.debian.org
   puppetmaster: handel.debian.org
   rtmaster:
@@ -207,6 +207,7 @@ host_settings:
     - morricone.debian.org
     - muffat.debian.org
     - nono.debian.org
+    - picconi.debian.org
     - popov.debian.org
     - quantz.debian.org
     - ravel.debian.org

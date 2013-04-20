@@ -43,6 +43,7 @@ server:
 	# auto-trust-anchor-file: ""
 	auto-trust-anchor-file: "/var/lib/unbound/root.key"
 	auto-trust-anchor-file: "/var/lib/unbound/debian.org.key"
+	auto-trust-anchor-file: "/var/lib/unbound/29.172.in-addr.arpa.key"
 
 # recursive: <%= @is_recursor ? "y" : "n" %>
 <% if not @is_recursor -%>
@@ -51,6 +52,16 @@ forward-zone:
 <% @ns.to_a.flatten.each do |nms| -%>
 	forward-addr: <%= nms %>
 <% end -%>
+# XXX : we probably ought to forward 172.29 reverse queries to our nameserver
+# if our forwarders are not ours.
+<% else -%>
+local-zone: "29.172.in-addr.arpa" nodefault
+forward-zone:
+	name: "29.172.in-addr.arpa"
+	forward-host: ns1.debian.org
+	forward-host: ns2.debian.org
+	forward-host: ns3.debian.org
+	forward-host: ns4.debian.com
 <% end -%>
 <% if hostname == "zappa" -%>
 edns-buffer-size: 512
