@@ -179,7 +179,7 @@ services:
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
     - orff.debian.org
-  #packagesmaster: powell.debian.org
+  packagesmaster: picconi.debian.org
   packagesqamaster: quantz.debian.org
   puppetmaster: handel.debian.org
   rtmaster:
