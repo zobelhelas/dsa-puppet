@@ -189,6 +189,12 @@ REJECT reject-with icmp-admin-prohibited
 				rule        => 'source 82.195.75.108 proto (tcp udp) sport 53 jump NOTRACK'
 			}
 		}
+		sonntag: {
+			@ferm::rule { 'dsa-bugs-search':
+				description  => 'port 1978 for bugs-search from bug web frontends',
+				rule         => '&SERVICE_RANGE(tcp, 1978, ( 140.211.166.26 206.12.19.140 ))'
+			}
+		}
 		default: {}
 	}
 
