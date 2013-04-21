@@ -28,3 +28,9 @@ if [ -e /etc/schroot/dsa/default-mirror ]; then
     MIRROR=$(cat /etc/schroot/dsa/default-mirror )
 fi
 MIRROR=${MIRROR:-cdn.debian.net}
+
+if [ "$(basename "$0")" = "00check" ] &&
+   [ "$CHROOT_TYPE" = "file" ] &&
+   [ "$STAGE" = "setup-start" ]; then
+        echo "Untarring chroot environment.  This might take a minute or two."
+fi

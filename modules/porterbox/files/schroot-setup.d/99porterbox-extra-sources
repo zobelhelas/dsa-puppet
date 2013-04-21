@@ -53,5 +53,7 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
       esac
       ;;
   esac
-  echo "You probably want to run apt-get update in this session chroot."
+  echo "To install build dependencies run"
+  echo "  dd-schroot-cmd -c ${SESSION_ID} apt-get update"
+  echo "followed by build-dep/install as appropriate in the host system."
 fi
