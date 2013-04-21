@@ -16,6 +16,14 @@ class bacula::client inherits bacula {
 		require   => Package['bacula-fd']
 	}
 
+	exec { 'bacula-fd restart-when-idle':
+		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
+		command     => '(setsid /usr/local/sbin/bacula-idle-restart fd &)',
+		refreshonly => true,
+		subscribe   => File['/etc/ssl/debian/certs/thishost.crt'],
+		require     => File['/usr/local/sbin/bacula-idle-restart'],
+	}
+
 	file { '/etc/bacula/bacula-fd.conf':
 		content => template('bacula/bacula-fd.conf.erb'),
 		mode    => '0640',

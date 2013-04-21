@@ -33,4 +33,10 @@ class bacula {
 	$bacula_ssl_client_key    = '/etc/ssl/debian/keys/thishost.key'
 	$bacula_ssl_server_cert   = '/etc/ssl/debian/certs/thishost-server.crt'
 	$bacula_ssl_server_key    = '/etc/ssl/debian/keys/thishost-server.key'
+
+	file { '/usr/local/sbin/bacula-idle-restart':
+		mode    => '0555',
+		source  => 'puppet:///modules/bacula/postbaculajob',
+	}
+
 }

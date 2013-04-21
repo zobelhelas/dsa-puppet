@@ -10,14 +10,14 @@ class bacula::storage inherits bacula {
 		hasstatus => true,
 	}
 
-	# should wait on -sd to finish current backups, then restart
-	# since it does not support reload and restarting kills running
-	# jobs
-	exec { 'bacula-sd reload':
+	exec { 'bacula-sd restart-when-idle':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		command     => '/bin/true',
+		command     => '(setsid /usr/local/sbin/bacula-idle-restart sd &)',
 		refreshonly => true,
+		subscribe   => File['/etc/ssl/debian/certs/thishost.crt'],
+		require     => File['/usr/local/sbin/bacula-idle-restart'],
 	}
+
 
 	file { '/etc/bacula/bacula-sd.conf':
 		content => template('bacula/bacula-sd.conf.erb'),
@@ -34,7 +34,7 @@ class bacula::storage inherits bacula {
 		force   => true,
 		recurse => true,
 		source  => 'puppet:///files/empty/',
-		notify  => Exec['bacula-sd reload']
+		notify  => Exec['bacula-sd restart-when-idle']
 	}
 
 	@ferm::rule { 'dsa-bacula-sd-v4':
@@ -55,7 +55,7 @@ class bacula::storage inherits bacula {
 		content => '',
 		mode    => '0440',
 		group   => bacula,
-		notify  => Exec['bacula-sd reload']
+		notify  => Exec['bacula-sd restart-when-idle']
 	}
 
 	Bacula::Storage-per-Node<<| |>>
