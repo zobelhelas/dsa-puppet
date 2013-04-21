@@ -31,7 +31,8 @@ Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, beethoven, pet
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= fasch, holter, barber, biber, cilea, vitry, krenek, orff
 Host_Alias	MEGACTLHOSTS	= lindberg, englund, nielsen
-Host_Alias  LISTHOSTS   = bendel
+Host_Alias	LISTHOSTS	= bendel
+Host_Alias	PORTERBOXES	= barriere, fischer, smetana
 
 # Cmnd alias specification
 
@@ -185,4 +186,4 @@ nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 %porter-ppc	partch=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-s390	zelenka=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-sparc	smetana,sperger=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%Debian,%guest	barriere,fischer=(root)		NOPASSWD: /usr/local/bin/dd-schroot-cmd
+%Debian,%guest	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd

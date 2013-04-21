@@ -194,6 +194,7 @@ services:
   porterbox:
     - barriere.debian.org
     - fischer.debian.org
+    - smetana.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org
