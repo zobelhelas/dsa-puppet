@@ -49,10 +49,19 @@ if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
     end
     purp += " porterbox"
     extra += "\n"
-    extra += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
-    if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('admin')
-      extra += "Please contact #{ninfo['ldap']['admin'][0]} for install requests,\n"
-      extra += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
+    if classes.include?("porterbox")
+      extra += "See 'schroot -l' for a list of available chroots.  Start new sessions\n"
+      extra += "with 'schroot --begin-session -c <chroot>', run commands in sessions using\n"
+      extra += "\schroot --run-session -c <session> [-- command]\, and tear down sessions\n"
+      extra += "using \schroot --end-session -c <session>'.  You can run a limited set of\n"
+      extra += "privileged commands, for instance some of apt-get, using\n"
+      extra += "'dd-schroot-cmd -c <session> <command>'."
+    else
+      extra += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
+      if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('admin')
+        extra += "Please contact #{ninfo['ldap']['admin'][0]} for install requests,\n"
+        extra += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
+      end
     end
   end
 

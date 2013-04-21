@@ -29,11 +29,11 @@ node default {
 	include ntp
 	include ntpdate
 	include ssl
-	include motd
 	include hardware
 	include nagios::client
 	include resolv
 	include roles
+	include motd
 	include unbound
 	include bacula::client
 
