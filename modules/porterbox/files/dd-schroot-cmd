@@ -1,0 +1,217 @@
+#!/usr/bin/python
+
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+
+# Copyright (c) 2013 Peter Palfrader <peter@palfrader.org>
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# script to allow otherwise unprivileged users to do certain
+# apt commands in schroot environments.
+
+# bugs:
+#  - ownership of the schroot session is only checked at the beginning.
+#    This means that if the original user deleted it, and then somebody
+#    else comes along and creates a session of the same name, they might
+#    get some of our commands run in there.
+
+import ConfigParser
+import optparse
+import os
+import pipes
+import platform
+import pty
+import re
+import stat
+import subprocess
+import sys
+from errno import EIO
+
+SCHROOT_SUPER_UID = 0
+SCHROOT_SUPER = 'root'
+
+def die(s):
+    print >> sys.stderr, s
+    sys.exit(1)
+
+def get_session_owner(session):
+    if re.search('[^0-9a-zA-Z_-]', session):
+        die("Invalid session name.")
+
+    path = os.path.join('/var/lib/schroot/session', session)
+    config = ConfigParser.RawConfigParser()
+    config.read(path)
+    owner = []
+    try:
+        owner.append(config.get(session, 'users'))
+        owner.append(config.get(session, 'root-users'))
+    except ConfigParser.NoSectionError:
+        die("Did not find session definition in session file.")
+    except ConfigParser.NoOptionError:
+        die("Did not find user information in session file.")
+    return owner
+
+
+def ensure_ok(session):
+    if 'SUDO_USER' not in os.environ:
+        die("Cannot find SUDO_USER in environment.")
+    if not os.environ['SUDO_USER'] in get_session_owner(session):
+        die("Session owner mismatch.")
+
+def os_supports_unshare():
+    if platform.uname()[0] == 'GNU/kFreeBSD':
+        return False
+    return True
+
+class WrappedRunner():
+    def __init__(self, session, args, unshare=True):
+        self.unshare = unshare
+        if not os_supports_unshare(): self.unshare = False
+        s,r = self.run('schroot', '-c', session, '--run-session', '--', 'env', 'DEBIAN_FRONTEND=noninteractive', *args)
+        if s != 0:
+            die("Command %s exited due to signal %d."%(' '.join(args), s))
+        if r != 0:
+            die("Command %s exited with exit code %d."%(' '.join(args), r))
+
+    @staticmethod
+    def get_ret(status):
+        signal = status & 0xff
+        if signal == 0: retcode = status > 8
+        else:           retcode = 0
+        return signal, retcode
+
+    def run(self, *cmd):
+        if self.unshare:
+            cmdstr = ' '.join(pipes.quote(s) for s in cmd)
+            cmd = ['unshare', '--uts', '--ipc', '--net', '--']
+            cmd += ['sh', '-c', 'ip addr add 127.0.0.1/8 dev lo && ip link set dev lo up && %s'%(cmdstr)]
+        pid, fd = pty.fork()
+        if pid == pty.CHILD:
+            fd = os.open("/dev/null", os.O_RDWR)
+            os.dup2(fd, 0) # stdin
+            os.execlp(cmd[0], *cmd)
+        try:
+            while 1:
+                b = os.read(fd, 1)
+                if b == "": break
+                sys.stdout.write(b)
+        except OSError, e:
+            if e[0] == EIO: pass
+            else: raise
+        os.close(fd)
+        p,v = os.waitpid(pid, 0)
+        s,r = WrappedRunner.get_ret(v)
+        return s,r
+
+class AptSchroot:
+    APT_DRY = ['apt-get', '--dry-run']
+    APT_REAL = ['apt-get', '--assume-yes', '-o', 'Dpkg::Options::=--force-confnew']
+
+    def __init__(self, options, args):
+        self.session = options.chroot
+        self.assume_yes = options.assume_yes
+        if len(args) < 1:
+            die("No operation given for apt.")
+        op = args.pop(0)
+        self.args = args
+
+        if op == "update":
+            self.ensure_no_extra_args()
+            self.apt_update()
+        elif op == "upgrade":
+            self.ensure_no_extra_args()
+            self.apt_upgrade()
+        elif op == "dist-upgrade":
+            self.ensure_no_extra_args()
+            self.apt_dist_upgrade()
+        elif op == "install":
+            self.apt_install(args)
+        elif op == "build-dep":
+            self.apt_build_dep(args)
+        else:
+            die("Invalid operation %s"%(op,))
+
+    def ensure_no_extra_args(self):
+        if len(self.args) > 0:
+            die("superfluous arguments: %s"%(' '.join(self.args),))
+
+    def apt_update(self):
+        self.secure_run(AptSchroot.APT_REAL +['update'], unshare=False)
+
+    def apt_upgrade(self):
+        self.apt_simulate_and_ask(['upgrade'])
+
+    def apt_dist_upgrade(self):
+        self.apt_simulate_and_ask(['dist-upgrade'])
+
+    def apt_install(self, packages):
+        self.apt_simulate_and_ask(['install', '--'] + packages)
+
+    def apt_build_dep(self, packages):
+        self.apt_simulate_and_ask(['build-dep', '--'] + packages)
+
+    def apt_simulate_and_ask(self, cmd, split_download=True, run_clean=True):
+        if not self.assume_yes:
+            self.secure_run(AptSchroot.APT_DRY + cmd)
+            ans = raw_input("Do it for real [Y/n]: ")
+            if ans.lower() == 'n': sys.exit(0)
+        if split_download:
+            self.secure_run(AptSchroot.APT_REAL + ['--download-only'] +  cmd, unshare=False)
+        self.secure_run(AptSchroot.APT_REAL + cmd)
+        if run_clean:
+            self.secure_run(AptSchroot.APT_REAL + ['clean'])
+
+    def secure_run(self, args, unshare=True):
+        WrappedRunner(self.session, args, unshare)
+
+
+parser = optparse.OptionParser()
+parser.set_usage("""%prog [options] -c <session-chroot> [-y] -- <command>
+    Available commands:
+       apt-get update
+       apt-get upgrade
+       apt-get dist-upgrade
+       apt-get install <package> ...
+       apt-get build-dep <package> ...""")
+parser.add_option("-c", "--chroot", metavar="chroot", dest="chroot",
+    help="Which chroot to act on")
+parser.add_option("-y", "--assume-yes",  dest="assume_yes", default=False,
+    action="store_true", help="Assume yes on confirm questions.")
+
+(options, args) = parser.parse_args()
+
+if len(args) < 1 or options.chroot is None:
+    parser.print_help()
+    sys.exit(1)
+
+if os.getuid() != SCHROOT_SUPER_UID:
+    os.execlp('sudo', 'sudo', '-u', SCHROOT_SUPER, '--', *sys.argv)
+
+ensure_ok(options.chroot)
+
+command = args.pop(0)
+if command == "apt-get":
+    AptSchroot(options, args)
+else:
+    die("Invalid command: %s."%(command,))

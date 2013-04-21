@@ -16,6 +16,10 @@ class roles {
 		include buildd
 	}
 
+	if getfromhash($site::nodeinfo, 'porterbox') {
+		include porterbox
+	}
+
 	if getfromhash($site::nodeinfo, 'bugs_mirror') {
 		include roles::bugs_mirror
 	}

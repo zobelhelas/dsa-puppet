@@ -1,0 +1,57 @@
+#!/bin/bash
+
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# by weasel
+
+set -e
+
+. "$SETUP_DATA_DIR/common-data"
+. "$SETUP_DATA_DIR/common-functions"
+
+if [ -f "$CHROOT_SCRIPT_CONFIG" ]; then
+    . "$CHROOT_SCRIPT_CONFIG"
+elif [ "$STATUS" = "ok" ]; then
+    fatal "script-config file '$CHROOT_SCRIPT_CONFIG' does not exist"
+fi
+
+
+if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
+  SRCL="${CHROOT_PATH}/etc/apt/sources.list.d/auto.list"
+  rm -f "$SRCL"
+  mirror=${MIRROR:-cdn.debian.net}
+
+  case "${SUITE_BASE:-}" in
+    experimental)
+      echo "deb     http://$mirror/debian/ sid main" >> "$SRCL"
+      echo "deb-src http://$mirror/debian/ sid main" >> "$SRCL"
+      ;;
+    sid)
+      ;;
+    *)
+      echo "deb     http://security.debian.org/ ${SUITE_BASE}/updates main" >> "$SRCL"
+      echo "deb-src http://security.debian.org/ ${SUITE_BASE}/updates main" >> "$SRCL"
+      ;;
+  esac
+  echo "deb     http://$mirror/debian/ ${SUITE_BASE} main" >> "$SRCL"
+  echo "deb-src http://$mirror/debian/ ${SUITE_BASE} main" >> "$SRCL"
+
+  case "${SUITE_VARIANT:-}" in
+    backports)
+      case "${SUITE_BASE:-}" in
+        squeeze)
+          echo "deb     http://backports.debian.org/debian-backports/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb-src http://backports.debian.org/debian-backports/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          ;;
+        *)
+          echo "deb     http://$mirror/debian/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb-src http://$mirror/debian/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          ;;
+      esac
+      ;;
+  esac
+  echo "You probably want to run apt-get update in this session chroot."
+fi

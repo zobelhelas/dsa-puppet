@@ -1,0 +1,30 @@
+# Settings for "dsa" profile.
+
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+. "/etc/schroot/default/config"
+
+# added by weasel:
+if [ "$CHROOT_SESSION_PURGE" = "true" ]; then
+    case $CHROOT_NAME in
+        *-*_*-dchroot-*)
+            suitevariant_arch_tuple=${CHROOT_NAME%%-dchroot-*}
+            suitevariant=${suitevariant_arch_tuple%_*}
+            SUITE_BASE=${suitevariant%-*}
+            SUITE_VARIANT=${suitevariant##*-}
+        ;;
+        *_*-dchroot-*)
+            SUITE_BASE=${CHROOT_NAME%%_*}
+        ;;
+    esac
+fi
+
+CHROOT_FILE_UNPACK_DIR=/srv/chroot/schroot-unpack
+
+if [ -e /etc/schroot/dsa/default-mirror ]; then
+    MIRROR=$(cat /etc/schroot/dsa/default-mirror )
+fi
+MIRROR=${MIRROR:-cdn.debian.net}

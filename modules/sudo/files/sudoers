@@ -185,4 +185,4 @@ nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 %porter-ppc	partch=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-s390	zelenka=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-sparc	smetana,sperger=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%Debian,%guest	barriere,fischer=(root)		NOPASSWD: /usr/local/bin/apt-schroot
+%Debian,%guest	barriere,fischer=(root)		NOPASSWD: /usr/local/bin/dd-schroot-cmd

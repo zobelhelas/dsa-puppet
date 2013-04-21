@@ -1,0 +1,8 @@
+<%=
+ninfo = scope.lookupvar('site::nodeinfo')
+if ninfo['hoster'].has_key?('mirror-debian'):
+    ninfo['hoster']['mirror-debian']
+else
+    'cdn.debian.net'
+end
+%>
