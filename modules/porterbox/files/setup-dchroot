@@ -40,6 +40,7 @@ OPTIONS:
     -m MIRROR  http mirror to use [$mirror]
     -b basedir place where to build the chroot/tarball [$basedir]
     -f         overwrite stuff.
+    -c         write config only.
     -h         this help.
 EOF
 }
@@ -69,7 +70,7 @@ genschrootconf() {
 
 cat << EOF
 [${suite}_${arch}-dchroot]
-description=Debian $suite chroot for $arch
+description=[${suite}_${arch}-dchroot] Debian $suite chroot for $arch
 type=file
 file=$target
 groups=Debian,guest
@@ -113,12 +114,13 @@ if [ -e /etc/schroot/dsa/default-mirror ]; then
     mirror=$(cat /etc/schroot/dsa/default-mirror )
 fi
 mirror="${mirror:-http://cdn.debian.net/debian}"
+configonly=""
 force=""
 basedir="/srv/chroot"
 declare -a cleanup
 trap do_cleanup EXIT
 
-while getopts "a:b:fhm:" OPTION
+while getopts "a:b:cfhm:" OPTION
 do
     case $OPTION in
         a)
@@ -126,6 +128,9 @@ do
             ;;
         b)
             basedir="$OPTARG"
+            ;;
+        c)
+            configonly="1"
             ;;
         f)
             force="1"
@@ -165,6 +170,8 @@ schrootconfig="/etc/schroot/chroot.d/${tuple}-dchroot"
 # let's go
 #
 genschrootconf "$suite" "$arch" "$target" | tee "$schrootconfig"
+
+if [ -n "$configonly"]; then exit 0; fi
 
 rootdir=$(mktemp -d "$basedir/create-$suite-XXXXXX")
 cleanup+=("rm -r $rootdir")

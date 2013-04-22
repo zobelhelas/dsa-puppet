@@ -9,15 +9,21 @@
 
 # added by weasel:
 if [ "$CHROOT_SESSION_PURGE" = "true" ]; then
-    case $CHROOT_NAME in
-        *-*_*-dchroot-*)
-            suitevariant_arch_tuple=${CHROOT_NAME%%-dchroot-*}
+    case $CHROOT_DESCRIPTION in
+        "["*-*_*-dchroot"]"*)
+            chroot_type="$CHROOT_DESCRIPTION"; chroot_type="${chroot_type#[}"; chroot_type="${chroot_type%%]*}"
+            suitevariant_arch_tuple="${chroot_type%%-dchroot-*}"
             suitevariant=${suitevariant_arch_tuple%_*}
             SUITE_BASE=${suitevariant%-*}
             SUITE_VARIANT=${suitevariant##*-}
         ;;
-        *_*-dchroot-*)
-            SUITE_BASE=${CHROOT_NAME%%_*}
+        "["*_*-dchroot"]"*)
+            chroot_type="$CHROOT_DESCRIPTION"; chroot_type="${chroot_type#[}"; chroot_type="${chroot_type%%]*}"
+            SUITE_BASE="${chroot_type%%_*}"
+        ;;
+        *)
+            echo >&2 "Unable to parse chroot description for what kind of chroot you want."
+            exit 1
         ;;
     esac
 fi
