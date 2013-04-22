@@ -36,7 +36,7 @@ class bacula {
 
 	file { '/usr/local/sbin/bacula-idle-restart':
 		mode    => '0555',
-		source  => 'puppet:///modules/bacula/postbaculajob',
+		source  => 'puppet:///modules/bacula/bacula-idle-restart',
 	}
 
 }
