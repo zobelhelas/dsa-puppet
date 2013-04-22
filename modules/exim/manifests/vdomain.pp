@@ -30,6 +30,6 @@ define exim::vdomain (
 
 	concat::fragment { "virtualdomain_${domain}":
 		target  => '/etc/exim4/virtualdomains',
-		content => "${domain}: user=${user} group=${group} directory=${maildir}\n",
+		content => "${domain}: user=${user} group=${group} directory=${maildir}/mail\n",
 	}
 }
