@@ -3,6 +3,7 @@ class porterbox {
 
 	file { '/etc/schroot/dsa':
 		ensure => directory,
+		require => Package['schroot'],
 	}
 	file { '/etc/schroot/dsa/config':
 		source  => 'puppet:///modules/porterbox/schroot-dsa/config',
@@ -13,10 +14,12 @@ class porterbox {
 	file { '/etc/schroot/setup.d/99porterbox-extra-apt-options':
 		mode    => 555,
 		source  => 'puppet:///modules/porterbox/schroot-setup.d/99porterbox-extra-apt-options',
+		require => Package['schroot'],
 	}
 	file { '/etc/schroot/setup.d/99porterbox-extra-sources':
 		mode    => 555,
 		source  => 'puppet:///modules/porterbox/schroot-setup.d/99porterbox-extra-sources',
+		require => Package['schroot'],
 	}
 	file { '/usr/local/bin/dd-schroot-cmd':
 		mode    => 555,
