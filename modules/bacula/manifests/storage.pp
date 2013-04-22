@@ -12,7 +12,7 @@ class bacula::storage inherits bacula {
 
 	exec { 'bacula-sd restart-when-idle':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		command     => '(setsid /usr/local/sbin/bacula-idle-restart sd &)',
+		command     => 'sh -c "setsid /usr/local/sbin/bacula-idle-restart sd &"',
 		refreshonly => true,
 		subscribe   => File['/etc/ssl/debian/certs/thishost.crt'],
 		require     => File['/usr/local/sbin/bacula-idle-restart'],
