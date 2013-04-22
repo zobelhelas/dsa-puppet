@@ -112,7 +112,7 @@ arch="$THISARCH"
 if [ -e /etc/schroot/dsa/default-mirror ]; then
     mirror=$(cat /etc/schroot/dsa/default-mirror )
 fi
-mirror="${mirror:-cdn.debian.net}"
+mirror="${mirror:-http://cdn.debian.net/debian}"
 force=""
 basedir="/srv/chroot"
 declare -a cleanup
@@ -176,7 +176,7 @@ debootstrap \
     --include="apt" \
     --variant=buildd \
     --arch="$arch" \
-    "$suite" "$rootdir" "http://$mirror/debian"
+    "$suite" "$rootdir" "$mirror"
 echo "$tuple" > $rootdir/etc/debian_chroot
 
 chroot "$rootdir" apt-get update

@@ -22,12 +22,12 @@ fi
 if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
   SRCL="${CHROOT_PATH}/etc/apt/sources.list.d/auto.list"
   rm -f "$SRCL"
-  mirror=${MIRROR:-cdn.debian.net}
+  mirror=${MIRROR:-http://cdn.debian.net/debian}
 
   case "${SUITE_BASE:-}" in
     experimental)
-      echo "deb     http://$mirror/debian/ sid main" >> "$SRCL"
-      echo "deb-src http://$mirror/debian/ sid main" >> "$SRCL"
+      echo "deb     $mirror sid main" >> "$SRCL"
+      echo "deb-src $mirror sid main" >> "$SRCL"
       ;;
     sid)
       ;;
@@ -36,8 +36,8 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
       echo "deb-src http://security.debian.org/ ${SUITE_BASE}/updates main" >> "$SRCL"
       ;;
   esac
-  echo "deb     http://$mirror/debian/ ${SUITE_BASE} main" >> "$SRCL"
-  echo "deb-src http://$mirror/debian/ ${SUITE_BASE} main" >> "$SRCL"
+  echo "deb     $mirror ${SUITE_BASE} main" >> "$SRCL"
+  echo "deb-src $mirror ${SUITE_BASE} main" >> "$SRCL"
 
   case "${SUITE_VARIANT:-}" in
     backports)
@@ -47,8 +47,8 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
           echo "deb-src http://backports.debian.org/debian-backports/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
           ;;
         *)
-          echo "deb     http://$mirror/debian/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
-          echo "deb-src http://$mirror/debian/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb     $mirror ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb-src $mirror ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
           ;;
       esac
       ;;
