@@ -171,7 +171,7 @@ schrootconfig="/etc/schroot/chroot.d/${tuple}-dchroot"
 #
 genschrootconf "$suite" "$arch" "$target" | tee "$schrootconfig"
 
-if [ -n "$configonly"]; then exit 0; fi
+if [ -n "$configonly" ]; then exit 0; fi
 
 rootdir=$(mktemp -d "$basedir/create-$suite-XXXXXX")
 cleanup+=("rm -r $rootdir")
