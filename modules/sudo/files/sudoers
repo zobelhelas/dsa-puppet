@@ -163,7 +163,7 @@ debbugs-mirror	rietz=(root)		NOPASSWD: /usr/bin/vos release -id srv.mirrors.bugs
 dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
-%press		WEBHOSTS=(debwww)	/org/www.debian.org/update-part News
+%press		WEBHOSTS=(debwww)	/srv/www.debian.org/update-part News
 # more list stuff
 %list		LISTHOSTS=(root)		/usr/sbin/postfix reload
 %list		LISTHOSTS=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
