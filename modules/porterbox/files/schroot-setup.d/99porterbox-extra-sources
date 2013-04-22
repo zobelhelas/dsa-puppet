@@ -56,4 +56,8 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
   echo "To install build dependencies run"
   echo "  dd-schroot-cmd -c ${SESSION_ID} apt-get update"
   echo "followed by build-dep/install as appropriate in the host system."
+  echo
+  echo "Please do not forget to run"
+  echo "  schroot --end-session -c ${SESSION_ID}"
+  echo "when you no longer need this environment."
 fi
