@@ -1,5 +1,7 @@
 class exim {
 
+	include exim::vdomain::setup
+
 	munin::check { 'ps_exim4': script => 'ps_' }
 	munin::check { 'exim_mailqueue': }
 	munin::check { 'exim_mailstats': }
@@ -11,6 +13,12 @@ class exim {
 	package { 'exim4-daemon-heavy': ensure => installed }
 
 	Package['exim4-daemon-heavy']->Mailalias<| |>
+
+	concat::fragment { 'virtual_domain_template':
+		target  => '/etc/exim4/virtualdomains',
+		content => template('exim/virtualdomains.erb'),
+		order   => 05,
+	}
 
 	service { 'exim4':
 		ensure  => running,
@@ -59,9 +67,6 @@ class exim {
 	}
 	file { '/etc/exim4/locals':
 		content => template('exim/locals.erb')
-	}
-	file { '/etc/exim4/virtualdomains':
-		content => template('exim/virtualdomains.erb'),
 	}
 	file { '/etc/exim4/submission-domains':
 		content => template('exim/submission-domains.erb'),

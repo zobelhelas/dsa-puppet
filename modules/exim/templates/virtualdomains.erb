@@ -1,23 +1,5 @@
-##
-## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
-## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
-##
-
-# This file lists the virtual domains that this host should handle. The
-# format is
-#  host: user=user group=group directory=dir
-# Host may be a wildcard.
-# User/Group are the symbolic names of the uid/gid to operate under when
-#    performing deliveries for this name. These should not be root!
-# Directory is the directory to look in for data files. The directory and
-#    files may be group writable. The first file to lookup is DIR/aliases
-#    which is a traditional exim/sendmail alias file. You can specify
-#    users, patterns, pipes and filenames. If that fails then
-#    .forward-foo is tried, should that fail then .forward-default is tried.
-#    Finally the email will bounce.
-
 <%=
-vdoms = case scope.lookupvar('::fqdn')
+vdoms = case @fqdn
 
         when "busoni.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
         when "buxtehude.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
