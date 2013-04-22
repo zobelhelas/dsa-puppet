@@ -55,7 +55,8 @@ if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
       extra += "'schroot --run-session -c <session> [-- command]', and tear down sessions\n"
       extra += "using 'schroot --end-session -c <session>'.  You can run a limited set of\n"
       extra += "privileged commands, for instance some of apt-get, using\n"
-      extra += "'dd-schroot-cmd -c <session> <command>'."
+      extra += "'dd-schroot-cmd -c <session> <command>'.\n"
+      extra += "Use 'schroot-list-sessions' to list your open sessions.\n"
     else
       extra += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
       if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('admin')
