@@ -75,6 +75,11 @@ class roles {
 	if getfromhash($site::nodeinfo, 'weblog_provider') {
 		include roles::weblog_provider
 	}
+
+	if getfromhash($site::nodeinfo, 'mailrelay') {
+		include roles::mailrelay
+	}
+
 	if $::hostname in [ravel] {
 		include roles::weblog_destination
 	}
