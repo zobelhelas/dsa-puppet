@@ -18,7 +18,7 @@ class bacula::client inherits bacula {
 
 	exec { 'bacula-fd restart-when-idle':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		command     => '(setsid /usr/local/sbin/bacula-idle-restart fd &)',
+		command     => 'sh -c "setsid /usr/local/sbin/bacula-idle-restart fd &"',
 		refreshonly => true,
 		subscribe   => File['/etc/ssl/debian/certs/thishost.crt'],
 		require     => File['/usr/local/sbin/bacula-idle-restart'],
