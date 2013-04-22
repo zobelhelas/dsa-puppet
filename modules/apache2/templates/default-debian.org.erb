@@ -14,17 +14,11 @@
 	HostnameLookups Off
 	UseCanonicalName Off
 	ServerSignature On
-<%=
-out = case fqdn
-  when "master.debian.org" then ""
-  when "vento.debian.org" then ""
-else
-"
+
 	<IfModule mod_userdir.c>
 		UserDir disabled
 	</IfModule>
-"
-end
+<%=
 case fqdn
   when "spohr.debian.org" then
     out += "
