@@ -1,4 +1,4 @@
-class exim::vdomain (
+define exim::vdomain (
 	$alias_file,
 	$user,
 	$group,
