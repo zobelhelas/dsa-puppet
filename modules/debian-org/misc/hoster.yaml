@@ -78,7 +78,7 @@ ftcollins:
     - 192.25.206.0/24
   searchpaths: [debprivate-ftcollins.debian.org]
   nameservers: [192.25.206.33, 192.25.206.57]
-  # only applicable for hosts that are recursive anyway:
+  mirror-debian: http://spohr.debian.org/debian
 grnet:
   netrange:
     - 194.177.211.192/27
