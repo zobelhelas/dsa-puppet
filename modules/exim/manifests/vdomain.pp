@@ -14,7 +14,14 @@ define exim::vdomain (
 		group  => root
 	}
 
-	file { "${maildir}/aliases":
+	file { "${maildir}/mail":
+		ensure => directory,
+		mode   => '0755',
+		owner  => root,
+		group  => root
+	}
+
+	file { "${maildir}/mail/aliases":
 		source => $alias_file,
 		mode   => '0644',
 		owner  => root,
