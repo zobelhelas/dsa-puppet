@@ -22,8 +22,10 @@ if [ "$CHROOT_SESSION_PURGE" = "true" ]; then
             SUITE_BASE="${chroot_type%%_*}"
         ;;
         *)
-            echo >&2 "Unable to parse chroot description for what kind of chroot you want."
-            exit 1
+            if [ "$STAGE" = "setup-start" ]; then
+               echo >&2 "Unable to parse chroot description for what kind of chroot you want."
+               exit 1
+            fi
         ;;
     esac
 fi
