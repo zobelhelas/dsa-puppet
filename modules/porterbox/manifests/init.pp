@@ -25,6 +25,10 @@ class porterbox {
 		mode    => 555,
 		source  => 'puppet:///modules/porterbox/dd-schroot-cmd',
 	}
+	file { '/usr/local/bin/schroot-list-sessions':
+		mode    => 555,
+		source  => 'puppet:///modules/porterbox/schroot-list-sessions',
+	}
 	file { '/usr/local/sbin/setup-dchroot':
 		mode    => 555,
 		source  => 'puppet:///modules/porterbox/setup-dchroot',
