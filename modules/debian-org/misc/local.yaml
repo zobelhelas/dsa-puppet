@@ -192,8 +192,10 @@ services:
     - kaufmann.debian.org
   # new style porterbox (schroot, dd installable packages etc)
   porterbox:
+    # once they are all on new-style, we can use ldap for this
     - barriere.debian.org
     - fischer.debian.org
+    - merulo.debian.org
     - smetana.debian.org
 host_settings:
   heavy_exim:
