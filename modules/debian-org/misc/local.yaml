@@ -193,6 +193,7 @@ services:
   # new style porterbox (schroot, dd installable packages etc)
   porterbox:
     # once they are all on new-style, we can use ldap for this
+    - agricola.debian.org
     - barriere.debian.org
     - falla.debian.org
     - fischer.debian.org
