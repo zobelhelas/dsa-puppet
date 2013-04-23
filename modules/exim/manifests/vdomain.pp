@@ -2,7 +2,7 @@ define exim::vdomain (
 	$alias_file,
 	$user,
 	$group,
-	$maildir,
+	$maildir="/srv/${name}",
 	$domain=$name,
 ) {
 	include exim::vdomain::setup
