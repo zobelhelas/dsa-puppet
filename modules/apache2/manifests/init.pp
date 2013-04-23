@@ -81,7 +81,7 @@ class apache2 {
 		}
 	}
 
-	if $::hostname in [busoni,holter,lindberg,master,beach,buxtehude,picconi] {
+	if $::hostname in [holter,beach,buxtehude,picconi,pkgmirror-1and1] {
 		include apache2::dynamic
 	} else {
 		@ferm::rule { 'dsa-http':
