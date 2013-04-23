@@ -195,8 +195,11 @@ services:
     # once they are all on new-style, we can use ldap for this
     - agricola.debian.org
     - barriere.debian.org
+    - eder.debian.org
     - falla.debian.org
     - fischer.debian.org
+    - gabrielli.debian.org
+    - harris.debian.org
     - merulo.debian.org
     - partch.debian.org
     - smetana.debian.org
