@@ -196,6 +196,7 @@ services:
     - barriere.debian.org
     - fischer.debian.org
     - merulo.debian.org
+    - partch.debian.org
     - smetana.debian.org
     - zelenka.debian.org
 host_settings:
