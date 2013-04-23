@@ -194,6 +194,7 @@ services:
   porterbox:
     # once they are all on new-style, we can use ldap for this
     - barriere.debian.org
+    - falla.debian.org
     - fischer.debian.org
     - merulo.debian.org
     - partch.debian.org
