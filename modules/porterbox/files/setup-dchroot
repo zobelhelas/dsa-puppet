@@ -206,7 +206,7 @@ while true; do
 done
 EOF
 chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
-chroot "$rootdir" apt-get install -y --no-install-recommends zsh locales-all build-essential vim fakeroot devscripts gdb
+chroot "$rootdir" apt-get install -y --no-install-recommends zsh locales-all build-essential less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
 umount "$rootdir/sys" || true
 
