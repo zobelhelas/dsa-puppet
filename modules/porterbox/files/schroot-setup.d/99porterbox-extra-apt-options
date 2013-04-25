@@ -1,0 +1,35 @@
+#!/bin/bash
+
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# by weasel
+
+set -e
+
+. "$SETUP_DATA_DIR/common-data"
+. "$SETUP_DATA_DIR/common-functions"
+
+if [ -f "$CHROOT_SCRIPT_CONFIG" ]; then
+    . "$CHROOT_SCRIPT_CONFIG"
+elif [ "$STATUS" = "ok" ]; then
+    fatal "script-config file '$CHROOT_SCRIPT_CONFIG' does not exist"
+fi
+
+
+if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
+	TGT="${CHROOT_PATH}/etc/apt/apt.conf.d/local-schroot"
+	rm -f "$TGT"
+	cat > "$TGT" << EOF
+APT::Install-Recommends 0;
+Acquire::http::Pipeline-Depth "0";
+Acquire::Languages "none";
+Acquire::PDiffs "false";
+EOF
+#Acquire  {
+#     http { Proxy "http://10.213.12.1:3128/"; };
+#     ftp { Proxy "http://10.213.12.1:3128/"; };
+#}
+fi

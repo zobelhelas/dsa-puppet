@@ -8,6 +8,11 @@
 #
 class unbound {
 
+	$is_recursor   = getfromhash($site::nodeinfo, 'misc', 'resolver-recursive')
+	$client_ranges = hiera('allow_dns_query')
+	$empty_client_range = empty($client_ranges)
+	$ns            = hiera('nameservers')
+
 	package { 'unbound':
 		ensure => installed
 	}
@@ -41,6 +46,14 @@ class unbound {
 		mode    => '0644',
 		source  => 'puppet:///modules/unbound/debian.org.key'
 	}
+	file { '/var/lib/unbound/29.172.in-addr.arpa.key':
+		ensure  => present,
+		replace => false,
+		owner   => unbound,
+		group   => unbound,
+		mode    => '0644',
+		source  => 'puppet:///modules/unbound/29.172.in-addr.arpa.key'
+	}
 	file { '/etc/unbound/unbound.conf':
 		content => template('unbound/unbound.conf.erb'),
 		require => [
@@ -51,18 +64,16 @@ class unbound {
 		notify  => Service['unbound']
 	}
 
-	if getfromhash($site::nodeinfo, 'misc', 'resolver-recursive') {
-		if getfromhash($site::nodeinfo, 'hoster', 'allow_dns_query') {
-			@ferm::rule { 'dsa-dns':
-				domain      => 'ip',
-				description => 'Allow nameserver access',
-				rule        => sprintf('&TCP_UDP_SERVICE_RANGE(53, (%s))', join_spc(filter_ipv4(getfromhash($site::nodeinfo, 'hoster', 'allow_dns_query')))),
-			}
-			@ferm::rule { 'dsa-dns6':
-				domain      => 'ip6',
-				description => 'Allow nameserver access',
-				rule        => sprintf('&TCP_UDP_SERVICE_RANGE(53, (%s))', join_spc(filter_ipv6(getfromhash($site::nodeinfo, 'hoster', 'allow_dns_query')))),
-			}
+	if ($is_recursor and !$empty_client_range) { 
+		@ferm::rule { 'dsa-dns':
+			domain      => 'ip',
+			description => 'Allow nameserver access',
+			rule        => sprintf('&TCP_UDP_SERVICE_RANGE(53, (%s))', join_spc(filter_ipv4($client_ranges))),
+		}
+		@ferm::rule { 'dsa-dns6':
+			domain      => 'ip6',
+			description => 'Allow nameserver access',
+			rule        => sprintf('&TCP_UDP_SERVICE_RANGE(53, (%s))', join_spc(filter_ipv6($client_ranges))),
 		}
 	}
 }

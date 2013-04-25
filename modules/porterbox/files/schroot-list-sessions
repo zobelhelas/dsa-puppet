@@ -1,0 +1,78 @@
+#!/usr/bin/python
+
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# Copyright (c) 2013 Peter Palfrader <peter@palfrader.org>
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# List the schroot sessions that a user has access to.
+
+import ConfigParser
+import fnmatch
+import getpass
+import optparse
+import os
+import sys
+
+def die(s):
+    print >> sys.stderr, s
+    sys.exit(1)
+
+SESSION_PATH = '/var/lib/schroot/session'
+def get_session_owner(session):
+    path = os.path.join(SESSION_PATH, session)
+    config = ConfigParser.RawConfigParser()
+    config.read(path)
+    owner = []
+    try:
+        owner.append(config.get(session, 'users'))
+        owner.append(config.get(session, 'root-users'))
+    except ConfigParser.NoSectionError:
+        die("Did not find session definition in session file.")
+    except ConfigParser.NoOptionError:
+        die("Did not find user information in session file.")
+    return filter(lambda a: a!="", owner)
+
+def ownermatch(owners, users):
+    for gl in users:
+        for o in owners:
+            if fnmatch.fnmatch(o, gl): return True
+    return False
+
+def list_schroots(users):
+    for session in os.listdir(SESSION_PATH):
+        owners = get_session_owner(session)
+        if ownermatch(owners, users):
+            print "%s:%s"%(session, ','.join(owners))
+
+parser = optparse.OptionParser()
+parser.set_usage("""%prog [user]""")
+(options, args) = parser.parse_args()
+
+if len(args) < 1:
+    users = [getpass.getuser()]
+else:
+    users = args
+
+list_schroots(users)

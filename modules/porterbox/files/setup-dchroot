@@ -1,0 +1,213 @@
+#!/bin/bash
+
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# Copyright (c) 2013 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+
+THISARCH=$(dpkg --print-architecture)
+
+usage()
+{
+cat << EOF
+usage: $0 <suite>
+
+OPTIONS:
+    -a ARCH    debootstrap arch [$arch]
+    -m MIRROR  http mirror to use [$mirror]
+    -b basedir place where to build the chroot/tarball [$basedir]
+    -f         overwrite stuff.
+    -c         write config only.
+    -h         this help.
+EOF
+}
+
+die() {
+    echo >&2 "$*"
+    exit 1
+}
+
+do_cleanup() {
+    local cnt
+    cnt=$((${#cleanup[*]}-1))
+    for i in $(seq ${cnt} -1 0); do
+        ${cleanup[$i]} || true
+    done
+}
+
+genschrootconf() {
+    local suite="$1"; shift
+    local arch="$1"; shift
+    local target="$1"; shift
+    local extra="${1:-}"; shift || true
+
+    if [ -n "$extra" ]; then
+        local suite="${suite}-${extra}"
+    fi
+
+cat << EOF
+[${suite}_${arch}-dchroot]
+description=[${suite}_${arch}-dchroot] Debian $suite chroot for $arch
+type=file
+file=$target
+groups=Debian,guest
+root-groups=adm
+source-groups=adm
+source-root-groups=adm
+script-config=dsa/config
+EOF
+
+    if [ "$THISARCH" = "$arch" ]; then
+        echo "aliases=$suite"
+    else
+        case "$arch" in
+            i386)
+                echo "personality=linux32"
+                ;;
+        esac
+    fi
+    echo
+
+    case "$suite" in
+        sid)
+            genschrootconf "experimental" "$arch" "$target"
+            ;;
+        experimental)
+            :
+            ;;
+        *)
+            if [ -z "$extra" ]; then
+                genschrootconf "$suite" "$arch" "$target" "backports"
+            fi
+    esac
+}
+
+
+set -e
+set -u
+
+arch="$THISARCH"
+if [ -e /etc/schroot/dsa/default-mirror ]; then
+    mirror=$(cat /etc/schroot/dsa/default-mirror )
+fi
+mirror="${mirror:-http://cdn.debian.net/debian}"
+configonly=""
+force=""
+basedir="/srv/chroot"
+declare -a cleanup
+trap do_cleanup EXIT
+
+while getopts "a:b:cfhm:" OPTION
+do
+    case $OPTION in
+        a)
+            arch="$OPTARG"
+            ;;
+        b)
+            basedir="$OPTARG"
+            ;;
+        c)
+            configonly="1"
+            ;;
+        f)
+            force="1"
+            ;;
+        h)
+            help
+            exit 0
+            ;;
+        m)
+            mirror="$OPTARG"
+            ;;
+        *)
+            usage >&2
+            exit 1
+            ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+if [ "$#" != 1 ]; then
+    usage >&2
+    exit 1
+fi
+suite="$1"; shift
+tuple="${suite}_${arch}"
+
+[ -d "$basedir" ] || die "Error: $basedir does not exist (or is not a directory)."
+
+target="$basedir/$tuple.tar.gz"
+! [ -e "$target" ] || [ -n "$force" ] || die "Error: $target already exists."
+
+schrootconfig="/etc/schroot/chroot.d/${tuple}-dchroot"
+! [ -e "$schrootconfig" ] || [ -n "$force" ] || die "Error: $schrootconfig already exists."
+
+
+#
+# let's go
+#
+genschrootconf "$suite" "$arch" "$target" | tee "$schrootconfig"
+
+if [ -n "$configonly" ]; then exit 0; fi
+
+rootdir=$(mktemp -d "$basedir/create-$suite-XXXXXX")
+cleanup+=("rm -r $rootdir")
+cleanup+=("umount $rootdir/sys")
+
+set -x
+debootstrap \
+    --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+    --include="apt" \
+    --variant=buildd \
+    --arch="$arch" \
+    "$suite" "$rootdir" "$mirror"
+echo "$tuple" > $rootdir/etc/debian_chroot
+
+chroot "$rootdir" apt-get update
+chroot "$rootdir" apt-get install -y --no-install-recommends policyrcd-script-zg2
+cat > "$rootdir/usr/local/sbin/policy-rc.d" << 'EOF'
+#!/bin/sh
+
+# policy-rc.d script for chroots.
+# Copyright (c) 2007 Peter Palfrader <peter@palfrader.org>
+
+while true; do
+    case "$1" in
+        -*)      shift ;;
+        makedev) exit 0;;
+        *)
+            echo "Not running services in chroot."
+            exit 101
+            ;;
+    esac
+done
+EOF
+chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
+chroot "$rootdir" apt-get install -y --no-install-recommends zsh locales-all build-essential less vim fakeroot devscripts gdb
+rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
+umount "$rootdir/sys" || true
+
+(cd "$rootdir" && tar caf "$target" .)

@@ -3,8 +3,7 @@
   netrange:
     - 87.106.0.0/16
     - 2001:8d8:81:1520::/64
-  nameservers_break_dnssec: true
-  nameservers: [87.106.64.251, 195.20.224.99, 195.20.224.234]
+  mirror-debian: http://mirror.1und1.de/debian
   # for i in `awk '$1=="nameserver" {print $2}' /etc/resolv.conf; [ -e /etc/unbound/unbound.conf ] && awk '$1=="forward-addr:" {print $2}' /etc/unbound/unbound.conf`; do dig +dnssec @$i -t ns . | grep RRSIG || echo BROKEN; echo;echo $i; echo;read; done
 1und1-sec:
   netrange:
@@ -12,8 +11,6 @@
     - 212.227.126.32/27
     - 2001:8d8:2:1::/64
   searchpaths: [debprivate-oneandone.debian.org]
-  nameservers_break_dnssec: true
-  nameservers: [195.20.224.99, 195.20.224.234, 87.106.64.251]
 accumu:
   netrange:
     - 130.236.0.0/14
@@ -23,8 +20,6 @@ accumu:
 arm:
   netrange:
     - 217.140.96.0/22
-  nameservers_break_dnssec: true
-  nameservers: [158.43.128.1, 217.140.108.113]
   entropy_provider_hoster: sil
 brainfood:
   netrange:
@@ -43,17 +38,23 @@ br:
   netrange:
     - 200.17.192.0/19
   nameservers: [200.236.31.1, 200.17.202.3]
+bytemark:
+  netrange:
+    - 5.153.231.0/24
+    - 89.16.160.112/29
+    - 2001:41c8:1000::/48
+    - 2001:41c8:61::/125
+  #searchpaths: [debprivate-bytemark.debian.org]
+  nameservers: [5.153.231.241, 5.153.231.242]
+  mirror-debian: http://mirror.bm.debian.org/debian
 carnet:
   netrange:
     - 193.198.0.0/16
-  nameservers_break_dnssec: true
-  nameservers: [161.53.160.3, 161.53.123.3]
 ana:
   # rename to cecsit
   netrange:
     - 150.203.164.0/24
     - 2001:388:1034:2900::64
-  nameservers_break_dnssec: true
   nameservers: [150.203.1.10, 150.203.164.10, 150.203.164.9]
 conova:
   netrange:
@@ -72,15 +73,12 @@ dgi:
 freenet:
   netrange:
     - 62.104.0.0/16
-  nameservers_break_dnssec: true
-  nameservers: [194.97.3.83, 62.104.64.3, 194.97.3.11]
 ftcollins:
   netrange:
     - 192.25.206.0/24
   searchpaths: [debprivate-ftcollins.debian.org]
   nameservers: [192.25.206.33, 192.25.206.57]
-  # only applicable for hosts that are recursive anyway:
-  allow_dns_query: [192.25.206.0/24]
+  mirror-debian: http://spohr.debian.org/debian
 grnet:
   netrange:
     - 194.177.211.192/27
@@ -108,7 +106,6 @@ uni-karlsruhe:
 'man-da':
   netrange:
     - 82.195.75.64/26
-    - 82.195.75.32/28
     - 2001:41b8:202:deb::/64
   searchpaths: [debprivate-darmstadt.debian.org]
   nameservers: [82.195.66.249, 217.198.242.225]
@@ -121,8 +118,7 @@ osuosl:
   netrange:
     - 140.211.166.0/25
     - 140.211.15.0/24
-  nameservers_break_dnssec: true
-  nameservers: [140.211.166.130, 140.211.166.131, 216.165.191.54]
+  mirror-debian: http://debian.osuosl.org/debian
 sanger:
   netrange:
     - 193.62.202.24/29
@@ -131,7 +127,6 @@ sanger:
   #resolvoptions: [single-request]
   nameservers: [193.62.202.28, 193.62.202.29]
   searchpaths: [debprivate-sanger.debian.org]
-  allow_dns_query: [193.62.202.24/29]
 rapidswitch:
   netrange:
     - 193.201.200.0/23
@@ -141,17 +136,12 @@ scanplus:
     - 212.211.132.0/26
     - 212.211.132.248/29
     - 2001:a78::/64
-  nameservers_break_dnssec: true
-  nameservers: [212.211.132.4, 212.75.32.4]
 sil:
   netrange:
     - 86.59.118.144/28
     - 2001:858:2:2::/64
   searchpaths: [debprivate-sil.debian.org]
-  #nameservers_break_dnssec: true
-  #nameservers: [213.129.232.1, 213.129.226.2]
   nameservers: [86.59.118.147, 86.59.118.148]
-  allow_dns_query: [86.59.118.144/28, 2001:858:2:2::/64]
   mirror-debian: http://ftp.at.debian.org/debian/
 ubcece:
   netrange:
@@ -160,7 +150,6 @@ ubcece:
   searchpaths: [debprivate-ubc.debian.org]
   mirror-debian: http://mirror-ubc.debian.org/debian/
   nameservers: [206.12.19.214, 2607:f8f0:610:4000:224:81ff:fea7:e952, 206.12.19.20, 2607:f8f0:610:4000:218:feff:fe76:2ed0, 206.12.19.21, 2607:f8f0:610:4000:21c:c4ff:fee5:e890]
-  allow_dns_query: [137.82.84.64/27, 206.12.19.0/24, 2607:f8f0:610:4000::/64]
 ugent:
   netrange:
     - 157.193.0.0/16
@@ -168,8 +157,6 @@ ugent:
 umn:
   netrange:
     - 128.101.240.212
-  nameservers_break_dnssec: true
-  nameservers: [128.101.101.101, 134.84.84.84]
 utwente:
   netrange:
     - 130.89.0.0/16
@@ -189,7 +176,6 @@ ynic:
 zivit:
   netrange:
     - 80.245.144.0/22
-  nameservers_break_dnssec: true
   nameservers: [80.245.147.53, 80.245.147.54]
 
 # vim:set et sts=2 ts=2 sw=2:

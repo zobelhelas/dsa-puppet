@@ -1,0 +1,26 @@
+# rfc2142:
+
+abuse: root
+noc: root
+security: root
+postmaster: root
+hostmaster: root
+webmaster: root
+www: root
+ftp: root
+
+# and root:
+root: debian-admin@debian.org
+
+# Others
+
+nagios: debianadmin@palfrader.org, debian-admin@ftbfs.de
+bacula-reports:  debian-archive-debian-admin-bacula@master.debian.org,debianadmin@palfrader.org,lfilipoz@emyr.net,zobel@debian.org
+
+# CVS logs for http://db.debian.org/*.html
+db-web-cvs: debian-admin@debian.org
+
+# CVS logs for userdir-ldap
+# well, now bzr logs of all the stuff on samosa
+# Well, now, really git (mostly)
+udcvs-commits: debian-archive-debian-admin-udcvs-commits@master.debian.org, debianadmin@palfrader.org, dsa-bzr@commit.noreply.org, debian-admin@ftbfs.de, steve@lobefin.net, paravoid@debian.org, tfheen@debian.org

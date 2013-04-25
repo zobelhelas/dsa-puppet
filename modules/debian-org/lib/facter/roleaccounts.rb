@@ -25,6 +25,32 @@ begin
         end
     end
 
+
+
+    Facter.add("weblogsync_key") do
+        setcode do
+            key = nil
+            keyfile = '/home/weblogsync/.ssh/id_rsa.pub'
+            if FileTest.exist?(keyfile)
+                key = File.open(keyfile).read.chomp
+            end
+            key
+        end
+    end
+
+    Facter.add("weblogsync_user_exists") do
+        setcode do
+            result = ''
+            begin
+                if Etc.getpwnam('weblogsync')
+                    result = true
+                end
+            rescue ArgumentError
+            end
+            result
+        end
+    end
+
 rescue Exception => e
 end
 # vim:set et:

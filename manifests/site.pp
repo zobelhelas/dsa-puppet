@@ -29,16 +29,20 @@ node default {
 	include ntp
 	include ntpdate
 	include ssl
-	include motd
 	include hardware
 	include nagios::client
 	include resolv
 	include roles
+	include motd
 	include unbound
 	include bacula::client
 
-	if $::hostname in [pasquini,tristano,bertali,boito,byrd,clementi,czerny,rossini] {
+	if $::hostname in [pasquini,tristano,bertali,boito,byrd,clementi,czerny,rossini,bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12,bm-bl13,bm-bl14] {
 		include ganeti2
+	}
+
+	if $::hostname in [bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12,bm-bl13,bm-bl14] {
+		include multipath
 	}
 
 	if $::hostname == 'dinis' {
@@ -92,7 +96,7 @@ node default {
 		include dacs
 	}
 
-	if $::hostname in [beethoven,spohr,stabile,beach,glinka] {
+	if $::hostname in [beethoven,spohr,stabile,beach,glinka,milanollo] {
 		include nfs-server
 	}
 

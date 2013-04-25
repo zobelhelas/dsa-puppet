@@ -3,7 +3,7 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
-	if $::hostname in [glinka,klecker,merikanto,powell,ravel,rietz,senfl,sibelius,stabile] {
+	if $::hostname in [glinka,klecker,merikanto,ravel,rietz,senfl,sibelius,stabile] {
 		ferm::rule { 'dsa-rsync':
 			domain      => '(ip ip6)',
 			description => 'Allow rsync access',
@@ -86,17 +86,6 @@ class ferm::per-host {
 			@ferm::rule { 'dsa-tftp':
 				description     => 'Allow tftp access',
 				rule            => '&SERVICE(udp, 69)'
-			}
-		}
-		powell: {
-			@ferm::rule { 'dsa-powell-v6-tunnel':
-				description     => 'Allow powell to use V6 tunnel broker',
-				rule            => 'proto ipv6 saddr 212.227.117.6 jump ACCEPT'
-			}
-			@ferm::rule { 'dsa-powell-btseed':
-				domain          => '(ip ip6)',
-				description     => 'Allow powell to seed BT',
-				rule            => 'proto tcp dport 8000:8100 jump ACCEPT'
 			}
 		}
 		lotti,lully: {
@@ -200,6 +189,12 @@ REJECT reject-with icmp-admin-prohibited
 				rule        => 'source 82.195.75.108 proto (tcp udp) sport 53 jump NOTRACK'
 			}
 		}
+		sonntag: {
+			@ferm::rule { 'dsa-bugs-search':
+				description  => 'port 1978 for bugs-search from bug web frontends',
+				rule         => '&SERVICE_RANGE(tcp, 1978, ( 140.211.166.26 206.12.19.140 ))'
+			}
+		}
 		default: {}
 	}
 
@@ -292,6 +287,25 @@ REJECT reject-with icmp-admin-prohibited
 				table           => 'nat',
 				chain           => 'PREROUTING',
 				rule            => 'proto tcp daddr 206.12.19.150 dport 80 REDIRECT to-ports 6081',
+			}
+		}
+		default: {}
+	}
+	case $::hostname {
+		bm-bl1,bm-bl2: {
+			@ferm::rule { 'dsa-vrrp':
+				rule            => 'proto vrrp daddr 224.0.0.18 jump ACCEPT',
+			}
+			@ferm::rule { 'dsa-conntrackd':
+				rule            => 'interface vlan2 daddr 225.0.0.50 jump ACCEPT',
+			}
+		}
+		default: {}
+	}
+	case $::hostname {
+		bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12,bm-bl13,bm-bl14: {
+			@ferm::rule { 'dsa-hwnet-vlan20':
+				rule            => 'interface vlan20 jump ACCEPT',
 			}
 		}
 		default: {}

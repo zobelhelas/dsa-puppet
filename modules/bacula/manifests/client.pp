@@ -1,7 +1,7 @@
 class bacula::client inherits bacula {
 	@@bacula::storage-per-node { $::fqdn: }
 
-	if $::hostname in [beethoven, berlioz, biber, diabelli, dinis, draghi, geo3, kaufmann, lully, master, new-master, reger, schumann, soler, vento, vieuxtemps, wilder, wolkenstein] {
+	if $::hostname in [beethoven, berlioz, biber, diabelli, dinis, draghi, geo3, kaufmann, lully, master, picconi, reger, schumann, soler, vento, vieuxtemps, wilder, wolkenstein] {
 		@@bacula::node { $::fqdn: }
 	}
 
@@ -14,6 +14,14 @@ class bacula::client inherits bacula {
 		enable    => true,
 		hasstatus => true,
 		require   => Package['bacula-fd']
+	}
+
+	exec { 'bacula-fd restart-when-idle':
+		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
+		command     => 'sh -c "setsid /usr/local/sbin/bacula-idle-restart fd &"',
+		refreshonly => true,
+		subscribe   => File['/etc/ssl/debian/certs/thishost.crt'],
+		require     => File['/usr/local/sbin/bacula-idle-restart'],
 	}
 
 	file { '/etc/bacula/bacula-fd.conf':

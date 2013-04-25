@@ -4,3 +4,5 @@ nameservers:
   - 193.62.202.29
 searchpaths:
   - debprivate-sanger.debian.org
+allow_dns_query:
+  - 193.62.202.24/29

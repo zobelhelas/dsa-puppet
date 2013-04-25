@@ -1,6 +1,7 @@
 ---
 nameinfo:
   abel.debian.org: Carl Friedrich Abel (1723 - 1787)
+  adayevskaya.debian.org: Ella Georgiyevna Adayevskaya (February, 22nd 1846 [O.S. February 10th] - July 26th, 1926)
   agricola.debian.org: Alexander Agricola (1445 or 1446 - August 15th, 1506)
   alain.debian.org: Jehan Alain (1911 - 1940)
   alwyn.debian.org: William Alwyn (1905 - 1985)
@@ -81,6 +82,7 @@ nameinfo:
   menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st,, 2007)
   merikanto.debian.org: Oskar Merikanto (August 5th, 1868 - February 17th, 1924)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
+  milanollo.debian.org: Teresa Milanollo (August 28th, 1827 - October 25th, 1904)
   morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
   muffat.debian.org: George Muffat (June 1st, 1653 - February 23rd, 1704)
   mundy.debian.org: William Mundy (c. 1529 - 1591)
@@ -94,6 +96,7 @@ nameinfo:
   pergolesi.debian.org: Giovanni Battista Pergolesi (January 4th, 1710 - March 16th or 17th, 1736)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   piatti.debian.org: Carlo Alfredo Piatti (January 8th, 1822 - July 18th, 1901)
+  picconi.debian.org: Maria Antonietta Picconi (September 23rd, 1869 - 1926)
   piston.debian.org: Walter Hamor Piston Jr. (January 20th, 1894 – November 12th, 1976)
   popov.debian.org: Gavriil Nikolayevich Popov (Гаврии́л Никола́евич Попо́в) (September 12th, 1904 - February 17th, 1972)
   porpora.debian.org: Niccolò (Antonio) Porpora (17 August 1686 - 3 March 1768)
@@ -116,6 +119,7 @@ nameinfo:
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
   senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
+  senfter.debian.org: Johanna Senfter (November, 27th, 1879 - August 11th, 1961)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
   soler.debian.org: Padre Antonio Soler (December 3rd, 1729 (baptized) - December 20th, 1783)
@@ -175,7 +179,7 @@ services:
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
     - orff.debian.org
-  packagesmaster: powell.debian.org
+  packagesmaster: picconi.debian.org
   packagesqamaster: quantz.debian.org
   puppetmaster: handel.debian.org
   rtmaster:
@@ -186,6 +190,20 @@ services:
     - wolkenstein.debian.org
   keyring:
     - kaufmann.debian.org
+  # new style porterbox (schroot, dd installable packages etc)
+  porterbox:
+    # once they are all on new-style, we can use ldap for this
+    - agricola.debian.org
+    - barriere.debian.org
+    - eder.debian.org
+    - falla.debian.org
+    - fischer.debian.org
+    - gabrielli.debian.org
+    - harris.debian.org
+    - merulo.debian.org
+    - partch.debian.org
+    - smetana.debian.org
+    - zelenka.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org
@@ -203,8 +221,8 @@ host_settings:
     - morricone.debian.org
     - muffat.debian.org
     - nono.debian.org
+    - picconi.debian.org
     - popov.debian.org
-    - powell.debian.org
     - quantz.debian.org
     - ravel.debian.org
     - reger.debian.org
@@ -276,11 +294,17 @@ host_settings:
     - klecker.debian.org
     - rietz.debian.org
     - stanley.debian.org
+    - senfter.debian.org
   static_source:
     - master.debian.org
     - ries.debian.org
     - franck.debian.org
     - senfl.debian.org
     - wolkenstein.debian.org
+  weblog_provider:
+    - klecker.debian.org
+    - rietz.debian.org
+    - stanley.debian.org
+    - senfter.debian.org
 #  reservedaddrs:
 #    ball.debian.org: "0.0.0.0/8 : 127.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5"

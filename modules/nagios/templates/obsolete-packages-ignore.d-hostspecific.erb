@@ -14,7 +14,6 @@ when /(zandonai|zelenka).debian.org/:   ignore << %w{samhain zabbix-agent rrdcol
 when /(zappa|zemlinsky).debian.org/:    ignore << %w{samhain}
 when /(mayer|corelli).debian.org/: ignore << "linux-base"
 when /(alkman|caballero|merulo|mundy).debian.org/: ignore << "samhain"
-when "powell.debian.org":               ignore << %w{e2fslibs e2fsprogs libblkid1 libcomerr2 libss2 libuuid1 uuid-runtime}
 when "rossini.debian.org":              ignore << %w{ganeti2}
 when "franck.debian.org":               ignore << %w{python-apt}
 when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/: ignore << %w{flash-kernel linux-firmware-image}

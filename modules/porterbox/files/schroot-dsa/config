@@ -1,0 +1,44 @@
+# Settings for "dsa" profile.
+
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+. "/etc/schroot/default/config"
+
+# added by weasel:
+if [ "$CHROOT_SESSION_PURGE" = "true" ]; then
+    case $CHROOT_DESCRIPTION in
+        "["*-*_*-dchroot"]"*)
+            chroot_type="$CHROOT_DESCRIPTION"; chroot_type="${chroot_type#\[}"; chroot_type="${chroot_type%%]*}"
+            suitevariant_arch_tuple="${chroot_type%%-dchroot-*}"
+            suitevariant=${suitevariant_arch_tuple%_*}
+            SUITE_BASE=${suitevariant%-*}
+            SUITE_VARIANT=${suitevariant##*-}
+        ;;
+        "["*_*-dchroot"]"*)
+            chroot_type="$CHROOT_DESCRIPTION"; chroot_type="${chroot_type#\[}"; chroot_type="${chroot_type%%]*}"
+            SUITE_BASE="${chroot_type%%_*}"
+        ;;
+        *)
+            if [ "$STAGE" = "setup-start" ]; then
+               echo >&2 "Unable to parse chroot description for what kind of chroot you want."
+               exit 1
+            fi
+        ;;
+    esac
+fi
+
+CHROOT_FILE_UNPACK_DIR=/srv/chroot/schroot-unpack
+
+if [ -e /etc/schroot/dsa/default-mirror ]; then
+    MIRROR=$(cat /etc/schroot/dsa/default-mirror )
+fi
+MIRROR=${MIRROR:-cdn.debian.net}
+
+if [ "$(basename "$0")" = "00check" ] &&
+   [ "$CHROOT_TYPE" = "file" ] &&
+   [ "$STAGE" = "setup-start" ]; then
+        echo "Untarring chroot environment.  This might take a minute or two."
+fi

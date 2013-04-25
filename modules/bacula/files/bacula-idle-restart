@@ -1,0 +1,42 @@
+#! /bin/sh -e
+
+# Written by Tollef Fog Heen <tfheen@err.no>
+# Based on code by Peter Palfrader
+#
+# Restart the given bacula director when it's idle.
+#
+# XXX: Add locking
+
+set -e
+
+if [ "$1" = "fd" ];then
+    PORT=9102
+    DIR="bacula-fd"
+elif [ "$1" = "sd" ]; then
+    PORT=9103
+    DIR="bacula-sd"
+else
+    # Usage
+    echo "$0 [fd|sd]"
+    echo
+    echo "Restart bacula fd or sd when idle"
+    exit 1
+fi
+
+# chk_net <port>
+# returns true (0) if there are connections to that port.
+chk_net() {
+  local port="$1"; shift
+  local con="$(ss -nt "sport = :$port" | wc -l)"
+  if [ "$con" -gt 1 ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+while chk_net "$PORT"; do
+    sleep 5
+done
+
+service $DIR restart

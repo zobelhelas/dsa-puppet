@@ -1321,11 +1321,11 @@ packages:
   file_transport = address_file
   pipe_transport = address_pipe
   domains = packages.debian.org
-  require_files = /org/packages.debian.org/conf/maintainer
-  data = ${lookup{$local_part}cdb{/org/packages.debian.org/conf/maintainer.cdb}}
+  require_files = /srv/packages.debian.org/conf/maintainer
+  data = ${lookup{$local_part}cdb{/srv/packages.debian.org/conf/maintainer.cdb}}
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
-  transport_home_directory = /org/packages.debian.org/mail
-  transport_current_directory = /org/packages.debian.org/mail
+  transport_home_directory = /srv/packages.debian.org/mail
+  transport_current_directory = /srv/packages.debian.org/mail
   check_ancestor
   retry_use_local_part
   no_more

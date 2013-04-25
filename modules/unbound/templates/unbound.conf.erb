@@ -6,26 +6,22 @@
 server:
 	verbosity: 1
 
-<%=
-	out = []
-	if scope.lookupvar('site::nodeinfo')['misc']['resolver-recursive'] and scope.lookupvar('site::nodeinfo')['hoster']['allow_dns_query']
-		out << "	interface: 0.0.0.0"
-		out << "	interface: ::0"
-		out << ""
-		out << "	interface-automatic: yes"
+<% if (@is_recursor and (not @client_ranges.empty?)) -%>
+	interface: 0.0.0.0
+	interface: ::0
 
-		out << "	access-control: 0.0.0.0/0 refuse"
-		out << "	access-control: ::0/0 refuse"
-		out << "	access-control: 127.0.0.0/8 allow"
-		out << "	access-control: ::0/0 refuse"
-		out << "	access-control: ::1 allow"
-		out << "	access-control: ::ffff:127.0.0.1 allow"
-		scope.lookupvar('site::nodeinfo')['hoster']['allow_dns_query'].each do |net|
-			out << "	access-control: #{net} allow"
-		end
-	end
-	out.join("\n")
-%>
+	interface-automatic: yes
+
+	access-control: 0.0.0.0/0 refuse
+	access-control: ::0/0 refuse
+	access-control: 127.0.0.0/8 allow
+	access-control: ::0/0 refuse
+	access-control: ::1 allow
+	access-control: ::ffff:127.0.0.1 allow
+<% @client_ranges.to_a.flatten.each do |net| -%>
+	access-control: <%= net -%> allow
+<% end -%>
+<% end -%>
 
 	#chroot: ""
 
@@ -47,24 +43,26 @@ server:
 	# auto-trust-anchor-file: ""
 	auto-trust-anchor-file: "/var/lib/unbound/root.key"
 	auto-trust-anchor-file: "/var/lib/unbound/debian.org.key"
+	auto-trust-anchor-file: "/var/lib/unbound/29.172.in-addr.arpa.key"
 
-<%=
-	out = []
-	if not scope.lookupvar('site::nodeinfo')['misc']['resolver-recursive'] and not scope.lookupvar('site::nodeinfo')['hoster']['nameservers_break_dnssec']
-		forwarders = scope.lookupvar('site::nodeinfo')['hoster']['nameservers']
-		forwarders ||= []
-
-		out << 'forward-zone:'
-		out << '	name: "."'
-		forwarders.each do |ns|
-			out << "	forward-addr: #{ns}"
-		end
-	end
-
-
-	if hostname == "zappa"
-		out << "edns-buffer-size: 512"
-	end
-
-	out.join("\n")
-%>
+# recursive: <%= @is_recursor ? "y" : "n" %>
+<% if not @is_recursor -%>
+forward-zone:
+	name: "."
+<% @ns.to_a.flatten.each do |nms| -%>
+	forward-addr: <%= nms %>
+<% end -%>
+# XXX : we probably ought to forward 172.29 reverse queries to our nameserver
+# if our forwarders are not ours.
+<% else -%>
+local-zone: "29.172.in-addr.arpa" nodefault
+forward-zone:
+	name: "29.172.in-addr.arpa"
+	forward-host: ns1.debian.org
+	forward-host: ns2.debian.org
+	forward-host: ns3.debian.org
+	forward-host: ns4.debian.com
+<% end -%>
+<% if hostname == "zappa" -%>
+edns-buffer-size: 512
+<% end -%>

@@ -16,6 +16,10 @@ class roles {
 		include buildd
 	}
 
+	if getfromhash($site::nodeinfo, 'porterbox') {
+		include porterbox
+	}
+
 	if getfromhash($site::nodeinfo, 'bugs_mirror') {
 		include roles::bugs_mirror
 	}
@@ -66,5 +70,17 @@ class roles {
 		include roles::static_mirror
 	} elsif getfromhash($site::nodeinfo, 'static_source') {
 		include roles::static_source
+	}
+
+	if getfromhash($site::nodeinfo, 'weblog_provider') {
+		include roles::weblog_provider
+	}
+
+	if getfromhash($site::nodeinfo, 'mailrelay') {
+		include roles::mailrelay
+	}
+
+	if $::hostname in [ravel] {
+		include roles::weblog_destination
 	}
 }

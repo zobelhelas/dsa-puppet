@@ -39,19 +39,21 @@ module Puppet::Parser::Functions
         end
       end
 
-      if not nodeinfo['hoster']['nameservers'] or nodeinfo['hoster']['nameservers'].empty?
+      ns = function_hiera('nameservers')
+      allow_dns_q = function_hiera('allow_dns_query')
+      if ns.empty?
         # no nameservers known for this hoster
         nodeinfo['misc']['resolver-recursive'] = true
 
-        if nodeinfo['hoster']['allow_dns_query']
-          raise Puppet::ParseError, "No nameservers listed for #{nodeinfo['hoster']['name']} yet we should answer somebody's queries?  That makes no sense."
+        if not allow_dns_q.empty?
+          raise Puppet::ParseError, "No nameservers listed for #{nodeinfo['hoster']['name']} yet we should answer somebody's queries?  That makes no sense.  allow_dns_q: #{allow_dns_q}."
         end
-      elsif (nodeinfo['misc']['v4addrs'] and (nodeinfo['hoster']['nameservers'] & nodeinfo['misc']['v4addrs']).size > 0) or
-            (nodeinfo['misc']['v6addrs'] and (nodeinfo['hoster']['nameservers'] & nodeinfo['misc']['v6addrs']).size > 0)
+      elsif (nodeinfo['misc']['v4addrs'] and (ns & nodeinfo['misc']['v4addrs']).size > 0) or
+            (nodeinfo['misc']['v6addrs'] and (ns & nodeinfo['misc']['v6addrs']).size > 0)
         # this host is listed as a nameserver at this location
         nodeinfo['misc']['resolver-recursive'] = true
 
-        if not nodeinfo['hoster']['allow_dns_query'] or nodeinfo['hoster']['allow_dns_query'].empty?
+        if allow_dns_q.empty?
           raise Puppet::ParseError, "Host #{host} is listed as a nameserver for #{nodeinfo['hoster']['name']} but no allow_dns_query networks are defined for this location"
         end
       else

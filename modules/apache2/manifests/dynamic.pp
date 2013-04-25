@@ -46,6 +46,13 @@ class apache2::dynamic {
 		rule        => 'mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP;
 		                jump http_limit'
 	}
+	@ferm::rule { 'dsa-http-nhn':
+		prio        => '21',
+		description => 'slow nhn spider',
+		chain       => 'limit_nhn',
+		rule        => 'mod connlimit connlimit-above 2 connlimit-mask 16 jump DROP;
+		                jump http_limit'
+	}
 
 	@ferm::rule { 'dsa-http-rules':
 		prio        => '22',
@@ -58,6 +65,7 @@ class apache2::dynamic {
 		                saddr (65.52.0.0/14 207.46.0.0/16) jump limit_bing;
 		                saddr (66.249.64.0/19) jump limit_google;
 		                saddr (123.125.71.0/24 119.63.192.0/21 180.76.0.0/16 220.181.0.0/16) jump limit_baidu;
+		                saddr (119.235.237.024) jump limit_nhn;
 
 		                mod recent name HTTPDOS update seconds 1800 jump log_or_drop;
 		                mod hashlimit hashlimit-name HTTPDOS hashlimit-mode srcip hashlimit-burst 600 hashlimit 30/minute jump ACCEPT;

@@ -29,9 +29,10 @@ Host_Alias	FTPHOSTS	= franck, morricone
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
-Host_Alias	MPTRAIDHOSTS	= old-master, fasch, holter, barber, biber, cilea, vitry, krenek, orff
+Host_Alias	MPTRAIDHOSTS	= fasch, holter, barber, biber, cilea, vitry, krenek, orff
 Host_Alias	MEGACTLHOSTS	= lindberg, englund, nielsen
-Host_Alias  LISTHOSTS   = bendel
+Host_Alias	LISTHOSTS	= bendel
+Host_Alias	PORTERBOXES	= agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
 
 # Cmnd alias specification
 
@@ -62,7 +63,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] show statu
 nagios		franck=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=1 enclosure 1E\:1 show detail
 
 # other raid controllers
-nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
+#nagios		powell=(ALL)	NOPASSWD: /usr/local/sbin/areca-cli vsf info
 nagios		puccini=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 nagios		MPTRAIDHOSTS=(ALL)	NOPASSWD: /usr/sbin/mpt-status -s
 nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
@@ -112,7 +113,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %wbadm		ALL=(wbadm)	ALL
 %mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki,wikiweb)	ALL
-%qa-core	QAHOSTS=(qa)	ALL
+%qa-core	QAHOSTS=(qa,qa-web-rolex)	ALL
 %gobby		gombert=(gobby)	ALL
 
 # the dak user gets to run stuff as dak-unpriv (for things like lintian checks)
@@ -134,7 +135,7 @@ buildd		ALL=(ALL)		NOPASSWD: ALL
 # The piuparts slave needs to handle chroots
 piupartss	piatti=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
-pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
+#pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # on draghi, the domains git thing will run bind9 reload afterwards
 %dnsadm		draghi,orff=(root)		NOPASSWD: /etc/init.d/bind9 reload
 %dnsadm		draghi,orff=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo
@@ -162,7 +163,7 @@ debbugs-mirror	rietz=(root)		NOPASSWD: /usr/bin/vos release -id srv.mirrors.bugs
 dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
-%press		WEBHOSTS=(debwww)	/org/www.debian.org/update-part News
+%press		WEBHOSTS=(debwww)	/srv/www.debian.org/update-part News
 # more list stuff
 %list		LISTHOSTS=(root)		/usr/sbin/postfix reload
 %list		LISTHOSTS=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
@@ -185,3 +186,4 @@ nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 %porter-ppc	partch=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-s390	zelenka=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %porter-sparc	smetana,sperger=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
+%Debian,%guest	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd

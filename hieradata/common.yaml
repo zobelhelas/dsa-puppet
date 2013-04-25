@@ -1,6 +1,5 @@
 ---
-nameservers:
-  - 8.8.8.8
+nameservers: []
 searchpaths: []
 resolvoptions: []
-cluster: ''
+allow_dns_query: []

@@ -14,7 +14,7 @@ define bacula::storage-per-node() {
 			content => template('bacula/storage-per-client.conf.erb'),
 			mode    => '0440',
 			group   => bacula,
-			notify  => Exec['bacula-sd reload'],
+			notify  => Exec['bacula-sd restart-when-idle'],
 			;
 		"${bacula_backup_path}/${name}":
 			ensure  => directory,
