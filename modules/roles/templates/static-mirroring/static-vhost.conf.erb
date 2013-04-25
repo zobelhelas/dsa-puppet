@@ -6,8 +6,8 @@
 	</IfModule>
 	ServerSignature On
 
-	DocumentRoot /srv/static.debian.org/cur/$name/
-	<Directory /srv/static.debian.org/cur/$name/>
+	DocumentRoot /srv/static.debian.org/mirrors/$name/cur
+	<Directory /srv/static.debian.org/mirrors/$name/cur>
 		AllowOverride FileInfo
 		Options Multiviews Indexes FollowSymLinks
 		IndexOptions FancyIndexing NameWidth=*
