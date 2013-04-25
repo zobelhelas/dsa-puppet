@@ -81,8 +81,8 @@ if [ "${component%/*}" != "$component" ] ; then
   exit 1
 fi
 
-srchost="$(awk -v this_host="$(hostname -f)" component="$component" '$1 == this_host && $2 == component {print $3; exit}' "$componentlist")"
-srcdir="$(awk -v this_host="$(hostname -f)" component="$component" '$1 == this_host && $2 == component {print $4; exit}' "$componentlist")"
+srchost="$(awk -v this_host="$(hostname -f)" -v component="$component" '$1 == this_host && $2 == component {print $3; exit}' "$componentlist")"
+srcdir="$(awk -v this_host="$(hostname -f)" -v component="$component" '$1 == this_host && $2 == component {print $4; exit}' "$componentlist")"
 if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
   echo >&2 "$0: Invalid component: $component (not found in $componentlist)";
   exit 1
