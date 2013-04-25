@@ -72,7 +72,7 @@ if [ "$srchost" = "$thishost" ] && ! [ -d "$srcdir" ]; then
   exit 1
 fi
 
-if [ "`id -nu`" != "staticsync" ] && [ "$masterhost" = "`hostname -f`" ]; then
+if [ "`id -nu`" != "staticsync" ]; then
   static-update-component "$@"
 else
   ssh -o AddressFamily=inet -t -o ServerAliveInterval=300 -o PreferredAuthentications=publickey "$masterhost" static-master-update-component "$component"
