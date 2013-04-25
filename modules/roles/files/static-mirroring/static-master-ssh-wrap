@@ -72,22 +72,26 @@ lock() {
 
 do_rsync() {
 	local remote_host="$1"; shift
-
 	local args="--server --sender -vlHtrze.iLsf --safe-links ."
-	if [ "$*" = "$args -new-/" ] || [ "$*" = "$args ./-new-/" ] ; then
-		local path="$BASEDIR/current-push"
-		info "serving $remote_host with $path"
-		rsync $args "$path/."
-	elif [ "$*" = "$args . -live-/" ] || [ "$*" = "$args . ./-live-/" ] ; then
-		local path="$BASEDIR/current-live"
-		info "host $remote_host wants $path, acquiring lock"
-		lock 200 "$path" 0
-		rsync $args "$path/."
-	else
-		info "NOT allowed for $remote_host: rsync $*"
-		echo >&2 "This rsync command ($@) not allowed."
-		exit 1
-	fi
+
+	for component in $(awk -v this_host="$(hostname -f)" '$1 == this_host {print $2}' $COMPONENTLIST); do
+	  if [ "$*" = "$args $component/-new-/" ] || [ "$*" = "$args ./$component/-new-/" ] ; then
+		  local path="$BASEDIR/$component-current-push"
+		  info "serving $remote_host with $path"
+		  rsync $args "$path/."
+		  return
+	  elif [ "$*" = "$args . $component/-live-/" ] || [ "$*" = "$args . ./$component/-live-/" ] ; then
+		  local path="$BASEDIR/$component-current-live"
+		  info "host $remote_host wants $path, acquiring lock"
+		  lock 200 "$path" 0
+		  rsync $args "$path/."
+		  return
+	  fi
+	done
+
+	info "NOT allowed for $remote_host: rsync $*"
+	echo >&2 "This rsync command ($@) not allowed."
+	exit 1
 }
 
 do_update_component() {
@@ -98,16 +102,16 @@ do_update_component() {
 	shift
 
 	hit="$(
-		awk -v component="$component" -v host="$remote_host" '
-		  $1 == component {
-			  if ($2 == host) {
-				  print $3
+		awk -v this_host="$(hostname -f)" component="$component" -v host="$remote_host" '
+		  $1 == this_host && $2 == component {
+			  if ($3 == host) {
+				  print $4
 				  exit
 			  }
-			  split($4,extra,",")
+			  split($5,extra,",")
 			  for (i in extra) {
 				  if (host == extra[i]) {
-					  printf "%s:%s\n", $2, $3
+					  printf "%s:%s\n", $3, $4
 					  exit
 				  }
 			  }

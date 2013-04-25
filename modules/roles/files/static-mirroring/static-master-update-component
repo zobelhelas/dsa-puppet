@@ -54,7 +54,7 @@ lock() {
   fi
 
   if ! flock "$locktype" "$fd"; then
-    echo >&2 "$0: Cannot acquire lock on $base (flock $locktype failed) - Very bad, we should have waited!"
+    echo >&2 "$0: Cannot acquire lock on $path (flock $locktype failed) - Very bad, we should have waited!"
     exit 1
   fi
 }
@@ -81,8 +81,8 @@ if [ "${component%/*}" != "$component" ] ; then
   exit 1
 fi
 
-srchost="$(awk -v component="$component" '$1 == component {print $2; exit}' "$componentlist")"
-srcdir="$(awk -v component="$component" '$1 == component {print $3; exit}' "$componentlist")"
+srchost="$(awk -v this_host="$(hostname -f)" component="$component" '$1 == this_host && $2 == component {print $3; exit}' "$componentlist")"
+srcdir="$(awk -v this_host="$(hostname -f)" component="$component" '$1 == this_host && $2 == component {print $4; exit}' "$componentlist")"
 if [ -z "$srchost" ] || [ -z "$srcdir" ]; then
   echo >&2 "$0: Invalid component: $component (not found in $componentlist)";
   exit 1
@@ -100,11 +100,10 @@ else
 fi
 
 echo "$0: Acquiring locks..."
-lock 200 "$base" 0
 lock 201 "$tgt" 1
 
-tmpdir_new="$(mktemp -d --tmpdir="$base" "${component}.new-XXXXXX")"
-tmpdir_old="$(mktemp -d --tmpdir="$base" "${component}.old-XXXXXX")"
+tmpdir_new="$(mktemp -d --tmpdir="$base" "${component}-updating.incoming-XXXXXX")"
+tmpdir_old="$(mktemp -d --tmpdir="$base" "${component}-updating.removing-XXXXXX")"
 trap "rm -rf '$tmpdir_new' '$tmpdir_old'" EXIT
 chmod 0755 "$tmpdir_new"
 
@@ -116,6 +115,7 @@ rsync --delete \
   -trz \
   --links --hard-links --safe-links \
   --link-dest="$tgt" \
+  --exclude='/.serial' \
   "$src/." "$tmpdir_new/."
 echo "$0: Done.  Committing."
 
@@ -124,18 +124,18 @@ if ! mv "$tmpdir_new" "$tgt"; then
   echo >&2 "$0: WARNING: could not move $tmpdir_new to $tgt.  Trying to recover"
   rm -rf "$tgt"
   mv "$tmpdir_old/old" "$tgt"
-  echo >&2 "$0: Rolled back to old tree maybe successfully."
+  echo >&2 "$0: Rolled back to old tree, maybe even successfully."
   exit 1
 fi
 
 rm -rf "$tmpdir_new" "$tmpdir_old"
 trap - EXIT
 
-date '+%s' > "$base/.serial"
+date '+%s' > "$tgt/.serial"
 unlock 201
-unlock 200
+unlock 202
 echo "$0: Triggering mirror runs..."
-exec static-master-run
+exec static-master-run "$component"
 
 # vim:set et:
 # vim:set ts=2:

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# initiate a mirror staged mirror update from sync-source.
+# initiate a staged mirror update from sync-source for a component.
 #
 # if we have a serial file and we got a serial on the command line, only sync if the serial is different
 
@@ -119,16 +119,18 @@ lock() {
 
 
 log_setup
-#log "called with $* and ${SSH_ORIGINAL_COMMAND:-no ssh original command options}."
 log "called with $*"
 lock
 
 if [ -e "${BASEDIR}${ACTIVE}" ] && [ "$(readlink "${BASEDIR}${ACTIVE}")" = "$ALPHA" ] ; then
 	staging="$BRAVO"
 	active="$ALPHA"
-else
+elif [ -e "${BASEDIR}${ACTIVE}" ] && [ "$(readlink "${BASEDIR}${ACTIVE}")" = "$BRAVO" ] ; then
 	staging="$ALPHA"
 	active="$BRAVO"
+else
+	echo >&5 "Invalid state of ${BASEDIR}${ACTIVE}."
+	exit 1
 fi
 log "active is $active; staging is $staging"
 

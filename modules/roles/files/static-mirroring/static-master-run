@@ -10,9 +10,6 @@ import tempfile
 import time
 
 base='/home/staticsync/static-master'
-subdirs = { 'master': 'master',       # where updates from off-site end up going, the source of everything we do here
-            'cur':    'current-push', # where clients rsync from during a mirror push
-            'live':   'current-live'} # what is currently on the mirrors, and what they rsync from when they come back from being down
 serialname = '.serial'
 
 clients = []
@@ -88,12 +85,12 @@ def stage2(pipes, status, command):
       log("%s >> %s"%(c, l))
     log("%s: returned %d"%(c, p.returncode))
 
-def callout(serial):
+def callout(component, serial):
   log("Calling clients...")
   pipes = {}
   status = {}
   for c in clients:
-    args = ['ssh', '-o', 'BatchMode=yes', c, 'mirror', "%d"%(serial,)]
+    args = ['ssh', '-o', 'BatchMode=yes', c, 'mirror', component, "%d"%(serial,)]
     p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     pipes[c] = p
     status[c] = 'in-progress'
@@ -117,17 +114,18 @@ def callout(serial):
 
 
 cleanup_dirs = []
-def run_mirror():
+def run_mirror(component):
   # setup
-  master = os.path.join(base, subdirs['master'])
-  cur = os.path.join(base, subdirs['cur'])
-  live = os.path.join(base, subdirs['live'])
-  tmpdir_new = tempfile.mkdtemp(prefix='live.new-', dir=base); cleanup_dirs.append(tmpdir_new);
-  tmpdir_old = tempfile.mkdtemp(prefix='live.old-', dir=base); cleanup_dirs.append(tmpdir_old);
+  basemaster = os.path.join(base, 'master')
+  componentdir = os.path.join(basemaster, component)
+  cur = componentdir + '-current-push'
+  live = componentdir + '-current-live'
+  tmpdir_new = tempfile.mkdtemp(prefix='live.new-', dir=basemaster); cleanup_dirs.append(tmpdir_new);
+  tmpdir_old = tempfile.mkdtemp(prefix='live.old-', dir=basemaster); cleanup_dirs.append(tmpdir_old);
   os.chmod(tmpdir_new, 0755)
 
   locks = []
-  for p in (master, live, tmpdir_new):
+  for p in (componentdir, live, tmpdir_new):
     if not os.path.exists(p): os.mkdir(p, 0755)
     fd = os.open(p, os.O_RDONLY)
     log("Acquiring lock for %s(%d)."%(p,fd))
@@ -135,7 +133,7 @@ def run_mirror():
     locks.append(fd)
   log("All locks acquired.")
 
-  serialfile = os.path.join(master, serialname)
+  serialfile = os.path.join(componentdir, serialname)
   try:
     with open(serialfile) as f: serial = int(f.read())
   except:
@@ -144,7 +142,7 @@ def run_mirror():
   log("Serial is %s."%(serial,))
 
   log("Populating %s."%(tmpdir_new,))
-  subprocess.check_call(['cp', '-al', os.path.join(master, '.'), tmpdir_new])
+  subprocess.check_call(['cp', '-al', os.path.join(componentdir, '.'), tmpdir_new])
 
   if os.path.exists(cur):
     log("Removing existing %s."%(cur,))
@@ -153,7 +151,7 @@ def run_mirror():
   log("Renaming %s to %s."%(tmpdir_new, cur))
   os.rename(tmpdir_new, cur)
 
-  proceed = callout(serial)
+  proceed = callout(component, serial)
 
   if proceed:
     log("Moving %s aside."%(live,))
@@ -174,9 +172,14 @@ def run_mirror():
   return ret
 
 
+if len(sys.argv) != 2:
+  print >> sys.stderr, "Usage: %s <component>"%(sys.argv[0],)
+  sys.exit(1)
+component = sys.argv[1]
+
 ok = False
 try:
-  ok = run_mirror()
+  ok = run_mirror(component)
 finally:
   for p in cleanup_dirs:
     if os.path.exists(p): shutil.rmtree(p)
