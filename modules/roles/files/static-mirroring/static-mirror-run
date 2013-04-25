@@ -106,6 +106,7 @@ log() {
 }
 
 lock() {
+	mkdir -p "$BASEDIR"
 	exec 200< "$BASEDIR"
 	if ! flock -e 200; then
 		log "Cannot acquire lock."
@@ -125,12 +126,12 @@ lock
 if [ -e "${BASEDIR}${ACTIVE}" ] && [ "$(readlink "${BASEDIR}${ACTIVE}")" = "$ALPHA" ] ; then
 	staging="$BRAVO"
 	active="$ALPHA"
-elif [ -e "${BASEDIR}${ACTIVE}" ] && [ "$(readlink "${BASEDIR}${ACTIVE}")" = "$BRAVO" ] ; then
-	staging="$ALPHA"
-	active="$BRAVO"
-else
+elif [ -e "${BASEDIR}${ACTIVE}" ] && [ "$(readlink "${BASEDIR}${ACTIVE}")" != "$BRAVO" ] ; then
 	echo >&5 "Invalid state of ${BASEDIR}${ACTIVE}."
 	exit 1
+else
+	staging="$ALPHA"
+	active="$BRAVO"
 fi
 log "active is $active; staging is $staging"
 

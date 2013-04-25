@@ -66,7 +66,7 @@ do_mirror() {
 	local serial="$1"; shift
 
 	info "Host $remote_host triggered a mirror run for $component, serial $serial"
-	exec /usr/local/bin/static-mirror-run "$basedir/$component" "$remote_host:$component/-new-" "$serial"
+	exec /usr/local/bin/static-mirror-run "$basedir/mirrors/$component" "$remote_host:$component/-new-" "$serial"
 	echo >&2 "Exec failed"
 	croak "exec failed"
 }

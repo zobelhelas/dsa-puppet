@@ -76,12 +76,12 @@ do_rsync() {
 
 	for component in $(awk -v this_host="$(hostname -f)" '$1 == this_host {print $2}' $COMPONENTLIST); do
 	  if [ "$*" = "$args $component/-new-/" ] || [ "$*" = "$args ./$component/-new-/" ] ; then
-		  local path="$BASEDIR/$component-current-push"
+		  local path="$BASEDIR/master/$component-current-push"
 		  info "serving $remote_host with $path"
 		  rsync $args "$path/."
 		  return
-	  elif [ "$*" = "$args . $component/-live-/" ] || [ "$*" = "$args . ./$component/-live-/" ] ; then
-		  local path="$BASEDIR/$component-current-live"
+	  elif [ "$*" = "$args $component/-live-/" ] || [ "$*" = "$args ./$component/-live-/" ] ; then
+		  local path="$BASEDIR/master/$component-current-live"
 		  info "host $remote_host wants $path, acquiring lock"
 		  lock 200 "$path" 0
 		  rsync $args "$path/."
@@ -102,7 +102,7 @@ do_update_component() {
 	shift
 
 	hit="$(
-		awk -v this_host="$(hostname -f)" component="$component" -v host="$remote_host" '
+		awk -v this_host="$(hostname -f)" -v component="$component" -v host="$remote_host" '
 		  $1 == this_host && $2 == component {
 			  if ($3 == host) {
 				  print $4
