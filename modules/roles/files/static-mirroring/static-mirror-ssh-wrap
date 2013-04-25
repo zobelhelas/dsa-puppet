@@ -36,7 +36,9 @@ COMPONENTLIST=/etc/static-components.conf
 usage() {
 	echo "local Usage: $0 <basedir> <host>"
 	echo "via ssh orig command:"
-	echo "                      mirror <serial>"
+	echo "                      mirror <component> <serial>"
+	echo "                      rsync ..."
+		do_rsync "$remote_host" "$@"
 }
 
 one_more_arg() {
@@ -59,10 +61,12 @@ do_mirror() {
 	local basedir="$1"; shift
 	local remote_host="$1"; shift
 	one_more_arg "$@"
+	local component="$1"; shift
+	one_more_arg "$@"
 	local serial="$1"; shift
 
-	info "Host $remote_host triggered a mirror run for serial $serial"
-	exec /usr/local/bin/static-mirror-run "$basedir" "$remote_host:-new-" "$serial"
+	info "Host $remote_host triggered a mirror run for $component, serial $serial"
+	exec /usr/local/bin/static-mirror-run "$basedir" "$remote_host:$component/-new-" "$serial"
 	echo >&2 "Exec failed"
 	croak "exec failed"
 }
@@ -75,7 +79,7 @@ do_rsync() {
 	allowed_rsyncs=()
 
 	if [ -e "$COMPONENTLIST" ]; then
-		for path in $(awk -v host="$(hostname -f)" '$2 == host {print $3}' $COMPONENTLIST); do
+		for path in $(awk -v host="$(hostname -f)" '$3 == host {print $4}' $COMPONENTLIST); do
 			allowed_rsyncs+=("--server --sender -lHtrze.iLsf --safe-links . $path/.")
 		done
 	fi
