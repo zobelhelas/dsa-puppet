@@ -51,25 +51,6 @@ croak() {
 	exit 1
 }
 
-lock() {
-  local fd="$1"; shift
-  local path="$1"; shift
-  local exclusive="$1"; shift
-
-  eval "exec $fd< '$path'"
-
-  if [ "$exclusive" -gt 0 ]; then
-    locktype="-e"
-  else
-    locktype="-s"
-  fi
-
-  if ! flock "$locktype" "$fd"; then
-    echo >&2 "$0: Cannot acquire lock on $base (flock $locktype failed) - Very bad, we should have waited!"
-    exit 1
-  fi
-}
-
 do_rsync() {
 	local remote_host="$1"; shift
 	local args="--server --sender -vlHtrze.iLsf --safe-links ."
@@ -83,7 +64,11 @@ do_rsync() {
 	  elif [ "$*" = "$args $component/-live-/" ] || [ "$*" = "$args ./$component/-live-/" ] ; then
 		  local path="$BASEDIR/master/$component-current-live"
 		  info "host $remote_host wants $path, acquiring lock"
-		  lock 200 "$path" 0
+		  exec 200< "$path"
+		  if ! flock -s -w 0 200; then
+			echo >&2 "Cannot acquire shared lock on $path - this means an update is already underway anyway (probably)."
+			exit 1
+		  fi
 		  rsync $args "$path/."
 		  return
 	  fi
