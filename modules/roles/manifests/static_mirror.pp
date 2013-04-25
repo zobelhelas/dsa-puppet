@@ -24,7 +24,7 @@ class roles::static_mirror {
 	}
 
 	file { '/etc/cron.d/puppet-static-mirror':
-			content => "PATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; awk '!/^ *(#|$)/ {print \$1, \$2}' /etc/static-components.conf | while read master component; do static-mirror-run --one-stage /srv/static.debian.org/mirrors/\$component \"\$master:\$components/-live-\" > /dev/null; done\n",
+			content => "PATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; awk '!/^ *(#|$)/ {print \$1, \$2}' /etc/static-components.conf | while read master component; do static-mirror-run --one-stage /srv/static.debian.org/mirrors/\$component \"\$master:\$component/-live-\" > /dev/null; done\n",
 	}
 
 	$vhost_listen = $::hostname ? {
