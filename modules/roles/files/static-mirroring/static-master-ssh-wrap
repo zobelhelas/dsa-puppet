@@ -66,7 +66,7 @@ do_rsync() {
 		  info "host $remote_host wants $path, acquiring lock"
 		  exec 200< "$path"
 		  if ! flock -s -w 0 200; then
-			echo >&2 "Cannot acquire shared lock on $path - this means an update is already underway anyway (probably)."
+			echo >&2 "Cannot acquire shared lock on $path - this should mean an update is already underway anyway."
 			exit 1
 		  fi
 		  rsync $args "$path/."
