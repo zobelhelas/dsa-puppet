@@ -65,7 +65,7 @@ do_mirror() {
 	one_more_arg "$@"
 	local serial="$1"; shift
 
-	masterhost="$(awk -v component="$component" '$2 == component {print $1; exit}' "$componentlist")"
+	masterhost="$(awk -v component="$component" '$2 == component {print $1; exit}' "$COMPONENTLIST")"
 	if [ -z "$masterhost" ]; then
 		croak "Did not find master for component $component."
 	elif [ "$msterhost" != "$remote_host" ]; then
