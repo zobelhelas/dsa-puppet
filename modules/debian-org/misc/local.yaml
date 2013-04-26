@@ -240,7 +240,6 @@ host_settings:
     - wieck.debian.org
   apache2_www_mirror:
     - bellini.debian.org
-    - englund.debian.org
     - gluck.debian.org
     - kokkonen.debian.org
     - santoro.debian.org
@@ -285,7 +284,6 @@ host_settings:
     - malo.debian.org
   entropy_key:
     - czerny.debian.org
-    - englund.debian.org
     - rautavaara.debian.org
     - salieri.debian.org
   static_master:
