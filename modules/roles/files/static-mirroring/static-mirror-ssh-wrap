@@ -68,7 +68,7 @@ do_mirror() {
 	masterhost="$(awk -v component="$component" '$2 == component {print $1; exit}' "$COMPONENTLIST")"
 	if [ -z "$masterhost" ]; then
 		croak "Did not find master for component $component."
-	elif [ "$msterhost" != "$remote_host" ]; then
+	elif [ "$masterhost" != "$remote_host" ]; then
 		croak "$remote_host is not master for $component."
 	else
 		info "Host $remote_host triggered a mirror run for $component, serial $serial"
