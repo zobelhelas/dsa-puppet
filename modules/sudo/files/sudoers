@@ -128,9 +128,10 @@ dak		ALL=(dak-unpriv)	NOPASSWD: ALL
 Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
-%planet		senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
-%debbits	master=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
 %backports	franck,ries=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
+%debbits	master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
+planet		senfl=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
+debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component www.debian.org
 
 # The piuparts slave needs to handle chroots
 piupartss	piatti=(ALL)		NOPASSWD: ALL
