@@ -9,4 +9,15 @@ class roles::static_base {
 	file { '/etc/static-components.conf':
 		source => 'puppet:///modules/roles/static-mirroring/static-components.conf',
 	}
+
+	file { '/etc/ssh/userkeys/staticsync':
+		content => template('roles/static-mirroring/static-authorized_keys.erb'),
+	}
+
+	file { '/usr/local/bin/staticsync-ssh-wrap':
+		source => 'puppet:///modules/roles/static-mirroring/staticsync-ssh-wrap',
+		mode   => '0555',
+	}
+	file { '/usr/local/bin/static-mirror-ssh-wrap': ensure => absent; }
+	file { '/usr/local/bin/static-master-ssh-wrap': ensure => absent; }
 }
