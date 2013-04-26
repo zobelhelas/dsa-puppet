@@ -136,7 +136,9 @@
    RewriteRule ^/Bugs/db/[[:digit:]][[:digit:]]/([[:digit:]][[:digit:]][[:digit:]]+).html$ http://bugs.debian.org/$1
    RewriteRule ^/Bugs/db/ma/l([^/]+).html$ http://bugs.debian.org/cgi-bin/pkgreport.cgi?maintenc=$1
 
-   Userdir http://people.debian.org/~*/   
+   <IfModule mod_userdir.c>
+      UserDir disabled
+   </IfModule>
 
    RedirectPermanent /devel/todo/ /devel/wnpp/help_requested_bypop
    RedirectPermanent /doc/FAQ /doc/manuals/debian-faq
