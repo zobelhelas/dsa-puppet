@@ -9,7 +9,7 @@ import sys
 import tempfile
 import time
 
-base='/home/staticsync/static-master'
+base="/srv/static.debian.org"
 serialname = '.serial'
 
 clients = []
