@@ -290,6 +290,7 @@ host_settings:
     - salieri.debian.org
   static_master:
     - bizet.debian.org
+    - franck.debian.org
   static_mirror:
     - klecker.debian.org
     - rietz.debian.org
