@@ -41,12 +41,12 @@ if [ "${component%/*}" != "$component" ] ; then
 fi
 
 thishost=$(hostname -f)
-masterhost="$(awk -v component="$component" '$2 == component {print $1; exit}' "$componentlist")"
-srchost="$(awk -v component="$component" '$2 == component {print $3; exit}' "$componentlist")"
-srcdir="$(awk -v component="$component" '$2 == component {print $4; exit}' "$componentlist")"
+masterhost="$(awk -v component="$component" '!/^ *(#|$)/ && $2 == component {print $1; exit}' "$componentlist")"
+srchost="$(awk -v component="$component" '!/^ *(#|$)/ && $2 == component {print $3; exit}' "$componentlist")"
+srcdir="$(awk -v component="$component" '!/^ *(#|$)/ && $2 == component {print $4; exit}' "$componentlist")"
 inextralist="$(
                awk -v component="$component" -v host="$thishost" '
-                 $2 == component {
+                 !/^ *(#|$)/ && $2 == component {
                    split($5,extra,",")
                    for (i in extra) {
                      if (host == extra[i]) {

@@ -59,7 +59,7 @@ do_mirror() {
 	one_more_arg "$@"
 	local serial="$1"; shift
 
-	masterhost="$(awk -v component="$component" '$2 == component {print $1; exit}' "$COMPONENTLIST")"
+	masterhost="$(awk -v component="$component" '!/^ *(#|$)/ && $2 == component {print $1; exit}' "$COMPONENTLIST")"
 	if [ -z "$masterhost" ]; then
 		croak "Did not find master for component $component."
 	elif [ "$masterhost" != "$remote_host" ]; then
@@ -76,7 +76,7 @@ do_rsync_on_master() {
 	local remote_host="$1"; shift
 	local args="--server --sender -vlHtrze.iLsf --safe-links ."
 
-	for component in $(awk -v this_host="$(hostname -f)" '$1 == this_host {print $2}' $COMPONENTLIST); do
+	for component in $(awk -v this_host="$(hostname -f)" '!/^ *(#|$)/ && $1 == this_host {print $2}' $COMPONENTLIST); do
 		if [ "$*" = "$args $component/-new-/" ] || [ "$*" = "$args ./$component/-new-/" ] ; then
 			local path="$BASEDIR/master/$component-current-push"
 			info "serving $remote_host with $path"
@@ -104,7 +104,7 @@ do_rsync_on_source() {
 	allowed_rsyncs=()
 
 	if [ -e "$COMPONENTLIST" ]; then
-		for path in $(awk -v host="$(hostname -f)" '$3 == host {print $4}' $COMPONENTLIST); do
+		for path in $(awk -v host="$(hostname -f)" '!/^ *(#|$)/ && $3 == host {print $4}' $COMPONENTLIST); do
 			allowed_rsyncs+=("--server --sender -lHtrze.iLsf --safe-links . $path/.")
 		done
 	fi
@@ -136,7 +136,7 @@ do_update_component() {
 
 	hit="$(
 		awk -v this_host="$(hostname -f)" -v component="$component" -v host="$remote_host" '
-			$1 == this_host && $2 == component {
+			!/^ *(#|$)/ && $1 == this_host && $2 == component {
 				if ($3 == host) {
 					print $4
 					exit
