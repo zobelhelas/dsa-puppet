@@ -65,10 +65,17 @@ do_mirror() {
 	one_more_arg "$@"
 	local serial="$1"; shift
 
-	info "Host $remote_host triggered a mirror run for $component, serial $serial"
-	exec /usr/local/bin/static-mirror-run "$basedir/mirrors/$component" "$remote_host:$component/-new-" "$serial"
-	echo >&2 "Exec failed"
-	croak "exec failed"
+	masterhost="$(awk -v component="$component" '$2 == component {print $1; exit}' "$componentlist")"
+	if [ -z "$masterhost" ]; then
+		croak "Did not find master for component $component."
+	elif [ "$msterhost" != "$remote_host" ]; then
+		croak "$remote_host is not master for $component."
+	else
+		info "Host $remote_host triggered a mirror run for $component, serial $serial"
+		exec /usr/local/bin/static-mirror-run "$basedir/mirrors/$component" "$remote_host:$component/-new-" "$serial"
+		echo >&2 "Exec failed"
+		croak "exec failed"
+	fi
 }
 
 do_rsync() {
