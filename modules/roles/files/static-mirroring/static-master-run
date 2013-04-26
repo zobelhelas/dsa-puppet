@@ -120,8 +120,8 @@ def run_mirror(component):
   componentdir = os.path.join(basemaster, component)
   cur = componentdir + '-current-push'
   live = componentdir + '-current-live'
-  tmpdir_new = tempfile.mkdtemp(prefix='live.new-', dir=basemaster); cleanup_dirs.append(tmpdir_new);
-  tmpdir_old = tempfile.mkdtemp(prefix='live.old-', dir=basemaster); cleanup_dirs.append(tmpdir_old);
+  tmpdir_new = tempfile.mkdtemp(prefix=component+'-live.new-', dir=basemaster); cleanup_dirs.append(tmpdir_new);
+  tmpdir_old = tempfile.mkdtemp(prefix=component+'-live.old-', dir=basemaster); cleanup_dirs.append(tmpdir_old);
   os.chmod(tmpdir_new, 0755)
 
   locks = []
