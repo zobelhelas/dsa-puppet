@@ -86,7 +86,7 @@
   </Files>
 </Directory>
 
-<VirtualHost *:80>
+<VirtualHost <%= vhost_listen %> >
    ServerName www.nl.debian.org
    ServerAdmin webmaster@debian.org
    ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net debian.org www.debian.at www.debian.eu debian.eu debian.com
@@ -100,7 +100,7 @@
    RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
 </VirtualHost>
 
-<VirtualHost *:80>
+<VirtualHost <%= vhost_listen %> >
    ServerName www.debian.org
    ServerAdmin webmaster@debian.org
    ServerAlias www-*.debian.org
@@ -217,7 +217,7 @@
 </VirtualHost>
 
 
-<VirtualHost *:80>
+<VirtualHost <%= vhost_listen %> >
    ServerName volatile.debian.org
    ServerAlias volatile-master.debian.org
    ServerAdmin webmaster@debian.org
