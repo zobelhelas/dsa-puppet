@@ -32,7 +32,7 @@ set -u
 NAME="$(basename "$0")"
 
 usage() {
-	echo "Usage: $0 [--one-stage] <basedir> <sync-source> [<serial>]"
+	echo "Usage: $0 [--one-stage] <componentdir> <sync-source> [<serial>]"
 }
 
 if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then usage; exit 0; fi
@@ -57,10 +57,10 @@ while :; do
 	esac
 done
 
-BASEDIR=${1:-}; shift
+COMPONENTDIR=${1:-}; shift
 SYNC_SOURCE=${1:-}; shift
 SYNC_SERIAL=${1:-}; shift || true
-if [ -z "$BASEDIR" ]; then usage >&2; exit 1; fi
+if [ -z "$COMPONENTDIR" ]; then usage >&2; exit 1; fi
 if [ -z "$SYNC_SOURCE" ]; then usage >&2; exit 1; fi
 
 RSYNC="rsync"
@@ -79,7 +79,7 @@ CNF_FILE="$HOME/etc/$NAME.conf"
 ! [ -e "$CNF_FILE" ] || . "$CNF_FILE"
 
 SOURCE="${SYNC_SOURCE}/"
-BASEDIR="${BASEDIR}/"
+COMPONENTDIR="${COMPONENTDIR}/"
 
 ###############################################
 
@@ -106,8 +106,8 @@ log() {
 }
 
 lock() {
-	mkdir -p "$BASEDIR"
-	exec 200< "$BASEDIR"
+	mkdir -p "$COMPONENTDIR"
+	exec 200< "$COMPONENTDIR"
 	if ! flock -e 200; then
 		log "Cannot acquire lock."
 		echo >&5 "[MSM] LOCK-ERROR"
@@ -123,11 +123,11 @@ log_setup
 log "called with $*"
 lock
 
-if [ -e "${BASEDIR}${ACTIVE}" ] && [ "$(readlink "${BASEDIR}${ACTIVE}")" = "$ALPHA" ] ; then
+if [ -e "${COMPONENTDIR}${ACTIVE}" ] && [ "$(readlink "${COMPONENTDIR}${ACTIVE}")" = "$ALPHA" ] ; then
 	staging="$BRAVO"
 	active="$ALPHA"
-elif [ -e "${BASEDIR}${ACTIVE}" ] && [ "$(readlink "${BASEDIR}${ACTIVE}")" != "$BRAVO" ] ; then
-	echo >&5 "Invalid state of ${BASEDIR}${ACTIVE}."
+elif [ -e "${COMPONENTDIR}${ACTIVE}" ] && [ "$(readlink "${COMPONENTDIR}${ACTIVE}")" != "$BRAVO" ] ; then
+	echo >&5 "Invalid state of ${COMPONENTDIR}${ACTIVE}."
 	exit 1
 else
 	staging="$ALPHA"
@@ -136,8 +136,8 @@ fi
 log "active is $active; staging is $staging"
 
 rsync_source="${SOURCE}"
-rsync_curactive="${BASEDIR}${active}/"
-rsync_target="${BASEDIR}${staging}/"
+rsync_curactive="${COMPONENTDIR}${active}/"
+rsync_target="${COMPONENTDIR}${staging}/"
 
 if [ -e "$rsync_curactive/.serial" ] && [ -n "$SYNC_SERIAL" ] && [ "$(cat $rsync_curactive/.serial)" = "$SYNC_SERIAL" ]; then
 	log "active is already at serial $SYNC_SERIAL.  No action required."
@@ -158,7 +158,7 @@ fi
 
 case "$action" in
 	go)
-		ln --symbolic --force --no-target-directory "$staging" "${BASEDIR}$ACTIVE"
+		ln --symbolic --force --no-target-directory "$staging" "${COMPONENTDIR}$ACTIVE"
 		rm -rf "$rsync_curactive"
 		echo >&5 "[MSM] STAGE2-DONE"
 		log "stage2 done"
