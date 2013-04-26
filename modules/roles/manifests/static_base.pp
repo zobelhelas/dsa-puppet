@@ -11,7 +11,7 @@ class roles::static_base {
 	}
 
 	file { '/etc/ssh/userkeys/staticsync':
-		content => template('roles/static-mirroring/static-authorized_keys.erb'),
+		content => template('roles/static-mirroring/staticsync-authorized_keys.erb'),
 	}
 
 	file { '/usr/local/bin/staticsync-ssh-wrap':
