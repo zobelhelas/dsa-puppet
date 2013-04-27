@@ -129,6 +129,7 @@ Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
 %backports	franck,ries=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
+dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component ftp-master.metadata.debian.org
 %debbits	master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
 planet		senfl=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
 debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component www.debian.org
