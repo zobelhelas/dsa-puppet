@@ -29,7 +29,7 @@ brainfood:
   nameservers: []
 brown:
   netrange:
-    - 128.148.0.0/16
+    - 138.16.160.0/24
   # all hosts have their own recursor
   nameservers: []
 br:
