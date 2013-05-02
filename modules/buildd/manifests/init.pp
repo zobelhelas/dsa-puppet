@@ -82,7 +82,7 @@ class buildd ($ensure=present) {
 			ensure => installed,
 		}
 		file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
-			source  => 'puppet:///modules/buildd/dupload.conf',
+			source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill',
 			mode    => '0555',
 		}
 		file { '/etc/cron.d/puppet-buildd-aptitude':
