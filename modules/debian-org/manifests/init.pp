@@ -101,7 +101,7 @@ class debian-org {
 	}
 
 	site::aptrepo { 'backports.debian.org':
-		url        => $mirror_backports
+		url        => $mirror_backports,
 		suite      => "${::lsbdistcodename}-backports",
 		components => ['main','contrib','non-free']
 	}
