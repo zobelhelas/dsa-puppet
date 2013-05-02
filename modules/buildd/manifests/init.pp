@@ -76,4 +76,17 @@ class buildd ($ensure=present) {
 		source  => 'puppet:///modules/buildd/cron.d-dsa-buildd',
 		require => Package['debian.org']
 	}
+
+	if $::lsbmajdistrelease >= 7 {
+		package { 'python-psutil':
+			ensure => installed,
+		}
+		file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
+			source  => 'puppet:///modules/buildd/dupload.conf',
+			mode    => '0555',
+		}
+		file { '/etc/cron.d/puppet-buildd-aptitude':
+			content => "*/5 * * * * root /usr/local/sbin/buildd-schroot-aptitude-kill\n",
+		}
+	}
 }
