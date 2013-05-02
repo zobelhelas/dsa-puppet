@@ -1,4 +1,14 @@
 class debian-org {
+	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
+		$mirror = getfromhash($site::nodeinfo, 'hoster', 'mirror-debian')
+	} else {
+		$mirror = 'http://http.debian.net/debian/'
+	}
+	if $::lsbmajdistrelease < 7 {
+		$mirror_backports = 'http://backports.debian.org/debian-backports/'
+	} else {
+		$mirror_backports = $mirror
+	}
 
 	$debianadmin = [
 		'debian-archive-debian-samhain-reports@master.debian.org',
@@ -90,31 +100,21 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	if $::lsbdistcodename != 'wheezy' {
-		site::aptrepo { 'backports.debian.org':
-			url        => 'http://backports.debian.org/debian-backports/',
-			suite      => "${::lsbdistcodename}-backports",
-			components => ['main','contrib','non-free']
-		}
-
-		if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
-			site::aptrepo { 'volatile':
-				url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
-				suite      => "${::lsbdistcodename}-updates",
-				components => ['main','contrib','non-free']
-			}
-		} else {
-			site::aptrepo { 'volatile':
-				url        => 'http://ftp.debian.org/debian',
-				suite      => "${::lsbdistcodename}-updates",
-				components => ['main','contrib','non-free']
-			}
-		}
+	site::aptrepo { 'backports.debian.org':
+		url        => $mirror_backports
+		suite      => "${::lsbdistcodename}-backports",
+		components => ['main','contrib','non-free']
 	}
 	site::aptrepo { 'backports.org':
 		ensure => absent,
 		keyid => '16BA136C',
 		key => 'puppet:///modules/debian-org/backports.org.asc',
+	}
+
+	site::aptrepo { 'volatile':
+		url        => $mirror,
+		suite      => "${::lsbdistcodename}-updates",
+		components => ['main','contrib','non-free']
 	}
 
 	site::aptrepo { 'debian.org':
