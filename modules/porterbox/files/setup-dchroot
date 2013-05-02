@@ -82,13 +82,12 @@ EOF
 
     if [ "$THISARCH" = "$arch" ]; then
         echo "aliases=$suite"
-    else
-        case "$arch" in
-            armel|armhf|i386|powerpc|s390|sparc)
-                echo "personality=linux32"
-                ;;
-        esac
     fi
+    case "$arch" in
+        armel|armhf|i386|powerpc|s390|sparc)
+            echo "personality=linux32"
+            ;;
+    esac
     echo
 
     case "$suite" in
