@@ -58,6 +58,10 @@ class roles {
 		include roles::keyring
 	}
 
+	if getfromhash($site::nodeinfo, 'wiki') {
+		include roles::wiki
+	}
+
 	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
 		include roles::ftp-upcoming_mirror
 	}

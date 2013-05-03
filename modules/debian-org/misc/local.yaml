@@ -190,6 +190,8 @@ services:
     - wolkenstein.debian.org
   keyring:
     - kaufmann.debian.org
+  wiki:
+    - wilder.debian.org
   # new style porterbox (schroot, dd installable packages etc)
   porterbox:
     # once they are all on new-style, we can use ldap for this
