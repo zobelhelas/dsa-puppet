@@ -1,7 +1,7 @@
 #!/bin/bash
 
 schroots=$(pgrep -x -u 0 schroot -d ',')
-pgrep -x -u 0 -P "$schroots" aptitude | xargs ps h -o 'pid,vsz,cputime' | while read pid vsz cputime; do
+pgrep -x -u 0 -P "$schroots" aptitude | xargs --no-run-if-empty ps h -o 'pid,vsz,cputime' | while read pid vsz cputime; do
   mb=$((vsz/1024))
   [ "$mb" -lt 250 ] && continue
   hours=${vsz%%:*}
