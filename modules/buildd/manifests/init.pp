@@ -85,8 +85,13 @@ class buildd ($ensure=present) {
 			source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill',
 			mode    => '0555',
 		}
-		file { '/etc/cron.d/puppet-buildd-aptitude':
-			content => "*/5 * * * * root /usr/local/sbin/buildd-schroot-aptitude-kill\n",
+	} else {
+		file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
+			source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill.squeeze',
+			mode    => '0555',
 		}
+	}
+	file { '/etc/cron.d/puppet-buildd-aptitude':
+		content => "*/5 * * * * root /usr/local/sbin/buildd-schroot-aptitude-kill\n",
 	}
 }

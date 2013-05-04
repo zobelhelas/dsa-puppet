@@ -1,0 +1,14 @@
+#!/bin/bash
+
+schroots=$(pgrep -x -u 0 schroot -d ',')
+pgrep -x -u 0 -P "$schroots" aptitude | xargs ps h -o 'pid,vsz,cputime' | while read pid vsz cputime; do
+  mb=$((vsz/1024))
+  [ "$mb" -lt 250 ] && continue
+  hours=${vsz%%:*}
+  nohours=${vsz#*:}
+  mins=${nohours%:*}
+
+  if [ "$hours" -gt 0 ] || [ "$mins" -gt 15 ]; then
+    kill $pid
+  fi
+done
