@@ -9,6 +9,6 @@ pgrep -x -u 0 -P "$schroots" aptitude | xargs --no-run-if-empty ps h -o 'pid,vsz
   mins=${nohours%:*}
 
   if [ "$hours" -gt 0 ] || [ "$mins" -gt 15 ]; then
-    kill $pid
+    kill "$pid"
   fi
 done
