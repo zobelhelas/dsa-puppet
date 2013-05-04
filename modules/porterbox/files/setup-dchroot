@@ -94,7 +94,7 @@ EOF
         sid)
             genschrootconf "experimental" "$arch" "$target"
             ;;
-        experimental)
+        experimental|jessie)
             :
             ;;
         *)
