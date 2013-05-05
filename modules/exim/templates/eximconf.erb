@@ -837,6 +837,7 @@ check_recipient:
                         ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-callout}{$local_part}{}}
           !hosts   = +debianhosts : WHITELIST
 	  !verify  = sender/callout=90s,maxwait=300s
+	  message  = "Sender verification failed: $acl_verify_message"
 
 <%- end -%>
 <%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
