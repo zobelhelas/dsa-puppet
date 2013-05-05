@@ -10,7 +10,11 @@ ENABLED="yes"
 
 # Additional start arguments can be provided here
 # ARGS=""
+<% if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture') and scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0].start_with?('kfreebsd') -%>
+ARGS=""
+<% else -%>
 ARGS="-u bacula -k"
+<% end -%>
 
 # Default config file can be changed here
 # CONFIG="/etc/bacula/bacula-fd.conf"
