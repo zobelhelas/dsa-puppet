@@ -51,14 +51,14 @@ class ferm::per-host {
 		bendel: {
 			@ferm::rule { 'listmaster-ontp-in':
 				description	=> 'ONTP has a broken mail setup',
-				table		=> 'filter'
-				chain		=> 'INPUT'
+				table		=> 'filter',
+				chain		=> 'INPUT',
 				rule		=> 'source 188.165.23.89/32 proto tcp dport 25 jump DROP',
 			}
 			@ferm::rule { 'listmaster-ontp-in':
 				description	=> 'ONTP has a broken mail setup',
-				table		=> 'filter'
-				chain		=> 'OUTPUT'
+				table		=> 'filter',
+				chain		=> 'OUTPUT',
 				rule		=> 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
 			}
 		}
