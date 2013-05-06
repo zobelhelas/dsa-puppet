@@ -55,7 +55,7 @@ class ferm::per-host {
 				chain		=> 'INPUT',
 				rule		=> 'source 188.165.23.89/32 proto tcp dport 25 jump DROP',
 			}
-			@ferm::rule { 'listmaster-ontp-in':
+			@ferm::rule { 'listmaster-ontp-out':
 				description	=> 'ONTP has a broken mail setup',
 				table		=> 'filter',
 				chain		=> 'OUTPUT',
