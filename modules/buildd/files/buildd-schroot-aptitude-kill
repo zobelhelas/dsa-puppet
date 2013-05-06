@@ -30,18 +30,21 @@ total_mem = psutil.phymem_usage().total
 cutoff_time = 60*10
 
 for p in psutil.process_iter():
-	if p.name != 'aptitude': continue
-	parent = p.parent
-	if parent is None: continue
-	if parent.name != 'schroot': continue
-	#
-	rootdir = os.readlink('/proc/%d/root'%(p.pid,))
-	if not rootdir.startswith('/var/lib/schroot/mount'): continue
-	#
-	used = p.get_memory_info().vms
-	if used < total_mem: continue
-	#
-	cputime = p.get_cpu_times().user
-	if cputime < cutoff_time: continue
-	#
-	p.kill()
+	try:
+		if p.name != 'aptitude': continue
+		parent = p.parent
+		if parent is None: continue
+		if parent.name != 'schroot': continue
+		#
+		rootdir = os.readlink('/proc/%d/root'%(p.pid,))
+		if not rootdir.startswith('/var/lib/schroot/mount'): continue
+		#
+		used = p.get_memory_info().vms
+		if used < total_mem: continue
+		#
+		cputime = p.get_cpu_times().user
+		if cputime < cutoff_time: continue
+		#
+		p.kill()
+	except psutil.error.NoSuchProcess:
+		pass
