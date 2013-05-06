@@ -48,6 +48,20 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 3493, ( 82.195.75.64/26 192.168.43.0/24 ))'
 			}
 		}
+		bendel: {
+			@ferm::rule { 'listmaster-ontp-in':
+				description	=> 'ONTP has a broken mail setup',
+				table		=> 'filter'
+				chain		=> 'INPUT'
+				rule		=> 'source 188.165.23.89/32 proto tcp dport 25 jump DROP',
+			}
+			@ferm::rule { 'listmaster-ontp-in':
+				description	=> 'ONTP has a broken mail setup',
+				table		=> 'filter'
+				chain		=> 'OUTPUT'
+				rule		=> 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
+			}
+		}
 		danzi: {
 			@ferm::rule { 'dsa-postgres-danzi':
 				description     => 'Allow postgress access',
