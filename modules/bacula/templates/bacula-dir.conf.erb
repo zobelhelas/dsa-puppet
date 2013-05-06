@@ -160,7 +160,7 @@ JobDefs {
   Priority = 10
   Write Bootstrap = "/var/lib/bacula/%c.bsr"
   Maximum Concurrent Jobs = 20
-  Client Run After Job = "/usr/local/sbin/postbaculajob -c \"%c\" -d \"%d\" -i \"%i\" -l \"%l\" -n \"%n\" -o /var/log/bacula-main.log"
+  Client Run After Job = "/usr/local/sbin/postbaculajob -c \"%c\" -d \"%d\" -i \"%i\" -l \"%l\" -n \"%n\" -o /var/log/bacula/client-after.state"
 }
 
 ########################################################################
