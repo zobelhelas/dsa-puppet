@@ -5,7 +5,7 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-. "/etc/schroot/default/config"
+[ -e "/etc/schroot/default/config" ] && . "/etc/schroot/default/config"
 
 # added by weasel:
 if [ "$CHROOT_SESSION_PURGE" = "true" ]; then
