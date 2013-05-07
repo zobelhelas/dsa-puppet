@@ -14,6 +14,10 @@ set -e
 
 if [ -f "${CHROOT_SCRIPT_CONFIG:-}" ]; then
     . "$CHROOT_SCRIPT_CONFIG"
+elif [ -f "$CHROOT_PROFILE_DIR/config" ]; then
+    . "$CHROOT_PROFILE_DIR/config"
+else
+    fatal "Cannot find config script"
 fi
 
 
