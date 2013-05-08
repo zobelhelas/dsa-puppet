@@ -42,6 +42,7 @@ OPTIONS:
     -c         write config only
     -f         overwrite config and target tarball
     -k KEYRING use an alternate keyring [$keyring]
+    -p PERS    use a different sbuild personality [$personality]
     -s         use sbuild compatible naming scheme
     -h         this help
 EOF
@@ -89,9 +90,9 @@ source-root-groups=adm
 EOF
 
     if dpkg --compare-versions "$(lsb_release --release --short)" '<' 7; then
-        echo "script-config=dsa/config"
+        echo "script-config=$personality/config"
     else
-        echo "profile=dsa"
+        echo "profile=$personality"
     fi
 
     if [ "$THISARCH" = "$arch" ]; then
@@ -131,11 +132,12 @@ configonly=""
 force=""
 basedir="/srv/chroot"
 keyring=/usr/share/keyrings/debian-archive-keyring.gpg
+personality="dsa"
 sbuildnames=""
 declare -a cleanup
 trap do_cleanup EXIT
 
-while getopts "a:b:cfhk:m:s" OPTION
+while getopts "a:b:cfhk:m:p:s" OPTION
 do
     case $OPTION in
         a)
@@ -159,6 +161,9 @@ do
             ;;
         m)
             mirror="$OPTARG"
+            ;;
+        p)
+            personality="$OPTARG"
             ;;
         s)
             sbuildnames="1"
