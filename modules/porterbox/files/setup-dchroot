@@ -39,9 +39,10 @@ OPTIONS:
     -a ARCH    debootstrap arch [$arch]
     -m MIRROR  http mirror to use [$mirror]
     -b basedir place where to build the chroot/tarball [$basedir]
-    -f         overwrite stuff.
-    -c         write config only.
-    -h         this help.
+    -c         write config only
+    -f         overwrite config and target tarball
+    -k KEYRING use an alternate keyring [$keyring]
+    -h         this help
 EOF
 }
 
@@ -121,10 +122,11 @@ mirror="${mirror:-http://cdn.debian.net/debian}"
 configonly=""
 force=""
 basedir="/srv/chroot"
+keyring=/usr/share/keyrings/debian-archive-keyring.gpg
 declare -a cleanup
 trap do_cleanup EXIT
 
-while getopts "a:b:cfhm:" OPTION
+while getopts "a:b:cfhk:m:" OPTION
 do
     case $OPTION in
         a)
@@ -142,6 +144,9 @@ do
         h)
             help
             exit 0
+            ;;
+        k)
+            keyring="$OPTARG"
             ;;
         m)
             mirror="$OPTARG"
@@ -183,7 +188,7 @@ cleanup+=("umount $rootdir/sys")
 
 set -x
 debootstrap \
-    --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+    --keyring "$keyring" \
     --include="apt" \
     --variant=buildd \
     --arch="$arch" \
