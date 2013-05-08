@@ -231,4 +231,6 @@ chroot "$rootdir" apt-get install -y --no-install-recommends zsh locales-all bui
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
 umount "$rootdir/sys" || true
 
-(cd "$rootdir" && tar caf "$target" .)
+tartmp=$(tempfile --directory "$basedir" --suffix=".tar.gz")
+cleanup+=("rm -f $tartmp")
+(cd "$rootdir" && tar caf "$tartmp" . && mv "$tartmp" "$target")
