@@ -16,6 +16,12 @@ class named {
 		ensure => running,
 	}
 
+	@ferm::rule { 'dsa-bind-no-ddos-any':
+		domain      => '(ip ip6)',
+		description => 'Allow nameserver access',
+		rule        => 'proto udp dport 53 mod string from 32 to 64 algo bm hex-string \'|0000ff0001|\' jump DROP'
+	}
+
 	@ferm::rule { 'dsa-bind':
 		domain      => '(ip ip6)',
 		description => 'Allow nameserver access',
