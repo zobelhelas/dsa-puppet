@@ -208,6 +208,10 @@ class debian-org {
 		source  => 'puppet:///modules/debian-org/dsa-puppet-stuff.cron.ignore',
 		require => Package['debian.org']
 	}
+	file { '/etc/nsswitch.conf':
+		mode   => '0755',
+		source => 'puppet:///modules/debian-org/nsswitch.conf',
+	}
 
 	# set mmap_min_addr to 4096 to mitigate
 	# Linux NULL-pointer dereference exploits

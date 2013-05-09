@@ -77,8 +77,13 @@ groups=Debian,guest
 root-groups=adm
 source-groups=adm
 source-root-groups=adm
-script-config=dsa/config
 EOF
+
+    if dpkg --compare-versions "$(lsb_release --release --short)" '<' 7; then
+        echo "script-config=dsa/config"
+    else
+        echo "profile=dsa"
+    fi
 
     if [ "$THISARCH" = "$arch" ]; then
         echo "aliases=$suite"
