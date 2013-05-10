@@ -42,8 +42,10 @@ OPTIONS:
     -c         write config only
     -d dir     place where to build the chroot [${builddir:-$basedir}]
     -f         overwrite config and target tarball
+    -g GROUPS  groups that should have access to the schroot [$groupuser]
     -k KEYRING use an alternate keyring [$keyring]
     -p PERS    use a different sbuild personality [$personality]
+    -r GROUPS  groups that should have root in the schroot [$grouproot]
     -s         use sbuild compatible naming scheme
     -u         Ubuntu target
     -h         this help
@@ -85,8 +87,8 @@ cat << EOF
 description=[${name}] Debian $suite chroot for $arch
 type=file
 file=$target
-groups=Debian,guest
-root-groups=adm
+groups=$groupuser
+root-groups=$grouproot
 source-groups=adm
 source-root-groups=adm
 EOF
@@ -138,10 +140,12 @@ keyring=/usr/share/keyrings/debian-archive-keyring.gpg
 personality="dsa"
 sbuildnames=""
 ubuntu=""
+groupuser="Debian,guest"
+grouproot="adm"
 declare -a cleanup
 trap do_cleanup EXIT
 
-while getopts "a:b:cd:fhk:m:p:su" OPTION
+while getopts "a:b:cd:fg:hk:m:p:r:su" OPTION
 do
     case $OPTION in
         a)
@@ -159,6 +163,9 @@ do
         f)
             force="1"
             ;;
+        g)
+            groupuser="$OPTARG"
+            ;;
         h)
             usage
             exit 0
@@ -171,6 +178,9 @@ do
             ;;
         p)
             personality="$OPTARG"
+            ;;
+        r)
+            grouproot="$OPTARG"
             ;;
         s)
             sbuildnames="1"
