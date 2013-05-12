@@ -11,7 +11,7 @@ class autofs::bytemark {
 
 
 	file { '/etc/auto.master.d':
-		source  => directory
+		ensure  => directory
 	}
 	file { '/etc/auto.master.d/dsa.autofs':
 		source  => "puppet:///modules/autofs/bytemark/auto.master.d-dsa.autofs",
