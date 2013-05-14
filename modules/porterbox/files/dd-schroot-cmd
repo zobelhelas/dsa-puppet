@@ -106,20 +106,26 @@ class WrappedRunner():
             cmdstr = ' '.join(pipes.quote(s) for s in cmd)
             cmd = ['unshare', '--uts', '--ipc', '--net', '--']
             cmd += ['sh', '-c', 'ip addr add 127.0.0.1/8 dev lo && ip link set dev lo up && %s'%(cmdstr)]
-        pid, fd = pty.fork()
+        (r, w) = os.pipe()
+        pid, ptyfd = pty.fork()
         if pid == pty.CHILD:
+            os.close(r)
             fd = os.open("/dev/null", os.O_RDWR)
             os.dup2(fd, 0) # stdin
+            os.dup2(w, 1) # stdout
+            os.dup2(w, 2) # stderr
             os.execlp(cmd[0], *cmd)
+        os.close(w)
         try:
             while 1:
-                b = os.read(fd, 1)
+                b = os.read(r, 1)
                 if b == "": break
                 sys.stdout.write(b)
         except OSError, e:
             if e[0] == EIO: pass
             else: raise
-        os.close(fd)
+        os.close(r)
+        os.close(ptyfd) # we don't care about that one
         p,v = os.waitpid(pid, 0)
         s,r = WrappedRunner.get_ret(v)
         return s,r
