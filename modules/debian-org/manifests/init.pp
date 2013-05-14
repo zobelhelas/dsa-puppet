@@ -216,8 +216,7 @@ class debian-org {
 	# set mmap_min_addr to 4096 to mitigate
 	# Linux NULL-pointer dereference exploits
 	site::sysctl { 'mmap_min_addr':
-		key   => 'vm.mmap_min_addr',
-		value => '4096',
+		ensure => absent
 	}
 	site::sysctl { 'perf_event_paranoid':
 		key   => 'kernel.perf_event_paranoid',

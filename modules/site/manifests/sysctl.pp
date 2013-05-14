@@ -1,7 +1,7 @@
-define site::sysctl ($key, $value, $target=Linux, $ensure = present) {
+define site::sysctl ($key='', $value='', $target=Linux, $ensure = present) {
 	include site
 	case $ensure {
-		present: {}
+		present: { if ($key == "" or $value == "") { fail ( "Need to provide key and value" )} }
 		absent:  {}
 		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
