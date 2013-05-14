@@ -219,6 +219,10 @@ class debian-org {
 		key   => 'vm.mmap_min_addr',
 		value => '4096',
 	}
+	site::sysctl { 'perf_event_paranoid':
+		key   => 'kernel.perf_event_paranoid',
+		value => '2',
+	}
 	site::alternative { 'editor':
 		linkto => '/usr/bin/vim.basic',
 	}
