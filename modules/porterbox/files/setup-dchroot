@@ -235,7 +235,7 @@ debootstrap \
 echo "$tuple" > $rootdir/etc/debian_chroot
 
 chroot "$rootdir" apt-get update
-chroot "$rootdir" apt-get install -y --no-install-recommends policyrcd-script-zg2
+chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends policyrcd-script-zg2
 cat > "$rootdir/usr/local/sbin/policy-rc.d" << 'EOF'
 #!/bin/sh
 
@@ -254,8 +254,8 @@ while true; do
 done
 EOF
 chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
-[ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --no-install-recommends locales-all
-chroot "$rootdir" apt-get install -y --no-install-recommends zsh build-essential less vim fakeroot devscripts gdb
+[ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends locales-all
+chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh build-essential less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
 umount "$rootdir/sys" || true
 
