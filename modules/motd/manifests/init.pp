@@ -7,8 +7,7 @@
 #   include motd
 #
 class motd {
-
-	if $::lsbdistcodename == 'wheezy' {
+	if $::lsbmajdistrelease >= 7 {
 		$fname  = '/etc/update-motd.d/puppet-motd'
 		$notify = undef
 		$mode   = '0555'
@@ -17,8 +16,10 @@ class motd {
 			ensure => directory,
 			mode   => '0755'
 		}
-
-	} elsif $::lsbdistcodename == 'squeeze' {
+		file { '/etc/motd.tail':
+			ensure => absent,
+		}
+	} else {
 		$fname  = '/etc/motd.tail'
 		$notify = Exec['updatemotd']
 		$mode   = '0444'

@@ -4,7 +4,7 @@
 ##
 
 # Need to turn on negotiation_module
-<Directory /srv/www.debian.org/www/>
+<Directory <%= wwwdo_document_root %>/>
   Options +MultiViews +FollowSymLinks +Indexes
   AddHandler type-map var
   # Make sure that the srm.conf directive is commented out.
@@ -86,11 +86,11 @@
   </Files>
 </Directory>
 
-<VirtualHost *:80>
+<VirtualHost <%= vhost_listen %> >
    ServerName www.nl.debian.org
    ServerAdmin webmaster@debian.org
    ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net debian.org www.debian.at www.debian.eu debian.eu debian.com
-   DocumentRoot /srv/www.debian.org/www/
+   DocumentRoot <%= wwwdo_document_root %>/
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
    RewriteLog /var/log/apache2/www-other.debian.org-redirect.log
@@ -100,11 +100,11 @@
    RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
 </VirtualHost>
 
-<VirtualHost *:80>
+<VirtualHost <%= vhost_listen %> >
    ServerName www.debian.org
    ServerAdmin webmaster@debian.org
    ServerAlias www-*.debian.org
-   DocumentRoot /srv/www.debian.org/www/
+   DocumentRoot <%= wwwdo_document_root %>/
    ErrorLog /var/log/apache2/www.debian.org-error.log
    CustomLog /var/log/apache2/www.debian.org-access.log privacy
 
@@ -136,7 +136,9 @@
    RewriteRule ^/Bugs/db/[[:digit:]][[:digit:]]/([[:digit:]][[:digit:]][[:digit:]]+).html$ http://bugs.debian.org/$1
    RewriteRule ^/Bugs/db/ma/l([^/]+).html$ http://bugs.debian.org/cgi-bin/pkgreport.cgi?maintenc=$1
 
-   Userdir http://people.debian.org/~*/   
+   <IfModule mod_userdir.c>
+      UserDir disabled
+   </IfModule>
 
    RedirectPermanent /devel/todo/ /devel/wnpp/help_requested_bypop
    RedirectPermanent /doc/FAQ /doc/manuals/debian-faq
@@ -189,12 +191,12 @@
    RewriteRule ^/devel/debian-volatile/.* /volatile/ [R=301]
 
 # Offer a Redirect to DSA without knowing year #474730
-   RewriteMap dsa txt:/srv/www.debian.org/www/security/map-dsa.txt
+   RewriteMap dsa txt:<%= wwwdo_document_root %>/security/map-dsa.txt
    RewriteRule ^/security/dsa-(\d+)(\..*)? /security/${dsa:$1}$2 [R=301]
 
 # Compatibility after SGML -> DocBook
 # Debian Reference #624239
-   RewriteMap reference txt:/srv/www.debian.org/www/doc/map-reference.txt
+   RewriteMap reference txt:<%= wwwdo_document_root %>/doc/map-reference.txt
    RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/ch-support$1 !-f
    RewriteRule ^/doc/manuals/debian-reference/ch-support(.*)  /support$1 [L,R=301]
    RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/${reference:$1}$2 -f
@@ -217,7 +219,7 @@
 </VirtualHost>
 
 
-<VirtualHost *:80>
+<VirtualHost <%= vhost_listen %> >
    ServerName volatile.debian.org
    ServerAlias volatile-master.debian.org
    ServerAdmin webmaster@debian.org

@@ -41,15 +41,16 @@ if [ "${component%/*}" != "$component" ] ; then
 fi
 
 thishost=$(hostname -f)
-srchost="$(awk -v component="$component" '$1 == component {print $2; exit}' "$componentlist")"
-srcdir="$(awk -v component="$component" '$1 == component {print $3; exit}' "$componentlist")"
+masterhost="$(awk -v component="$component" '!/^ *(#|$)/ && $2 == component {print $1; exit}' "$componentlist")"
+srchost="$(awk -v component="$component" '!/^ *(#|$)/ && $2 == component {print $3; exit}' "$componentlist")"
+srcdir="$(awk -v component="$component" '!/^ *(#|$)/ && $2 == component {print $4; exit}' "$componentlist")"
 inextralist="$(
                awk -v component="$component" -v host="$thishost" '
-                 $1 == component {
-                   split($4,extra,",")
+                 !/^ *(#|$)/ && $2 == component {
+                   split($5,extra,",")
                    for (i in extra) {
                      if (host == extra[i]) {
-                       printf "%s:%s\n", $2, $3
+                       printf "%s:%s\n", $3, $4
                        exit
                      }
                    }
@@ -74,21 +75,7 @@ fi
 if [ "`id -nu`" != "staticsync" ]; then
   sudo -u staticsync static-update-component "$@"
 else
-  masters=()
-<%=
-lines = []
-masters = []
-scope.lookupvar('site::localinfo').keys.sort.each do |node|
-    if scope.lookupvar('site::localinfo')[node]['static_master']
-        lines << "  masters+=(\"#{node}\")"
-    end
-end
-lines.join("\n")
-%>
-
-  for master_idx in ${!masters[*]}; do
-    ssh -o AddressFamily=inet -t -o ServerAliveInterval=300 -o PreferredAuthentications=publickey "${masters[$master_idx]}" static-master-update-component "$component"
-  done
+  ssh -o AddressFamily=inet -t -o ServerAliveInterval=300 -o PreferredAuthentications=publickey "$masterhost" static-master-update-component "$component"
 fi
 
 # vim:set et:

@@ -25,12 +25,13 @@ set -e
 set -u
 
 MYLOGNAME="`basename "$0"`[$$]"
-BASEDIR="/home/staticsync/static-master"
+BASEDIR="/srv/static.debian.org"
 COMPONENTLIST=/etc/static-components.conf
 
 usage() {
 	echo "local Usage: $0 <host>"
 	echo "via ssh orig command:"
+	echo "                      mirror <component> <serial>"
 	echo "                      rsync <stuff>"
 	echo "                      static-master-update-component <component>"
 }
@@ -51,43 +52,75 @@ croak() {
 	exit 1
 }
 
-lock() {
-  local fd="$1"; shift
-  local path="$1"; shift
-  local exclusive="$1"; shift
+do_mirror() {
+	local remote_host="$1"; shift
+	one_more_arg "$@"
+	local component="$1"; shift
+	one_more_arg "$@"
+	local serial="$1"; shift
 
-  eval "exec $fd< '$path'"
-
-  if [ "$exclusive" -gt 0 ]; then
-    locktype="-e"
-  else
-    locktype="-s"
-  fi
-
-  if ! flock "$locktype" "$fd"; then
-    echo >&2 "$0: Cannot acquire lock on $base (flock $locktype failed) - Very bad, we should have waited!"
-    exit 1
-  fi
+	masterhost="$(awk -v component="$component" '!/^ *(#|$)/ && $2 == component {print $1; exit}' "$COMPONENTLIST")"
+	if [ -z "$masterhost" ]; then
+		croak "Did not find master for component $component."
+	elif [ "$masterhost" != "$remote_host" ]; then
+		croak "$remote_host is not master for $component."
+	else
+		info "Host $remote_host triggered a mirror run for $component, serial $serial"
+		exec /usr/local/bin/static-mirror-run "$BASEDIR/mirrors/$component" "$remote_host:$component/-new-" "$serial"
+		echo >&2 "Exec failed"
+		croak "exec failed"
+	fi
 }
 
-do_rsync() {
+do_rsync_on_master() {
 	local remote_host="$1"; shift
 	local args="--server --sender -vlHtrze.iLsf --safe-links ."
 
-	for component in $(awk -v this_host="$(hostname -f)" '$1 == this_host {print $2}' $COMPONENTLIST); do
-	  if [ "$*" = "$args $component/-new-/" ] || [ "$*" = "$args ./$component/-new-/" ] ; then
-		  local path="$BASEDIR/master/$component-current-push"
-		  info "serving $remote_host with $path"
-		  rsync $args "$path/."
-		  return
-	  elif [ "$*" = "$args $component/-live-/" ] || [ "$*" = "$args ./$component/-live-/" ] ; then
-		  local path="$BASEDIR/master/$component-current-live"
-		  info "host $remote_host wants $path, acquiring lock"
-		  lock 200 "$path" 0
-		  rsync $args "$path/."
-		  return
-	  fi
+	for component in $(awk -v this_host="$(hostname -f)" '!/^ *(#|$)/ && $1 == this_host {print $2}' $COMPONENTLIST); do
+		if [ "$*" = "$args $component/-new-/" ] || [ "$*" = "$args ./$component/-new-/" ] ; then
+			local path="$BASEDIR/master/$component-current-push"
+			info "serving $remote_host with $path"
+			exec rsync $args "$path/."
+			croak "Exec failed"
+		elif [ "$*" = "$args $component/-live-/" ] || [ "$*" = "$args ./$component/-live-/" ] ; then
+			local path="$BASEDIR/master/$component-current-live"
+			info "host $remote_host wants $path, acquiring lock"
+			exec 200< "$path"
+			if ! flock -s -w 0 200; then
+			echo >&2 "Cannot acquire shared lock on $path - this should mean an update is already underway anyway."
+			exit 1
+			fi
+			exec rsync $args "$path/."
+			croak "Exec failed"
+		fi
 	done
+}
+
+do_rsync_on_source() {
+	local remote_host="$1"
+	shift
+
+	local allowed_rsyncs
+	allowed_rsyncs=()
+
+	if [ -e "$COMPONENTLIST" ]; then
+		for path in $(awk -v host="$(hostname -f)" '!/^ *(#|$)/ && $3 == host {print $4}' $COMPONENTLIST); do
+			allowed_rsyncs+=("--server --sender -lHtrze.iLsf --safe-links . $path/.")
+		done
+	fi
+	for cmd_idx in ${!allowed_rsyncs[*]}; do
+		allowed="${allowed_rsyncs[$cmd_idx]}"
+		if [ "$*" = "$allowed" ]; then
+			info "Running for host $remote_host: rsync $*"
+			exec rsync "$@"
+			croak "Exec failed"
+		fi
+	done
+}
+
+do_rsync() {
+	do_rsync_on_master "$@"
+	do_rsync_on_source "$@"
 
 	info "NOT allowed for $remote_host: rsync $*"
 	echo >&2 "This rsync command ($@) not allowed."
@@ -103,20 +136,20 @@ do_update_component() {
 
 	hit="$(
 		awk -v this_host="$(hostname -f)" -v component="$component" -v host="$remote_host" '
-		  $1 == this_host && $2 == component {
-			  if ($3 == host) {
-				  print $4
-				  exit
-			  }
-			  split($5,extra,",")
-			  for (i in extra) {
-				  if (host == extra[i]) {
-					  printf "%s:%s\n", $3, $4
-					  exit
-				  }
-			  }
-			  exit
-		  }' "$COMPONENTLIST"
+			!/^ *(#|$)/ && $1 == this_host && $2 == component {
+				if ($3 == host) {
+					print $4
+					exit
+				}
+				split($5,extra,",")
+				for (i in extra) {
+					if (host == extra[i]) {
+						printf "%s:%s\n", $3, $4
+						exit
+					}
+				}
+				exit
+			}' "$COMPONENTLIST"
 		)"
 	if [ -n "$hit" ]; then
 		exec static-master-update-component "$component"
@@ -154,9 +187,16 @@ action="$1"
 shift
 
 case "$action" in
+	# on a static mirror, update a component from its master
+	mirror)
+		do_mirror "$remote_host" "$@"
+		;;
+	# on a static source, allow fetching from the master,
+	# on a master, allow fetching from a component's mirrors
 	rsync)
 		do_rsync "$remote_host" "$@"
 		;;
+	# on a master, initiate an update of a component
 	static-master-update-component)
 		do_update_component "$remote_host" "$@"
 		;;

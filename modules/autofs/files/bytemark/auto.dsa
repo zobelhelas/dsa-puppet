@@ -1,0 +1,3 @@
+debian                  -fstype=nfs,ro,tcp     172.29.122.2:/srv/mirrors/debian
+debian-backports        -fstype=nfs,ro,tcp     172.29.122.2:/srv/mirrors/debian-backports
+debian-security         -fstype=nfs,ro,tcp     172.29.122.2:/srv/mirrors/debian-security

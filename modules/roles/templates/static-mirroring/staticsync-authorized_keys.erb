@@ -16,23 +16,23 @@ end
 localinfo = scope.lookupvar('site::localinfo')
 allnodeinfo = scope.lookupvar('site::allnodeinfo')
 
-mirrors = []
+callers = []
 localinfo.keys.sort.each do |node|
-    if localinfo[node]['static_mirror'] or localinfo[node]['static_source']
+    if localinfo[node]['static_mirror'] or localinfo[node]['static_source'] or localinfo[node]['static_master']
         key = getstaticsynckey(node)
-        mirrors << { 'node' => node, 'addr' => allnodeinfo[node]['ipHostNumber'], 'key' => key}
+        callers << { 'node' => node, 'addr' => allnodeinfo[node]['ipHostNumber'], 'key' => key}
     end
 end
 
-mirrors << { 'node' => 'wagner.debian.org', 'addr' => allnodeinfo['wagner.debian.org']['ipHostNumber'], 'key' => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXHFIkIhOC5iDa0d0IN5w6tUUL2T2iXCYcS2+dandE9f550OpKQ/evUZhw4EERNYDA3G7GV3jJzQR0j/KZWJUtDCichmqS94xJqXURmZVNeLXWY9x/N7CB1iG1Iblu6sgyTUrs7N6Wb0fUab3AXAi9KIXdwNLY622reR9T//bRULPVIl5VFpYtGBPT9n3wR7fLQ4ndEcUmEGcM4jRbpLmye4QGgJotuzeBWUpX+U648Yly6U7NlAJIWPUt7hEzMz2AC81SLhGCwTk6sb19n2dO6WN2ndynp8PLG1emtgd1/DaeaRyPcitoWgSoDNgKNk3zLIDtCdSYvFI8xXrm6cK3 staticsync@wagner'}
+callers << { 'node' => 'wagner.debian.org', 'addr' => allnodeinfo['wagner.debian.org']['ipHostNumber'], 'key' => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXHFIkIhOC5iDa0d0IN5w6tUUL2T2iXCYcS2+dandE9f550OpKQ/evUZhw4EERNYDA3G7GV3jJzQR0j/KZWJUtDCichmqS94xJqXURmZVNeLXWY9x/N7CB1iG1Iblu6sgyTUrs7N6Wb0fUab3AXAi9KIXdwNLY622reR9T//bRULPVIl5VFpYtGBPT9n3wR7fLQ4ndEcUmEGcM4jRbpLmye4QGgJotuzeBWUpX+U648Yly6U7NlAJIWPUt7hEzMz2AC81SLhGCwTk6sb19n2dO6WN2ndynp8PLG1emtgd1/DaeaRyPcitoWgSoDNgKNk3zLIDtCdSYvFI8xXrm6cK3 staticsync@wagner'}
 
 lines = []
-for m in mirrors:
+for m in callers:
     lines << '# ' + m['node']
     if m['key'].nil?
         lines << "# no key for node"
     else
-        lines << "command=\"/usr/local/bin/static-master-ssh-wrap #{m['node']}\"," +
+        lines << "command=\"/usr/local/bin/staticsync-ssh-wrap #{m['node']}\"," +
                  'no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-user-rc,' +
                  'from="' + m['addr'].join(',') + '" ' +
                  m['key']

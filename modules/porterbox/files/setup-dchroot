@@ -38,10 +38,17 @@ usage: $0 <suite>
 OPTIONS:
     -a ARCH    debootstrap arch [$arch]
     -m MIRROR  http mirror to use [$mirror]
-    -b basedir place where to build the chroot/tarball [$basedir]
-    -f         overwrite stuff.
-    -c         write config only.
-    -h         this help.
+    -b basedir place where to put the tarball [$basedir]
+    -c         write config only
+    -d dir     place where to build the chroot [${builddir:-$basedir}]
+    -f         overwrite config and target tarball
+    -g GROUPS  groups that should have access to the schroot [$groupuser]
+    -k KEYRING use an alternate keyring [$keyring]
+    -p PERS    use a different sbuild personality [$personality]
+    -r GROUPS  groups that should have root in the schroot [$grouproot]
+    -s         use sbuild compatible naming scheme
+    -u         Ubuntu target
+    -h         this help
 EOF
 }
 
@@ -68,38 +75,49 @@ genschrootconf() {
         local suite="${suite}-${extra}"
     fi
 
+    if [ -n "$sbuildnames" ]; then
+        local name="${suite}-${arch}-sbuild"
+    else
+        local name="${suite}_${arch}-dchroot"
+    fi
+
+
 cat << EOF
-[${suite}_${arch}-dchroot]
-description=[${suite}_${arch}-dchroot] Debian $suite chroot for $arch
+[${name}]
+description=[${name}] Debian $suite chroot for $arch
 type=file
 file=$target
-groups=Debian,guest
-root-groups=adm
+groups=$groupuser
+root-groups=$grouproot
 source-groups=adm
 source-root-groups=adm
-script-config=dsa/config
 EOF
+
+    if dpkg --compare-versions "$(lsb_release --release --short)" '<' 7; then
+        echo "script-config=$personality/config"
+    else
+        echo "profile=$personality"
+    fi
 
     if [ "$THISARCH" = "$arch" ]; then
         echo "aliases=$suite"
-    else
-        case "$arch" in
-            i386)
-                echo "personality=linux32"
-                ;;
-        esac
     fi
+    case "$arch" in
+        armel|armhf|i386|powerpc|s390|sparc)
+            echo "personality=linux32"
+            ;;
+    esac
     echo
 
     case "$suite" in
         sid)
             genschrootconf "experimental" "$arch" "$target"
             ;;
-        experimental)
+        experimental|jessie)
             :
             ;;
         *)
-            if [ -z "$extra" ]; then
+            if [ -z "$extra" ] && [ -z "$ubuntu" ]; then
                 genschrootconf "$suite" "$arch" "$target" "backports"
             fi
     esac
@@ -117,10 +135,17 @@ mirror="${mirror:-http://cdn.debian.net/debian}"
 configonly=""
 force=""
 basedir="/srv/chroot"
+builddir=""
+keyring=/usr/share/keyrings/debian-archive-keyring.gpg
+personality="dsa"
+sbuildnames=""
+ubuntu=""
+groupuser="Debian,guest"
+grouproot="adm"
 declare -a cleanup
 trap do_cleanup EXIT
 
-while getopts "a:b:cfhm:" OPTION
+while getopts "a:b:cd:fg:hk:m:p:r:su" OPTION
 do
     case $OPTION in
         a)
@@ -132,15 +157,36 @@ do
         c)
             configonly="1"
             ;;
+        d)
+            builddir="$OPTARG"
+            ;;
         f)
             force="1"
             ;;
+        g)
+            groupuser="$OPTARG"
+            ;;
         h)
-            help
+            usage
             exit 0
+            ;;
+        k)
+            keyring="$OPTARG"
             ;;
         m)
             mirror="$OPTARG"
+            ;;
+        p)
+            personality="$OPTARG"
+            ;;
+        r)
+            grouproot="$OPTARG"
+            ;;
+        s)
+            sbuildnames="1"
+            ;;
+        u)
+            ubuntu="1"
             ;;
         *)
             usage >&2
@@ -157,7 +203,9 @@ fi
 suite="$1"; shift
 tuple="${suite}_${arch}"
 
+builddir=${builddir:-$basedir}
 [ -d "$basedir" ] || die "Error: $basedir does not exist (or is not a directory)."
+[ -d "$builddir" ] || die "Error: $builddir does not exist (or is not a directory)."
 
 target="$basedir/$tuple.tar.gz"
 ! [ -e "$target" ] || [ -n "$force" ] || die "Error: $target already exists."
@@ -173,13 +221,13 @@ genschrootconf "$suite" "$arch" "$target" | tee "$schrootconfig"
 
 if [ -n "$configonly" ]; then exit 0; fi
 
-rootdir=$(mktemp -d "$basedir/create-$suite-XXXXXX")
+rootdir=$(mktemp -d "$builddir/create-$suite-XXXXXX")
 cleanup+=("rm -r $rootdir")
 cleanup+=("umount $rootdir/sys")
 
 set -x
 debootstrap \
-    --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+    --keyring "$keyring" \
     --include="apt" \
     --variant=buildd \
     --arch="$arch" \
@@ -187,7 +235,7 @@ debootstrap \
 echo "$tuple" > $rootdir/etc/debian_chroot
 
 chroot "$rootdir" apt-get update
-chroot "$rootdir" apt-get install -y --no-install-recommends policyrcd-script-zg2
+chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends policyrcd-script-zg2
 cat > "$rootdir/usr/local/sbin/policy-rc.d" << 'EOF'
 #!/bin/sh
 
@@ -206,8 +254,11 @@ while true; do
 done
 EOF
 chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
-chroot "$rootdir" apt-get install -y --no-install-recommends zsh locales-all build-essential less vim fakeroot devscripts gdb
+[ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends locales-all
+chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh build-essential less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
 umount "$rootdir/sys" || true
 
-(cd "$rootdir" && tar caf "$target" .)
+tartmp=$(tempfile --directory "$basedir" --suffix=".tar.gz")
+cleanup+=("rm -f $tartmp")
+(cd "$rootdir" && tar caf "$tartmp" . && mv "$tartmp" "$target")

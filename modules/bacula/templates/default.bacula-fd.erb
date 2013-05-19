@@ -1,3 +1,7 @@
+##
+### THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+##
+
 # defaults file for bacula-fd
 
 # Service can be disabled by setting
@@ -5,10 +9,12 @@
 ENABLED="yes"
 
 # Additional start arguments can be provided here
+# ARGS=""
+<% if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture') and scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0].start_with?('kfreebsd') -%>
 ARGS=""
-# We should make it be:
-#ARGS="-u bacula -k"
-# once bug #683080 is fixed
+<% else -%>
+ARGS="-u bacula -k"
+<% end -%>
 
 # Default config file can be changed here
 # CONFIG="/etc/bacula/bacula-fd.conf"

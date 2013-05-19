@@ -1,4 +1,4 @@
-<% if @lsbdistcodename == 'wheezy' -%>
+<% if @lsbmajdistrelease >= '7' -%>
 #!/bin/bash
 
 cat <<EOD
@@ -145,7 +145,7 @@ purp
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-<% if @lsbdistcodename == 'wheezy' -%>
+<% if @lsbmajdistrelease >= '7' -%>
 EOD
 <% end -%>
 <%

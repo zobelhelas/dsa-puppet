@@ -45,4 +45,10 @@ class roles::static_mirror {
 		site => "static-vhosts-simple",
 		content => template('roles/static-mirroring/vhost/static-vhosts-simple.erb'),
 	}
+
+	$wwwdo_document_root = '/srv/static.debian.org/mirrors/www.debian.org/cur'
+	apache2::site { '010-www.debian.org':
+		site   => 'www.debian.org',
+		content => template('roles/apache-www.debian.org.erb'),
+	}
 }

@@ -94,6 +94,7 @@ nameinfo:
   partch.debian.org: Harry Partch (June 24th, 1901 - September 3rd, 1974)
   pasquini.debian.org: Bernardo Pasquini (December 7th, 1637 - November 22nd, 1710)
   pergolesi.debian.org: Giovanni Battista Pergolesi (January 4th, 1710 - March 16th or 17th, 1736)
+  pejacevic: Dora Pejačević (September 10, 1885 - March 5, 1923)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   piatti.debian.org: Carlo Alfredo Piatti (January 8th, 1822 - July 18th, 1901)
   picconi.debian.org: Maria Antonietta Picconi (September 23rd, 1869 - 1926)
@@ -190,6 +191,8 @@ services:
     - wolkenstein.debian.org
   keyring:
     - kaufmann.debian.org
+  wiki:
+    - wilder.debian.org
   # new style porterbox (schroot, dd installable packages etc)
   porterbox:
     # once they are all on new-style, we can use ldap for this
@@ -240,7 +243,6 @@ host_settings:
     - wieck.debian.org
   apache2_www_mirror:
     - bellini.debian.org
-    - englund.debian.org
     - gluck.debian.org
     - kokkonen.debian.org
     - santoro.debian.org
@@ -285,11 +287,11 @@ host_settings:
     - malo.debian.org
   entropy_key:
     - czerny.debian.org
-    - englund.debian.org
     - rautavaara.debian.org
     - salieri.debian.org
   static_master:
     - bizet.debian.org
+    - franck.debian.org
   static_mirror:
     - klecker.debian.org
     - rietz.debian.org

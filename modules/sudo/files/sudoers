@@ -33,6 +33,7 @@ Host_Alias	MPTRAIDHOSTS	= fasch, holter, barber, biber, cilea, vitry, krenek, or
 Host_Alias	MEGACTLHOSTS	= lindberg, englund, nielsen
 Host_Alias	LISTHOSTS	= bendel
 Host_Alias	PORTERBOXES	= agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
+Host_Alias	PIUPARTS_SLAVE_HOSTS	= piatti, piu-slave-bm-a
 
 # Cmnd alias specification
 
@@ -128,12 +129,14 @@ dak		ALL=(dak-unpriv)	NOPASSWD: ALL
 Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
-%planet		senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
-%debbits	master=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
 %backports	franck,ries=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
+dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component ftp-master.metadata.debian.org
+%debbits	master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
+planet		senfl=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
+debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component www.debian.org
 
 # The piuparts slave needs to handle chroots
-piupartss	piatti=(ALL)		NOPASSWD: ALL
+piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
 #pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 # on draghi, the domains git thing will run bind9 reload afterwards
