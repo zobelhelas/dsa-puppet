@@ -255,6 +255,31 @@ host_settings:
     - merikanto.debian.org
     - orff.debian.org
     - ravel.debian.org
+  bacula-client:
+    - beethoven.debian.org
+    - berlioz.debian.org
+    - biber.debian.org
+    - diabelli.debian.org
+    - dinis.debian.org
+    - draghi.debian.org
+    - elgar.debian.org
+    - geo3.debian.org
+    - jenkins.debian.org
+    - kaufmann.debian.org
+    - lilburn.debian.org
+    - lully.debian.org
+    - master.debian.org
+    - picconi.debian.org
+    - pejacevic.debian.org
+    - piu-slave-bm-a.debian.org
+    - popov.debian.org
+    - reger.debian.org
+    - schumann.debian.org
+    - soler.debian.org
+    - vento.debian.org
+    - vieuxtemps.debian.org
+    - wilder.debian.org
+    - wolkenstein.debian.org
   broken-rtc:
     - abel.debian.org
     - alain.debian.org
