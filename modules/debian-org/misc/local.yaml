@@ -301,6 +301,7 @@ host_settings:
     - master.debian.org
     - ries.debian.org
     - franck.debian.org
+    - ravel.debian.org
     - senfl.debian.org
     - wolkenstein.debian.org
   weblog_provider:
