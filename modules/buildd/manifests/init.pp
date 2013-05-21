@@ -48,7 +48,7 @@ class buildd ($ensure=present) {
 
 	site::aptrepo { 'buildd.debian.org-proposed':
 		ensure     => $::hostname ? {
-		                             /^(alkman|porpora|zandonai)$/ => 'present',
+		                             /^(alkman|barber|brahms|porpora|zandonai)$/ => 'present',
 		                             default => 'absent',
 		                            },
 		url        => 'https://buildd.debian.org/apt/',
