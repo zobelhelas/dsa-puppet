@@ -1,7 +1,7 @@
 class bacula::client inherits bacula {
 	@@bacula::storage-per-node { $::fqdn: }
 
-	if getfromhash($site::nodeinfo, 'bacula-client') {
+	if ! getfromhash($site::nodeinfo, 'not-bacula-client') {
 		@@bacula::node { $::fqdn: }
 	}
 
