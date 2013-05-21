@@ -32,6 +32,10 @@ class bacula::client inherits bacula {
 		require => Package['bacula-fd'],
 		notify  => Service['bacula-fd'],
 	}
+	file { '/usr/local/sbin/bacula-backup-dirs':
+		mode    => '0775',
+		source  => 'puppet:///modules/bacula/bacula-backup-dirs',
+	}
 	file { '/usr/local/sbin/postbaculajob':
 		mode    => '0775',
 		source  => 'puppet:///modules/bacula/postbaculajob',
