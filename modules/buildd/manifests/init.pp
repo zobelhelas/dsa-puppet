@@ -46,22 +46,26 @@ class buildd ($ensure=present) {
 		require    => Package['apt-transport-https'],
 	}
 
-	if $::hostname in [alkman,porpora,zandonai] {
-		site::aptrepo { 'buildd.debian.org-proposed':
-			url        => 'https://buildd.debian.org/apt/',
-			suite      => "${suite}-proposed",
-			components => 'main',
-			require    => Package['apt-transport-https'],
-		}
+	site::aptrepo { 'buildd.debian.org-proposed':
+		ensure     => $::hostname ? {
+		                             /^(alkman|porpora|zandonai)$/ => 'present',
+		                             default => 'absent',
+		                            },
+		url        => 'https://buildd.debian.org/apt/',
+		suite      => "${suite}-proposed",
+		components => 'main',
+		require    => Package['apt-transport-https'],
 	}
 
-	if $::hostname in [krenek] {
-		site::aptrepo { 'buildd.debian.org-experimental':
-			url        => 'https://buildd.debian.org/apt/',
-			suite      => "${suite}-experimental",
-			components => 'main',
-			require    => Package['apt-transport-https'],
-		}
+	site::aptrepo { 'buildd.debian.org-experimental':
+		ensure     => $::hostname ? {
+		                             /^(krenek)$/ => 'present',
+		                             default => 'absent',
+		                            },
+		url        => 'https://buildd.debian.org/apt/',
+		suite      => "${suite}-experimental",
+		components => 'main',
+		require    => Package['apt-transport-https'],
 	}
 
 	# 'bad' extension
