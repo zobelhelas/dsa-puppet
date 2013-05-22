@@ -5,3 +5,4 @@ nodes:
   - 'bertali.debian.org'
   - 'boito.debian.org'
   - 'rossini.debian.org'
+  - 'dijkstra.debian.org'
