@@ -85,6 +85,15 @@ class ferm::per-host {
 				description     => 'Allow postgress access4',
 				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
 			}
+
+			@ferm::rule { 'dsa-postgres-bacula-danzi':
+				description     => 'Allow postgress access1',
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 206.12.19.139/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-bacula-danzi6':
+				description     => 'Allow postgress access1',
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2607:f8f0:610:4000:6564:a62:ce0c:138b/128 ))'
+			}
 		}
 		abel,alwyn,rietz: {
 			@ferm::rule { 'dsa-tftp':
