@@ -436,6 +436,8 @@ host_settings:
     - howells.debian.org
     - hummel.debian.org
     - lucatelli.debian.org
+    - corelli.debian.org
+    - gabrielli.debian.org
     - rem.debian.org
     - sompek.debian.org
   mail_port:
