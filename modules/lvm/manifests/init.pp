@@ -1,4 +1,4 @@
-class multipath {
+class lvm {
 	case $::hostname {
 		dijkstra,luchesi,rossini: {
 			$conffile = 'lvm-ubc-ganeti.conf'
@@ -9,7 +9,7 @@ class multipath {
 	}
 
 	if $conffile != '' {
-		package { 'multipath-tools':
+		package { 'lvm2':
 			ensure => installed,
 		}
 
