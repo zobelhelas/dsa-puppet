@@ -5,5 +5,6 @@ nodes:
   - 'bertali.debian.org'
   - 'boito.debian.org'
   - 'rossini.debian.org'
+  - 'salieri.debian.org'
   - 'dijkstra.debian.org'
   - 'luchesi.debian.org'
