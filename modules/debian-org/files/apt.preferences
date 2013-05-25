@@ -14,10 +14,6 @@ Package: buildd
 Pin: release o=buildd.debian.org
 Pin-Priority: 500
 
-Package: buildd-builder-meta
-Pin: release o=buildd.debian.org
-Pin-Priority: 500
-
 Package: libsbuild-perl
 Pin: release o=buildd.debian.org
 Pin-Priority: 500
