@@ -81,7 +81,7 @@ class buildd ($ensure=present) {
 		require => Package['debian.org']
 	}
 
-	if $::lsbmajdistrelease >= 7 {
+	if ($::lsbmajdistrelease >= 7 and $::kernel == 'Linux') {
 		package { 'python-psutil':
 			ensure => installed,
 		}
