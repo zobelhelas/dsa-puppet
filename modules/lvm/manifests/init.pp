@@ -3,7 +3,7 @@ class lvm {
 		dijkstra,luchesi,rossini,salieri: {
 			$conffile = 'lvm-ubc-ganeti.conf'
 		}
-		tristano,pasquini: {
+		tristano,pasquini,bertali,boito: {
 			$conffile = 'lvm-ubc-ganeti-p410.conf'
 		}
 		default: {
