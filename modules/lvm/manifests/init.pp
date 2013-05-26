@@ -1,6 +1,6 @@
 class lvm {
 	case $::hostname {
-		dijkstra,luchesi,rossini,salieri: {
+		dijkstra,luchesi,rossini,salieri,tristano,pasquini: {
 			$conffile = 'lvm-ubc-ganeti.conf'
 		}
 		default: {
