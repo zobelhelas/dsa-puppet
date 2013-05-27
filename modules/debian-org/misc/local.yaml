@@ -157,7 +157,6 @@ footer:
 services:
   bugsmaster:
   bugsmx:
-    - busoni.debian.org
     - buxtehude.debian.org
   bugs_mirror:
     - beach.debian.org
@@ -210,7 +209,6 @@ services:
 host_settings:
   heavy_exim:
     - bellini.debian.org
-    - busoni.debian.org
     - buxtehude.debian.org
     - chopin.debian.org
     - draghi.debian.org

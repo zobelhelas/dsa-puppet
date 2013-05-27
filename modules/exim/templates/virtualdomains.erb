@@ -1,7 +1,6 @@
 <%=
 vdoms = case @fqdn
 
-        when "busoni.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
         when "buxtehude.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
 
         when "chopin.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/srv/security-master.debian.org/mail/"

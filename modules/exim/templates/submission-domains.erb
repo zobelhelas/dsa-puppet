@@ -3,6 +3,6 @@
 ### USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ###
 
-<% if %w{busoni buxtehude}.include?( scope.lookupvar('::hostname') ) %>
+<% if %w{buxtehude}.include?( scope.lookupvar('::hostname') ) %>
 bugs.debian.org
 <% end %>
