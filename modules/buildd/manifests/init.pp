@@ -73,8 +73,7 @@ class buildd ($ensure=present) {
 		ensure => absent,
 	}
 	file { '/etc/apt/preferences.d/buildd':
-		content => template('buildd/etc/apt/preferences.d/buildd'),
-		before  => Site::Aptrepo['buildd.debian.org']
+		ensure => absent,
 	}
 	file { '/etc/cron.d/dsa-buildd':
 		source  => 'puppet:///modules/buildd/cron.d-dsa-buildd',
