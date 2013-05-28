@@ -276,8 +276,6 @@ host_settings:
     - bertali.debian.org
     - bizet.debian.org
     - blavet.debian.org
-    - bm-bl1.debian.org
-    - bm-bl2.debian.org
     - bm-bl3.debian.org
     - bm-bl4.debian.org
     - bm-bl5.debian.org
@@ -288,10 +286,8 @@ host_settings:
     - boito.debian.org
     - brahms.debian.org
     - busoni.debian.org
-    - buxtehude.debian.org
     - byrd.debian.org
     - caballero.debian.org
-    - chopin.debian.org
     - cilea.debian.org
     - clementi.debian.org
     - coincy.debian.org
@@ -300,7 +296,6 @@ host_settings:
     - danzi.debian.org
     - diamond.debian.org
     - dijkstra.debian.org
-    - duarte.debian.org
     - eder.debian.org
     - eysler.debian.org
     - falla.debian.org
