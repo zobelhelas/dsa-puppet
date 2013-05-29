@@ -6,7 +6,7 @@ module Puppet::Parser::Functions
     parser = Puppet::Parser::Parser.new(environment)
     parser.watch_file(yamlfile)
 
-    def read_yaml(yaml, host)
+    read_yaml = lambda { |yaml, host|
       results = {}
 
       ['nameinfo', 'footer'].each do |detail|
@@ -40,7 +40,7 @@ module Puppet::Parser::Functions
         end
       end
       return(results)
-    end
+    }
 
     require 'yaml'
     $KCODE = 'utf-8'
@@ -52,10 +52,10 @@ module Puppet::Parser::Functions
       Dir.entries('/var/lib/puppet/yaml/node/').each do |fname|
         next unless fname =~ /(.*)\.yaml$/
         host_name = $1
-        ret[host_name] = read_yaml(yaml, host_name)
+        ret[host_name] = read_yaml.call(yaml, host_name)
       end
     else
-      ret = read_yaml(yaml, host)
+      ret = read_yaml.call(yaml, host)
     end
 
     return(ret)

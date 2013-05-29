@@ -1,42 +1,38 @@
 ##
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
-## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+## USE then git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
 <%=
 ignore = []
 case fqdn
-when "bellini.debian.org":              ignore << "mcelog"
-when "cilea.debian.org":                ignore << "/freeswitch.*/"
-when /draghi.debian.org/:               ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb}
-when /orff.debian.org/:                 ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
-when /(zandonai|zelenka).debian.org/:   ignore << %w{samhain zabbix-agent rrdcollect}
-when /zappa.debian.org/:                ignore << %w{samhain}
-when /(mayer|corelli).debian.org/: ignore << "linux-base"
-when /(alkman|caballero|merulo|mundy).debian.org/: ignore << "samhain"
-when "franck.debian.org":               ignore << %w{python-apt}
-when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/: ignore << %w{flash-kernel linux-firmware-image}
-when /harris.debian.org/:               ignore << %w{flash-kernel kernel linux-firmware-image}
-when /(hasse|hebden|henze|hildegard|howells|hummel|hoiby).debian.org/: ignore << %w{flash-kernel kernel linux-firmware-image schroot schroot-common}
-when /(parry|partch|piston).debian.org/: ignore << "yaboot"
-
-when "grieg.debian.org":                ignore << %w{dpkg}
-when "blavet.debian.org":               ignore << %w{dpkg-dev libdpkg-perl dpkg}
-when "handel.debian.org":               ignore << %w{puppet-dashboard}
-when "reger.debian.org":                ignore << %w{librt-extension-commandbymail-perl}
-when /(pasquini|tristano).debian.org/:  ignore << %w{ganeti-instance-image}
+when "bellini.debian.org" then                                 ignore << "mcelog"
+when "cilea.debian.org" then                                   ignore << "/freeswitch.*/"
+when /draghi.debian.org/ then                                  ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb}
+when /orff.debian.org/ then                                    ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
+when /(zandonai|zelenka).debian.org/ then                      ignore << %w{samhain zabbix-agent rrdcollect}
+when /zappa.debian.org/ then                                   ignore << %w{samhain}
+when /(mayer|corelli).debian.org/ then                         ignore << "linux-base"
+when /(alkman|caballero|merulo|mundy).debian.org/ then         ignore << "samhain"
+when "franck.debian.org" then                                  ignore << %w{python-apt}
+when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/ then  ignore << %w{flash-kernel linux-firmware-image}
+when /harris.debian.org/ then                                  ignore << %w{flash-kernel kernel linux-firmware-image}
+when /(hasse|hebden|henze|hildegard|howells|hummel|hoiby).debian.org/ then ignore << %w{flash-kernel kernel linux-firmware-image}
+when /(parry|partch|piston).debian.org/ then                   ignore << "yaboot"
+when "grieg.debian.org" then                                   ignore << %w{dpkg}
+when "blavet.debian.org" then                                  ignore << %w{dpkg-dev libdpkg-perl dpkg}
+when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
+when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}
+when /(pasquini|tristano).debian.org/ then                     ignore << %w{ganeti-instance-image}
 end
 
 case fqdn
-when /geo[123].debian.org/: ignore << %w{geoip-database}
+when /geo[123].debian.org/ then                    ignore << %w{geoip-database}
 end
 
 if fqdn == "arne.debian.org"
-	ignore << %w{/linux-headers-.*/}
+    ignore << %w{/linux-headers-.*/}
 end
-#case fqdn
-#when /(draghi|orff|ravel|klecker|geo[123]).debian.org/: ignore << %w{libdns69 libdns66 libdns64 bind9 libbind9-60 liblwres60 bind9-host libisccfg62 libisccfg60 libisc62 libisc60 dnsutils bind9utils libisccc60}
-#end
 
 ignore.flatten.join("\n")
 %>
