@@ -24,8 +24,8 @@ localkeys
   if scope.lookupvar('::cluster').to_s != 'undefined'
     scope.lookupvar('::cluster_nodes').to_s.split.sort.each do |node|
       if allnodeinfo.has_key?(node)
-        ganetikeys << "# for ganeti cluster #{scope.lookupvar('::cluster').to_s}: #{allnodeinfo[node]['hostname'].to_s}"
-        ganetikeys << "from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\" #{allnodeinfo[node]['sshRSAHostKey'].to_s}"
+        ganetikeys << "# for ganeti cluster #{scope.lookupvar('::cluster').to_s}: #{allnodeinfo[node]['hostname'][0]}"
+        ganetikeys << "from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\" #{allnodeinfo[node]['sshRSAHostKey'][0]}"
       else
         ganetikeys << "# host #{node} not found in allnodeinfo"
       end
@@ -50,8 +50,8 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAuGJnElqbhgLtmJp/de8s42cAwKrkAhFq5u8EAkauEv6B
    when "beethoven.debian.org" then
      out = ''
      scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
-       out += '# ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'].to_s + '
-command="/usr/lib/da-backup/da-backup-ssh-wrap ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'].to_s + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].join(',') + '" ' + scope.lookupvar('site::allnodeinfo')[node]['sshRSAHostKey'].to_s + '
+       out += '# ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'][0] + '
+command="/usr/lib/da-backup/da-backup-ssh-wrap ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'][0] + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].join(',') + '" ' + scope.lookupvar('site::allnodeinfo')[node]['sshRSAHostKey'][0] + '
 
 '
      end
