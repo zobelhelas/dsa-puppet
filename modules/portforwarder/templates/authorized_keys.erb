@@ -4,6 +4,13 @@
 ##
 
 <%=
+
+require 'digest/sha1'
+def get_local_ip_addr(host)
+	hash = Digest::SHA1.digest(host)
+	return '127.101.%d.%d'%[hash[0].ord, hash[1].ord]
+end
+
 def getportforwarderkey(host)
 	key = nil
 	begin
@@ -30,7 +37,7 @@ config.each_pair do |sourcehost, services|
 	if allowed_ports.length > 0
 		sshkey = getportforwarderkey(sourcehost)
 		remote_ip = scope.lookupvar('site::allnodeinfo')[sourcehost]['ipHostNumber'].join(',')
-		local_bind = '127.101.%d.%d'%[ (sourcehost.hash / 256 % 256), sourcehost.hash % 256 ]
+		local_bind = get_local_ip_addr(sourcehost)
 
 		lines << "# from #{sourcehost}"
 		if sshkey.nil? or remote_ip.nil? or local_bind.nil?
