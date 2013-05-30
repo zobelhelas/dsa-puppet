@@ -129,7 +129,6 @@ nameinfo:
   sonntag.debian.org: Brunhilde Sonntag (September 27th, 1936 - December 18th, 2002)
   stadler.debian.org: Maximilian Johann Karl Dominik Stadler, Abbé Stadler (August 4th 1748 - November 8th 1833)
   stanley.debian.org: Charles John Stanley (January 17th, 1712 - May 19th, 1786)
-  sperger.debian.org: Johannes Matthias Sperger (March 23th, 1750 - May 13th, 1812)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
   stabile.debian.org: Annibale Stabile (~1535 - April 1595)
@@ -376,7 +375,6 @@ host_settings:
     - smetana.debian.org
     - sompek.debian.org
     - sonntag.debian.org
-    - sperger.debian.org
     - spohr.debian.org
     - spontini.debian.org
     - stabile.debian.org
