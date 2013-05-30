@@ -16,7 +16,7 @@ NTPSERVERS=""
 	out = []
 
 	require 'resolv'
-	scope.lookupvar('ntpservers').to_a.flatten.each do |n|
+	[scope.lookupvar('ntpservers')].flatten.each do |n|
 		begin
 			ip = Resolv.getaddress(n)
 			out << "NTPSERVERS=\"$NTPSERVERS #{ip}\" # #{n}"
