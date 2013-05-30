@@ -261,6 +261,7 @@ host_settings:
     - bendel.debian.org
     - berlioz.debian.org
     - bertali.debian.org
+    - binet.debian.org
     - bizet.debian.org
     - blavet.debian.org
     - bm-bl3.debian.org
