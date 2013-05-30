@@ -193,20 +193,6 @@ services:
     - kaufmann.debian.org
   wiki:
     - wilder.debian.org
-  # new style porterbox (schroot, dd installable packages etc)
-  porterbox:
-    # once they are all on new-style, we can use ldap for this
-    - agricola.debian.org
-    - barriere.debian.org
-    - eder.debian.org
-    - falla.debian.org
-    - fischer.debian.org
-    - gabrielli.debian.org
-    - harris.debian.org
-    - merulo.debian.org
-    - partch.debian.org
-    - smetana.debian.org
-    - zelenka.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org
