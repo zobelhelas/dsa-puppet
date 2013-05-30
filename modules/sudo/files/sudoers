@@ -177,14 +177,4 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 # pushed nagiosadm reload icinga on tchaikovsky
 nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 
-# Porter work
-%porter-armel	abel,agricola=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-armel	harris=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-amd64	barriere,pergolesi=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-bsd	falla,fischer=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-ia64	merulo=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-mips	eder,gabrielli=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-ppc	partch=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-s390	zelenka=(root)		/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
-%porter-sparc	smetana=(root)	/usr/sbin/upgrade-porter-chroots, /usr/bin/apt-in-chroot
 %Debian,%guest	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
