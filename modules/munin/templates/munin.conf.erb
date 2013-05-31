@@ -11,8 +11,10 @@ logdir  /var/log/munin
 rundir  /var/run/munin
 tmpldir /etc/munin/templates
 
+<% else -%>
+# number of updaters to run
+max_processes 96
 <% end -%>
-
 
 graph_strategy cgi
 
