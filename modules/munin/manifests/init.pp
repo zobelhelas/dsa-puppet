@@ -67,13 +67,21 @@ class munin {
 			;
 	}
 
-	if $::munin_async and str2bool($::munin_async) == true {
+	#if $::munin_async and str2bool($::munin_async) == true {
+	#	file { '/etc/ssh/userkeys/munin-async':
+	#		source => 'puppet:///modules/munin/munin-async-authkeys',
+	#	}
+	#} else {
+	#	file { '/etc/ssh/userkeys/munin-async':
+	#		ensure => 'absent',
+	#	}
+	#}
+	if $::lsbmajdistrelease >= 7 {
+		package { 'munin-async':
+			ensure => installed
+		}
 		file { '/etc/ssh/userkeys/munin-async':
 			source => 'puppet:///modules/munin/munin-async-authkeys',
-		}
-	} else {
-		file { '/etc/ssh/userkeys/munin-async':
-			ensure => 'absent',
 		}
 	}
 }
