@@ -8,11 +8,6 @@
 #   Enable/Disable SSL for this virtual host.
 SSLEngine on
 
-#   SSL Protocol support:
-#   List the protocol versions which clients are allowed to
-#   connect with. Disable SSLv2 by default (cf. RFC 6176).
-SSLProtocol all -SSLv2
-
 #
 #   Some MIME-types for downloading Certificates and CRLs
 #   
