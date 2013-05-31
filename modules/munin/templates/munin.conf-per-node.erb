@@ -9,8 +9,7 @@
 #  from other hosts it's an actual boolean, i.e. an instance of either FalseClass or TrueClass
 %>
 <%- if has_variable?('client_munin_async') and ((client_munin_async.kind_of?(String) and client_munin_async == "true") or (client_munin_async.kind_of?(TrueClass))) %>
-#    address ssh://munin-async@<%= client_fqdn %>/set-in-authkeys
-    address <%= client_ipaddress %>
+    address ssh://munin-async@<%= client_fqdn %>/set-in-authkeys
 <%- else %>
     address <%= client_ipaddress %>
 <%- end %>
