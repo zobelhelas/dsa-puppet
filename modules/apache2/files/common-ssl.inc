@@ -19,12 +19,6 @@ SSLProtocol all -SSLv2
 AddType application/x-x509-ca-cert .crt
 AddType application/x-pkcs7-crl    .crl
 
-#   SSL Cipher Suite:
-#   List the ciphers that the client is permitted to negotiate.
-#   See the mod_ssl documentation for a complete list.
-SSLCipherSuite ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!EDH:!AESGCM
-SSLHonorCipherOrder on
-
 #   Add STS
 Header add Strict-Transport-Security "max-age=604800"
 
