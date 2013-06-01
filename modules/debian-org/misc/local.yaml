@@ -306,6 +306,7 @@ host_settings:
     - grieg.debian.org
     - handel.debian.org
     - harris.debian.org
+    - hartmann.debian.org
     - hasse.debian.org
     - hebden.debian.org
     - heininen.debian.org
