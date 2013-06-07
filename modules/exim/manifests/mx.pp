@@ -23,12 +23,12 @@ class exim::mx inherits exim {
 		domain      => 'ip6',
 		rule        => '&SERVICE_RANGE(tcp, submission, $SMTP_V6_SOURCES)',
 	}
-	dnsextras::entry{ "tlsa-submission":
+	dnsextras::tlsa_record{ "tlsa-submission":
 		zone => 'debian.org',
-		label => "_587._tcp.${::fqdn}",
-		rrtype => 'TXT',
-		rrdata => 'testing' }
-
+		certfile => "/etc/puppet/modules/exim/files/certs/${::fqdn}.crt",
+		port => 587,
+		hostname => "$::fqdn",
+	}
 	package { 'nagios-plugins-standard':
 		ensure => installed,
 	}
