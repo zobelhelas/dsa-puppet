@@ -4,10 +4,15 @@ class dnsextras::entries {
 	}
 
 	concat { '/srv/dns.debian.org/puppet-extra/include-debian.org':
-		#require => Package['exim4-daemon-heavy']
-		# notify  => Service["nagios"],
+		notify  => Exec["rebuild debian.org zone"],
 	}
 
 
 	Concat::Fragment <<| tag == "dnsextra" |>>
+
+	exec { 'rebuild debian.org zone':
+		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
+		command     => 'sh -c "/git/HOOKS/write_zonefile debian.org && rndc reload"',
+		refreshonly => true,
+	}
 }
