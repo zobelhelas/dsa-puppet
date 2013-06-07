@@ -13,6 +13,7 @@ class exim::mx inherits exim {
 		notify  => Service['exim4'],
 	}
 
+	# MXs used as smarthosts
 	@ferm::rule { 'dsa-exim-submission':
 		description => 'Allow SMTP',
 		rule        => '&SERVICE_RANGE(tcp, submission, $SMTP_SOURCES)'
@@ -22,6 +23,11 @@ class exim::mx inherits exim {
 		domain      => 'ip6',
 		rule        => '&SERVICE_RANGE(tcp, submission, $SMTP_V6_SOURCES)',
 	}
+	dnsextras::entry{ "tlsa-submission":
+		zone => 'debian.org',
+		label => "_587._tcp.${::fqdn}",
+		rrtype => 'TXT',
+		rrdata => 'testing' }
 
 	package { 'nagios-plugins-standard':
 		ensure => installed,

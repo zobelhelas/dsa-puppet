@@ -133,7 +133,7 @@ class exim {
 
 	case getfromhash($site::nodeinfo, 'mail_port') {
 		/^(\d+)$/: { $mail_port = $1 }
-		default: { $mail_port = 'smtp' }
+		default: { $mail_port = '25' }
 	}
 
 	@ferm::rule { 'dsa-exim':
@@ -146,6 +146,11 @@ class exim {
 		domain      => 'ip6',
 		rule        => "&SERVICE_RANGE(tcp, $mail_port, \$SMTP_V6_SOURCES)"
 	}
+	dnsextras::entry{ "tlsa-mailport":
+		zone => 'debian.org',
+		label => "_${mail_port}._tcp.${::fqdn}",
+		rrtype => 'TXT',
+		rrdata => 'testing' }
 
 	# Do we actually want this?  I'm only doing it because it's harmless
 	# and makes the logs quiet.  There are better ways of making logs quiet,
