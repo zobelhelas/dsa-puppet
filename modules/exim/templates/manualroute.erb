@@ -14,11 +14,12 @@ extraroutes = []
 
 if scope.lookupvar('site::nodeinfo')['mailrelay']
   mxmatches << 'mailout.debian.org'
+  mxmatches << 'INCOMING-MX'
   extraroutes = [ "keyring.debian.org:\t\tkaufmann.debian.org" ]
   extraroutes << "www-master.debian.org:\t\twolkenstein.debian.org"
 end
 
-mxregex = Regexp.new('^\d+\s+(.*)\.$')
+mxregex = Regexp.new('^\d+\s+(.*?)\.?$')
 scope.lookupvar('site::allnodeinfo').keys.sort.each do |host|
   next unless scope.lookupvar('site::allnodeinfo')[host]['mXRecord']
   scope.lookupvar('site::allnodeinfo')[host]['mXRecord'].each do |mx|
