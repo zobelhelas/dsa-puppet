@@ -32,7 +32,7 @@ Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= fasch, holter, barber, biber, cilea, vitry, krenek, orff
 Host_Alias	MEGACTLHOSTS	= lindberg, englund, nielsen
 Host_Alias	LISTHOSTS	= bendel
-Host_Alias	PORTERBOXES	= agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
+Host_Alias	PORTERBOXES	= abel, agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piatti, piu-slave-bm-a
 
 # Cmnd alias specification
