@@ -223,28 +223,20 @@ REJECT reject-with icmp-admin-prohibited
 	}
 
 	if $::hostname in [rautavaara] {
-		@ferm::rule { 'dsa-to-kfreebsd':
-			description     => 'Traffic routed to kfreebsd hosts',
-			chain           => 'to-kfreebsd',
-			rule            => 'proto icmp ACCEPT;
-source ($FREEBSD_SSH_ACCESS $HOST_NAGIOS_V4) proto tcp dport 22 ACCEPT;
-source ($HOST_MAILRELAY_V4 $HOST_NAGIOS_V4) proto tcp dport 25 ACCEPT;
-source ($HOST_MUNIN_V4 $HOST_NAGIOS_V4) proto tcp dport 4949 ACCEPT;
-source ($HOST_NAGIOS_V4) proto tcp dport 5666 ACCEPT;
-source ($HOST_NAGIOS_V4) proto udp dport ntp ACCEPT
-'
+		@ferm::rule { 'dsa-from-mgmt':
+			description     => 'Traffic routed from mgmt net vlan/bridge',
+			chain           => 'from-mgmt',
+			rule            => 'interface eth1 ACCEPT'
 		}
-		@ferm::rule { 'dsa-from-kfreebsd':
-			description     => 'Traffic routed from kfreebsd vlan/bridge',
-			chain           => 'from-kfreebsd',
-			rule            => 'proto icmp ACCEPT;
-proto tcp dport (21 22 80 53 443) ACCEPT;
-proto udp dport (53 123) ACCEPT;
-proto tcp dport 8140 daddr 82.195.75.104 ACCEPT; # puppethost
-proto tcp dport 5140 daddr (82.195.75.99 206.12.19.121) ACCEPT; # loghost
-proto tcp dport 11371 daddr 82.195.75.107 ACCEPT; # keyring host
-proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT
-'
+		@ferm::rule { 'dsa-mgmt-mark':
+			table           => 'mangle',
+			chain           => 'PREROUTING',
+			rule            => 'interface eth1 MARK set-mark 1',
+		}
+		@ferm::rule { 'dsa-mgmt-nat':
+			table           => 'nat',
+			chain           => 'POSTROUTING',
+			rule            => 'outerface eth1 mod mark mark 1 MASQUERADE',
 		}
 	}
 
