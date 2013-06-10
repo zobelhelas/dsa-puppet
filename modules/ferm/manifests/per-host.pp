@@ -247,26 +247,6 @@ proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT
 '
 		}
 	}
-	case $::hostname {
-		rautavaara: {
-			@ferm::rule { 'dsa-routing':
-				description     => 'forward chain',
-				chain           => 'FORWARD',
-				rule            => 'def $ADDRESS_FASCH=194.177.211.201;
-def $ADDRESS_FIELD=194.177.211.210;
-def $FREEBSD_HOSTS=($ADDRESS_FASCH $ADDRESS_FIELD);
-
-policy ACCEPT;
-mod state state (ESTABLISHED RELATED) ACCEPT;
-interface vlan11 outerface eth0 jump from-kfreebsd;
-interface eth0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
-ULOG ulog-prefix "REJECT FORWARD: ";
-REJECT reject-with icmp-admin-prohibited
-'
-			}
-		}
-		default: {}
-	}
 
 	# redirect snapshot into varnish
 	case $::hostname {
