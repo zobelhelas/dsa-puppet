@@ -225,7 +225,7 @@ REJECT reject-with icmp-admin-prohibited
 	if $::hostname in [rautavaara] {
 		@ferm::rule { 'dsa-from-mgmt':
 			description     => 'Traffic routed from mgmt net vlan/bridge',
-			chain           => 'from-mgmt',
+			chain           => 'INPUT',
 			rule            => 'interface eth1 ACCEPT'
 		}
 		@ferm::rule { 'dsa-mgmt-mark':
