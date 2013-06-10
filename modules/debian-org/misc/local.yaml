@@ -62,7 +62,6 @@ nameinfo:
   hebden.debian.org: John Hebden (1712 - 1765)
   henze.debian.org: Hans Werner Henze (July 1st, 1926 - October 27th, 2012)
   hoiby.debian.org: Lee Henry Hoiby (February 17th, 1926 - March 28th, 2011)
-  holter.debian.org: Iver Holter (December 13th, 1850 - January 27th, 1941)
   jenkins.debian.org: John Jenkins (1592 - 1678)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
@@ -309,7 +308,6 @@ host_settings:
     - henze.debian.org
     - hildegard.debian.org
     - hoiby.debian.org
-    - holter.debian.org
     - howells.debian.org
     - hummel.debian.org
     - klecker.debian.org
