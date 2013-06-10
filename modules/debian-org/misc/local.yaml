@@ -67,7 +67,6 @@ nameinfo:
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
   kokkonen.debian.org: Joonas Kokkonen (November 13th, 1921 - October 1st, 1996)
-  krenek.debian.org: Ernst Krenek (August 23rd, 1900 - December 22nd, 1991)
   lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
@@ -314,7 +313,6 @@ host_settings:
     - howells.debian.org
     - hummel.debian.org
     - klecker.debian.org
-    - krenek.debian.org
     - lafayette.debian.org
     - lamb.debian.org
     - lebrun.debian.org

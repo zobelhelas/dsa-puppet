@@ -57,16 +57,16 @@ class buildd ($ensure=present) {
 		require    => Package['apt-transport-https'],
 	}
 
-	site::aptrepo { 'buildd.debian.org-experimental':
-		ensure     => $::hostname ? {
-		                             /^(krenek)$/ => 'present',
-		                             default => 'absent',
-		                            },
-		url        => 'https://buildd.debian.org/apt/',
-		suite      => "${suite}-experimental",
-		components => 'main',
-		require    => Package['apt-transport-https'],
-	}
+	#site::aptrepo { 'buildd.debian.org-experimental':
+	#	ensure     => $::hostname ? {
+	#	                             /^(xxxx)$/ => 'present',
+	#	                             default => 'absent',
+	#	                            },
+	#	url        => 'https://buildd.debian.org/apt/',
+	#	suite      => "${suite}-experimental",
+	#	components => 'main',
+	#	require    => Package['apt-transport-https'],
+	#}
 
 	# 'bad' extension
 	file { '/etc/apt/preferences.d/buildd.debian.org':
