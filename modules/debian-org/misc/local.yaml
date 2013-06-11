@@ -11,6 +11,7 @@ nameinfo:
   argento.debian.org: Dominick Argento (b. October 27th, 1927)
   arne.debian.org: Thomas Augustine Arne (1710 - 1778)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
+  babin.debian.org: Stanley Babin (1932 - 2010)
   barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
   barriere.debian.org: Jean-Baptiste Barrière (May 2nd, 1707 - June 6th, 1747)
   beach.debian.org: Amy Marcy Cheney Beach (September 5, 1867 - December 27, 1944)
@@ -251,6 +252,7 @@ host_settings:
     - argento.debian.org
     - arne.debian.org
     - arnold.debian.org
+    - babin.debian.org
     - ball.debian.org
     - barber.debian.org
     - barriere.debian.org
