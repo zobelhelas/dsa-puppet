@@ -29,6 +29,7 @@
 # List the schroot sessions that a user has access to.
 
 import ConfigParser
+import datetime
 import fnmatch
 import getpass
 import optparse
@@ -40,34 +41,53 @@ def die(s):
     sys.exit(1)
 
 SESSION_PATH = '/var/lib/schroot/session'
-def get_session_owner(session):
-    path = os.path.join(SESSION_PATH, session)
-    config = ConfigParser.RawConfigParser()
-    config.read(path)
-    owner = []
-    try:
-        owner.append(config.get(session, 'users'))
-        owner.append(config.get(session, 'root-users'))
-    except ConfigParser.NoSectionError:
-        die("Did not find session definition in session file.")
-    except ConfigParser.NoOptionError:
-        die("Did not find user information in session file.")
-    return filter(lambda a: a!="", owner)
 
-def ownermatch(owners, users):
-    for gl in users:
-        for o in owners:
-            if fnmatch.fnmatch(o, gl): return True
-    return False
+class Session():
+    def __init__(self, name):
+        self.name = name
+        self.path = os.path.join(SESSION_PATH, self.name)
 
-def list_schroots(users):
-    for session in os.listdir(SESSION_PATH):
-        owners = get_session_owner(session)
-        if ownermatch(owners, users):
-            print "%s:%s"%(session, ','.join(owners))
+        self.mtime = os.path.getmtime(self.path)
+        self.__read_session_config()
+        self.__set_session_owner()
+
+    def __read_session_config(self):
+        self.config = ConfigParser.RawConfigParser()
+        self.config.read(self.path)
+
+    def __set_session_owner(self):
+        owner = []
+        try:
+            owner.append(self.config.get(self.name, 'users'))
+            owner.append(self.config.get(self.name, 'root-users'))
+        except ConfigParser.NoSectionError:
+            die("Did not find session definition in session file.")
+        except ConfigParser.NoOptionError:
+            die("Did not find user information in session file.")
+        self.owners = filter(lambda a: a!="", owner)
+
+    def __str__(self, pretty=False):
+        if pretty:
+            ts = datetime.datetime.fromtimestamp(self.mtime).isoformat().replace(':', '')
+        else:
+            ts = '%d'%(self.mtime,)
+
+        return ':'.join([self.name, ','.join(self.owners), ts])
+
+    def pretty_str(self):
+        return self.__str__(pretty = True)
+
+    def ownermatch(self, users):
+        for gl in users:
+            for o in self.owners:
+                if fnmatch.fnmatch(o, gl): return True
+        return False
+
 
 parser = optparse.OptionParser()
 parser.set_usage("""%prog [user]""")
+parser.add_option("", "--mr", dest="mr", action="store_true", default=False,
+  help="print some data in a format better for post-processing (e.g. timestamps).",)
 (options, args) = parser.parse_args()
 
 if len(args) < 1:
@@ -75,4 +95,10 @@ if len(args) < 1:
 else:
     users = args
 
-list_schroots(users)
+for name in os.listdir(SESSION_PATH):
+    s = Session(name)
+    if s.ownermatch(users):
+        if options.mr:
+            print s
+        else:
+            print s.pretty_str()
