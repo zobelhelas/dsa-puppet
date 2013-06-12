@@ -85,6 +85,16 @@ class ferm::per-host {
 				description     => 'Allow postgress access4',
 				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
 			}
+
+			@ferm::rule { 'dsa-postgres-bacula-danzi':
+				description     => 'Allow postgress access1',
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 206.12.19.139/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-bacula-danzi6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access1',
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2607:f8f0:610:4000:6564:a62:ce0c:138b/128 ))'
+			}
 		}
 		abel,alwyn,rietz: {
 			@ferm::rule { 'dsa-tftp':
@@ -212,73 +222,22 @@ REJECT reject-with icmp-admin-prohibited
 		default: {}
 	}
 
-	if $::hostname in [rautavaara,luchesi] {
-		@ferm::rule { 'dsa-to-kfreebsd':
-			description     => 'Traffic routed to kfreebsd hosts',
-			chain           => 'to-kfreebsd',
-			rule            => 'proto icmp ACCEPT;
-source ($FREEBSD_SSH_ACCESS $HOST_NAGIOS_V4) proto tcp dport 22 ACCEPT;
-source ($HOST_MAILRELAY_V4 $HOST_NAGIOS_V4) proto tcp dport 25 ACCEPT;
-source ($HOST_MUNIN_V4 $HOST_NAGIOS_V4) proto tcp dport 4949 ACCEPT;
-source ($HOST_NAGIOS_V4) proto tcp dport 5666 ACCEPT;
-source ($HOST_NAGIOS_V4) proto udp dport ntp ACCEPT
-'
+	if $::hostname in [rautavaara] {
+		@ferm::rule { 'dsa-from-mgmt':
+			description     => 'Traffic routed from mgmt net vlan/bridge',
+			chain           => 'INPUT',
+			rule            => 'interface eth1 ACCEPT'
 		}
-		@ferm::rule { 'dsa-from-kfreebsd':
-			description     => 'Traffic routed from kfreebsd vlan/bridge',
-			chain           => 'from-kfreebsd',
-			rule            => 'proto icmp ACCEPT;
-proto tcp dport (21 22 80 53 443) ACCEPT;
-proto udp dport (53 123) ACCEPT;
-proto tcp dport 8140 daddr 82.195.75.104 ACCEPT; # puppethost
-proto tcp dport 5140 daddr (82.195.75.99 206.12.19.121) ACCEPT; # loghost
-proto tcp dport 11371 daddr 82.195.75.107 ACCEPT; # keyring host
-proto tcp dport (25 submission) daddr ($HOST_MAILRELAY_V4) ACCEPT
-'
+		@ferm::rule { 'dsa-mgmt-mark':
+			table           => 'mangle',
+			chain           => 'PREROUTING',
+			rule            => 'interface eth1 MARK set-mark 1',
 		}
-	}
-	case $::hostname {
-		rautavaara: {
-			@ferm::rule { 'dsa-routing':
-				description     => 'forward chain',
-				chain           => 'FORWARD',
-				rule            => 'def $ADDRESS_FASCH=194.177.211.201;
-def $ADDRESS_FIELD=194.177.211.210;
-def $FREEBSD_HOSTS=($ADDRESS_FASCH $ADDRESS_FIELD);
-
-policy ACCEPT;
-mod state state (ESTABLISHED RELATED) ACCEPT;
-interface vlan11 outerface eth0 jump from-kfreebsd;
-interface eth0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
-ULOG ulog-prefix "REJECT FORWARD: ";
-REJECT reject-with icmp-admin-prohibited
-'
-			}
+		@ferm::rule { 'dsa-mgmt-nat':
+			table           => 'nat',
+			chain           => 'POSTROUTING',
+			rule            => 'outerface eth1 mod mark mark 1 MASQUERADE',
 		}
-		luchesi: {
-			@ferm::rule { 'dsa-routing':
-				description     => 'forward chain',
-				chain           => 'FORWARD',
-				rule            => 'def $ADDRESS_FANO=206.12.19.110;
-def $ADDRESS_FINZI=206.12.19.111;
-def $ADDRESS_FISCHER=206.12.19.112;
-def $ADDRESS_FALLA=206.12.19.117;
-def $FREEBSD_HOSTS=($ADDRESS_FANO $ADDRESS_FINZI $ADDRESS_FISCHER $ADDRESS_FALLA);
-
-policy ACCEPT;
-mod state state (ESTABLISHED RELATED) ACCEPT;
-interface br0 outerface br0 ACCEPT;
-interface br1 outerface br1 ACCEPT;
-
-interface br2 outerface br0 jump from-kfreebsd;
-interface br0 destination ($ADDRESS_FISCHER $ADDRESS_FALLA) proto tcp dport 22 ACCEPT;
-interface br0 destination ($FREEBSD_HOSTS) jump to-kfreebsd;
-ULOG ulog-prefix "REJECT FORWARD: ";
-REJECT reject-with icmp-admin-prohibited
-'
-			}
-		}
-		default: {}
 	}
 
 	# redirect snapshot into varnish
@@ -312,14 +271,6 @@ REJECT reject-with icmp-admin-prohibited
 			}
 			@ferm::rule { 'dsa-conntrackd':
 				rule            => 'interface vlan2 daddr 225.0.0.50 jump ACCEPT',
-			}
-		}
-		default: {}
-	}
-	case $::hostname {
-		bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12,bm-bl13,bm-bl14: {
-			@ferm::rule { 'dsa-hwnet-vlan20':
-				rule            => 'interface vlan20 jump ACCEPT',
 			}
 		}
 		default: {}

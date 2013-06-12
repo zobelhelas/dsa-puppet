@@ -11,7 +11,7 @@
   scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
     next unless scope.lookupvar('site::allnodeinfo')[node]['purpose']
     if scope.lookupvar('site::allnodeinfo')[node]['purpose'].include?('buildd')
-      lines << "  # #{scope.lookupvar('site::allnodeinfo')[node]['hostname'].to_s}"
+      lines << "  # #{scope.lookupvar('site::allnodeinfo')[node]['hostname'][0]}"
       scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |addr|
         lines << "  allow from #{addr}"
       end

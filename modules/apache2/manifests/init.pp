@@ -68,20 +68,7 @@ class apache2 {
 		script => 'ps_',
 	}
 
-	if $php5 {
-		package { 'php5-suhosin':
-			ensure  => installed,
-			require => Package['apache2'],
-		}
-
-		file { '/etc/php5/conf.d/suhosin.ini':
-			source  => 'puppet:///modules/apache2/suhosin.ini',
-			require => Package['php5-suhosin'],
-			notify  => Service['apache2'],
-		}
-	}
-
-	if $::hostname in [holter,beach,buxtehude,picconi,pkgmirror-1and1] {
+	if $::hostname in [beach,buxtehude,picconi,pkgmirror-1and1] {
 		include apache2::dynamic
 	} else {
 		@ferm::rule { 'dsa-http':

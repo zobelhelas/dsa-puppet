@@ -18,12 +18,6 @@ nono.debian.org:
     target_host: ries.debian.org
     target_port: 5433
 
-stabile.debian.org:
-  # snapshot postgresql streaming replication.  sibelius is the master, stabile the slave.
-  - source_bind_port: 15433
-    target_host: sibelius.debian.org
-    target_port: 5433
-    ssh_options: -oAddressFamily=inet
 danzi.debian.org:
   # snapshot postgresql streaming replication.  sibelius is the master, danzi the slave.
   - source_bind_port: 15433

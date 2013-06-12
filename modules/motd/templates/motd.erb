@@ -122,17 +122,23 @@ end
 
 if scope.lookupvar('::cluster').to_s != 'undefined'
   purp += "\nThis server is a node in ganeti cluster: "
-  purp += scope.lookupvar('::cluster').to_s + ".\n"
-  nodes = scope.lookupvar('::cluster_nodes').to_s.split.sort
-  nodes.each do |node|
-    purp += "\t" + node + "\n"
+  purp += scope.lookupvar('::cluster').to_s + ":\n"
+  purp += "\t" + scope.lookupvar('::cluster_nodes').to_s.split.sort.map{ |x| x.split('.')[0] }.join(", ") + ".\n"
+
+  if @lsbmajdistrelease >= '7'
+    purp += ""
+    purp += "\tCurrently the master node is $(cat /var/lib/ganeti/ssconf_master_node).\n"
   end
-  nodes.reject{|node| node.eql?(fqdn)}.each do |node|
-    purp += "\t" + node + "\n"
-    scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-      purp += "\t\t" + ip + "\n"
-    end
-  end
+  #nodes = scope.lookupvar('::cluster_nodes').to_s.split.sort
+  #nodes.each do |node|
+  #  purp += "\t" + node + "\n"
+  #end
+  #nodes.reject{|node| node.eql?(fqdn)}.each do |node|
+  #  purp += "\t" + node + "\n"
+  #  scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
+  #    purp += "\t\t" + ip + "\n"
+  #  end
+  #end
 end
 
 

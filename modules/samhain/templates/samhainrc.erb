@@ -420,9 +420,6 @@ dir=1/etc/bind/geodns
 dir=1/etc/bind
 file=/etc/bind/named.conf.debian-zones
 <% end -%>
-<% if scope.lookupvar('::fqdn') == "dijkstra.debian.org" -%>
-dir=4/etc/dsa-kvm
-<% end -%>
 <% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
 dir=3/etc/lvm
 <% end -%>

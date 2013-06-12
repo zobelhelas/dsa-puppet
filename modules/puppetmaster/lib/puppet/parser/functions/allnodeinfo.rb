@@ -4,7 +4,7 @@ module Puppet::Parser::Functions
       required = args.shift.split()
       optional = args.shift.split()
 
-      allhosts = function_ldapinfo('*', *(required+optional) )
+      allhosts = function_ldapinfo(['*', *(required+optional) ])
       res = {}
       allhosts.each_pair do |hostname, host|
           # If a returned value doesn't have all the attributes we're searching for, skip

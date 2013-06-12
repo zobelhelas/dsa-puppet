@@ -46,38 +46,41 @@ class buildd ($ensure=present) {
 		require    => Package['apt-transport-https'],
 	}
 
-	if $::hostname in [alkman,porpora,zandonai] {
-		site::aptrepo { 'buildd.debian.org-proposed':
-			url        => 'https://buildd.debian.org/apt/',
-			suite      => "${suite}-proposed",
-			components => 'main',
-			require    => Package['apt-transport-https'],
-		}
+	site::aptrepo { 'buildd.debian.org-proposed':
+		ensure     => $::hostname ? {
+		                             /^(alkman|barber|brahms|porpora|zandonai)$/ => 'present',
+		                             default => 'absent',
+		                            },
+		url        => 'https://buildd.debian.org/apt/',
+		suite      => "${suite}-proposed",
+		components => 'main',
+		require    => Package['apt-transport-https'],
 	}
 
-	if $::hostname in [krenek] {
-		site::aptrepo { 'buildd.debian.org-experimental':
-			url        => 'https://buildd.debian.org/apt/',
-			suite      => "${suite}-experimental",
-			components => 'main',
-			require    => Package['apt-transport-https'],
-		}
-	}
+	#site::aptrepo { 'buildd.debian.org-experimental':
+	#	ensure     => $::hostname ? {
+	#	                             /^(xxxx)$/ => 'present',
+	#	                             default => 'absent',
+	#	                            },
+	#	url        => 'https://buildd.debian.org/apt/',
+	#	suite      => "${suite}-experimental",
+	#	components => 'main',
+	#	require    => Package['apt-transport-https'],
+	#}
 
 	# 'bad' extension
 	file { '/etc/apt/preferences.d/buildd.debian.org':
 		ensure => absent,
 	}
 	file { '/etc/apt/preferences.d/buildd':
-		content => template('buildd/etc/apt/preferences.d/buildd'),
-		before  => Site::Aptrepo['buildd.debian.org']
+		ensure => absent,
 	}
 	file { '/etc/cron.d/dsa-buildd':
 		source  => 'puppet:///modules/buildd/cron.d-dsa-buildd',
 		require => Package['debian.org']
 	}
 
-	if $::lsbmajdistrelease >= 7 {
+	if ($::lsbmajdistrelease >= 7 and $::kernel == 'Linux') {
 		package { 'python-psutil':
 			ensure => installed,
 		}

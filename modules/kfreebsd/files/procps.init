@@ -1,12 +1,13 @@
 #! /bin/sh
 # /etc/init.d/procps: Set kernel variables from /etc/sysctl.conf
-#
+
 # written by Stephen Gran <sgran@debian.org> based on work by Elrond <Elrond@Wunder-Nett.org>
 
 ### BEGIN INIT INFO
 # Provides:          procps
 # Required-Start:    mountkernfs $local_fs
 # Required-Stop:
+# X-Start-Before:    networking
 # Default-Start:     S
 # Default-Stop:
 # Short-Description: Configure kernel parameters at boottime

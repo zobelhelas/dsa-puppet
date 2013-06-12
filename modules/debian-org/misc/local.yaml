@@ -11,6 +11,7 @@ nameinfo:
   argento.debian.org: Dominick Argento (b. October 27th, 1927)
   arne.debian.org: Thomas Augustine Arne (1710 - 1778)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
+  babin.debian.org: Stanley Babin (1932 - 2010)
   barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
   barriere.debian.org: Jean-Baptiste Barrière (May 2nd, 1707 - June 6th, 1747)
   beach.debian.org: Amy Marcy Cheney Beach (September 5, 1867 - December 27, 1944)
@@ -20,6 +21,7 @@ nameinfo:
   berlioz.debian.org: Hector Berlioz (December 11th, 1803 - March 8th, 1869)
   bertali.debian.org: Antonio Bertali (March 1605 - 17 April 1669)
   biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
+  binet.debian.org: Jocelyne Binet (September 27th, 1923 - January 13th, 1968)
   bizet.debian.org: Georges Bizet, (October 25th, 1838 - June 3rd, 1875)
   blavet.debian.org: Michel Blavet (March 13, 1700 - October 28, 1768)
   boiti.debian.org: Arrigo Boito (February 24th, 1842 - June 10th, 1918)
@@ -44,7 +46,7 @@ nameinfo:
   eysler.debian.org: Edmund Samuel Eysler (March 12th, 1874 - October 4th, 1949)
   falla.debian.org: Manuel de Falla y Matheu (November 23rd, 1876 - November 14th, 1946)
   fano.debian.org: Guido Alberto Fano (March 18th, 1875 - August 14th, 1961)
-  fasch.debian.org: Johann Friedrich Fasch (1688 - 1758)
+  fayrfax.debian.org: Robert Fayrfax (April 23rd, 1464 - October 24th, 1521)
   fils.debian.org: Anton Fils (September 22nd, 1733 (baptized) - March 14th, 1760 (buried))
   finzi.debian.org: Gerald Raphael Finzi (July 14th, 1901 - September 27th, 1956)
   fischer.debian.org: Johann Caspar Ferdinand Fischer (September 9th, 1656 - August 27th, 1746)
@@ -61,12 +63,10 @@ nameinfo:
   hebden.debian.org: John Hebden (1712 - 1765)
   henze.debian.org: Hans Werner Henze (July 1st, 1926 - October 27th, 2012)
   hoiby.debian.org: Lee Henry Hoiby (February 17th, 1926 - March 28th, 2011)
-  holter.debian.org: Iver Holter (December 13th, 1850 - January 27th, 1941)
   jenkins.debian.org: John Jenkins (1592 - 1678)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
   kokkonen.debian.org: Joonas Kokkonen (November 13th, 1921 - October 1st, 1996)
-  krenek.debian.org: Ernst Krenek (August 23rd, 1900 - December 22nd, 1991)
   lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
@@ -128,7 +128,6 @@ nameinfo:
   sonntag.debian.org: Brunhilde Sonntag (September 27th, 1936 - December 18th, 2002)
   stadler.debian.org: Maximilian Johann Karl Dominik Stadler, Abbé Stadler (August 4th 1748 - November 8th 1833)
   stanley.debian.org: Charles John Stanley (January 17th, 1712 - May 19th, 1786)
-  sperger.debian.org: Johannes Matthias Sperger (March 23th, 1750 - May 13th, 1812)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
   stabile.debian.org: Annibale Stabile (~1535 - April 1595)
@@ -157,7 +156,6 @@ footer:
 services:
   bugsmaster:
   bugsmx:
-    - busoni.debian.org
     - buxtehude.debian.org
   bugs_mirror:
     - beach.debian.org
@@ -193,24 +191,9 @@ services:
     - kaufmann.debian.org
   wiki:
     - wilder.debian.org
-  # new style porterbox (schroot, dd installable packages etc)
-  porterbox:
-    # once they are all on new-style, we can use ldap for this
-    - agricola.debian.org
-    - barriere.debian.org
-    - eder.debian.org
-    - falla.debian.org
-    - fischer.debian.org
-    - gabrielli.debian.org
-    - harris.debian.org
-    - merulo.debian.org
-    - partch.debian.org
-    - smetana.debian.org
-    - zelenka.debian.org
 host_settings:
   heavy_exim:
     - bellini.debian.org
-    - busoni.debian.org
     - buxtehude.debian.org
     - chopin.debian.org
     - draghi.debian.org
@@ -255,6 +238,163 @@ host_settings:
     - merikanto.debian.org
     - orff.debian.org
     - ravel.debian.org
+  not-bacula-client:
+    - abel.debian.org
+    - agnesi.debian.org
+    - agricola.debian.org
+    - alain.debian.org
+    - albeniz.debian.org
+    - alkman.debian.org
+    - alwyn.debian.org
+    - ancina.debian.org
+    - antheil.debian.org
+    - arcadelt.debian.org
+    - argento.debian.org
+    - arne.debian.org
+    - arnold.debian.org
+    - babin.debian.org
+    - ball.debian.org
+    - barber.debian.org
+    - barriere.debian.org
+    - beach.debian.org
+    - bendel.debian.org
+    - berlioz.debian.org
+    - bertali.debian.org
+    - binet.debian.org
+    - bizet.debian.org
+    - blavet.debian.org
+    - bm-bl3.debian.org
+    - bm-bl4.debian.org
+    - bm-bl5.debian.org
+    - bm-bl6.debian.org
+    - bm-bl7.debian.org
+    - bm-bl8.debian.org
+    - bm-bl9.debian.org
+    - boito.debian.org
+    - brahms.debian.org
+    - busoni.debian.org
+    - byrd.debian.org
+    - caballero.debian.org
+    - cilea.debian.org
+    - clementi.debian.org
+    - coincy.debian.org
+    - corelli.debian.org
+    - czerny.debian.org
+    - danzi.debian.org
+    - diamond.debian.org
+    - dijkstra.debian.org
+    - eder.debian.org
+    - eysler.debian.org
+    - falla.debian.org
+    - fano.debian.org
+    - fayrfax.debian.org
+    - fils.debian.org
+    - finzi.debian.org
+    - fischer.debian.org
+    - franck.debian.org
+    - gabrielli.debian.org
+    - geo1.debian.org
+    - geo2.debian.org
+    - glinka.debian.org
+    - gluck.debian.org
+    - goedel.debian.org
+    - goetz.debian.org
+    - gombert.debian.org
+    - grieg.debian.org
+    - handel.debian.org
+    - harris.debian.org
+    - hartmann.debian.org
+    - hasse.debian.org
+    - hebden.debian.org
+    - heininen.debian.org
+    - henze.debian.org
+    - hildegard.debian.org
+    - hoiby.debian.org
+    - howells.debian.org
+    - hummel.debian.org
+    - klecker.debian.org
+    - lafayette.debian.org
+    - lamb.debian.org
+    - lebrun.debian.org
+    - lobos.debian.org
+    - locke.debian.org
+    - lotti.debian.org
+    - lucatelli.debian.org
+    - luchesi.debian.org
+    - mailly.debian.org
+    - mayer.debian.org
+    - mayr.debian.org
+    - menotti.debian.org
+    - merikanto.debian.org
+    - merulo.debian.org
+    - milanollo.debian.org
+    - morricone.debian.org
+    - muffat.debian.org
+    - mundy.debian.org
+    - murphy.debian.org
+    - nielsen.debian.org
+    - nono.debian.org
+    - orff.debian.org
+    - paganini.debian.org
+    - parry.debian.org
+    - partch.debian.org
+    - pasquini.debian.org
+    - pergolesi.debian.org
+    - pettersson.debian.org
+    - piatti.debian.org
+    - piston.debian.org
+    - pkgmirror-1and1.debian.org
+    - porpora.debian.org
+    - poulenc.debian.org
+    - powell.debian.org
+    - praetorius.debian.org
+    - puccini.debian.org
+    - purcell.debian.org
+    - quantz.debian.org
+    - raff.debian.org
+    - rautavaara.debian.org
+    - ravel.debian.org
+    - rem.debian.org
+    - respighi.debian.org
+    - ries.debian.org
+    - rietz.debian.org
+    - rore.debian.org
+    - rossini.debian.org
+    - saens.debian.org
+    - salieri.debian.org
+    - santoro.debian.org
+    - scelsi.debian.org
+    - schein.debian.org
+    - schroeder.debian.org
+    - schuetz.debian.org
+    - senfl.debian.org
+    - senfter.debian.org
+    - sibelius.debian.org
+    - smetana.debian.org
+    - sompek.debian.org
+    - sonntag.debian.org
+    - spohr.debian.org
+    - spontini.debian.org
+    - stabile.debian.org
+    - stadler.debian.org
+    - stanley.debian.org
+    - steffani.debian.org
+    - tchaikovsky.debian.org
+    - traetta.debian.org
+    - tristano.debian.org
+    - ullmann.debian.org
+    - unger.debian.org
+    - valente.debian.org
+    - villa.debian.org
+    - vitry.debian.org
+    - vivaldi.debian.org
+    - voltaire.debian.org
+    - wieck.debian.org
+    - zandonai.debian.org
+    - zappa.debian.org
+    - zee.debian.org
+    - zelenka.debian.org
+    - zemlinsky.debian.org
   broken-rtc:
     - abel.debian.org
     - alain.debian.org
@@ -273,6 +413,8 @@ host_settings:
     - howells.debian.org
     - hummel.debian.org
     - lucatelli.debian.org
+    - corelli.debian.org
+    - gabrielli.debian.org
     - rem.debian.org
     - sompek.debian.org
   mail_port:
@@ -293,6 +435,7 @@ host_settings:
     - bizet.debian.org
     - franck.debian.org
   static_mirror:
+    - busoni.debian.org
     - klecker.debian.org
     - rietz.debian.org
     - stanley.debian.org
@@ -301,9 +444,11 @@ host_settings:
     - master.debian.org
     - ries.debian.org
     - franck.debian.org
+    - ravel.debian.org
     - senfl.debian.org
     - wolkenstein.debian.org
   weblog_provider:
+    - busoni.debian.org
     - klecker.debian.org
     - rietz.debian.org
     - stanley.debian.org

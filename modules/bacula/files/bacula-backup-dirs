@@ -1,0 +1,18 @@
+#! /usr/bin/python                                                                                                                           
+
+import re
+
+MI_RE = re.compile(r'(?P<mountid>\d+) (?P<parentid>\d+) (?P<majorminor>\d+:\d+) (?P<root>\S+) (?P<mountpoint>\S+) (?P<options>\S+) (?P<optional>(?:\S+\s)+ )?- (?P<fstype>\S+) (?P<mountsrc>\S+) (?P<superopts>\S+)')
+
+for line in file("/proc/self/mountinfo"):
+    mi = MI_RE.match(line)
+    if mi is None:
+	# XXX: handle error?
+        continue
+    gd = mi.groupdict()
+    # Skip bind mounts
+    if gd.get("root") != "/":
+        continue
+    if gd.get("fstype") not in [ "ext2", "ext3", "ext4", "xfs", "jfs"]:
+        continue
+    print gd["mountpoint"]

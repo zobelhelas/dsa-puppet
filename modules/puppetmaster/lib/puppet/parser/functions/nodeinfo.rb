@@ -7,13 +7,14 @@ module Puppet::Parser::Functions
       require '/var/lib/puppet/lib/puppet/parser/functions/ldapinfo.rb'
       require '/var/lib/puppet/lib/puppet/parser/functions/whohosts.rb'
 
-      nodeinfo         = function_yamlinfo(host, yamlfile)
-      nodeinfo['ldap'] = function_ldapinfo(host, '*')
+      nodeinfo         = function_yamlinfo([host, yamlfile])
+      nodeinfo['ldap'] = function_ldapinfo([host, '*'])
       unless nodeinfo['ldap']['ipHostNumber']
         raise Puppet::ParseError, "Host #{host} does not have ipHostNumber values in ldap"
       end
-      nodeinfo['hoster'] = function_whohosts(nodeinfo['ldap']['ipHostNumber'], "/etc/puppet/modules/debian-org/misc/hoster.yaml")
+      nodeinfo['hoster'] = function_whohosts([nodeinfo['ldap']['ipHostNumber'], "/etc/puppet/modules/debian-org/misc/hoster.yaml"])
       nodeinfo['buildd'] = (nodeinfo['ldap']['purpose'].respond_to?('include?') && nodeinfo['ldap']['purpose'].include?('buildd'))
+      nodeinfo['porterbox'] = (nodeinfo['ldap']['purpose'].respond_to?('include?') && nodeinfo['ldap']['purpose'].include?('porterbox'))
 
       if lookupvar('::mta') == 'exim4'
         unless nodeinfo['heavy_exim']
@@ -39,8 +40,8 @@ module Puppet::Parser::Functions
         end
       end
 
-      ns = function_hiera('nameservers')
-      allow_dns_q = function_hiera('allow_dns_query')
+      ns = function_hiera(['nameservers'])
+      allow_dns_q = function_hiera(['allow_dns_query'])
       if ns.empty?
         # no nameservers known for this hoster
         nodeinfo['misc']['resolver-recursive'] = true

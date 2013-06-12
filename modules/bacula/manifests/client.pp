@@ -1,7 +1,7 @@
 class bacula::client inherits bacula {
 	@@bacula::storage-per-node { $::fqdn: }
 
-	if $::hostname in [beethoven, berlioz, biber, diabelli, dinis, draghi, geo3, kaufmann, lully, master, picconi, pejacevic, piu-slave-bm-a, reger, schumann, soler, vento, vieuxtemps, wilder, wolkenstein] {
+	if ! getfromhash($site::nodeinfo, 'not-bacula-client') {
 		@@bacula::node { $::fqdn: }
 	}
 
@@ -31,6 +31,10 @@ class bacula::client inherits bacula {
 		group   => bacula,
 		require => Package['bacula-fd'],
 		notify  => Service['bacula-fd'],
+	}
+	file { '/usr/local/sbin/bacula-backup-dirs':
+		mode    => '0775',
+		source  => 'puppet:///modules/bacula/bacula-backup-dirs',
 	}
 	file { '/usr/local/sbin/postbaculajob':
 		mode    => '0775',

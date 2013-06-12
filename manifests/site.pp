@@ -37,14 +37,13 @@ node default {
 	include unbound
 	include bacula::client
 	include autofs
+	include lvm
+	include multipath
 
-	if $::hostname in [pasquini,tristano,bertali,boito,byrd,clementi,czerny,rossini,bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12,bm-bl13,bm-bl14] {
+	if $::hostname in [pasquini,tristano,bertali,boito,rossini,salieri,dijkstra,luchesi,byrd,clementi,czerny,bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12,bm-bl13,bm-bl14] {
 		include ganeti2
 	}
 
-	if $::hostname in [bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12,bm-bl13,bm-bl14] {
-		include multipath
-	}
 
 	if $::hostname == 'dinis' {
 		include bacula::director
@@ -92,12 +91,15 @@ node default {
 	} elsif $::hostname in [geo1,geo2,geo3] {
 		include named::geodns
 	}
+	if $::hostname in [orff] {
+		include dnsextras::entries
+	}
 
 	if $::hostname in [diabelli,nono,spohr] {
 		include dacs
 	}
 
-	if $::hostname in [beethoven,spohr,stabile,beach,glinka,milanollo] {
+	if $::hostname in [beethoven,spohr,stabile,beach,glinka,milanollo,rautavaara] {
 		include nfs-server
 	}
 

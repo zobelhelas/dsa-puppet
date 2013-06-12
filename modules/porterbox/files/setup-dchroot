@@ -257,6 +257,7 @@ chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
 [ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends locales-all
 chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh build-essential less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
+chroot "$rootdir" apt-get clean
 umount "$rootdir/sys" || true
 
 tartmp=$(tempfile --directory "$basedir" --suffix=".tar.gz")

@@ -7,18 +7,18 @@
 director packages_debian_org random {
 	{
 		.backend = {
-			.host = "194.177.211.202";
+			.host = "5.153.231.3";
 			.port = "80";
 		}
-		.weight = 10000;
+		.weight = 1;
 	}
-        {
-                .backend = {
-                        .host = "87.106.64.223";
-                        .port = "80";
-                }
-                .weight = 1;
-        }
+	{
+		.backend = {
+			.host = "213.165.95.4";
+			.port = "80";
+		}
+		.weight = 1;
+	}
 }
 
 

@@ -44,7 +44,7 @@ FileSet {
       signature = SHA1
       compression = GZIP9
     }
-    File = "\\|bash -c \"df -Pkl -x tmpfs -x iso9660 | tail -n +2 | awk '{print \$NF}' \""
+    File = "\\|/usr/local/sbin/bacula-backup-dirs"
     # Dont backup directories that contain .nobackup files
     Exclude Dir Containing = .nobackup
   }
@@ -53,6 +53,7 @@ FileSet {
     File = /var/lib/bacula
     File = /var/cache/apt/
     File = /nonexistant
+    File = /swapfile
     File = /proc
     File = /tmp
     File = /.journal

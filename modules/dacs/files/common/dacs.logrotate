@@ -10,7 +10,7 @@
 	rotate 28
 	compress
 	delaycompress
-	notifempty
 	create 640 www-data www-data
+	su root www-data
 	sharedscripts
 }
