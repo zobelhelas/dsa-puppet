@@ -14,9 +14,10 @@ tmpldir /etc/munin/templates
 <% else -%>
 # number of updaters to run
 max_processes 96
+rrdcached_socket /var/run/munin/rrdcached.sock/sock
+
 html_strategy cgi
 <% end -%>
-
 graph_strategy cgi
 
 includedir /etc/munin/munin-conf.d
