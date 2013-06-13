@@ -323,8 +323,6 @@ host_settings:
     - muffat.debian.org
     - mundy.debian.org
     - murphy.debian.org
-    - nono.debian.org
-    - orff.debian.org
     - paganini.debian.org
     - parry.debian.org
     - partch.debian.org
@@ -338,7 +336,6 @@ host_settings:
     - poulenc.debian.org
     - powell.debian.org
     - praetorius.debian.org
-    - quantz.debian.org
     - rautavaara.debian.org
     - ravel.debian.org
     - rem.debian.org
