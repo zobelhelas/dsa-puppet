@@ -91,7 +91,6 @@ nameinfo:
   parry.debian.org: Sir Charles Hubert Hastings Parry, 1st Baronet (February 27th, 1848 – October 7th, 1918)
   partch.debian.org: Harry Partch (June 24th, 1901 - September 3rd, 1974)
   pasquini.debian.org: Bernardo Pasquini (December 7th, 1637 - November 22nd, 1710)
-  pergolesi.debian.org: Giovanni Battista Pergolesi (January 4th, 1710 - March 16th or 17th, 1736)
   pejacevic: Dora Pejačević (September 10, 1885 - March 5, 1923)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   piatti.debian.org: Carlo Alfredo Piatti (January 8th, 1822 - July 18th, 1901)
@@ -325,7 +324,6 @@ host_settings:
     - parry.debian.org
     - partch.debian.org
     - pasquini.debian.org
-    - pergolesi.debian.org
     - pettersson.debian.org
     - piatti.debian.org
     - piston.debian.org
