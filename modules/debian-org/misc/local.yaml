@@ -415,7 +415,6 @@ host_settings:
   static_mirror:
     - busoni.debian.org
     - klecker.debian.org
-    - rietz.debian.org
     - stanley.debian.org
     - senfter.debian.org
   static_source:
