@@ -52,6 +52,10 @@ forward-zone:
 <% @ns.to_a.flatten.each do |nms| -%>
 	forward-addr: <%= nms %>
 <% end -%>
+<% if @lsbmajdistrelease >= '7' -%>
+	forward-first: yes
+<% end -%>
+
 # XXX : we probably ought to forward 172.29 reverse queries to our nameserver
 # if our forwarders are not ours.
 <% else -%>
