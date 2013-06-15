@@ -21,6 +21,7 @@
    ServerAlias security.na.debian.org
    ServerAlias security.geo.debian.org
    ServerAlias security-nagios.debian.org
+   ServerAlias security-fastly.debian.org
 
    Alias /debian-security /org/security.debian.org/ftp
 
