@@ -24,18 +24,6 @@ case fqdn
     out += "
         Alias /debian \"/srv/mirrors/ftp.debian.org/ftp\"
 "
-  when "piatti.debian.org" then
-    out += "
-       # for piuparts, RT#1218
-       Alias /debian/ \"/org/mirrors/ftp.debian.org/ftp/\"
-       <Directory \"/org/mirrors/ftp.debian.org/ftp/\">
-               Options Indexes MultiViews FollowSymLinks
-               AllowOverride None
-               Order deny,allow
-               Deny from all
-               Allow from 127.0.0.0/255.0.0.0 ::1/128 193.167.161.225/32
-       </Directory>
-"
 end
 out
 %>
