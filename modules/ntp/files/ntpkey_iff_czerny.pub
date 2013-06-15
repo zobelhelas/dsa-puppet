@@ -1,0 +1,13 @@
+# ntpkey_iffpar_czerny.3580328288
+# Sat Jun 15 23:38:08 2013
+
+# This is the public version of this 'private' key -
+# the private data has been replaced by 0x01.
+# (just ask 'openssl dsa -text < foo.pub')
+
+-----BEGIN PRIVATE KEY-----
+MIGzAgEAMIGoBgcqhkjOOAQBMIGcAkEA8roR8u2irXtdrgLHrjTC9RDvRJuDNrbD
+oMt1flSJSmWMW0zrfdYKyXzlOPwvf8YLClaFUQQTIW62ZDbuXPevOQIVAMt9N6tD
+WpLYqJIUxUeNLQSjRL3vAkA916pTvtXTAUERlwdKAI6rErZkPHY9S/F1t7O2TRce
+aOplDgAOVEtp4LCENj0NNpAm3/jFTc1eVsQZK82E9D6fBAMCAQE=
+-----END PRIVATE KEY-----
