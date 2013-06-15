@@ -229,11 +229,6 @@ host_settings:
   'apache2_ftp-upcoming_mirror':
     - klecker.debian.org
     - rietz.debian.org
-  timeserver:
-    - busoni.debian.org
-    - merikanto.debian.org
-    - orff.debian.org
-    - ravel.debian.org
   not-bacula-client:
     - abel.debian.org
     - agricola.debian.org
