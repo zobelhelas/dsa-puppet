@@ -20,8 +20,8 @@
    ServerAlias security.us.debian.org
    ServerAlias security.na.debian.org
    ServerAlias security.geo.debian.org
+   ServerAlias security-cdn.debian.org
    ServerAlias security-nagios.debian.org
-   ServerAlias security-fastly.debian.org
 
    ExpiresActive On
    ExpiresDefault "access plus 2 minutes"
