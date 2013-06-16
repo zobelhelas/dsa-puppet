@@ -35,11 +35,11 @@ class exim {
 		purge   => true,
 	}
 	file { '/etc/exim4/Git':
-		ensure  => directory,
-		purge   => true,
-		force   => true,
+		ensure  => absent,
+	# git checkouts through puppet.  yummy.
+	file { '/etc/exim4/email-virtualdomains':
 		recurse => true,
-		source  => 'puppet:///files/empty/',
+		source => 'puppet:///modules/exim/email-virtualdomains',
 	}
 	file { '/etc/exim4/conf.d':
 		ensure  => directory,
