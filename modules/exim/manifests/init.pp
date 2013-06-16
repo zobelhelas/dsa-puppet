@@ -41,6 +41,8 @@ class exim {
 	file { '/etc/exim4/email-virtualdomains':
 		recurse => true,
 		source => 'puppet:///modules/exim/email-virtualdomains',
+		purge  => true,
+		ignore => '.git',
 	}
 	file { '/etc/exim4/conf.d':
 		ensure  => directory,
