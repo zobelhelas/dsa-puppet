@@ -25,7 +25,7 @@ localinfo.keys.sort.each do |node|
 end
 
 lines = []
-for m in mirrors:
+for m in mirrors do
     lines << '# ' + m['node']
     if m['key'].nil?
         lines << "# no key for node"
