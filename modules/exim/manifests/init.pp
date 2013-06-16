@@ -36,6 +36,7 @@ class exim {
 	}
 	file { '/etc/exim4/Git':
 		ensure  => absent,
+		force   => true,
 	}
         # git checkouts through puppet.  yummy.
 	file { '/etc/exim4/email-virtualdomains':
