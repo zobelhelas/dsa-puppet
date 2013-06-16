@@ -18,5 +18,14 @@
 	<IfModule mod_userdir.c>
 		UserDir disabled
 	</IfModule>
+<%=
+case fqdn
+  when "spohr.debian.org" then
+    out += "
+        Alias /debian \"/srv/mirrors/ftp.debian.org/ftp\"
+"
+end
+out
+%>
 </VirtualHost>
 # vim:set syn=apache:
