@@ -36,7 +36,8 @@ class exim {
 	}
 	file { '/etc/exim4/Git':
 		ensure  => absent,
-	# git checkouts through puppet.  yummy.
+	}
+        # git checkouts through puppet.  yummy.
 	file { '/etc/exim4/email-virtualdomains':
 		recurse => true,
 		source => 'puppet:///modules/exim/email-virtualdomains',
