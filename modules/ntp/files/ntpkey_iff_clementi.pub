@@ -1,0 +1,14 @@
+# ntpkey_iffpar_clementi.3580364254
+# Sun Jun 16 09:37:34 2013
+
+# This is the public version of this 'private' key -
+# the private data has been replaced by 0x01.
+# (just ask 'openssl dsa -text < foo.pub')
+
+-----BEGIN DSA PRIVATE KEY-----
+MIHkAgEAAkEAx9FRuxKTxra+BkeWewzJgjb0O8jq3z3Dd5iBDFHafLXchWejqPOJ
+XQliu1k3VJUnlY6uL+xBP3I/EYGQ4e53FwIVALGJu80wgjNScXQuu/rL8fy0gp91
+AkAqggS+biLemEnBOBKyLoum95EpaLHEgTNvGL7ueWb/SWiUXg+SYHIC0YkP3BkA
+34DgXdmxIVYxj1ElJaz5YinvAkAqggS+biLemEnBOBKyLoum95EpaLHEgTNvGL7u
+eWb/SWiUXg+SYHIC0YkP3BkA34DgXdmxIVYxj1ElJaz5YinvAgEB
+-----END DSA PRIVATE KEY-----

@@ -7,16 +7,32 @@ class ntp::client {
 	file { '/etc/ntp.keys.d/ntpkey_iff_czerny':
 		source => 'puppet:///modules/ntp/ntpkey_iff_czerny.pub',
 	}
+	file { '/etc/ntp.keys.d/ntpkey_iff_clementi':
+		source => 'puppet:///modules/ntp/ntpkey_iff_clementi.pub',
+	}
+	file { '/etc/ntp.keys.d/ntpkey_iff_bm-bl1':
+		source => 'puppet:///modules/ntp/ntpkey_iff_bm-bl1.pub',
+	}
+	file { '/etc/ntp.keys.d/ntpkey_iff_bm-bl2':
+		source => 'puppet:///modules/ntp/ntpkey_iff_bm-bl2.pub',
+	}
+	file { '/etc/ntp.keys.d/ntpkey_iff_dijkstra':
+		source => 'puppet:///modules/ntp/ntpkey_iff_dijkstra.pub',
+	}
+	file { '/etc/ntp.keys.d/ntpkey_iff_luchesi':
+		source => 'puppet:///modules/ntp/ntpkey_iff_luchesi.pub',
+	}
+
 	file { '/etc/ntp.keys.d/ntpkey_iff_merikanto':
-		source => 'puppet:///modules/ntp/ntpkey_iff_merikanto.pub',
+		ensure => absent,
 	}
 	file { '/etc/ntp.keys.d/ntpkey_iff_orff':
-		source => 'puppet:///modules/ntp/ntpkey_iff_orff.pub',
+		ensure => absent,
 	}
 	file { '/etc/ntp.keys.d/ntpkey_iff_ravel':
-		source => 'puppet:///modules/ntp/ntpkey_iff_ravel.pub',
+		ensure => absent,
 	}
 	file { '/etc/ntp.keys.d/ntpkey_iff_busoni':
-		source => 'puppet:///modules/ntp/ntpkey_iff_busoni.pub',
+		ensure => absent,
 	}
 }
