@@ -35,6 +35,11 @@
        </FilesMatch>
    </Directory>
 
+   <Directory /org/security.debian.org/ftp/dists>
+       ExpiresDefault "access plus 1 seconds"
+       Header append Cache-Control "public"
+   </Directory>
+
    RewriteEngine on
    RewriteRule ^/$      http://www.debian.org/security/
 
