@@ -1,6 +1,7 @@
 class roles::static_mirror {
 
 	include roles::static_source
+	include apache2::cache
 
 	package { 'libapache2-mod-macro': ensure => installed, }
 	package { 'libapache2-mod-geoip': ensure => installed, }
@@ -8,7 +9,6 @@ class roles::static_mirror {
 
 	apache2::module { 'macro': require => Package['libapache2-mod-macro']; }
 	apache2::module { 'rewrite': }
-	apache2::module { 'expires': }
 	apache2::module { 'geoip': require => [Package['libapache2-mod-geoip'], Package['geoip-database']]; }
 
 	file { '/usr/local/bin/static-mirror-run':
@@ -32,7 +32,7 @@ class roles::static_mirror {
 		default => '*:80',
 	}
 
-	apache2::config { "local-static-vhost.conf":
+	apache2::config { 'local-static-vhost.conf':
 		content => template('roles/static-mirroring/static-vhost.conf.erb'),
 	}
 
@@ -42,7 +42,7 @@ class roles::static_mirror {
 	}
 
 	apache2::site { '010-static-vhosts-simple':
-		site => "static-vhosts-simple",
+		site => 'static-vhosts-simple',
 		content => template('roles/static-mirroring/vhost/static-vhosts-simple.erb'),
 	}
 

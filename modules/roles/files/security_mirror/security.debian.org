@@ -23,7 +23,17 @@
    ServerAlias security-nagios.debian.org
    ServerAlias security-fastly.debian.org
 
+   ExpiresActive On
+   ExpiresDefault "access plus 2 minutes"
+
    Alias /debian-security /org/security.debian.org/ftp
+
+   <Directory /org/security.debian.org/ftp/pool>
+       <FilesMatch "\.(bz2|gz|deb|dsc|xz)$">
+           ExpiresDefault "access plus 1 month"
+           Header append Cache-Control "public"
+       </FilesMatch>
+   </Directory>
 
    RewriteEngine on
    RewriteRule ^/$      http://www.debian.org/security/
