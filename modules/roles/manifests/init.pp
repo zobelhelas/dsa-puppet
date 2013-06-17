@@ -62,10 +62,6 @@ class roles {
 		include roles::wiki
 	}
 
-	if getfromhash($site::nodeinfo, 'apache2_ftp-upcoming_mirror') {
-		include roles::ftp-upcoming_mirror
-	}
-
 	if getfromhash($site::nodeinfo, 'static_master') {
 		include roles::static_master
 	}

@@ -22,14 +22,6 @@ view "AF" {
     allow-transfer { };
   };
 
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org.AF";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "ftp.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.AF";
@@ -93,14 +85,6 @@ view "AN" {
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.AN";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org.AN";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -174,14 +158,6 @@ view "AS" {
     allow-transfer { };
   };
 
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org.AS";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "ftp.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.AS";
@@ -245,14 +221,6 @@ view "EU" {
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.EU";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org.EU";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -326,14 +294,6 @@ view "NA" {
     allow-transfer { };
   };
 
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org.NA";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "ftp.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.NA";
@@ -397,14 +357,6 @@ view "OC" {
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org.OC";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org.OC";
     notify no;
     allow-query { any; };
     allow-transfer { };
@@ -478,14 +430,6 @@ view "SA" {
     allow-transfer { };
   };
 
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org.SA";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "ftp.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.SA";
@@ -554,14 +498,6 @@ view "undef" {
     allow-transfer { };
   };
 
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org.undef";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
   zone "ftp.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.ftp.debian.org.undef";
@@ -625,14 +561,6 @@ view "default" {
   zone "bugs.debian.org" {
     type master;
     file "/etc/bind/geodns/zonefiles/db.bugs.debian.org";
-    notify no;
-    allow-query { any; };
-    allow-transfer { };
-  };
-
-  zone "ftp-upcoming.debian.org" {
-    type master;
-    file "/etc/bind/geodns/zonefiles/db.ftp-upcoming.debian.org";
     notify no;
     allow-query { any; };
     allow-transfer { };

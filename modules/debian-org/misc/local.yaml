@@ -226,9 +226,6 @@ host_settings:
     - kokkonen.debian.org
     - santoro.debian.org
     - senfl.debian.org
-  'apache2_ftp-upcoming_mirror':
-    - klecker.debian.org
-    - rietz.debian.org
   not-bacula-client:
     - abel.debian.org
     - agricola.debian.org
