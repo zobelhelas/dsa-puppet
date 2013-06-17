@@ -1072,21 +1072,17 @@ ipliteral:
 <%=
 out = ""
 if not scope.lookupvar('site::nodeinfo')['smarthost'].empty?
-out = '
+out = "
 smarthost:
-  debug_print = "R: smarthost for $local_part@$domain"
+  debug_print = \"R: smarthost for $local_part@$domain\"
   driver = manualroute
   domains = !+handled_domains
   transport = remote_smtp_smarthost
-  route_list = * ' + scope.lookupvar('site::nodeinfo')['smarthost']
-  if scope.lookupvar('site::nodeinfo')['smarthost'] == 'mailout.debian.org'
-    out += '/MX'
-  end
-  out += '
+  route_list = * #{scope.lookupvar('site::nodeinfo')['smarthost']}
   host_find_failed = defer
   same_domain_copy_routing = yes
   no_more
-'
+"
 end
 out
 %>
