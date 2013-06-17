@@ -10,7 +10,7 @@ class ntpdate {
 
 		$ntpservers = $::hostname ? {
 			ancina  => 'ntp.ugent.be',
-			default => ['merikanto.debian.org','orff.debian.org','ravel.debian.org','busoni.debian.org']
+			default => ['czerny.debian.org', 'clementi.debian.org', 'bm-bl1.debian.org', 'bm-bl2.debian.org', 'dijkstra.debian.org', 'luchesi.debian.org']
 		}
 
 		file { '/etc/default/ntpdate':
