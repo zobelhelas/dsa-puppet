@@ -2,6 +2,7 @@ module Puppet::Parser::Functions
   newfunction(:entropy_provider, :type => :rvalue) do |args|
     begin
       require '/var/lib/puppet/lib/puppet/parser/functions/whohosts.rb'
+      require 'digest/sha1'
 
       fqdn = args[0]
       nodeinfo = args[1]
@@ -44,15 +45,18 @@ module Puppet::Parser::Functions
         entropy_provider_hoster = nil
       end
 
+      hash = Digest::SHA1.digest(fqdn)
+      hashval = hash[0].ord + hash[1].ord*256
+
       if provider.include?(fqdn) # if the host has an ekeyd
         ans = 'local'
       elsif entropy_provider_hoster
         # if there are more than one ekeys at this hoster pick an arbitrary
         # one, but the same every time
-        index = fqdn.hash % hoster[entropy_provider_hoster].length
+        index = hashval % hoster[entropy_provider_hoster].length
         ans = hoster[entropy_provider_hoster][index]
       else # pick an arbitrary provider from all providers
-        index = fqdn.hash % provider.size
+        index = hashval % provider.size
         ans = provider[index]
       end
 
