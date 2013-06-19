@@ -10,6 +10,7 @@ class munin::master {
 	}
 
 	if $::hostname == 'menotti' {
+		ssl::service { 'munin.debian.org': }
 		file { '/etc/munin/munin-conf.d':
 			ensure  => directory,
 			mode    => '0755',

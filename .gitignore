@@ -3,7 +3,7 @@ puppet.conf
 hiera.yaml
 modules/nagios/files/dsa-nagios
 modules/exim/files/certs/
-modules/ssl/files/
+modules/ssl/files/clientcerts
 modules/dacs/files/private
 modules/hiera-puppet
 modules/puppetmaster/manifests/db.pp
