@@ -123,7 +123,7 @@ localpartlist postmasterish = postmaster : abuse : hostmaster
 
 hostlist debianhosts = <; ; 127.0.0.1 ; ::1 ; /var/lib/misc/thishost/debianhosts ; 89.16.166.49 ; 82.195.75.76 ; 2001:41b8:202:deb:bab5:0:52c3:4b4c
 
-hostlist reservedaddrs = 0.0.0.0/8 : 127.0.0.0/8 : 10.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/17 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5
+hostlist reservedaddrs = 0.0.0.0/8 : 127.0.0.0/8 : 10.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/24 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5
 
 <%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
 # Domains we relay for; that is domains that aren't considered local but we 
