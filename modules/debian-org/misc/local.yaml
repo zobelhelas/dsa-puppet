@@ -165,7 +165,6 @@ services:
     - ravel.debian.org
   mailrelay:
     - mailly.debian.org
-    - merikanto.debian.org
     - muffat.debian.org
   muninmaster:
     - spohr.debian.org
