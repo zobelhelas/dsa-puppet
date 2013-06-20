@@ -123,6 +123,16 @@ EOF
     esac
 }
 
+do_config() {
+    local tmpschrootconf=$(tempfile)
+    cleanup+=("rm -f $tmpschrootconf")
+    genschrootconf "$suite" "$arch" "$target" > "$tmpschrootconf"
+    if ! [ -e "$schrootconfig" ] || ! diff "$schrootconfig" "$tmpschrootconf" > /dev/null; then
+        mv "$tmpschrootconf" "$schrootconfig"
+        chmod 644 "$schrootconfig"
+    fi
+}
+
 
 set -e
 set -u
@@ -217,9 +227,11 @@ schrootconfig="/etc/schroot/chroot.d/${tuple}-dchroot"
 #
 # let's go
 #
-genschrootconf "$suite" "$arch" "$target" | tee "$schrootconfig"
 
-if [ -n "$configonly" ]; then exit 0; fi
+if [ -n "$configonly" ]; then
+    do_config
+    exit 0
+fi
 
 rootdir=$(mktemp -d "$builddir/create-$suite-XXXXXX")
 cleanup+=("rm -r $rootdir")
@@ -263,3 +275,5 @@ umount "$rootdir/sys" || true
 tartmp=$(tempfile --directory "$basedir" --suffix=".tar.gz")
 cleanup+=("rm -f $tartmp")
 (cd "$rootdir" && tar caf "$tartmp" . && mv "$tartmp" "$target")
+
+do_config
