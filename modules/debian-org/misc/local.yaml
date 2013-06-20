@@ -197,7 +197,6 @@ host_settings:
     - grieg.debian.org
     - mailly.debian.org
     - master.debian.org
-    - merikanto.debian.org
     - morricone.debian.org
     - muffat.debian.org
     - nono.debian.org
