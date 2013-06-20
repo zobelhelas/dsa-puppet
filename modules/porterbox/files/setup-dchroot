@@ -89,8 +89,8 @@ type=file
 file=$target
 groups=$groupuser
 root-groups=$grouproot
-source-groups=adm
-source-root-groups=adm
+#source-groups=adm
+#source-root-groups=adm
 EOF
 
     if dpkg --compare-versions "$(lsb_release --release --short)" '<' 7; then
@@ -151,7 +151,7 @@ personality="dsa"
 sbuildnames=""
 ubuntu=""
 groupuser="Debian,guest"
-grouproot="adm"
+grouproot=""
 declare -a cleanup
 trap do_cleanup EXIT
 
