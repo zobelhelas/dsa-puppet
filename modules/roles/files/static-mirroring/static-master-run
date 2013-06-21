@@ -116,7 +116,7 @@ def callout(component, serial):
       if status[c] == 'failed': f.write(c+"\n")
     f.close()
   else:
-    os.unlink(failedmirrorsfile)
+    if os.path.exists(failedmirrorsfile): os.unlink(failedmirrorsfile)
 
   if 'waiting' in cnt:
     log("Committing...")
