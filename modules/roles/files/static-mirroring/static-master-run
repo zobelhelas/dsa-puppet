@@ -11,6 +11,7 @@ import time
 
 base="/srv/static.debian.org"
 serialname = '.serial'
+had_warnings = False
 
 clients = []
 with open('/etc/static-clients.conf') as f:
@@ -100,11 +101,24 @@ def callout(component, serial):
   log("Stage 1 done.")
   cnt = count_statuses(status)
 
-  if 'failed' in cnt > 0:
-    log("Some clients failed, aborting...")
+  if 'failed' in cnt and cnt['failed'] >= 2:
+    log("%d clients failed, aborting..."%(cnt['failed'],))
     stage2(pipes, status, 'abort')
     return False
-  elif 'waiting' in cnt > 0:
+
+  failedmirrorsfile = os.path.join(base, 'master', component + "-failedmirrors")
+  if 'failed' in cnt:
+    log("WARNING: %d clients failed!  Continuing anyway!"%(cnt['failed'],))
+    global had_warnings
+    had_warnings = True
+    f = open(failedmirrorsfile, "w")
+    for c in status:
+      if status[c] == 'failed': f.write(c+"\n")
+    f.close()
+  else:
+    os.unlink(failedmirrorsfile)
+
+  if 'waiting' in cnt:
     log("Committing...")
     stage2(pipes, status, 'go')
     return True
@@ -160,7 +174,8 @@ def run_mirror(component):
     os.rename(cur, live)
     log("Cleaning up.")
     shutil.rmtree(tmpdir_old)
-    log("Done.")
+    if had_warnings: log("Done, with warnings.")
+    else: log("Done.")
     ret = True
   else:
     log("Aborted.")
