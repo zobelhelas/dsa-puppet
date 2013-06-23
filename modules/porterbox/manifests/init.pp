@@ -38,6 +38,6 @@ class porterbox {
 		source  => 'puppet:///modules/porterbox/setup-all-dchroots',
 	}
 	file { '/etc/cron.d/puppet-update-dchroots':
-		content  => '0 3 * * 0 root PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin chronic setup-all-dchroots',
+		content  => "0 15 * * 0 root PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin chronic setup-all-dchroots\n",
 	}
 }
