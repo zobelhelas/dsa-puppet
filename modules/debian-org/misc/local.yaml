@@ -407,6 +407,5 @@ host_settings:
   weblog_provider:
     - busoni.debian.org
     - klecker.debian.org
-    - rietz.debian.org
     - stanley.debian.org
     - senfter.debian.org
