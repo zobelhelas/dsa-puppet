@@ -14,7 +14,7 @@ class bacula::storage inherits bacula {
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		command     => 'sh -c "setsid /usr/local/sbin/bacula-idle-restart sd &"',
 		refreshonly => true,
-		subscribe   => File['/etc/ssl/debian/certs/thishost.crt'],
+		subscribe   => File[$bacula_ssl_server_cert],
 		require     => File['/usr/local/sbin/bacula-idle-restart'],
 	}
 
