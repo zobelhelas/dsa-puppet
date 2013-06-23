@@ -23,7 +23,7 @@ class bacula::storage inherits bacula {
 		content => template('bacula/bacula-sd.conf.erb'),
 		mode    => '0640',
 		group   => bacula,
-		notify  => Service['bacula-sd']
+		notify  => Exec['bacula-sd restart-when-idle']
 	}
 
 	file { '/etc/bacula/storage-conf.d':

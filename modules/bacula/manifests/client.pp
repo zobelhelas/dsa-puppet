@@ -30,7 +30,7 @@ class bacula::client inherits bacula {
 		owner   => root,
 		group   => bacula,
 		require => Package['bacula-fd'],
-		notify  => Service['bacula-fd'],
+		notify  => Exec['bacula-fd restart-when-idle'],
 	}
 	file { '/usr/local/sbin/bacula-backup-dirs':
 		mode    => '0775',
