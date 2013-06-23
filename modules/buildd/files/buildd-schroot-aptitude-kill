@@ -24,7 +24,14 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import os
-import psutil
+import errno
+try:
+	import psutil
+except OSError, e:
+	# XXX: This is a hack, but since we are run from cron, it's
+	# better to handle this on the next run than to send mail.
+	if e.errno == errno.ENOENT:
+		sys.exit(0)
 
 total_mem = psutil.phymem_usage().total
 cutoff_time = 60*10
