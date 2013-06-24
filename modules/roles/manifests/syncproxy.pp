@@ -4,11 +4,11 @@ class roles::syncproxy {
 		bind   => $::hostname ? {
 			'milanollo' => '5.153.231.9',
 			default => ''
-		}
+		},
 		bind6   => $::hostname ? {
 			'milanollo' => '2001:41c8:1000:21::21:9',
 			default => ''
-		}
+		},
 	}
 
 	file { '/etc/rsyncd':
