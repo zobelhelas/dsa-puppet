@@ -62,6 +62,10 @@ class roles {
 		include roles::wiki
 	}
 
+	if getfromhash($site::nodeinfo, 'syncproxy') {
+		include roles::syncproxy
+	}
+
 	if getfromhash($site::nodeinfo, 'static_master') {
 		include roles::static_master
 	}

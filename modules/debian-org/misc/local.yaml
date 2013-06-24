@@ -179,6 +179,8 @@ services:
     - reger.debian.org
   security_master:
     - chopin.debian.org
+  syncproxy:
+    - milanollo.debian.org
   www_master:
     - wolkenstein.debian.org
   keyring:
