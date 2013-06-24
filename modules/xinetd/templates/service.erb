@@ -12,7 +12,7 @@ service <%= scope.lookupvar('port') %>
 	protocol	= <%= scope.lookupvar('protocol') %>
 <%- if scope.lookupvar('flags') != '' -%>
 	flags		= <%= scope.lookupvar('flags') %>
-<%- elsif scope.lookupvar('bind') =~  /:/ -%>
+<%- elsif scope.lookupvar('bind') =~  /:/ or scope.lookupvar('bind') == "" -%>
 	flags		= IPv6
 <%- end -%>
 	wait		= <%= scope.lookupvar('wait') %>
