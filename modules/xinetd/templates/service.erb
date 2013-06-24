@@ -10,11 +10,7 @@ service <%= scope.lookupvar('port') %>
 
 	socket_type	= <%= scope.lookupvar('socket_type') %>
 	protocol	= <%= scope.lookupvar('protocol') %>
-<%- if scope.lookupvar('flags') != '' -%>
 	flags		= <%= scope.lookupvar('flags') %>
-<%- elsif scope.lookupvar('bind') =~  ':' -%>
-	flags		= IPv6
-<%- end -%>
 	wait		= <%= scope.lookupvar('wait') %>
 	user		= <%= scope.lookupvar('user') %>
 <%- if scope.lookupvar('group') != '' -%>

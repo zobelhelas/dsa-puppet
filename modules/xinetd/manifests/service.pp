@@ -6,7 +6,7 @@ define xinetd::service (
 	$type='',
 	$socket_type=stream,
 	$protocol=tcp,
-	$flags='',
+	$flags=IPv6,
 	$wait=no,
 	$user=root,
 	$group='',

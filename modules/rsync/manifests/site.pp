@@ -1,6 +1,5 @@
 define rsync::site (
 	$bind='',
-	$bind6='',
 	$source='',
 	$content='',
 	$fname='',
@@ -40,7 +39,6 @@ define rsync::site (
 
 	xinetd::service { "rsync-${name}":
 		bind        => $bind,
-		bind6       => $bind6,
 		id          => "${name}-rsync",
 		server      => '/usr/bin/rsync',
 		port        => 'rsync',
