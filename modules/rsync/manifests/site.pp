@@ -1,5 +1,6 @@
 define rsync::site (
 	$bind='',
+	$bind6='',
 	$source='',
 	$content='',
 	$fname='',
@@ -46,6 +47,22 @@ define rsync::site (
 		ferm        => false,
 		instances   => $max_clients,
 		require     => File[$fname_real]
+	}
+
+	if $bind6 != '' {
+		if $bind == '' {
+			fail("Cannot listen on * and a specific ipv6 address")
+		}
+		xinetd::service { "rsync-${name}6":
+			bind        => $bind6,
+			id          => "${name}-rsync6",
+			server      => '/usr/bin/rsync',
+			port        => 'rsync',
+			server_args => "--daemon --config=${fname_real}",
+			ferm        => false,
+			instances   => $max_clients,
+			require     => File[$fname_real]
+		}
 	}
 
 	Service['rsync']->Service['xinetd']
