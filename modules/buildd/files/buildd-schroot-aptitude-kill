@@ -25,6 +25,7 @@
 
 import os
 import errno
+import sys
 try:
 	import psutil
 except OSError, e:
