@@ -3,7 +3,7 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
-	if $::hostname in [glinka,klecker,merikanto,ravel,rietz,senfl,sibelius,stabile] {
+	if $::hostname in [glinka,klecker,merikanto,milanollo,ravel,rietz,senfl,sibelius,stabile] {
 		ferm::rule { 'dsa-rsync':
 			domain      => '(ip ip6)',
 			description => 'Allow rsync access',
