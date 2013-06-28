@@ -167,7 +167,6 @@ services:
     - mailly.debian.org
     - muffat.debian.org
   muninmaster:
-    - spohr.debian.org
     - menotti.debian.org
   nagiosmaster: tchaikovsky.debian.org
   extranrpeclient:
@@ -207,7 +206,6 @@ host_settings:
     - quantz.debian.org
     - ravel.debian.org
     - reger.debian.org
-    - spohr.debian.org
     - tye.debian.org
     - vento.debian.org
   apache2_security_mirror:
