@@ -39,7 +39,7 @@ class dacs {
 		purge   => true
 	}
 	file { '/etc/logrotate.d/dacs':
-		source  => 'puppet:///modules/dacs/common/dacs.logrotate',
+		content => template('dacs/dacs.logrotate.erb'),
 		owner => root,
 		group => root,
 		mode  => '0644',

@@ -11,6 +11,10 @@
 	compress
 	delaycompress
 	create 640 www-data www-data
+<% if @lsbmajdistrelease >= '7' -%>
 	su root www-data
+<% else -%>
+	notifempty
+<% end -%>
 	sharedscripts
 }
