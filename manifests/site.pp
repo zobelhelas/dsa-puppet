@@ -95,7 +95,7 @@ node default {
 		include dnsextras::entries
 	}
 
-	if $::hostname in [diabelli,nono,spohr] {
+	if $::hostname in [diabelli,nono] {
 		include dacs
 	}
 
