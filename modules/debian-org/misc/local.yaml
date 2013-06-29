@@ -225,13 +225,9 @@ host_settings:
     - senfl.debian.org
   not-bacula-client:
     - berlioz.debian.org
-    - blavet.debian.org
     - cilea.debian.org
     - coincy.debian.org
-    - danzi.debian.org
     - franck.debian.org
-    - gombert.debian.org
-    - handel.debian.org
     - lotti.debian.org
     - mailly.debian.org
     - merikanto.debian.org
@@ -244,7 +240,6 @@ host_settings:
     - ries.debian.org
     - senfl.debian.org
     - sibelius.debian.org
-    - sonntag.debian.org
     - stabile.debian.org
     # mirrors, secondaries, syncproxies
     - beach.debian.org
