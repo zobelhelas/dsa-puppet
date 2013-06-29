@@ -1104,7 +1104,7 @@ postmasterish:
   unseen = true
   expn = true
   local_parts = +postmasterish
-  domains = +handled_domains
+  domains = +virtual_domains : +bsmtp_domains
   data = debian-admin@debian.org
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
 
