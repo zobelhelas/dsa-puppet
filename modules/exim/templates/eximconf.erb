@@ -798,7 +798,7 @@ check_recipient:
 
 <%- end -%>
   accept  local_parts   = +postmasterish
-          domains       = +handled_domains
+          domains       = +virtual_domains : +bsmtp_domains
 
   deny    hosts        = ${if exists{/etc/exim4/host_blacklist}{/etc/exim4/host_blacklist}{}}
           message      = I'm terribly sorry, but it seems you have been blacklisted
