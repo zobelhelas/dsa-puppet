@@ -38,7 +38,7 @@ class exim {
 		ensure  => absent,
 		force   => true,
 	}
-        # git checkouts through puppet.  yummy.
+	# git checkouts through puppet.  yummy.
 	file { '/etc/exim4/email-virtualdomains':
 		recurse => true,
 		source => 'puppet:///modules/exim/email-virtualdomains',
@@ -150,11 +150,11 @@ class exim {
 		domain      => 'ip6',
 		rule        => "&SERVICE_RANGE(tcp, $mail_port, \$SMTP_V6_SOURCES)"
 	}
-	dnsextras::tlsa_record{ "tlsa-mailport":
-		zone => 'debian.org',
+	dnsextras::tlsa_record{ 'tlsa-mailport':
+		zone     => 'debian.org',
 		certfile => "/etc/puppet/modules/exim/files/certs/${::fqdn}.crt",
-		port => "$mail_port",
-		hostname => "$::fqdn",
+		port     => $mail_port,
+		hostname => $::fqdn,
 	}
 
 	# Do we actually want this?  I'm only doing it because it's harmless
@@ -166,4 +166,17 @@ class exim {
 		rule        => '&SERVICE(tcp, 113)'
 	}
 
+	# These only affect the alias @$fqdn, not say, @debian.org
+
+	mailalias { [
+		'postmaster',
+		'hostmaster',
+		'usenet',
+		'webmaster',
+		'abuse',
+		'noc',
+		'security',
+	]:
+		ensure => absent
+	}
 }
