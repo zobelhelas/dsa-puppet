@@ -277,10 +277,8 @@ host_settings:
     - gabrielli.debian.org
     - geo1.debian.org
     - geo2.debian.org
-    - glinka.debian.org
     - gluck.debian.org
     - gombert.debian.org
-    - grieg.debian.org
     - handel.debian.org
     - harris.debian.org
     - hartmann.debian.org
@@ -299,7 +297,6 @@ host_settings:
     - mailly.debian.org
     - mayer.debian.org
     - mayr.debian.org
-    - menotti.debian.org
     - merikanto.debian.org
     - merulo.debian.org
     - milanollo.debian.org
@@ -341,10 +338,8 @@ host_settings:
     - stadler.debian.org
     - stanley.debian.org
     - steffani.debian.org
-    - tchaikovsky.debian.org
     - traetta.debian.org
     - tristano.debian.org
-    - ullmann.debian.org
     - unger.debian.org
     - villa.debian.org
     - vitry.debian.org
