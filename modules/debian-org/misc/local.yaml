@@ -224,8 +224,91 @@ host_settings:
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
+    - berlioz.debian.org
+    - blavet.debian.org
+    - cilea.debian.org
+    - coincy.debian.org
+    - danzi.debian.org
+    - franck.debian.org
+    - gombert.debian.org
+    - handel.debian.org
+    - lotti.debian.org
+    - mailly.debian.org
+    - merikanto.debian.org
+    - muffat.debian.org
+    - paganini.debian.org
+    - pettersson.debian.org
+    - rautavaara.debian.org
+    - ravel.debian.org
+    - respighi.debian.org
+    - ries.debian.org
+    - senfl.debian.org
+    - sibelius.debian.org
+    - sonntag.debian.org
+    - stabile.debian.org
+    # mirrors, secondaries, syncproxies
+    - beach.debian.org
+    - bizet.debian.org
+    - busoni.debian.org
+    - diamond.debian.org
+    - geo1.debian.org
+    - geo2.debian.org
+    - gluck.debian.org
+    - klecker.debian.org
+    - lobos.debian.org
+    - milanollo.debian.org
+    - pkgmirror-1and1.debian.org
+    - rietz.debian.org
+    - schein.debian.org
+    - saens.debian.org
+    - santoro.debian.org
+    - senfter.debian.org
+    - spohr.debian.org
+    - stanley.debian.org
+    - steffani.debian.org
+    - villa.debian.org
+    - wieck.debian.org
+    # pending cleanup/repurpose/decommission
+    - morricone.debian.org
+    - scelsi.debian.org
+    - unger.debian.org
+    - vitry.debian.org
+    # kvm host
+    - bertali.debian.org
+    - bm-bl3.debian.org
+    - bm-bl4.debian.org
+    - bm-bl5.debian.org
+    - bm-bl6.debian.org
+    - bm-bl7.debian.org
+    - bm-bl8.debian.org
+    - bm-bl9.debian.org
+    - boito.debian.org
+    - byrd.debian.org
+    - clementi.debian.org
+    - czerny.debian.org
+    - dijkstra.debian.org
+    - luchesi.debian.org
+    - pasquini.debian.org
+    - powell.debian.org
+    - rossini.debian.org
+    - salieri.debian.org
+    - traetta.debian.org
+    - tristano.debian.org
+    # porterbox
     - abel.debian.org
     - agricola.debian.org
+    - barriere.debian.org
+    - binet.debian.org
+    - eder.debian.org
+    - falla.debian.org
+    - fischer.debian.org
+    - gabrielli.debian.org
+    - harris.debian.org
+    - merulo.debian.org
+    - partch.debian.org
+    - smetana.debian.org
+    - zelenka.debian.org
+    # buildd
     - alain.debian.org
     - alkman.debian.org
     - alwyn.debian.org
@@ -238,49 +321,14 @@ host_settings:
     - babin.debian.org
     - ball.debian.org
     - barber.debian.org
-    - barriere.debian.org
-    - beach.debian.org
-    - berlioz.debian.org
-    - bertali.debian.org
-    - binet.debian.org
-    - bizet.debian.org
-    - blavet.debian.org
-    - bm-bl3.debian.org
-    - bm-bl4.debian.org
-    - bm-bl5.debian.org
-    - bm-bl6.debian.org
-    - bm-bl7.debian.org
-    - bm-bl8.debian.org
-    - bm-bl9.debian.org
-    - boito.debian.org
     - brahms.debian.org
-    - busoni.debian.org
-    - byrd.debian.org
     - caballero.debian.org
-    - cilea.debian.org
-    - clementi.debian.org
-    - coincy.debian.org
     - corelli.debian.org
-    - czerny.debian.org
-    - danzi.debian.org
-    - diamond.debian.org
-    - dijkstra.debian.org
-    - eder.debian.org
     - eysler.debian.org
-    - falla.debian.org
     - fano.debian.org
     - fayrfax.debian.org
     - fils.debian.org
     - finzi.debian.org
-    - fischer.debian.org
-    - franck.debian.org
-    - gabrielli.debian.org
-    - geo1.debian.org
-    - geo2.debian.org
-    - gluck.debian.org
-    - gombert.debian.org
-    - handel.debian.org
-    - harris.debian.org
     - hartmann.debian.org
     - hasse.debian.org
     - henze.debian.org
@@ -288,65 +336,22 @@ host_settings:
     - hoiby.debian.org
     - howells.debian.org
     - hummel.debian.org
-    - klecker.debian.org
     - lebrun.debian.org
-    - lobos.debian.org
-    - lotti.debian.org
     - lucatelli.debian.org
-    - luchesi.debian.org
-    - mailly.debian.org
     - mayer.debian.org
     - mayr.debian.org
-    - merikanto.debian.org
-    - merulo.debian.org
-    - milanollo.debian.org
-    - morricone.debian.org
-    - muffat.debian.org
     - mundy.debian.org
-    - paganini.debian.org
     - parry.debian.org
-    - partch.debian.org
-    - pasquini.debian.org
-    - pettersson.debian.org
-    - pkgmirror-1and1.debian.org
     - porpora.debian.org
     - poulenc.debian.org
-    - powell.debian.org
     - praetorius.debian.org
-    - rautavaara.debian.org
-    - ravel.debian.org
     - rem.debian.org
-    - respighi.debian.org
-    - ries.debian.org
-    - rietz.debian.org
-    - rossini.debian.org
-    - saens.debian.org
-    - salieri.debian.org
-    - santoro.debian.org
-    - scelsi.debian.org
-    - schein.debian.org
     - schroeder.debian.org
-    - senfl.debian.org
-    - senfter.debian.org
-    - sibelius.debian.org
-    - smetana.debian.org
     - sompek.debian.org
-    - sonntag.debian.org
-    - spohr.debian.org
     - spontini.debian.org
-    - stabile.debian.org
     - stadler.debian.org
-    - stanley.debian.org
-    - steffani.debian.org
-    - traetta.debian.org
-    - tristano.debian.org
-    - unger.debian.org
-    - villa.debian.org
-    - vitry.debian.org
-    - wieck.debian.org
     - zandonai.debian.org
     - zappa.debian.org
-    - zelenka.debian.org
     - zemlinsky.debian.org
   broken-rtc:
     - abel.debian.org
