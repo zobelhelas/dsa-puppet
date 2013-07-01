@@ -9,7 +9,9 @@ class munin::master {
 		require => Package['munin'];
 	}
 
-	ssl::service { 'munin.debian.org': }
+	ssl::service { 'munin.debian.org':
+		notify => Service['apache2'],
+	}
 	file { '/etc/munin/munin-conf.d':
 		ensure  => directory,
 		mode    => '0755',

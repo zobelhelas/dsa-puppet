@@ -1,4 +1,4 @@
-define ssl::service($ensure = present, $tlsaport = 443) {
+define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
 	$link_target = $ensure ? {
 		present => link,
 		absent  => absent,
@@ -7,7 +7,7 @@ define ssl::service($ensure = present, $tlsaport = 443) {
 
 	file { "/etc/ssl/debian/certs/$name.crt":
 		source => "puppet:///modules/ssl/servicecerts/${name}.crt",
-		notify => Exec['c_rehash /etc/ssl/debian/certs'],
+		notify => [ Exec['c_rehash /etc/ssl/debian/certs'], $notify ],
 	}
 
 	if $tlsaport > 0 {
