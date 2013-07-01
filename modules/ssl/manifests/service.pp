@@ -5,13 +5,6 @@ define ssl::service($ensure = present, $tlsaport = 443) {
 		default => fail ( "Unknown ensure value: '$ensure'" ),
 	}
 
-	file { "/etc/munin/plugins/${name}":
-		ensure  => $link_target,
-		target  => "/usr/share/munin/plugins/${link}",
-		require => Package['munin-node'],
-		notify  => Service['munin-node'],
-	}
-
 	file { "/etc/ssl/debian/certs/$name.crt":
 		source => "puppet:///modules/ssl/servicecerts/${name}.crt",
 		notify => Exec['c_rehash /etc/ssl/debian/certs'],
