@@ -18,6 +18,6 @@ class roles::syncproxy {
 	file { '/etc/rsyncd/debian.secrets':
 		owner => 'root',
 		group => 'mirroradm',
-		mode => 0664,
+		mode => 0660,
 	}
 }
