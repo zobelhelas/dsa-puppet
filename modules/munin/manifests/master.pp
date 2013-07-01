@@ -9,17 +9,15 @@ class munin::master {
 		require => Package['munin'];
 	}
 
-	if $::hostname == 'menotti' {
-		ssl::service { 'munin.debian.org': }
-		file { '/etc/munin/munin-conf.d':
-			ensure  => directory,
-			mode    => '0755',
-			purge   => true,
-			force   => true,
-			recurse => true,
-			source  => 'puppet:///files/empty/',
-		}
-
-		Munin::Master-per-node<<| |>>
+	ssl::service { 'munin.debian.org': }
+	file { '/etc/munin/munin-conf.d':
+		ensure  => directory,
+		mode    => '0755',
+		purge   => true,
+		force   => true,
+		recurse => true,
+		source  => 'puppet:///files/empty/',
 	}
+
+	Munin::Master-per-node<<| |>>
 }

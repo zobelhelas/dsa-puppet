@@ -3,42 +3,11 @@
 ### USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<% if hostname != "menotti" -%>
-
-dbdir   /var/lib/munin
-htmldir /var/cache/munin/www
-logdir  /var/log/munin
-rundir  /var/run/munin
-tmpldir /etc/munin/templates
-
-<% else -%>
 # number of updaters to run
 max_processes 96
 rrdcached_socket /var/run/munin/rrdcached.sock/sock
 
 #html_strategy cgi
-<% end -%>
 graph_strategy cgi
 
 includedir /etc/munin/munin-conf.d
-
-<% if hostname != "menotti" -%>
-
-dbdir   /var/lib/munin
-htmldir /var/cache/munin/www
-logdir  /var/log/munin
-rundir  /var/run/munin
-tmpldir /etc/munin/templates
-
-<%= out = ''
-    scope.lookupvar('site::localinfo').keys.sort.each do |node|
-       if not scope.lookupvar('site::localinfo')[node]['no_munin']
-          out += '[' + node + ']
-    address ' + node + '
-
-'
-       end 
-    end
-out
-%>
-<% end -%>
