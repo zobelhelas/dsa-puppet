@@ -3,21 +3,11 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<%
-	output = @rule
-	if @description.length > 0
-		output += ' mod comment comment "'
-		output += @description
-		output += '"'
-	end
-	unless @notarule
-		output += ';'
-	end
--%>
-domain <%= @domain %> {
-	table <%= @table %> {
-		chain <%= @chain %> {
-			<%= output -%>
+domain <%= domain %> {
+	table <%= table %> {
+		chain <%= chain %> {
+			<%= rule %><% unless notarule -%>;<% end -%>
+
 		}
 	}
 }
