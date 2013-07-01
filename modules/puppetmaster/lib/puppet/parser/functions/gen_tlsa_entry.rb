@@ -15,6 +15,7 @@ module Puppet::Parser::Functions
     certfile += ".new"
     if File.exist?(certfile)
       cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', certfile, '--port', port.to_s, hostname]
+      new_entry = ''
       IO.popen(cmd, "r") {|i| new_entry = i.read }
       if not res.include?(new_entry)
         res << new_entry
