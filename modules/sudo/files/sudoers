@@ -22,7 +22,6 @@ Defaults	passprompt="[sudo] password for %u on %h: "
 Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Host alias specification
-Host_Alias	QAHOSTS		= quantz, stabile
 Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
 Host_Alias	FTPHOSTS	= franck, morricone
@@ -113,7 +112,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %wbadm		ALL=(wbadm)	ALL
 %mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki,wikiweb)	ALL
-%qa-core	QAHOSTS=(qa,qa-web-rolex)	ALL
+%qa-core	ALL=(qa,qa-web-rolex)	ALL
 %gobby		gombert=(gobby)	ALL
 
 # the dak user gets to run stuff as dak-unpriv (for things like lintian checks)
