@@ -19,7 +19,7 @@
 </Macro>
 
 
-<Macro common-static-vhost $name>
+<Macro common-static-vhost-with-extra $name $extra>
 	<Virtualhost <%= vhost_listen %> >
 		ServerName $name
 		ServerAdmin debian-admin@lists.debian.org
@@ -28,6 +28,7 @@
 		CustomLog /var/log/apache2/$name-access.log privacy
 
 		Use common-static-base $name
+		$extra
 	</VirtualHost>
 </Macro>
 
@@ -44,6 +45,10 @@
 
 		Use common-static-base $name
 	</VirtualHost>
+</Macro>
+
+<Macro common-static-vhost $name>
+	Use common-static-vhost-with-extra $name "# nada"
 </Macro>
 
 
