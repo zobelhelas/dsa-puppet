@@ -65,7 +65,6 @@ nameinfo:
   jenkins.debian.org: John Jenkins (1592 - 1678)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
-  kokkonen.debian.org: Joonas Kokkonen (November 13th, 1921 - October 1st, 1996)
   lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
@@ -220,7 +219,6 @@ host_settings:
   apache2_www_mirror:
     - bellini.debian.org
     - gluck.debian.org
-    - kokkonen.debian.org
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
