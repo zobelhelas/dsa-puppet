@@ -148,6 +148,7 @@ joerg		unger=(ALL)		/usr/bin/sispmctl -t [12], /usr/bin/sispmctl -g [12]
 wbadm		grieg=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
+dak		franck=(backports)	NOPASSWD: /home/backports/bin/update-archive
 planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
 # archvsync triggers snapshot
 archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
