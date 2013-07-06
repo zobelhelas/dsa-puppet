@@ -31,17 +31,6 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 ))'
 			}
 		}
-		grieg: {
-			@ferm::rule { 'dsa-postgres-ullmann':
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 206.12.19.141/32 ))'
-			}
-			@ferm::rule { 'dsa-postgres-ullmann6':
-				domain          => '(ip6)',
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2607:f8f0:610:4000:6564:a62:ce0c:138d/128 ))'
-			}
-		}
 		czerny,clementi: {
 			@ferm::rule { 'dsa-upsmon':
 				description     => 'Allow upsmon access',
@@ -60,51 +49,6 @@ class ferm::per-host {
 				table		=> 'filter',
 				chain		=> 'OUTPUT',
 				rule		=> 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
-			}
-		}
-		franck: {
-			@ferm::rule { 'dsa-postgres-franck':
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.10/32 ))'
-			}
-			@ferm::rule { 'dsa-postgres-franck6':
-				domain          => 'ip6',
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
-			}
-		}
-		danzi: {
-			@ferm::rule { 'dsa-postgres-danzi':
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 194.177.211.200/32 ))'
-			}
-			@ferm::rule { 'dsa-postgres-danzi6':
-				domain          => 'ip6',
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2607:f8f0:610:4000::/64 2001:648:2ffc:deb:214:22ff:fe74:1fa/128 ))'
-			}
-
-			@ferm::rule { 'dsa-postgres2-danzi':
-				description     => 'Allow postgress access2',
-				rule            => '&SERVICE_RANGE(tcp, 5437, ( 206.12.19.0/24 ))'
-			}
-			@ferm::rule { 'dsa-postgres3-danzi':
-				description     => 'Allow postgress access3',
-				rule            => '&SERVICE_RANGE(tcp, 5436, ( 206.12.19.0/24 ))'
-			}
-			@ferm::rule { 'dsa-postgres4-danzi':
-				description     => 'Allow postgress access4',
-				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
-			}
-
-			@ferm::rule { 'dsa-postgres-bacula-danzi':
-				description     => 'Allow postgress access1',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 206.12.19.139/32 ))'
-			}
-			@ferm::rule { 'dsa-postgres-bacula-danzi6':
-				domain          => 'ip6',
-				description     => 'Allow postgress access1',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2607:f8f0:610:4000:6564:a62:ce0c:138b/128 ))'
 			}
 		}
 		abel,alwyn,rietz: {
@@ -285,5 +229,65 @@ REJECT reject-with icmp-admin-prohibited
 			}
 		}
 		default: {}
+	}
+
+	# postgres stuff
+	case $::hostname {
+		grieg: {
+			@ferm::rule { 'dsa-postgres-ullmann':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 206.12.19.141/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-ullmann6':
+				domain          => '(ip6)',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2607:f8f0:610:4000:6564:a62:ce0c:138d/128 ))'
+			}
+		}
+		franck: {
+			@ferm::rule { 'dsa-postgres-franck':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.10/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-franck6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
+			}
+		}
+		danzi: {
+			@ferm::rule { 'dsa-postgres-danzi':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 206.12.19.0/24 194.177.211.200/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-danzi6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2607:f8f0:610:4000::/64 2001:648:2ffc:deb:214:22ff:fe74:1fa/128 ))'
+			}
+
+			@ferm::rule { 'dsa-postgres2-danzi':
+				description     => 'Allow postgress access2',
+				rule            => '&SERVICE_RANGE(tcp, 5437, ( 206.12.19.0/24 ))'
+			}
+			@ferm::rule { 'dsa-postgres3-danzi':
+				description     => 'Allow postgress access3',
+				rule            => '&SERVICE_RANGE(tcp, 5436, ( 206.12.19.0/24 ))'
+			}
+			@ferm::rule { 'dsa-postgres4-danzi':
+				description     => 'Allow postgress access4',
+				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
+			}
+
+			@ferm::rule { 'dsa-postgres-bacula-danzi':
+				description     => 'Allow postgress access1',
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 206.12.19.139/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-bacula-danzi6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access1',
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2607:f8f0:610:4000:6564:a62:ce0c:138b/128 ))'
+			}
+		}
 	}
 }
