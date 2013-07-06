@@ -255,6 +255,17 @@ REJECT reject-with icmp-admin-prohibited
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
 			}
 		}
+		bmdb1: {
+			@ferm::rule { 'dsa-postgres-dak':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-dak':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2001:41c8:1000:21::21:11/128 ))'
+			}
+		}
 		danzi: {
 			@ferm::rule { 'dsa-postgres-danzi':
 				description     => 'Allow postgress access',
