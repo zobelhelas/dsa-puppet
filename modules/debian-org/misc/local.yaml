@@ -384,7 +384,6 @@ host_settings:
     - salieri.debian.org
   static_master:
     - bizet.debian.org
-    - coccia.debian.org
     - franck.debian.org
   static_mirror:
     - busoni.debian.org
@@ -392,7 +391,6 @@ host_settings:
     - stanley.debian.org
     - senfter.debian.org
   static_source:
-    - coccia.debian.org
     - master.debian.org
     - ries.debian.org
     - franck.debian.org
