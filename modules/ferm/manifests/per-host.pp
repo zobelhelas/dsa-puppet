@@ -63,11 +63,11 @@ class ferm::per-host {
 			}
 		}
 		franck: {
-			@ferm::rule { 'dsa-postgres-danzi':
+			@ferm::rule { 'dsa-postgres-franck':
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.10/32 ))'
 			}
-			@ferm::rule { 'dsa-postgres-danzi6':
+			@ferm::rule { 'dsa-postgres-franck6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
