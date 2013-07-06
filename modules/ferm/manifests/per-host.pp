@@ -62,6 +62,17 @@ class ferm::per-host {
 				rule		=> 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
 			}
 		}
+		franck: {
+			@ferm::rule { 'dsa-postgres-danzi':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.10/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-danzi6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
+			}
+		}
 		danzi: {
 			@ferm::rule { 'dsa-postgres-danzi':
 				description     => 'Allow postgress access',
