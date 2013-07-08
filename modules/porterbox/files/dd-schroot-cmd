@@ -154,7 +154,12 @@ class AptSchroot:
         elif op == "install":
             self.apt_install(args)
         elif op == "build-dep":
-            self.apt_build_dep(args)
+            try:
+                args.remove("--arch-only")
+                archonly = True
+            except ValueError:
+                archonly = False
+            self.apt_build_dep(args, archonly)
         else:
             die("Invalid operation %s"%(op,))
 
@@ -174,8 +179,9 @@ class AptSchroot:
     def apt_install(self, packages):
         self.apt_simulate_and_ask(['install', '--'] + packages)
 
-    def apt_build_dep(self, packages):
-        self.apt_simulate_and_ask(['build-dep', '--'] + packages)
+    def apt_build_dep(self, packages, archonly=False):
+        cmd = ['build-dep'] + (['--arch-only'] if archonly else []) + ['--']
+        self.apt_simulate_and_ask(cmd + packages)
 
     def apt_simulate_and_ask(self, cmd, split_download=True, run_clean=True):
         if not self.assume_yes:
