@@ -142,7 +142,7 @@ sil:
     - 86.59.118.144/28
     - 2001:858:2:2::/64
   searchpaths: [debprivate-sil.debian.org]
-  nameservers: [86.59.118.147, 86.59.118.148]
+  nameservers: []
   mirror-debian: http://ftp.at.debian.org/debian/
 ubcece:
   netrange:
