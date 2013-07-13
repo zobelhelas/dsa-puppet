@@ -113,29 +113,6 @@ class ferm::per-host {
 				description     => 'Allow ldaps access',
 				rule            => '&SERVICE(tcp, 636)'
 			}
-			@ferm::rule { 'dsa-vpn':
-				description     => 'Allow openvpn access',
-				rule            => '&SERVICE(udp, 17257)'
-			}
-			@ferm::rule { 'dsa-routing':
-				description     => 'forward chain',
-				chain           => 'FORWARD',
-				rule            => 'policy ACCEPT;
-mod state state (ESTABLISHED RELATED) ACCEPT;
-interface tun+ ACCEPT;
-REJECT reject-with icmp-admin-prohibited
-'
-			}
-			@ferm::rule { 'dsa-vpn-mark':
-				table           => 'mangle',
-				chain           => 'PREROUTING',
-				rule            => 'interface tun+ MARK set-mark 1',
-			}
-			@ferm::rule { 'dsa-vpn-nat':
-				table           => 'nat',
-				chain           => 'POSTROUTING',
-				rule            => 'outerface !tun+ mod mark mark 1 MASQUERADE',
-			}
 		}
 		cilea: {
 			ferm::module { 'nf_conntrack_sip': }
@@ -298,6 +275,34 @@ REJECT reject-with icmp-admin-prohibited
 				domain          => 'ip6',
 				description     => 'Allow postgress access1',
 				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2607:f8f0:610:4000:6564:a62:ce0c:138b/128 ))'
+			}
+		}
+	}
+	# vpn fu
+	case $::hostname {
+		draghi,eysler: {
+			@ferm::rule { 'dsa-vpn':
+				description     => 'Allow openvpn access',
+				rule            => '&SERVICE(udp, 17257)'
+			}
+			@ferm::rule { 'dsa-routing':
+				description     => 'forward chain',
+				chain           => 'FORWARD',
+				rule            => 'policy ACCEPT;
+mod state state (ESTABLISHED RELATED) ACCEPT;
+interface tun+ ACCEPT;
+REJECT reject-with icmp-admin-prohibited
+'
+			}
+			@ferm::rule { 'dsa-vpn-mark':
+				table           => 'mangle',
+				chain           => 'PREROUTING',
+				rule            => 'interface tun+ MARK set-mark 1',
+			}
+			@ferm::rule { 'dsa-vpn-nat':
+				table           => 'nat',
+				chain           => 'POSTROUTING',
+				rule            => 'outerface !tun+ mod mark mark 1 MASQUERADE',
 			}
 		}
 	}
