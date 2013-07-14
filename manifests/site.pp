@@ -99,7 +99,7 @@ node default {
 		include dacs
 	}
 
-	if $::hostname in [beethoven,stabile,beach,glinka,milanollo,rautavaara] {
+	if $::hostname in [stabile,beach,glinka,milanollo,rautavaara] {
 		include nfs-server
 	}
 
