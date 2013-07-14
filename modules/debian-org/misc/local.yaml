@@ -223,17 +223,21 @@ host_settings:
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
-    - cilea.debian.org
     - franck.debian.org
     - ravel.debian.org
     - ries.debian.org
     - sibelius.debian.org
     - stabile.debian.org
     # decommissioning
+    - cilea.debian.org
     - merikanto.debian.org
+    - morricone.debian.org
     - paganini.debian.org
     - rautavaara.debian.org
     - respighi.debian.org
+    - scelsi.debian.org
+    - unger.debian.org
+    - vitry.debian.org
     # dead/not running
     - berlioz.debian.org
     - coincy.debian.org
@@ -259,11 +263,6 @@ host_settings:
     - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
-    # pending cleanup/repurpose/decommission
-    - morricone.debian.org
-    - scelsi.debian.org
-    - unger.debian.org
-    - vitry.debian.org
     # kvm host
     - bertali.debian.org
     - bm-bl3.debian.org
