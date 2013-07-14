@@ -223,23 +223,20 @@ host_settings:
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
-    - berlioz.debian.org
     - cilea.debian.org
-    - coincy.debian.org
     - franck.debian.org
-    - lotti.debian.org
-    - mailly.debian.org
-    - merikanto.debian.org
-    - muffat.debian.org
-    - paganini.debian.org
-    - pettersson.debian.org
-    - rautavaara.debian.org
     - ravel.debian.org
-    - respighi.debian.org
     - ries.debian.org
-    - senfl.debian.org
     - sibelius.debian.org
     - stabile.debian.org
+    # decommissioning
+    - merikanto.debian.org
+    - paganini.debian.org
+    - rautavaara.debian.org
+    - respighi.debian.org
+    # dead/not running
+    - berlioz.debian.org
+    - coincy.debian.org
     # mirrors, secondaries, syncproxies
     - beach.debian.org
     - bizet.debian.org
