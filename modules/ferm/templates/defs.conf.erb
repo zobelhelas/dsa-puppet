@@ -19,153 +19,54 @@
  proto (tcp udp) dport $port @subchain "$port" { saddr ($srange) ACCEPT; }"
 }
 
-@def $HOST_MAILRELAY_V4 = (<%=
-  mailrelay = []
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['mailrelay']
-          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-             next if ip =~ /:/
-             mailrelay << ip
-          end
+<%
+  rolehost={}
+  localinfo = scope.lookupvar('site::localinfo')
+  allnodeinfo = scope.lookupvar('site::allnodeinfo')
+
+  %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master}.each do |role|
+    rolehost[role] = []
+    localinfo.keys.sort.each do |node|
+      if localinfo[node][role]
+        rolehost[role] << allnodeinfo[node]['ipHostNumber']
       end
+    end
+    rolehost[role].flatten!
   end
 
-  mailrelay.join(' ')
-%>);
-
-@def $HOST_MAILRELAY_V6 = (<%=
-  mailrelay = []
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['mailrelay']
-          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-             next if ip =~ /\./
-             mailrelay << ip
-          end
-      end
+  dbs = []
+  allnodeinfo.keys.sort.each do |node|
+      next unless allnodeinfo[node].has_key?('ipHostNumber')
+      dbs << allnodeinfo[node]['ipHostNumber']
   end
+  dbs.flatten!
+%>
 
-  mailrelay.join(' ')
-%>);
-
+@def $HOST_MAILRELAY_V4 = (<%= scope.function_filter_ipv4([rolehost['mailrelay']]).uniq.join(' ') %>);
+@def $HOST_MAILRELAY_V6 = (<%= scope.function_filter_ipv6([rolehost['mailrelay']]).uniq.join(' ') %>);
 @def $HOST_MAILRELAY = ( $HOST_MAILRELAY_V4 $HOST_MAILRELAY_V6 );
 
-@def $HOST_NAGIOS_V4 = (<%=
-  nagii = []
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['nagiosmaster'] or scope.lookupvar('site::localinfo')[node]['extranrpeclient']
-          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-             next if ip =~ /:/
-             nagii << ip
-          end
-      end
-  end
-
-  nagii.join(' ')
-%>);
-
-@def $HOST_NAGIOS_V6 = (<%=
-  nagii = []
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['nagiosmaster'] or scope.lookupvar('site::localinfo')[node]['extranrpeclient']
-          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-             next if ip =~ /\./
-             nagii << ip
-          end
-      end
-  end
-
-  nagii.join(' ')
-%>);
-
+@def $HOST_NAGIOS_V4 = (<%= scope.function_filter_ipv4([rolehost['nagiosmaster'] + rolehost['extranrpeclient']]).uniq.join(' ') %>);
+@def $HOST_NAGIOS_V6 = (<%= scope.function_filter_ipv6([rolehost['nagiosmaster'] + rolehost['extranrpeclient']]).uniq.join(' ') %>);
 @def $HOST_NAGIOS = ( $HOST_NAGIOS_V4 $HOST_NAGIOS_V6 );
 
-@def $HOST_MUNIN_V4 = (<%=
-  munins = []
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['muninmaster']
-          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-             next if ip =~ /:/
-             munins << ip
-          end
-      end
-  end
-
-  munins.join(' ')
-%>);
-
-@def $HOST_MUNIN_V6 = (<%=
-  munins = []
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['muninmaster']
-          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-             next if ip =~ /\./
-             munins << ip
-          end
-      end
-  end
-
-  munins.join(' ')
-%>);
-
+@def $HOST_MUNIN_V4 = (<%= scope.function_filter_ipv4([rolehost['muninmaster']]).uniq.join(' ') %>);
+@def $HOST_MUNIN_V6 = (<%= scope.function_filter_ipv6([rolehost['muninmaster']]).uniq.join(' ') %>);
 @def $HOST_MUNIN = ( $HOST_MUNIN_V4 $HOST_MUNIN_V6 );
 
-@def $HOST_DB_V6  = (<%=
-  dbs = []
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['dbmaster']
-          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-             next if ip =~ /\./
-             dbs << ip
-          end
-      end
-  end
+@def $HOST_DB_V4 = (<%= scope.function_filter_ipv4([rolehost['dbmaster']]).uniq.join(' ') %>);
+@def $HOST_DB_V6 = (<%= scope.function_filter_ipv6([rolehost['dbmaster']]).uniq.join(' ') %>);
+@def $HOST_DB = ( $HOST_DB_V4 $HOST_DB_V6 );
 
-  dbs.join(' ')
-%>);
+@def $HOST_STATICMASTER_V4 = (<%= scope.function_filter_ipv4([rolehost['static_master']]).uniq.join(' ') %>);
+@def $HOST_STATICMASTER_V6 = (<%= scope.function_filter_ipv6([rolehost['static_master']]).uniq.join(' ') %>);
+@def $HOST_STATIC_V4 = (<%= scope.function_filter_ipv4([rolehost['static_mirror'] + rolehost['static_source'] + rolehost['static_master']]).uniq.join(' ') %>);
+@def $HOST_STATIC_V6 = (<%= scope.function_filter_ipv6([rolehost['static_mirror'] + rolehost['static_source'] + rolehost['static_master']]).uniq.join(' ') %>);
 
-@def $HOST_DB_V4 = (<%=
-  dbs = []
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['dbmaster']
-          scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-             next if ip =~ /:/
-             dbs << ip
-          end
-      end
-  end
-
-  dbs.join(' ')
-%>);
-
-@def $HOST_DB = ($HOST_DB_V4 $HOST_DB_V6);
-
-@def $HOST_DEBIAN_V4 = (<%=
-  dbs = []
-  scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
-      next unless scope.lookupvar('site::allnodeinfo')[node].has_key?('ipHostNumber')
-      scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-         next if ip =~ /:/
-         dbs << ip
-      end
-  end
-
-  dbs.join(' ')
-%>);
-
-@def $HOST_DEBIAN_V6  = (<%=
-  dbs = []
-  scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
-      next unless scope.lookupvar('site::allnodeinfo')[node].has_key?('ipHostNumber')
-      scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
-         next if ip =~ /\./
-         dbs << ip
-      end
-  end
-
-  dbs.join(' ')
-%>);
-
+@def $HOST_DEBIAN_V4 = (<%= scope.function_filter_ipv4([dbs]).uniq.join(' ') %>);
+@def $HOST_DEBIAN_V6 = (<%= scope.function_filter_ipv6([dbs]).uniq.join(' ') %>);
 @def $HOST_DEBIAN = ($HOST_DEBIAN_V4 $HOST_DEBIAN_V6);
+
 
 @def $sgran   = (91.103.132.24/29 85.158.45.51/32);
 @def $weasel  = ();
