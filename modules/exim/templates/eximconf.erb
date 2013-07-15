@@ -929,7 +929,7 @@ check_message:
 
   deny    condition = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
           !verify   = header_syntax
-          message   = Invalid syntax in the header
+          message   = Invalid header syntax: $acl_verify_message
 
 # RFC 822 and 2822 say that headers must be ASCII.  This kinda emulates
 # postfix's strict_7bit_headers option, but only checks a few common problem
