@@ -223,7 +223,6 @@ host_settings:
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
-    - franck.debian.org
     - ries.debian.org
     - sibelius.debian.org
     - stabile.debian.org
