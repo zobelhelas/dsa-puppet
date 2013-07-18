@@ -224,7 +224,6 @@ host_settings:
     - senfl.debian.org
   not-bacula-client:
     - franck.debian.org
-    - ravel.debian.org
     - ries.debian.org
     - sibelius.debian.org
     - stabile.debian.org
