@@ -11,7 +11,7 @@ rundir=/var/run/puppet
 factpath=$vardir/lib/facter
 pluginsync=true
 # This is the default environment for all clients
-environment=production
+environment=staging
 
 <%- if scope.lookupvar('::hostname') == 'handel' -%>
 [master]
