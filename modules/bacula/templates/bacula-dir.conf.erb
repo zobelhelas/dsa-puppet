@@ -65,7 +65,7 @@ FileSet {
     File = /dev
     File = /srv/chroot
     File = /home/buildd/build-trees
-    File = "\\|grep -s -v ^# /etc/bacula/local-exclude || true"
+    File = "\\|bash -c 'grep -s -v ^# /etc/bacula/local-exclude || true'"
   }
 }
 
