@@ -92,8 +92,10 @@ FileSet {
 #  and incremental backups other days
 Schedule {
   Name = "WeeklyCycle"
-  Run = Full 1st sat at 00:35
-  Run = Differential 2nd-5th sat at 00:35
+  # fulls are automatically run if the last full backup was 40 days ago
+  # for the current value of 40 look for "Max Full Interval" in this file.
+  # Run = Full 1st sat at 00:35
+  Run = Differential sat at 00:35
   Run = Incremental sun-fri at 00:35
 }
 
@@ -158,7 +160,7 @@ JobDefs {
   FileSet = "Standard Set"
   Schedule = "WeeklyCycle"
   Messages = Standard
-  Max Full Interval = 1 month
+  Max Full Interval = 40 days
   Priority = 10
   Write Bootstrap = "/var/lib/bacula/%c.bsr"
   Maximum Concurrent Jobs = 20
