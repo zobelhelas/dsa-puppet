@@ -29,7 +29,7 @@ Client {
   FDPort = <%= bacula_client_port %>
   Catalog = MyCatalog
   Password = "<%= bacula_client_secret %>"
-  File Retention = 70 days            # a bit over 2 months
+  File Retention = 50 days            # a bit under 2 months
   Job Retention = 6 months            # six months
   AutoPrune = yes                     # Prune expired Jobs/Files
 
