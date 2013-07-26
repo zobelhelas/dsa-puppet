@@ -1438,9 +1438,16 @@ virt_users:
   transport_current_directory = ${extract{directory}{VDOMAINDATA}}
   user = ${extract{user}{VDOMAINDATA}}
   group = ${extract{group}{VDOMAINDATA}}
+  # Manually construct the forwarding address, preserving the
+  # local_part_suffix if the remote host is master.
   data = ${if exists{${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}\
-             {${lookup{$local_part}cdb\
-             {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}}
+             {${local_part:${lookup{$local_part}cdb\
+             {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}\
+             ${if eq {${domain:${lookup{$local_part}cdb\
+             {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}}{master.debian.org}{$local_part_suffix} {}}\
+             @\
+             ${domain:${lookup{$local_part}cdb\
+            {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}}}
   domains = +virtual_domains
   file_transport = address_file
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
