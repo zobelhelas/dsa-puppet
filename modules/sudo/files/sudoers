@@ -24,9 +24,9 @@ Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
 # Host alias specification
 Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
-Host_Alias	FTPHOSTS	= franck, morricone
+Host_Alias	FTPHOSTS	= franck
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
-Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, beethoven, pettersson
+Host_Alias	AACRAIDHOSTS	= bellini, paganini, respighi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= barber, biber, cilea, vitry, orff
 Host_Alias	MEGACTLHOSTS	= nielsen
