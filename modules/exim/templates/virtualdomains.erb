@@ -50,3 +50,6 @@ l10n.debian.org: user=debian-i18n group=debian-i18n directory=/srv/l10n.debian.o
 end
 vdoms
 %>
+<% if classes.include?("roles::mailrelay") -%>
+debian.org: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.org/mail
+<% end -%>
