@@ -1146,11 +1146,7 @@ userforward_verify:
   user = Debian-exim
   no_check_local_user
   directory_transport = address_directory
-<%- if fqdn == "master.debian.org" -%>
-  domains = +local_domains : debian.org
-<%- else -%>
   domains = +local_domains
-<%- end -%>
   # filter - I have disabled filtering to force users to use .forward-foo files
   # or procmail. This will make it easier to move mailers in the future
   #
@@ -1229,11 +1225,7 @@ userforward:
   check_ancestor
   check_local_user
   directory_transport = address_directory
-<%- if fqdn == "master.debian.org" -%>
-  domains = +local_domains : debian.org
-<%- else -%>
   domains = +local_domains
-<%- end -%>
   # filter - I have disabled filtering to force users to use .forward-foo files
   # or procmail. This will make it easier to move mailers in the future
   #
@@ -1261,11 +1253,7 @@ procmail:
   debug_print = "R: procmail for $local_part@$domain"
   driver = accept
   check_local_user
-<%- if fqdn == "master.debian.org" -%>
-  domains = +local_domains : debian.org
-<%- else -%>
   domains = +local_domains
-<%- end -%>
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
   local_part_suffix = -*
   local_part_suffix_optional
