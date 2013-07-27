@@ -1428,7 +1428,10 @@ virt_users:
   group = ${extract{group}{VDOMAINDATA}}
   # Manually construct the forwarding address, preserving the
   # local_part_suffix if the remote host is master.
-  data = ${if exists{${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}\
+  data = ${if and {{exists{${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}\
+                     {! eq {${lookup{$local_part}cdb\
+                            {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}\
+                           {}}}\
              {${local_part:${lookup{$local_part}cdb\
              {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}\
              ${if eq {${domain:${lookup{$local_part}cdb\
