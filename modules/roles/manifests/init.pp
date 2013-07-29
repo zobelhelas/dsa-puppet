@@ -87,4 +87,10 @@ class roles {
 	if $::hostname in [ravel] {
 		include roles::weblog_destination
 	}
+
+	if $::hostname in [soler] {
+		ssl::service { 'security-tracker.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 }
