@@ -67,9 +67,7 @@
 # RedefIgnoreNone=(no default)
 # RedefUser0=(no default)
 # RedefUser1=(no default)
-<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
 IgnoreMissing=/etc/lvm/archive/.*.vg
-<% end -%>
 
 [Attributes]
 ##
@@ -422,9 +420,8 @@ dir=1/etc/bind/geodns
 dir=1/etc/bind
 file=/etc/bind/named.conf.debian-zones
 <% end -%>
-<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
-dir=3/etc/lvm
-<% end -%>
+dir=3/etc/lvm/archive
+dir=3/etc/lvm/backup
 dir=1/etc/ferm/dsa.d
 dir=1/etc/ferm/conf.d
 dir=3/etc/facter
