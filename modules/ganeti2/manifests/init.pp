@@ -23,6 +23,8 @@ class ganeti2 {
 		}
 	}
 
+	site::linux_module { 'tun': }
+
 	file {
 		'/etc/ganeti/instance-debootstrap/variants.list':
 			content => template('ganeti2/instance-debootstrap/variants.list.erb'),
