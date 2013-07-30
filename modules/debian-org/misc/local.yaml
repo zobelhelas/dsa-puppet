@@ -77,7 +77,6 @@ nameinfo:
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
   menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st,, 2007)
-  merikanto.debian.org: Oskar Merikanto (August 5th, 1868 - February 17th, 1924)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
   milanollo.debian.org: Teresa Milanollo (August 28th, 1827 - October 25th, 1904)
   muffat.debian.org: George Muffat (June 1st, 1653 - February 23rd, 1704)
@@ -223,7 +222,6 @@ host_settings:
     - stabile.debian.org
     # decommissioning
     - cilea.debian.org
-    - merikanto.debian.org
     - paganini.debian.org
     - rautavaara.debian.org
     - respighi.debian.org

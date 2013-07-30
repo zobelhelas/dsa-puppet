@@ -22,10 +22,6 @@ class ntp::client {
 	file { '/etc/ntp.keys.d/ntpkey_iff_luchesi':
 		source => 'puppet:///modules/ntp/ntpkey_iff_luchesi.pub',
 	}
-
-	file { '/etc/ntp.keys.d/ntpkey_iff_merikanto':
-		ensure => absent,
-	}
 	file { '/etc/ntp.keys.d/ntpkey_iff_orff':
 		ensure => absent,
 	}
