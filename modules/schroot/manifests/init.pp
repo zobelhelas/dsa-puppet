@@ -15,4 +15,9 @@ class schroot {
 		source  => 'puppet:///modules/schroot/default-schroot',
 		require => Package['schroot']
 	}
+
+	file { '/etc/schroot/default/nssdatabases':
+		source  => 'puppet:///modules/schroot/nssdatabases',
+		require => Package['schroot']
+	}
 }
