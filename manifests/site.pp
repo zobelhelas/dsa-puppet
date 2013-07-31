@@ -57,7 +57,7 @@ node default {
 		}
 	}
 
-	if $::hostname == 'beethoven' {
+	if $::hostname == 'backuphost' {
 		include bacula::storage
 	}
 

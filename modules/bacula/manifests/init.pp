@@ -14,7 +14,7 @@ class bacula {
 	$bacula_director_ip       = '206.12.19.139'
 	$bacula_director_address  = 'dinis.debian.org'
 	$bacula_director_port     = 9101
-	$bacula_storage_address   = 'beethoven.debian.org'
+	$bacula_storage_address   = 'backuphost.debian.org'
 	$bacula_storage_port      = 9103
 	$bacula_client_port       = 9102
 	$bacula_db_address        = 'danzi.debian.org'
