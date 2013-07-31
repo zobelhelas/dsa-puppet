@@ -151,6 +151,7 @@ file=/usr/sbin
 file=/etc/monit
 file=/etc/monit/monit.d
 file=/etc/pam.d
+file=/etc/schroot/default
 file=/etc/sysctl.d
 file=/etc/syslog-ng
 file=/etc/stunnel
@@ -357,7 +358,6 @@ file=/etc/apt/preferences.d/buildd
 file=/etc/puppet/puppet.conf
 file=/etc/default/puppet
 file=/etc/default/postgrey
-file=/etc/default/schroot
 file=/etc/default/syslog-ng
 file=/etc/logrotate.d/exim4-paniclog
 file=/etc/logrotate.d/exim4-base
@@ -398,6 +398,9 @@ file=/etc/monit/monit.d/00debian.org
 file=/etc/cron.d/dsa-puppet-stuff
 file=/etc/cron.d/dsa-buildd
 file=/etc/cron.weekly/stunnel-ekey-restart
+file=/etc/default/schroot
+file=/etc/schroot/default/nssdatabases
+
 <% if scope.lookupvar('site::nodeinfo')['nagiosmaster'] -%>
 file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
 file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
