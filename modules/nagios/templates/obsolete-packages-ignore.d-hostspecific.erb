@@ -23,6 +23,7 @@ when "blavet.debian.org" then                                  ignore << %w{dpkg
 when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
 when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}
 when /(pasquini|tristano).debian.org/ then                     ignore << %w{ganeti-instance-image}
+when "zemlinsky.debian.org" then                               ignore << %w{initramfs-tools}
 end
 
 case fqdn
