@@ -58,6 +58,14 @@ class bacula::storage inherits bacula {
 		notify  => Exec['bacula-sd restart-when-idle']
 	}
 
+	file { "${bacula_backup_path}/Catalog":
+		ensure  => directory,
+		mode    => '0755',
+		owner   => bacula,
+		group   => bacula,
+		;
+	}
+
 	Bacula::Storage-per-Node<<| |>>
 
 }
