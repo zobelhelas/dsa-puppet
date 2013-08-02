@@ -40,7 +40,7 @@ class bacula::storage inherits bacula {
 	@ferm::rule { 'dsa-bacula-sd-v4':
 		domain      => '(ip)',
 		description => 'Allow bacula-sd access from director and clients',
-		rule        => 'proto tcp mod state state (NEW) dport (bacula-sd) @subchain \'bacula-sd\' { saddr ($HOST_DEBIAN_V4) ACCEPT; }',
+		rule        => 'proto tcp mod state state (NEW) dport (bacula-sd) @subchain \'bacula-sd\' { saddr ($HOST_DEBIAN_V4 5.153.231.125 5.153.231.126) ACCEPT; }',
 		notarule    => true,
 	}
 
