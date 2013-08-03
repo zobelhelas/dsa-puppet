@@ -218,13 +218,10 @@ host_settings:
     - senfl.debian.org
   not-bacula-client:
     - ries.debian.org
-    - sibelius.debian.org
     - stabile.debian.org
     # decommissioning
     - cilea.debian.org
-    - paganini.debian.org
     - rautavaara.debian.org
-    - respighi.debian.org
     - scelsi.debian.org
     - unger.debian.org
     - vitry.debian.org
