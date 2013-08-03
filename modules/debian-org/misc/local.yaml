@@ -274,6 +274,7 @@ host_settings:
     - babin.debian.org
     - ball.debian.org
     - barber.debian.org
+    - biber.debian.org
     - brahms.debian.org
     - caballero.debian.org
     - corelli.debian.org
