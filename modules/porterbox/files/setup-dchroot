@@ -245,6 +245,7 @@ debootstrap \
     --arch="$arch" \
     "$suite" "$rootdir" "$mirror"
 echo "$tuple" > $rootdir/etc/debian_chroot
+echo "force-unsafe-io" > $rootdir/etc/dpkg/dpkg.cfg.d/force-unsafe-io
 
 chroot "$rootdir" apt-get update
 chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends policyrcd-script-zg2
