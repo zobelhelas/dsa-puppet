@@ -48,6 +48,17 @@ command="/usr/lib/da-backup/da-backup-ssh-wrap ' + scope.lookupvar('site::allnod
 '
      end
      out
+   when "backuphost.debian.org" then
+     out = ''
+     scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
+       if %w{stabile}.include?(node) then
+         out += '# ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'][0] + '
+  command="/usr/lib/da-backup/da-backup-ssh-wrap ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'][0] + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].join(',') + '" ' + scope.lookupvar('site::allnodeinfo')[node]['sshRSAHostKey'][0] + '
+
+'
+      end
+     end
+     out
    end
 machine_keys
 %>
