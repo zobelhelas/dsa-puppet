@@ -352,6 +352,7 @@ host_settings:
     - master.debian.org
     - ries.debian.org
     - franck.debian.org
+    - philp.debian.org
     - ravel.debian.org
     - senfl.debian.org
     - wolkenstein.debian.org
