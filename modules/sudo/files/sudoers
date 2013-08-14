@@ -75,6 +75,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %auditor	ALL=(accounting)	ALL
 %backports	ALL=(backports)	ALL
 %buildd		ALL=(buildd)	ALL
+%codesearch	ALL=(codesearch)	ALL
 %d-i		ALL=(d-i)	ALL
 %dde		ALL=(dde)	ALL
 %ddtp		ALL=(ddtp)	ALL
