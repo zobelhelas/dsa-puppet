@@ -33,7 +33,6 @@ nameinfo:
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   coccia.debian.org: Maria Rosa Coccia (January 4th, 1759 - November 1833)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
-  coincy.debian.org: Gautier de Coincy (1177 - 1236)
   couper.debian.org: Mildred Couper (1887 - 1974)
   czerny.debian.org: Carl Czerny (February 21st, 1791 - July 15th, 1857)
   danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
@@ -229,7 +228,6 @@ host_settings:
     - vitry.debian.org
     # dead/not running
     - berlioz.debian.org
-    - coincy.debian.org
     # mirrors, secondaries, syncproxies
     - beach.debian.org
     - bizet.debian.org
