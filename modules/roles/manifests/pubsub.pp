@@ -46,4 +46,15 @@ class roles::pubsub {
 		provider             => 'rabbitmqctl',
 		require              => Rabbitmq_user['admin']
 	}
+
+	@ferm::rule { 'rabbitmq':
+		description => 'rabbitmq connections',
+		rule        => '&SERVICE_RANGE(tcp, 5672, $HOST_DEBIAN_V4)'
+	}
+
+	@ferm::rule { 'rabbitmq-v6':
+		domain      => 'ip6',
+		description => 'rabbitmq connections',
+		rule        => '&SERVICE_RANGE(tcp, 5672, $HOST_DEBIAN_V6)'
+	}
 }
