@@ -1,0 +1,4 @@
+[
+<% if scope.lookupvar('cluster') -%>
+{rabbit, [{cluster_nodes, ['<%= scope.lookupvar('clustermembers').to_a.flatten.join("', '") %>']}]}
+<% end -%>
