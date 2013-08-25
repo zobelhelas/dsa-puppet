@@ -77,7 +77,7 @@ class ssl {
 	}
 
 	exec { 'cleanup_dead_links':
-		command     => 'find /etc/ssl/certs -mindepth 1 -maxdepth 1 -L -type l -delete',
+		command     => 'find -L /etc/ssl/certs -mindepth 1 -maxdepth 1 -type l -delete',
 		refreshonly => true,
 		notify      => Exec['c_rehash /etc/ssl/certs']
 	}
