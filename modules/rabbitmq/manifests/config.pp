@@ -3,7 +3,6 @@
 # Sets up the rabbitmq config file
 #
 class rabbitmq::config {
-	include rabbitmq::packages
 	include concat::setup
 
 	concat { '/etc/rabbitmq/rabbitmq.config':
