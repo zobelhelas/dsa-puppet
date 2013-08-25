@@ -57,4 +57,16 @@ class roles::pubsub {
 		description => 'rabbitmq connections',
 		rule        => '&SERVICE_RANGE(tcp, 5672, $HOST_DEBIAN_V6)'
 	}
+
+	if $::hostname == $cc_master {
+		$you = $cc_secondary
+	} else {
+		$you = $cc_master
+	}
+
+	@ferm::rule { 'rabbitmq_cluster':
+		domain      => '(ip,ip6)',
+		description => 'rabbitmq cluster connections',
+		rule        => "proto tcp mod state state (NEW) saddr (${you}) ACCEPT"
+	}
 }
