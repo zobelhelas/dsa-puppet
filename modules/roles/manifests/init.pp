@@ -84,6 +84,10 @@ class roles {
 		include roles::mailrelay
 	}
 
+	if getfromhash($site::nodeinfo, 'pubsub') {
+		include roles::pubsub
+	}
+
 	if $::hostname in [ravel] {
 		include roles::weblog_destination
 	}

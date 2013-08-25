@@ -184,6 +184,9 @@ services:
     - kaufmann.debian.org
   wiki:
     - wilder.debian.org
+  pubsub:
+    - rainier.debian.org
+    - rapoport.debian.org
 host_settings:
   heavy_exim:
     - buxtehude.debian.org
@@ -304,6 +307,9 @@ host_settings:
     - zandonai.debian.org
     - zappa.debian.org
     - zemlinsky.debian.org
+    # Not worth backing up
+    - rainier.debian.org
+    - rapoport.debian.org
   broken-rtc:
     - abel.debian.org
     - alain.debian.org
