@@ -12,6 +12,7 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
 	file { "/etc/ssl/debian/certs/$name.crt-chain":
 		source => [ "puppet:///modules/ssl/servicecerts/${name}.crt-chain",  "puppet:///modules/ssl/empty" ],
 		notify => [ Exec['c_rehash /etc/ssl/debian/certs'], $notify ],
+		links => follow,
 	}
 
 	if $tlsaport > 0 {
