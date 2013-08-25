@@ -71,7 +71,7 @@ class ssl {
 	}
 
 	exec { 'make_new_service_links':
-		command     => 'cp -f --symbolic-link /etc/ssl/servicecerts/* /etc/ssl/certs',
+		command     => 'cd /etc/ssl/certs && cp -f --symbolic-link ../servicecerts/* .',
 		refreshonly => true,
 		notify      => Exec['cleanup_dead_links']
 	}
