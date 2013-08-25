@@ -17,14 +17,6 @@ class ssl {
 		force   => true,
 		source  => 'puppet:///files/empty/'
 	}
-	file { '/etc/ssl/certs':
-		ensure  => directory,
-		source  => 'puppet:///modules/ssl/servicecerts/',
-		recurse => true,
-		mode    => '0755',
-		ignore  => '*[^c][^r][^t]',
-		notify  => Exec['c_rehash /etc/ssl/certs'],
-	}
 	file { '/etc/ssl/debian/certs':
 		ensure => directory,
 		mode   => '0755',
@@ -69,9 +61,6 @@ class ssl {
 	}
 
 	exec { 'c_rehash /etc/ssl/debian/certs':
-		refreshonly => true,
-	}
-	exec { 'c_rehash /etc/ssl/certs':
 		refreshonly => true,
 	}
 }
