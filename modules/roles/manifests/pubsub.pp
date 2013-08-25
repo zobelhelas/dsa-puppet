@@ -65,7 +65,7 @@ class roles::pubsub {
 	}
 
 	@ferm::rule { 'rabbitmq_cluster':
-		domain      => '(ip,ip6)',
+		domain      => '(ip ip6)',
 		description => 'rabbitmq cluster connections',
 		rule        => "proto tcp mod state state (NEW) saddr (${you}) ACCEPT"
 	}
