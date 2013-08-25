@@ -93,4 +93,10 @@ class roles {
 			notify => Service['apache2'],
 		}
 	}
+
+	if $::hostname in [pejacevic] {
+		ssl::service { 'piuparts.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 }
