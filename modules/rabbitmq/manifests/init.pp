@@ -32,6 +32,12 @@ class rabbitmq (
 		content => template('rabbitmq/rabbitmq.conf.erb'),
 	}
 
+	concat::fragment { 'rabbit_foot':
+		target  => '/etc/rabbitmq/rabbitmq.config',
+		order   => 50,
+		content => "]}\n"
+	}
+
 	concat::fragment { 'rabbitmq_conf_foot':
 		target  => '/etc/rabbitmq/rabbitmq.config',
 		order   => 99,
