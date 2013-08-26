@@ -82,6 +82,31 @@ class roles::pubsub {
 		require => Rabbitmq_vhost['packages']
 	}
 
+	rabbitmq_plugin { 'rabbitmq_management':
+		ensure   => present,
+		provider => 'rabbitmqplugins',
+		require  => Package['rabbitmq-server'],
+		notify   => Service['rabbitmq-server']
+	}
+	rabbitmq_plugin { 'rabbitmq_management_agent':
+		ensure   => present,
+		provider => 'rabbitmqplugins',
+		require  => Package['rabbitmq-server'],
+		notify   => Service['rabbitmq-server']
+	}
+	rabbitmq_plugin { 'rabbitmq_tracing':
+		ensure   => present,
+		provider => 'rabbitmqplugins',
+		require  => Package['rabbitmq-server'],
+		notify   => Service['rabbitmq-server']
+	}
+	rabbitmq_plugin { 'rabbitmq_management_visualiser':
+		ensure   => present,
+		provider => 'rabbitmqplugins',
+		require  => Package['rabbitmq-server'],
+		notify   => Service['rabbitmq-server']
+	}
+
 	@ferm::rule { 'rabbitmq':
 		description => 'rabbitmq connections',
 		rule        => '&SERVICE_RANGE(tcp, 5671, $HOST_DEBIAN_V4)'
@@ -103,5 +128,14 @@ class roles::pubsub {
 		domain      => '(ip ip6)',
 		description => 'rabbitmq cluster connections',
 		rule        => "proto tcp mod state state (NEW) saddr (${you}) ACCEPT"
+	}
+	@ferm::rule { 'rabbitmq_mgmt':
+		description => 'rabbitmq cluster connections',
+		rule        => '&SERVICE_RANGE(tcp, 15672, $DSA_IPS)'
+	}
+	@ferm::rule { 'rabbitmq_mgmt_v6':
+		domain      => '(ip6)',
+		description => 'rabbitmq cluster connections',
+		rule        => '&SERVICE_RANGE(tcp, 15672, $DSA_V6_IPS)'
 	}
 }
