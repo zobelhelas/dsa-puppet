@@ -75,6 +75,13 @@ class roles::pubsub {
 		]
 	}
 
+	rabbitmq_policy { 'mirror-packages':
+		vhost   => 'packages',
+		match   => '*',
+		policy  => '{"ha-mode":"all"}',
+		require => Rabbitmq_vhost['packages']
+	}
+
 	@ferm::rule { 'rabbitmq':
 		description => 'rabbitmq connections',
 		rule        => '&SERVICE_RANGE(tcp, 5671, $HOST_DEBIAN_V4)'
