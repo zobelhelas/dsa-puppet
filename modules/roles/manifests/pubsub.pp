@@ -1,9 +1,10 @@
 class roles::pubsub {
 	include roles::pubsub::params
 
-	$cluster_cookie = $roles::pubsub::params::cluster_cookie
-	$admin_password = $roles::pubsub::params::admin_password
-	$ftp_password   = $roles::pubsub::params::ftp_password
+	$cluster_cookie  = $roles::pubsub::params::cluster_cookie
+	$admin_password  = $roles::pubsub::params::admin_password
+	$ftp_password    = $roles::pubsub::params::ftp_password
+	$buildd_password = $roles::pubsub::params::ftp_password
 	$cc_master      = rainier
 	$cc_secondary   = rapoport
 
@@ -45,6 +46,21 @@ class roles::pubsub {
 		provider => 'rabbitmqctl',
 	}
 
+	rabbitmq_vhost { 'buildd':
+		ensure   => present,
+		provider => 'rabbitmqctl',
+	}
+
+	rabbitmq_user_permissions { 'admin@buildd':
+		configure_permission => '.*',
+		read_permission      => '.*',
+		write_permission     => '.*',
+		provider             => 'rabbitmqctl',
+		require              => [
+			Rabbitmq_user['admin'],
+			Rabbitmq_vhost['buildd']
+		]
+	}
 	rabbitmq_user_permissions { 'admin@packages':
 		configure_permission => '.*',
 		read_permission      => '.*',
@@ -73,6 +89,24 @@ class roles::pubsub {
 			Rabbitmq_user['ftpteam'],
 			Rabbitmq_vhost['packages']
 		]
+	}
+
+	rabbitmq_user_permissions { 'buildd@buildd':
+		configure_permission => '.*',
+		read_permission      => '.*',
+		write_permission     => '.*',
+		provider             => 'rabbitmqctl',
+		require              => [
+			Rabbitmq_user['buildd'],
+			Rabbitmq_vhost['buildd']
+		]
+	}
+
+	rabbitmq_policy { 'mirror-buildd':
+		vhost   => 'buildd',
+		match   => '.*',
+		policy  => '{"ha-mode":"all"}',
+		require => Rabbitmq_vhost['buildd']
 	}
 
 	rabbitmq_policy { 'mirror-packages':
