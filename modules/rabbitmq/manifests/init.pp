@@ -44,14 +44,8 @@ class rabbitmq (
 		content => "].\n"
 	}
 
-	file { '/etc/rabbitmq/rabbitmq.conf.d/':
-		ensure  => directory,
-		require => Package['rabbitmq-server']
-	}
-
-	file { '/etc/rabbitmq/rabbitmq.conf.d/ulimit.conf':
+	file { '/etc/default/rabbitmq-server':
 		content => template('rabbitmq/rabbitmq.ulimit.erb'),
-		require => [ Package['rabbitmq-server'], File['/etc/rabbitmq/rabbitmq.conf.d/'] ],
 		notify  => Service['rabbitmq-server']
 	}
 
