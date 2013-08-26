@@ -77,13 +77,13 @@ class roles::pubsub {
 
 	@ferm::rule { 'rabbitmq':
 		description => 'rabbitmq connections',
-		rule        => '&SERVICE_RANGE(tcp, 5672, $HOST_DEBIAN_V4)'
+		rule        => '&SERVICE_RANGE(tcp, 5671, $HOST_DEBIAN_V4)'
 	}
 
 	@ferm::rule { 'rabbitmq-v6':
 		domain      => 'ip6',
 		description => 'rabbitmq connections',
-		rule        => '&SERVICE_RANGE(tcp, 5672, $HOST_DEBIAN_V6)'
+		rule        => '&SERVICE_RANGE(tcp, 5671, $HOST_DEBIAN_V6)'
 	}
 
 	if $::hostname == $cc_master {
