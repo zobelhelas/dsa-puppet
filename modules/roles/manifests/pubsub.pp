@@ -77,7 +77,7 @@ class roles::pubsub {
 
 	rabbitmq_policy { 'mirror-packages':
 		vhost   => 'packages',
-		match   => '*',
+		match   => '.*',
 		policy  => '{"ha-mode":"all"}',
 		require => Rabbitmq_vhost['packages']
 	}
