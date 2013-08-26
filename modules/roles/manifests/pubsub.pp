@@ -3,6 +3,7 @@ class roles::pubsub {
 
 	$cluster_cookie = $roles::pubsub::params::cluster_cookie
 	$admin_password = $roles::pubsub::params::admin_password
+	$ftp_password   = $roles::pubsub::params::ftp_password
 	$cc_master      = rainier
 	$cc_secondary   = rapoport
 
@@ -20,6 +21,12 @@ class roles::pubsub {
 	rabbitmq_user { 'admin':
 		admin    => true,
 		password => $admin_password,
+		provider => 'rabbitmqctl',
+	}
+
+	rabbitmq_user { 'ftpteam':
+		admin    => true,
+		password => $ftp_password,
 		provider => 'rabbitmqctl',
 	}
 
@@ -45,6 +52,17 @@ class roles::pubsub {
 		write_permission     => '.*',
 		provider             => 'rabbitmqctl',
 		require              => Rabbitmq_user['admin']
+	}
+
+	rabbitmq_user_permissions { 'ftpteam@packages':
+		configure_permission => '.*',
+		read_permission      => '.*',
+		write_permission     => '.*',
+		provider             => 'rabbitmqctl',
+		require              => [
+			Rabbitmq_user['ftpteam'],
+			Rabbitmq_vhost['packages']
+		]
 	}
 
 	@ferm::rule { 'rabbitmq':
