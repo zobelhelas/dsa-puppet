@@ -41,6 +41,12 @@ class roles::pubsub {
 		provider => 'rabbitmqctl',
 	}
 
+	rabbitmq_user { 'buildd':
+		admin    => true,
+		password => $buildd_password,
+		provider => 'rabbitmqctl',
+	}
+
 	rabbitmq_vhost { 'packages':
 		ensure   => present,
 		provider => 'rabbitmqctl',
