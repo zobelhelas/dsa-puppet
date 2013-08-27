@@ -1,5 +1,7 @@
 class roles::ftp {
 
+	include ferm::ftp_conntrack
+
 	$bind = $::hostname ? {
 		klecker => '::ffff:130.89.148.12',
 		default => '',

@@ -3,7 +3,8 @@ class roles::ftp_master {
 		source        => 'puppet:///modules/roles/dakmaster/rsyncd.conf',
 		max_clients => 100,
 	}
-        ssl::service { 'ftp-master.debian.org':
-                notify => Service['apache2'],
-        }
+
+	ssl::service { 'ftp-master.debian.org':
+		notify => Service['apache2'],
+	}
 }

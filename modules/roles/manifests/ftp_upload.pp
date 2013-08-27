@@ -1,5 +1,7 @@
 class roles::ftp_upload {
 
+	include ferm::ftp_conntrack
+
 	vsftpd::site { 'ftp-upload':
 		banner     => 'ftp.upload.debian.org FTP server',
 		logfile    => '/var/log/ftp/vsftpd-ftp.upload.debian.org.log',
