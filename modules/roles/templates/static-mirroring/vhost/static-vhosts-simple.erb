@@ -17,6 +17,8 @@ Use common-static-vhost-with-extra ftp-master.metadata.debian.org "AddDefaultCha
 	RedirectPermanent /backports.org/    http://backports.debian.org/debian-backports/
 	RedirectPermanent /debian-backports/ http://backports.debian.org/debian-backports/
 	RedirectPermanent / http://backports.debian.org/
+
+	DefaultType text/plain
 </VirtualHost>
 
 
@@ -35,5 +37,7 @@ Use common-static-vhost-with-extra ftp-master.metadata.debian.org "AddDefaultCha
 	RedirectPermanent /mentoring/ http://www.debian.org/women/mentoring
 	RedirectPermanent /press/ http://wiki.debian.org/DebianWomen/Press
 	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
+
+	DefaultType text/plain
 </VirtualHost>
 # vim:ft=apache:
