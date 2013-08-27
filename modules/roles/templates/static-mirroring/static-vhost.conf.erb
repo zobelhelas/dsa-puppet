@@ -15,6 +15,7 @@
 		Allow from all
 	</Directory>
 
+	DefaultType text/plain
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
 </Macro>
 
@@ -29,6 +30,7 @@
 
 		Use common-static-base $name
 		$extra
+		DefaultType text/plain
 	</VirtualHost>
 </Macro>
 
@@ -44,6 +46,7 @@
 		</IfModule>
 
 		Use common-static-base $name
+		DefaultType text/plain
 	</VirtualHost>
 </Macro>
 
