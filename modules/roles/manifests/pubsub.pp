@@ -4,9 +4,11 @@ class roles::pubsub {
 	$cluster_cookie  = $roles::pubsub::params::cluster_cookie
 	$admin_password  = $roles::pubsub::params::admin_password
 	$ftp_password    = $roles::pubsub::params::ftp_password
-	$buildd_password = $roles::pubsub::params::ftp_password
-	$cc_master      = rainier
-	$cc_secondary   = rapoport
+	$buildd_password = $roles::pubsub::params::buildd_password
+	$wbadm_password  = $roles::pubsub::params::wbadm_password
+
+	$cc_master       = rainier
+	$cc_secondary    = rapoport
 
 	class { 'rabbitmq':
 		cluster           => true,
@@ -44,6 +46,12 @@ class roles::pubsub {
 	rabbitmq_user { 'buildd':
 		admin    => true,
 		password => $buildd_password,
+		provider => 'rabbitmqctl',
+	}
+
+	rabbitmq_user { 'wbadm':
+		admin    => true,
+		password => $wbadm_password,
 		provider => 'rabbitmqctl',
 	}
 
