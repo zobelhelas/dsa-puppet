@@ -105,6 +105,16 @@ class roles::pubsub {
 		]
 	}
 
+	rabbitmq_user_permissions { 'wbadm@packages':
+		read_permission      => 'unchecked',
+		write_permission     => 'wbadm',
+		provider             => 'rabbitmqctl',
+		require              => [
+			Rabbitmq_user['wbadm'],
+			Rabbitmq_vhost['packages']
+		]
+	}
+
 	rabbitmq_user_permissions { 'buildd@buildd':
 		configure_permission => '.*',
 		read_permission      => '.*',
@@ -112,6 +122,17 @@ class roles::pubsub {
 		provider             => 'rabbitmqctl',
 		require              => [
 			Rabbitmq_user['buildd'],
+			Rabbitmq_vhost['buildd']
+		]
+	}
+
+	rabbitmq_user_permissions { 'wbadm@buildd':
+		configure_permission => '.*',
+		read_permission      => '.*',
+		write_permission     => '.*',
+		provider             => 'rabbitmqctl',
+		require              => [
+			Rabbitmq_user['wbadm'],
 			Rabbitmq_vhost['buildd']
 		]
 	}
