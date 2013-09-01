@@ -45,9 +45,9 @@ Puppet::Type.type(:rabbitmq_user_permissions).provide(:rabbitmqctl) do
   end
 
   def create
-    resource[:configure_permission] ||= "''"
-    resource[:read_permission]      ||= "''"
-    resource[:write_permission]     ||= "''"
+    resource[:configure_permission] ||= "'^$'"
+    resource[:read_permission]      ||= "'^$'"
+    resource[:write_permission]     ||= "'^$'"
     rabbitmqctl('set_permissions', '-p', should_vhost, should_user, resource[:configure_permission], resource[:read_permission], resource[:write_permission]) 
   end
 
