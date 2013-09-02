@@ -187,6 +187,17 @@ class roles::pubsub {
 		rule        => '&SERVICE_RANGE(tcp, 5671, $HOST_DEBIAN_V6)'
 	}
 
+	@ferm::rule { 'rabbitmq-adm':
+		description => 'rabbitmq connections',
+		rule        => '&SERVICE_RANGE(tcp, 5671, $DSA_IPS)'
+	}
+
+	@ferm::rule { 'rabbitmq-v6-adm':
+		domain      => 'ip6',
+		description => 'rabbitmq connections',
+		rule        => '&SERVICE_RANGE(tcp, 5671, $DSA_V6_IPS)'
+	}
+
 	if $::hostname == $cc_master {
 		$you = $cc_secondary
 	} else {
