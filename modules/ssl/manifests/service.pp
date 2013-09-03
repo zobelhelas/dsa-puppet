@@ -16,7 +16,7 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
 	}
 
 	if $tlsaport > 0 {
-		dnsextras::tlsa_record{ "tlsa-${tlsaport}":
+		dnsextras::tlsa_record{ "tlsa-${name}-${tlsaport}":
 			zone => 'debian.org',
 			certfile => "/etc/puppet/modules/ssl/files/servicecerts/${name}.crt",
 			port => $tlsaport,
