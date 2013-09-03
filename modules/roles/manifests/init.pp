@@ -103,4 +103,13 @@ class roles {
 			notify => Service['apache2'],
 		}
 	}
+
+	if $::hostname in [nono] {
+		ssl::service { 'nm.debian.org':
+			notify => Service['apache2'],
+		}
+		ssl::service { 'contributors.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 }
