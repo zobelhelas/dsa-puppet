@@ -236,6 +236,14 @@ fi
 rootdir=$(mktemp -d "$builddir/create-$suite-XXXXXX")
 cleanup+=("rm -r $rootdir")
 cleanup+=("umount $rootdir/sys")
+script=/usr/share/debootstrap/scripts/"$suite"
+if ! [ -e "$script" ]; then
+    if [ -z "$ubuntu" ]; then
+        script=/usr/share/debootstrap/scripts/sid
+    else
+        script=/usr/share/debootstrap/scripts/gutsy
+    fi
+fi
 
 set -x
 debootstrap \
@@ -243,7 +251,7 @@ debootstrap \
     --include="apt" \
     --variant=buildd \
     --arch="$arch" \
-    "$suite" "$rootdir" "$mirror"
+    "$suite" "$rootdir" "$mirror" "$script"
 echo "$tuple" > "$rootdir/etc/debian_chroot"
 echo "force-unsafe-io" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-unsafe-io"
 
