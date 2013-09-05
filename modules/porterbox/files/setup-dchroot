@@ -157,7 +157,7 @@ bare=""
 declare -a cleanup
 trap do_cleanup EXIT
 
-while getopts "a:b:cd:fg:hk:m:p:r:su" OPTION
+while getopts "a:b:Bcd:fg:hk:m:p:r:su" OPTION
 do
     case $OPTION in
         a)
