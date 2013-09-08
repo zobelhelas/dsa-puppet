@@ -1,7 +1,7 @@
 class porterbox {
 	include schroot
 	# FIXME: Refactor this to a common class when something else needs it
-	package { 'chronic':
+	package { 'moreutils':
 		ensure => installed
 	}
 
