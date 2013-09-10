@@ -31,6 +31,12 @@ class roles::pubsub {
 		source => 'puppet:///modules/roles/pubsub/rabbitmq.config'
 	}
 
+	concat::fragment { 'rabbit_mgmt_ssl':
+		target => '/etc/rabbitmq/rabbitmq.config',
+		order  => 55,
+		source => 'puppet:///modules/roles/pubsub/rabbitmq-mgmt.config'
+	}
+
 	rabbitmq_user { 'admin':
 		admin    => true,
 		password => $admin_password,
