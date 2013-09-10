@@ -40,6 +40,11 @@ if restrict_ssh.include?(hostname) then
 		ssh6allowed << '$UNGER_SSH6_ACCESS' # Ganneff, but more address space
 	end
 
+	if %w{adayevskaya}.include?(hostname) then
+		ssh4allowed << %w{$HOST_MAILRELAY_V4}
+		ssh6allowed << %w{$HOST_MAILRELAY_V6}
+	end
+
 	if nodeinfo['static_master'] then
 		ssh4allowed << '$HOST_STATIC_V4'
 		ssh6allowed << '$HOST_STATIC_V6'
