@@ -159,6 +159,7 @@ file=/etc/ferm/dsa.d
 file=/etc/rc.local
 file=/etc/unbound
 file=/etc/dsa
+file=/etc/rabbitmq
 <% if scope.lookupvar('site::nodeinfo')['static_mirror'] or scope.lookupvar('site::nodeinfo')['static_source'] or scope.lookupvar('site::nodeinfo')['static_master'] -%>
 file=/etc/ssh/userkeys
 file=/etc/ssh/userkeys/staticsync
@@ -283,6 +284,7 @@ file=/etc/vsftpd.conf
 file=/etc/aliases
 file=/etc/multipath.conf
 file=/etc/static-components.conf
+file=/etc/rabbitmq/rabbitmq.config
 <%=
 out=""
 if scope.lookupvar('site::nodeinfo')['heavy_exim']
