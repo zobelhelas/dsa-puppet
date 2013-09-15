@@ -369,3 +369,6 @@ host_settings:
     - klecker.debian.org
     - stanley.debian.org
     - senfter.debian.org
+  buildd_master:
+    - grieg.debian.org
+    - wuiet.debian.org
