@@ -209,7 +209,7 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 2001:41c8:1000:21::21:14/128 2001:41c8:1000:21::21:11/32 ))'
 			}
 		}
-		grieg: {
+		grieg,wuiet: {
 			@ferm::rule { 'dsa-postgres-ullmann':
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 206.12.19.141/32 ))'
