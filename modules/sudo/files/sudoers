@@ -147,8 +147,8 @@ piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
 # remote power to babylon5 in the same rack:
 joerg		unger=(ALL)		/usr/bin/sispmctl -t [12], /usr/bin/sispmctl -g [12]
 # wbadm can update all buildd* users' keys on buildd.d.o
-%wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
 %wbadm		BUILDD_MASTER=(wb-buildd)	ALL
+#%wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
 #wbadm		BUILDD_MASTER=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
