@@ -22,7 +22,11 @@ class apache2 {
 	}
 
 	apache2::config { 'ressource-limits':
-		content => template('apache2/ressource-limits.erb'),
+		ensure => absent,
+	}
+
+	apache2::config { 'resource-limits':
+		content => template('apache2/resource-limits.erb'),
 	}
 
 	apache2::config { 'security':
