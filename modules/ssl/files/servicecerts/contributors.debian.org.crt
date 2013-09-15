@@ -1,0 +1,104 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 109 (0x6d)
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: O=Debian, CN=ca.debian.org/emailAddress=debian-admin@debian.org
+        Validity
+            Not Before: Sep  3 20:26:49 2013 GMT
+            Not After : Sep  3 20:26:49 2014 GMT
+        Subject: O=Debian, CN=contributors.debian.org/emailAddress=debian-admin@debian.org
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:bf:ea:58:30:2f:27:69:27:93:b6:8a:59:f2:0e:
+                    e1:57:d6:54:ea:fa:d9:4b:c8:2f:1d:7a:9f:d2:57:
+                    f7:36:29:ae:df:c3:68:eb:b8:52:b5:57:ef:ec:e4:
+                    e9:40:04:8f:be:98:e3:52:d0:69:09:30:b5:54:90:
+                    45:13:c6:22:b3:18:94:53:38:f3:97:be:31:f1:07:
+                    c6:96:11:bd:01:19:f9:44:38:79:dd:bf:ed:aa:f0:
+                    22:89:9e:1f:24:0b:49:52:1a:a4:b6:6d:c8:d1:86:
+                    a4:e3:6c:7b:62:8d:ee:83:bf:01:fb:b9:f2:dd:9d:
+                    0d:15:49:86:8f:cc:84:00:3b:b3:6c:6e:bf:67:79:
+                    dd:df:13:fb:26:c9:54:9f:c7:96:e3:18:85:6b:29:
+                    53:e5:ac:a5:dc:55:4e:b4:a3:a2:51:2d:49:20:95:
+                    1d:52:76:7d:4e:69:fc:78:c7:9e:b0:36:39:fd:6c:
+                    66:24:1f:2d:ab:25:4f:60:84:a4:5d:f5:12:7d:b4:
+                    08:02:cc:d0:9c:a8:c3:23:32:15:63:c9:50:17:d7:
+                    33:84:b4:1a:15:a6:b1:94:19:8d:f1:6c:f3:b1:85:
+                    fa:f6:5d:2e:85:25:93:6c:9f:d5:ae:5b:c8:9c:8a:
+                    6f:a8:3e:aa:8e:0f:98:11:70:80:e9:6c:62:65:df:
+                    ee:a7
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                98:85:67:58:E0:72:92:74:A0:BD:AB:92:FF:AB:DE:A5:62:01:E6:A7
+            X509v3 Authority Key Identifier: 
+                keyid:A7:CF:4B:FA:5F:12:C6:23:74:2E:9E:A3:95:90:75:8C:CC:26:76:96
+                DirName:/C=US/ST=Indiana/L=Indianapolis/O=Software in the Public Interest/OU=hostmaster/CN=Certificate Authority/emailAddress=hostmaster@spi-inc.org
+                serial:03
+
+    Signature Algorithm: sha1WithRSAEncryption
+         1f:d5:da:0a:a3:4c:16:08:6f:ee:c9:3c:a9:54:cf:0d:71:70:
+         23:8a:3d:dd:8d:82:fb:ba:82:4d:c0:eb:64:e3:f2:54:e3:d6:
+         0a:1f:8c:e1:33:c6:e9:2a:e1:5c:a4:24:d8:b4:76:56:ad:75:
+         2e:1d:75:4b:0d:69:0e:3b:1c:49:31:9a:96:e8:db:cf:88:85:
+         90:05:92:79:ed:13:89:47:86:0d:aa:f4:7d:10:a8:4c:f9:6c:
+         e9:c3:42:7f:9d:4a:f5:54:46:92:f5:f1:c4:e6:ba:ca:16:1c:
+         f6:36:3f:38:a3:04:60:94:d9:c0:af:4d:b5:83:f4:20:f3:56:
+         ed:6a:09:ca:1a:7b:d7:be:c8:8e:73:c8:16:3b:89:34:cf:2f:
+         48:a2:12:71:f7:29:75:55:8d:45:0a:ca:d8:8c:8e:b7:84:01:
+         08:69:f0:aa:f6:cd:a2:d6:9e:26:07:f2:cb:7c:9a:10:e8:97:
+         0d:1f:e3:29:f0:e1:36:8b:62:c8:f5:99:8e:8c:48:08:4a:ff:
+         0e:c0:6c:99:2b:c0:21:8a:69:d1:98:ea:95:6c:ea:fa:b7:9a:
+         5f:35:04:60:f5:94:08:ea:16:70:1e:44:d2:de:ce:dd:7f:3b:
+         31:bd:d8:47:97:ae:ab:cb:f7:cb:a9:82:e7:ca:ce:a4:23:13:
+         d7:88:a7:f3:a8:3b:64:29:1c:8a:b1:7a:45:d6:42:c1:05:10:
+         80:ad:c4:3f:85:37:63:d7:c3:77:97:e5:c9:48:45:5e:04:45:
+         1d:1d:3d:7b:9e:fa:b8:43:51:49:5f:1e:35:90:39:c2:79:47:
+         0c:39:7f:20:c0:07:2b:7d:d5:64:30:52:a7:b3:21:66:fa:b8:
+         af:5d:37:e1:ac:73:91:67:ba:2a:8a:fc:20:00:b0:61:c0:9e:
+         81:4b:b9:ea:f3:f7:88:c5:24:1e:07:15:f1:93:ef:8d:b9:d3:
+         d8:2f:ba:94:ec:5f:1f:33:68:13:71:56:6e:4b:4f:08:f6:fb:
+         2f:95:8d:c1:73:ca:5b:b3:12:a9:25:dc:63:ee:c8:c1:5d:a3:
+         64:0e:56:ee:ab:6b:1e:71:31:1c:81:94:68:03:11:c2:54:d9:
+         b0:57:80:18:8a:23:d4:6e:17:4f:4d:8f:13:d1:84:a4:c2:97:
+         a0:e4:bf:28:92:de:93:d6:f8:f5:df:59:3d:37:c0:b5:a1:c4:
+         0c:23:ef:5f:81:29:80:dd:7e:0c:16:2a:7a:7f:e2:81:06:37:
+         80:77:5f:88:39:ba:63:79:1c:fe:ce:ae:59:66:1e:75:a5:e4:
+         3c:09:96:c6:06:63:55:77:cf:96:8f:17:7e:54:9d:04:6f:b0:
+         f1:45:a7:2b:bb:38:0a:75
+-----BEGIN CERTIFICATE-----
+MIIFQzCCAyugAwIBAgIBbTANBgkqhkiG9w0BAQUFADBRMQ8wDQYDVQQKEwZEZWJp
+YW4xFjAUBgNVBAMTDWNhLmRlYmlhbi5vcmcxJjAkBgkqhkiG9w0BCQEWF2RlYmlh
+bi1hZG1pbkBkZWJpYW4ub3JnMB4XDTEzMDkwMzIwMjY0OVoXDTE0MDkwMzIwMjY0
+OVowWzEPMA0GA1UEChMGRGViaWFuMSAwHgYDVQQDExdjb250cmlidXRvcnMuZGVi
+aWFuLm9yZzEmMCQGCSqGSIb3DQEJARYXZGViaWFuLWFkbWluQGRlYmlhbi5vcmcw
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC/6lgwLydpJ5O2ilnyDuFX
+1lTq+tlLyC8dep/SV/c2Ka7fw2jruFK1V+/s5OlABI++mONS0GkJMLVUkEUTxiKz
+GJRTOPOXvjHxB8aWEb0BGflEOHndv+2q8CKJnh8kC0lSGqS2bcjRhqTjbHtije6D
+vwH7ufLdnQ0VSYaPzIQAO7Nsbr9ned3fE/smyVSfx5bjGIVrKVPlrKXcVU60o6JR
+LUkglR1Sdn1Oafx4x56wNjn9bGYkHy2rJU9ghKRd9RJ9tAgCzNCcqMMjMhVjyVAX
+1zOEtBoVprGUGY3xbPOxhfr2XS6FJZNsn9WuW8icim+oPqqOD5gRcIDpbGJl3+6n
+AgMBAAGjggEaMIIBFjAJBgNVHRMEAjAAMB0GA1UdDgQWBBSYhWdY4HKSdKC9q5L/
+q96lYgHmpzCB6QYDVR0jBIHhMIHegBSnz0v6XxLGI3QunqOVkHWMzCZ2lqGBwqSB
+vzCBvDELMAkGA1UEBhMCVVMxEDAOBgNVBAgTB0luZGlhbmExFTATBgNVBAcTDElu
+ZGlhbmFwb2xpczEoMCYGA1UEChMfU29mdHdhcmUgaW4gdGhlIFB1YmxpYyBJbnRl
+cmVzdDETMBEGA1UECxMKaG9zdG1hc3RlcjEeMBwGA1UEAxMVQ2VydGlmaWNhdGUg
+QXV0aG9yaXR5MSUwIwYJKoZIhvcNAQkBFhZob3N0bWFzdGVyQHNwaS1pbmMub3Jn
+ggEDMA0GCSqGSIb3DQEBBQUAA4ICAQAf1doKo0wWCG/uyTypVM8NcXAjij3djYL7
+uoJNwOtk4/JU49YKH4zhM8bpKuFcpCTYtHZWrXUuHXVLDWkOOxxJMZqW6NvPiIWQ
+BZJ57ROJR4YNqvR9EKhM+Wzpw0J/nUr1VEaS9fHE5rrKFhz2Nj84owRglNnAr021
+g/Qg81btagnKGnvXvsiOc8gWO4k0zy9IohJx9yl1VY1FCsrYjI63hAEIafCq9s2i
+1p4mB/LLfJoQ6JcNH+Mp8OE2i2LI9ZmOjEgISv8OwGyZK8AhimnRmOqVbOr6t5pf
+NQRg9ZQI6hZwHkTS3s7dfzsxvdhHl66ry/fLqYLnys6kIxPXiKfzqDtkKRyKsXpF
+1kLBBRCArcQ/hTdj18N3l+XJSEVeBEUdHT17nvq4Q1FJXx41kDnCeUcMOX8gwAcr
+fdVkMFKnsyFm+rivXTfhrHORZ7oqivwgALBhwJ6BS7nq8/eIxSQeBxXxk++NudPY
+L7qU7F8fM2gTcVZuS08I9vsvlY3Bc8pbsxKpJdxj7sjBXaNkDlbuq2secTEcgZRo
+AxHCVNmwV4AYiiPUbhdPTY8T0YSkwpeg5L8okt6T1vj131k9N8C1ocQMI+9fgSmA
+3X4MFip6f+KBBjeAd1+IObpjeRz+zq5ZZh51peQ8CZbGBmNVd8+Wjxd+VJ0Eb7Dx
+RacruzgKdQ==
+-----END CERTIFICATE-----

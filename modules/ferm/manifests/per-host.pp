@@ -3,7 +3,7 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
-	if $::hostname in [glinka,klecker,merikanto,ravel,rietz,senfl,sibelius,stabile] {
+	if $::hostname in [glinka,klecker,ravel,rietz,senfl,sibelius,stabile] {
 		ferm::rule { 'dsa-rsync':
 			domain      => '(ip ip6)',
 			description => 'Allow rsync access',
@@ -16,19 +16,6 @@ class ferm::per-host {
 			@ferm::rule { 'dsa-udd-stunnel':
 				description  => 'port 8080 for udd stunnel',
 				rule         => '&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))'
-			}
-		}
-		ullmann: {
-			@ferm::rule { 'dsa-postgres-udd':
-				description     => 'Allow postgress access',
-				# quantz, wagner, master
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 217.196.43.134/32 217.196.43.132/32 82.195.75.110/32 ))'
-			}
-			@ferm::rule { 'dsa-postgres-udd6':
-				domain          => '(ip6)',
-				description     => 'Allow postgress access',
-				# quantz
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 ))'
 			}
 		}
 		czerny,clementi: {
@@ -210,6 +197,18 @@ class ferm::per-host {
 
 	# postgres stuff
 	case $::hostname {
+		ullmann: {
+			@ferm::rule { 'dsa-postgres-udd':
+				description     => 'Allow postgress access',
+				# quantz, wagner, master, couper, coccia, franck
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 217.196.43.134/32 217.196.43.132/32 82.195.75.110/32 5.153.231.14/32 5.153.231.11/32 138.16.160.12/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-udd6':
+				domain          => '(ip6)',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 2001:41c8:1000:21::21:14/128 2001:41c8:1000:21::21:11/32 ))'
+			}
+		}
 		grieg: {
 			@ferm::rule { 'dsa-postgres-ullmann':
 				description     => 'Allow postgress access',
@@ -233,14 +232,33 @@ class ferm::per-host {
 			}
 		}
 		bmdb1: {
+			@ferm::rule { 'dsa-postgres-main':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5435, ( 5.153.231.14/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-main6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5435, ( 2001:41c8:1000:21::21:14/128 ))'
+			}
 			@ferm::rule { 'dsa-postgres-dak':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 206.12.19.0/24 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 206.12.19.122/32 206.12.19.123/32 206.12.19.134/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-dak6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2001:41c8:1000:21::21:11/128 2607:f8f0:610:4000::/64 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2001:41c8:1000:21::21:11/128 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2607:f8f0:610:4000:216:36ff:fe40:3861/128 2607:f8f0:610:4000:6564:a62:ce0c:1386/128 ))'
+			}
+			@ferm::rule { 'dsa-postgres-wanna-build':
+				# wuiet, ullmann, franck
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5436, ( 5.153.231.18/32 206.12.19.141/32 138.16.160.12/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-wanna-build6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5436, ( 2001:41c8:1000:21::21:18/128 2607:f8f0:610:4000:6564:a62:ce0c:138d/128 ))'
 			}
 		}
 		danzi: {

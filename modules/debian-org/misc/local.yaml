@@ -16,7 +16,6 @@ nameinfo:
   barriere.debian.org: Jean-Baptiste Barrière (May 2nd, 1707 - June 6th, 1747)
   beach.debian.org: Amy Marcy Cheney Beach (September 5, 1867 - December 27, 1944)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
-  bellini.debian.org: Vincenzo Salvatore Carmelo Francesco Bellini (November 3rd, 1801 - September 23rd, 1835)
   bendel.debian.org: Franz Bendel (March 23, 1833 - July 3, 1874)
   berlioz.debian.org: Hector Berlioz (December 11th, 1803 - March 8th, 1869)
   bertali.debian.org: Antonio Bertali (March 1605 - 17 April 1669)
@@ -34,9 +33,10 @@ nameinfo:
   cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   coccia.debian.org: Maria Rosa Coccia (January 4th, 1759 - November 1833)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
-  coincy.debian.org: Gautier de Coincy (1177 - 1236)
+  couper.debian.org: Mildred Couper (1887 - 1974)
   czerny.debian.org: Carl Czerny (February 21st, 1791 - July 15th, 1857)
   danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
+  delfin.debian.org: Carmelina Delfin (c. 1900 - after 1948)
   diabelli.debian.org: Anton Diabelli (September 5th, 1781 - April 7th, 1858)
   diamond.debian.org: David Leo Diamond (July 9, 1915 - June 13, 2005)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
@@ -78,10 +78,8 @@ nameinfo:
   mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
   menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st,, 2007)
-  merikanto.debian.org: Oskar Merikanto (August 5th, 1868 - February 17th, 1924)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
   milanollo.debian.org: Teresa Milanollo (August 28th, 1827 - October 25th, 1904)
-  morricone.debian.org: Ennio Morricone (November 10th, 1928 - )
   muffat.debian.org: George Muffat (June 1st, 1653 - February 23rd, 1704)
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
@@ -94,6 +92,7 @@ nameinfo:
   pejacevic: Dora Pejačević (September 10, 1885 - March 5, 1923)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   picconi.debian.org: Maria Antonietta Picconi (September 23rd, 1869 - 1926)
+  philp.debian.org: Elizabeth Philp (1827 - November 26th, 1885)
   popov.debian.org: Gavriil Nikolayevich Popov (Гаврии́л Никола́евич Попо́в) (September 12th, 1904 - February 17th, 1972)
   porpora.debian.org: Niccolò (Antonio) Porpora (17 August 1686 - 3 March 1768)
   poulenc.debian.org: Francis Jean Marcel Poulenc (January 7, 1899 - January 30, 1963)
@@ -101,6 +100,8 @@ nameinfo:
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
   quantz.debian.org: Johann Joachim Quantz (January 30th, 1697 - July 12th, 1773)
   rautavaara.debian.org: Einojuhani Rautavaara (born October 9th, 1928)
+  rainier.debian.org: Ivy Priaulx Rainier (February 3rd, 1903 - October 10th, 1986) 
+  rapoport.debian.org: Eda Rothstein Rapoport (December 25th, 1890 - May 9th, 1968)
   ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
   respighi.debian.org: Ottorino Respighi (July 9th, 1879 - April 18th, 1936)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19, 1873 - May 11th, 1916)
@@ -140,6 +141,7 @@ nameinfo:
   wieck.debian.org: Clara Josephine Wieck (September 13th, 1819 - May 20th, 1896)
   wilder.debian.org: Alec Wilder (February 16th, 1907 - December 24th, 1980)
   wolkenstein.debian.org: Oswald von Wolkenstein (1377 - August 2nd, 1445)
+  wuiet.debian.org: Caroline Wuiet (1766 - 1835)
   zandonai.debian.org: Riccardo Zandonai (May 30th, 1883 - June 5th, 1944)
   zappa.debian.org: Frank Vincent Zappa (December 21st, 1940 - December 4th, 1993)
   zelenka.debian.org: Jan Dismas Zelenka (October 16th, 1679 - December 23rd, 1745)
@@ -186,9 +188,11 @@ services:
     - kaufmann.debian.org
   wiki:
     - wilder.debian.org
+  pubsub:
+    - rainier.debian.org
+    - rapoport.debian.org
 host_settings:
   heavy_exim:
-    - bellini.debian.org
     - buxtehude.debian.org
     - chopin.debian.org
     - draghi.debian.org
@@ -198,7 +202,6 @@ host_settings:
     - grieg.debian.org
     - mailly.debian.org
     - master.debian.org
-    - morricone.debian.org
     - muffat.debian.org
     - nono.debian.org
     - picconi.debian.org
@@ -218,28 +221,20 @@ host_settings:
     - villa.debian.org
     - wieck.debian.org
   apache2_www_mirror:
-    - bellini.debian.org
     - gluck.debian.org
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
-    - franck.debian.org
     - ries.debian.org
-    - sibelius.debian.org
     - stabile.debian.org
     # decommissioning
     - cilea.debian.org
-    - merikanto.debian.org
-    - morricone.debian.org
-    - paganini.debian.org
     - rautavaara.debian.org
-    - respighi.debian.org
     - scelsi.debian.org
     - unger.debian.org
     - vitry.debian.org
     # dead/not running
     - berlioz.debian.org
-    - coincy.debian.org
     # mirrors, secondaries, syncproxies
     - beach.debian.org
     - bizet.debian.org
@@ -283,6 +278,7 @@ host_settings:
     - babin.debian.org
     - ball.debian.org
     - barber.debian.org
+    - biber.debian.org
     - brahms.debian.org
     - caballero.debian.org
     - corelli.debian.org
@@ -315,6 +311,9 @@ host_settings:
     - zandonai.debian.org
     - zappa.debian.org
     - zemlinsky.debian.org
+    # Not worth backing up
+    - rainier.debian.org
+    - rapoport.debian.org
   broken-rtc:
     - abel.debian.org
     - alain.debian.org
@@ -362,6 +361,7 @@ host_settings:
     - master.debian.org
     - ries.debian.org
     - franck.debian.org
+    - philp.debian.org
     - ravel.debian.org
     - senfl.debian.org
     - wolkenstein.debian.org
@@ -370,3 +370,6 @@ host_settings:
     - klecker.debian.org
     - stanley.debian.org
     - senfter.debian.org
+  buildd_master:
+    - grieg.debian.org
+    - wuiet.debian.org

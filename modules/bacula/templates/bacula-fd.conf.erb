@@ -35,6 +35,11 @@ FileDaemon {
   # This is a client certificate, used by the client to connect to the storage daemon
   TLS Certificate = "<%= bacula_ssl_client_cert %>"
   TLS Key = "<%= bacula_ssl_client_key %>"
+
+<%- if hostname == "franck" -%>
+  # broken firewall
+  Heartbeat Interval = 300
+<%- end -%>
 }
 
 # Send all messages except skipped files back to Director

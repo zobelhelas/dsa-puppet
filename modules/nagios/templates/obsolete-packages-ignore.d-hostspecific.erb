@@ -6,7 +6,6 @@
 <%=
 ignore = []
 case fqdn
-when "bellini.debian.org" then                                 ignore << "mcelog"
 when "cilea.debian.org" then                                   ignore << "/freeswitch.*/"
 when /draghi.debian.org/ then                                  ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb}
 when /orff.debian.org/ then                                    ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
@@ -23,7 +22,9 @@ when "grieg.debian.org" then                                   ignore << %w{dpkg
 when "blavet.debian.org" then                                  ignore << %w{dpkg-dev libdpkg-perl dpkg}
 when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
 when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}
+when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabbitmq-server}
 when /(pasquini|tristano).debian.org/ then                     ignore << %w{ganeti-instance-image}
+when "zemlinsky.debian.org" then                               ignore << %w{initramfs-tools}
 end
 
 case fqdn

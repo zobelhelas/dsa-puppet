@@ -9,6 +9,16 @@ class ssl {
 			;
 	}
 
+	file { '/etc/ssl/servicecerts':
+		ensure  => directory,
+		mode    => '0755',
+		purge   => true,
+		recurse => true,
+		force   => true,
+		source  => 'puppet:///modules/ssl/servicecerts/',
+		notify  => Exec['make_new_service_links']
+	}
+
 	file { '/etc/ssl/debian':
 		ensure  => directory,
 		mode    => '0755',
@@ -58,6 +68,23 @@ class ssl {
 		mode    => '0440',
 		group   => ssl-cert,
 		require => Package['ssl-cert'],
+	}
+
+	exec { 'make_new_service_links':
+		command     => 'cp -f --symbolic-link ../servicecerts/* .',
+		cwd         => '/etc/ssl/certs',
+		refreshonly => true,
+		notify      => Exec['cleanup_dead_links']
+	}
+
+	exec { 'cleanup_dead_links':
+		command     => 'find -L /etc/ssl/certs -mindepth 1 -maxdepth 1 -type l -delete',
+		refreshonly => true,
+		notify      => Exec['c_rehash /etc/ssl/certs']
+	}
+
+	exec { 'c_rehash /etc/ssl/certs':
+		refreshonly => true,
 	}
 
 	exec { 'c_rehash /etc/ssl/debian/certs':

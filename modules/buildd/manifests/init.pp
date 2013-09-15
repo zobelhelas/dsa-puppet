@@ -24,7 +24,7 @@ class buildd ($ensure=present) {
 			require => Package['dupload'],
 		}
 		site::linux_module { 'dm_snapshot': }
-		ferm::module { 'nf_conntrack_ftp': }
+		include ferm::ftp_conntrack
 	}
 
 	site::aptrepo { 'buildd':
@@ -46,27 +46,18 @@ class buildd ($ensure=present) {
 		require    => Package['apt-transport-https'],
 	}
 
+	$buildd_prop_ensure = $::hostname ? {
+		/^(alkman|barber|brahms|porpora|zandonai)$/ => 'present',
+		default => 'absent',
+	}
+
 	site::aptrepo { 'buildd.debian.org-proposed':
-		ensure     => $::hostname ? {
-		                             /^(alkman|barber|brahms|porpora|zandonai)$/ => 'present',
-		                             default => 'absent',
-		                            },
+		ensure     => $buildd_prop_ensure,
 		url        => 'https://buildd.debian.org/apt/',
 		suite      => "${suite}-proposed",
 		components => 'main',
 		require    => Package['apt-transport-https'],
 	}
-
-	#site::aptrepo { 'buildd.debian.org-experimental':
-	#	ensure     => $::hostname ? {
-	#	                             /^(xxxx)$/ => 'present',
-	#	                             default => 'absent',
-	#	                            },
-	#	url        => 'https://buildd.debian.org/apt/',
-	#	suite      => "${suite}-experimental",
-	#	components => 'main',
-	#	require    => Package['apt-transport-https'],
-	#}
 
 	# 'bad' extension
 	file { '/etc/apt/preferences.d/buildd.debian.org':

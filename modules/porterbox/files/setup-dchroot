@@ -39,6 +39,7 @@ OPTIONS:
     -a ARCH    debootstrap arch [$arch]
     -m MIRROR  http mirror to use [$mirror]
     -b basedir place where to put the tarball [$basedir]
+    -B         install less stuff into chroot
     -c         write config only
     -d dir     place where to build the chroot [${builddir:-$basedir}]
     -f         overwrite config and target tarball
@@ -152,10 +153,11 @@ sbuildnames=""
 ubuntu=""
 groupuser="Debian,guest"
 grouproot=""
+bare=""
 declare -a cleanup
 trap do_cleanup EXIT
 
-while getopts "a:b:cd:fg:hk:m:p:r:su" OPTION
+while getopts "a:b:Bcd:fg:hk:m:p:r:su" OPTION
 do
     case $OPTION in
         a)
@@ -163,6 +165,9 @@ do
             ;;
         b)
             basedir="$OPTARG"
+            ;;
+        B)
+            bare="1"
             ;;
         c)
             configonly="1"
@@ -236,6 +241,14 @@ fi
 rootdir=$(mktemp -d "$builddir/create-$suite-XXXXXX")
 cleanup+=("rm -r $rootdir")
 cleanup+=("umount $rootdir/sys")
+script=/usr/share/debootstrap/scripts/"$suite"
+if ! [ -e "$script" ]; then
+    if [ -z "$ubuntu" ]; then
+        script=/usr/share/debootstrap/scripts/sid
+    else
+        script=/usr/share/debootstrap/scripts/gutsy
+    fi
+fi
 
 set -x
 debootstrap \
@@ -243,8 +256,9 @@ debootstrap \
     --include="apt" \
     --variant=buildd \
     --arch="$arch" \
-    "$suite" "$rootdir" "$mirror"
-echo "$tuple" > $rootdir/etc/debian_chroot
+    "$suite" "$rootdir" "$mirror" "$script"
+echo "$tuple" > "$rootdir/etc/debian_chroot"
+echo "force-unsafe-io" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-unsafe-io"
 
 chroot "$rootdir" apt-get update
 chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends policyrcd-script-zg2
@@ -267,7 +281,8 @@ done
 EOF
 chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
 [ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends locales-all
-chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh build-essential less vim fakeroot devscripts gdb
+chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends build-essential
+[ -z "$bare" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
 chroot "$rootdir" apt-get clean
 umount "$rootdir/sys" || true

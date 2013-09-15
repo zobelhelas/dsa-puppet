@@ -67,9 +67,7 @@
 # RedefIgnoreNone=(no default)
 # RedefUser0=(no default)
 # RedefUser1=(no default)
-<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
 IgnoreMissing=/etc/lvm/archive/.*.vg
-<% end -%>
 
 [Attributes]
 ##
@@ -104,9 +102,6 @@ file=/etc/bind/geodns/recvconf.files
 file=/etc/bind/named.conf.options
 <% end -%>
 file=/etc/apache2/conf.d/puppet-builddlist
-<% if classes.include?("roles::static_base") -%>
-file=/etc/static-components.conf
-<% end -%>
 <% if classes.include?("roles::static_mirror") -%>
 file=/etc/apache2/sites-available/static-vhosts-simple
 <% end -%>
@@ -124,6 +119,7 @@ file=/etc/spamassassin/sa-update-keys
 # These are the directories for the files we handle with puppet
 file=/etc/apache2/conf.d
 files=/etc/apache2/mods-enabled
+files=/etc/apache2/sites-available
 file=/etc/bacula
 file=/etc/samhain
 file=/etc/munin
@@ -153,6 +149,7 @@ file=/usr/sbin
 file=/etc/monit
 file=/etc/monit/monit.d
 file=/etc/pam.d
+file=/etc/schroot/default
 file=/etc/sysctl.d
 file=/etc/syslog-ng
 file=/etc/stunnel
@@ -162,6 +159,7 @@ file=/etc/ferm/dsa.d
 file=/etc/rc.local
 file=/etc/unbound
 file=/etc/dsa
+file=/etc/rabbitmq
 <% if scope.lookupvar('site::nodeinfo')['static_mirror'] or scope.lookupvar('site::nodeinfo')['static_source'] or scope.lookupvar('site::nodeinfo')['static_master'] -%>
 file=/etc/ssh/userkeys
 file=/etc/ssh/userkeys/staticsync
@@ -247,6 +245,7 @@ file=/etc/blkid.tab.old
 file=/etc/resolv.conf.dhclient-new
 
 # We handle these files with puppet - please to not be bothering us
+file=/etc/nsswitch.conf
 file=/etc/timezone
 file=/etc/motd.tail
 file=/etc/update-motd.d/
@@ -277,11 +276,15 @@ file=/etc/exim4/ssl/ca.crt
 file=/etc/exim4/ssl/ca.crl
 file=/etc/exim4/ssl/thishost.crt
 file=/etc/exim4/ssl/thishost.key
+dir=3/etc/exim4/email-virtualdomains
 file=/etc/ssh/ssh_config
 file=/etc/ssh/sshd_config
 file=/etc/dsa/cron.ignore.dsa-puppet-stuff
 file=/etc/vsftpd.conf
 file=/etc/aliases
+file=/etc/multipath.conf
+file=/etc/static-components.conf
+file=/etc/rabbitmq/rabbitmq.config
 <%=
 out=""
 if scope.lookupvar('site::nodeinfo')['heavy_exim']
@@ -329,7 +332,7 @@ file=/etc/munin/plugins/exim_mailqueue
 file=/etc/munin/plugins/exim_mailstats
 file=/etc/munin/plugins/postfix_mailqueue
 file=/etc/munin/plugins/postfix_mailvolume
-file=/etc/apache2/conf.d/ressource-limits
+file=/etc/apache2/conf.d/resource-limits
 file=/etc/apache2/mods-enabled/info.conf
 file=/etc/apache2/mods-enabled/info.load
 file=/etc/apache2/mods-enabled/server.conf
@@ -358,7 +361,6 @@ file=/etc/apt/preferences.d/buildd
 file=/etc/puppet/puppet.conf
 file=/etc/default/puppet
 file=/etc/default/postgrey
-file=/etc/default/schroot
 file=/etc/default/syslog-ng
 file=/etc/logrotate.d/exim4-paniclog
 file=/etc/logrotate.d/exim4-base
@@ -399,6 +401,9 @@ file=/etc/monit/monit.d/00debian.org
 file=/etc/cron.d/dsa-puppet-stuff
 file=/etc/cron.d/dsa-buildd
 file=/etc/cron.weekly/stunnel-ekey-restart
+file=/etc/default/schroot
+file=/etc/schroot/default/nssdatabases
+
 <% if scope.lookupvar('site::nodeinfo')['nagiosmaster'] -%>
 file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
 file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
@@ -422,9 +427,8 @@ dir=1/etc/bind/geodns
 dir=1/etc/bind
 file=/etc/bind/named.conf.debian-zones
 <% end -%>
-<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
-dir=3/etc/lvm
-<% end -%>
+dir=3/etc/lvm/archive
+dir=3/etc/lvm/backup
 dir=1/etc/ferm/dsa.d
 dir=1/etc/ferm/conf.d
 dir=3/etc/facter
@@ -432,6 +436,8 @@ file=/etc/ferm/conf.d/me.conf
 file=/etc/ferm/conf.d/defs.conf
 file=/etc/ferm/ferm.conf
 dir=2/etc/ssl/debian
+dir=1/etc/ssl/certs
+dir=1/etc/ssl/servicecerts
 file=/etc/unbound/unbound.conf
 <% if scope.lookupvar('::fqdn') == "draghi.debian.org" -%>
 file=/etc/openvpn/deb-mgmt-clients.pool

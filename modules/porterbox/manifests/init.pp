@@ -1,5 +1,9 @@
 class porterbox {
 	include schroot
+	# FIXME: Refactor this to a common class when something else needs it
+	package { 'moreutils':
+		ensure => installed
+	}
 
 	file { '/etc/schroot/dsa':
 		ensure => directory,
@@ -12,29 +16,29 @@ class porterbox {
 		content => template('porterbox/default-mirror.erb'),
 	}
 	file { '/etc/schroot/setup.d/99porterbox-extra-apt-options':
-		mode    => 555,
+		mode    => '0555',
 		source  => 'puppet:///modules/porterbox/schroot-setup.d/99porterbox-extra-apt-options',
 		require => Package['schroot'],
 	}
 	file { '/etc/schroot/setup.d/99porterbox-extra-sources':
-		mode    => 555,
+		mode    => '0555',
 		source  => 'puppet:///modules/porterbox/schroot-setup.d/99porterbox-extra-sources',
 		require => Package['schroot'],
 	}
 	file { '/usr/local/bin/dd-schroot-cmd':
-		mode    => 555,
+		mode    => '0555',
 		source  => 'puppet:///modules/porterbox/dd-schroot-cmd',
 	}
 	file { '/usr/local/bin/schroot-list-sessions':
-		mode    => 555,
+		mode    => '0555',
 		source  => 'puppet:///modules/porterbox/schroot-list-sessions',
 	}
 	file { '/usr/local/sbin/setup-dchroot':
-		mode    => 555,
+		mode    => '0555',
 		source  => 'puppet:///modules/porterbox/setup-dchroot',
 	}
 	file { '/usr/local/sbin/setup-all-dchroots':
-		mode    => 555,
+		mode    => '0555',
 		source  => 'puppet:///modules/porterbox/setup-all-dchroots',
 	}
 	file { '/etc/cron.d/puppet-update-dchroots':

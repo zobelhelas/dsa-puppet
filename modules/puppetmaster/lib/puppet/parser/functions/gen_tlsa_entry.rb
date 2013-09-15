@@ -12,8 +12,7 @@ module Puppet::Parser::Functions
       res << "; certfile #{certfile} did not exist to create TLSA record for #{hostname}:#{port}."
     end
 
-    certfile += ".new"
-    if File.exist?(certfile)
+    if certfile.gsub!(/\.crt$/, '-new.crt') and File.exist?(certfile)
       cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', certfile, '--port', port.to_s, hostname]
       new_entry = ''
       IO.popen(cmd, "r") {|i| new_entry = i.read }

@@ -1,0 +1,5 @@
+[
+{rabbit, [
+<% if @cluster -%>
+	{cluster_nodes, ['<%= @clustermembers.to_a.flatten.join("', '") %>']}
+<% end -%>

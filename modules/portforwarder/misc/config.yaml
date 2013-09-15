@@ -5,19 +5,6 @@
 # port on the remote instead of just encoding it in authkeys.
 
 # from host:port to host:port
-
-quantz.debian.org:
-  # qa->projectb mirror
-  - source_bind_port: 5433
-    target_host: ries.debian.org
-    target_port: 5433
-
-nono.debian.org:
-  # nm->projectb mirror
-  - source_bind_port: 5433
-    target_host: ries.debian.org
-    target_port: 5433
-
 danzi.debian.org:
   # snapshot postgresql streaming replication.  sibelius is the master, danzi the slave.
   - source_bind_port: 15433
@@ -25,19 +12,3 @@ danzi.debian.org:
     target_port: 5433
     ssh_options: -oAddressFamily=inet
 
-franck.debian.org:
-  - source_bind_port: 5443
-    target_host: grieg.debian.org
-    target_port: 5433
-
-ries.debian.org:
-  # dak postgresql streaming replication.  franck is the master, ries the slave.
-  - source_bind_port: 15433
-    target_host: franck.debian.org
-    target_port: 5433
-
-blavet.debian.org:
-  # emdebian->projectb mirror
-  - source_bind_port: 5433
-    target_host: ries.debian.org
-    target_port: 5433

@@ -24,13 +24,14 @@ Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
 # Host alias specification
 Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
-Host_Alias	FTPHOSTS	= franck, morricone
+Host_Alias	FTPHOSTS	= franck
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
-Host_Alias	AACRAIDHOSTS	= bellini, morricone, paganini, respighi, beethoven, pettersson
+Host_Alias	AACRAIDHOSTS	= paganini, respighi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= barber, biber, cilea, vitry, orff
 Host_Alias	MEGACTLHOSTS	= nielsen
 Host_Alias	LISTHOSTS	= bendel
+Host_Alias	BUILDD_MASTER	= grieg, wuiet
 Host_Alias	PORTERBOXES	= abel, agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
 
@@ -69,12 +70,13 @@ nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr
 nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, /usr/local/bin/megarc -dispCfg -a0 -nolog
 nagios		MEGACTLHOSTS=(ALL)	NOPASSWD: /usr/sbin/megactl -Hv
 # other nagios things
-nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg ""
+nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg ""
 
 # groups and their role accounts
 %auditor	ALL=(accounting)	ALL
 %backports	ALL=(backports)	ALL
 %buildd		ALL=(buildd)	ALL
+%codesearch	ALL=(codesearch)	ALL
 %d-i		ALL=(d-i)	ALL
 %dde		ALL=(dde)	ALL
 %ddtp		ALL=(ddtp)	ALL
@@ -87,6 +89,7 @@ nagios		beethoven=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backup
 %debtags	ALL=(debtags)	ALL
 %debvoip	cilea=(freeswitch)	ALL
 %debwww		ALL=(debwww)	ALL
+%dedup		ALL=(dedup)	ALL
 %btslink	ALL=(btslink)	ALL
 %emdebian	ALL=(emdebian)	ALL
 %forums		ALL=(forums)	ALL
@@ -130,7 +133,7 @@ buildd		ALL=(ALL)		NOPASSWD: ALL
 %backports	franck,coccia,ries=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
 dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component ftp-master.metadata.debian.org
 %debbits	master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
-planet		senfl=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
+planet		philp,senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
 debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component www.debian.org
 
 # The piuparts slave needs to handle chroots
@@ -144,8 +147,9 @@ piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
 # remote power to babylon5 in the same rack:
 joerg		unger=(ALL)		/usr/bin/sispmctl -t [12], /usr/bin/sispmctl -g [12]
 # wbadm can update all buildd* users' keys on buildd.d.o
-%wbadm		grieg=(root)		/usr/local/bin/update-buildd-sshkeys
-wbadm		grieg=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
+%wbadm		BUILDD_MASTER=(wb-buildd)	ALL
+#%wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
+#wbadm		BUILDD_MASTER=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 dak		franck=(backports)	NOPASSWD: /home/backports/bin/update-archive

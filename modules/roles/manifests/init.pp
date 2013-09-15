@@ -84,7 +84,32 @@ class roles {
 		include roles::mailrelay
 	}
 
+	if getfromhash($site::nodeinfo, 'pubsub') {
+		include roles::pubsub
+	}
+
 	if $::hostname in [ravel] {
 		include roles::weblog_destination
+	}
+
+	if $::hostname in [soler] {
+		ssl::service { 'security-tracker.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
+	if $::hostname in [pejacevic] {
+		ssl::service { 'piuparts.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
+	if $::hostname in [nono] {
+		ssl::service { 'nm.debian.org':
+			notify => Service['apache2'],
+		}
+		ssl::service { 'contributors.debian.org':
+			notify => Service['apache2'],
+		}
 	}
 }

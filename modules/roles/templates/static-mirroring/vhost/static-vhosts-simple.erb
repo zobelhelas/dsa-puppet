@@ -19,4 +19,21 @@ Use common-static-vhost-with-extra ftp-master.metadata.debian.org "AddDefaultCha
 	RedirectPermanent / http://backports.debian.org/
 </VirtualHost>
 
+
+<VirtualHost <%= vhost_listen %> >
+	ServerName women.debian.org
+	ServerAdmin debian-admin@debian.org
+
+	RedirectPermanent / http://www.debian.org/women/
+
+	RedirectPermanent /about/ http://www.debian.org/women/about
+	RedirectPermanent /contact/ http://www.debian.org/women/contact
+	RedirectPermanent /faqs/ http://www.debian.org/women/faq
+	RedirectPermanent /home/ http://www.debian.org/women/
+	RedirectPermanent /images/dw.png http://www.debian.org/women/dw.png
+	RedirectPermanent /involvement/ http://www.debian.org/women/participate
+	RedirectPermanent /mentoring/ http://www.debian.org/women/mentoring
+	RedirectPermanent /press/ http://wiki.debian.org/DebianWomen/Press
+	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
+</VirtualHost>
 # vim:ft=apache:

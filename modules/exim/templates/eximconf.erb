@@ -1146,11 +1146,7 @@ userforward_verify:
   user = Debian-exim
   no_check_local_user
   directory_transport = address_directory
-<%- if fqdn == "master.debian.org" -%>
-  domains = +local_domains : debian.org
-<%- else -%>
   domains = +local_domains
-<%- end -%>
   # filter - I have disabled filtering to force users to use .forward-foo files
   # or procmail. This will make it easier to move mailers in the future
   #
@@ -1229,11 +1225,7 @@ userforward:
   check_ancestor
   check_local_user
   directory_transport = address_directory
-<%- if fqdn == "master.debian.org" -%>
-  domains = +local_domains : debian.org
-<%- else -%>
   domains = +local_domains
-<%- end -%>
   # filter - I have disabled filtering to force users to use .forward-foo files
   # or procmail. This will make it easier to move mailers in the future
   #
@@ -1261,11 +1253,7 @@ procmail:
   debug_print = "R: procmail for $local_part@$domain"
   driver = accept
   check_local_user
-<%- if fqdn == "master.debian.org" -%>
-  domains = +local_domains : debian.org
-<%- else -%>
   domains = +local_domains
-<%- end -%>
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
   local_part_suffix = -*
   local_part_suffix_optional
@@ -1438,9 +1426,19 @@ virt_users:
   transport_current_directory = ${extract{directory}{VDOMAINDATA}}
   user = ${extract{user}{VDOMAINDATA}}
   group = ${extract{group}{VDOMAINDATA}}
-  data = ${if exists{${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}\
-             {${lookup{$local_part}cdb\
-             {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}}
+  # Manually construct the forwarding address, preserving the
+  # local_part_suffix if the remote host is master.
+  data = ${if and {{exists{${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}\
+                     {! eq {${lookup{$local_part}cdb\
+                            {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}\
+                           {}}}\
+             {${local_part:${lookup{$local_part}cdb\
+             {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}\
+             ${if eq {${domain:${lookup{$local_part}cdb\
+             {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}}{master.debian.org}{$local_part_suffix} {}}\
+             @\
+             ${domain:${lookup{$local_part}cdb\
+            {${extract{directory}{VDOMAINDATA}{${value}/mail-forward.cdb}}}}}}}
   domains = +virtual_domains
   file_transport = address_file
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}"
@@ -1563,7 +1561,7 @@ address_reply:
 
 remote_smtp:
   driver = smtp
-  connect_timeout = 1m
+  connect_timeout = 15s
   delay_after_cutoff = false
   tls_certificate = /etc/exim4/ssl/thishost.crt
   tls_privatekey = /etc/exim4/ssl/thishost.key

@@ -1,0 +1,104 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 108 (0x6c)
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: O=Debian, CN=ca.debian.org/emailAddress=debian-admin@debian.org
+        Validity
+            Not Before: Aug 25 09:35:36 2013 GMT
+            Not After : Aug 25 09:35:36 2014 GMT
+        Subject: O=Debian, CN=piuparts.debian.org/emailAddress=debian-admin@debian.org
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:c3:f5:54:d4:95:fd:c4:c9:fa:11:97:2e:2c:43:
+                    44:05:f0:b7:aa:b5:86:9a:45:f6:73:6d:96:99:db:
+                    37:e5:97:a8:7c:94:93:eb:6f:c2:d1:8c:88:de:de:
+                    bf:aa:f1:62:34:51:34:05:15:45:5f:5e:e5:72:9b:
+                    2e:bc:8d:56:8d:0d:7f:7c:f7:75:3a:17:b0:7a:a7:
+                    4f:6a:40:19:35:52:f6:ac:b1:08:06:b3:48:5d:cf:
+                    1b:3c:64:fb:13:8d:c2:ba:18:43:4b:86:7c:1b:74:
+                    f9:be:31:23:a2:61:49:63:d4:6e:50:3f:13:a8:2f:
+                    17:49:b4:b1:d3:5e:c3:5f:b6:15:25:dd:e9:d3:1c:
+                    2d:b4:cf:4d:96:40:4e:01:5b:99:29:2f:68:e7:ae:
+                    31:83:a9:dd:44:92:35:97:c4:75:8f:e0:90:7a:b2:
+                    c3:b1:32:07:b8:f2:68:50:9f:53:00:f3:12:8d:82:
+                    40:81:82:e3:c8:48:e1:d0:29:70:aa:71:2d:7b:52:
+                    5b:5d:40:d0:8f:29:a4:87:d2:15:4a:56:f7:fe:1b:
+                    3d:c6:a7:f5:a6:fe:fd:43:18:2b:ea:35:09:51:b9:
+                    3e:d1:39:86:09:98:25:db:08:ee:c4:32:9c:28:ec:
+                    8e:7a:44:f6:b5:fa:1f:4b:c6:40:fb:6f:c1:b9:ff:
+                    3c:65
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                81:9B:5E:45:0B:01:81:91:F7:95:F6:5A:23:A3:30:A5:74:4E:65:2D
+            X509v3 Authority Key Identifier: 
+                keyid:A7:CF:4B:FA:5F:12:C6:23:74:2E:9E:A3:95:90:75:8C:CC:26:76:96
+                DirName:/C=US/ST=Indiana/L=Indianapolis/O=Software in the Public Interest/OU=hostmaster/CN=Certificate Authority/emailAddress=hostmaster@spi-inc.org
+                serial:03
+
+    Signature Algorithm: sha1WithRSAEncryption
+         7f:16:29:3b:f2:c0:7c:0b:0f:1a:8a:91:11:78:bb:e8:76:cc:
+         65:41:75:ee:c0:91:68:15:ac:af:8d:3f:69:08:f4:23:a7:64:
+         d8:05:b4:c5:f6:7e:c2:67:ff:98:3e:66:7d:40:e1:0e:98:99:
+         58:4f:76:4a:0d:15:10:7c:93:61:78:d4:ac:ba:ad:fa:da:84:
+         58:a0:ed:73:7c:de:99:12:7c:d1:ff:bc:17:5b:0b:ed:0e:85:
+         ae:62:7d:49:08:71:2b:94:26:59:47:ad:c0:fe:c7:38:f4:4d:
+         21:3c:e1:88:47:4a:30:60:0b:ea:8f:36:e2:ec:b0:cd:b8:85:
+         e0:97:ff:50:dd:4a:d9:70:57:63:7e:c1:9c:38:5f:fc:f0:67:
+         5c:38:1a:12:3d:39:45:34:74:29:ce:bd:f0:3b:cb:21:94:21:
+         10:6f:a0:25:ff:c5:fe:08:8b:19:47:c2:3d:33:0f:fc:09:13:
+         de:0f:7b:49:a6:45:fc:57:4b:01:95:dc:d6:58:60:99:52:83:
+         31:13:99:44:35:78:54:5b:94:b7:01:64:4d:c1:64:3f:02:33:
+         3f:42:55:bb:20:3f:80:98:7a:15:41:28:74:3b:ba:31:66:e8:
+         62:00:b2:25:cb:ae:34:70:6c:4b:92:ab:f8:16:0e:5d:10:3a:
+         70:86:01:2b:13:e2:df:30:d6:a8:ef:8c:08:e0:49:22:01:f3:
+         3b:10:b8:26:07:75:2b:cb:3e:26:ac:41:87:89:16:bf:72:36:
+         8f:b0:e5:e2:14:13:d4:5d:80:8e:dd:35:a8:2d:ea:9e:73:88:
+         6d:83:b0:4f:2b:6b:e9:65:57:01:2d:2f:41:d2:90:27:8f:1f:
+         b4:41:61:e9:08:bc:ad:de:cd:98:f7:5f:8c:31:ee:38:6a:87:
+         b5:cc:96:a7:5b:6d:98:b0:17:37:11:1d:29:fb:7f:38:36:cb:
+         42:16:93:81:23:d4:6d:62:7c:28:de:ee:26:93:c0:69:11:b4:
+         c0:ac:ea:b7:97:02:7b:86:35:0e:cb:95:db:02:48:84:eb:51:
+         62:ee:e5:48:f3:86:2c:9a:b0:19:bb:ed:24:3f:3a:35:8a:6d:
+         ca:f8:41:39:3a:d7:25:84:7b:75:d3:67:2a:69:2b:c6:f1:ef:
+         03:11:5c:a1:d1:29:a3:80:f7:dc:f2:56:c2:01:49:34:40:f9:
+         65:39:f7:39:75:3b:3b:54:64:e3:ab:21:a4:b0:49:39:cb:42:
+         f7:07:82:a0:d9:2c:83:0c:2c:c6:f9:ec:e3:a4:5b:37:f9:e2:
+         74:b7:e8:00:e8:3a:02:ca:88:60:b9:52:a7:ad:06:c4:a2:d0:
+         6d:25:26:54:d5:59:7f:c8
+-----BEGIN CERTIFICATE-----
+MIIFPzCCAyegAwIBAgIBbDANBgkqhkiG9w0BAQUFADBRMQ8wDQYDVQQKEwZEZWJp
+YW4xFjAUBgNVBAMTDWNhLmRlYmlhbi5vcmcxJjAkBgkqhkiG9w0BCQEWF2RlYmlh
+bi1hZG1pbkBkZWJpYW4ub3JnMB4XDTEzMDgyNTA5MzUzNloXDTE0MDgyNTA5MzUz
+NlowVzEPMA0GA1UEChMGRGViaWFuMRwwGgYDVQQDExNwaXVwYXJ0cy5kZWJpYW4u
+b3JnMSYwJAYJKoZIhvcNAQkBFhdkZWJpYW4tYWRtaW5AZGViaWFuLm9yZzCCASIw
+DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMP1VNSV/cTJ+hGXLixDRAXwt6q1
+hppF9nNtlpnbN+WXqHyUk+tvwtGMiN7ev6rxYjRRNAUVRV9e5XKbLryNVo0Nf3z3
+dToXsHqnT2pAGTVS9qyxCAazSF3PGzxk+xONwroYQ0uGfBt0+b4xI6JhSWPUblA/
+E6gvF0m0sdNew1+2FSXd6dMcLbTPTZZATgFbmSkvaOeuMYOp3USSNZfEdY/gkHqy
+w7EyB7jyaFCfUwDzEo2CQIGC48hI4dApcKpxLXtSW11A0I8ppIfSFUpW9/4bPcan
+9ab+/UMYK+o1CVG5PtE5hgmYJdsI7sQynCjsjnpE9rX6H0vGQPtvwbn/PGUCAwEA
+AaOCARowggEWMAkGA1UdEwQCMAAwHQYDVR0OBBYEFIGbXkULAYGR95X2WiOjMKV0
+TmUtMIHpBgNVHSMEgeEwgd6AFKfPS/pfEsYjdC6eo5WQdYzMJnaWoYHCpIG/MIG8
+MQswCQYDVQQGEwJVUzEQMA4GA1UECBMHSW5kaWFuYTEVMBMGA1UEBxMMSW5kaWFu
+YXBvbGlzMSgwJgYDVQQKEx9Tb2Z0d2FyZSBpbiB0aGUgUHVibGljIEludGVyZXN0
+MRMwEQYDVQQLEwpob3N0bWFzdGVyMR4wHAYDVQQDExVDZXJ0aWZpY2F0ZSBBdXRo
+b3JpdHkxJTAjBgkqhkiG9w0BCQEWFmhvc3RtYXN0ZXJAc3BpLWluYy5vcmeCAQMw
+DQYJKoZIhvcNAQEFBQADggIBAH8WKTvywHwLDxqKkRF4u+h2zGVBde7AkWgVrK+N
+P2kI9COnZNgFtMX2fsJn/5g+Zn1A4Q6YmVhPdkoNFRB8k2F41Ky6rfrahFig7XN8
+3pkSfNH/vBdbC+0Oha5ifUkIcSuUJllHrcD+xzj0TSE84YhHSjBgC+qPNuLssM24
+heCX/1DdStlwV2N+wZw4X/zwZ1w4GhI9OUU0dCnOvfA7yyGUIRBvoCX/xf4IixlH
+wj0zD/wJE94Pe0mmRfxXSwGV3NZYYJlSgzETmUQ1eFRblLcBZE3BZD8CMz9CVbsg
+P4CYehVBKHQ7ujFm6GIAsiXLrjRwbEuSq/gWDl0QOnCGASsT4t8w1qjvjAjgSSIB
+8zsQuCYHdSvLPiasQYeJFr9yNo+w5eIUE9RdgI7dNagt6p5ziG2DsE8ra+llVwEt
+L0HSkCePH7RBYekIvK3ezZj3X4wx7jhqh7XMlqdbbZiwFzcRHSn7fzg2y0IWk4Ej
+1G1ifCje7iaTwGkRtMCs6reXAnuGNQ7LldsCSITrUWLu5UjzhiyasBm77SQ/OjWK
+bcr4QTk61yWEe3XTZyppK8bx7wMRXKHRKaOA99zyVsIBSTRA+WU59zl1OztUZOOr
+IaSwSTnLQvcHgqDZLIMMLMb57OOkWzf54nS36ADoOgLKiGC5UqetBsSi0G0lJlTV
+WX/I
+-----END CERTIFICATE-----
