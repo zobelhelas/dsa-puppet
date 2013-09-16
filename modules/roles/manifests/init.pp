@@ -88,6 +88,10 @@ class roles {
 		include roles::pubsub
 	}
 
+	if getfromhash($site::nodeinfo, 'buildd_master') {
+		include roles::buildd_master
+	}
+
 	if $::hostname in [ravel] {
 		include roles::weblog_destination
 	}
