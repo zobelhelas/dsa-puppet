@@ -260,6 +260,16 @@ class ferm::per-host {
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5436, ( 2001:41c8:1000:21::21:18/128 2607:f8f0:610:4000:6564:a62:ce0c:138d/128 ))'
 			}
+			@ferm::rule { 'dsa-postgres-bacula':
+				# dinis
+				description     => 'Allow postgress access1',
+				rule            => '&SERVICE_RANGE(tcp, 5437, ( 5.153.231.19/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-bacula6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access1',
+				rule            => '&SERVICE_RANGE(tcp, 5437, ( 2001:41c8:1000:21::21:19/128 ))'
+			}
 		}
 		danzi: {
 			@ferm::rule { 'dsa-postgres-danzi':
@@ -285,15 +295,6 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
 			}
 
-			@ferm::rule { 'dsa-postgres-bacula-danzi':
-				description     => 'Allow postgress access1',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 206.12.19.139/32 ))'
-			}
-			@ferm::rule { 'dsa-postgres-bacula-danzi6':
-				domain          => 'ip6',
-				description     => 'Allow postgress access1',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2607:f8f0:610:4000:6564:a62:ce0c:138b/128 ))'
-			}
 		}
 	}
 	# vpn fu
