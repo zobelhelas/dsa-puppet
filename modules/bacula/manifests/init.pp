@@ -11,7 +11,7 @@ class bacula {
 	$bacula_pool_name         = 'debian'
 
 	# use IP address for ferm.
-	$bacula_director_ip       = '206.12.19.139'
+	$bacula_director_ip       = '5.153.231.19'
 	$bacula_director_address  = 'dinis.debian.org'
 	$bacula_director_port     = 9101
 	$bacula_storage_address   = 'backuphost.debian.org'
