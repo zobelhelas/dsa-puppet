@@ -211,6 +211,7 @@ host_settings:
     - reger.debian.org
     - tye.debian.org
     - vento.debian.org
+    - wuiet.debian.org
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org
