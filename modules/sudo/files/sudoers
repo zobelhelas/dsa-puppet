@@ -144,8 +144,6 @@ piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
 %dnsadm		draghi,orff=(root)		NOPASSWD: /etc/init.d/bind9 reload
 %dnsadm		draghi,orff=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo
 %adm		draghi=(puppet)			NOPASSWD: /usr/bin/make -s -C /srv/db.debian.org/var/gitnagios/dsa-nagios/config install
-# remote power to babylon5 in the same rack:
-joerg		unger=(ALL)		/usr/bin/sispmctl -t [12], /usr/bin/sispmctl -g [12]
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		BUILDD_MASTER=(wb-buildd)	ALL
 %wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys

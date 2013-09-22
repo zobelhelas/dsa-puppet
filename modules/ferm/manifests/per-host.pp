@@ -116,22 +116,6 @@ class ferm::per-host {
 				rule            => '&TCP_UDP_SERVICE(5080)'
 			}
 		}
-		unger: {
-			@ferm::rule { 'dsa-notrack-dns-diamond-in':
-				domain      => 'ip',
-				description => 'NOTRACK for nameserver traffic',
-				table       => 'raw',
-				chain       => 'PREROUTING',
-				rule        => 'destination 82.195.75.108 proto (tcp udp) dport 53 jump NOTRACK'
-			}
-			@ferm::rule { 'dsa-notrack-dns-diamond-out':
-				domain      => 'ip',
-				description => 'NOTRACK for nameserver traffic',
-				table       => 'raw',
-				chain       => 'PREROUTING',
-				rule        => 'source 82.195.75.108 proto (tcp udp) sport 53 jump NOTRACK'
-			}
-		}
 		sonntag: {
 			@ferm::rule { 'dsa-bugs-search':
 				description  => 'port 1978 for bugs-search from bug web frontends',

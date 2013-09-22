@@ -131,7 +131,6 @@ nameinfo:
   tristano.debian.org: Gerardo Tristano (July 1st, 1955 - ongoing)
   tye.debian.org: Christopher Tye (c.1505 - 1573)
   ullmann.debian.org: Viktor Ullmann (January 1st, 1898 - October 17th, 1944)
-  unger.debian.org: Caroline Unger (October 28th, 1803 - March 23th, 1877)
   vento.debian.org: Ivo de Vento (1543/1545 - 1575)
   vieuxtemps.debian.org: Henri Vieuxtemps (February 17th, 1820 - June 6th, 1881)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
@@ -227,7 +226,6 @@ host_settings:
     - cilea.debian.org
     - rautavaara.debian.org
     - scelsi.debian.org
-    - unger.debian.org
     - vitry.debian.org
     # dead/not running
     - berlioz.debian.org

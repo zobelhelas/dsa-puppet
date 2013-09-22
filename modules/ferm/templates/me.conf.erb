@@ -35,10 +35,6 @@ if restrict_ssh.include?(hostname) then
 		ssh4allowed << '$HOST_DEBIAN_V4'
 		ssh6allowed << '$HOST_DEBIAN_V6'
 	end
-	if %w{unger}.include?(hostname) then
-		ssh4allowed << '$UNGER_SSH_ACCESS'  # Ganneff
-		ssh6allowed << '$UNGER_SSH6_ACCESS' # Ganneff, but more address space
-	end
 
 	if %w{adayevskaya}.include?(hostname) then
 		ssh4allowed << %w{$HOST_MAILRELAY_V4}
