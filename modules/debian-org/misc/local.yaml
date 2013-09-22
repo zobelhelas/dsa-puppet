@@ -105,7 +105,6 @@ nameinfo:
   ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
   respighi.debian.org: Ottorino Respighi (July 9th, 1879 - April 18th, 1936)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19, 1873 - May 11th, 1916)
-  ries.debian.org: Franz Ries (April 7th, 1846 - January 20th, 1932)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   rossini.debian.org: Gioachino Rossini (February 29th, 1792 - November 13th, 1868)
   saens.debian.org: Charles-Camille Saint-Saëns  (October 9th, 1835 - December 16th, 1921)
@@ -226,7 +225,6 @@ host_settings:
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
-    - ries.debian.org
     - stabile.debian.org
     # decommissioning
     - cilea.debian.org
@@ -360,7 +358,6 @@ host_settings:
     - senfter.debian.org
   static_source:
     - master.debian.org
-    - ries.debian.org
     - franck.debian.org
     - philp.debian.org
     - ravel.debian.org
