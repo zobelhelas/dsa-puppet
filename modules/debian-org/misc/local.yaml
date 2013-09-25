@@ -223,7 +223,6 @@ host_settings:
   not-bacula-client:
     - stabile.debian.org
     # decommissioning
-    - cilea.debian.org
     - rautavaara.debian.org
     - scelsi.debian.org
     - vitry.debian.org
