@@ -4,4 +4,4 @@
 ##
 
 SHELL=/bin/bash
-@hourly  root if [ ! -d /etc/exim4/email-virtualdomains ]; then cd /etc/exim4 && git clone mail-git:email-virtualdomains ; fi ; cd email-virtualdomains && git pull --quiet --ff-only
+@hourly  root if [ ! -d /etc/exim4/email-virtualdomains ]; then cd /etc/exim4 && git clone mail-git:email-virtualdomains ; fi && cd /etc/exim4/email-virtualdomains && git pull --quiet --ff-only
