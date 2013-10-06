@@ -32,4 +32,8 @@ class exim::mx inherits exim {
 	package { 'nagios-plugins-standard':
 		ensure => installed,
 	}
+
+	file { '/etc/cron.d/dsa-email-virtualdomains':
+		source => 'puppet:///modules/exim/dsa-email-virtualdomains.cron',
+	}
 }

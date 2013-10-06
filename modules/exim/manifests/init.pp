@@ -28,9 +28,6 @@ class exim {
 		]
 	}
 
-	file { '/etc/cron.d/dsa-email-virtualdomains':
-		source => 'puppet:///modules/exim/dsa-email-virtualdomains.cron',
-	}
 	file { '/etc/exim4/':
 		ensure  => directory,
 		mode    => '0755',
