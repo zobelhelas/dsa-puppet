@@ -28,6 +28,9 @@ class exim {
 		]
 	}
 
+	file { '/etc/cron.d/dsa-email-virtualdomains':
+		source => 'puppet:///modules/exim/dsa-email-virtualdomains.cron',
+	}
 	file { '/etc/exim4/':
 		ensure  => directory,
 		mode    => '0755',
@@ -37,13 +40,6 @@ class exim {
 	file { '/etc/exim4/Git':
 		ensure  => absent,
 		force   => true,
-	}
-	# git checkouts through puppet.  yummy.
-	file { '/etc/exim4/email-virtualdomains':
-		recurse => true,
-		source => 'puppet:///modules/exim/email-virtualdomains',
-		purge  => true,
-		ignore => '.git',
 	}
 	file { '/etc/exim4/conf.d':
 		ensure  => directory,
