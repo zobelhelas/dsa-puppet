@@ -33,7 +33,13 @@ class exim::mx inherits exim {
 		ensure => installed,
 	}
 
-	file { '/etc/cron.d/dsa-email-virtualdomains':
-		source => 'puppet:///modules/exim/dsa-email-virtualdomains.cron',
+	if getfromhash($site::nodeinfo, 'mailrelay') {
+		file { '/etc/cron.d/dsa-email-virtualdomains':
+			source => 'puppet:///modules/exim/dsa-email-virtualdomains.cron',
+		}
+	} else {
+		file { '/etc/cron.d/dsa-email-virtualdomains':
+			ensure => absent,
+		}
 	}
 }
