@@ -12,7 +12,7 @@ else
 	case fqdn
 		when "berlioz.debian.org" then
 			""
-		when "tchaikovsky.debian.org" then
+		when "tchaikovsky.debian.org,quantz.debian.org" then
 			"RLimitMEM "+(96 * 1024**2).to_s
 		else
 			"RLimitMEM "+(32 * 1024**2).to_s
