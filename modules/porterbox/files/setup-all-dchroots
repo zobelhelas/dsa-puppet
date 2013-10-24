@@ -36,6 +36,9 @@ get_suites() {
       armel|s390x)
         echo "sid jessie wheezy"
         ;;
+      s390)
+        echo "wheezy squeeze"
+        ;;
       *)
         echo "sid jessie wheezy squeeze"
         ;;
