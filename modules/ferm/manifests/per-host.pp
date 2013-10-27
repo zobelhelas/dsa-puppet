@@ -38,22 +38,22 @@ class ferm::per-host {
 				rule		=> 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
 			}
 		}
-		abel,alwyn,rietz: {
+		abel,alwyn,rietz,jenkins: {
 			@ferm::rule { 'dsa-tftp':
 				description     => 'Allow tftp access',
 				rule            => '&SERVICE(udp, 69)'
 			}
 		}
-		paganini: {
-			@ferm::rule { 'dsa-dhcp':
-				description     => 'Allow dhcp access',
-				rule            => '&SERVICE(udp, 67)'
-			}
-			@ferm::rule { 'dsa-tftp':
-				description     => 'Allow tftp access',
-				rule            => '&SERVICE(udp, 69)'
-			}
-		}
+		#paganini: {
+		#	@ferm::rule { 'dsa-dhcp':
+		#		description     => 'Allow dhcp access',
+		#		rule            => '&SERVICE(udp, 67)'
+		#	}
+		#	@ferm::rule { 'dsa-tftp':
+		#		description     => 'Allow tftp access',
+		#		rule            => '&SERVICE(udp, 69)'
+		#	}
+		#}
 		lotti,lully: {
 			@ferm::rule { 'dsa-syslog':
 				description     => 'Allow syslog access',
