@@ -16,6 +16,7 @@ root: debian-admin@debian.org
 
 nagios: debianadmin@palfrader.org, debian-admin@ftbfs.de
 bacula-reports:  debian-archive-debian-admin-bacula@master.debian.org,debianadmin@palfrader.org,lfilipoz@emyr.net,zobel@debian.org
+backup-reports:  debian-archive-debian-admin-bacula@master.debian.org,debianadmin@palfrader.org,lfilipoz@emyr.net,zobel@debian.org
 
 # CVS logs for http://db.debian.org/*.html
 db-web-cvs: debian-admin@debian.org
