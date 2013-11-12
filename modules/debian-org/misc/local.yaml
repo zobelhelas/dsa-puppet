@@ -347,6 +347,7 @@ host_settings:
     - salieri.debian.org
   static_master:
     - bizet.debian.org
+    - dillon.debian.org
     - franck.debian.org
   static_mirror:
     - busoni.debian.org
@@ -355,6 +356,7 @@ host_settings:
     - senfter.debian.org
   static_source:
     - master.debian.org
+    - dillon.debian.org
     - franck.debian.org
     - philp.debian.org
     - ravel.debian.org
