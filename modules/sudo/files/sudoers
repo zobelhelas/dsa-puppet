@@ -135,6 +135,7 @@ buildd		ALL=(ALL)		NOPASSWD: ALL
 d-i		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component d-i.debian.org
 dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component ftp-master.metadata.debian.org
 %debbits	master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
+%webwml		master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component network-test.debian.org
 planet		philp,senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
 debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component www.debian.org
 
