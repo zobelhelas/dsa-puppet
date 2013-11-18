@@ -254,6 +254,26 @@ class ferm::per-host {
 				description     => 'Allow postgress access1',
 				rule            => '&SERVICE_RANGE(tcp, 5437, ( 2001:41c8:1000:21::21:19/128 ))'
 			}
+			@ferm::rule { 'dsa-postgres-tracker':
+				# dinis
+				description     => 'Allow postgress access for tracker',
+				rule            => '&SERVICE_RANGE(tcp, 5438, ( 5.153.231.23/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-tracker6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access for tracker1',
+				rule            => '&SERVICE_RANGE(tcp, 5438, ( 2001:41c8:1000:21::21:23/128 ))'
+			}
+			@ferm::rule { 'dsa-postgres-tracker-dev':
+				# dinis
+				description     => 'Allow postgress access for tracker-dev',
+				rule            => '&SERVICE_RANGE(tcp, 5439, ( 5.153.231.23/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-tracker-dev6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access for tracker-dev',
+				rule            => '&SERVICE_RANGE(tcp, 5439, ( 2001:41c8:1000:21::21:23/128 ))'
+			}
 		}
 		danzi: {
 			@ferm::rule { 'dsa-postgres-danzi':
