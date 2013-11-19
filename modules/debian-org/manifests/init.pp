@@ -15,7 +15,7 @@ class debian-org {
 		'debian-admin@ftbfs.de',
 		'weasel@debian.org',
 		'steve@lobefin.net',
-		'paravoid@debian.org'
+		'paravoid@debian.org',
 		'zumbi@kos.to'
 	]
 
