@@ -16,6 +16,7 @@ class debian-org {
 		'weasel@debian.org',
 		'steve@lobefin.net',
 		'paravoid@debian.org'
+		'zumbi@kos.to'
 	]
 
 	package { [
