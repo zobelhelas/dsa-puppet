@@ -15,7 +15,7 @@ class ferm::per-host {
 		samosa: {
 			@ferm::rule { 'dsa-udd-stunnel':
 				description  => 'port 8080 for udd stunnel',
-				rule         => '&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 217.196.43.134 ))'
+				rule         => '&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 5.153.231.21 ))'
 			}
 		}
 		czerny,clementi: {
@@ -26,16 +26,16 @@ class ferm::per-host {
 		}
 		bendel: {
 			@ferm::rule { 'listmaster-ontp-in':
-				description	=> 'ONTP has a broken mail setup',
-				table		=> 'filter',
-				chain		=> 'INPUT',
-				rule		=> 'source 188.165.23.89/32 proto tcp dport 25 jump DROP',
+				description => 'ONTP has a broken mail setup',
+				table       => 'filter',
+				chain       => 'INPUT',
+				rule        => 'source 188.165.23.89/32 proto tcp dport 25 jump DROP',
 			}
 			@ferm::rule { 'listmaster-ontp-out':
-				description	=> 'ONTP has a broken mail setup',
-				table		=> 'filter',
-				chain		=> 'OUTPUT',
-				rule		=> 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
+				description => 'ONTP has a broken mail setup',
+				table       => 'filter',
+				chain       => 'OUTPUT',
+				rule        => 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
 			}
 		}
 		abel,alwyn,rietz,jenkins: {
@@ -184,13 +184,13 @@ class ferm::per-host {
 		ullmann: {
 			@ferm::rule { 'dsa-postgres-udd':
 				description     => 'Allow postgress access',
-				# quantz, wagner, master, couper, coccia, franck
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 217.196.43.134/32 217.196.43.132/32 82.195.75.110/32 5.153.231.14/32 5.153.231.11/32 138.16.160.12/32 ))'
+				# quantz, moszumanska, master, couper, coccia, franck
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 5.153.231.21/32 82.195.75.110/32 5.153.231.14/32 5.153.231.11/32 138.16.160.12/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-udd6':
 				domain          => '(ip6)',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 2001:41c8:1000:21::21:14/128 2001:41c8:1000:21::21:11/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 2001:41c8:1000:21::21:14/128 2001:41c8:1000:21::21:11/32 2001:41c8:1000:21::21:21/128 ))'
 			}
 		}
 		grieg: {
@@ -281,6 +281,7 @@ class ferm::per-host {
 			}
 
 		}
+		default: {}
 	}
 	# vpn fu
 	case $::hostname {
@@ -309,5 +310,6 @@ REJECT reject-with icmp-admin-prohibited
 				rule            => 'outerface !tun+ mod mark mark 1 MASQUERADE',
 			}
 		}
+		default: {}
 	}
 }

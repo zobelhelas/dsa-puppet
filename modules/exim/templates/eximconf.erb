@@ -908,7 +908,7 @@ check_message:
 
 <%- end -%>
 <%- if scope.lookupvar('site::nodeinfo')['packagesqamaster'] -%>
-  deny    !hosts  = +debianhosts : 217.196.43.134
+  deny    !hosts  = +debianhosts : 5.153.231.21
           condition = ${if eq {$acl_m_prf}{PTSMail}}
           condition = ${if def:h_X-PTS-Approved:{false}{true}}
           message   = messages to the PTS require an X-PTS-Approved header
