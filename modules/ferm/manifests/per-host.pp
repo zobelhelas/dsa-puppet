@@ -12,12 +12,6 @@ class ferm::per-host {
 	}
 
 	case $::hostname {
-		samosa: {
-			@ferm::rule { 'dsa-udd-stunnel':
-				description  => 'port 8080 for udd stunnel',
-				rule         => '&SERVICE_RANGE(tcp, http-alt, ( 192.25.206.16 70.103.162.29 5.153.231.21 ))'
-			}
-		}
 		czerny,clementi: {
 			@ferm::rule { 'dsa-upsmon':
 				description     => 'Allow upsmon access',
