@@ -9,7 +9,7 @@ nodeinfo = scope.lookupvar('site::nodeinfo')
 out = []
 
 restricted_purposes = ['kvm host', 'central syslog server', 'puppet master', 'jumphost']
-restrict_ssh = %w{lebrun geo1 geo2 geo3 beethoven tchaikovsky schroeder draghi adayevskaya}
+restrict_ssh = %w{lebrun geo1 geo2 geo3 beethoven tchaikovsky schroeder draghi adayevskaya denis}
 
 if (nodeinfo['ldap'].has_key?('purpose')) then
 	nodeinfo['ldap']['purpose'].each do |purp|
