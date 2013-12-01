@@ -116,7 +116,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %wbadm		ALL=(wbadm)	ALL
 %mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki,wikiweb)	ALL
-%qa-core	ALL=(qa,qa-web-rolex)	ALL
+%qa-core	ALL=(qa)	ALL
 %gobby		gombert=(gobby)	ALL
 %dacshelper	diabelli=(www-data)	ALL
 
