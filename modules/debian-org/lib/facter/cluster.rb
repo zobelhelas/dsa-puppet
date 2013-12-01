@@ -10,7 +10,7 @@ if FileTest.exist?('/usr/sbin/gnt-cluster') and FileTest.exist?('/var/lib/ganeti
 				end
 				Facter.add('cluster_nodes') do
 				setcode do
-					yaml['nodes']['name']
+					yaml['nodes'].keys.join(' ')
 				end
 			end
 		end
