@@ -5,7 +5,7 @@ class ganeti2 {
 
 	$drbd = $ganeti2::params::drbd
 
-	package { 'ganeti2':
+	package { 'ganeti':
 		ensure => installed
 	}
 
