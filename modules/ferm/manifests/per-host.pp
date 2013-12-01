@@ -169,6 +169,37 @@ class ferm::per-host {
 			@ferm::rule { 'dsa-conntrackd':
 				rule            => 'interface vlan2 daddr 225.0.0.50 jump ACCEPT',
 			}
+			@ferm::rule { 'dsa-bind-notrack-in':
+				domain      => 'ip',
+				description => 'NOTRACK for nameserver traffic',
+				table       => 'raw',
+				chain       => 'PREROUTING',
+				rule        => 'proto (tcp udp) daddr 5.153.231.24 dport 53 jump NOTRACK'
+			}
+
+			@ferm::rule { 'dsa-bind-notrack-out':
+				domain      => 'ip',
+				description => 'NOTRACK for nameserver traffic',
+				table       => 'raw',
+				chain       => 'OUTPUT',
+				rule        => 'proto (tcp udp) saddr 5.153.231.24 sport 53 jump NOTRACK'
+			}
+
+			@ferm::rule { 'dsa-bind-notrack-in6':
+				domain      => 'ip6',
+				description => 'NOTRACK for nameserver traffic',
+				table       => 'raw',
+				chain       => 'PREROUTING',
+				rule        => 'proto (tcp udp) daddr 2001:41c8:1000:21::21:24 dport 53 jump NOTRACK'
+			}
+
+			@ferm::rule { 'dsa-bind-notrack-out6':
+				domain      => 'ip6',
+				description => 'NOTRACK for nameserver traffic',
+				table       => 'raw',
+				chain       => 'OUTPUT',
+				rule        => 'proto (tcp udp) saddr 2001:41c8:1000:21::21:24 sport 53 jump NOTRACK'
+			}
 		}
 		default: {}
 	}
