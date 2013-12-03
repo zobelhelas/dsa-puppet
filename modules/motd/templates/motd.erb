@@ -137,6 +137,12 @@ if scope.lookupvar('::cluster').to_s != 'undefined'
 end
 
 
+if ninfo['not-bacula-client'] then
+  purp += "\n Note that this host is _NOT_ being backed up.  If you care about your\n" +
+            " data, run your own backups.\n"
+end
+
+
 if scope.lookupvar('site::nodeinfo').has_key?('footer')
   purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
 end
