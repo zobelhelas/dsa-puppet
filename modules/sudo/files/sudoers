@@ -99,6 +99,8 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %lintian	ALL=(lintian)	ALL
 %listweb	ALL=(listweb)	ALL
 %list		LISTHOSTS=(list)	ALL
+# archives and stuff
+%list		master=(debian)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %nm		ALL=(nm)	ALL
 %patch-tracker	ALL=(patch-tracker)	ALL
