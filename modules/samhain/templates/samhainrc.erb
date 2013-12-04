@@ -104,6 +104,11 @@ file=/etc/bind/named.conf.options
 file=/etc/apache2/conf.d/puppet-builddlist
 <% if classes.include?("roles::static_mirror") -%>
 file=/etc/apache2/sites-available/static-vhosts-simple
+file=/etc/static-clients.conf
+<% elsif classes.include?("roles::static_master") -%>
+file=/etc/static-clients.conf
+<% elsif classes.include?("roles::static_source") -%>
+file=/etc/static-clients.conf
 <% end -%>
 
 #
