@@ -8,7 +8,7 @@
 
 	DocumentRoot /srv/static.debian.org/mirrors/$name/cur
 	<Directory /srv/static.debian.org/mirrors/$name/cur>
-		AllowOverride FileInfo
+		AllowOverride FileInfo Indexes Options=Multiviews
 		Options Multiviews Indexes FollowSymLinks
 		IndexOptions FancyIndexing NameWidth=*
 		Order allow,deny
