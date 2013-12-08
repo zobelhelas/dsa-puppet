@@ -144,6 +144,7 @@ planet		philp,senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-componen
 debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component www.debian.org
 %blends		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component blends.debian.org
 %Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component wnpp-by-tags.debian.net
+%Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component mozilla.debian.net
 
 # The piuparts slave needs to handle chroots
 piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
