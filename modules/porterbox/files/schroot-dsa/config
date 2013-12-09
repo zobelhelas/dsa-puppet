@@ -5,13 +5,14 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-if [ -e "$/etc/schroot/default/config" ]; then
-        . "$/etc/schroot/default/config"
-else
-        FSTAB="/etc/schroot/default/fstab"
-        COPYFILES="/etc/schroot/default/copyfiles"
-        NSSDATABASES="/etc/schroot/default/nssdatabases"
-fi
+FSTAB="/etc/schroot/dsa/fstab"
+[ -e "$FSTAB" ] || FSTAB="/etc/schroot/default/fstab"
+
+COPYFILES="/etc/schroot/dsa/copyfiles"
+[ -e "$COPYFILES" ] || COPYFILES="/etc/schroot/default/copyfiles"
+
+NSSDATABASES="/etc/schroot/dsa/nssdatabases"
+[ -e "$NSSDATABASES" ] || NSSDATABASES="/etc/schroot/default/nssdatabases"
 
 
 # added by weasel:
