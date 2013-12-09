@@ -12,6 +12,9 @@ class porterbox {
 	file { '/etc/schroot/dsa/config':
 		source  => 'puppet:///modules/porterbox/schroot-dsa/config',
 	}
+	file { '/etc/schroot/dsa/fstab':
+		source  => 'puppet:///modules/porterbox/schroot-dsa/fstab',
+	}
 	file { '/etc/schroot/dsa/default-mirror':
 		content => template('porterbox/default-mirror.erb'),
 	}
