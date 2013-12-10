@@ -9,11 +9,11 @@ is monitored and will be used as evidence for prosecutions.  By using
 this machine you agree to abide by the Debian Machines Usage Policies
 <URL:http://www.debian.org/devel/dmup>.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 <%=
 def wrap(s, width=78)
-      s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n ")
+      s.gsub(/(.{1,#{width}})( +|\Z)/, "\\1\n ")
 end
 
 def markup(l)
@@ -35,36 +35,33 @@ end
 
 ninfo = scope.lookupvar('site::nodeinfo')
 
-purp += ' Welcome to ' + fqdn
+extra = 'Welcome to ' + fqdn
 if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
   p = scope.lookupvar('site::nodeinfo')['ldap']['purpose'].clone()
-  extra = ''
+  entries = ""
 
   if p.delete('buildd')
-    extra += ", the Debian #{arch} build daemon."
+    entries += ", the Debian #{arch} build daemon"
   end
   if p.delete('porterbox') or classes.include?("porterbox")
-    extra += ", the Debian #{arch} porterbox. See\n"+
-    extra += " <URL:http://dsa.debian.org/doc/schroot/> for a brief schroot tutorial."
+    entries += ", the Debian #{arch} porterbox"
   end
 
   if p.size() > 0
-    extra += (extra == "") ? ", " : " Also"
-    extra +="used for the following services:\n"
+    entries += (entries == "") ? ", " : ".  Also"
+    entries +="used for the following services:\n"
     scope.lookupvar('site::nodeinfo')['ldap']['purpose'].sort.each do |l|
       l = markup(l)
-      extra += "\t#{l}\n"
+      entries += "\t#{l}\n"
     end
   else
-    extra += ".\n"
+    entries += ".\n"
   end
-
-  purp += extra
+  extra += entries
 else
-  purp += ".\n"
+  extra += "."
 end
-
-purp += "\n"
+purp += " " + wrap(extra)
 
 if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('physicalHost'))
   if ninfo['ldap']['physicalHost'][0] =~ /ganeti/
@@ -126,7 +123,7 @@ end
 
 
 if classes.include?("porterbox")
-  purp += "\n " + wrap("Disk space on porter boxes is often limited.  Please respect your fellow porters by cleaning up after yourself and deleting schroots and source/build trees in your ~ as soon as feasible.  DSA reserves the right to recover disk space as necessary.")
+  purp += "\n " + wrap("Disk space on porter boxes is often limited.  Please respect your fellow porters by cleaning up after yourself and deleting schroots and source/build trees in your ~ as soon as feasible.  DSA reserves the right to recover disk space as necessary.  See <URL:http://dsa.debian.org/doc/schroot/> for a brief tutorial on using schroot.")
 end
 
 if ninfo['not-bacula-client'] then
@@ -140,7 +137,7 @@ end
 purp
 -%>
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 <% if @lsbmajdistrelease >= '7' -%>
 EOD
