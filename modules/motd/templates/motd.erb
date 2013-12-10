@@ -22,6 +22,12 @@ def markup(l)
   return l
 end
 
+if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture')
+  arch = scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0]
+else
+  arch = 'unknown'
+end
+
 purp = ''
 if scope.lookupvar('site::nodeinfo').has_key?('nameinfo')
   purp += " " + wrap(scope.lookupvar('site::nodeinfo')['nameinfo']) + "\n"
@@ -35,40 +41,22 @@ if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
   extra = ''
 
   if p.delete('buildd')
-    purp += ", the Debian "
-    if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture')
-      purp += scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0]
-    end
-    purp += " build daemon"
+    extra += ", the Debian #{arch} build daemon."
   end
-
-  if p.delete('porterbox')
-    purp += ", the Debian "
-    if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture')
-      purp += scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0]
-    end
-    purp += " porterbox"
-    extra += "\n"
-    if classes.include?("porterbox")
-      extra += "For an introduction to the porterbox 'schroot' tool, see:\n"
-      extra += "  <URL:http://dsa.debian.org/doc/schroot/>.\n"
-    else
-      extra += "See 'dchroot -l' or 'schroot -l' for a list of available chroots.\n"
-      if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('admin')
-        extra += "Please contact #{ninfo['ldap']['admin'][0]} for install requests,\n"
-        extra += "following the recommendations in <URL:http://dsa.debian.org/doc/install-req/>.\n"
-      end
-    end
+  if p.delete('porterbox') or classes.include?("porterbox")
+    extra += ", the Debian #{arch} porterbox. See\n"+
+    extra += " <URL:http://dsa.debian.org/doc/schroot/> for a brief schroot tutorial."
   end
 
   if p.size() > 0
-    purp += ", used for the following services:\n"
+    extra += (extra == "") ? ", " : " Also"
+    extra +="used for the following services:\n"
     scope.lookupvar('site::nodeinfo')['ldap']['purpose'].sort.each do |l|
       l = markup(l)
-      purp += "\t" + l + "\n"
+      extra += "\t#{l}\n"
     end
   else
-    purp += ".\n"
+    extra += ".\n"
   end
 
   purp += extra
