@@ -142,6 +142,16 @@ if ninfo['not-bacula-client'] then
             " data, run your own backups.\n"
 end
 
+if classes.include?("porterbox")
+  purp += "\nPlease clean up any schroots after you are done using them.  Please also\n" +
+    "remove any build and source trees in your home directory once you no longer\n" +
+    "need them.  Disk space on porter machines often is scarce.  If it becomes\n" +
+    "necessary we will delete your entire home directory without warning, but this\n" +
+    "really implies that you have been misusing resources.  We would prefer this\n" +
+    "not become necessary.\n" +
+    "  *** Clean up behind you! ***\n"
+end
+
 
 if scope.lookupvar('site::nodeinfo').has_key?('footer')
   purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
