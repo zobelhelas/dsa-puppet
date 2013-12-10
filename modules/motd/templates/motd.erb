@@ -138,13 +138,10 @@ end
 
 
 if classes.include?("porterbox")
-  purp += "\nPlease clean up any schroots after you are done using them.  Please also\n" +
-    "remove any build and source trees in your home directory once you no longer\n" +
-    "need them.  Disk space on porter machines often is scarce.  If it becomes\n" +
-    "necessary we will delete your entire home directory without warning, but this\n" +
-    "would really imply that you have been misusing resources.  We prefer this\n" +
-    "not become necessary.\n" +
-    "\n  *** Clean up after yourself! ***\n"
+  purp += "\n Disk space on porter boxes is often limited.  Please respect your fellow\n"
+           " porters by cleaning up after yourself by deleting schroots and source/build\n" +
+           " trees in your $HOME, as soon as feasible.  DSA reserves the right to recover\n" +
+           " disk space as necessary.\n"
 end
 
 if ninfo['not-bacula-client'] then
