@@ -134,11 +134,11 @@ end
 
 if ninfo['not-bacula-client'] then
   purp += "\n " + wrap("Note that this host is _NOT_ being backed up.  If you
-care about your data, run your own backups.") + "\n"
+care about your data, run your own backups.")
 end
 
 if scope.lookupvar('site::nodeinfo').has_key?('footer')
-  purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
+  purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer'])
 end
 
 purp
