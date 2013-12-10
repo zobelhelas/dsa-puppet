@@ -137,11 +137,6 @@ if scope.lookupvar('::cluster').to_s != 'undefined'
 end
 
 
-if ninfo['not-bacula-client'] then
-  purp += "\n Note that this host is _NOT_ being backed up.  If you care about your\n" +
-            " data, run your own backups.\n"
-end
-
 if classes.include?("porterbox")
   purp += "\nPlease clean up any schroots after you are done using them.  Please also\n" +
     "remove any build and source trees in your home directory once you no longer\n" +
@@ -149,9 +144,13 @@ if classes.include?("porterbox")
     "necessary we will delete your entire home directory without warning, but this\n" +
     "really implies that you have been misusing resources.  We would prefer this\n" +
     "not become necessary.\n" +
-    "  *** Clean up after yourself! ***\n"
+    "\n  *** Clean up after yourself! ***\n"
 end
 
+if ninfo['not-bacula-client'] then
+  purp += "\n Note that this host is _NOT_ being backed up.  If you care about your\n" +
+            " data, run your own backups.\n"
+end
 
 if scope.lookupvar('site::nodeinfo').has_key?('footer')
   purp += "\n" + wrap(scope.lookupvar('site::nodeinfo')['footer']) + "\n"
