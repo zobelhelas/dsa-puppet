@@ -9,6 +9,7 @@ class roles::static_mirror {
 
 	apache2::module { 'macro': require => Package['libapache2-mod-macro']; }
 	apache2::module { 'rewrite': }
+	apache2::module { 'include': }
 	apache2::module { 'geoip': require => [Package['libapache2-mod-geoip'], Package['geoip-database']]; }
 
 	file { '/usr/local/bin/static-mirror-run':
