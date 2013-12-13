@@ -109,6 +109,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %pkg_maint	ALL=(pkg_user)	ALL
 %planet		ALL=(planet)	ALL
 %popcon		ALL=(popcon)	ALL
+%ports		ALL=(ports)	ALL
 %search		ALL=(search)	ALL
 %secretary	ALL=(secretary)	ALL
 %sectracker	ALL=(sectracker)	ALL
@@ -145,6 +146,7 @@ debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-componen
 %blends		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component blends.debian.org
 %Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component wnpp-by-tags.debian.net
 %Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component mozilla.debian.net
+ports		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component ports.debian.org
 
 # The piuparts slave needs to handle chroots
 piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
