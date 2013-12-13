@@ -53,3 +53,10 @@ Use common-static-vhost-with-extra www.ports.debian.org "ServerAlias www.ports-b
 	RedirectPermanent /debian/            http://archive.ports.debian.org/debian/
 	RedirectPermanent / http://www.ports.debian.org/
 </VirtualHost>
+
+<VirtualHost <%= vhost_listen %> >
+	ServerName ports.debian.net
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent /debian/            http://archive.ports.debian.org/debian/
+	RedirectPermanent / http://www.ports.debian.org/
+</VirtualHost>
