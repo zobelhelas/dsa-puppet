@@ -42,3 +42,14 @@ Use common-static-vhost-with-extra www.ports.debian.org "ServerAlias www.ports-b
 	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
 </VirtualHost>
 # vim:ft=apache:
+
+<VirtualHost <%= vhost_listen %> >
+	ServerName www.debian-ports.org
+	ServerAlias debian-ports.org
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent /archive/           http://archive.ports.debian.org/archive/
+	RedirectPermanent /debian-cd/         http://archive.ports.debian.org/debian-cd/
+	RedirectPermanent /debian-snapshot/   http://archive.ports.debian.org/debian-snapshot/
+	RedirectPermanent /debian/            http://archive.ports.debian.org/debian/
+	RedirectPermanent / http://www.ports.debian.org/
+</VirtualHost>
