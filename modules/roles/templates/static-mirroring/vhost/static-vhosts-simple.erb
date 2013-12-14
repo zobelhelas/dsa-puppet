@@ -9,7 +9,6 @@ Use common-static-vhost-with-extra d-i.debian.org "ServerAlias d-i-backend.debia
 Use common-static-vhost-with-extra network-test.debian.org "ServerAlias network-test-backend.debian.org"
 Use common-static-vhost-with-extra blends.debian.org "ServerAlias blends-backend.debian.org"
 Use common-static-vhost-with-extra wnpp-by-tags.debian.net "ServerAlias wnpp-by-tags-backend.debian.org"
-Use common-static-vhost-with-extra www.ports.debian.org "ServerAlias www.ports-backend.debian.org"
 
 # www.backports.org is the historical place for the backports
 # website and archive.  It is now a CNAME to backports.debian.org:
@@ -41,7 +40,33 @@ Use common-static-vhost-with-extra www.ports.debian.org "ServerAlias www.ports-b
 	RedirectPermanent /press/ http://wiki.debian.org/DebianWomen/Press
 	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
 </VirtualHost>
-# vim:ft=apache:
+
+# debian ports stuff
+####################
+<Virtualhost <%= vhost_listen %> >
+	ServerName www.ports.debian.org
+	ServerAlias www.ports-backend.debian.org
+	ServerAdmin debian-admin@lists.debian.org
+
+	ErrorLog /var/log/apache2/www.ports.debian.org-error.log
+	CustomLog /var/log/apache2/www.ports.debian.org-access.log privacy
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+	ServerSignature On
+
+	DocumentRoot /srv/static.debian.org/mirrors/www.ports.debian.org/cur
+	<Directory /srv/static.debian.org/mirrors/www.ports.debian.org/cur>
+		AllowOverride FileInfo Indexes Options=Multiviews
+		IndexOptions FancyIndexing NameWidth=*
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	DefaultType text/plain
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+</VirtualHost>
 
 <VirtualHost <%= vhost_listen %> >
 	ServerName www.debian-ports.org
@@ -59,3 +84,5 @@ Use common-static-vhost-with-extra www.ports.debian.org "ServerAlias www.ports-b
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://www.ports.debian.org/
 </VirtualHost>
+
+# vim:ft=apache:
