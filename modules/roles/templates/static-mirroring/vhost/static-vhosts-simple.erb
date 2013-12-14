@@ -59,10 +59,3 @@ Use common-static-vhost-with-extra www.ports.debian.org "ServerAlias www.ports-b
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://www.ports.debian.org/
 </VirtualHost>
-
-<VirtualHost <%= vhost_listen %> >
-	ServerName ports.debian.org
-	ServerAdmin debian-admin@debian.org
-	Options MultiViews Includes
-	AddOutputFilter INCLUDES .xhtml
-</VirtualHost>

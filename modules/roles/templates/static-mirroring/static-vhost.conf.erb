@@ -9,7 +9,7 @@
 	DocumentRoot /srv/static.debian.org/mirrors/$name/cur
 	<Directory /srv/static.debian.org/mirrors/$name/cur>
 		AllowOverride FileInfo Indexes Options=Multiviews
-		Options Multiviews Indexes FollowSymLinks
+		Options Multiviews Indexes FollowSymLinks Includes
 		IndexOptions FancyIndexing NameWidth=*
 		Order allow,deny
 		Allow from all
@@ -17,6 +17,7 @@
 
 	DefaultType text/plain
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+	AddOutputFilter INCLUDES .xhtml
 </Macro>
 
 
