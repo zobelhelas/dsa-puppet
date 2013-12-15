@@ -12,8 +12,14 @@ class porterbox {
 	file { '/etc/schroot/dsa/config':
 		source  => 'puppet:///modules/porterbox/schroot-dsa/config',
 	}
-	file { '/etc/schroot/dsa/fstab':
-		source  => 'puppet:///modules/porterbox/schroot-dsa/fstab',
+	if ! ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
+		file { '/etc/schroot/dsa/fstab':
+			source  => 'puppet:///modules/porterbox/schroot-dsa/fstab',
+		}
+	} else {
+		file { '/etc/schroot/dsa/fstab':
+			source  => 'puppet:///modules/porterbox/schroot-dsa/fstab-freebsd',
+		}
 	}
 	file { '/etc/schroot/dsa/default-mirror':
 		content => template('porterbox/default-mirror.erb'),
