@@ -4,6 +4,7 @@
 ##
 # Copyright (c) 2013 Philipp Kern <phil@philkern.de>
 # Copyright (c) 2013 Peter Palfrader <peter@palfrader.org>
+# Copyright (c) 2013 Luca Filipozzi <lfilipoz@debian.org>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -64,14 +65,15 @@ Hi {name},
 you last logged into {hostname} {days_ago} days ago, and your home
 directory there is {homedir_size}MB in size.
 
-Disk space on porter boxes is often limited.  Please respect your fellow
-porters by cleaning up after yourself and deleting schroots and source/build
-trees in your home directory as soon as feasible.
+Disk space on porter boxes is often limited.  Please assist us by freeing up
+space by deleting schroots and source/build trees in ~{username} as soon as
+feasible.
 
 If you currently do not use {hostname}, please keep ~{username} under 10MB.
 
 Thanks,
-Cron, on behalf of your catherders/admins
+
+Debian System Administration Team via Cron
 
 PS: replies not required.
 """
