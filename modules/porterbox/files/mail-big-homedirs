@@ -1,0 +1,192 @@
+#!/usr/bin/python
+## vim:set et ts=2 sw=2 ai:
+# homedir_reminder.py - Reminds users about sizable homedirs.
+##
+# Copyright (c) 2013 Philipp Kern <phil@philkern.de>
+# Copyright (c) 2013 Peter Palfrader <peter@palfrader.org>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+from __future__ import print_function
+
+from collections import defaultdict
+import email
+import email.mime.text
+import glob
+import logging
+import os.path
+import platform
+import pwd
+import subprocess
+import struct
+import time
+import StringIO
+import pwd
+
+# avoid base64 encoding for utf-8
+email.charset.add_charset('utf-8', email.charset.SHORTEST, email.charset.QP)
+
+
+SENDMAIL = ['/usr/sbin/sendmail', '-t', '-oi']
+#SENDMAIL = ['/bin/cat']
+
+REPORT_SIZES = [
+    { 'days': 5, 'size': 10240 },
+    { 'days': 10, 'size': 1024 },
+    { 'days': 30, 'size': 100 },
+    { 'days': 60, 'size': 20 },
+    { 'days': 150, 'size': 10 }
+  ]
+USER_EXCLUSION_LIST = ['lost+found']
+MAIL_FROM = 'dsa@debian.org'
+MAIL_TO = '{username}@{hostname}.debian.org'
+MAIL_CC = 'dsa@debian.org'
+MAIL_SUBJECT = 'Please clean up ~{username} on {hostname}.debian.org'
+MAIL_TEXT = u"""\
+Hi {name},
+
+you last logged into {hostname} {days_ago} days ago, and your home
+directory there is {homedir_size}MB in size.
+
+Disk space on porter boxes is often limited.  Please respect your fellow
+porters by cleaning up after yourself and deleting schroots and source/build
+trees in your home directory as soon as feasible.
+
+If you currently do not use {hostname}, please keep ~{username} under 10MB.
+
+Thanks,
+Cron, on behalf of your catherders/admins
+"""
+
+class Error(Exception):
+  pass
+
+class SendmailError(Error):
+  pass
+
+class LastLog(object):
+  LASTLOG_STRUCT = '=L32s256s'
+
+  def __init__(self, fname='/var/log/lastlog'):
+    record_size = struct.calcsize(self.LASTLOG_STRUCT)
+    self.records = {}
+    with open(fname, 'r') as fp:
+      uid = -1
+      for record in iter(lambda: fp.read(record_size), ''):
+        uid += 1
+        last_login, _, _ = list(struct.unpack(self.LASTLOG_STRUCT, record))
+        if last_login == 0:
+          continue
+        try:
+          self.records[pwd.getpwuid(uid).pw_name] = last_login
+        except KeyError:
+          continue
+
+  def last_login_for_user(self, username):
+    return self.records.get(username, 0)
+
+class HomedirReminder(object):
+  def __init__(self):
+    self.lastlog = LastLog()
+    self.generate_homedir_list()
+
+  def parse_utmp(self):
+    self.utmp_records = defaultdict(list)
+    for wtmpfile in glob.glob('/var/log/wtmp*'):
+      for entry in utmp.UtmpRecord(wtmpfile):
+        # TODO: Login, does not account for non-idle sessions.
+        self.utmp_records[entry.ut_user].append(entry.ut_tv[0])
+    for username, timestamps in self.utmp_records.iteritems():
+      self.utmp_records[username] = sorted(timestamps)[-1]
+
+  def last_login_for_user(self, username):
+    return self.lastlog.last_login_for_user(username)
+
+  def generate_homedir_list(self):
+    self.homedir_sizes = {}
+    for direntry in glob.glob('/home/*'):
+      username = os.path.basename(direntry)
+      try:
+        pwinfo = pwd.getpwnam(username)
+      except KeyError:
+        if os.path.isdir(direntry):
+          logging.warning('Directory %s exists on %s but there is no %s user', direntry, platform.node(), username)
+        continue
+      homedir = pwinfo.pw_dir
+
+      if username in USER_EXCLUSION_LIST:
+        continue
+      # Ignore errors from du.
+      command = ['/usr/bin/du', '-ms', homedir]
+      p = subprocess.Popen(command,
+                           stdout=subprocess.PIPE,
+                           stderr=subprocess.PIPE)
+      (stdout, stderr) = p.communicate()
+      if p.returncode != 0:
+        logging.info('%s failed:', ' '.join(command))
+        logging.info(stderr)
+      try:
+        size = int(stdout.split('\t')[0])
+      except ValueError:
+        logging.error('Could not convert size output from %s: %s',
+                      ' '.join(command), stdout)
+        continue
+      self.homedir_sizes[username] = size
+
+  def send_mail(self, **kwargs):
+    msg = email.mime.text.MIMEText(MAIL_TEXT.format(**kwargs), _charset='UTF-8')
+    msg['From'] = MAIL_FROM.format(**kwargs)
+    msg['To'] = MAIL_TO.format(**kwargs)
+    msg['Cc'] = MAIL_CC.format(**kwargs)
+    msg['Subject'] = MAIL_SUBJECT.format(**kwargs)
+    p = subprocess.Popen(SENDMAIL, stdin=subprocess.PIPE)
+    p.communicate(msg.as_string())
+    logging.debug(msg.as_string())
+    if p.returncode != 0:
+      raise SendmailError
+
+  def run(self):
+    current_time = time.time()
+    for username, homedir_size in self.homedir_sizes.iteritems():
+      last_login = self.last_login_for_user(username)
+      logging.info('user %s: size %dMB, last login: %d', username, homedir_size, last_login)
+      days_ago = int( (current_time - last_login) / 3600 / 24 )
+
+      reportsize = None
+      for e in REPORT_SIZES:
+        if days_ago > e['days']: reportsize = e['size']
+
+      if reportsize is not None and homedir_size > reportsize:
+        logging.warning('Homedir of user %s is %d and did not login for a while', username, homedir_size)
+        try:
+          name = pwd.getpwnam(username).pw_gecos.decode('utf-8')
+          name = name.split(',', 1)[0]
+        except:
+          name = username
+        self.send_mail(hostname=platform.node(),
+                       username=username,
+                       name=name,
+                       homedir_size=homedir_size,
+                       days_ago=days_ago)
+
+if __name__ == '__main__':
+  logging.basicConfig()
+  # DEBUG for debugging, ERROR for production.
+  logging.getLogger().setLevel(logging.ERROR)
+  HomedirReminder().run()
