@@ -50,8 +50,7 @@ REPORT_SIZES = [
     { 'days': 5, 'size': 10240 },
     { 'days': 10, 'size': 1024 },
     { 'days': 30, 'size': 100 },
-    { 'days': 60, 'size': 20 },
-    { 'days': 150, 'size': 10 }
+    { 'days': 75, 'size': 10 }
   ]
 USER_EXCLUSION_LIST = ['lost+found']
 MAIL_FROM = 'debian-admin (via Cron) <bulk@admin.debian.org>'
