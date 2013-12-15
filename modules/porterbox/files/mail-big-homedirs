@@ -56,7 +56,7 @@ REPORT_SIZES = [
 USER_EXCLUSION_LIST = ['lost+found']
 MAIL_FROM = 'dsa@debian.org'
 MAIL_TO = '{username}@{hostname}.debian.org'
-MAIL_CC = 'dsa@debian.org'
+MAIL_CC = ''
 MAIL_SUBJECT = 'Please clean up ~{username} on {hostname}.debian.org'
 MAIL_TEXT = u"""\
 Hi {name},
