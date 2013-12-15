@@ -75,7 +75,7 @@ fi
 if [ "`id -nu`" != "staticsync" ]; then
   sudo -u staticsync static-update-component "$@"
 else
-  ssh -o AddressFamily=inet -t -o ServerAliveInterval=300 -o PreferredAuthentications=publickey "$masterhost" static-master-update-component "$component"
+  ssh -o AddressFamily=inet -t -t -o ServerAliveInterval=300 -o PreferredAuthentications=publickey "$masterhost" static-master-update-component "$component"
 fi
 
 # vim:set et:
