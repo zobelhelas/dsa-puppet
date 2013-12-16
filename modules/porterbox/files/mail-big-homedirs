@@ -34,7 +34,6 @@ import logging
 import os.path
 import platform
 import pwd
-import random
 import subprocess
 import struct
 import time
@@ -43,34 +42,24 @@ import StringIO
 # avoid base64 encoding for utf-8
 email.charset.add_charset('utf-8', email.charset.SHORTEST, email.charset.QP)
 
-DRYRUN=False
+DRYRUN = False
 
-if DRYRUN: SENDMAIL_COMMAND = ['/bin/cat']
-else:      SENDMAIL_COMMAND = ['/usr/sbin/sendmail', '-t', '-oi']
+if DRYRUN:
+  SENDMAIL_COMMAND = ['/bin/cat']
+else:
+  SENDMAIL_COMMAND = ['/usr/sbin/sendmail', '-t', '-oi']
 
-if DRYRUN: RM_COMMAND = ['/bin/echo', 'Would remove']
-else:      RM_COMMAND = ['/bin/rm', '-rf']
-
-EXPLANATIONS = [
-u"""\
-{hostname}'s /home is, unfortunately, not infinite in size.  If you have
-anything in there that you no longer need, please clean it up."""
-,u"""\
-Can you please look at your $HOME on {hostname} and remove files which
-you no longer need (such as old sources)."""
-,u"""\
-Thanks for your porting effort on {hostname}!
-
-Please note that on most porterboxes /home is quite small, so please remove
-files that you do not need anymore."""
-  ]
+if DRYRUN:
+  RM_COMMAND = ['/bin/echo', 'Would remove']
+else:
+  RM_COMMAND = ['/bin/rm', '-rf']
 
 CRITERIA = [
-    { 'size': 10240,  'notifyafter':  5}, #, 'deleteafter': 40 },
-    { 'size':  1024,  'notifyafter': 10}, #, 'deleteafter': 50 },
-    { 'size':   100,  'notifyafter': 30}, #, 'deleteafter': 90 },
+    { 'size': 10240,  'notifyafter':  5}, #, 'deleteafter':  40 },
+    { 'size':  1024,  'notifyafter': 10}, #, 'deleteafter':  50 },
+    { 'size':   100,  'notifyafter': 30}, #, 'deleteafter':  90 },
     { 'size':    20,  'notifyafter': 90}, #, 'deleteafter': 150 },
-    { 'size':     5,                     'deleteafter': 450 }
+    { 'size':     5,  'notifyafter':  0,    'deleteafter': 450 }
   ]
 EXCLUDED_USERNAMES = ['lost+found']
 MAIL_FROM = 'debian-admin (via Cron) <bulk@admin.debian.org>'
@@ -79,9 +68,12 @@ MAIL_CC = 'debian-admin (bulk sink) <bulk@admin.debian.org>'
 MAIL_REPLYTO = 'debian-admin <dsa@debian.org>'
 MAIL_SUBJECT = 'Please clean up ~{username} on {hostname}.debian.org'
 MAIL_MESSAGE = u"""\
-Hi {name}!
+Hi {realname}!
 
-{explanation}
+Thanks for your porting effort on {hostname}!
+
+Please note that, on most porterboxes, /home is quite small, so please
+remove files that you do not need anymore.
 
 For your information, you last logged into {hostname} {days_ago} days
 ago, and your home directory there is {homedir_size} MB in size.
@@ -95,7 +87,7 @@ Thanks,
 
 Debian System Administration Team via Cron
 
-PS: replies not required.
+PS: A reply is not required.
 """
 
 class Error(Exception):
@@ -117,8 +109,7 @@ class LastlogTimes(dict):
         try:
           self[pwd.getpwuid(uid).pw_name] = lastlog_time
         except KeyError:
-          # this is a normal condition.
-          #logging.error('could not resolve username from uid %d', uid)
+          # this is a normal condition
           continue
 
 class HomedirSizes(dict):
@@ -158,7 +149,7 @@ class HomedirReminder(object):
     self.lastlog_times = LastlogTimes()
     self.homedir_sizes = HomedirSizes()
 
-  def send_mail(self, **kwargs):
+  def notify(self, **kwargs):
     msg = email.mime.text.MIMEText(MAIL_MESSAGE.format(**kwargs), _charset='UTF-8')
     msg['From'] = MAIL_FROM.format(**kwargs)
     msg['To'] = MAIL_TO.format(**kwargs)
@@ -175,9 +166,10 @@ class HomedirReminder(object):
     if p.returncode != 0:
       raise SendmailError
 
-  def remove(self, username):
+  def remove(self, **kwargs):
     try:
-      pwinfo = pwd.getpwnam(username)
+      pwinfo = pwd.getpwnam(kwargs.get('username'))
+      return
     except KeyError:
       return
 
@@ -186,27 +178,34 @@ class HomedirReminder(object):
 
   def run(self):
     current_time = time.time()
-    explanation_template = EXPLANATIONS[random.randint(0,len(EXPLANATIONS)-1)]
 
     for username, homedir_size in self.homedir_sizes.iteritems():
       try:
-        name = pwd.getpwnam(username).pw_gecos.decode('utf-8').split(',', 1)[0].split(',', 1)[0]
+        realname = pwd.getpwnam(username).pw_gecos.decode('utf-8').split(',', 1)[0].split(',', 1)[0]
       except:
-        name = username
+        realname = username
       lastlog_time = self.lastlog_times[username]
       days_ago = int( (current_time - lastlog_time) / 3600 / 24 )
+      kwargs = {
+          'hostname': platform.node(),
+          'username': username,
+          'realname': realname,
+          'homedir_size': homedir_size,
+          'days_ago': days_ago
+        }
 
       notify = False
       remove = False
       for x in CRITERIA:
-        if homedir_size > x['size'] and 'notifyafter' in x and days_ago >= x['notifyafter']: notify = True
-        if homedir_size > x['size'] and 'deleteafter' in x and days_ago >= x['deleteafter']: remove = True
+        if homedir_size > x['size'] and 'notifyafter' in x and days_ago >= x['notifyafter']:
+          notify = True
+        if homedir_size > x['size'] and 'deleteafter' in x and days_ago >= x['deleteafter']:
+          remove = True
 
       if remove:
-        self.remove(username=username)
+        self.remove(**kwargs)
       elif notify:
-        explanation = explanation_template.format(hostname=platform.node())
-        self.send_mail(hostname=platform.node(), username=username, name=name, explanation=explanation, homedir_size=homedir_size, days_ago=days_ago)
+        self.notify(**kwargs)
 
 if __name__ == '__main__':
   logging.basicConfig()
