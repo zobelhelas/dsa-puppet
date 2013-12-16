@@ -181,7 +181,7 @@ class HomedirReminder(object):
 
     for username, homedir_size in self.homedir_sizes.iteritems():
       try:
-        realname = pwd.getpwnam(username).pw_gecos.decode('utf-8').split(',', 1)[0].split(',', 1)[0]
+        realname = pwd.getpwnam(username).pw_gecos.decode('utf-8').split(',', 1)[0]
       except:
         realname = username
       lastlog_time = self.lastlog_times[username]
