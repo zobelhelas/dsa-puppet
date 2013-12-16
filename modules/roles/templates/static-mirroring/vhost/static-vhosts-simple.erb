@@ -59,6 +59,7 @@ Use common-static-vhost-with-extra wnpp-by-tags.debian.net "ServerAlias wnpp-by-
 	DocumentRoot /srv/static.debian.org/mirrors/www.ports.debian.org/cur
 	<Directory /srv/static.debian.org/mirrors/www.ports.debian.org/cur>
 		AllowOverride FileInfo Indexes Options=Multiviews
+		Options Multiviews Indexes FollowSymLinks Includes
 		IndexOptions FancyIndexing NameWidth=*
 		Order allow,deny
 		Allow from all
