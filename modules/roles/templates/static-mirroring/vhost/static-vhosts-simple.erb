@@ -66,6 +66,7 @@ Use common-static-vhost-with-extra wnpp-by-tags.debian.net "ServerAlias wnpp-by-
 
 	DefaultType text/plain
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+	AddOutputFilter INCLUDES .xhtml
 </VirtualHost>
 
 <VirtualHost <%= vhost_listen %> >
