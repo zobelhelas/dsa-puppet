@@ -48,17 +48,16 @@ SENDMAIL = ['/usr/sbin/sendmail', '-t', '-oi']
 
 EXPLANATIONS = [
 u"""\
-{hostname}'s /home is growing close to full.  If you have anything in
-there that you no longer need, please clean it up.""" # By Martin Zobel-Helas
+{hostname}'s /home is, unfortunately, not infinite in size.  If you have
+anything in there that you no longer need, please clean it up."""
 ,u"""\
 Can you please look at your $HOME on {hostname} and remove files which
-you no longer need (such as old sources).""" # By Martin Michlmayr
+you no longer need (such as old sources)."""
 ,u"""\
 Thanks for your porting effort on {hostname}!
 
-Please note that /home is running short of diskspace, so please remove
-files that you do not need anymore.""" # By Bill Allombert
-  # Please add more from your archive!
+Please note that on most porterboxes /home is quite small, so please remove
+files that you do not need anymore."""
   ]
 
 CRITERIA = [
@@ -66,7 +65,7 @@ CRITERIA = [
     { 'days': 10, 'size':  1024 },
     { 'days': 30, 'size':   100 },
     { 'days': 60, 'size':    60 },
-    { 'days': 90, 'size':    30 }
+    { 'days': 90, 'size':    10 }
   ]
 EXCLUDED_USERNAMES = ['lost+found']
 MAIL_FROM = 'debian-admin (via Cron) <bulk@admin.debian.org>'
@@ -83,7 +82,7 @@ For your information, you last logged into {hostname} {days_ago} days
 ago, and your home directory there is {homedir_size} MB in size.
 
 If you currently do not use {hostname}, please keep ~{username} under
-30 MB, if possible.
+10 MB, if possible.
 
 Please assist us in freeing up space by deleting schroots, also.
 
