@@ -1,6 +1,6 @@
 #!/usr/bin/python
 ## vim:set et ts=2 sw=2 ai:
-# homedir_reminder.py - Reminds users about sizable homedirs.
+# Send email reminders to users having sizable homedirs.
 ##
 # Copyright (c) 2013 Philipp Kern <phil@philkern.de>
 # Copyright (c) 2013 Peter Palfrader <peter@palfrader.org>
@@ -34,24 +34,39 @@ import logging
 import os.path
 import platform
 import pwd
+import random
 import subprocess
 import struct
 import time
 import StringIO
-import pwd
 
 # avoid base64 encoding for utf-8
 email.charset.add_charset('utf-8', email.charset.SHORTEST, email.charset.QP)
 
-
 SENDMAIL = ['/usr/sbin/sendmail', '-t', '-oi']
 #SENDMAIL = ['/bin/cat']
 
+EXPLANATIONS = [
+u"""\
+{hostname} /home is growing close to full.  If you have anything in there that
+you no longer need, please clean it up.""" # By Martin Zobel-Helas
+,u"""\
+Can you please look at your $HOME on {hostname} and remove files which you
+no longer need (such as old sources).""" # By Martin Michlmayr
+,u"""\
+Thanks for your porting effort on {hostname}!
+
+Please note that /home is running short of diskspace, so please remove files
+you do not need anymore.""" # By Bill Allombert
+  # Please add more from your archive!
+  ]
+
 REPORT_SIZES = [
-    { 'days': 5, 'size': 10240 },
-    { 'days': 10, 'size': 1024 },
-    { 'days': 30, 'size': 100 },
-    { 'days': 75, 'size': 10 }
+    { 'days':  5, 'size': 10240 },
+    { 'days': 10, 'size':  1024 },
+    { 'days': 30, 'size':   100 },
+    { 'days': 60, 'size':    60 },
+    { 'days': 90, 'size':    30 }
   ]
 USER_EXCLUSION_LIST = ['lost+found']
 MAIL_FROM = 'debian-admin (via Cron) <bulk@admin.debian.org>'
@@ -60,16 +75,15 @@ MAIL_CC = 'debian-admin (bulk sink) <bulk@admin.debian.org>'
 MAIL_REPLYTO = 'debian-admin <dsa@debian.org>'
 MAIL_SUBJECT = 'Please clean up ~{username} on {hostname}.debian.org'
 MAIL_TEXT = u"""\
-Hi {name},
+Hi {name}!
 
-you last logged into {hostname} {days_ago} days ago, and your home
-directory there is {homedir_size}MB in size.
+{explanation}
 
-Disk space on porter boxes is often limited.  Please assist us by freeing up
-space by deleting schroots and source/build trees in ~{username} as soon as
-feasible.
+For your information, you last logged into {hostname} {days_ago} days ago, and
+your home directory there is {homedir_size} MB in size.
 
-If you currently do not use {hostname}, please keep ~{username} under 10MB.
+If you currently do not use {hostname}, please keep ~{username} under 30 MB,
+if possible.  Please assist us in freeing up space by deleting schroots, also.
 
 Thanks,
 
@@ -177,18 +191,22 @@ class HomedirReminder(object):
 
       reportsize = None
       for e in REPORT_SIZES:
-        if days_ago > e['days']: reportsize = e['size']
+        if days_ago >= e['days']: reportsize = e['size']
 
       if reportsize is not None and homedir_size > reportsize:
         logging.warning('Homedir of user %s is %d and did not login for a while', username, homedir_size)
         try:
           name = pwd.getpwnam(username).pw_gecos.decode('utf-8')
           name = name.split(',', 1)[0]
+          name = name.split(' ', 1)[0]
         except:
           name = username
+        explanation = EXPLANATIONS[random.randint(0,len(EXPLANATIONS)-1)]
+        explanation = explanation.format(hostname=platform.node())
         self.send_mail(hostname=platform.node(),
                        username=username,
                        name=name,
+                       explanation=explanation,
                        homedir_size=homedir_size,
                        days_ago=days_ago)
 
