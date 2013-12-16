@@ -460,6 +460,10 @@ file=/usr/share/puppet-dashboard/public/stylesheets/all.css
 file=/usr/share/puppet-dashboard/public/javascripts/all.js
 <% end -%>
 
+<% if classes.include?("porterbox") %>
+file=/etc/cron.weekly/puppet-mail-big-homedirs
+<% end -%>
+
 [IgnoreNone]
 ##
 ## for these files, all modifications (even access time) are reported
