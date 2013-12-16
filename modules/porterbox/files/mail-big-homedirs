@@ -48,42 +48,44 @@ SENDMAIL = ['/usr/sbin/sendmail', '-t', '-oi']
 
 EXPLANATIONS = [
 u"""\
-{hostname} /home is growing close to full.  If you have anything in there that
-you no longer need, please clean it up.""" # By Martin Zobel-Helas
+{hostname}'s /home is growing close to full.  If you have anything in
+there that you no longer need, please clean it up.""" # By Martin Zobel-Helas
 ,u"""\
-Can you please look at your $HOME on {hostname} and remove files which you
-no longer need (such as old sources).""" # By Martin Michlmayr
+Can you please look at your $HOME on {hostname} and remove files which
+you no longer need (such as old sources).""" # By Martin Michlmayr
 ,u"""\
 Thanks for your porting effort on {hostname}!
 
-Please note that /home is running short of diskspace, so please remove files
-you do not need anymore.""" # By Bill Allombert
+Please note that /home is running short of diskspace, so please remove
+files that you do not need anymore.""" # By Bill Allombert
   # Please add more from your archive!
   ]
 
-REPORT_SIZES = [
+CRITERIA = [
     { 'days':  5, 'size': 10240 },
     { 'days': 10, 'size':  1024 },
     { 'days': 30, 'size':   100 },
     { 'days': 60, 'size':    60 },
     { 'days': 90, 'size':    30 }
   ]
-USER_EXCLUSION_LIST = ['lost+found']
+EXCLUDED_USERNAMES = ['lost+found']
 MAIL_FROM = 'debian-admin (via Cron) <bulk@admin.debian.org>'
 MAIL_TO = '{username}@{hostname}.debian.org'
 MAIL_CC = 'debian-admin (bulk sink) <bulk@admin.debian.org>'
 MAIL_REPLYTO = 'debian-admin <dsa@debian.org>'
 MAIL_SUBJECT = 'Please clean up ~{username} on {hostname}.debian.org'
-MAIL_TEXT = u"""\
+MAIL_MESSAGE = u"""\
 Hi {name}!
 
 {explanation}
 
-For your information, you last logged into {hostname} {days_ago} days ago, and
-your home directory there is {homedir_size} MB in size.
+For your information, you last logged into {hostname} {days_ago} days
+ago, and your home directory there is {homedir_size} MB in size.
 
-If you currently do not use {hostname}, please keep ~{username} under 30 MB,
-if possible.  Please assist us in freeing up space by deleting schroots, also.
+If you currently do not use {hostname}, please keep ~{username} under
+30 MB, if possible.
+
+Please assist us in freeing up space by deleting schroots, also.
 
 Thanks,
 
@@ -98,81 +100,62 @@ class Error(Exception):
 class SendmailError(Error):
   pass
 
-class LastLog(object):
+class LastlogTimes(dict):
   LASTLOG_STRUCT = '=L32s256s'
-
-  def __init__(self, fname='/var/log/lastlog'):
+  
+  def __init__(self):
     record_size = struct.calcsize(self.LASTLOG_STRUCT)
-    self.records = {}
-    with open(fname, 'r') as fp:
-      uid = -1
+    with open('/var/log/lastlog', 'r') as fp:
+      uid = -1 # there is one record per uid in lastlog
       for record in iter(lambda: fp.read(record_size), ''):
-        uid += 1
-        last_login, _, _ = list(struct.unpack(self.LASTLOG_STRUCT, record))
-        if last_login == 0:
+        uid += 1 # so keep incrementing uid for each record read
+        lastlog_time, _, _ = list(struct.unpack(self.LASTLOG_STRUCT, record))
+        if lastlog_time == 0:
           continue
         try:
-          self.records[pwd.getpwuid(uid).pw_name] = last_login
+          self[pwd.getpwuid(uid).pw_name] = lastlog_time
         except KeyError:
+          logging.error('could not resolve username from uid')
           continue
 
-  def last_login_for_user(self, username):
-    return self.records.get(username, 0)
-
-class HomedirReminder(object):
+class HomedirSizes(dict):
   def __init__(self):
-    self.lastlog = LastLog()
-    self.generate_homedir_list()
-
-  def parse_utmp(self):
-    self.utmp_records = defaultdict(list)
-    for wtmpfile in glob.glob('/var/log/wtmp*'):
-      for entry in utmp.UtmpRecord(wtmpfile):
-        # TODO: Login, does not account for non-idle sessions.
-        self.utmp_records[entry.ut_user].append(entry.ut_tv[0])
-    for username, timestamps in self.utmp_records.iteritems():
-      self.utmp_records[username] = sorted(timestamps)[-1]
-
-  def last_login_for_user(self, username):
-    return self.lastlog.last_login_for_user(username)
-
-  def generate_homedir_list(self):
-    self.homedir_sizes = {}
     for direntry in glob.glob('/home/*'):
       username = os.path.basename(direntry)
+      if username in EXCLUDED_USERNAMES:
+        continue
       try:
         pwinfo = pwd.getpwnam(username)
       except KeyError:
         if os.path.isdir(direntry):
-          logging.warning('Directory %s exists on %s but there is no %s user', direntry, platform.node(), username)
+          logging.warning('directory %s exists on %s but there is no %s user', direntry, platform.node(), username)
         continue
-      homedir = pwinfo.pw_dir
-
-      if username in USER_EXCLUSION_LIST:
-        continue
-      # Ignore errors from du.
-      command = ['/usr/bin/du', '-ms', homedir]
-      p = subprocess.Popen(command,
-                           stdout=subprocess.PIPE,
-                           stderr=subprocess.PIPE)
+      command = ['/usr/bin/du', '-ms', pwinfo.pw_dir]
+      p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
       (stdout, stderr) = p.communicate()
-      if p.returncode != 0:
+      if p.returncode != 0: # ignore errors from du
         logging.info('%s failed:', ' '.join(command))
         logging.info(stderr)
-      try:
-        size = int(stdout.split('\t')[0])
-      except ValueError:
-        logging.error('Could not convert size output from %s: %s',
-                      ' '.join(command), stdout)
         continue
-      self.homedir_sizes[username] = size
+      try:
+        self[username] = int(stdout.split('\t')[0])
+      except ValueError:
+        logging.error('could not convert size output from %s: %s', ' '.join(command), stdout)
+        continue
+
+class HomedirReminder(object):
+  def __init__(self):
+    self.lastlog_times = LastlogTimes()
+    self.homedir_sizes = HomedirSizes()
 
   def send_mail(self, **kwargs):
-    msg = email.mime.text.MIMEText(MAIL_TEXT.format(**kwargs), _charset='UTF-8')
+    msg = email.mime.text.MIMEText(MAIL_MESSAGE.format(**kwargs), _charset='UTF-8')
     msg['From'] = MAIL_FROM.format(**kwargs)
     msg['To'] = MAIL_TO.format(**kwargs)
-    if MAIL_CC != "": msg['Cc'] = MAIL_CC.format(**kwargs)
-    if MAIL_REPLYTO != "": msg['Reply-To'] = MAIL_REPLYTO.format(**kwargs)
+    if MAIL_CC != "":
+      msg['Cc'] = MAIL_CC.format(**kwargs)
+    if MAIL_REPLYTO != "":
+      msg['Reply-To'] = MAIL_REPLYTO.format(**kwargs)
     msg['Subject'] = MAIL_SUBJECT.format(**kwargs)
     msg['Precedence'] = "bulk"
     msg['Auto-Submitted'] = "auto-generated by mail-big-homedirs"
@@ -185,30 +168,15 @@ class HomedirReminder(object):
   def run(self):
     current_time = time.time()
     for username, homedir_size in self.homedir_sizes.iteritems():
-      last_login = self.last_login_for_user(username)
-      logging.info('user %s: size %dMB, last login: %d', username, homedir_size, last_login)
-      days_ago = int( (current_time - last_login) / 3600 / 24 )
-
-      reportsize = None
-      for e in REPORT_SIZES:
-        if days_ago >= e['days']: reportsize = e['size']
-
-      if reportsize is not None and homedir_size > reportsize:
-        logging.warning('Homedir of user %s is %d and did not login for a while', username, homedir_size)
-        try:
-          name = pwd.getpwnam(username).pw_gecos.decode('utf-8')
-          name = name.split(',', 1)[0]
-          name = name.split(' ', 1)[0]
-        except:
-          name = username
-        explanation = EXPLANATIONS[random.randint(0,len(EXPLANATIONS)-1)]
-        explanation = explanation.format(hostname=platform.node())
-        self.send_mail(hostname=platform.node(),
-                       username=username,
-                       name=name,
-                       explanation=explanation,
-                       homedir_size=homedir_size,
-                       days_ago=days_ago)
+      try:
+        name = pwd.getpwnam(username).pw_gecos.decode('utf-8').split(',', 1)[0].split(' ', 1)[0]
+      except:
+        name = username
+      lastlog_time = self.lastlog_times[username]
+      days_ago = int( (current_time - lastlog_time) / 3600 / 24 )
+      if [x for x in CRITERIA if days_ago >= x['days'] and homedir_size >= x['size']]:
+        explanation = EXPLANATIONS[random.randint(0,len(EXPLANATIONS)-1)].format(hostname=platform.node())
+        self.send_mail(hostname=platform.node(), username=username, name=name, explanation=explanation, homedir_size=homedir_size, days_ago=days_ago)
 
 if __name__ == '__main__':
   logging.basicConfig()
