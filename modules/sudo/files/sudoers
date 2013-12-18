@@ -104,6 +104,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %mirroradm	ALL=(archvsync)	ALL
 %nm		ALL=(nm)	ALL
 %patch-tracker	ALL=(patch-tracker)	ALL
+%pet-devel	ALL=(pet-devel)	ALL
 %piuparts	ALL=(piupartsm)	ALL
 %piuparts	ALL=(piupartss)	ALL
 %pkg_maint	ALL=(pkg_user)	ALL
