@@ -243,12 +243,12 @@ class ferm::per-host {
 		bmdb1: {
 			@ferm::rule { 'dsa-postgres-main':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5435, ( 5.153.231.14/32 5.153.231.23/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5435, ( 5.153.231.14/32 5.153.231.23/32 5.153.231.25/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-main6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5435, ( 2001:41c8:1000:21::21:14/128 2001:41c8:1000:21::21:23/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5435, ( 2001:41c8:1000:21::21:14/128 2001:41c8:1000:21::21:23/128 2001:41c8:1000:21::21:25/128 ))'
 			}
 			@ferm::rule { 'dsa-postgres-dak':
 				description     => 'Allow postgress access',
