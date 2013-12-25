@@ -128,6 +128,8 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 # the dak user gets to run stuff as dak-unpriv (for things like lintian checks)
 %ftptrainee	FTPHOSTS=(dak-unpriv)	NOPASSWD: /usr/bin/lintian
 dak		ALL=(dak-unpriv)	NOPASSWD: ALL
+# and ftpmaster can access the role user for their web services
+%debadmin	FTPHOSTS=(dak-web)	ALL
 
 # some groups are in apachectrl on "their" hosts so they can reload apache and update their vhost
 %apachectrl	ALL=(root)	/usr/sbin/apache2-vhost-update
