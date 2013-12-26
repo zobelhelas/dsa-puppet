@@ -1,6 +1,7 @@
 <acl_rule status="enabled">
   <services>
       <service url_pattern="/am/*"/>
+      <service url_pattern="/login/dacs"/>
   </services>
   <rule order="allow,deny" pass_http_cookie="yes">
    <allow>
