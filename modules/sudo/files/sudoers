@@ -184,7 +184,7 @@ debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %press		WEBHOSTS=(debwww)	/srv/www.debian.org/update-part News
 # more list stuff
 %list		LISTHOSTS=(root)		/usr/sbin/postfix reload
-%list		stockhausen=(root)		/usr/sbin/service jetty reload
+%list		stockhausen=(root)		/usr/sbin/service jetty restart
 %list		LISTHOSTS=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
 %list		LISTHOSTS=(root)		/etc/init.d/spamassassin, /etc/init.d/amavis
 %list		LISTHOSTS=(amavis)		NOPASSWD: /usr/bin/sa-learn
