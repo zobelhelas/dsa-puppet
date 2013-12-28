@@ -211,6 +211,7 @@ class ferm::per-host {
 				description     => 'Allow jetty access',
 				rule            => '&SERVICE_RANGE(tcp, 80, ( 82.195.75.100/32 ))'
 			}
+		}
 	}
 
 	# postgres stuff
