@@ -87,9 +87,30 @@
 </Directory>
 
 <VirtualHost <%= vhost_listen %> >
-   ServerName www.nl.debian.org
+   ServerName debian.org
    ServerAdmin webmaster@debian.org
-   ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net debian.org www.debian.at www.debian.eu debian.eu debian.com debian.us www.debian.us debian.gr www.debian.gr
+
+   ServerAlias www.*.debian.org
+
+   ServerAlias www.debian.net
+   ServerAlias debian.net
+
+   ServerAlias www.debian.eu
+   ServerAlias debian.eu
+
+   ServerAlias www.debian.com
+   ServerAlias debian.com
+
+   ServerAlias debian.us
+   ServerAlias www.debian.us
+
+   ServerAlias debian.gr
+   ServerAlias www.debian.gr
+
+   ServerAlias www.debian.at
+   ServerAlias www.debian.de
+   ServerAlias newwww.deb.at
+
    DocumentRoot <%= wwwdo_document_root %>/
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
