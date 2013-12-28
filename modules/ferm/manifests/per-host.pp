@@ -207,9 +207,9 @@ class ferm::per-host {
 	# solr stuff
 	case $::hostname {
 		stockhausen: {
-			@ferm::rule { 'dsa-postgres-jetty':
+			@ferm::rule { 'dsa-solr-jetty':
 				description     => 'Allow jetty access',
-				rule            => '&SERVICE_RANGE(tcp, 80, ( 82.195.75.100/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 8080, ( 82.195.75.100/32 ))'
 			}
 		}
 	}
