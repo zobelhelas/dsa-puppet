@@ -118,6 +118,14 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
+	if $::hostname in [eysler] {
+		site::aptrepo { 'proposed-updates':
+			url        => $mirror,
+			suite      => "${::lsbdistcodename}-proposed-updates",
+			components => ['main','contrib','non-free']
+		}
+	}
+
 	site::aptrepo { 'debian.org':
 		ensure => absent,
 	}
