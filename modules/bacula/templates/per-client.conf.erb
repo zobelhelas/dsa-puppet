@@ -30,7 +30,7 @@ Client {
   Catalog = MyCatalog
   Password = "<%= bacula_client_secret %>"
   File Retention = 50 days            # a bit under 2 months
-  Job Retention = 6 months            # six months
+  Job Retention = 4 months            # six months
   AutoPrune = yes                     # Prune expired Jobs/Files
 
   Heartbeat Interval = 180
@@ -72,7 +72,7 @@ Pool {
   Pool Type = Backup
   Storage = "<%=bacula_filestor_name%>-<%= client %>"
   AutoPrune = yes
-  Volume Retention = 1 year
+  Volume Retention = 4 months
   Label Format = "<%= bacula_pool_name %>-full-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
@@ -87,7 +87,7 @@ Pool {
   Pool Type = Backup
   Storage = "<%=bacula_filestor_name%>-<%= client %>"
   AutoPrune = yes
-  Volume Retention = 6 months
+  Volume Retention = 2 months
   Label Format = "<%= bacula_pool_name %>-diff-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
@@ -102,7 +102,7 @@ Pool {
   Pool Type = Backup
   Storage = "<%=bacula_filestor_name%>-<%= client %>"
   AutoPrune = yes
-  Volume Retention = 70 days
+  Volume Retention = 30 days
   Label Format = "<%= bacula_pool_name %>-inc-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
