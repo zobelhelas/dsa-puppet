@@ -40,7 +40,7 @@ class clamav {
 	}
 	file { '/var/lib/clamav/.nobackup':
 		content => '',
-		require => Package['clamav-base']
+		require => Package['clamav-daemon']
 	}
 	file { '/etc/clamav-unofficial-sigs.dsa.conf':
 		require => Package['clamav-unofficial-sigs'],
