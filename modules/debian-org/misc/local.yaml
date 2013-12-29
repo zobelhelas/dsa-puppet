@@ -307,6 +307,7 @@ host_settings:
     - spontini.debian.org
     - stadler.debian.org
     - zandonai.debian.org
+    - zani.debian.org
     - zappa.debian.org
     - zemlinsky.debian.org
     # Not worth backing up
