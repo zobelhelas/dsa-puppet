@@ -38,6 +38,10 @@ class clamav {
 		ensure => absent,
 		notify => Service['clamav-daemon']
 	}
+	file { '/var/lib/clamav/.nobackup':
+		content => '',
+		require => Package['clamav-base']
+	}
 	file { '/etc/clamav-unofficial-sigs.dsa.conf':
 		require => Package['clamav-unofficial-sigs'],
 		source  => [ 'puppet:///modules/clamav/clamav-unofficial-sigs.dsa.conf' ]
