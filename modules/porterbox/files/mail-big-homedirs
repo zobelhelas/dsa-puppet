@@ -24,8 +24,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-from __future__ import print_function
-
 from collections import defaultdict
 import email
 import email.mime.text
@@ -59,7 +57,7 @@ CRITERIA = [
     { 'size':  1024,  'notifyafter': 10}, #, 'deleteafter':  50 },
     { 'size':   100,  'notifyafter': 30}, #, 'deleteafter':  90 },
     { 'size':    20,  'notifyafter': 90}, #, 'deleteafter': 150 },
-    { 'size':     5,  'notifyafter':  0,    'deleteafter': 450 }
+    { 'size':     5,                        'deleteafter': 450 }
   ]
 EXCLUDED_USERNAMES = ['lost+found']
 MAIL_FROM = 'debian-admin (via Cron) <bulk@admin.debian.org>'
