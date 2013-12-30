@@ -40,6 +40,10 @@ if restrict_ssh.include?(hostname) then
 		ssh4allowed << %w{$HOST_DEBIAN_V4}
 		ssh6allowed << %w{$HOST_DEBIAN_V6}
 	end
+	if %w{denis}.include?(hostname) then
+		ssh4allowed << "5.153.231.5" # adayevskaya
+		ssh6allowed << "2001:41c8:1000:21::21:5" # adayevskaya
+	end
 
 	if nodeinfo['static_master'] then
 		ssh4allowed << '$HOST_STATIC_V4'
