@@ -98,6 +98,12 @@ class roles {
 		}
 	}
 
+	if $::hostname in [bendel] {
+		ssl::service { 'lists.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if $::hostname in [pejacevic] {
 		ssl::service { 'piuparts.debian.org':
 			notify => Service['apache2'],
