@@ -12,4 +12,10 @@ class named::authoritative inherits named {
 		owner   => root,
 		group   => bind,
 	}
+	file { '/etc/bind/named.conf.puppet-shared-keys':
+		mode    => '0640',
+		content => template('named/named.conf.puppet-shared-keys.erb'),
+		owner   => root,
+		group   => bind,
+	}
 }
