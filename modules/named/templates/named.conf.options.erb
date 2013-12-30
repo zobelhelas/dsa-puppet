@@ -70,3 +70,6 @@ logging {
 };
 
  
+<% if classes.include?('named::authoritative') -%>
+include "/etc/bind/named.conf.puppet-shared-keys";
+<% end -%>
