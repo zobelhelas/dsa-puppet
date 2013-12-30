@@ -37,8 +37,8 @@ if restrict_ssh.include?(hostname) then
 	end
 
 	if %w{adayevskaya}.include?(hostname) then
-		ssh4allowed << %w{$HOST_MAILRELAY_V4}
-		ssh6allowed << %w{$HOST_MAILRELAY_V6}
+		ssh4allowed << %w{$HOST_DEBIAN_V4}
+		ssh6allowed << %w{$HOST_DEBIAN_V6}
 	end
 
 	if nodeinfo['static_master'] then
