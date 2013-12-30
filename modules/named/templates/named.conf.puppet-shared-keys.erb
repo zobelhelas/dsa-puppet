@@ -21,13 +21,13 @@ pairs.each do |pair|
 	pair.delete(fqdn)
 	other = pair[0]
 
-	key = hkdf('/etc/puppet/secret', "puppet-key-#{keyname}")
+	key = scope.function_hkdf(['/etc/puppet/secret', "puppet-key-#{keyname}"])
 
-	lines << "key #{keyname} { algorithm hmac-md5; secret \"#{key}\"; };\n"
+	lines << "key #{keyname} { algorithm hmac-md5; secret \"#{key}\"; };"
 
 	remote_ip = scope.lookupvar('site::allnodeinfo')[other]['ipHostNumber']
 	remote_ip.each do |r|
-		lines << "server #{r} { keys { #{keyname}; }; };\n"
+		lines << "server #{r} { keys { #{keyname}; }; };"
 	end
 	lines << ""
 end
