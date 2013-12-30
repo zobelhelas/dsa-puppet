@@ -17,5 +17,6 @@ class named::authoritative inherits named {
 		content => template('named/named.conf.puppet-shared-keys.erb'),
 		owner   => root,
 		group   => bind,
+		notify  => Service['bind9'],
 	}
 }
