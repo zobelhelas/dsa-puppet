@@ -23,7 +23,7 @@ pairs.each do |pair|
 
 	key = scope.function_hkdf(['/etc/puppet/secret', "puppet-key-#{keyname}"])
 
-	lines << "key #{keyname} { algorithm hmac-md5; secret \"#{key}\"; };"
+	lines << "key #{keyname} { algorithm hmac-sha256; secret \"#{key}\"; };"
 
 	remote_ip = scope.lookupvar('site::allnodeinfo')[other]['ipHostNumber']
 	remote_ip.each do |r|
