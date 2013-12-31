@@ -1,3 +1,11 @@
+# = Class: roles::pubsub::entities
+#
+# MQ users, vhosts, policies, and permissions for pubsub hosts
+#
+# == Sample Usage:
+#
+#   include roles::pubsub::entities
+#
 class roles::pubsub::entities {
 	include roles::pubsub::params
 
