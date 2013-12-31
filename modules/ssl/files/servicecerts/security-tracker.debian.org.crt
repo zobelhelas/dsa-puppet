@@ -1,17 +1,18 @@
 Certificate:
     Data:
         Version: 3 (0x2)
-        Serial Number: 90 (0x5a)
-        Signature Algorithm: sha1WithRSAEncryption
-        Issuer: O=Debian, CN=ca.debian.org/emailAddress=debian-admin@debian.org
+        Serial Number:
+            43:dd:94:f9:f1:b8:6f:75:07:aa:75:b1:12:27:18:da
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=FR, O=GANDI SAS, CN=Gandi Standard SSL CA
         Validity
-            Not Before: Dec  7 17:00:20 2012 GMT
-            Not After : Dec  7 17:00:20 2013 GMT
-        Subject: O=Debian, CN=security-tracker.debian.org/emailAddress=debian-admin@debian.org
+            Not Before: Dec 31 00:00:00 2013 GMT
+            Not After : Dec 31 23:59:59 2014 GMT
+        Subject: OU=Domain Control Validated, OU=Gandi Standard SSL, CN=security-tracker.debian.org
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-            RSA Public Key: (2048 bit)
-                Modulus (2048 bit):
+                Public-Key: (2048 bit)
+                Modulus:
                     00:d4:79:fb:ed:e0:09:6f:fa:06:eb:b0:24:ba:6f:
                     69:5a:ae:aa:cc:9b:34:dd:fa:ad:55:d0:e1:cf:87:
                     f6:24:1f:1a:5d:3b:fe:9f:82:75:e5:3d:e0:96:fc:
@@ -32,73 +33,75 @@ Certificate:
                     83:45
                 Exponent: 65537 (0x10001)
         X509v3 extensions:
-            X509v3 Basic Constraints: 
-                CA:FALSE
+            X509v3 Authority Key Identifier: 
+                keyid:B6:A8:FF:A2:A8:2F:D0:A6:CD:4B:B1:68:F3:E7:50:10:31:A7:79:21
+
             X509v3 Subject Key Identifier: 
                 43:CA:23:9F:AB:09:F4:1E:11:EB:EC:DC:F3:2B:2B:55:42:1B:90:18
-            X509v3 Authority Key Identifier: 
-                keyid:A7:CF:4B:FA:5F:12:C6:23:74:2E:9E:A3:95:90:75:8C:CC:26:76:96
-                DirName:/C=US/ST=Indiana/L=Indianapolis/O=Software in the Public Interest/OU=hostmaster/CN=Certificate Authority/emailAddress=hostmaster@spi-inc.org
-                serial:03
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Certificate Policies: 
+                Policy: 1.3.6.1.4.1.6449.1.2.2.26
+                  CPS: http://www.gandi.net/contracts/fr/ssl/cps/pdf/
+                Policy: 2.23.140.1.2.1
 
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl.gandi.net/GandiStandardSSLCA.crl
+
+            Authority Information Access: 
+                CA Issuers - URI:http://crt.gandi.net/GandiStandardSSLCA.crt
+                OCSP - URI:http://ocsp.gandi.net
+
+            X509v3 Subject Alternative Name: 
+                DNS:security-tracker.debian.org, DNS:www.security-tracker.debian.org
     Signature Algorithm: sha1WithRSAEncryption
-        70:d6:2d:cd:82:d8:fa:2d:c0:a4:e7:1f:db:c9:68:a7:64:29:
-        95:5f:5a:b1:ab:0b:ea:06:60:37:e8:d6:71:3a:20:5c:80:24:
-        36:47:f9:3c:c1:bf:26:53:8e:e0:cd:4d:55:3e:34:fd:29:38:
-        d6:94:25:59:50:b1:c0:6a:5e:ef:45:f8:fd:f9:20:c9:df:db:
-        45:30:16:92:ae:a7:04:77:bb:b6:36:8e:98:1f:2a:9d:40:7d:
-        25:7a:b5:52:fd:9b:f6:1d:c3:46:d7:12:e4:38:19:cb:ef:65:
-        ca:b6:86:14:a6:f6:4a:a7:73:6c:66:33:69:ac:9c:2b:93:56:
-        37:f9:c2:86:ac:6d:3c:82:64:05:fa:d0:ad:cb:45:d3:e1:b7:
-        af:e3:60:81:49:7a:ac:14:14:ed:78:de:74:ec:fa:d0:07:05:
-        56:23:e5:08:77:fc:ec:59:fb:8e:3d:54:37:ab:37:f9:8e:7f:
-        93:21:ba:a1:f9:b7:a6:38:f6:6f:7f:62:83:aa:30:65:68:fb:
-        2f:b8:d5:06:70:4d:ca:ec:7d:56:8d:2f:8f:50:b2:1c:a1:43:
-        6c:c1:c2:6b:c7:ea:08:b3:46:e4:3a:22:21:02:23:93:13:1b:
-        55:e3:4c:93:31:c4:44:2a:83:3b:f9:9e:13:1f:52:73:4f:a5:
-        c6:36:e5:1f:43:c7:24:3f:4e:3c:5c:8e:c6:a4:46:58:fb:4f:
-        db:6d:29:c0:9c:10:b2:84:e7:32:aa:a9:ce:f3:00:48:0b:a0:
-        62:95:bf:03:67:2b:95:06:75:c4:59:6d:fa:c8:e4:18:0b:ad:
-        9c:d9:a5:42:1e:97:c4:4b:f8:b0:1c:fa:bc:ba:b9:03:a7:b1:
-        c6:53:3c:94:83:e7:58:d1:47:b8:aa:3e:4f:a5:7a:0f:fc:cc:
-        4b:5e:1b:48:2b:37:29:36:dd:23:69:62:05:77:58:e9:07:8d:
-        44:5a:d1:82:40:12:c1:fd:38:4b:1f:b8:41:d5:c2:e3:37:38:
-        7f:5a:04:bf:1c:d5:2a:80:61:a4:e3:8a:a5:ce:75:56:87:3b:
-        32:aa:4c:d8:0f:46:9d:d7:57:ed:02:af:cc:1e:02:b6:f4:16:
-        ef:8a:fb:ad:d2:2a:4d:f3:ee:7f:21:2b:f1:e8:40:a0:e7:af:
-        1e:bd:e2:55:25:68:7c:88:8f:74:28:6c:57:e5:1e:aa:ae:00:
-        6d:7f:77:99:3e:6e:9c:11:ea:cf:db:1c:3b:07:fe:2c:d8:0f:
-        9d:dc:fb:e8:8e:ce:67:ac:59:8e:af:42:ab:f8:8e:d1:13:64:
-        5f:7e:70:d1:2c:6e:9c:1b:30:12:f7:6e:38:53:de:52:c0:61:
-        57:aa:80:dd:a5:a1:cf:c9
+         10:b2:4a:08:8e:d3:49:f4:d6:65:9a:fa:d3:22:03:fd:bc:18:
+         d1:db:fd:cb:91:58:c8:d9:83:10:f8:55:e0:41:c4:9a:87:d0:
+         e6:70:06:da:fc:ab:5a:6f:a9:ca:bf:62:80:b4:88:72:69:62:
+         b8:4c:6c:fe:62:3c:06:62:2f:1d:44:95:6c:7c:2c:d2:aa:ab:
+         2c:df:4e:72:eb:4a:c4:9e:fa:e1:ed:6a:29:43:60:0a:a5:23:
+         e1:d7:ec:b1:2c:b0:41:c3:98:0d:1a:3d:c2:49:4b:f6:8a:8d:
+         11:20:f9:d5:1c:cf:6b:98:7c:2b:08:6c:37:96:04:35:5c:ed:
+         92:17:6b:2e:bf:3d:9b:45:5b:1c:1e:f2:2a:37:c5:75:1c:f9:
+         fb:d1:ad:be:52:1d:4a:e8:35:45:f9:e4:b9:b6:10:dd:92:42:
+         f1:aa:c4:a5:04:49:db:94:5a:02:02:90:aa:54:49:a6:e4:39:
+         32:53:bc:a4:67:99:f6:7f:94:cc:0c:66:5b:d7:b4:70:37:07:
+         0c:22:7d:d8:b0:1c:84:cb:f9:a5:4e:19:16:8b:7d:c1:3c:7e:
+         dc:01:5c:02:51:4a:ea:a7:10:d8:2f:b0:87:4d:48:d1:07:42:
+         c0:a0:0d:cd:ca:29:31:0c:0a:5d:92:13:46:a7:6e:26:cc:a4:
+         7e:2f:e7:dc
 -----BEGIN CERTIFICATE-----
-MIIFRzCCAy+gAwIBAgIBWjANBgkqhkiG9w0BAQUFADBRMQ8wDQYDVQQKEwZEZWJp
-YW4xFjAUBgNVBAMTDWNhLmRlYmlhbi5vcmcxJjAkBgkqhkiG9w0BCQEWF2RlYmlh
-bi1hZG1pbkBkZWJpYW4ub3JnMB4XDTEyMTIwNzE3MDAyMFoXDTEzMTIwNzE3MDAy
-MFowXzEPMA0GA1UEChMGRGViaWFuMSQwIgYDVQQDExtzZWN1cml0eS10cmFja2Vy
-LmRlYmlhbi5vcmcxJjAkBgkqhkiG9w0BCQEWF2RlYmlhbi1hZG1pbkBkZWJpYW4u
-b3JnMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1Hn77eAJb/oG67Ak
-um9pWq6qzJs03fqtVdDhz4f2JB8aXTv+n4J15T3glvy7hYvGClGIeJc5atLtPjyO
-Fced+APR25PthmrlRgXPhS5DXe+W7MJDtGvNbqlFJai6RSzCSF/CrkDO0Wb/bUtA
-J5s9uVzxRuyiR8hZm4CWj3b0LKsOFKOUL/jWVyGVWkqNnWk+B0BLFap45FSsxwmS
-m4vOlVDpQIBQNiRfGiVvi3dXPzornnH6Ys/5A+BHiIzvENNsWrITOf40jasdpvCK
-aUiKtkrzyf3SZzYjV8bZ2scvg54JmlOQ6Qn5ZukLFuS8K71rUneiJ1u6x3N2SUA9
-mgaDRQIDAQABo4IBGjCCARYwCQYDVR0TBAIwADAdBgNVHQ4EFgQUQ8ojn6sJ9B4R
-6+zc8ysrVUIbkBgwgekGA1UdIwSB4TCB3oAUp89L+l8SxiN0Lp6jlZB1jMwmdpah
-gcKkgb8wgbwxCzAJBgNVBAYTAlVTMRAwDgYDVQQIEwdJbmRpYW5hMRUwEwYDVQQH
-EwxJbmRpYW5hcG9saXMxKDAmBgNVBAoTH1NvZnR3YXJlIGluIHRoZSBQdWJsaWMg
-SW50ZXJlc3QxEzARBgNVBAsTCmhvc3RtYXN0ZXIxHjAcBgNVBAMTFUNlcnRpZmlj
-YXRlIEF1dGhvcml0eTElMCMGCSqGSIb3DQEJARYWaG9zdG1hc3RlckBzcGktaW5j
-Lm9yZ4IBAzANBgkqhkiG9w0BAQUFAAOCAgEAcNYtzYLY+i3ApOcf28lop2QplV9a
-sasL6gZgN+jWcTogXIAkNkf5PMG/JlOO4M1NVT40/Sk41pQlWVCxwGpe70X4/fkg
-yd/bRTAWkq6nBHe7tjaOmB8qnUB9JXq1Uv2b9h3DRtcS5DgZy+9lyraGFKb2Sqdz
-bGYzaaycK5NWN/nChqxtPIJkBfrQrctF0+G3r+NggUl6rBQU7XjedOz60AcFViPl
-CHf87Fn7jj1UN6s3+Y5/kyG6ofm3pjj2b39ig6owZWj7L7jVBnBNyux9Vo0vj1Cy
-HKFDbMHCa8fqCLNG5DoiIQIjkxMbVeNMkzHERCqDO/meEx9Sc0+lxjblH0PHJD9O
-PFyOxqRGWPtP220pwJwQsoTnMqqpzvMASAugYpW/A2crlQZ1xFlt+sjkGAutnNml
-Qh6XxEv4sBz6vLq5A6exxlM8lIPnWNFHuKo+T6V6D/zMS14bSCs3KTbdI2liBXdY
-6QeNRFrRgkASwf04Sx+4QdXC4zc4f1oEvxzVKoBhpOOKpc51Voc7MqpM2A9GnddX
-7QKvzB4CtvQW74r7rdIqTfPufyEr8ehAoOevHr3iVSVofIiPdChsV+Ueqq4AbX93
-mT5unBHqz9scOwf+LNgPndz76I7OZ6xZjq9Cq/iO0RNkX35w0SxunBswEvduOFPe
-UsBhV6qA3aWhz8k=
+MIIFCTCCA/GgAwIBAgIQQ92U+fG4b3UHqnWxEicY2jANBgkqhkiG9w0BAQUFADBB
+MQswCQYDVQQGEwJGUjESMBAGA1UEChMJR0FOREkgU0FTMR4wHAYDVQQDExVHYW5k
+aSBTdGFuZGFyZCBTU0wgQ0EwHhcNMTMxMjMxMDAwMDAwWhcNMTQxMjMxMjM1OTU5
+WjBmMSEwHwYDVQQLExhEb21haW4gQ29udHJvbCBWYWxpZGF0ZWQxGzAZBgNVBAsT
+EkdhbmRpIFN0YW5kYXJkIFNTTDEkMCIGA1UEAxMbc2VjdXJpdHktdHJhY2tlci5k
+ZWJpYW4ub3JnMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1Hn77eAJ
+b/oG67Akum9pWq6qzJs03fqtVdDhz4f2JB8aXTv+n4J15T3glvy7hYvGClGIeJc5
+atLtPjyOFced+APR25PthmrlRgXPhS5DXe+W7MJDtGvNbqlFJai6RSzCSF/CrkDO
+0Wb/bUtAJ5s9uVzxRuyiR8hZm4CWj3b0LKsOFKOUL/jWVyGVWkqNnWk+B0BLFap4
+5FSsxwmSm4vOlVDpQIBQNiRfGiVvi3dXPzornnH6Ys/5A+BHiIzvENNsWrITOf40
+jasdpvCKaUiKtkrzyf3SZzYjV8bZ2scvg54JmlOQ6Qn5ZukLFuS8K71rUneiJ1u6
+x3N2SUA9mgaDRQIDAQABo4IB1jCCAdIwHwYDVR0jBBgwFoAUtqj/oqgv0KbNS7Fo
+8+dQEDGneSEwHQYDVR0OBBYEFEPKI5+rCfQeEevs3PMrK1VCG5AYMA4GA1UdDwEB
+/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEF
+BQcDAjBgBgNVHSAEWTBXMEsGCysGAQQBsjEBAgIaMDwwOgYIKwYBBQUHAgEWLmh0
+dHA6Ly93d3cuZ2FuZGkubmV0L2NvbnRyYWN0cy9mci9zc2wvY3BzL3BkZi8wCAYG
+Z4EMAQIBMDwGA1UdHwQ1MDMwMaAvoC2GK2h0dHA6Ly9jcmwuZ2FuZGkubmV0L0dh
+bmRpU3RhbmRhcmRTU0xDQS5jcmwwagYIKwYBBQUHAQEEXjBcMDcGCCsGAQUFBzAC
+hitodHRwOi8vY3J0LmdhbmRpLm5ldC9HYW5kaVN0YW5kYXJkU1NMQ0EuY3J0MCEG
+CCsGAQUFBzABhhVodHRwOi8vb2NzcC5nYW5kaS5uZXQwRwYDVR0RBEAwPoIbc2Vj
+dXJpdHktdHJhY2tlci5kZWJpYW4ub3Jngh93d3cuc2VjdXJpdHktdHJhY2tlci5k
+ZWJpYW4ub3JnMA0GCSqGSIb3DQEBBQUAA4IBAQAQskoIjtNJ9NZlmvrTIgP9vBjR
+2/3LkVjI2YMQ+FXgQcSah9DmcAba/Ktab6nKv2KAtIhyaWK4TGz+YjwGYi8dRJVs
+fCzSqqss305y60rEnvrh7WopQ2AKpSPh1+yxLLBBw5gNGj3CSUv2io0RIPnVHM9r
+mHwrCGw3lgQ1XO2SF2suvz2bRVscHvIqN8V1HPn70a2+Uh1K6DVF+eS5thDdkkLx
+qsSlBEnblFoCApCqVEmm5DkyU7ykZ5n2f5TMDGZb17RwNwcMIn3YsByEy/mlThkW
+i33BPH7cAVwCUUrqpxDYL7CHTUjRB0LAoA3NyikxDApdkhNGp24mzKR+L+fc
 -----END CERTIFICATE-----
