@@ -14,9 +14,6 @@ class roles {
 
 	if getfromhash($site::nodeinfo, 'buildd') {
 		include buildd
-		ssl::service { 'buildd.debian.org':
-			notify => Service['apache2'],
-		}
 	}
 
 	if getfromhash($site::nodeinfo, 'porterbox') {
@@ -109,6 +106,12 @@ class roles {
 
 	if $::hostname in [ullmann] {
 		ssl::service { 'udd.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+	
+	if $::hostname in [wuiet] {
+		ssl::service { 'buildd.debian.org':
 			notify => Service['apache2'],
 		}
 	}
