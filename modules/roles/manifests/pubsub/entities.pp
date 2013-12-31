@@ -162,8 +162,9 @@ class roles::pubsub::entities {
 	}
 
 	rabbitmq_user_permissions { 'mailly@dsa':
-		read_permission      => 'mailadm',
-		write_permission     => 'mailly',
+		configure_permission => '*',
+		read_permission      => '*',
+		write_permission     => '*',
 		provider             => 'rabbitmqctl',
 		require              => [
 			Rabbitmq_user['mailly'],
@@ -172,8 +173,9 @@ class roles::pubsub::entities {
 	}
 
 	rabbitmq_user_permissions { 'muffat@dsa':
-		read_permission      => 'mailadm',
-		write_permission     => 'muffat',
+		configure_permission => '*',
+		read_permission      => '*',
+		write_permission     => '*',
 		provider             => 'rabbitmqctl',
 		require              => [
 			Rabbitmq_user['muffat'],
