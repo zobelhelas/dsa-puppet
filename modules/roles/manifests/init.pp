@@ -110,6 +110,12 @@ class roles {
 		}
 	}
 
+	if $::hostname in [diabelli] {
+		ssl::service { 'sso.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if $::hostname in [ullmann] {
 		ssl::service { 'udd.debian.org':
 			notify => Service['apache2'],
