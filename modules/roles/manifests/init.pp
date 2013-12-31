@@ -104,6 +104,12 @@ class roles {
 		}
 	}
 
+	if $::hostname in [ullmann] {
+		ssl::service { 'udd.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if $::hostname in [pejacevic] {
 		ssl::service { 'piuparts.debian.org':
 			notify => Service['apache2'],
