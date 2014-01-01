@@ -245,13 +245,3 @@
    RewriteRule ^/doc/([^/]+)/?(.*)? /doc/manuals/$1/$2 [L,R=301]
 
 </VirtualHost>
-
-
-<VirtualHost <%= vhost_listen %> >
-   ServerName volatile.debian.org
-   ServerAlias volatile-master.debian.org
-   ServerAdmin webmaster@debian.org
-   ErrorLog /var/log/apache2/volatile.debian.org-error.log
-   CustomLog /var/log/apache2/volatile.debian.org-access.log privacy
-   RedirectMatch permanent . http://www.debian.org/volatile/
-</VirtualHost>

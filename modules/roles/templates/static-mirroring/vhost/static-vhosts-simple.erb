@@ -88,4 +88,11 @@ Use common-static-vhost-ssl dsa.debian.org
 	RedirectPermanent / http://www.ports.debian.org/
 </VirtualHost>
 
+<VirtualHost <%= vhost_listen %> >
+	ServerName volatile.debian.org
+	ServerAlias volatile-master.debian.org
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent / http://www.debian.org/volatile/
+</VirtualHost>
+
 # vim:ft=apache:
