@@ -10,9 +10,12 @@ class roles {
 		include munin::master
 	}
 
-	#if getfromhash($site::nodeinfo, 'nagiosmaster') {
+	if getfromhash($site::nodeinfo, 'nagiosmaster') {
 	#	include nagios::server
-	#}
+		ssl::service { 'nagios.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 
 	if getfromhash($site::nodeinfo, 'buildd') {
 		include buildd
@@ -126,12 +129,6 @@ class roles {
 
 	if $::hostname in [diabelli] {
 		ssl::service { 'sso.debian.org':
-			notify => Service['apache2'],
-		}
-	}
-
-	if $::hostname in [tchaikovsky] {
-		ssl::service { 'nagios.debian.org':
 			notify => Service['apache2'],
 		}
 	}
