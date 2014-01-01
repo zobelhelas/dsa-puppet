@@ -25,12 +25,12 @@ class named {
 		@ferm::rule { '01-dsa-bind-4':
 			domain      => '(ip)',
 			description => 'Allow nameserver access',
-			rule        => '&SERVICE_RANGE(tcp, 5671, $HOST_DEBIAN_V4)',
+			rule        => '&TCP_UDP_SERVICE_RANGE(53, $HOST_DEBIAN_V4)',
 		}
 		@ferm::rule { '01-dsa-bind-6':
 			domain      => '(ip6)',
 			description => 'Allow nameserver access',
-			rule        => '&SERVICE_RANGE(tcp, 5671, $HOST_DEBIAN_V6)',
+			rule        => '&TCP_UDP_SERVICE_RANGE(53, $HOST_DEBIAN_V6)',
 		}
 	} else {
 		@ferm::rule { '01-dsa-bind':
