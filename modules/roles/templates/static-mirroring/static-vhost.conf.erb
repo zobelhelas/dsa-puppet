@@ -53,9 +53,17 @@
 
 
 <Macro common-static-vhost-ssl $name>
-	Use common-debian-service-https-redirect <%= vhost_listen %> $name
+	<VirtualHost <%= vhost_listen %> >
+		ServerName $name
+		ServerAdmin debian-admin@lists.debian.org
 
-	<Virtualhost <%= vhost_listen %>:443 >
+		CustomLog /var/log/apache2/$name-access.log privacy
+		ErrorLog /var/log/apache2/$name-error.log
+
+		Redirect permanent / https://$name/
+	</VirtualHost>
+
+	<Virtualhost <%= vhost_listen_443 %> >
 		ServerName $name
 		ServerAdmin debian-admin@lists.debian.org
 

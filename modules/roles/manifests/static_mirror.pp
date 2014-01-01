@@ -31,6 +31,10 @@ class roles::static_mirror {
 		klecker => '130.89.148.14:80 [2001:610:1908:b000::148:14]:80',
 		default => '*:80',
 	}
+	$vhost_listen_443 = $::hostname ? {
+		klecker => '130.89.148.14:443 [2001:610:1908:b000::148:14]:443',
+		default => '*:443',
+	}
 
 	apache2::config { 'local-static-vhost.conf':
 		content => template('roles/static-mirroring/static-vhost.conf.erb'),
