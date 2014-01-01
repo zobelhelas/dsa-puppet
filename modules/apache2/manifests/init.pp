@@ -74,6 +74,11 @@ class apache2 {
 		content => template('apache2/default-index.html'),
 	}
 
+	file { '/var/log/apache2/.nobackup':
+		mode    => '0644',
+		content => '',
+	}
+
 	munin::check { 'apache_accesses': }
 	munin::check { 'apache_processes': }
 	munin::check { 'apache_volume': }
