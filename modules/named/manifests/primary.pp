@@ -1,3 +1,3 @@
 class named::primary inherits named::authoritative {
-	include dnsextras::entries;
+	include dnsextras::entries
 }
