@@ -90,6 +90,12 @@ class roles {
 		include roles::pubsub
 	}
 
+	if getfromhash($site::nodeinfo, 'dbmaster') {
+		ssl::service { 'db.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if $::hostname in [ravel] {
 		include roles::weblog_destination
 	}
