@@ -10,6 +10,7 @@ class apache2 {
 
 	apache2::module { 'info': }
 	apache2::module { 'status': }
+	apache2::module { 'headers': }
 
 	package { 'libapache2-mod-macro':
 		ensure => installed
