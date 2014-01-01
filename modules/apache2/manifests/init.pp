@@ -52,6 +52,10 @@ class apache2 {
 		source => 'puppet:///modules/apache2/server-status',
 	}
 
+	apache2::config { 'puppet-ssl-macros':
+		source => 'puppet:///modules/apache2/puppet-ssl-macros',
+	}
+
 	file { '/etc/apache2/sites-available/common-ssl.inc':
 		ensure => absent,
 	}
