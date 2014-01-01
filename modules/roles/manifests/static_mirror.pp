@@ -3,11 +3,9 @@ class roles::static_mirror {
 	include roles::static_source
 	include apache2::cache
 
-	package { 'libapache2-mod-macro': ensure => installed, }
 	package { 'libapache2-mod-geoip': ensure => installed, }
 	package { 'geoip-database': ensure => installed, }
 
-	apache2::module { 'macro': require => Package['libapache2-mod-macro']; }
 	apache2::module { 'rewrite': }
 	apache2::module { 'include': }
 	apache2::module { 'geoip': require => [Package['libapache2-mod-geoip'], Package['geoip-database']]; }

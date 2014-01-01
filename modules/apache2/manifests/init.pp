@@ -1,5 +1,4 @@
 class apache2 {
-
 	package { 'apache2':
 		ensure => installed,
 	}
@@ -11,6 +10,14 @@ class apache2 {
 
 	apache2::module { 'info': }
 	apache2::module { 'status': }
+
+	package { 'libapache2-mod-macro':
+		ensure => installed
+	}
+
+	apache2::module { 'macro':
+		require => Package['libapache2-mod-macro']
+	}
 
 	apache2::site { '00-default':
 		site     => 'default-debian.org',
