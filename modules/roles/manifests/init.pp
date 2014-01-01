@@ -130,6 +130,12 @@ class roles {
 		}
 	}
 
+	if $::hostname in [tchaikovsky] {
+		ssl::service { 'nagios.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if $::hostname in [ullmann] {
 		ssl::service { 'udd.debian.org':
 			notify => Service['apache2'],
