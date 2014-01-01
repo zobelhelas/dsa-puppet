@@ -159,4 +159,10 @@ class roles {
 			notify => Service['apache2'],
 		}
 	}
+
+	if $::hostname in [franck] {
+		ssl::service { 'release.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 }
