@@ -91,7 +91,7 @@ node default {
 	} elsif $::hostname in [geo1,geo2,geo3] {
 		include named::geodns
 	}
-	if $::hostname in [orff, denis] {
+	if $::hostname in [denis] {
 		include dnsextras::entries
 	}
 
