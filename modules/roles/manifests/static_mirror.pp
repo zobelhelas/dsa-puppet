@@ -8,6 +8,7 @@ class roles::static_mirror {
 
 	apache2::module { 'rewrite': }
 	apache2::module { 'include': }
+	apache2::module { 'ssl': }
 	apache2::module { 'geoip': require => [Package['libapache2-mod-geoip'], Package['geoip-database']]; }
 
 	file { '/usr/local/bin/static-mirror-run':
@@ -49,5 +50,9 @@ class roles::static_mirror {
 	apache2::site { '010-www.debian.org':
 		site   => 'www.debian.org',
 		content => template('roles/apache-www.debian.org.erb'),
+	}
+
+	ssl::service { 'dsa.debian.org':
+		notify => Service['apache2'],
 	}
 }
