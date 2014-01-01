@@ -92,6 +92,12 @@ class roles {
 		include roles::weblog_destination
 	}
 
+	if $::hostname in [vento] {
+		ssl::service { 'vote.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if $::hostname in [soler] {
 		ssl::service { 'security-tracker.debian.org':
 			notify => Service['apache2'],
