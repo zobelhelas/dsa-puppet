@@ -33,7 +33,7 @@ class exim::mx inherits exim {
 		ensure => installed,
 	}
 
-	if getfromhash($site::nodeinfo, 'mailrelay') {
+	if has_role('mailrelay') {
 		file { '/etc/cron.d/dsa-email-virtualdomains':
 			source => 'puppet:///modules/exim/dsa-email-virtualdomains.cron',
 		}

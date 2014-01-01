@@ -151,46 +151,6 @@ footer:
   dummy: foo
   #zandonai.debian.org: "Debian s390 buildd system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
   #zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
-services:
-  bugsmaster:
-  bugsmx:
-    - buxtehude.debian.org
-  bugs_mirror:
-    - beach.debian.org
-  dbmaster:
-    - draghi.debian.org
-  ftp_master:
-    - franck.debian.org
-  ftp.d.o:
-    - klecker.debian.org
-  ftp.upload.d.o:
-    - franck.debian.org
-    - ravel.debian.org
-  mailrelay:
-    - mailly.debian.org
-    - muffat.debian.org
-  muninmaster:
-    - menotti.debian.org
-  nagiosmaster: tchaikovsky.debian.org
-  extranrpeclient:
-    - orff.debian.org
-  packagesmaster: picconi.debian.org
-  packagesqamaster: quantz.debian.org
-  rtmaster:
-    - reger.debian.org
-  security_master:
-    - chopin.debian.org
-  syncproxy:
-    - milanollo.debian.org
-  www_master:
-    - wolkenstein.debian.org
-  keyring:
-    - kaufmann.debian.org
-  wiki:
-    - wilder.debian.org
-  pubsub:
-    - rainier.debian.org
-    - rapoport.debian.org
 host_settings:
   heavy_exim:
     - buxtehude.debian.org

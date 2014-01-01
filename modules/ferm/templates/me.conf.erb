@@ -5,7 +5,7 @@
 
 <%=
 nodeinfo = scope.lookupvar('site::nodeinfo')
-
+has_role = scope.function_has_role
 out = []
 
 restricted_purposes = ['kvm host', 'central syslog server', 'puppet master', 'jumphost']
@@ -45,10 +45,10 @@ if restrict_ssh.include?(hostname) then
 		ssh6allowed << "2001:41c8:1000:21::21:5" # adayevskaya
 	end
 
-	if nodeinfo['static_master'] then
+	if has_role('static_master') then
 		ssh4allowed << '$HOST_STATIC_V4'
 		ssh6allowed << '$HOST_STATIC_V6'
-	elsif nodeinfo['static_source'] or nodeinfo['static_mirror'] then
+	elsif has_role('static_source') or has_role('static_mirror') then
 		ssh4allowed << '$HOST_STATICMASTER_V4'
 		ssh6allowed << '$HOST_STATICMASTER_V6'
 	end

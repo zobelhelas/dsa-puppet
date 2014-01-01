@@ -32,7 +32,7 @@
 #           flushing' operations, but should be populated with a list
 #           of trusted machines. Wildcards are not permitted
 #  bsmtp_domains - Domains that we deliver locally via bsmtp
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
 #  mailhubdomains - Domains for which we are the MX, but the mail is relayed
 #           elsewhere.  This is designed for use with small volume or
 #           restricted machines that need to use a smarthost for mail
@@ -125,7 +125,7 @@ hostlist debianhosts = <; ; 127.0.0.1 ; ::1 ; /var/lib/misc/thishost/debianhosts
 
 hostlist reservedaddrs = 0.0.0.0/8 : 127.0.0.0/8 : 10.0.0.0/8 : 169.254.0.0/16 : 172.16.0.0/12 : 192.0.0.0/24 : 192.168.0.0/16 : 224.0.0.0/4 : 240.0.0.0/5 : 248.0.0.0/5
 
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
 # Domains we relay for; that is domains that aren't considered local but we 
 # accept mail for them.
 domainlist mailhubdomains = lsearch;/etc/exim4/manualroute
@@ -215,7 +215,7 @@ ports = []
 out = "daemon_smtp_ports = "
 ports << 25
 
-if scope.lookupvar('site::nodeinfo')['bugsmaster'] or scope.lookupvar('site::nodeinfo')['bugsmx']
+if scope.function_has_role('bugsmaster') or scope.function_has_role('bugsmx')
   ports << 587
 end
 
@@ -223,7 +223,7 @@ if not scope.lookupvar('site::nodeinfo')['mail_port'].to_s.empty?
   ports << scope.lookupvar('site::nodeinfo')['mail_port']
 end
 
-if scope.lookupvar('site::nodeinfo')['mailrelay']
+if scope.function_has_role('mailrelay')
   ports << scope.lookupvar('site::nodeinfo')['smarthost_port']
 end
 
@@ -292,7 +292,7 @@ acl_getprofile:
           hosts          = !+debianhosts
           set acl_m_rprf = localonly
 
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
   warn    local_parts    = +local_only_users
           domains        = +mailhubdomains
           hosts          = !+debianhosts
@@ -301,28 +301,28 @@ acl_getprofile:
 <%- end -%>
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
-<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
+<%- if scope.function_has_role('rtmaster') -%>
   warn    domains        = rt.debian.org
           set acl_m_rprf = RTMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['bugsmaster'] or scope.lookupvar('site::nodeinfo')['bugsmx'] -%>
+<%- if scope.function_has_role('bugsmaster') or scope.function_has_role('bugsmx') -%>
   warn    domains        = bugs.debian.org
           set acl_m_rprf = BugsMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['packagesmaster'] -%>
+<%- if scope.function_has_role('packagesmaster') -%>
   warn    domains        = packages.debian.org
           set acl_m_rprf = PackagesMail
 
   accept  condition      = ${if eq {$acl_m_rprf}{}{no}{yes}}
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['packagesqamaster'] -%>
+<%- if scope.function_has_role('packagesqamaster') -%>
   warn    recipients     = owner@packages.qa.debian.org : postmaster@packages.qa.debian.org
           set acl_m_rprf = PTSOwner
 
@@ -394,7 +394,7 @@ check_helo:
 
   warn    set acl_c_scr    = 0
 
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
   accept  verify   = certificate
 
 <%- end -%>
@@ -490,7 +490,7 @@ check_submission:
   # We do this by testing for an empty sending host field.
   accept  hosts = +debianhosts
 
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
   accept  verify   = certificate
 
 <%- end -%>
@@ -511,7 +511,7 @@ check_submission:
           endpass
 	  verify   = recipient
 
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
   accept  domains  = +mailhubdomains
           endpass
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
@@ -526,7 +526,7 @@ check_submission:
 #!!# ACL that is used after the RCPT command
 check_recipient:
 
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
   accept  verify   = certificate
 
 <%- end -%>
@@ -639,7 +639,7 @@ check_recipient:
   warn    condition     = ${if eq{$acl_m_prf}{localonly}}
           set acl_m_lrc = ${if eq{$acl_m_lrc}{}{$local_part@$domain}{$acl_m_lrc, $local_part@$domain}}
 
-<%- if scope.lookupvar('site::nodeinfo')['packagesmaster'] -%>
+<%- if scope.function_has_role('packagesmaster') -%>
   warn    condition      = ${if eq {$acl_m_prf}{PackagesMail}}
           condition      = ${if eq {$sender_address}{$local_part@$domain}}
           message        = X-Packages-FromTo-Same: yes
@@ -717,7 +717,7 @@ check_recipient:
          condition      = ${if eq{$acl_m_act}{450}{yes}{no}}
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
+<%- if scope.function_has_role('rtmaster') -%>
   warn    condition     = ${if eq{$acl_m_prf}{RTMail}}
           set acl_m12   = ${if def:acl_m12 {$acl_m12} {${if or{{match{$local_part}{\N[^+]+\+\d+\N}}{match{$local_part}{\N[^+]+\+new\N}}{match{$local_part}{3520}}{match{$local_part}{3645}}} {RTMailRecipientHasSubaddress}}}}
   # temporary hack because weasel screwed up and gave people an rt-3520@ address, which doesn't really work normally.  and rt-3645
@@ -840,7 +840,7 @@ check_recipient:
 	  message  = "Sender verification failed: $acl_verify_message"
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
   accept  domains  = +mailhubdomains
           endpass
 	  verify   = recipient/callout=30s,defer_ok,use_sender,no_cache
@@ -899,7 +899,7 @@ check_message:
   # header.  Take their crack pipe away.
   drop   condition = ${if match{${lc:$h_From:}}{\Npostmaster@([^.]+\.)?debian\.org\N}}
 
-<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
+<%- if scope.function_has_role('rtmaster') -%>
   deny    condition = ${if eq {$acl_m_prf}{RTMail}}
           condition = ${if and{{!match {${lc:$rh_Subject:}} {debian rt}} \
                                {!match {${lc:$rh_Subject:]}} {\N\[rt.debian.org \N}} \
@@ -907,7 +907,7 @@ check_message:
           message  = messages to the Request Tracker system require a subject tag or a subaddress
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['packagesqamaster'] -%>
+<%- if scope.function_has_role('packagesqamaster') -%>
   deny    !hosts  = +debianhosts : 5.153.231.21
           condition = ${if eq {$acl_m_prf}{PTSMail}}
           condition = ${if def:h_X-PTS-Approved:{false}{true}}
@@ -992,7 +992,7 @@ check_message:
           !verify      = header_sender
           message      = No valid sender found in the From:, Sender: and Reply-to: headers
 
-<%- if scope.lookupvar('site::nodeinfo')['packagesmaster'] -%>
+<%- if scope.function_has_role('packagesmaster') -%>
   deny  message        = Congratulations, you scored $spam_score points.
         log_message    = spam: $spam_score points.
         condition      = ${if eq {$acl_m_prf}{PackagesMail}}
@@ -1040,7 +1040,7 @@ begin routers
 #     An address is passed to each in turn until it is accepted.     #
 ######################################################################
 
-<%- if scope.lookupvar('site::nodeinfo')['mailrelay'] -%>
+<%- if scope.function_has_role('mailrelay') -%>
 relay_manualroute:
   driver = manualroute
   domains = +mailhubdomains
@@ -1298,7 +1298,7 @@ localuser:
 # Everything before here should apply only to the local domains with a 
 # domains= rule
 
-<%- if scope.lookupvar('site::nodeinfo')['packagesmaster'] -%>
+<%- if scope.function_has_role('packagesmaster') -%>
 # This router delivers for packages.d.o
 packages:
   debug_print = "R: packages for $local_part@$domain"
@@ -1316,7 +1316,7 @@ packages:
   no_more
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
+<%- if scope.function_has_role('rtmaster') -%>
 # This router delivers for rt.d.o
 rt_force_new_verbose:
   debug_print = "R: rt for $local_part+new@$domain"
@@ -1449,9 +1449,9 @@ virt_users:
 
 <%=
 out = ""
-if scope.lookupvar('site::nodeinfo')['bugsmaster'] or scope.lookupvar('site::nodeinfo')['bugsmx']
+if scope.function_has_role('bugsmaster') or scope.function_has_role('bugsmx')
   domain = 'bugs.debian.org'
-  if scope.lookupvar('site::nodeinfo')['bugsmaster']
+  if scope.function_has_role('bugsmaster')
     domain = 'bugs-master.debian.org'
   end
   out = '
@@ -1603,7 +1603,7 @@ bsmtp:
 		     {$value}fail}\
 		   }}
 
-<%- if scope.lookupvar('site::nodeinfo')['bugsmaster'] or scope.lookupvar('site::nodeinfo')['bugsmx'] -%>
+<%- if scope.function_has_role('bugsmaster') or scope.function_has_role('bugsmx') -%>
 bugs_pipe:
   driver = pipe
   command = /org/bugs.debian.org/mail/run-procmail
@@ -1616,7 +1616,7 @@ bugs_pipe:
   user = debbugs
 
 <%- end -%>
-<%- if scope.lookupvar('site::nodeinfo')['rtmaster'] -%>
+<%- if scope.function_has_role('rtmaster') -%>
 rt_pipe:
   debug_print = "T: rt_pipe for $local_part${local_part_suffix}@$domain"
   driver = pipe

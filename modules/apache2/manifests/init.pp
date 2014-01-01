@@ -33,6 +33,16 @@ class apache2 {
 		ensure => absent,
 	}
 
+	if $::fqdn in $site::roles['buildd_master'] {
+		$memlimit = 192 * 1024**2
+	} elsif $::fqdn in $site::roles['nagiosmaster']{
+		$memlimit = 96 * 1024**2
+	} elsif $::fqdn in $site::roles['packagesqamaster']{
+		$memlimit = 192 * 1024**2
+	} else {
+		$memlimit = 32 * 1024**2
+	}
+
 	apache2::config { 'resource-limits':
 		content => template('apache2/resource-limits.erb'),
 	}

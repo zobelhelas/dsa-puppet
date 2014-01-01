@@ -12,7 +12,7 @@ mxmatches = [ scope.lookupvar('::fqdn') ]
 routes = []
 extraroutes = []
 
-if scope.lookupvar('site::nodeinfo')['mailrelay']
+if scope.function_has_role('mailrelay')
   mxmatches << 'mailout.debian.org'
   mxmatches << 'INCOMING-MX'
   extraroutes = [ "keyring.debian.org:\t\tkaufmann.debian.org" ]
