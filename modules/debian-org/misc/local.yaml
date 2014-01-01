@@ -338,6 +338,7 @@ host_settings:
     ancina.debian.org: 2025
     klecker.debian.org: 2025
     zappa.debian.org: 587
+    zani.debian.org: 587
   no_munin:
     - allegri.debian.org
     - escher.debian.org
