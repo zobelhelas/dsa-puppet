@@ -368,3 +368,10 @@ host_settings:
   buildd_master:
     - grieg.debian.org
     - wuiet.debian.org
+  dns_primary:
+    - denis.debian.org
+  dns_secondary:
+    - ravel.debian.org
+    - senfl.debian.org
+    - diamond.debian.org
+    - orff.debian.org

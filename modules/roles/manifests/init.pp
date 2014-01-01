@@ -99,6 +99,13 @@ class roles {
 		}
 	}
 
+	if getfromhash($site::nodeinfo, 'dns_primary') {
+		include named::primary
+	}
+	if getfromhash($site::nodeinfo, 'dns_secondary') {
+		include named::authoritative
+	}
+
 	if $::hostname in [ravel] {
 		include roles::weblog_destination
 	}
