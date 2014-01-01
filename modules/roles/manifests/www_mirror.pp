@@ -8,4 +8,8 @@ class roles::www_mirror {
 		site   => 'www.debian.org',
 		content => template('roles/apache-www.debian.org.erb'),
 	}
+
+	ssl::service { 'www.debian.org':
+		notify => Service['apache2'],
+	}
 }

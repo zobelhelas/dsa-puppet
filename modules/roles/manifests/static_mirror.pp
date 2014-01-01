@@ -59,4 +59,7 @@ class roles::static_mirror {
 	ssl::service { 'dsa.debian.org':
 		notify => Service['apache2'],
 	}
+	ssl::service { 'www.debian.org':
+		notify => Service['apache2'],
+	}
 }
