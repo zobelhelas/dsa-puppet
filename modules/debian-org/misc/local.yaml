@@ -177,7 +177,6 @@ services:
     - orff.debian.org
   packagesmaster: picconi.debian.org
   packagesqamaster: quantz.debian.org
-  puppetmaster: handel.debian.org
   rtmaster:
     - reger.debian.org
   security_master:

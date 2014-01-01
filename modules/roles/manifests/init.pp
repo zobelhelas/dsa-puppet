@@ -1,6 +1,6 @@
 class roles {
 
-	if getfromhash($site::nodeinfo, 'puppetmaster') {
+	if $::hostname in hiera('roles::puppetmaster') {
 		include puppetmaster
 	}
 

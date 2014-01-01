@@ -3,3 +3,6 @@ nameservers: []
 searchpaths: []
 resolvoptions: []
 allow_dns_query: []
+roles:
+  puppetmaster:
+    - handel.debian.org
