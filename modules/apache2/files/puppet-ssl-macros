@@ -1,8 +1,10 @@
 <IfModule mod_ssl.c>
   <IfModule mod_macro.c>
     <Macro common-ssl-HSTS>
-      # Add two month HSTS header
-      Header always add Strict-Transport-Security "max-age=5184000"
+      <IfModule mod_headers.c>
+        # Add two month HSTS header
+        Header always add Strict-Transport-Security "max-age=5184000"
+      </IfModule>
     </Macro>
 
     <Macro common-debian-service-ssl $name>
