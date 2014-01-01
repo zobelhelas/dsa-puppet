@@ -52,4 +52,21 @@
 </Macro>
 
 
+<Macro common-static-vhost-ssl $name>
+	Use common-debian-service-https-redirect <%= vhost_listen %> $name
+
+	<Virtualhost <%= vhost_listen %>:443 >
+		ServerName $name
+		ServerAdmin debian-admin@lists.debian.org
+
+		ErrorLog /var/log/apache2/$name-error.log
+		CustomLog /var/log/apache2/$name-access.log privacy
+
+		Use common-debian-service-ssl $name
+		Use common-ssl-HSTS
+
+		Use common-static-base $name
+	</VirtualHost>
+</Macro>
+
 # vim:ft=apache:
