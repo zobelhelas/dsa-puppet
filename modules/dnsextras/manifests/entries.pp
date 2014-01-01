@@ -12,7 +12,7 @@ class dnsextras::entries {
 
 	exec { 'rebuild debian.org zone':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		command     => 'sh -c "/git/HOOKS/write_zonefile debian.org && rndc reload"',
+		command => '/bin/su - dnsadm -c "/srv/dns.debian.org/bin/update-zones"',
 		refreshonly => true,
 	}
 }
