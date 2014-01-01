@@ -53,9 +53,7 @@ class apache2 {
 	}
 
 	file { '/etc/apache2/sites-available/common-ssl.inc':
-		source => 'puppet:///modules/apache2/common-ssl.inc',
-		require => Package['apache2'],
-		notify  => Service['apache2'],
+		ensure => absent,
 	}
 
 	file { '/etc/logrotate.d/apache2':
