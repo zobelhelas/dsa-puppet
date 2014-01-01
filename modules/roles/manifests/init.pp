@@ -2,7 +2,7 @@ class roles {
 
 	$roles = hiera('roles')
 
-	if $::hostname in $roles['puppetmaster'] {
+	if $::fqdn in $roles['puppetmaster'] {
 		include puppetmaster
 	}
 
