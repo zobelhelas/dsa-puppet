@@ -43,7 +43,7 @@ options {
 	dnssec-validation yes;
 <% end -%>
 
-<% if %w{senfl ravel orff diamond rietz}.include?(hostname) -%>
+<% if classes.include?('named::authoritative') -%>
 	rate-limit {
 		responses-per-second 25;
 		window 5;
