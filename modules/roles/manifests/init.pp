@@ -20,7 +20,8 @@ class roles {
 		include buildd
 	}
 
-	if has_role('porterbox') {
+	# XXX: turn this into a real role
+	if getfromhash($site::nodeinfo, 'porterbox') {
 		include porterbox
 	}
 
