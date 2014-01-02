@@ -33,11 +33,11 @@ class apache2 {
 		ensure => absent,
 	}
 
-	if $::fqdn in $site::roles['buildd_master'] {
+	if has_role('buildd_master') {
 		$memlimit = 192 * 1024**2
-	} elsif $::fqdn in $site::roles['nagiosmaster']{
+	} elsif has_role('nagiosmaster') {
 		$memlimit = 96 * 1024**2
-	} elsif $::fqdn in $site::roles['packagesqamaster']{
+	} elsif has_role('packagesqamaster') {
 		$memlimit = 192 * 1024**2
 	} else {
 		$memlimit = 32 * 1024**2

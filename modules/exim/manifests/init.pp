@@ -1,5 +1,12 @@
 class exim {
 
+	$is_mailrelay = has_role('mailrelay')
+	$is_bugsmaster = has_role('bugsmaster')
+	$is_bugsmx = has_role('bugsmx')
+	$is_rtmaster = has_role('rtmaster')
+	$is_packagesmaster = has_role('packagesmaster')
+	$is_packagesqamaster = has_role('packagesqamaster')
+
 	include exim::vdomain::setup
 
 	munin::check { 'ps_exim4': script => 'ps_' }
