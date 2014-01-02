@@ -1,6 +1,5 @@
 module Puppet::Parser::Functions
-  newfunction(:has_role, :type => :rvalue) do |args|
-      role = args.shift
+  newfunction(:has_role, :type => :rvalue) do |role|
       roles = lookupvar('site::roles')
       fqdn = lookupvar('fqdn')
       if not roles.include?(role)
