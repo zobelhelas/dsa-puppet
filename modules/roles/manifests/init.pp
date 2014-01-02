@@ -34,7 +34,8 @@ class roles {
 		include roles::dakmaster
 	}
 
-	if has_role('apache2_security_mirror') {
+	# XXX: turn this into a real role
+	if getfromhash($site::nodeinfo, 'apache2_security_mirror') {
 		include roles::security_mirror
 	}
 
