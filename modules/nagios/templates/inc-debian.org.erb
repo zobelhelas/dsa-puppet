@@ -5,10 +5,12 @@
 
 <%=
 nagii = []
-scope.lookupvar('site::localinfo').keys.sort.each do |node|
-  if scope.lookupvar('site::localinfo')[node]['nagiosmaster'] or scope.lookupvar('site::localinfo')[node]['extranrpeclient']
-    nagii << scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber']
-  end
+roles = scope.lookupvar('site::roles')
+roles['nagiosmaster'].each do |nag|
+	nagii << scope.lookupvar('site::allnodeinfo')[nag]['ipHostNumber']
+end
+roles['extranrpeclient'].each do |nag|
+	nagii << scope.lookupvar('site::allnodeinfo')[nag]['ipHostNumber']
 end
 
 case fqdn when
@@ -16,7 +18,7 @@ case fqdn when
     nagii << '192.34.35.49'
 end
 
-out = "allowed_hosts=" + nagii.join(',')
+out = "allowed_hosts=" + nagii.flatten.sort.uniq.join(',')
 out
 %>
 
