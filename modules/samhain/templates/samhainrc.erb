@@ -232,7 +232,7 @@ file=/var/log/syslog
 ## This file might be created or removed by the system sometimes.
 ##
 file=/etc/resolv.conf
-<% if scope.function_has_role(['buildd']) -%>
+<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
 file=/etc/dupload.conf
 <% end -%>
 file=/etc/resolv.conf.pcmcia.save
