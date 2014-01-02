@@ -21,7 +21,7 @@ class named {
 		rule        => 'proto udp dport 53 mod string from 32 to 64 algo bm hex-string \'|0000ff0001|\' jump DROP'
 	}
 
-	if getfromhash($site::nodeinfo, 'dns_primary') {
+	if has_role('dns_primary') {
 		@ferm::rule { '01-dsa-bind-4':
 			domain      => '(ip)',
 			description => 'Allow nameserver access',
