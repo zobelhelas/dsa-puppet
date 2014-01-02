@@ -44,11 +44,11 @@ if restrict_ssh.include?(hostname) then
 		ssh6allowed << "2001:41c8:1000:21::21:5" # adayevskaya
 	end
 
-	if scope.function_has_role('static_master') then
+	if scope.function_has_role(['static_master']) then
 		ssh4allowed << '$HOST_STATIC_V4'
 		ssh6allowed << '$HOST_STATIC_V6'
-	elsif scope.function_has_role('static_source') or
-	      scope.function_has_role('static_mirror') then
+	elsif scope.function_has_role(['static_source']) or
+	      scope.function_has_role(['static_mirror']) then
 		ssh4allowed << '$HOST_STATICMASTER_V4'
 		ssh6allowed << '$HOST_STATICMASTER_V6'
 	end
