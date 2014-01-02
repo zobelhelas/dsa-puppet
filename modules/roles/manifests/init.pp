@@ -15,7 +15,8 @@ class roles {
 		}
 	}
 
-	if has_role('buildd') {
+	# XXX: turn this into a real role
+	if getfromhash($site::nodeinfo, 'buildd') {
 		include buildd
 	}
 
