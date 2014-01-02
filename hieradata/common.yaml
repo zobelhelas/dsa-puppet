@@ -15,6 +15,7 @@ roles:
   dbmaster:
     - draghi.debian.org
   extranrpeclient:
+    - denis.debian.org
     - orff.debian.org
   ftp.d.o:
     - klecker.debian.org
