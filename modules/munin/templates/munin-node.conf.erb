@@ -41,12 +41,11 @@ ignore_file \.rpm(save|new)$
 allow ^127\.0\.0\.1$
 <%=
 str = ''
-scope.lookupvar('site::localinfo').keys.sort.each do |node|
-   if scope.lookupvar('site::localinfo')[node]['muninmaster']
+roles = scope.lookupvar('site::roles')
+roles['muninmaster'].each do |node|
       scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
          str += "allow ^" + ip.split('.').join('\.') + "$\n"
       end
-   end
 end
 str
 -%>

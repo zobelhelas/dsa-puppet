@@ -21,17 +21,15 @@
 
 <%
   rolehost={}
-  localinfo = scope.lookupvar('site::localinfo')
   allnodeinfo = scope.lookupvar('site::allnodeinfo')
+  roles = scope.lookupvar('site::roles')
 
   %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master}.each do |role|
     rolehost[role] = []
-    localinfo.keys.sort.each do |node|
-      if localinfo[node][role]
+    roles[role].each do |node|
         rolehost[role] << allnodeinfo[node]['ipHostNumber']
-      end
     end
-    rolehost[role].flatten!
+    rolehost[role].flatten!.sort.uniq
   end
 
   dbs = []

@@ -5,13 +5,12 @@
 
 acl Nagios {
 <%=
+  roles = scope.lookupvar('site::roles')
   str = ''
-  scope.lookupvar('site::localinfo').keys.sort.each do |node|
-      if scope.lookupvar('site::localinfo')[node]['nagiosmaster']
+  roles['nagiosmaster'].each do |node|
           scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |ip|
               str += "\t" + ip + "/32;\n"
           end
-      end
   end
   str-%>
 };
