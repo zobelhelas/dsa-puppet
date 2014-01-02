@@ -58,6 +58,22 @@ roles:
     - soler.debian.org
   sso:
     - diabelli.debian.org
+  static_master:
+    - bizet.debian.org
+    - dillon.debian.org
+    - franck.debian.org
+  static_mirror:
+    - busoni.debian.org
+    - klecker.debian.org
+    - senfter.debian.org
+  static_source:
+    - master.debian.org
+    - dillon.debian.org
+    - franck.debian.org
+    - philp.debian.org
+    - ravel.debian.org
+    - senfl.debian.org
+    - wolkenstein.debian.org
   syncproxy:
     - milanollo.debian.org
   udd:
@@ -66,6 +82,10 @@ roles:
     - vento.debian.org
   weblog_destination:
     - ravel.debian.org
+  weblog_provider:
+    - busoni.debian.org
+    - klecker.debian.org
+    - senfter.debian.org
   wiki:
     - wilder.debian.org
   www_master:
