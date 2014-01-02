@@ -4,6 +4,10 @@ module Puppet::Parser::Functions
       role = args.shift
       roles = lookupvar('site::roles')
       fqdn = lookupvar('fqdn')
+      if not roles.include?(role)
+        error "Failed to look up missing role #{role}"
+        return False
+      end
       return roles[role].include?(fqdn)
     end
   end
