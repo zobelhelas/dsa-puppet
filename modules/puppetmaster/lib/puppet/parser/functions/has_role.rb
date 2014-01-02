@@ -4,7 +4,7 @@ module Puppet::Parser::Functions
       role = args.shift
       roles = lookupvar('site::roles')
       fqdn = lookupvar('fqdn')
-      return fqdn in roles[role]
+      return roles[role].include?(fqdn)
     end
   end
 end
