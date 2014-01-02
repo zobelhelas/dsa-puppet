@@ -34,13 +34,13 @@ class apache2 {
 	}
 
 	if has_role('buildd_master') {
-		$memlimit = 192 * 1024**2
+		$memlimit = 192 * 1024 * 1024
 	} elsif has_role('nagiosmaster') {
-		$memlimit = 96 * 1024**2
+		$memlimit = 96 * 1024 * 1024
 	} elsif has_role('packagesqamaster') {
-		$memlimit = 192 * 1024**2
+		$memlimit = 192 * 1024 * 1024
 	} else {
-		$memlimit = 32 * 1024**2
+		$memlimit = 32 * 1024 * 1024
 	}
 
 	apache2::config { 'resource-limits':
