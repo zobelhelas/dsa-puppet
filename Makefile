@@ -16,7 +16,7 @@ git_hooks:
 	@if git config --get branch.master.rebase true >/dev/null; then \
 		git config branch.master.rebase true; \
 	fi
-	@ln -sf ../../tools/git_hooks/pre-commit .git/hooks/pre-commit
+	@ln -sf ../../tools/git-hooks/pre-commit .git/hooks/pre-commit
 	@$(RM) .git/hooks/post-commit
 
 .PHONY: vim_helpers
