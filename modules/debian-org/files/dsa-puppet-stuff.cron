@@ -6,4 +6,3 @@
 SHELL=/bin/bash
 @hourly  root [ ! -d /var/cache/dsa ] || touch /var/cache/dsa/cron.alive
 34 */4 * * * root if [ -x /usr/sbin/puppetd ]; then sleep $(( $RANDOM \% 7200 )); if [ -x /usr/bin/timeout ]; then TO="timeout --kill-after=900 3600"; else TO=""; fi; tmp="$(tempfile)"; egrep -v '^(#|$)' /etc/dsa/cron.ignore.dsa-puppet-stuff > "$tmp" && $TO /usr/sbin/puppetd -o --no-daemonize 2>&1 | egrep --text -v -f "$tmp"; rm -f "$tmp"; fi
-@daily       root find /var/lib/puppet/clientbucket/ -type f -mtime +30 -atime +30 -exec rm {} \+

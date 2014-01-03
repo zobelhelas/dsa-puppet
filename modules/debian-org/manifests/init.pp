@@ -264,4 +264,12 @@ class debian-org {
 	exec { 'init q':
 		refreshonly => true
 	}
+
+	tidy { '/var/lib/puppet/clientbucket/':
+		age      => '2w',
+		recurse  => 9,
+		type     => ctime,
+		matches  => [ 'paths', 'contents' ],
+		schedule => weekly
+	}
 }
