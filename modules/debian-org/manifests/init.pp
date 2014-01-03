@@ -108,8 +108,8 @@ class debian-org {
 	}
 	site::aptrepo { 'backports.org':
 		ensure => absent,
-		keyid => '16BA136C',
-		key => 'puppet:///modules/debian-org/backports.org.asc',
+		keyid  => '16BA136C',
+		key    => 'puppet:///modules/debian-org/backports.org.asc',
 	}
 
 	site::aptrepo { 'volatile':
@@ -189,12 +189,12 @@ class debian-org {
 		source => 'puppet:///modules/debian-org/puppet.default',
 	}
 	file { '/etc/cron.d/dsa-puppet-stuff':
-		source => 'puppet:///modules/debian-org/dsa-puppet-stuff.cron',
+		source  => 'puppet:///modules/debian-org/dsa-puppet-stuff.cron',
 		require => Package['debian.org'],
 	}
 	file { '/etc/ldap/ldap.conf':
 		require => Package['debian.org'],
-		source => 'puppet:///modules/debian-org/ldap.conf',
+		source  => 'puppet:///modules/debian-org/ldap.conf',
 	}
 	file { '/etc/pam.d/common-session':
 		require => Package['debian.org'],
@@ -238,9 +238,9 @@ class debian-org {
 		linkto => '/usr/bin/vim.basic',
 	}
 	mailalias { 'samhain-reports':
-		ensure => present,
+		ensure    => present,
 		recipient => $debianadmin,
-		require => Package['debian.org']
+		require   => Package['debian.org']
 	}
 
 	exec { 'apt-get update':
