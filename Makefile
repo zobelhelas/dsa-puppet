@@ -1,10 +1,9 @@
 SHELL = /bin/bash
 
 .PHONY: all
-all: git_hooks
+all: git_hooks vim_helpers
 	$(info make git_hooks:   set up Git repository hooks)
-
-puppet_parseonly = puppet parser validate
+	$(info make vim_hooks:   set up Vim settings for puppet files)
 
 .PHONY: git_hooks
 git_hooks:
@@ -20,5 +19,6 @@ git_hooks:
 	@ln -sf ../../tools/git_hooks/pre-commit .git/hooks/pre-commit
 	@$(RM) .git/hooks/post-commit
 
+.PHONY: vim_helpers
 vim_helpers:
-	rsync -a tools/vim ~/.vim/
+	@rsync -a tools/vim ~/.vim/
