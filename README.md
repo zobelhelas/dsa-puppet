@@ -8,7 +8,7 @@
 
 ## HOWTOs
 
-### how to configure a development environment
+### how to deploy a development environment
 
     apt-get install facter   # >= 1.6.2
     apt-get install puppet   # >= 2.7.6
@@ -30,7 +30,7 @@ can test your changes on a Debian machine using:
     puppet agent --test --noop
 
 Note, however, that once the changes are pushed, the changes are live to
-all Debian machines.
+all Debian machines and it is only a matter of time for the agent to run.
 
 ### how to configure vim
 
@@ -42,10 +42,10 @@ install them into your ~/.vim using:
 Alternately, use [gmarik/vundle][4] or [tpope/pathogen][5] to install
 [rodjek/vim-puppet][6].
 
+
 [1]: http://docs.puppetlabs.com/puppet/latest/reference/lang_summary.html
 [2]: http://docs.puppetlabs.com/references/stable/type.html
 [3]: http://docs.puppetlabs.com/references/stable/function.html
 [4]: https://github.com/gmarik/vundle
 [5]: https://github.com/tpope/vim-pathogen
 [6]: https://github.com/rodjek/vim-puppet
-[Z]: vim: set ft=mmd:
