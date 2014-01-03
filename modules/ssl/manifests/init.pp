@@ -7,6 +7,9 @@ class ssl {
 		'ssl-cert':
 			ensure => installed,
 			;
+		'ca-certificates':
+			ensure => installed,
+			;
 	}
 
 	file { '/etc/ssl/servicecerts':
@@ -90,4 +93,17 @@ class ssl {
 	exec { 'c_rehash /etc/ssl/debian/certs':
 		refreshonly => true,
 	}
+
+	exec { 'modify_ca_certificates_conf':
+		command     => 'sed -i -e \'s#!mozilla/UTN_USERFirst_Hardware_Root_CA.crt#mozilla/UTN_USERFirst_Hardware_Root_CA.crt#\' /etc/ca-certificates.conf',
+		cwd         => '/etc/ssl/certs',
+		onlyif      => 'grep -Fqx \'!mozilla/UTN_USERFirst_Hardware_Root_CA.crt\' /etc/ca-certificates.conf',
+		notify	    => Exec['update_ca_certificates']
+	}
+	exec { 'update_ca_certificates':
+		command     => '/usr/sbin/update-ca-certificates',
+		cwd         => '/etc/ssl/certs',
+		refreshonly => true
+	}
+
 }
