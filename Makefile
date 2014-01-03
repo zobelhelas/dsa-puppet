@@ -21,4 +21,4 @@ git_hooks:
 
 .PHONY: vim_helpers
 vim_helpers:
-	@rsync -a tools/vim ~/.vim/
+	@rsync -a tools/vim/ ~/.vim/
