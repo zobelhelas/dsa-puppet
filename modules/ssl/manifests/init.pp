@@ -46,7 +46,7 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/certs/thishost.crt':
 		source  => "puppet:///modules/ssl/clientcerts/${::fqdn}.client.crt",
-		notify  => Exec['refresh_debian_hashes'],
+		notify  => Exec['c_rehash /etc/ssl/debian/certs'],
 	}
 	file { '/etc/ssl/debian/keys/thishost.key':
 		source  => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
@@ -56,14 +56,14 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/certs/ca.crt':
 		source  => 'puppet:///modules/ssl/clientcerts/ca.crt',
-		notify  => Exec['refresh_debian_hashes'],
+		notify  => Exec['c_rehash /etc/ssl/debian/certs'],
 	}
 	file { '/etc/ssl/debian/crls/ca.crl':
 		source  => 'puppet:///modules/ssl/clientcerts/ca.crl',
 	}
 	file { '/etc/ssl/debian/certs/thishost-server.crt':
 		source  => "puppet:///modules/exim/certs/${::fqdn}.crt",
-		notify  => Exec['refresh_debian_hashes'],
+		notify  => Exec['c_rehash /etc/ssl/debian/certs'],
 	}
 	file { '/etc/ssl/debian/keys/thishost-server.key':
 		source  => "puppet:///modules/exim/certs/${::fqdn}.key",
@@ -90,11 +90,9 @@ class ssl {
 		notify      => Exec['refresh_normal_hashes'],
 		require     => Package['ca-certificates'],
 	}
-	exec { 'refresh_debian_hashes':
-		command     => '/usr/bin/c_rehash .',
-		cwd         => '/etc/ssl/debian/certs',
+	exec { 'c_rehash /etc/ssl/debian/certs': # refresh_debian_hashes
 		refreshonly => true,
-		require     => Package['openssl']
+		require     => Package['openssl'],
 	}
 	exec { 'refresh_normal_hashes':
 		# NOTE 1: always use update-ca-certificates to manage hashes in
