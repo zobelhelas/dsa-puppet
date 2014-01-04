@@ -16,7 +16,7 @@ class ssl {
 	file { '/etc/ssl/servicecerts':
 		ensure   => directory,
 		source   => 'puppet:///modules/ssl/servicecerts/',
-		mode     => '0644',
+		mode     => '0644', # this works; otherwise all files are +x
 		purge    => true,
 		recurse  => true,
 		force    => true,
@@ -25,7 +25,7 @@ class ssl {
 	file { '/etc/ssl/debian':
 		ensure   => directory,
 		source   => 'puppet:///files/empty/',
-		mode     => '0644',
+		mode     => '0644', # this works; otherwise all files are +x
 		purge    => true,
 		recurse  => true,
 		force    => true,
@@ -91,6 +91,7 @@ class ssl {
 		require     => Package['ca-certificates'],
 	}
 	exec { 'refresh_debian_hashes':
+		command     => 'c_rehash /etc/ssl/debian/certs',
 		refreshonly => true,
 		require     => Package['openssl'],
 	}
