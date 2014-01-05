@@ -8,7 +8,7 @@ class roles {
 		include munin::master
 	}
 
-	if getfromhash($site::nodeinfo, 'nagiosmaster') {
+	if has_role('nagiosmaster') {
 	#	include nagios::server
 		ssl::service { 'nagios.debian.org':
 			notify => Service['apache2'],
