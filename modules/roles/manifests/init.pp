@@ -130,6 +130,10 @@ class roles {
 		include roles::udd
 	}
 
+	if has_role('sso') {
+		include roles::sso
+	}
+
 	if has_role('buildd_master') {
 		include roles::buildd_master
 	}
