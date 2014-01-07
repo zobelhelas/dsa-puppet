@@ -8,7 +8,7 @@ nodeinfo = scope.lookupvar('site::nodeinfo')
 out = []
 
 restricted_purposes = ['kvm host', 'central syslog server', 'puppet master', 'jumphost']
-restrict_ssh = %w{lebrun geo1 geo2 geo3 beethoven tchaikovsky schroeder draghi adayevskaya denis}
+restrict_ssh = %w{lebrun beethoven tchaikovsky schroeder draghi adayevskaya}
 
 if (nodeinfo['ldap'].has_key?('purpose')) then
 	nodeinfo['ldap']['purpose'].each do |purp|
@@ -20,6 +20,12 @@ end
 
 ssh4allowed = []
 ssh6allowed = []
+
+should_restrict = restrict_ssh.include?(hostname)
+%w{dns_primary dns_geo}.each do |role_restrict|
+	if scope.function_has_role([role_restrict]) then should_restrict = true
+end
+
 
 if restrict_ssh.include?(hostname) then
 	ssh4allowed << %w{$DSA_IPS    $HOST_NAGIOS_V4 $HOST_MUNIN_V4 $HOST_DB_V4}
@@ -42,8 +48,8 @@ if restrict_ssh.include?(hostname) then
 	if scope.function_has_role(['dns_primary']) then
 		ssh4allowed << "5.153.231.5" # adayevskaya
 		ssh6allowed << "2001:41c8:1000:21::21:5" # adayevskaya
-		ssh4allowed << "$HOST_DNS_SECONDARY_V4"
-		ssh6allowed << "$HOST_DNS_SECONDARY_V6"
+		ssh4allowed << "$HOST_DNS_GEO_V4"
+		ssh6allowed << "$HOST_DNS_GEO_V6"
 	end
 
 	if scope.function_has_role(['static_master']) then

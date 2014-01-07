@@ -63,6 +63,8 @@
 
 @def $HOST_DNS_SECONDARY_V4 = (<%= scope.function_filter_ipv4([rolehost['dns_secondary']]).uniq.join(' ') %>);
 @def $HOST_DNS_SECONDARY_V6 = (<%= scope.function_filter_ipv6([rolehost['dns_secondary']]).uniq.join(' ') %>);
+@def $HOST_DNS_GEO_V4 = (<%= scope.function_filter_ipv4([rolehost['dns_geo']]).uniq.join(' ') %>);
+@def $HOST_DNS_GEO_V6 = (<%= scope.function_filter_ipv6([rolehost['dns_geo']]).uniq.join(' ') %>);
 
 @def $HOST_DEBIAN_V4 = (<%= scope.function_filter_ipv4([dbs]).uniq.join(' ') %>);
 @def $HOST_DEBIAN_V6 = (<%= scope.function_filter_ipv6([dbs]).uniq.join(' ') %>);
