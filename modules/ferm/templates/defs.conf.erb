@@ -24,7 +24,7 @@
   allnodeinfo = scope.lookupvar('site::allnodeinfo')
   roles = scope.lookupvar('site::roles')
 
-  %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master dns_secondary}.each do |role|
+  %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master dns_secondary dns_geo}.each do |role|
     rolehost[role] = []
     roles[role].each do |node|
         rolehost[role] << allnodeinfo[node]['ipHostNumber']

@@ -23,7 +23,9 @@ ssh6allowed = []
 
 should_restrict = restrict_ssh.include?(hostname)
 %w{dns_primary dns_geo}.each do |role_restrict|
-	if scope.function_has_role([role_restrict]) then should_restrict = true
+	if scope.function_has_role([role_restrict]) then
+		should_restrict = true
+	end
 end
 
 
@@ -48,8 +50,8 @@ if restrict_ssh.include?(hostname) then
 	if scope.function_has_role(['dns_primary']) then
 		ssh4allowed << "5.153.231.5" # adayevskaya
 		ssh6allowed << "2001:41c8:1000:21::21:5" # adayevskaya
-		ssh4allowed << "$HOST_DNS_GEO_V4"
-		ssh6allowed << "$HOST_DNS_GEO_V6"
+		#ssh4allowed << "$HOST_DNS_GEO_V4"
+		#ssh6allowed << "$HOST_DNS_GEO_V6"
 	end
 
 	if scope.function_has_role(['static_master']) then
