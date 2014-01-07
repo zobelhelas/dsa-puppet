@@ -24,7 +24,7 @@
   allnodeinfo = scope.lookupvar('site::allnodeinfo')
   roles = scope.lookupvar('site::roles')
 
-  %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master}.each do |role|
+  %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master dns_secondary}.each do |role|
     rolehost[role] = []
     roles[role].each do |node|
         rolehost[role] << allnodeinfo[node]['ipHostNumber']
@@ -60,6 +60,9 @@
 @def $HOST_STATICMASTER_V6 = (<%= scope.function_filter_ipv6([rolehost['static_master']]).uniq.join(' ') %>);
 @def $HOST_STATIC_V4 = (<%= scope.function_filter_ipv4([rolehost['static_mirror'] + rolehost['static_source'] + rolehost['static_master']]).uniq.join(' ') %>);
 @def $HOST_STATIC_V6 = (<%= scope.function_filter_ipv6([rolehost['static_mirror'] + rolehost['static_source'] + rolehost['static_master']]).uniq.join(' ') %>);
+
+@def $HOST_DNS_SECONDARY_V4 = (<%= scope.function_filter_ipv4([rolehost['dns_secondary']]).uniq.join(' ') %>);
+@def $HOST_DNS_SECONDARY_V6 = (<%= scope.function_filter_ipv6([rolehost['dns_secondary']]).uniq.join(' ') %>);
 
 @def $HOST_DEBIAN_V4 = (<%= scope.function_filter_ipv4([dbs]).uniq.join(' ') %>);
 @def $HOST_DEBIAN_V6 = (<%= scope.function_filter_ipv6([dbs]).uniq.join(' ') %>);
