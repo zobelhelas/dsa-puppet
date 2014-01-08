@@ -27,6 +27,9 @@ class roles {
 
 	if has_role('bugs_mirror') {
 		include roles::bugs_mirror
+		ssl::service { 'bugs.debian.org':
+			notify => Service['apache2'],
+		}
 	}
 
 	if has_role('ftp_master') {
