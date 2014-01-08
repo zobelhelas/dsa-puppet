@@ -127,6 +127,17 @@ class roles::pubsub::entities {
 		]
 	}
 
+	rabbitmq_user_permissions { 'admin@pet':
+		configure_permission => '.*',
+		read_permission      => '.*',
+		write_permission     => '.*',
+		provider             => 'rabbitmqctl',
+		require              => [
+			Rabbitmq_user['admin'],
+			Rabbitmq_vhost['pet']
+		]
+	}
+
 	rabbitmq_user_permissions { 'ftpteam@packages':
 		configure_permission => '.*',
 		read_permission      => '.*',
