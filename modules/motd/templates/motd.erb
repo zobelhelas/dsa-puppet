@@ -13,7 +13,7 @@ this machine you agree to abide by the Debian Machines Usage Policies
 
 <%=
 def wrap(s, width=78)
-      s.gsub(/(.{1,#{width}})( +|\Z)/, "\\1\n ")
+      s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n ")
 end
 
 def markup(l)
