@@ -13,7 +13,14 @@ this machine you agree to abide by the Debian Machines Usage Policies
 
 <%=
 def wrap(s, width=78)
-      s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n ")
+  #s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n ")
+  s.split("\n").map{ |x|
+    if (x.length > width) then
+      #x.gsub!(/(.{1,#{width}}) +(?=\S)/, "\\1\n ")
+      x.gsub!(/(.{1,#{width}})( +|\Z)/, "\\1\n ")
+    end
+    x
+  }.join("\n")+"\n"
 end
 
 def markup(l)
@@ -61,7 +68,7 @@ if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
 else
   extra += "."
 end
-purp += " " + wrap(extra)
+purp += " " + wrap(extra) + "\n"
 
 if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('physicalHost'))
   if ninfo['ldap']['physicalHost'][0] =~ /ganeti/
@@ -136,7 +143,6 @@ end
 
 purp
 -%>
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 <% if @lsbmajdistrelease >= '7' -%>
