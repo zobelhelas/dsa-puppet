@@ -60,7 +60,7 @@ class roles::pubsub::entities {
 		provider => 'rabbitmqctl',
 	}
 
-	rabbitmq_user { 'pet':
+	rabbitmq_user { 'pet-devel':
 		admin    => false,
 		password => $pet_password,
 		provider => 'rabbitmqctl',
@@ -203,13 +203,13 @@ class roles::pubsub::entities {
 		]
 	}
 
-	rabbitmq_user_permissions { 'pet@pet':
+	rabbitmq_user_permissions { 'pet-devel@pet':
 		configure_permission => '.*',
 		read_permission      => '.*',
 		write_permission     => '.*',
 		provider             => 'rabbitmqctl',
 		require              => [
-			Rabbitmq_user['pet'],
+			Rabbitmq_user['pet-devel'],
 			Rabbitmq_vhost['pet']
 		]
 	}
