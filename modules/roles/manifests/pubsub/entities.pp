@@ -24,37 +24,37 @@ class roles::pubsub::entities {
 	}
 
 	rabbitmq_user { 'ftpteam':
-		admin    => true,
+		admin    => false,
 		password => $ftp_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'buildd':
-		admin    => true,
+		admin    => false,
 		password => $buildd_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'wbadm':
-		admin    => true,
+		admin    => false,
 		password => $wbadm_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'mailadm':
-		admin    => true,
+		admin    => false,
 		password => $mailadm_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'mailly':
-		admin    => true,
+		admin    => false,
 		password => $mailly_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'muffat':
-		admin    => true,
+		admin    => false,
 		password => $muffat_password,
 		provider => 'rabbitmqctl',
 	}
