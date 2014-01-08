@@ -57,15 +57,22 @@ class roles::pubsub {
 	}
 
 	if $::hostname == $cc_master {
-		$you = $cc_secondary
+		$you  = '5.153.231.15'
+		$you6 = '2001:41c8:1000:21::21:15'
 	} else {
-		$you = $cc_master
+		$you  = '5.153.231.16'
+		$you6 = '2001:41c8:1000:21::21:16'
 	}
 
 	@ferm::rule { 'rabbitmq_cluster':
-		domain      => '(ip ip6)',
+		domain      => 'ip',
 		description => 'rabbitmq cluster connections',
 		rule        => "proto tcp mod state state (NEW) saddr (${you}) ACCEPT"
+	}
+	@ferm::rule { 'rabbitmq_cluster':
+		domain      => 'ip6',
+		description => 'rabbitmq cluster connections',
+		rule        => "proto tcp mod state state (NEW) saddr (${you6}) ACCEPT"
 	}
 	@ferm::rule { 'rabbitmq_mgmt':
 		description => 'rabbitmq cluster connections',
