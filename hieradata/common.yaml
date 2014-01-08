@@ -8,6 +8,9 @@ roles:
     - buxtehude.debian.org
   bugs_mirror:
     - beach.debian.org
+  bugs_base:
+    - buxtehude.debian.org
+    - beach.debian.org
   buildd_master:
     - wuiet.debian.org
   contributors:

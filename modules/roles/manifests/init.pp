@@ -27,6 +27,9 @@ class roles {
 
 	if has_role('bugs_mirror') {
 		include roles::bugs_mirror
+	}
+
+	if has_role('bugs_base') {
 		ssl::service { 'bugs.debian.org':
 			notify => Service['apache2'],
 		}
