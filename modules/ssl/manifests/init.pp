@@ -85,7 +85,7 @@ class ssl {
 		notify      => Exec['refresh_normal_hashes'], # see NOTE 1
 	}
 	exec { 'modify_configuration':
-		command     => "sed -i -e 's#!${cacert}#${cacert}' ${caconf}",
+		command     => "sed -i -e 's#!${cacert}#${cacert}#' ${caconf}",
 		onlyif      => "grep -Fqx '!${cacert}' ${caconf}",
 		notify      => Exec['refresh_normal_hashes'],
 		require     => Package['ca-certificates'],
