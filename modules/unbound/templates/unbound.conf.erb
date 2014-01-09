@@ -45,6 +45,14 @@ server:
 	auto-trust-anchor-file: "/var/lib/unbound/debian.org.key"
 	auto-trust-anchor-file: "/var/lib/unbound/29.172.in-addr.arpa.key"
 
+local-zone: "29.172.in-addr.arpa" nodefault
+forward-zone:
+	name: "29.172.in-addr.arpa"
+	forward-host: ns1.debian.org
+	forward-host: ns2.debian.org
+	forward-host: ns3.debian.org
+	forward-host: ns4.debian.com
+
 # recursive: <%= @is_recursor ? "y" : "n" %>
 <% if not @is_recursor -%>
 forward-zone:
@@ -57,15 +65,4 @@ forward-zone:
 	# previously, forward-first was not implemented for the root zone.
 	forward-first: yes
 <% end -%>
-
-# XXX : we probably ought to forward 172.29 reverse queries to our nameserver
-# if our forwarders are not ours.
-<% else -%>
-local-zone: "29.172.in-addr.arpa" nodefault
-forward-zone:
-	name: "29.172.in-addr.arpa"
-	forward-host: ns1.debian.org
-	forward-host: ns2.debian.org
-	forward-host: ns3.debian.org
-	forward-host: ns4.debian.com
 <% end -%>
