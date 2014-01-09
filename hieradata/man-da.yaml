@@ -1,6 +1,6 @@
 ---
 nameservers:
-  - 82.195.66.249
-  - 217.198.242.225
+  - 82.195.75.109
+  - 82.195.75.103
 searchpaths:
   - debprivate-darmstadt.debian.org
