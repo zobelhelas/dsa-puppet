@@ -159,4 +159,8 @@ class roles {
 	if has_role('release') {
 		include roles::release
 	}
+
+	if has_role('sip') {
+		include roles::sip
+	}
 }
