@@ -1,15 +1,20 @@
 class roles::sip {
 	@ferm::rule { 'dsa-sip-ws':
 		domain      => 'ip',
-		description => 'SIP over WebSocket (for WebRTC)',
+		description => 'SIP connections (WebSocket; for WebRTC)',
 		rule        => 'proto tcp mod state state (NEW) dport (443) ACCEPT'
 	}
-	@ferm::rule { 'dsa-sip':
+	@ferm::rule { 'dsa-sip-tls':
 		domain      => 'ip',
 		description => 'SIP connections (TLS)',
 		rule        => 'proto tcp mod state state (NEW) dport (5061) ACCEPT'
 	}
 	@ferm::rule { 'dsa-turn':
+		domain      => 'ip',
+		description => 'TURN connections',
+		rule        => 'proto udp mod state state (NEW) dport (3478) ACCEPT'
+	}
+	@ferm::rule { 'dsa-turn-tls':
 		domain      => 'ip',
 		description => 'TURN connections (TLS)',
 		rule        => 'proto tcp mod state state (NEW) dport (5349) ACCEPT'
