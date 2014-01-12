@@ -16,6 +16,7 @@ class roles::pubsub::client {
 	}
 
 	package { 'python-dsa-mq':
-		ensure => latest
+		ensure => latest,
+		tag    => extra_repo,
 	}
 }
