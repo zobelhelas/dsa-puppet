@@ -12,5 +12,4 @@ modules/roles/manifests/pubsub/params.pp
 *.swp
 *~
 /secret
-/mqsecret
 /*.dpkg-dist
