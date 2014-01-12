@@ -1,0 +1,19 @@
+#!/bin/bash
+
+parse_dates () {
+	while read url file junk; do
+		url=$(echo $url | sed -e "s/'//g")
+		url_time=$(date -d "$(curl -sqI ${url} | grep Last-Modified: | sed -e 's/Last-Modified: //')" +%s)
+		if [ ! -f "/var/lib/apt/lists/${file}" ]; then
+			return 0
+		fi
+		file_time=$(stat -c %Y /var/lib/apt/lists/${file})
+		if [ $url_time -gt $file_time ]; then
+			return 0
+		fi
+	done
+	return 1
+}
+
+su nobody -c 'apt-get update -s --print-uris' | grep 'Release ' | parse_dates
+exit $?
