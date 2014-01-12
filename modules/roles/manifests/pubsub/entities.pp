@@ -277,11 +277,5 @@ class roles::pubsub::entities {
 		require  => Package['rabbitmq-server'],
 		notify   => Service['rabbitmq-server']
 	}
-	rabbitmq_plugin { 'rabbitmq_auth_mechanism_ssl':
-		ensure   => present,
-		provider => 'rabbitmqplugins',
-		require  => Package['rabbitmq-server'],
-		notify   => Service['rabbitmq-server']
-	}
 
 }
