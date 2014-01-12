@@ -50,11 +50,11 @@ else:
   RM_COMMAND = ['/bin/rm', '-rf']
 
 CRITERIA = [
-    { 'size': 10240,  'notifyafter':  5}, #, 'deleteafter':  40 },
-    { 'size':  1024,  'notifyafter': 10}, #, 'deleteafter':  50 },
-    { 'size':   100,  'notifyafter': 30}, #, 'deleteafter':  90 },
-    { 'size':    20,  'notifyafter': 90}, #, 'deleteafter': 150 },
-    { 'size':     5,                        'deleteafter': 700 }
+    { 'size': 10240,  'notifyafter':  5, 'deleteafter':  40 },
+    { 'size':  1024,  'notifyafter': 10, 'deleteafter':  50 },
+    { 'size':   100,  'notifyafter': 30, 'deleteafter':  90 },
+    { 'size':    20,  'notifyafter': 90, 'deleteafter': 150 },
+    { 'size':     5,                     'deleteafter': 700 }
   ]
 EXCLUDED_USERNAMES = ['lost+found', 'debian']
 MAIL_FROM = 'debian-admin (via Cron) <bulk@admin.debian.org>'
@@ -164,7 +164,6 @@ class HomedirReminder(object):
   def remove(self, **kwargs):
     try:
       pwinfo = pwd.getpwnam(kwargs.get('username'))
-      return
     except KeyError:
       return
 
