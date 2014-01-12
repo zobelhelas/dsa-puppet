@@ -14,4 +14,8 @@ class roles::pubsub::client {
 		content => template('roles/pubsub/pubsub.conf.erb'),
 		mode    => '0440'
 	}
+
+	package { 'python-dsa-mq':
+		ensure => latest
+	}
 }
