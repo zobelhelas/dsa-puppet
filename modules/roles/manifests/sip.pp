@@ -2,7 +2,7 @@ class roles::sip {
 	include concat::setup
 
 	ssl::service { 'www.debian.org':
-		# TODO notify concat
+		notify      => Concat['/etc/ssl/debian/certs/www.debian.org-chained.crt'],
 	}
 
 	# TODO concatate in the ssl module?
