@@ -66,6 +66,10 @@ class roles::pubsub::entities {
 		provider => 'rabbitmqctl',
 	}
 
+	$do_hosts = keys($site::localinfo)
+
+	rabbitmq::autouser { $do_hosts: }
+
 	rabbitmq_vhost { 'packages':
 		ensure   => present,
 		provider => 'rabbitmqctl',
@@ -192,28 +196,6 @@ class roles::pubsub::entities {
 		]
 	}
 
-	rabbitmq_user_permissions { 'mailly@dsa':
-		configure_permission => '.*',
-		read_permission      => '.*',
-		write_permission     => '.*',
-		provider             => 'rabbitmqctl',
-		require              => [
-			Rabbitmq_user['mailly'],
-			Rabbitmq_vhost['dsa']
-		]
-	}
-
-	rabbitmq_user_permissions { 'muffat@dsa':
-		configure_permission => '.*',
-		read_permission      => '.*',
-		write_permission     => '.*',
-		provider             => 'rabbitmqctl',
-		require              => [
-			Rabbitmq_user['muffat'],
-			Rabbitmq_vhost['dsa']
-		]
-	}
-
 	rabbitmq_user_permissions { 'pet-devel@pet':
 		configure_permission => '.*',
 		read_permission      => '.*',
@@ -272,12 +254,6 @@ class roles::pubsub::entities {
 		notify   => Service['rabbitmq-server']
 	}
 	rabbitmq_plugin { 'rabbitmq_management_visualiser':
-		ensure   => present,
-		provider => 'rabbitmqplugins',
-		require  => Package['rabbitmq-server'],
-		notify   => Service['rabbitmq-server']
-	}
-	rabbitmq_plugin { 'rabbitmq_auth_mechanism_ssl':
 		ensure   => present,
 		provider => 'rabbitmqplugins',
 		require  => Package['rabbitmq-server'],
