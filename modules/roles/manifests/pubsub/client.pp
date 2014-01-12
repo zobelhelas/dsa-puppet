@@ -11,6 +11,7 @@ class roles::pubsub::client {
 	$rabbit_password = hkdf('/etc/puppet/secret', "mq-client-${name}")
 
 	file { '/etc/dsa/pubsub.conf':
-		content => template('roles/pubsub/pubsub.conf.erb')
+		content => template('roles/pubsub/pubsub.conf.erb'),
+		mode    => '0440'
 	}
 }
