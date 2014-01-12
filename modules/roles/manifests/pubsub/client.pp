@@ -8,7 +8,7 @@
 #
 class roles::pubsub::client {
 
-	$rabbit_password = hkdf('/etc/puppet/secret', "mq-client-${name}")
+	$rabbit_password = hkdf('/etc/puppet/secret', "mq-client-${::fqdn}")
 
 	file { '/etc/dsa/pubsub.conf':
 		content => template('roles/pubsub/pubsub.conf.erb'),
