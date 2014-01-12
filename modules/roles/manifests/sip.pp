@@ -1,4 +1,6 @@
 class roles::sip {
+	ssl::service { 'www.debian.org':
+	}
 	@ferm::rule { 'dsa-sip-ws-ip4':
 		domain      => 'ip',
 		description => 'SIP connections (WebSocket; for WebRTC)',
