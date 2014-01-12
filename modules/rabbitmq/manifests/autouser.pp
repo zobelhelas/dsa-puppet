@@ -18,4 +18,15 @@ define rabbitmq::autouser () {
 		password => $rabbit_password,
 		provider => 'rabbitmqctl',
 	}
+
+	rabbitmq_user_permissions { "${name}@dsa":
+		configure_permission => '.*',
+		read_permission      => '.*',
+		write_permission     => '.*',
+		provider             => 'rabbitmqctl',
+		require              => [
+			Rabbitmq_user[$name],
+			Rabbitmq_vhost['dsa']
+		]
+	}
 }

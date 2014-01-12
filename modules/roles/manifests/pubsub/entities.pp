@@ -196,28 +196,6 @@ class roles::pubsub::entities {
 		]
 	}
 
-	rabbitmq_user_permissions { 'mailly@dsa':
-		configure_permission => '.*',
-		read_permission      => '.*',
-		write_permission     => '.*',
-		provider             => 'rabbitmqctl',
-		require              => [
-			Rabbitmq_user['mailly'],
-			Rabbitmq_vhost['dsa']
-		]
-	}
-
-	rabbitmq_user_permissions { 'muffat@dsa':
-		configure_permission => '.*',
-		read_permission      => '.*',
-		write_permission     => '.*',
-		provider             => 'rabbitmqctl',
-		require              => [
-			Rabbitmq_user['muffat'],
-			Rabbitmq_vhost['dsa']
-		]
-	}
-
 	rabbitmq_user_permissions { 'pet-devel@pet':
 		configure_permission => '.*',
 		read_permission      => '.*',
