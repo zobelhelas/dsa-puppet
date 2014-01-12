@@ -253,7 +253,7 @@ class debian-org {
 	exec { 'apt-get update':
 		path    => '/usr/bin:/usr/sbin:/bin:/sbin',
 		onlyif  => '/usr/local/bin/check_for_updates',
-		require => File['/opt/bin/check_for_updates']
+		require => File['/usr/local/bin/check_for_updates']
 	}
 	Exec['apt-get update']->Package<| tag == extra_repo |>
 
