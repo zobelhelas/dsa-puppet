@@ -1,22 +1,23 @@
 class roles::sip {
-	#include concat::setup
+	include concat::setup
 
 	ssl::service { 'www.debian.org':
+		# TODO notify concat
 	}
 
-	#concat { '/etc/ssl/debian/certs/www.debian.org-chained.crt':
-	#	ensure      => present,
-	#}
-	#concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt':
-	#	target      => '/etc/ssl/debian/certs/www.debian.org-chained.crt',
-	#	source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt',
-	#	order       => 00,
-	#}
-	#concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt-chain':
-	#	target      => '/etc/ssl/debian/certs/www.debian.org-chained.crt',
-	#	source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt-chain',
-	#	order       => 99,
-	#}
+	# TODO concatate in the ssl module?
+	concat { '/etc/ssl/debian/certs/www.debian.org-chained.crt':
+	}
+	concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt':
+		target      => '/etc/ssl/debian/certs/www.debian.org-chained.crt',
+		source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt',
+		order       => 00,
+	}
+	concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt-chain':
+		target      => '/etc/ssl/debian/certs/www.debian.org-chained.crt',
+		source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt-chain',
+		order       => 99,
+	}
 
 	@ferm::rule { 'dsa-sip-ws-ip4':
 		domain      => 'ip',
