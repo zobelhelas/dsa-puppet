@@ -243,9 +243,17 @@ class debian-org {
 		require   => Package['debian.org']
 	}
 
+	file { '/usr/local/bin/check_for_updates':
+		source => 'puppet:///modules/debian-org/check_for_updates',
+		mode   => '0755',
+		owner  => root,
+		group  => root,
+	}
+
 	exec { 'apt-get update':
-		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		refreshonly => true,
+		path    => '/usr/bin:/usr/sbin:/bin:/sbin',
+		onlyif  => '/opt/bin/check_for_updates',
+		require => File['/opt/bin/check_for_updates']
 	}
 	Exec['apt-get update']->Package<| tag == extra_repo |>
 
