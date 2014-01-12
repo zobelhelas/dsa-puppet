@@ -44,12 +44,9 @@ DRYRUN = False
 
 if DRYRUN:
   SENDMAIL_COMMAND = ['/bin/cat']
-else:
-  SENDMAIL_COMMAND = ['/usr/sbin/sendmail', '-t', '-oi']
-
-if DRYRUN:
   RM_COMMAND = ['/bin/echo', 'Would remove']
 else:
+  SENDMAIL_COMMAND = ['/usr/sbin/sendmail', '-t', '-oi']
   RM_COMMAND = ['/bin/rm', '-rf']
 
 CRITERIA = [
