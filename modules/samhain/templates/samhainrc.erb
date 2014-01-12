@@ -116,6 +116,7 @@ file=/etc/static-clients.conf
 # timestamps. Put it here as 'file', and in the ReadOnly section as 'dir'.
 #
 file=/etc
+file=/etc/dsa
 file=/etc/ssh
 file=/etc/network/run
 file=/etc/bind/zones
@@ -250,6 +251,7 @@ file=/etc/blkid.tab.old
 file=/etc/resolv.conf.dhclient-new
 
 # We handle these files with puppet - please to not be bothering us
+file=/etc/dsa/pubsub.conf
 file=/etc/nsswitch.conf
 file=/etc/timezone
 file=/etc/motd.tail
