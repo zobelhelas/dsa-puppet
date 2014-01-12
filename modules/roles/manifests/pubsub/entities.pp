@@ -66,6 +66,10 @@ class roles::pubsub::entities {
 		provider => 'rabbitmqctl',
 	}
 
+	do_hosts = keys($site::localinfo)
+
+	rabbitmq::autouser { do_hosts: }
+
 	rabbitmq_vhost { 'packages':
 		ensure   => present,
 		provider => 'rabbitmqctl',
