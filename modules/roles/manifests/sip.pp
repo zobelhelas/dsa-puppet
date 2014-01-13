@@ -7,32 +7,31 @@ class roles::sip {
 	ssl::service { 'sip-ws.debian.org':
 	}
 
-	concat { '/etc/ssl/debian/certs/www.debian.org-chained.crt':
-		notify      => Exec['refresh_debian_hashes'],
+	concat { '/etc/repro/www.debian.org-chained.crt':
 	}
 	concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt':
-		target      => '/etc/ssl/debian/certs/www.debian.org-chained.crt',
+		target      => '/etc/repro/www.debian.org-chained.crt',
 		source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt',
 		order       => 00,
 		require     => File['/etc/ssl/debian/certs/www.debian.org.crt'],
 	}
 	concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt-chain':
-		target      => '/etc/ssl/debian/certs/www.debian.org-chained.crt',
+		target      => '/etc/repro/www.debian.org-chained.crt',
 		source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt-chain',
 		order       => 99,
 		require     => File['/etc/ssl/debian/certs/www.debian.org.crt-chain'],
 	}
 
-	concat { '/etc/ssl/debian/certs/sip-ws.debian.org-chained.crt':
+	concat { '/etc/repro/sip-ws.debian.org-chained.crt':
 	}
 	concat::fragment { '/etc/ssl/debian/certs/sip-ws.debian.org.crt':
-		target      => '/etc/ssl/debian/certs/sip-ws.debian.org-chained.crt',
+		target      => '/etc/repro/sip-ws.debian.org-chained.crt',
 		source      => 'file:///etc/ssl/debian/certs/sip-ws.debian.org.crt',
 		order       => 00,
 		require     => File['/etc/ssl/debian/certs/sip-ws.debian.org.crt'],
 	}
 	concat::fragment { '/etc/ssl/debian/certs/sip-ws.debian.org.crt-chain':
-		target      => '/etc/ssl/debian/certs/sip-ws.debian.org-chained.crt',
+		target      => '/etc/repro/sip-ws.debian.org-chained.crt',
 		source      => 'file:///etc/ssl/debian/certs/sip-ws.debian.org.crt-chain',
 		order       => 99,
 		require     => File['/etc/ssl/debian/certs/sip-ws.debian.org.crt-chain'],
