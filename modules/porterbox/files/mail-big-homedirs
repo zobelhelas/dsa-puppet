@@ -35,7 +35,6 @@ from optparse import OptionParser
 import os.path
 import platform
 import pwd
-import socket
 import subprocess
 import struct
 import time
@@ -199,7 +198,7 @@ class HomedirReminder(object):
       msg = {
         'timestamp': current_time,
         'data': self.homedir_sizes,
-        'host': socket.gethostname()
+        'host': platform.node(),
       }
       conn = Connection(conf=mq_conf)
       conn.topic_send(config.topic,
