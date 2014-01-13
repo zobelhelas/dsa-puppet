@@ -3,7 +3,7 @@
 # Send email reminders to users having sizable homedirs.
 ##
 # Copyright (c) 2013 Philipp Kern <pkern@debian.org>
-# Copyright (c) 2013 Peter Palfrader <peter@palfrader.org>
+# Copyright (c) 2013, 2014 Peter Palfrader <peter@palfrader.org>
 # Copyright (c) 2013 Luca Filipozzi <lfilipoz@debian.org>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
