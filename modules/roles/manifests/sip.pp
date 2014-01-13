@@ -4,6 +4,9 @@ class roles::sip {
 	ssl::service { 'www.debian.org':
 	}
 
+	ssl::service { 'sip-ws.debian.org':
+	}
+
 	concat { '/etc/ssl/debian/certs/www.debian.org-chained.crt':
 	}
 	concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt':
@@ -17,6 +20,21 @@ class roles::sip {
 		source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt-chain',
 		order       => 99,
 		require     => File['/etc/ssl/debian/certs/www.debian.org.crt-chain']
+	}
+
+	concat { '/etc/ssl/debian/certs/sip-ws.debian.org-chained.crt':
+	}
+	concat::fragment { '/etc/ssl/debian/certs/sip-ws.debian.org.crt':
+		target      => '/etc/ssl/debian/certs/sip-ws.debian.org-chained.crt',
+		source      => 'file:///etc/ssl/debian/certs/sip-ws.debian.org.crt',
+		order       => 00,
+		require     => File['/etc/ssl/debian/certs/sip-ws.debian.org.crt']
+	}
+	concat::fragment { '/etc/ssl/debian/certs/sip-ws.debian.org.crt-chain':
+		target      => '/etc/ssl/debian/certs/sip-ws.debian.org-chained.crt',
+		source      => 'file:///etc/ssl/debian/certs/sip-ws.debian.org.crt-chain',
+		order       => 99,
+		require     => File['/etc/ssl/debian/certs/sip-ws.debian.org.crt-chain']
 	}
 
 	@ferm::rule { 'dsa-sip-ws-ip4':
