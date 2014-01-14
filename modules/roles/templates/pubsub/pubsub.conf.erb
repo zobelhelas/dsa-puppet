@@ -4,3 +4,11 @@ topic=dsa.git.homedirs
 exchange=dsa
 username=<%= @fqdn %>
 password=<%= @rabbit_password %>
+
+[dsa-udreplicate]
+vhost=dsa
+topic=dsa.ud.replicate
+exchange=dsa
+username=<%= @fqdn %>
+password=<%= @rabbit_password %>
+queue=ud-<%= @fqdn %>
