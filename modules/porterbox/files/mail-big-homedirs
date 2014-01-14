@@ -194,9 +194,10 @@ class HomedirReminder(object):
 
   def run(self):
     current_time = time.time()
+    conn = None
     try:
       data = {}
-      for user in set(self.homedir_sizes.keys()) +
+      for user in set(self.homedir_sizes.keys()) | \
                   set(self.lastlog_times.keys()):
         data[user] = {
           'homedir': self.homedir_sizes.get(user, 0),
@@ -214,7 +215,7 @@ class HomedirReminder(object):
                       exchange_name=config.exchange,
                       timeout=5)
     except Exception, e:
-      LOG.error("Error sending: %s" % e)
+      logging.error("Error sending: %s" % e)
     finally:
       if conn:
         conn.close()
