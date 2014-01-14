@@ -22,6 +22,7 @@ Defaults	passprompt="[sudo] password for %u on %h: "
 Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Host alias specification
+Host_Alias	VOIPHOSTS	= vogler
 Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
 Host_Alias	FTPHOSTS	= franck
@@ -196,3 +197,5 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 
 %Debian,%guest	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
+
+%debvoip        VOIPHOSTS=(root)                /etc/init.d/repro, /etc/init.d/resiprocate-turn-server
