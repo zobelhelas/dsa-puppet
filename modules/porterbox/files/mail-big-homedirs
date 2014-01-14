@@ -195,9 +195,17 @@ class HomedirReminder(object):
   def run(self):
     current_time = time.time()
     try:
+      data = {}
+      for user in set(self.homedir_sizes.keys()) +
+                  set(self.lastlog_times.keys()):
+        data[user] = {
+          'homedir': self.homedir_sizes.get(user, 0),
+          'lastlog': self.lastlog_times.get(user, 0),
+        }
+
       msg = {
         'timestamp': current_time,
-        'data': self.homedir_sizes,
+        'data': data,
         'host': platform.node(),
       }
       conn = Connection(conf=mq_conf)
