@@ -198,4 +198,6 @@ nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 
 %Debian,%guest	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
 
-%debvoip        VOIPHOSTS=(root)                /etc/init.d/repro, /etc/init.d/resiprocate-turn-server
+# voip stuff
+%debvoip	VOIPHOSTS=(root)	/usr/sbin/service resiprocate-turn-server restart, /usr/sbin/service repro restart
+
