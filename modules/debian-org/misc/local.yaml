@@ -57,7 +57,6 @@ nameinfo:
   glinka.debian.org: Mikhail Ivanovich Glinka (1804 - 1857)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
   gombert.debian.org: Nicolas Gombert (c. 1495 – c. 1560)
-  grieg.debian.org: Edvard Hagerup Grieg (June 15th, 1843 - September 4th, 1907)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
   harris.debian.org: Sir William Henry Harris (March 28th, 1883 - September 6th, 1973)
   hasse.debian.org: Johann Adolph Hasse (March 25th, 1699 - December 16th, 1783)
@@ -159,7 +158,6 @@ host_settings:
     - draghi.debian.org
     - franck.debian.org
     - gombert.debian.org
-    - grieg.debian.org
     - mailly.debian.org
     - master.debian.org
     - muffat.debian.org
@@ -307,5 +305,4 @@ host_settings:
     - rautavaara.debian.org
     - salieri.debian.org
   buildd_master:
-    - grieg.debian.org
     - wuiet.debian.org

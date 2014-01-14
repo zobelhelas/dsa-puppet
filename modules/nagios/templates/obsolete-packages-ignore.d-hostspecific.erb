@@ -18,7 +18,6 @@ when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/ then  ignore << %w{flas
 when /harris.debian.org/ then                                  ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(hasse|hebden|henze|hildegard|howells|hummel|hoiby).debian.org/ then ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(parry|partch).debian.org/ then                          ignore << "yaboot"
-when "grieg.debian.org" then                                   ignore << %w{dpkg}
 when "blavet.debian.org" then                                  ignore << %w{dpkg-dev libdpkg-perl dpkg}
 when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
 when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}

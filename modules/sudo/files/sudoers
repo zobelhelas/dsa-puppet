@@ -28,11 +28,11 @@ Host_Alias	SECHOSTS	= chopin
 Host_Alias	FTPHOSTS	= franck
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= paganini, respighi, beethoven, pettersson
-Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
+Host_Alias	MEGARAIDHOSTS	= rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= barber, biber, cilea, vitry, orff
 Host_Alias	MEGACTLHOSTS	= nielsen
 Host_Alias	LISTHOSTS	= bendel
-Host_Alias	BUILDD_MASTER	= grieg, wuiet
+Host_Alias	BUILDD_MASTER	= wuiet
 Host_Alias	PORTERBOXES	= abel, agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
 
