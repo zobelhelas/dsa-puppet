@@ -60,8 +60,8 @@ define roles::pubsub::config (
 	include roles::pubsub::config::setup
 
 	concat::fragment { "pubsub_conf_${name}":
-		target => '/etc/dsa/pubsub.conf',
-		source => 'puppet:///modules/roles/pubsub/pubsub.conf.erb',
-		order  => $order,
+		target  => '/etc/dsa/pubsub.conf',
+		content => template('roles/pubsub/pubsub.conf.erb'),
+		order   => $order,
 	}
 }
