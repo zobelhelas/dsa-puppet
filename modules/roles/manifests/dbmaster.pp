@@ -8,9 +8,9 @@
 #
 class roles::dbmaster {
 
-	include roles::pubsub::params
+	include roles::pubsub::parameters
 
-	$rabbit_password = $roles::pubsub::params::rabbit_password
+	$rabbit_password = $roles::pubsub::parameters::rabbit_password
 
 	ssl::service { 'db.debian.org':
 		notify => Service['apache2'],

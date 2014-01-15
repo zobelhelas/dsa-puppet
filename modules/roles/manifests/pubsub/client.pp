@@ -8,9 +8,9 @@
 #
 class roles::pubsub::client {
 
-	include roles::pubsub::params
+	include roles::pubsub::parameters
 
-	$rabbit_password = $roles::pubsub::params::rabbit_password
+	$rabbit_password = $roles::pubsub::parameters::rabbit_password
 
 	package { 'python-dsa-mq':
 		ensure => latest,
