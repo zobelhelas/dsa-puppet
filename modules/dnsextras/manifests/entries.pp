@@ -1,4 +1,6 @@
 class dnsextras::entries {
+	include concat::setup
+
 	file { '/srv/dns.debian.org/puppet-extra':
 		ensure => 'directory',
 	}
