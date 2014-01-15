@@ -8,15 +8,31 @@
 #
 class roles::pubsub::client {
 
-	$rabbit_password = hkdf('/etc/puppet/secret', "mq-client-${::fqdn}")
+	include roles::pubsub::params
 
-	file { '/etc/dsa/pubsub.conf':
-		content => template('roles/pubsub/pubsub.conf.erb'),
-		mode    => '0440'
-	}
+	$rabbit_password = $roles::pubsub::params::rabbit_password
 
 	package { 'python-dsa-mq':
 		ensure => latest,
 		tag    => extra_repo,
+	}
+
+	roles::pubsub::config { 'homedirs':
+		key      => 'dsa-homedirs',
+		exchange => dsa,
+		topic    => 'dsa.git.homedirs',
+		vhost    => dsa,
+		username => $::fqdn,
+		password => $rabbit_password
+	}
+
+	roles::pubsub::config { 'replicate':
+		key      => 'dsa-udreplicate',
+		exchange => dsa,
+		queue    => "ud-${::fqdn}",
+		topic    => 'dsa.ud.replicate',
+		vhost    => dsa,
+		username => $::fqdn,
+		password => $rabbit_password
 	}
 }

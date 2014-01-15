@@ -1,14 +1,10 @@
-[dsa-homedirs]
-vhost=dsa
-topic=dsa.git.homedirs
-exchange=dsa
-username=<%= @fqdn %>
-password=<%= @rabbit_password %>
+[<%= @key -%>]
+vhost=<%= @vhost %>
+topic=<%= @topic %>
+exchange=<%= @exchange %
+username=<%= @username %>
+password=<%= @password %>
+<% if @queue -%>
+queue=<%= @queue %>
+<% end -%>
 
-[dsa-udreplicate]
-vhost=dsa
-topic=dsa.ud.replicate
-exchange=dsa
-username=<%= @fqdn %>
-password=<%= @rabbit_password %>
-queue=ud-<%= @fqdn %>
