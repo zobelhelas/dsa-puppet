@@ -160,7 +160,7 @@ class roles {
 		include roles::release
 	}
 
-	if has_role('sip') {
-		include roles::sip
+	if has_role('rtc') {
+		include roles::rtc
 	}
 }

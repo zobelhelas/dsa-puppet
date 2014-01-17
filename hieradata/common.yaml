@@ -70,7 +70,7 @@ roles:
     - chopin.debian.org
   security_tracker:
     - soler.debian.org
-  sip:
+  rtc:
     - vogler.debian.org
   sso:
     - diabelli.debian.org

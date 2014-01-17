@@ -1,4 +1,4 @@
-class roles::sip {
+class roles::rtc {
 	include concat::setup
 
 	ssl::service { 'www.debian.org':
@@ -86,5 +86,10 @@ class roles::sip {
 		domain      => 'ip6',
 		description => 'RTP streams',
 		rule        => 'proto udp dport (49152:65535) ACCEPT'
+	}
+
+	file { '/etc/monit/monit.d/50rtc':
+		source  => 'puppet:///modules/roles/rtc/monit',
+		mode    => '0440'
 	}
 }
