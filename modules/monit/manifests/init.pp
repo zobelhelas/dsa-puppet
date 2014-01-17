@@ -18,11 +18,12 @@ class monit {
 		default  => '/usr/sbin/monit',
 	}
 
-	augeas { 'inittab':
+	augeas { 'inittab_monit':
 		context => '/files/etc/inittab',
-		changes => [ 'set mo/runlevels 2345',
-				'set mo/action respawn',
-				"set mo/process \"$cmd -d 300 -I -c /etc/monit/monitrc -s /var/lib/monit/monit.state\"",
+		changes => [
+			'set mo/runlevels 2345',
+			'set mo/action respawn',
+			"set mo/process \"$cmd -d 300 -I -c /etc/monit/monitrc -s /var/lib/monit/monit.state\"",
 		],
 		notify => Exec['init q'],
 	}
