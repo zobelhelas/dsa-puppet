@@ -142,7 +142,7 @@ class debian-org {
 		changes => [
 			'set ud/runlevels 2345',
 			'set ud/action respawn',
-			"set mo/process /usr/bin/ud-replicated",
+			"set ud/process /usr/bin/ud-replicated",
 		],
 		notify => Exec['init q'],
 	}
