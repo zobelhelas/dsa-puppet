@@ -11,7 +11,7 @@ class roles::pubsub::config::setup {
 
 	concat { '/etc/dsa/pubsub.conf':
 		owner   => root,
-		group   => root,
+		group   => pubsub,
 		mode    => '0440',
 	}
 }
