@@ -12,7 +12,10 @@ class roles::pubsub::client {
 
 	$rabbit_password = $roles::pubsub::parameters::rabbit_password
 
-	package { 'python-dsa-mq':
+	package { [
+		'python-dsa-mq'
+		'python-kombu'
+	]:
 		ensure => latest,
 		tag    => extra_repo,
 	}
