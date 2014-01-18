@@ -137,6 +137,16 @@ class debian-org {
 		key        => 'puppet:///modules/debian-org/db.debian.org.asc',
 	}
 
+	augeas { 'inittab_replicate':
+		context => '/files/etc/inittab',
+		changes => [
+			'set ud/runlevels 2345',
+			'set ud/action respawn',
+			"set mo/process /usr/bin/ud-replicated",
+		],
+		notify => Exec['init q'],
+	}
+
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
 		site::aptrepo { 'debian':
 			url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
