@@ -35,6 +35,7 @@ Host_Alias	LISTHOSTS	= bendel
 Host_Alias	BUILDD_MASTER	= wuiet
 Host_Alias	PORTERBOXES	= abel, agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
+Host_Alias	MQ_HOSTS	= rainier, rapoport
 
 # Cmnd alias specification
 
@@ -49,6 +50,7 @@ root	ALL=(ALL) ALL
 %zivit-admins	ZIVITHOSTS=(ALL)	NOPASSWD: ALL
 
 # nagios
+nagios		MQ_HOSTS=(rabbitmq)	NOPASSWD: /usr/sbin/rabbitmqctl list_queues
 nagios		ALL=(ALL)	NOPASSWD: /etc/init.d/ekeyd-egd-linux restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-filesystems ""
