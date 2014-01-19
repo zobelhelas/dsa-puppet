@@ -1,3 +1,7 @@
+# == Class: debian-org
+#
+# Stuff common to all debian.org servers
+#
 class debian-org {
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
 		$mirror = getfromhash($site::nodeinfo, 'hoster', 'mirror-debian')
@@ -142,9 +146,9 @@ class debian-org {
 		changes => [
 			'set ud/runlevels 2345',
 			'set ud/action respawn',
-			"set ud/process /usr/bin/ud-replicated",
+			'set ud/process "/usr/bin/ud-replicated -d"',
 		],
-		notify => Exec['init q'],
+		notify  => Exec['init q'],
 	}
 
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
