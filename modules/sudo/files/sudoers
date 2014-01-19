@@ -50,7 +50,7 @@ root	ALL=(ALL) ALL
 %zivit-admins	ZIVITHOSTS=(ALL)	NOPASSWD: ALL
 
 # nagios
-nagios		MQ_HOSTS=(rabbitmq)	NOPASSWD: /usr/sbin/rabbitmqctl list_queues
+nagios		MQ_HOSTS=(rabbitmq)	NOPASSWD: /usr/sbin/rabbitmqctl list_queues -p dsa name messages consumers
 nagios		ALL=(ALL)	NOPASSWD: /etc/init.d/ekeyd-egd-linux restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-filesystems ""
