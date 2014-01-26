@@ -153,7 +153,7 @@ debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-componen
 %blends		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component blends.debian.org
 %Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component wnpp-by-tags.debian.net
 %Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component mozilla.debian.net
-%ports		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component ports.debian.org
+%ports		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component www.ports.debian.org
 %debvoip	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component rtc.debian.org
 
 # The piuparts slave needs to handle chroots
