@@ -233,6 +233,16 @@ class ferm::per-host {
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
 			}
+
+			@ferm::rule { 'dsa-postgres-backup':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.12/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-backup6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:12/128 ))'
+			}
 		}
 		bmdb1: {
 			@ferm::rule { 'dsa-postgres-main':
@@ -329,6 +339,17 @@ class ferm::per-host {
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5432, ( 2001:41c8:1000:21::21:12/128 ))'
+			}
+		}
+		sibelius: {
+			@ferm::rule { 'dsa-postgres-backup':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.12/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-backup6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:12/128 ))'
 			}
 		}
 		default: {}
