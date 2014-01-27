@@ -298,6 +298,17 @@ class ferm::per-host {
 				description     => 'Allow postgress access4',
 				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
 			}
+		chopin: {
+			@ferm::rule { 'dsa-postgres-backup':
+				# ubc, wuit
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5432, ( 5.153.231.12/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-backup6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5432, ( 2001:41c8:1000:21::21:12/128 ))'
+			}
 
 		}
 		default: {}
