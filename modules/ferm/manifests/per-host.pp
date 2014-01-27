@@ -301,7 +301,6 @@ class ferm::per-host {
 		}
 		chopin: {
 			@ferm::rule { 'dsa-postgres-backup':
-				# ubc, wuit
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5432, ( 5.153.231.12/32 ))'
 			}
