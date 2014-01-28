@@ -36,6 +36,11 @@ if [ -z "$ROOTDIR" ]; then
 fi
 
 if [ -t 0 ]; then
+	verbose=1
+else
+	verbose=0
+
+if [ "$verbose" -gt 0 ]; then
 	console="--progress --verbose"
 else
 	console=""
@@ -50,7 +55,7 @@ while read host port username  cluster version; do
 	[ "${host#\#}" = "$host" ] || continue
 
 	label="$date-$host-$cluster-$version-backup"
-	[ -t 0 ] && echo "Doing $host:$port $version/$cluster: $label"
+	[ "$verbose" -gt 0 ] && echo "Doing $host:$port $version/$cluster: $label"
 
 	target="$cluster.BASE.$label.tar.gz"
 	tmp=$(tempfile -d "$ROOTDIR" -p "BASE-$host:$port-" -s ".tar.gz")
