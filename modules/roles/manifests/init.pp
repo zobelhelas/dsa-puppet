@@ -163,4 +163,8 @@ class roles {
 	if has_role('rtc') {
 		include roles::rtc
 	}
+
+	if has_role('postgres_backup_server') {
+		include postgres::backup_server
+	}
 }
