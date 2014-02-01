@@ -16,7 +16,7 @@ class roles::pubsub::client {
 		'python-dsa-mq',
 		'python-kombu'
 	]:
-		ensure => latest,
+		ensure => installed,
 		tag    => extra_repo,
 	}
 
