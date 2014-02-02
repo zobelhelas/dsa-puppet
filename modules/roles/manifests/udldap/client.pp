@@ -11,7 +11,7 @@ class roles::udldap::client ($ensure=present) {
 	cron { 'udreplicate':
 		ensure      => $ensure,
 		environment => 'TERM=dumb',
-		command     => '/usr/sbin/ud-replicate',
+		command     => '/usr/bin/ud-replicate',
 		user        => root,
 		hour        => '*',
 		minute      => [10,25,40,55],
