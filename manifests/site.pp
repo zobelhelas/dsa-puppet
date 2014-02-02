@@ -40,10 +40,10 @@ node default {
 	include lvm
 	include multipath
 	if $::lsbdistcodename == squeeze {
-		include roles::udlap::client
+		include roles::udldap::client
 	} else {
 		include roles::pubsub::client
-		class { 'roles::udlap::client':
+		class { 'roles::udldap::client':
 			ensure => absent
 		}
 	}
