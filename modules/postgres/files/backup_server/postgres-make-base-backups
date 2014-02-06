@@ -39,6 +39,7 @@ if [ -t 0 ]; then
 	verbose=1
 else
 	verbose=0
+fi
 
 if [ "$verbose" -gt 0 ]; then
 	console="--progress --verbose"
