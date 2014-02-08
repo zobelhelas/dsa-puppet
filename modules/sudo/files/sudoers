@@ -51,7 +51,8 @@ root	ALL=(ALL) ALL
 
 # nagios
 nagios		MQ_HOSTS=(rabbitmq)	NOPASSWD: /usr/sbin/rabbitmqctl list_queues -p dsa name messages consumers
-nagios		ALL=(ALL)	NOPASSWD: /etc/init.d/ekeyd-egd-linux restart
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service ekeyd-egd-linux restart
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service samhain restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-filesystems ""
 # with smartarray controllers
