@@ -51,6 +51,9 @@ roles:
     - tchaikovsky.debian.org
   nm:
     - nono.debian.org
+  packages:
+    - picconi.debian.org
+    - pkgmirror-1and1.debian.org
   packagesmaster:
     - picconi.debian.org
   packagesqamaster:

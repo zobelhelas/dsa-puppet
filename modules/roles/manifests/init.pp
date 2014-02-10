@@ -167,4 +167,10 @@ class roles {
 	if has_role('postgres_backup_server') {
 		include postgres::backup_server
 	}
+
+	if has_role('packages') {
+		ssl::service { 'packages.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 }
