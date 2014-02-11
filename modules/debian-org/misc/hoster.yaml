@@ -77,7 +77,6 @@ ftcollins:
   netrange:
     - 192.25.206.0/24
   searchpaths: [debprivate-ftcollins.debian.org]
-  nameservers: [192.25.206.33, 192.25.206.57]
   mirror-debian: http://spohr.debian.org/debian
 grnet:
   netrange:
