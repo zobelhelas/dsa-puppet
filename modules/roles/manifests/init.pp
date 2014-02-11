@@ -34,6 +34,11 @@ class roles {
 			notify => Service['apache2'],
 		}
 	}
+	if has_role('bugs_master') {
+		ssl::service { 'bugs-master.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 
 	if has_role('ftp_master') {
 		include roles::ftp_master

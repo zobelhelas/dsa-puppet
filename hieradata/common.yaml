@@ -6,6 +6,8 @@ allow_dns_query: []
 roles:
   bugsmx:
     - buxtehude.debian.org
+  bugs_master:
+    - buxtehude.debian.org
   bugs_mirror:
     - beach.debian.org
   bugs_base:
