@@ -38,16 +38,6 @@ class ferm::per-host {
 				rule            => '&SERVICE(udp, 69)'
 			}
 		}
-		#paganini: {
-		#	@ferm::rule { 'dsa-dhcp':
-		#		description     => 'Allow dhcp access',
-		#		rule            => '&SERVICE(udp, 67)'
-		#	}
-		#	@ferm::rule { 'dsa-tftp':
-		#		description     => 'Allow tftp access',
-		#		rule            => '&SERVICE(udp, 69)'
-		#	}
-		#}
 		lotti,lully: {
 			@ferm::rule { 'dsa-syslog':
 				description     => 'Allow syslog access',
