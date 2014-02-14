@@ -117,11 +117,6 @@ source s_local {
         # messages from the kernel
         file("/dev/klog" program_override("kernel: ") follow-freq(1));
 <%- end -%>
-<%- if hostname == "paganini" -%>
-        # use the following line if you want to receive remote UDP logging messages
-        # (this is equivalent to the "-r" syslogd flag)
-        udp();
-<%- end -%>
 };
 
 <%- if (hostname == "lotti") || (hostname == "lully") -%>

@@ -1,5 +1,9 @@
 class roles::security_master {
 
+	ssl::service { 'security-master.debian.org':
+		notify => Service['apache2'],
+	}
+
 	vsftpd::site { 'security':
 		banner     => 'security-master.debian.org FTP server (vsftpd)',
 		logfile    => '/var/log/ftp/vsftpd-security-master.debian.org.log',

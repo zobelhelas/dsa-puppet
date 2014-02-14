@@ -3,6 +3,6 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-217.196.43.134
+5.153.231.21
 *.debconf.org
 *.spi-inc.org

@@ -3,12 +3,12 @@ class roles::static_mirror {
 	include roles::static_source
 	include apache2::cache
 
-	package { 'libapache2-mod-macro': ensure => installed, }
 	package { 'libapache2-mod-geoip': ensure => installed, }
 	package { 'geoip-database': ensure => installed, }
 
-	apache2::module { 'macro': require => Package['libapache2-mod-macro']; }
 	apache2::module { 'rewrite': }
+	apache2::module { 'include': }
+	apache2::module { 'ssl': }
 	apache2::module { 'geoip': require => [Package['libapache2-mod-geoip'], Package['geoip-database']]; }
 
 	file { '/usr/local/bin/static-mirror-run':
@@ -31,6 +31,10 @@ class roles::static_mirror {
 		klecker => '130.89.148.14:80 [2001:610:1908:b000::148:14]:80',
 		default => '*:80',
 	}
+	$vhost_listen_443 = $::hostname ? {
+		klecker => '130.89.148.14:443 [2001:610:1908:b000::148:14]:443',
+		default => '*:443',
+	}
 
 	apache2::config { 'local-static-vhost.conf':
 		content => template('roles/static-mirroring/static-vhost.conf.erb'),
@@ -47,8 +51,18 @@ class roles::static_mirror {
 	}
 
 	$wwwdo_document_root = '/srv/static.debian.org/mirrors/www.debian.org/cur'
-	apache2::site { '010-www.debian.org':
+	apache2::site { '005-www.debian.org':
 		site   => 'www.debian.org',
 		content => template('roles/apache-www.debian.org.erb'),
+	}
+
+	ssl::service { 'dsa.debian.org':
+		notify => Service['apache2'],
+	}
+	ssl::service { 'www.debian.org':
+		notify => Service['apache2'],
+	}
+	ssl::service { 'rtc.debian.org':
+		notify => Service['apache2'],
 	}
 }

@@ -1,5 +1,4 @@
 class apache2 {
-
 	package { 'apache2':
 		ensure => installed,
 	}
@@ -11,6 +10,15 @@ class apache2 {
 
 	apache2::module { 'info': }
 	apache2::module { 'status': }
+	apache2::module { 'headers': }
+
+	package { 'libapache2-mod-macro':
+		ensure => installed
+	}
+
+	apache2::module { 'macro':
+		require => Package['libapache2-mod-macro']
+	}
 
 	apache2::site { '00-default':
 		site     => 'default-debian.org',
@@ -23,6 +31,16 @@ class apache2 {
 
 	apache2::config { 'ressource-limits':
 		ensure => absent,
+	}
+
+	if has_role('buildd_master') {
+		$memlimit = 192 * 1024 * 1024
+	} elsif has_role('nagiosmaster') {
+		$memlimit = 96 * 1024 * 1024
+	} elsif has_role('packagesqamaster') {
+		$memlimit = 192 * 1024 * 1024
+	} else {
+		$memlimit = 32 * 1024 * 1024
 	}
 
 	apache2::config { 'resource-limits':
@@ -45,10 +63,12 @@ class apache2 {
 		source => 'puppet:///modules/apache2/server-status',
 	}
 
+	apache2::config { 'puppet-ssl-macros':
+		source => 'puppet:///modules/apache2/puppet-ssl-macros',
+	}
+
 	file { '/etc/apache2/sites-available/common-ssl.inc':
-		source => 'puppet:///modules/apache2/common-ssl.inc',
-		require => Package['apache2'],
-		notify  => Service['apache2'],
+		ensure => absent,
 	}
 
 	file { '/etc/logrotate.d/apache2':
@@ -62,6 +82,11 @@ class apache2 {
 
 	file { '/srv/www/default.debian.org/htdocs/index.html':
 		content => template('apache2/default-index.html'),
+	}
+
+	file { '/var/log/apache2/.nobackup':
+		mode    => '0644',
+		content => '',
 	}
 
 	munin::check { 'apache_accesses': }

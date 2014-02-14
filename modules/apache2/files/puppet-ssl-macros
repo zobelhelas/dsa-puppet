@@ -1,0 +1,29 @@
+<IfModule mod_ssl.c>
+  <IfModule mod_macro.c>
+    <Macro common-ssl-HSTS>
+      <IfModule mod_headers.c>
+        # Add two month HSTS header
+        Header always add Strict-Transport-Security "max-age=5184000"
+      </IfModule>
+    </Macro>
+
+    <Macro common-debian-service-ssl $name>
+      SSLEngine on
+      SSLCertificateFile    /etc/ssl/debian/certs/$name.crt
+      SSLCertificateKeyFile /etc/ssl/private/$name.key
+      SSLCertificateChainFile /etc/ssl/debian/certs/$name.crt-chain
+    </Macro>
+
+    <Macro common-debian-service-https-redirect $bind $name>
+      <VirtualHost $bind:80>
+        ServerName $name
+        ServerAdmin debian-admin@lists.debian.org
+
+        CustomLog /var/log/apache2/$name-access.log privacy
+        ErrorLog /var/log/apache2/$name-error.log
+
+        Redirect permanent / https://$name/
+      </VirtualHost>
+    </Macro>
+  </IfModule>
+</IfModule>

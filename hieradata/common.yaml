@@ -3,3 +3,113 @@ nameservers: []
 searchpaths: []
 resolvoptions: []
 allow_dns_query: []
+roles:
+  bugsmx:
+    - buxtehude.debian.org
+  bugs_master:
+    - buxtehude.debian.org
+  bugs_mirror:
+    - beach.debian.org
+  bugs_base:
+    - buxtehude.debian.org
+    - beach.debian.org
+  buildd_master:
+    - wuiet.debian.org
+  contributors:
+    - nono.debian.org
+  dbmaster:
+    - draghi.debian.org
+  dns_primary:
+    - denis.debian.org
+  dns_secondary:
+    - ravel.debian.org
+    - senfl.debian.org
+    - diamond.debian.org
+    - orff.debian.org
+  dns_geo:
+    - geo1.debian.org
+    - geo2.debian.org
+    - geo3.debian.org
+  extranrpeclient:
+    - denis.debian.org
+    - orff.debian.org
+  ftp.d.o:
+    - klecker.debian.org
+  ftp_master:
+    - franck.debian.org
+  ftp.upload.d.o:
+    - franck.debian.org
+    - ravel.debian.org
+  keyring:
+    - kaufmann.debian.org
+  lists:
+    - bendel.debian.org
+  mailrelay:
+    - mailly.debian.org
+    - muffat.debian.org
+  muninmaster:
+    - menotti.debian.org
+  nagiosmaster:
+    - tchaikovsky.debian.org
+  nm:
+    - nono.debian.org
+  packages:
+    - picconi.debian.org
+    - pkgmirror-1and1.debian.org
+  packagesmaster:
+    - picconi.debian.org
+  packagesqamaster:
+    - quantz.debian.org
+  piuparts:
+    - pejacevic.debian.org
+  pubsub:
+    - rainier.debian.org
+    - rapoport.debian.org
+  puppetmaster:
+    - handel.debian.org
+  release:
+    - franck.debian.org
+  rtmaster:
+    - reger.debian.org
+  security_master:
+    - chopin.debian.org
+  security_tracker:
+    - soler.debian.org
+  rtc:
+    - vogler.debian.org
+  sso:
+    - diabelli.debian.org
+  static_master:
+    - bizet.debian.org
+    - dillon.debian.org
+    - franck.debian.org
+  static_mirror:
+    - busoni.debian.org
+    - klecker.debian.org
+    - senfter.debian.org
+  static_source:
+    - master.debian.org
+    - dillon.debian.org
+    - franck.debian.org
+    - philp.debian.org
+    - ravel.debian.org
+    - senfl.debian.org
+    - wolkenstein.debian.org
+  syncproxy:
+    - milanollo.debian.org
+  udd:
+    - ullmann.debian.org
+  vote:
+    - vento.debian.org
+  weblog_destination:
+    - ravel.debian.org
+  weblog_provider:
+    - busoni.debian.org
+    - klecker.debian.org
+    - senfter.debian.org
+  wiki:
+    - wilder.debian.org
+  www_master:
+    - wolkenstein.debian.org
+  postgres_backup_server:
+    - backuphost.debian.org

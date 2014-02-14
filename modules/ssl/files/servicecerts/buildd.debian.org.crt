@@ -1,0 +1,107 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            76:3b:de:51:88:23:b4:82:69:a2:5b:10:5f:be:c8:b4
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=FR, O=GANDI SAS, CN=Gandi Standard SSL CA
+        Validity
+            Not Before: Dec 31 00:00:00 2013 GMT
+            Not After : Dec 31 23:59:59 2014 GMT
+        Subject: OU=Domain Control Validated, OU=Gandi Standard SSL, CN=buildd.debian.org
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:f4:f4:7e:67:77:ff:18:9c:7c:75:30:15:a0:14:
+                    34:e9:52:76:74:6d:17:86:ef:54:0b:db:7a:5d:56:
+                    95:36:30:9c:65:d2:46:cc:67:a6:09:bf:1b:fa:fe:
+                    ee:53:7b:71:a5:4a:9d:b7:d9:a8:6b:0d:3b:25:d4:
+                    60:e2:d4:ad:11:c5:df:29:70:e4:47:82:42:9e:cf:
+                    48:b8:8f:f6:3a:52:95:f2:5f:ac:ee:bf:ae:7e:7e:
+                    65:25:d6:59:d3:d3:30:02:f3:bb:12:94:cc:9d:8e:
+                    3d:af:cc:b8:8d:66:ba:2b:4b:71:d3:b0:e8:40:55:
+                    69:17:68:24:f5:6c:a3:d0:97:17:e6:4d:52:f8:bd:
+                    8b:2a:9a:5f:87:a1:ef:95:00:ba:da:2f:5c:b6:bd:
+                    99:a8:30:79:f7:01:f0:45:d2:a5:37:85:19:68:a7:
+                    3f:ee:ac:b9:04:6b:b4:ad:5c:57:be:f3:6f:ae:92:
+                    d9:02:ec:cb:7d:e9:42:99:67:d3:cf:ca:0e:d8:18:
+                    eb:0b:8a:b7:ca:94:02:cb:bf:92:d7:73:6c:aa:8f:
+                    be:ea:89:c7:fc:fa:d6:fb:e7:83:e5:db:9b:79:ab:
+                    80:16:c1:05:b9:70:0e:93:00:ab:f3:71:19:7d:e0:
+                    9f:d8:b2:23:55:99:5b:53:d2:fd:e6:67:b0:01:9e:
+                    05:11
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Authority Key Identifier: 
+                keyid:B6:A8:FF:A2:A8:2F:D0:A6:CD:4B:B1:68:F3:E7:50:10:31:A7:79:21
+
+            X509v3 Subject Key Identifier: 
+                E7:06:D6:09:BB:E9:58:F1:F8:63:F8:23:6F:B8:58:AC:D0:19:C6:89
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Certificate Policies: 
+                Policy: 1.3.6.1.4.1.6449.1.2.2.26
+                  CPS: http://www.gandi.net/contracts/fr/ssl/cps/pdf/
+                Policy: 2.23.140.1.2.1
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl.gandi.net/GandiStandardSSLCA.crl
+
+            Authority Information Access: 
+                CA Issuers - URI:http://crt.gandi.net/GandiStandardSSLCA.crt
+                OCSP - URI:http://ocsp.gandi.net
+
+            X509v3 Subject Alternative Name: 
+                DNS:buildd.debian.org, DNS:www.buildd.debian.org
+    Signature Algorithm: sha1WithRSAEncryption
+         07:85:f9:0d:14:d9:45:00:27:d3:55:a1:87:08:56:26:e2:e9:
+         4f:62:63:af:dd:91:45:05:21:f4:89:7f:97:6a:b0:b0:2a:24:
+         5b:58:a4:0c:a2:ec:91:e0:c7:13:d6:c9:d8:4a:9b:98:ef:64:
+         7f:4c:5e:1d:5a:da:ac:1a:41:5d:a3:e2:d9:eb:04:9f:3e:fc:
+         0c:53:b3:49:c6:75:35:78:74:2a:bf:d7:33:14:14:42:fe:ed:
+         79:03:58:93:3b:9f:e2:a6:c6:a7:17:37:2b:28:98:c5:d8:ff:
+         b7:1f:b0:81:34:d5:02:ec:38:01:35:47:0b:05:29:45:97:b5:
+         b2:cc:5f:e0:55:ae:03:26:bc:e4:de:ad:4c:bf:f1:89:8b:33:
+         16:6c:cf:fa:2a:c6:e2:4e:90:66:cc:9f:26:25:c3:50:99:04:
+         a8:15:77:d3:1e:8e:cf:84:f6:9b:c5:86:35:e8:f1:a1:0e:50:
+         26:c7:6d:57:d3:46:3e:b1:f2:9c:89:9e:bb:db:35:29:eb:ea:
+         7f:30:57:cc:f9:8f:8c:bb:eb:21:0a:4d:7a:d1:07:4e:1b:e7:
+         77:1c:58:62:a9:69:39:d8:0b:27:36:22:2a:2f:c4:58:ec:0e:
+         11:69:7d:b0:6a:c3:c2:29:81:35:69:73:1d:13:2d:97:1a:01:
+         bd:95:31:1f
+-----BEGIN CERTIFICATE-----
+MIIE6zCCA9OgAwIBAgIQdjveUYgjtIJpolsQX77ItDANBgkqhkiG9w0BAQUFADBB
+MQswCQYDVQQGEwJGUjESMBAGA1UEChMJR0FOREkgU0FTMR4wHAYDVQQDExVHYW5k
+aSBTdGFuZGFyZCBTU0wgQ0EwHhcNMTMxMjMxMDAwMDAwWhcNMTQxMjMxMjM1OTU5
+WjBcMSEwHwYDVQQLExhEb21haW4gQ29udHJvbCBWYWxpZGF0ZWQxGzAZBgNVBAsT
+EkdhbmRpIFN0YW5kYXJkIFNTTDEaMBgGA1UEAxMRYnVpbGRkLmRlYmlhbi5vcmcw
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQD09H5nd/8YnHx1MBWgFDTp
+UnZ0bReG71QL23pdVpU2MJxl0kbMZ6YJvxv6/u5Te3GlSp232ahrDTsl1GDi1K0R
+xd8pcORHgkKez0i4j/Y6UpXyX6zuv65+fmUl1lnT0zAC87sSlMydjj2vzLiNZror
+S3HTsOhAVWkXaCT1bKPQlxfmTVL4vYsqml+Hoe+VALraL1y2vZmoMHn3AfBF0qU3
+hRlopz/urLkEa7StXFe+82+uktkC7Mt96UKZZ9PPyg7YGOsLirfKlALLv5LXc2yq
+j77qicf8+tb754Pl25t5q4AWwQW5cA6TAKvzcRl94J/YsiNVmVtT0v3mZ7ABngUR
+AgMBAAGjggHCMIIBvjAfBgNVHSMEGDAWgBS2qP+iqC/Qps1LsWjz51AQMad5ITAd
+BgNVHQ4EFgQU5wbWCbvpWPH4Y/gjb7hYrNAZxokwDgYDVR0PAQH/BAQDAgWgMAwG
+A1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMGAGA1Ud
+IARZMFcwSwYLKwYBBAGyMQECAhowPDA6BggrBgEFBQcCARYuaHR0cDovL3d3dy5n
+YW5kaS5uZXQvY29udHJhY3RzL2ZyL3NzbC9jcHMvcGRmLzAIBgZngQwBAgEwPAYD
+VR0fBDUwMzAxoC+gLYYraHR0cDovL2NybC5nYW5kaS5uZXQvR2FuZGlTdGFuZGFy
+ZFNTTENBLmNybDBqBggrBgEFBQcBAQReMFwwNwYIKwYBBQUHMAKGK2h0dHA6Ly9j
+cnQuZ2FuZGkubmV0L0dhbmRpU3RhbmRhcmRTU0xDQS5jcnQwIQYIKwYBBQUHMAGG
+FWh0dHA6Ly9vY3NwLmdhbmRpLm5ldDAzBgNVHREELDAqghFidWlsZGQuZGViaWFu
+Lm9yZ4IVd3d3LmJ1aWxkZC5kZWJpYW4ub3JnMA0GCSqGSIb3DQEBBQUAA4IBAQAH
+hfkNFNlFACfTVaGHCFYm4ulPYmOv3ZFFBSH0iX+XarCwKiRbWKQMouyR4McT1snY
+SpuY72R/TF4dWtqsGkFdo+LZ6wSfPvwMU7NJxnU1eHQqv9czFBRC/u15A1iTO5/i
+psanFzcrKJjF2P+3H7CBNNUC7DgBNUcLBSlFl7WyzF/gVa4DJrzk3q1Mv/GJizMW
+bM/6KsbiTpBmzJ8mJcNQmQSoFXfTHo7PhPabxYY16PGhDlAmx21X00Y+sfKciZ67
+2zUp6+p/MFfM+Y+Mu+shCk160QdOG+d3HFhiqWk52AsnNiIqL8RY7A4RaX2wasPC
+KYE1aXMdEy2XGgG9lTEf
+-----END CERTIFICATE-----

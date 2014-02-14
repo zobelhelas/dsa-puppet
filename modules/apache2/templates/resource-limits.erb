@@ -4,19 +4,5 @@
 ##
 
 RLimitCPU 180
-<%=
-if scope.lookupvar('site::nodeinfo')['buildd_master'] then
-			# buildd.debian.org
-			"RLimitMEM "+(96 * 1024**2).to_s
-else
-	case fqdn
-		when "berlioz.debian.org" then
-			""
-		when "tchaikovsky.debian.org" then
-			"RLimitMEM "+(96 * 1024**2).to_s
-		else
-			"RLimitMEM "+(32 * 1024**2).to_s
-	end
-end
-%>
+RLimitMEM <%= @memlimit %>
 RLimitNPROC 128

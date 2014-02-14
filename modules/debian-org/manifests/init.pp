@@ -1,3 +1,7 @@
+# == Class: debian-org
+#
+# Stuff common to all debian.org servers
+#
 class debian-org {
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
 		$mirror = getfromhash($site::nodeinfo, 'hoster', 'mirror-debian')
@@ -15,7 +19,8 @@ class debian-org {
 		'debian-admin@ftbfs.de',
 		'weasel@debian.org',
 		'steve@lobefin.net',
-		'paravoid@debian.org'
+		'paravoid@debian.org',
+		'zumbi@kos.to'
 	]
 
 	package { [
@@ -107,14 +112,22 @@ class debian-org {
 	}
 	site::aptrepo { 'backports.org':
 		ensure => absent,
-		keyid => '16BA136C',
-		key => 'puppet:///modules/debian-org/backports.org.asc',
+		keyid  => '16BA136C',
+		key    => 'puppet:///modules/debian-org/backports.org.asc',
 	}
 
 	site::aptrepo { 'volatile':
 		url        => $mirror,
 		suite      => "${::lsbdistcodename}-updates",
 		components => ['main','contrib','non-free']
+	}
+
+	if $::hostname in [ball, corelli, eysler, lucatelli, mayer, mayr, rem] {
+		site::aptrepo { 'proposed-updates':
+			url        => $mirror,
+			suite      => "${::lsbdistcodename}-proposed-updates",
+			components => ['main','contrib','non-free']
+		}
 	}
 
 	site::aptrepo { 'debian.org':
@@ -126,6 +139,16 @@ class debian-org {
 		suite      => 'lenny',
 		components => 'main',
 		key        => 'puppet:///modules/debian-org/db.debian.org.asc',
+	}
+
+	augeas { 'inittab_replicate':
+		context => '/files/etc/inittab',
+		changes => [
+			'set ud/runlevels 2345',
+			'set ud/action respawn',
+			'set ud/process "/usr/bin/ud-replicated -d"',
+		],
+		notify  => Exec['init q'],
 	}
 
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
@@ -180,12 +203,12 @@ class debian-org {
 		source => 'puppet:///modules/debian-org/puppet.default',
 	}
 	file { '/etc/cron.d/dsa-puppet-stuff':
-		source => 'puppet:///modules/debian-org/dsa-puppet-stuff.cron',
+		source  => 'puppet:///modules/debian-org/dsa-puppet-stuff.cron',
 		require => Package['debian.org'],
 	}
 	file { '/etc/ldap/ldap.conf':
 		require => Package['debian.org'],
-		source => 'puppet:///modules/debian-org/ldap.conf',
+		source  => 'puppet:///modules/debian-org/ldap.conf',
 	}
 	file { '/etc/pam.d/common-session':
 		require => Package['debian.org'],
@@ -229,14 +252,22 @@ class debian-org {
 		linkto => '/usr/bin/vim.basic',
 	}
 	mailalias { 'samhain-reports':
-		ensure => present,
+		ensure    => present,
 		recipient => $debianadmin,
-		require => Package['debian.org']
+		require   => Package['debian.org']
+	}
+
+	file { '/usr/local/bin/check_for_updates':
+		source => 'puppet:///modules/debian-org/check_for_updates',
+		mode   => '0755',
+		owner  => root,
+		group  => root,
 	}
 
 	exec { 'apt-get update':
-		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		refreshonly => true,
+		path    => '/usr/bin:/usr/sbin:/bin:/sbin',
+		onlyif  => '/usr/local/bin/check_for_updates',
+		require => File['/usr/local/bin/check_for_updates']
 	}
 	Exec['apt-get update']->Package<| tag == extra_repo |>
 
@@ -254,5 +285,13 @@ class debian-org {
 	}
 	exec { 'init q':
 		refreshonly => true
+	}
+
+	tidy { '/var/lib/puppet/clientbucket/':
+		age      => '2w',
+		recurse  => 9,
+		type     => ctime,
+		matches  => [ 'paths', 'contents' ],
+		schedule => weekly
 	}
 }

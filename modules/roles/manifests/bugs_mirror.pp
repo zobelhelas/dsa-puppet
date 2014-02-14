@@ -12,4 +12,9 @@ class roles::bugs_mirror {
 		}
 	}
 
+	file { '/srv/bugs.debian.org/cache/libravatar':
+		ensure => directory,
+		owner  => 'www-data',
+		mode   => '0755',
+	}
 }

@@ -104,6 +104,11 @@ file=/etc/bind/named.conf.options
 file=/etc/apache2/conf.d/puppet-builddlist
 <% if classes.include?("roles::static_mirror") -%>
 file=/etc/apache2/sites-available/static-vhosts-simple
+file=/etc/static-clients.conf
+<% elsif classes.include?("roles::static_master") -%>
+file=/etc/static-clients.conf
+<% elsif classes.include?("roles::static_source") -%>
+file=/etc/static-clients.conf
 <% end -%>
 
 #
@@ -138,7 +143,7 @@ file=/etc/nagios
 file=/etc/nagios/nrpe.d
 file=/etc/nagios/obsolete-packages-ignore.d
 file=/etc/bind/geodns
-<% if scope.lookupvar('site::nodeinfo')['nagiosmaster'] -%>
+<% if scope.function_has_role(['nagiosmaster']) -%>
 file=/etc/nagios3/puppetconf.d
 <% end -%>
 file=/etc/puppet
@@ -160,7 +165,7 @@ file=/etc/rc.local
 file=/etc/unbound
 file=/etc/dsa
 file=/etc/rabbitmq
-<% if scope.lookupvar('site::nodeinfo')['static_mirror'] or scope.lookupvar('site::nodeinfo')['static_source'] or scope.lookupvar('site::nodeinfo')['static_master'] -%>
+<% if scope.function_has_role(['static_mirror']) or scope.function_has_role(['static_source']) or scope.function_has_role(['static_master']) -%>
 file=/etc/ssh/userkeys
 file=/etc/ssh/userkeys/staticsync
 <% end -%>
@@ -245,6 +250,7 @@ file=/etc/blkid.tab.old
 file=/etc/resolv.conf.dhclient-new
 
 # We handle these files with puppet - please to not be bothering us
+file=/etc/dsa/pubsub.conf
 file=/etc/nsswitch.conf
 file=/etc/timezone
 file=/etc/motd.tail
@@ -285,6 +291,10 @@ file=/etc/aliases
 file=/etc/multipath.conf
 file=/etc/static-components.conf
 file=/etc/rabbitmq/rabbitmq.config
+file=/etc/rabbitmq/enabled_plugins
+dir=/etc/bacula/storages-list.d
+dir=/etc/bacula/storage-conf.d
+dir=/etc/bacula/conf.d
 <%=
 out=""
 if scope.lookupvar('site::nodeinfo')['heavy_exim']
@@ -404,7 +414,7 @@ file=/etc/cron.weekly/stunnel-ekey-restart
 file=/etc/default/schroot
 file=/etc/schroot/default/nssdatabases
 
-<% if scope.lookupvar('site::nodeinfo')['nagiosmaster'] -%>
+<% if scope.function_has_role(['nagiosmaster']) -%>
 file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
 file=/etc/nagios3/puppetconf.d/auto-hosts.cfg
 file=/etc/nagios3/puppetconf.d/auto-services.cfg
@@ -414,10 +424,10 @@ file=/etc/nagios3/puppetconf.d/auto-serviceextinfo.cfg
 file=/etc/nagios3/puppetconf.d/auto-servicegroups.cfg
 file=/etc/nagios3/puppetconf.d/contacts.cfg
 <% end -%>
-<% if scope.lookupvar('site::nodeinfo')['muninmaster'] -%>
+<% if scope.function_has_role(['muninmaster']) -%>
 file=/etc/munin/munin.conf
 <% end -%>
-<% if scope.lookupvar('site::nodeinfo')['puppetmaster'] -%>
+<% if scope.function_has_role(['puppetmaster']) -%>
 dir=8/etc/puppet
 <% end -%>  
 <% if classes.include?('named::geodns') -%>
@@ -444,13 +454,17 @@ file=/etc/openvpn/deb-mgmt-clients.pool
 <% end -%>
 
 
-<% if scope.lookupvar('site::nodeinfo')['puppetmaster'] %>
+<% if scope.function_has_role(['puppetmaster']) %>
 
 # Damn you rails apps and your shoddy packaging
 file=/usr/share/puppet-dashboard/public/stylesheets
 file=/usr/share/puppet-dashboard/public/javascripts
 file=/usr/share/puppet-dashboard/public/stylesheets/all.css
 file=/usr/share/puppet-dashboard/public/javascripts/all.js
+<% end -%>
+
+<% if classes.include?("porterbox") %>
+file=/etc/cron.weekly/puppet-mail-big-homedirs
 <% end -%>
 
 [IgnoreNone]

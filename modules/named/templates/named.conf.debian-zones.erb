@@ -12,12 +12,15 @@ zones << "debian.org"
 zones << "debian.net"
 zones << "mirror.debian.net"
 zones << "debian.com"
+zones << "debian.ch"
+zones << "debian.es"
 zones << "debian.eu"
+zones << "debian.li"
+zones << "debian.gr"
 zones << "debian.us"
 
-zones << "debian.ch"
-zones << "debian.li"
 zones << "debconf13.ch"
+zones << "debian-ports.org"
 
 # debian rack with sil.at
 zones << "144-28.118.59.86.in-addr.arpa"
@@ -26,9 +29,6 @@ zones << "2.0.0.0.2.0.0.0.8.5.8.0.1.0.0.2.ip6.arpa"
 # debian rack with grnet
 zones << "192-27.211.177.194.in-addr.arpa"
 zones << "b.e.d.0.c.f.f.2.8.4.6.0.1.0.0.2.ip6.arpa"
-
-# ipv6 at 1&1 - wieck and schumann  - old range April 2011
-zones << "2.6.a.0.4.6.5.6.1.0.0.0.2.0.0.0.8.d.8.0.1.0.0.2.ip6.arpa"
 
 # ipv6 at 1&1 - wieck and schumann  - new range April 2011
 zones << "2.6.a.0.4.6.5.6.0.0.4.0.0.8.5.0.8.d.8.0.1.0.0.2.ip6.arpa"
@@ -68,10 +68,8 @@ zone "<%= zone %>" {
 	notify no;
 	file "db.<%= zone %>";
 	masters {
-		194.177.211.209; // orff
-		2001:648:2ffc:deb:213:72ff:fe69:e188; // orff
-		82.195.75.106; // draghi (backup master - requires manual reconfiguration on draghi)
-		2001:41b8:202:deb:216:36ff:fe40:3906; // draghi (see above)
+		82.195.75.91; // denis
+		2001:41b8:202:deb:1b1b::91; // denis
 	};
 	allow-query { any; };
 	allow-transfer { };
@@ -86,7 +84,7 @@ zone "alioth.debian.org" {
 	notify no;
 	file "db.alioth.debian.org";
 	masters {
-		217.196.43.132;
+		5.153.231.21;
 	};
 	allow-query { any; };
 	allow-transfer { };

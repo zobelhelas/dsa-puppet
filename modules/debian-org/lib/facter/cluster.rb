@@ -7,10 +7,15 @@ if FileTest.exist?('/usr/sbin/gnt-cluster') and FileTest.exist?('/var/lib/ganeti
 				setcode do
 					yaml['cluster']['cluster_name']
 				end
-				end
 				Facter.add('cluster_nodes') do
-				setcode do
-					yaml['nodes'].keys.join(' ')
+					nodename = []
+					yaml["nodes"].each do |uuid,value|
+						nodename << value["name"]
+					end
+					ret = nodename.join(" ")
+					setcode do
+						ret
+					end
 				end
 			end
 		end

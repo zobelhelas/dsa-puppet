@@ -13,15 +13,13 @@ def getweblogsynckey(host)
     return key
 end
 
-localinfo = scope.lookupvar('site::localinfo')
 allnodeinfo = scope.lookupvar('site::allnodeinfo')
+roles = scope.lookupvar('site::roles')
 
 mirrors = []
-localinfo.keys.sort.each do |node|
-    if localinfo[node]['weblog_provider']
+roles['weblog_provider'].each do |node|
         key = getweblogsynckey(node)
         mirrors << { 'node' => node, 'addr' => allnodeinfo[node]['ipHostNumber'], 'key' => key}
-    end
 end
 
 lines = []

@@ -4,15 +4,8 @@
 
 <%=
 
-mirrors = []
-scope.lookupvar('site::localinfo').keys.sort.each do |node|
-    if scope.lookupvar('site::localinfo')[node]['static_mirror']
-        mirrors << node
-    end
-end
+scope.lookupvar('site::roles')['static_mirror'].join("\n")
 
-
-mirrors.join("\n")
 # vim:set et:
 # vim:set sts=4 ts=4:
 # vim:set shiftwidth=4:

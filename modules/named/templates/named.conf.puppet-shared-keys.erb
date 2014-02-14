@@ -1,0 +1,35 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<%=
+
+pairs = [
+	[ 'denis.debian.org', 'ravel.debian.org' ],
+	[ 'denis.debian.org', 'senfl.debian.org' ],
+	[ 'denis.debian.org', 'diamond.debian.org' ],
+	[ 'denis.debian.org', 'orff.debian.org' ]
+	]
+
+lines = []
+
+pairs.each do |pair|
+	next unless pair.include?(fqdn)
+	pair.sort!
+	keyname = "tsig-#{pair.join('-')}"
+	pair.delete(fqdn)
+	other = pair[0]
+
+	key = scope.function_hkdf(['/etc/puppet/secret', "puppet-key-#{keyname}"])
+
+	lines << "key #{keyname} { algorithm hmac-sha256; secret \"#{key}\"; };"
+
+	remote_ip = scope.lookupvar('site::allnodeinfo')[other]['ipHostNumber']
+	remote_ip.each do |r|
+		lines << "server #{r} { keys { #{keyname}; }; };"
+	end
+	lines << ""
+end
+lines.join("\n")
+%>

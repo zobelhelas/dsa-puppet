@@ -4,7 +4,13 @@ Use common-static-vhost mozilla.debian.net
 Use common-static-vhost backports.debian.org
 Use common-static-vhost-publiclog bits.debian.org
 Use common-static-vhost news.debian.net
-Use common-static-vhost-with-extra ftp-master.metadata.debian.org "AddDefaultCharset utf-8"
+Use common-static-vhost-with-extra metadata.ftp-master.debian.org "AddDefaultCharset utf-8"
+Use common-static-vhost-with-extra d-i.debian.org "ServerAlias d-i-backend.debian.org"
+Use common-static-vhost-with-extra network-test.debian.org "ServerAlias network-test-backend.debian.org"
+Use common-static-vhost-with-extra blends.debian.org "ServerAlias blends-backend.debian.org"
+Use common-static-vhost-with-extra wnpp-by-tags.debian.net "ServerAlias wnpp-by-tags-backend.debian.org"
+Use common-static-vhost-ssl dsa.debian.org
+Use common-static-vhost-ssl rtc.debian.org
 
 # www.backports.org is the historical place for the backports
 # website and archive.  It is now a CNAME to backports.debian.org:
@@ -36,4 +42,64 @@ Use common-static-vhost-with-extra ftp-master.metadata.debian.org "AddDefaultCha
 	RedirectPermanent /press/ http://wiki.debian.org/DebianWomen/Press
 	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
 </VirtualHost>
+
+# debian ports stuff
+####################
+<Virtualhost <%= vhost_listen %> >
+	ServerName www.ports.debian.org
+	ServerAlias www.ports-backend.debian.org
+	ServerAdmin debian-admin@lists.debian.org
+
+	ErrorLog /var/log/apache2/www.ports.debian.org-error.log
+	CustomLog /var/log/apache2/www.ports.debian.org-access.log privacy
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+	ServerSignature On
+
+	DocumentRoot /srv/static.debian.org/mirrors/www.ports.debian.org/cur
+	<Directory /srv/static.debian.org/mirrors/www.ports.debian.org/cur>
+		AllowOverride FileInfo Indexes Options=Multiviews
+		Options Multiviews Indexes FollowSymLinks Includes
+		IndexOptions FancyIndexing NameWidth=*
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	DefaultType text/plain
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+	AddOutputFilter INCLUDES .xhtml
+</VirtualHost>
+
+<VirtualHost <%= vhost_listen %> >
+	ServerName www.debian-ports.org
+	ServerAlias debian-ports.org
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent /archive/           http://archive.ports.debian.org/archive/
+	RedirectPermanent /debian-cd/         http://archive.ports.debian.org/debian-cd/
+	RedirectPermanent /debian-snapshot/   http://archive.ports.debian.org/debian-snapshot/
+	RedirectPermanent /debian/            http://archive.ports.debian.org/debian/
+	RedirectPermanent / http://www.ports.debian.org/
+</VirtualHost>
+
+<VirtualHost <%= vhost_listen %> >
+	ServerName ports.debian.net
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent / http://www.ports.debian.org/
+</VirtualHost>
+
+<VirtualHost <%= vhost_listen %> >
+	ServerName volatile.debian.org
+	ServerAlias volatile-master.debian.org
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent / http://www.debian.org/volatile/
+</VirtualHost>
+
+<VirtualHost <%= vhost_listen %> >
+	ServerName ftp-master.metadata.debian.org
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent / http://metadata.ftp-master.debian.org/
+</VirtualHost>
+
 # vim:ft=apache:

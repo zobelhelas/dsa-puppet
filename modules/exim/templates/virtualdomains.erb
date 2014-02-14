@@ -7,23 +7,23 @@ vdoms = case @fqdn
 
         when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
 
-        when "dukas.debian.org" then "ddtp.debian.org: user=ddtp group=ddtp directory=/srv/ddtp.debian.org/mail/"
-
         when "franck.debian.org" then "release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
 ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp-master.debian.org/mail group_writable=true"
 
         when "gombert.debian.org" then "gobby.debian.org: user=gobby group=gobby directory=/srv/gobby.debian.org/mail"
 
-        when "grieg.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail"
+        when "wuiet.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail"
 #logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail"
 
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
 
         when "kaufmann.debian.org" then "keyring.debian.org: user=keyring group=Debian directory=/srv/keyring.debian.org/mail"
 
-        when "master.debian.org" then "debian.org: user=debian group=Debian directory=/srv/debian.org/mail
-debian.com: user=nobody group=Debian directory=/srv/star.debian.star/
+        when "master.debian.org" then "debian.com: user=nobody group=Debian directory=/srv/star.debian.star/
 debian.net: user=nobody group=Debian directory=/srv/star.debian.star/
+debian.gr: user=nobody group=Debian directory=/srv/star.debian.star/
+debian.us: user=nobody group=Debian directory=/srv/star.debian.star/
+debian.es: user=nobody group=Debian directory=/srv/star.debian.star/
 debian.eu: user=nobody group=Debian directory=/srv/star.debian.star/"
 
         when "nono.debian.org" then "nm.debian.org: user=nm group=nm directory=/srv/nm.debian.org/mail/"
@@ -52,4 +52,5 @@ vdoms
 %>
 <% if classes.include?("roles::mailrelay") -%>
 debian.org: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.org/mail
+admin.debian.org: user=mail_admin group=mail_admin directory=/etc/exim4/email-virtualdomains/admin.debian.org/mail
 <% end -%>

@@ -5,10 +5,12 @@
 
 <%=
 nagii = []
-scope.lookupvar('site::localinfo').keys.sort.each do |node|
-  if scope.lookupvar('site::localinfo')[node]['nagiosmaster'] or scope.lookupvar('site::localinfo')[node]['extranrpeclient']
-    nagii << scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber']
-  end
+roles = scope.lookupvar('site::roles')
+roles['nagiosmaster'].each do |nag|
+	nagii << scope.lookupvar('site::allnodeinfo')[nag]['ipHostNumber']
+end
+roles['extranrpeclient'].each do |nag|
+	nagii << scope.lookupvar('site::allnodeinfo')[nag]['ipHostNumber']
 end
 
 case fqdn when
@@ -16,7 +18,7 @@ case fqdn when
     nagii << '192.34.35.49'
 end
 
-out = "allowed_hosts=" + nagii.join(',')
+out = "allowed_hosts=" + nagii.flatten.sort.uniq.join(',')
 out
 %>
 
@@ -26,4 +28,6 @@ out
 # exit code as that does not reliably tell us if the check could
 # not connect to the nrpe server or if the remote check returned not-null.
 command[dsa2_shutdown]=if /usr/lib/nagios/plugins/check_procs -w 1: -u root -C shutdown > /dev/null; then echo 'system-in-shutdown'; else echo 'no shutdown running' ; fi
-command[restart-ekey]=sudo /etc/init.d/ekeyd-egd-linux restart
+command[restart-ekey]=sudo /usr/sbin/service ekeyd-egd-linux restart
+command[restart-samhain]=sudo /usr/sbin/service samhain restart
+command[restart-ekey]=sudo /usr/sbin/service ekeyd-egd-linux restart

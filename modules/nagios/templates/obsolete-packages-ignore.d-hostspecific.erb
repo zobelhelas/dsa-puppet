@@ -7,24 +7,27 @@
 ignore = []
 case fqdn
 when "cilea.debian.org" then                                   ignore << "/freeswitch.*/"
-when /draghi.debian.org/ then                                  ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb}
+when /draghi.debian.org/ then                                  ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb ud python-cdb python-nameparser}
 when /orff.debian.org/ then                                    ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
 when /(zandonai|zelenka).debian.org/ then                      ignore << %w{samhain zabbix-agent rrdcollect}
 when /zappa.debian.org/ then                                   ignore << %w{samhain}
 when /(mayer|corelli).debian.org/ then                         ignore << "linux-base"
-when /(alkman|caballero|merulo|mundy).debian.org/ then         ignore << "samhain"
+when /(alkman|caballero|merulo|mundy|zani).debian.org/ then    ignore << "samhain"
 when "franck.debian.org" then                                  ignore << %w{python-apt}
 when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/ then  ignore << %w{flash-kernel linux-firmware-image}
 when /harris.debian.org/ then                                  ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(hasse|hebden|henze|hildegard|howells|hummel|hoiby).debian.org/ then ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(parry|partch).debian.org/ then                          ignore << "yaboot"
-when "grieg.debian.org" then                                   ignore << %w{dpkg}
 when "blavet.debian.org" then                                  ignore << %w{dpkg-dev libdpkg-perl dpkg}
 when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
 when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}
 when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabbitmq-server}
 when /(pasquini|tristano).debian.org/ then                     ignore << %w{ganeti-instance-image}
 when "zemlinsky.debian.org" then                               ignore << %w{initramfs-tools}
+when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-api64 gskssl64 gskcrypt64}
+when "denis.debian.org" then                                   ignore << %w{libdns100 libbind9-90 libisccc90 bind9 liblwres90 libisc95 bind9utils libisccfg90}
+when "vogler.debian.org" then                                  ignore << %w{repro libresiprocate-1.9 resiprocate-turn-server}
+when /(mailly|muffat).debian.org/ then                         ignore << %w{python-dsa-mq}
 end
 
 case fqdn

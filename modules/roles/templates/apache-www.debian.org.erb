@@ -87,9 +87,33 @@
 </Directory>
 
 <VirtualHost <%= vhost_listen %> >
-   ServerName www.nl.debian.org
+   ServerName debian.org
    ServerAdmin webmaster@debian.org
-   ServerAlias www.debian.com www.debian.de www.*.debian.org newwww.deb.at www.debian.net debian.net debian.org www.debian.at www.debian.eu debian.eu debian.com debian.us www.debian.us
+
+   ServerAlias www.*.debian.org
+
+   ServerAlias www.debian.net
+   ServerAlias debian.net
+
+   ServerAlias www.debian.eu
+   ServerAlias debian.eu
+
+   ServerAlias www.debian.com
+   ServerAlias debian.com
+
+   ServerAlias debian.us
+   ServerAlias www.debian.us
+
+   ServerAlias debian.gr
+   ServerAlias www.debian.gr
+
+   ServerAlias www.debian.es
+   ServerAlias debian.es
+
+   ServerAlias www.debian.at
+   ServerAlias www.debian.de
+   ServerAlias newwww.deb.at
+
    DocumentRoot <%= wwwdo_document_root %>/
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
@@ -100,7 +124,9 @@
    RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+
+
+<Macro common-www.d.o>
    ServerName www.debian.org
    ServerAdmin webmaster@debian.org
    ServerAlias www-*.debian.org
@@ -219,15 +245,29 @@
 # Canonical place for manuals under /doc/manuals/
    RewriteCond %{DOCUMENT_ROOT}/doc/manuals/$1 -d
    RewriteRule ^/doc/([^/]+)/?(.*)? /doc/manuals/$1/$2 [L,R=301]
-
-</VirtualHost>
+</Macro>
 
 
 <VirtualHost <%= vhost_listen %> >
-   ServerName volatile.debian.org
-   ServerAlias volatile-master.debian.org
+   Use common-www.d.o
+</VirtualHost>
+<VirtualHost <%= vhost_listen_443 %> >
+   Use common-www.d.o
+
+   Use common-debian-service-ssl www.debian.org
+   Use common-ssl-HSTS
+</VirtualHost>
+
+
+<VirtualHost <%= vhost_listen_443 %> >
+   ServerName debian.org
    ServerAdmin webmaster@debian.org
-   ErrorLog /var/log/apache2/volatile.debian.org-error.log
-   CustomLog /var/log/apache2/volatile.debian.org-access.log privacy
-   RedirectMatch permanent . http://www.debian.org/volatile/
+
+   CustomLog /var/log/apache2/www-other-access.log privacy
+   ErrorLog /var/log/apache2/www-other-error.log
+
+   Redirect permanent / https://www.debian.org/
+
+   Use common-debian-service-ssl www.debian.org
+   Use common-ssl-HSTS
 </VirtualHost>

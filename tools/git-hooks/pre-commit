@@ -70,7 +70,7 @@ check_puppet_manifest () {
         case "${file}" in
                 manifests/site.pp|modules/*/manifests/*)
                         if [[ -n "$(which puppet-lint)" ]]; then
-                                puppet-lint --no-hard_tabs-check --no-80chars-check ${pp} >&2 | uniq
+                                puppet-lint --no-hard_tabs-check --no-2sp_soft_tabs-check --no-80chars-check ${pp} >&2 | uniq
 			else
 				echo "Please install puppet-lint (gem install puppet-lint)" >&2
                         fi

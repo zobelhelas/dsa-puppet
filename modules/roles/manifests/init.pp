@@ -1,114 +1,180 @@
 class roles {
 
-	if getfromhash($site::nodeinfo, 'puppetmaster') {
+	if has_role('puppetmaster') {
 		include puppetmaster
 	}
 
-	if getfromhash($site::nodeinfo, 'muninmaster') {
+	if has_role('muninmaster') {
 		include munin::master
 	}
 
-	#if getfromhash($site::nodeinfo, 'nagiosmaster') {
+	if has_role('nagiosmaster') {
 	#	include nagios::server
-	#}
+		ssl::service { 'nagios.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 
+	# XXX: turn this into a real role
 	if getfromhash($site::nodeinfo, 'buildd') {
 		include buildd
 	}
 
+	# XXX: turn this into a real role
 	if getfromhash($site::nodeinfo, 'porterbox') {
 		include porterbox
 	}
 
-	if getfromhash($site::nodeinfo, 'bugs_mirror') {
+	if has_role('bugs_mirror') {
 		include roles::bugs_mirror
 	}
 
-	if getfromhash($site::nodeinfo, 'ftp_master') {
+	if has_role('bugs_base') {
+		ssl::service { 'bugs.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+	if has_role('bugs_master') {
+		ssl::service { 'bugs-master.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
+	if has_role('ftp_master') {
 		include roles::ftp_master
 		include roles::dakmaster
 	}
 
+	# XXX: turn this into a real role
 	if getfromhash($site::nodeinfo, 'apache2_security_mirror') {
 		include roles::security_mirror
 	}
 
+	# XXX: turn this into a real role
 	if getfromhash($site::nodeinfo, 'apache2_www_mirror') {
 		include roles::www_mirror
 	}
 
-	if getfromhash($site::nodeinfo, 'ftp.d.o') {
+	if has_role('ftp.d.o') {
 		include roles::ftp
 	}
 
-	if getfromhash($site::nodeinfo, 'ftp.upload.d.o') {
+	if has_role('ftp.upload.d.o') {
 		include roles::ftp_upload
 	}
 
-	if getfromhash($site::nodeinfo, 'security_master') {
+	if has_role('security_master') {
 		include roles::security_master
 		include roles::dakmaster
 	}
 
-	if getfromhash($site::nodeinfo, 'www_master') {
+	if has_role('www_master') {
 		include roles::www_master
 	}
 
-	if getfromhash($site::nodeinfo, 'keyring') {
+	if has_role('keyring') {
 		include roles::keyring
 	}
 
-	if getfromhash($site::nodeinfo, 'wiki') {
+	if has_role('wiki') {
 		include roles::wiki
 	}
 
-	if getfromhash($site::nodeinfo, 'syncproxy') {
+	if has_role('syncproxy') {
 		include roles::syncproxy
 	}
 
-	if getfromhash($site::nodeinfo, 'static_master') {
+	if has_role('static_master') {
 		include roles::static_master
 	}
 
-	if getfromhash($site::nodeinfo, 'static_mirror') {
+	if has_role('static_mirror') {
 		include roles::static_mirror
-	} elsif getfromhash($site::nodeinfo, 'static_source') {
+	} elsif has_role('static_source') {
 		include roles::static_source
 	}
 
-	if getfromhash($site::nodeinfo, 'weblog_provider') {
+	if has_role('weblog_provider') {
 		include roles::weblog_provider
 	}
 
-	if getfromhash($site::nodeinfo, 'mailrelay') {
+	if has_role('mailrelay') {
 		include roles::mailrelay
 	}
 
-	if getfromhash($site::nodeinfo, 'pubsub') {
+	if has_role('pubsub') {
 		include roles::pubsub
 	}
 
-	if $::hostname in [ravel] {
+	if has_role('dbmaster') {
+		include roles::dbmaster
+	}
+
+	if has_role('dns_primary') {
+		include named::primary
+	}
+	if has_role('dns_secondary') {
+		include named::authoritative
+	}
+
+	if has_role('weblog_destination') {
 		include roles::weblog_destination
 	}
 
-	if $::hostname in [soler] {
-		ssl::service { 'security-tracker.debian.org':
-			notify => Service['apache2'],
-		}
+	if has_role('vote') {
+		include roles::vote
 	}
 
-	if $::hostname in [pejacevic] {
-		ssl::service { 'piuparts.debian.org':
-			notify => Service['apache2'],
-		}
+	if has_role('security_tracker') {
+		include roles::security_tracker
 	}
 
-	if $::hostname in [nono] {
-		ssl::service { 'nm.debian.org':
-			notify => Service['apache2'],
-		}
-		ssl::service { 'contributors.debian.org':
+	if has_role('lists') {
+		include roles::lists
+	}
+
+	if has_role('rtmaster') {
+		include roles::rtmaster
+	}
+
+	if has_role('udd') {
+		include roles::udd
+	}
+
+	if has_role('sso') {
+		include roles::sso
+	}
+
+	if has_role('buildd_master') {
+		include roles::buildd_master
+	}
+
+	if has_role('piuparts') {
+		include roles::piuparts
+	}
+
+	if has_role('contributors') {
+		include roles::contributors
+	}
+
+	if has_role('nm') {
+		include roles::nm
+	}
+
+	if has_role('release') {
+		include roles::release
+	}
+
+	if has_role('rtc') {
+		include roles::rtc
+	}
+
+	if has_role('postgres_backup_server') {
+		include postgres::backup_server
+	}
+
+	if has_role('packages') {
+		ssl::service { 'packages.debian.org':
 			notify => Service['apache2'],
 		}
 	}

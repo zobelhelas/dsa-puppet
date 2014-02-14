@@ -16,6 +16,7 @@ root: debian-admin@debian.org
 
 nagios: debianadmin@palfrader.org, debian-admin@ftbfs.de
 bacula-reports:  debian-archive-debian-admin-bacula@master.debian.org,debianadmin@palfrader.org,lfilipoz@emyr.net,zobel@debian.org
+backup-reports:  debian-archive-debian-admin-bacula@master.debian.org,debianadmin@palfrader.org,lfilipoz@emyr.net,zobel@debian.org
 
 # CVS logs for http://db.debian.org/*.html
 db-web-cvs: debian-admin@debian.org
@@ -25,3 +26,5 @@ db-web-cvs: debian-admin@debian.org
 # Well, now, really git (mostly)
 udcvs-commits: debian-archive-debian-admin-udcvs-commits@master.debian.org, debianadmin@palfrader.org, dsa-bzr@commit.noreply.org, debian-admin@ftbfs.de, steve@lobefin.net, paravoid@debian.org, tfheen@debian.org
 dsa-commits: debian-archive-debian-admin-dsa-commits@master.debian.org, debianadmin@palfrader.org, debian-admin@ftbfs.de, steve@lobefin.net, paravoid@debian.org, tfheen@debian.org
+
+bulk: debianadmin@palfrader.org

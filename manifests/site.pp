@@ -39,11 +39,18 @@ node default {
 	include autofs
 	include lvm
 	include multipath
+	if $::lsbdistcodename == squeeze {
+		include roles::udldap::client
+	} else {
+		include roles::pubsub::client
+		class { 'roles::udldap::client':
+			ensure => absent
+		}
+	}
 
 	if $::hostname in [pasquini,tristano,bertali,boito,rossini,salieri,dijkstra,luchesi,byrd,clementi,czerny,bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12,bm-bl13,bm-bl14] {
 		include ganeti2
 	}
-
 
 	if $::hostname == 'dinis' {
 		include bacula::director
@@ -86,13 +93,8 @@ node default {
 		include apache2
 	}
 
-	if $::hostname in [ravel,senfl,orff,draghi,diamond,rietz] {
-		include named::authoritative
-	} elsif $::hostname in [geo1,geo2,geo3] {
+	if $::hostname in [geo1,geo2,geo3] {
 		include named::geodns
-	}
-	if $::hostname in [orff] {
-		include dnsextras::entries
 	}
 
 	if $::hostname in [diabelli,nono] {

@@ -51,12 +51,17 @@ class buildd ($ensure=present) {
 		default => 'absent',
 	}
 
+	file { '/etc/apt/apt.conf.d/puppet-https-buildd':
+		content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/certs/buildd.debian.org.crt\";\n",
+		#require => File['/etc/ssl/certs/buildd.debian.org.crt']
+	}
 	site::aptrepo { 'buildd.debian.org-proposed':
 		ensure     => $buildd_prop_ensure,
 		url        => 'https://buildd.debian.org/apt/',
 		suite      => "${suite}-proposed",
 		components => 'main',
-		require    => Package['apt-transport-https'],
+		require    => [ Package['apt-transport-https'],
+		                File['/etc/apt/apt.conf.d/puppet-https-buildd'] ],
 	}
 
 	# 'bad' extension

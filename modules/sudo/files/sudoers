@@ -22,18 +22,20 @@ Defaults	passprompt="[sudo] password for %u on %h: "
 Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Host alias specification
+Host_Alias	VOIPHOSTS	= vogler
 Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= chopin
 Host_Alias	FTPHOSTS	= franck
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
-Host_Alias	AACRAIDHOSTS	= paganini, respighi, beethoven, pettersson
-Host_Alias	MEGARAIDHOSTS	= grieg, rautavaara, sibelius
+Host_Alias	AACRAIDHOSTS	= respighi, beethoven, pettersson
+Host_Alias	MEGARAIDHOSTS	= rautavaara, sibelius
 Host_Alias	MPTRAIDHOSTS	= barber, biber, cilea, vitry, orff
 Host_Alias	MEGACTLHOSTS	= nielsen
 Host_Alias	LISTHOSTS	= bendel
-Host_Alias	BUILDD_MASTER	= grieg, wuiet
+Host_Alias	BUILDD_MASTER	= wuiet
 Host_Alias	PORTERBOXES	= abel, agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
+Host_Alias	MQ_HOSTS	= rainier, rapoport
 
 # Cmnd alias specification
 
@@ -48,7 +50,9 @@ root	ALL=(ALL) ALL
 %zivit-admins	ZIVITHOSTS=(ALL)	NOPASSWD: ALL
 
 # nagios
-nagios		ALL=(ALL)	NOPASSWD: /etc/init.d/ekeyd-egd-linux restart
+nagios		MQ_HOSTS=(rabbitmq)	NOPASSWD: /usr/sbin/rabbitmqctl list_queues -p dsa name messages consumers
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service ekeyd-egd-linux restart
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service samhain restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-filesystems ""
 # with smartarray controllers
@@ -75,6 +79,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 # groups and their role accounts
 %auditor	ALL=(accounting)	ALL
 %backports	ALL=(backports)	ALL
+%blends		ALL=(blends)	ALL
 %buildd		ALL=(buildd)	ALL
 %codesearch	ALL=(codesearch)	ALL
 %d-i		ALL=(d-i)	ALL
@@ -83,6 +88,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
 %debbugs	ALL=(debbugs-mirror)	ALL
+%debdelta	ALL=(debdelta)	ALL
 %debian-cd	ALL=(debian-cd)	ALL
 %debian-i18n	ALL=(debian-i18n)	ALL
 %debian-release	ALL=(release)	ALL
@@ -97,14 +103,18 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %lintian	ALL=(lintian)	ALL
 %listweb	ALL=(listweb)	ALL
 %list		LISTHOSTS=(list)	ALL
+# archives and stuff
+%list		master=(debian)	ALL
 %mirroradm	ALL=(archvsync)	ALL
 %nm		ALL=(nm)	ALL
 %patch-tracker	ALL=(patch-tracker)	ALL
+%pet-devel	ALL=(pet-devel)	ALL
 %piuparts	ALL=(piupartsm)	ALL
 %piuparts	ALL=(piupartss)	ALL
 %pkg_maint	ALL=(pkg_user)	ALL
 %planet		ALL=(planet)	ALL
 %popcon		ALL=(popcon)	ALL
+%ports		ALL=(ports)	ALL
 %search		ALL=(search)	ALL
 %secretary	ALL=(secretary)	ALL
 %sectracker	ALL=(sectracker)	ALL
@@ -115,12 +125,15 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %wbadm		ALL=(wbadm)	ALL
 %mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki,wikiweb)	ALL
-%qa-core	ALL=(qa,qa-web-rolex)	ALL
+%qa-core	ALL=(qa)	ALL
 %gobby		gombert=(gobby)	ALL
+%dacshelper	diabelli=(www-data)	ALL
 
 # the dak user gets to run stuff as dak-unpriv (for things like lintian checks)
 %ftptrainee	FTPHOSTS=(dak-unpriv)	NOPASSWD: /usr/bin/lintian
 dak		ALL=(dak-unpriv)	NOPASSWD: ALL
+# and ftpmaster can access the role user for their web services
+%debadmin	FTPHOSTS=(dak-web)	ALL
 
 # some groups are in apachectrl on "their" hosts so they can reload apache and update their vhost
 %apachectrl	ALL=(root)	/usr/sbin/apache2-vhost-update
@@ -130,25 +143,31 @@ dak		ALL=(dak-unpriv)	NOPASSWD: ALL
 Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
-%backports	franck,coccia,ries=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
-dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component ftp-master.metadata.debian.org
+%backports	franck,coccia=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
+d-i		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component d-i.debian.org
+dsa		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component dsa.debian.org
+dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component metadata.ftp-master.debian.org
 %debbits	master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
+%webwml		master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component network-test.debian.org
 planet		philp,senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
 debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component www.debian.org
+%blends		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component blends.debian.org
+%Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component wnpp-by-tags.debian.net
+%Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component mozilla.debian.net
+%ports		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component www.ports.debian.org
+%debvoip	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component rtc.debian.org
 
 # The piuparts slave needs to handle chroots
 piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
 #pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
-# on draghi, the domains git thing will run bind9 reload afterwards
-%dnsadm		draghi,orff=(root)		NOPASSWD: /etc/init.d/bind9 reload
-%dnsadm		draghi,orff=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo
+dnsadm		denis=(root)			NOPASSWD: /usr/sbin/service bind9 reload
+%dnsadm		orff=(root)		NOPASSWD: /etc/init.d/bind9 reload
+%dnsadm		orff=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo
 %adm		draghi=(puppet)			NOPASSWD: /usr/bin/make -s -C /srv/db.debian.org/var/gitnagios/dsa-nagios/config install
-# remote power to babylon5 in the same rack:
-joerg		unger=(ALL)		/usr/bin/sispmctl -t [12], /usr/bin/sispmctl -g [12]
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		BUILDD_MASTER=(wb-buildd)	ALL
-#%wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
+%wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
 #wbadm		BUILDD_MASTER=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
@@ -170,6 +189,7 @@ debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %press		WEBHOSTS=(debwww)	/srv/www.debian.org/update-part News
 # more list stuff
 %list		LISTHOSTS=(root)		/usr/sbin/postfix reload
+%list		stockhausen=(root)		/usr/sbin/service jetty restart
 %list		LISTHOSTS=(root)		/usr/sbin/qshape, /usr/sbin/postsuper
 %list		LISTHOSTS=(root)		/etc/init.d/spamassassin, /etc/init.d/amavis
 %list		LISTHOSTS=(amavis)		NOPASSWD: /usr/bin/sa-learn
@@ -181,3 +201,7 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 
 %Debian,%guest	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
+
+# voip stuff
+%debvoip	VOIPHOSTS=(root)	/usr/sbin/service resiprocate-turn-server restart, /usr/sbin/service repro restart
+

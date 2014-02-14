@@ -1,3 +1,11 @@
+# = Class: roles::pubsub::entities
+#
+# MQ users, vhosts, policies, and permissions for pubsub hosts
+#
+# == Sample Usage:
+#
+#   include roles::pubsub::entities
+#
 class roles::pubsub::entities {
 	include roles::pubsub::params
 
@@ -8,6 +16,7 @@ class roles::pubsub::entities {
 	$mailadm_password = $roles::pubsub::params::mailadm_password
 	$mailly_password  = $roles::pubsub::params::mailly_password
 	$muffat_password  = $roles::pubsub::params::muffat_password
+	$pet_password     = $roles::pubsub::params::pet_password
 
 	rabbitmq_user { 'admin':
 		admin    => true,
@@ -16,40 +25,50 @@ class roles::pubsub::entities {
 	}
 
 	rabbitmq_user { 'ftpteam':
-		admin    => true,
+		admin    => false,
 		password => $ftp_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'buildd':
-		admin    => true,
+		admin    => false,
 		password => $buildd_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'wbadm':
-		admin    => true,
+		admin    => false,
 		password => $wbadm_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'mailadm':
-		admin    => true,
+		admin    => false,
 		password => $mailadm_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'mailly':
-		admin    => true,
+		admin    => false,
 		password => $mailly_password,
 		provider => 'rabbitmqctl',
 	}
 
 	rabbitmq_user { 'muffat':
-		admin    => true,
+		admin    => false,
 		password => $muffat_password,
 		provider => 'rabbitmqctl',
 	}
+
+	rabbitmq_user { 'pet-devel':
+		admin    => false,
+		password => $pet_password,
+		provider => 'rabbitmqctl',
+	}
+
+	$do_hosts = keys($site::localinfo)
+
+	rabbitmq::autouser { $do_hosts: }
 
 	rabbitmq_vhost { 'packages':
 		ensure   => present,
@@ -62,6 +81,11 @@ class roles::pubsub::entities {
 	}
 
 	rabbitmq_vhost { 'dsa':
+		ensure   => present,
+		provider => 'rabbitmqctl',
+	}
+
+	rabbitmq_vhost { 'pet':
 		ensure   => present,
 		provider => 'rabbitmqctl',
 	}
@@ -104,6 +128,17 @@ class roles::pubsub::entities {
 		require              => [
 			Rabbitmq_user['admin'],
 			Rabbitmq_vhost['packages']
+		]
+	}
+
+	rabbitmq_user_permissions { 'admin@pet':
+		configure_permission => '.*',
+		read_permission      => '.*',
+		write_permission     => '.*',
+		provider             => 'rabbitmqctl',
+		require              => [
+			Rabbitmq_user['admin'],
+			Rabbitmq_vhost['pet']
 		]
 	}
 
@@ -161,23 +196,14 @@ class roles::pubsub::entities {
 		]
 	}
 
-	rabbitmq_user_permissions { 'mailly@dsa':
-		read_permission      => 'mailadm',
-		write_permission     => 'mailly',
+	rabbitmq_user_permissions { 'pet-devel@pet':
+		configure_permission => '.*',
+		read_permission      => '.*',
+		write_permission     => '.*',
 		provider             => 'rabbitmqctl',
 		require              => [
-			Rabbitmq_user['mailly'],
-			Rabbitmq_vhost['dsa']
-		]
-	}
-
-	rabbitmq_user_permissions { 'muffat@dsa':
-		read_permission      => 'mailadm',
-		write_permission     => 'muffat',
-		provider             => 'rabbitmqctl',
-		require              => [
-			Rabbitmq_user['muffat'],
-			Rabbitmq_vhost['dsa']
+			Rabbitmq_user['pet-devel'],
+			Rabbitmq_vhost['pet']
 		]
 	}
 
@@ -200,6 +226,13 @@ class roles::pubsub::entities {
 		match   => '.*',
 		policy  => '{"ha-mode":"all"}',
 		require => Rabbitmq_vhost['packages']
+	}
+
+	rabbitmq_policy { 'mirror_pet':
+		vhost   => 'pet',
+		match   => '.*',
+		policy  => '{"ha-mode":"all"}',
+		require => Rabbitmq_vhost['pet']
 	}
 
 	rabbitmq_plugin { 'rabbitmq_management':

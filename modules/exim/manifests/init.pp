@@ -1,5 +1,12 @@
 class exim {
 
+	$is_mailrelay = has_role('mailrelay')
+	$is_bugsmaster = has_role('bugsmaster')
+	$is_bugsmx = has_role('bugsmx')
+	$is_rtmaster = has_role('rtmaster')
+	$is_packagesmaster = has_role('packagesmaster')
+	$is_packagesqamaster = has_role('packagesqamaster')
+
 	include exim::vdomain::setup
 
 	munin::check { 'ps_exim4': script => 'ps_' }
@@ -37,13 +44,6 @@ class exim {
 	file { '/etc/exim4/Git':
 		ensure  => absent,
 		force   => true,
-	}
-	# git checkouts through puppet.  yummy.
-	file { '/etc/exim4/email-virtualdomains':
-		recurse => true,
-		source => 'puppet:///modules/exim/email-virtualdomains',
-		purge  => true,
-		ignore => '.git',
 	}
 	file { '/etc/exim4/conf.d':
 		ensure  => directory,

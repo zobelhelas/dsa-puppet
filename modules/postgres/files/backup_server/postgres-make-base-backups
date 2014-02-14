@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# run a bunch of full postgresql backups
+
+
+# Copyright 2014 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+set -e
+set -u
+
+CONFFILE=/etc/nagios/dsa-check-backuppg.conf
+ROOTDIR=$(perl -MYAML -e "print YAML::LoadFile('$CONFFILE')->{'rootdir'}")
+if [ -z "$ROOTDIR" ]; then
+	echo >&2 "Could not learn rootdir from $CONFFILE"
+	exit 1
+fi
+
+if [ -t 0 ]; then
+	verbose=1
+else
+	verbose=0
+fi
+
+if [ "$verbose" -gt 0 ]; then
+	console="--progress --verbose"
+else
+	console=""
+fi
+
+export PGSSLMODE=verify-full
+export PGSSLROOTCERT=/etc/ssl/debian/certs/ca.crt
+
+date=$(date "+%Y%m%d-%H%M%S")
+
+while read host port username  cluster version; do
+	[ "${host#\#}" = "$host" ] || continue
+
+	label="$date-$host-$cluster-$version-backup"
+	[ "$verbose" -gt 0 ] && echo "Doing $host:$port $version/$cluster: $label"
+
+	target="$cluster.BASE.$label.tar.gz"
+	tmp=$(tempfile -d "$ROOTDIR" -p "BASE-$host:$port-" -s ".tar.gz")
+	trap "rm -f '$tmp'" EXIT
+
+	/usr/lib/postgresql/"$version"/bin/pg_basebackup --format=tar --pgdata=- --label="$label" --host="$host" --port="$port" --username="$username" --no-password $console | pigz > "$tmp"
+	if ! [ "${PIPESTATUS[0]}" -eq 0 ]; then
+		echo >&2 "pg_basebackup failed with exit code ${PIPESTATUS[0]}"
+		exit 1
+	fi
+	mv "$tmp" "$ROOTDIR/${host%%.*}/$target"
+done << EOF
+chopin.debian.org	5432	debian-backup		dak		9.1
+bmdb1.debian.org	5435	debian-backup		main		9.1
+bmdb1.debian.org	5436	debian-backup		wanna-build	9.1
+danzi.debian.org	5433	debian-backup		main		9.1
+franck.debian.org	5433	debian-backup		dak		9.1
+sibelius.debian.org	5433	debian-backup		snapshot	9.1
+EOF

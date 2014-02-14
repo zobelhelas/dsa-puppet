@@ -5,11 +5,10 @@
 
 <%=
 nodeinfo = scope.lookupvar('site::nodeinfo')
-
 out = []
 
 restricted_purposes = ['kvm host', 'central syslog server', 'puppet master', 'jumphost']
-restrict_ssh = %w{lebrun geo1 geo2 geo3 beethoven tchaikovsky schroeder draghi adayevskaya}
+restrict_ssh = %w{lebrun beethoven tchaikovsky schroeder draghi adayevskaya}
 
 if (nodeinfo['ldap'].has_key?('purpose')) then
 	nodeinfo['ldap']['purpose'].each do |purp|
@@ -22,8 +21,16 @@ end
 ssh4allowed = []
 ssh6allowed = []
 
+should_restrict = restrict_ssh.include?(hostname)
+%w{dns_primary dns_geo}.each do |role_restrict|
+	if scope.function_has_role([role_restrict]) then
+		should_restrict = true
+	end
+end
+
+
 if restrict_ssh.include?(hostname) then
-	ssh4allowed  << %w{$DSA_IPS   $HOST_NAGIOS_V4 $HOST_MUNIN_V4 $HOST_DB_V4}
+	ssh4allowed << %w{$DSA_IPS    $HOST_NAGIOS_V4 $HOST_MUNIN_V4 $HOST_DB_V4}
 	ssh6allowed << %w{$DSA_V6_IPS $HOST_NAGIOS_V6 $HOST_MUNIN_V6 $HOST_DB_V6}
 
 	if %w{lebrun schroeder}.include?(hostname) then
@@ -35,20 +42,23 @@ if restrict_ssh.include?(hostname) then
 		ssh4allowed << '$HOST_DEBIAN_V4'
 		ssh6allowed << '$HOST_DEBIAN_V6'
 	end
-	if %w{unger}.include?(hostname) then
-		ssh4allowed << '$UNGER_SSH_ACCESS'  # Ganneff
-		ssh6allowed << '$UNGER_SSH6_ACCESS' # Ganneff, but more address space
-	end
 
 	if %w{adayevskaya}.include?(hostname) then
-		ssh4allowed << %w{$HOST_MAILRELAY_V4}
-		ssh6allowed << %w{$HOST_MAILRELAY_V6}
+		ssh4allowed << %w{$HOST_DEBIAN_V4}
+		ssh6allowed << %w{$HOST_DEBIAN_V6}
+	end
+	if scope.function_has_role(['dns_primary']) then
+		ssh4allowed << "5.153.231.5" # adayevskaya
+		ssh6allowed << "2001:41c8:1000:21::21:5" # adayevskaya
+		#ssh4allowed << "$HOST_DNS_GEO_V4"
+		#ssh6allowed << "$HOST_DNS_GEO_V6"
 	end
 
-	if nodeinfo['static_master'] then
+	if scope.function_has_role(['static_master']) then
 		ssh4allowed << '$HOST_STATIC_V4'
 		ssh6allowed << '$HOST_STATIC_V6'
-	elsif nodeinfo['static_source'] or nodeinfo['static_mirror'] then
+	elsif scope.function_has_role(['static_source']) or
+	      scope.function_has_role(['static_mirror']) then
 		ssh4allowed << '$HOST_STATICMASTER_V4'
 		ssh6allowed << '$HOST_STATICMASTER_V6'
 	end

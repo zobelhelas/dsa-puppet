@@ -1,4 +1,6 @@
 class exim::vdomain::setup {
+	include concat::setup
+
 	concat { '/etc/exim4/virtualdomains':
 		owner   => root,
 		group   => root,

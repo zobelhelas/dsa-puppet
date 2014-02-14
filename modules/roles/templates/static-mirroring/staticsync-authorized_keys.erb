@@ -13,18 +13,19 @@ def getstaticsynckey(host)
     return key
 end
 
-localinfo = scope.lookupvar('site::localinfo')
 allnodeinfo = scope.lookupvar('site::allnodeinfo')
+roles = scope.lookupvar('site::roles')
 
 callers = []
-localinfo.keys.sort.each do |node|
-    if localinfo[node]['static_mirror'] or localinfo[node]['static_source'] or localinfo[node]['static_master']
+
+%w{static_mirror static_source static_master}.each do |role|
+    roles[role].each do |node|
         key = getstaticsynckey(node)
         callers << { 'node' => node, 'addr' => allnodeinfo[node]['ipHostNumber'], 'key' => key}
     end
 end
 
-callers << { 'node' => 'wagner.debian.org', 'addr' => allnodeinfo['wagner.debian.org']['ipHostNumber'], 'key' => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXHFIkIhOC5iDa0d0IN5w6tUUL2T2iXCYcS2+dandE9f550OpKQ/evUZhw4EERNYDA3G7GV3jJzQR0j/KZWJUtDCichmqS94xJqXURmZVNeLXWY9x/N7CB1iG1Iblu6sgyTUrs7N6Wb0fUab3AXAi9KIXdwNLY622reR9T//bRULPVIl5VFpYtGBPT9n3wR7fLQ4ndEcUmEGcM4jRbpLmye4QGgJotuzeBWUpX+U648Yly6U7NlAJIWPUt7hEzMz2AC81SLhGCwTk6sb19n2dO6WN2ndynp8PLG1emtgd1/DaeaRyPcitoWgSoDNgKNk3zLIDtCdSYvFI8xXrm6cK3 staticsync@wagner'}
+callers << { 'node' => 'moszumanska.debian.org', 'addr' => allnodeinfo['moszumanska.debian.org']['ipHostNumber'], 'key' => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXHFIkIhOC5iDa0d0IN5w6tUUL2T2iXCYcS2+dandE9f550OpKQ/evUZhw4EERNYDA3G7GV3jJzQR0j/KZWJUtDCichmqS94xJqXURmZVNeLXWY9x/N7CB1iG1Iblu6sgyTUrs7N6Wb0fUab3AXAi9KIXdwNLY622reR9T//bRULPVIl5VFpYtGBPT9n3wR7fLQ4ndEcUmEGcM4jRbpLmye4QGgJotuzeBWUpX+U648Yly6U7NlAJIWPUt7hEzMz2AC81SLhGCwTk6sb19n2dO6WN2ndynp8PLG1emtgd1/DaeaRyPcitoWgSoDNgKNk3zLIDtCdSYvFI8xXrm6cK3 staticsync@wagner'}
 
 lines = []
 for m in callers do

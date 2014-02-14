@@ -12,6 +12,15 @@ class porterbox {
 	file { '/etc/schroot/dsa/config':
 		source  => 'puppet:///modules/porterbox/schroot-dsa/config',
 	}
+	if ! ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
+		file { '/etc/schroot/dsa/fstab':
+			source  => 'puppet:///modules/porterbox/schroot-dsa/fstab',
+		}
+	} else {
+		file { '/etc/schroot/dsa/fstab':
+			source  => 'puppet:///modules/porterbox/schroot-dsa/fstab-freebsd',
+		}
+	}
 	file { '/etc/schroot/dsa/default-mirror':
 		content => template('porterbox/default-mirror.erb'),
 	}
@@ -43,5 +52,9 @@ class porterbox {
 	}
 	file { '/etc/cron.d/puppet-update-dchroots':
 		content  => "0 15 * * 0 root PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin chronic setup-all-dchroots\n",
+	}
+	file { '/etc/cron.weekly/puppet-mail-big-homedirs':
+		mode    => '0555',
+		source  => 'puppet:///modules/porterbox/mail-big-homedirs',
 	}
 }

@@ -21,17 +21,15 @@
 
 <%
   rolehost={}
-  localinfo = scope.lookupvar('site::localinfo')
   allnodeinfo = scope.lookupvar('site::allnodeinfo')
+  roles = scope.lookupvar('site::roles')
 
-  %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master}.each do |role|
+  %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master dns_secondary dns_geo}.each do |role|
     rolehost[role] = []
-    localinfo.keys.sort.each do |node|
-      if localinfo[node][role]
+    roles[role].each do |node|
         rolehost[role] << allnodeinfo[node]['ipHostNumber']
-      end
     end
-    rolehost[role].flatten!
+    rolehost[role].flatten!.sort.uniq
   end
 
   dbs = []
@@ -63,6 +61,11 @@
 @def $HOST_STATIC_V4 = (<%= scope.function_filter_ipv4([rolehost['static_mirror'] + rolehost['static_source'] + rolehost['static_master']]).uniq.join(' ') %>);
 @def $HOST_STATIC_V6 = (<%= scope.function_filter_ipv6([rolehost['static_mirror'] + rolehost['static_source'] + rolehost['static_master']]).uniq.join(' ') %>);
 
+@def $HOST_DNS_SECONDARY_V4 = (<%= scope.function_filter_ipv4([rolehost['dns_secondary']]).uniq.join(' ') %>);
+@def $HOST_DNS_SECONDARY_V6 = (<%= scope.function_filter_ipv6([rolehost['dns_secondary']]).uniq.join(' ') %>);
+@def $HOST_DNS_GEO_V4 = (<%= scope.function_filter_ipv4([rolehost['dns_geo']]).uniq.join(' ') %>);
+@def $HOST_DNS_GEO_V6 = (<%= scope.function_filter_ipv6([rolehost['dns_geo']]).uniq.join(' ') %>);
+
 @def $HOST_DEBIAN_V4 = (<%= scope.function_filter_ipv4([dbs]).uniq.join(' ') %>);
 @def $HOST_DEBIAN_V6 = (<%= scope.function_filter_ipv6([dbs]).uniq.join(' ') %>);
 @def $HOST_DEBIAN = ($HOST_DEBIAN_V4 $HOST_DEBIAN_V6);
@@ -78,6 +81,7 @@
 @def $zobel   = ();
 @def $zobel   = ($zobel 87.139.82.80/32); # exit.credativ.com
 @def $zobel   = ($zobel 87.193.134.192/27); # credativ qsc
+@def $zobel   = ($zobel 94.79.138.160/29); # credativ Unitiymedia
 @def $zobel   = ($zobel 78.47.2.104/29); # baldur, bragi, saga
 @def $zobel   = ($zobel 92.198.42.24/29); # DG-i Office
 @def $zobel   = ($zobel 93.94.128.0/21);  # DG-i AS
@@ -126,7 +130,6 @@
 @def $USER_joerg6  = ($USER_joerg6 2a01:4f8:131:1520::6667);
 
 @def $BUILDD_SSH_ACCESS = ();
-@def $BUILDD_SSH_ACCESS = ($BUILDD_SSH_ACCESS 194.177.211.200); # grieg
 @def $BUILDD_SSH_ACCESS = ($BUILDD_SSH_ACCESS 5.153.231.18); # wuiet
 @def $BUILDD_SSH_ACCESS = ($BUILDD_SSH_ACCESS 97.107.116.29); # master
 @def $BUILDD_SSH_ACCESS = ($BUILDD_SSH_ACCESS 206.12.19.5); # ravel
@@ -134,7 +137,3 @@
 @def $FREEBSD_SSH_ACCESS = ();
 @def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $DSA_IPS $BUILDD_SSH_ACCESS);
 @def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $USER_christoph $USER_aurel32); # buildd admins
-@def $UNGER_SSH_ACCESS = ();
-@def $UNGER_SSH_ACCESS = ($UNGER_SSH_ACCESS $USER_joerg);
-@def $UNGER_SSH6_ACCESS = ();
-@def $UNGER_SSH6_ACCESS = ($UNGER_SSH6_ACCESS $USER_joerg6);
