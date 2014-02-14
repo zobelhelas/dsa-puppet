@@ -97,7 +97,7 @@ node default {
 		include named::geodns
 	}
 
-	if $::hostname in [diabelli,nono] {
+	if $::hostname in [diabelli,nono,tchaikovsky] {
 		include dacs
 	}
 
