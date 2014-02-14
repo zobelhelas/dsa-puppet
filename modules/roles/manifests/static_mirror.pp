@@ -51,7 +51,7 @@ class roles::static_mirror {
 	}
 
 	$wwwdo_document_root = '/srv/static.debian.org/mirrors/www.debian.org/cur'
-	apache2::site { '010-www.debian.org':
+	apache2::site { '005-www.debian.org':
 		site   => 'www.debian.org',
 		content => template('roles/apache-www.debian.org.erb'),
 	}
