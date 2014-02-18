@@ -97,9 +97,9 @@ node default {
 		include named::geodns
 	}
 
-	if $::hostname in [diabelli,nono,tchaikovsky] {
-		include dacs
-	}
+	#if $::hostname in [diabelli,nono,tchaikovsky] {
+	#	include dacs
+	#}
 
 	if $::hostname in [stabile,beach,glinka,milanollo,rautavaara] {
 		include nfs-server
