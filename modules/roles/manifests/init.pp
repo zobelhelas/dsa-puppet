@@ -1,3 +1,11 @@
+# = Class: roles
+#
+# Lookup role and include relevant classes for roles
+#
+# == Sample Usage:
+#
+#   include roles
+#
 class roles {
 
 	if has_role('puppetmaster') {

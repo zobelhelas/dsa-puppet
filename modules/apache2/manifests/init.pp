@@ -1,3 +1,11 @@
+# = Class: apache2
+#
+# Standard apache config debian.org hosts
+#
+# == Sample Usage:
+#
+#   include apache2
+#
 class apache2 {
 	package { 'apache2':
 		ensure => installed,
