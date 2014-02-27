@@ -237,6 +237,7 @@ host_settings:
     - brahms.debian.org
     - caballero.debian.org
     - corelli.debian.org
+    - eberlin.debian.org
     - eysler.debian.org
     - fano.debian.org
     - fayrfax.debian.org
