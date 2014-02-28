@@ -14,6 +14,10 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
 		notify => [ Exec['refresh_debian_hashes'], $notify ],
 		links  => follow,
 	}
+	file { "/etc/ssl/debian/certs/$name.crt-chained":
+		content => template('ssl/chained.erb'),
+		notify => [ Exec['refresh_debian_hashes'], $notify ],
+	}
 
 	if $tlsaport > 0 {
 		dnsextras::tlsa_record{ "tlsa-${name}-${tlsaport}":
