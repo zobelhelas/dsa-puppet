@@ -11,12 +11,12 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
 	}
 	file { "/etc/ssl/debian/certs/$name.crt-chain":
 		source => [ "puppet:///modules/ssl/chains/${name}.crt", "puppet:///modules/ssl/servicecerts/${name}.crt" ],
-		notify => [ Exec['refresh_debian_hashes'], $notify ],
+		notify => [ $notify ],
 		links  => follow,
 	}
 	file { "/etc/ssl/debian/certs/$name.crt-chained":
 		content => template('ssl/chained.erb'),
-		notify => [ Exec['refresh_debian_hashes'], $notify ],
+		notify => [ $notify ],
 	}
 
 	if $tlsaport > 0 {
