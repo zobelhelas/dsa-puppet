@@ -21,6 +21,8 @@
    ServerAlias security.na.debian.org
    ServerAlias security.geo.debian.org
    ServerAlias security-cdn.debian.org
+   ServerAlias security-cdn1.debian.org
+   ServerAlias security-cdn2.debian.org
    ServerAlias security-nagios.debian.org
 
    ExpiresActive On
