@@ -27,7 +27,7 @@ pairs.each do |pair|
 	lines << "key #{keyname} { algorithm hmac-sha256; secret \"#{key}\"; };"
 
 	if other == 'xfr0.easydns.com'
-		remote_ip = '64.68.200.91'
+		remote_ip = ['64.68.200.91']
 	else
 		remote_ip = scope.lookupvar('site::allnodeinfo')[other]['ipHostNumber']
 	end
