@@ -26,7 +26,11 @@ pairs.each do |pair|
 
 	lines << "key #{keyname} { algorithm hmac-sha256; secret \"#{key}\"; };"
 
-	remote_ip = scope.lookupvar('site::allnodeinfo')[other]['ipHostNumber']
+	if other == 'xfr0.easydns.com'
+		remote_ip = '64.68.200.91'
+	else
+		remote_ip = scope.lookupvar('site::allnodeinfo')[other]['ipHostNumber']
+	end
 	remote_ip.each do |r|
 		lines << "server #{r} { keys { #{keyname}; }; };"
 	end
