@@ -22,15 +22,16 @@ pairs.each do |pair|
 	pair.delete(fqdn)
 	other = pair[0]
 
-	key = scope.function_hkdf(['/etc/puppet/secret', "puppet-key-#{keyname}"])
-
-	lines << "key #{keyname} { algorithm hmac-sha256; secret \"#{key}\"; };"
-
 	if other == 'xfr0.easydns.com'
 		remote_ip = ['64.68.200.91']
+		algorithm = "hmac-md5";
 	else
 		remote_ip = scope.lookupvar('site::allnodeinfo')[other]['ipHostNumber']
+		algorithm = "hmac-sha256";
 	end
+
+	key = scope.function_hkdf(['/etc/puppet/secret', "puppet-key-#{keyname}"])
+	lines << "key #{keyname} { algorithm #{algorithm}; secret \"#{key}\"; };"
 	remote_ip.each do |r|
 		lines << "server #{r} { keys { #{keyname}; }; };"
 	end
