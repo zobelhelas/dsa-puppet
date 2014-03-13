@@ -33,7 +33,7 @@ UNAMEARCH=$(uname -m)
 
 get_suites() {
     case "$1" in
-      armel|s390x)
+      armhf|s390x)
         echo "sid jessie wheezy"
         ;;
       s390)
