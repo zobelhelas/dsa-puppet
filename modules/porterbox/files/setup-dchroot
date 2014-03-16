@@ -260,6 +260,19 @@ debootstrap \
 echo "$tuple" > "$rootdir/etc/debian_chroot"
 echo "force-unsafe-io" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-unsafe-io"
 
+cleanup+=("umount $rootdir/dev")
+case "$(uname -s)" in
+  Linux)
+    ;;
+  GNU/kFreeBSD)
+    mount -t devfs none "$rootdir/dev"
+    ;;
+  *)
+    echo >&2 "Warning: Unexpected uname -s output."
+    ;;
+esac
+
+
 chroot "$rootdir" apt-get update
 chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends policyrcd-script-zg2
 cat > "$rootdir/usr/local/sbin/policy-rc.d" << 'EOF'
@@ -285,7 +298,8 @@ chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends build-e
 [ -z "$bare" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
 chroot "$rootdir" apt-get clean
-umount "$rootdir/sys" || true
+umount "$rootdir/dev" 2>/dev/null || true
+umount "$rootdir/sys" 2>/dev/null || true
 
 tartmp=$(tempfile --directory "$basedir" --suffix=".tar.gz")
 cleanup+=("rm -f $tartmp")
