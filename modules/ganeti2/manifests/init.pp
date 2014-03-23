@@ -21,10 +21,6 @@ class ganeti2 {
 		ensure => installed
 	}
 
-	package { 'ganeti-htools':
-		ensure => installed
-	}
-
 	if $drbd {
 		package { 'drbd8-utils':
 			ensure => installed
