@@ -111,6 +111,9 @@ uni-karlsruhe:
   #nameservers: [82.195.66.249, 217.198.242.225]
   nameservers: [82.195.75.109, 82.195.75.103]
   mirror-debian: http://debian.netcologne.de/debian/
+leaseweb:
+  netrange:
+    - 185.17.185.176/28
 marist:
   netrange:
     - 148.100.96.0/25
