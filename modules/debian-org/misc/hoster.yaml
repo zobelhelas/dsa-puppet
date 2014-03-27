@@ -114,6 +114,7 @@ uni-karlsruhe:
 leaseweb:
   netrange:
     - 185.17.185.176/28
+  mirror-debian: http://http://mirror.nl.leaseweb.net/debian/
 marist:
   netrange:
     - 148.100.96.0/25
