@@ -119,6 +119,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %secretary	ALL=(secretary)	ALL
 %sectracker	ALL=(sectracker)	ALL
 %security	SECHOSTS=(mail_security)	ALL
+%security	ALL=(security)	ALL
 %snapshot	ALL=(snapshot)	ALL
 %uddadm		ALL=(udd)	ALL
 %volatile	ALL=(volatile)	ALL
