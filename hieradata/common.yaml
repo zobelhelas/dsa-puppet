@@ -40,6 +40,8 @@ roles:
   ftp.upload.d.o:
     - franck.debian.org
     - ravel.debian.org
+  git_master:
+    - adayevskaya.debian.org
   keyring:
     - kaufmann.debian.org
   lists:
