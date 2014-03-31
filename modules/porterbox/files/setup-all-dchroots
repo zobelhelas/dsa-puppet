@@ -53,6 +53,11 @@ case "$DPKGARCH" in
     armhf)
         archs="$archs armel"
         ;;
+    armel)
+        if [ "$(uname -m)" = "armv7l" ] && grep -w vfpv3 -q /proc/cpuinfo ; then
+            archs="$archs armhf"
+        fi
+        ;;
     s390|s390x)
         archs="s390 s390x"
         ;;
