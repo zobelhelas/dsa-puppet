@@ -33,7 +33,7 @@ Host_Alias	MPTRAIDHOSTS	= barber, biber, cilea, vitry, orff
 Host_Alias	MEGACTLHOSTS	= nielsen
 Host_Alias	LISTHOSTS	= bendel
 Host_Alias	BUILDD_MASTER	= wuiet
-Host_Alias	PORTERBOXES	= abel, agricola, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
+Host_Alias	PORTERBOXES	= abel, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
 Host_Alias	MQ_HOSTS	= rainier, rapoport
 

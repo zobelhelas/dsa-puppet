@@ -14,9 +14,9 @@ when /zappa.debian.org/ then                                   ignore << %w{samh
 when /(mayer|corelli).debian.org/ then                         ignore << "linux-base"
 when /(alkman|caballero|merulo|mundy|zani).debian.org/ then    ignore << "samhain"
 when "franck.debian.org" then                                  ignore << %w{python-apt}
-when /(abel|arnold|alain|alwyn|antheil|arne).debian.org/ then  ignore << %w{flash-kernel linux-firmware-image}
+when /(abel|arnold|alwyn|antheil|arne).debian.org/ then  ignore << %w{flash-kernel linux-firmware-image}
 when /harris.debian.org/ then                                  ignore << %w{flash-kernel kernel linux-firmware-image}
-when /(hasse|hebden|henze|hildegard|howells|hummel|hoiby).debian.org/ then ignore << %w{flash-kernel kernel linux-firmware-image}
+when /(hasse|henze|howells|hummel|hoiby).debian.org/ then ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(parry|partch).debian.org/ then                          ignore << "yaboot"
 when "blavet.debian.org" then                                  ignore << %w{dpkg-dev libdpkg-perl dpkg}
 when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
