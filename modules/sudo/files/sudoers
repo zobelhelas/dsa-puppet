@@ -119,6 +119,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %secretary	ALL=(secretary)	ALL
 %sectracker	ALL=(sectracker)	ALL
 %security	SECHOSTS=(mail_security)	ALL
+%security	ALL=(security)	ALL
 %snapshot	ALL=(snapshot)	ALL
 %uddadm		ALL=(udd)	ALL
 %volatile	ALL=(volatile)	ALL
@@ -128,6 +129,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %qa-core	ALL=(qa)	ALL
 %gobby		gombert=(gobby)	ALL
 %dacshelper	diabelli=(www-data)	ALL
+%debsso		diabelli=(debsso)	ALL
 
 # the dak user gets to run stuff as dak-unpriv (for things like lintian checks)
 %ftptrainee	FTPHOSTS=(dak-unpriv)	NOPASSWD: /usr/bin/lintian
@@ -156,6 +158,7 @@ debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-componen
 %Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component mozilla.debian.net
 %ports		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component www.ports.debian.org
 %debvoip	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component rtc.debian.org
+%security	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component security-team.debian.org
 
 # The piuparts slave needs to handle chroots
 piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL

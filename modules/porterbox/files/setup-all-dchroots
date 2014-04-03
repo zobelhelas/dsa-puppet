@@ -33,7 +33,7 @@ UNAMEARCH=$(uname -m)
 
 get_suites() {
     case "$1" in
-      armel|s390x)
+      armhf|s390x)
         echo "sid jessie wheezy"
         ;;
       s390)
@@ -52,6 +52,11 @@ case "$DPKGARCH" in
         ;;
     armhf)
         archs="$archs armel"
+        ;;
+    armel)
+        if [ "$(uname -m)" = "armv7l" ] && grep -w vfpv3 -q /proc/cpuinfo ; then
+            archs="$archs armhf"
+        fi
         ;;
     s390|s390x)
         archs="s390 s390x"

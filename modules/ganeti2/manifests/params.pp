@@ -1,5 +1,13 @@
+# = Class: ganeti2::params
+#
+# Parameters for ganeti clusters
+#
+# == Sample Usage:
+#
+#   include ganeti2::params
+#
 class ganeti2::params {
-	case $cluster {
+	case $::cluster {
 		'ganeti-osuosl.debian.org': {
 			$ganeti_hosts = ['140.211.166.20/32']
 			$ganeti_priv  = ['140.211.166.20/32']

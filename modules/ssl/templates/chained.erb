@@ -1,0 +1,7 @@
+<%=
+    File.read("/etc/puppet/modules/ssl/files/servicecerts/#{name}.crt")
+%>
+<%=
+    fn = "/etc/puppet/modules/ssl/files/chains/#{name}.crt"
+    File.exist?(fn) ? File.read(fn) : ''
+%>

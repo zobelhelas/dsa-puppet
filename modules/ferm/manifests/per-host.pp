@@ -284,6 +284,17 @@ class ferm::per-host {
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, (5435 5436), ( 2001:41c8:1000:21::21:12/128 ))'
 			}
+
+			@ferm::rule { 'dsa-postgres-dedup':
+				# ubc, wuit
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, (5439), ( 5.153.231.17/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-dedup6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, (5439), ( 2001:41c8:1000:21::21:17/128 ))'
+			}
 		}
 		danzi: {
 			@ferm::rule { 'dsa-postgres-danzi':

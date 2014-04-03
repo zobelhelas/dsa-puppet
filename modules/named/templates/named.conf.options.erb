@@ -66,9 +66,17 @@ logging {
 	};
 	category queries { queries; };
 	category lame-servers { null; };
+
+	channel transfers {
+		file "/var/log/bind9/named-transfers.log" versions 4 size 40m;
+		print-time yes;
+		print-category yes;
+	};
+	category xfer-out { transfers; };
+	category notify { transfers; };
+
 };
 
- 
 <% if classes.include?('named::authoritative') -%>
 include "/etc/bind/named.conf.puppet-shared-keys";
 <% end -%>

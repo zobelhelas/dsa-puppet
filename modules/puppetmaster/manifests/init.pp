@@ -16,4 +16,8 @@ class puppetmaster {
 		description     => 'Allow puppet access',
 		rule            => '&SERVICE_RANGE(tcp, 8140, $HOST_DEBIAN_V6)'
 	}
+
+	ssl::service { 'puppet-dashboard.debian.org':
+		notify => Service['apache2'],
+	}
 }

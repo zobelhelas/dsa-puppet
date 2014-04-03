@@ -20,7 +20,7 @@ class bacula::client inherits bacula {
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		command     => 'sh -c "setsid /usr/local/sbin/bacula-idle-restart fd &"',
 		refreshonly => true,
-		subscribe   => File[$bacula_ssl_server_cert],
+		subscribe   => [ File[$bacula_ssl_server_cert], File[$bacula_ssl_client_cert] ],
 		require     => File['/usr/local/sbin/bacula-idle-restart'],
 	}
 

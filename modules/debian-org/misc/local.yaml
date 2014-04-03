@@ -43,6 +43,7 @@ nameinfo:
   dillon.debian.org: Fannie Charles Dillon (March 16th, 1881 - February 21st, 1947)
   donizetti.debian.org: Gaetano Donizetti (November 29th, 1797 - April 8th, 1848)
   draghi.debian.org: Antonio Draghi (1635 - January 16th, 1700)
+  eberlin.debian.org: Johann Ernst Eberlin (March 1702 27th - June 19th, 1762)
   eder.debian.org: Helmut Eder (December 26th, 1916 - February 8th, 2005)
   elgar.debian.org: Edward Elgar (1857 - 1934)
   eysler.debian.org: Edmund Samuel Eysler (March 12th, 1874 - October 4th, 1949)
@@ -236,6 +237,7 @@ host_settings:
     - brahms.debian.org
     - caballero.debian.org
     - corelli.debian.org
+    - eberlin.debian.org
     - eysler.debian.org
     - fano.debian.org
     - fayrfax.debian.org

@@ -1,3 +1,11 @@
+# = Class: roles
+#
+# Lookup role and include relevant classes for roles
+#
+# == Sample Usage:
+#
+#   include roles
+#
 class roles {
 
 	if has_role('puppetmaster') {
@@ -61,6 +69,10 @@ class roles {
 
 	if has_role('ftp.upload.d.o') {
 		include roles::ftp_upload
+	}
+
+	if has_role('git_master') {
+		include roles::git_master
 	}
 
 	if has_role('security_master') {

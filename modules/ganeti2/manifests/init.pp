@@ -1,3 +1,11 @@
+# = Class: ganeti2
+#
+# Standard ganeti2 config debian.org hosts
+#
+# == Sample Usage:
+#
+#   include ganeti2
+#
 class ganeti2 {
 
 	include ganeti2::params
@@ -10,10 +18,6 @@ class ganeti2 {
 	}
 
 	package { 'ganeti-instance-debootstrap':
-		ensure => installed
-	}
-
-	package { 'ganeti-htools':
 		ensure => installed
 	}
 
@@ -41,35 +45,35 @@ class ganeti2 {
 		'/etc/ganeti/instance-debootstrap/hooks/00-dsa-configure-networking':
 			content => template('ganeti2/instance-debootstrap/hooks/00-dsa-configure-networking.erb'),
 			require => Package['ganeti-instance-debootstrap'],
-			mode   => '0555',
+			mode    => '0555',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/10-dsa-install-extra-packages':
 			content => template('ganeti2/instance-debootstrap/hooks/10-dsa-install-extra-packages.erb'),
 			require => Package['ganeti-instance-debootstrap'],
-			mode   => '0555',
+			mode    => '0555',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/20-dsa-install-bootloader':
 			content => template('ganeti2/instance-debootstrap/hooks/20-dsa-install-bootloader.erb'),
 			require => Package['ganeti-instance-debootstrap'],
-			mode   => '0555',
+			mode    => '0555',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/30-dsa-install-ssh-keys':
 			content => template('ganeti2/instance-debootstrap/hooks/30-dsa-install-ssh-keys.erb'),
 			require => Package['ganeti-instance-debootstrap'],
-			mode   => '0555',
+			mode    => '0555',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/40-dsa-setup-swapfile':
 			content => template('ganeti2/instance-debootstrap/hooks/40-dsa-setup-swapfile.erb'),
 			require => Package['ganeti-instance-debootstrap'],
-			mode   => '0555',
+			mode    => '0555',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/clear-root-password':
 			require => Package['ganeti-instance-debootstrap'],
-			mode   => '0444',
+			mode    => '0444',
 			;
 		'/etc/ganeti/instance-debootstrap/hooks/xen-hvc0':
 			require => Package['ganeti-instance-debootstrap'],
-			mode   => '0444',
+			mode    => '0444',
 			;
 	}
 

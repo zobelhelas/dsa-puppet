@@ -1,20 +1,20 @@
-# = Class: roles::mailrelay
+# = Class: roles::git_master
 #
-# Setup for mailrelay hosts
+# Setup for git/git2.debian.org master host
 #
 # == Sample Usage:
 #
-#   include roles::mailrelay
+#   include roles::git_master
 #
-class roles::mailrelay {
+class roles::git_master {
+
 	include roles::pubsub::parameters
 
 	$rabbit_password = $roles::pubsub::parameters::rabbit_password
 
 	roles::pubsub::config { 'emailvdomains':
-		key      => 'dsa-emailvdomains-receive',
+		key      => 'dsa-emailvdomains',
 		exchange => dsa,
-		queue    => "email-${::fqdn}",
 		topic    => 'dsa.email.update',
 		vhost    => dsa,
 		username => $::fqdn,

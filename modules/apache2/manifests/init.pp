@@ -1,3 +1,11 @@
+# = Class: apache2
+#
+# Standard apache config debian.org hosts
+#
+# == Sample Usage:
+#
+#   include apache2
+#
 class apache2 {
 	package { 'apache2':
 		ensure => installed,
@@ -39,6 +47,8 @@ class apache2 {
 		$memlimit = 96 * 1024 * 1024
 	} elsif has_role('packagesqamaster') {
 		$memlimit = 192 * 1024 * 1024
+	} elsif has_role('nm') {
+		$memlimit = 96 * 1024 * 1024
 	} else {
 		$memlimit = 32 * 1024 * 1024
 	}
