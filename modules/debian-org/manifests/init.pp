@@ -102,10 +102,12 @@ class debian-org {
 	file { '/etc/apt/trusted-keys.d':
 		ensure => absent,
 	}
-	file { '/etc/apt/trusted.gpg',
+
+	file { '/etc/apt/trusted.gpg':
 		mode    => '0600',
 		content => "",
 	}
+
 	site::aptrepo { 'security':
 		url        => 'http://security.debian.org/',
 		suite      => "${::lsbdistcodename}/updates",
