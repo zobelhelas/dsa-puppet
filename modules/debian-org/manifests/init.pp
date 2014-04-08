@@ -142,7 +142,7 @@ class debian-org {
 		url        => 'http://db.debian.org/debian-admin',
 		suite      => 'lenny',
 		components => 'main',
-		key        => 'puppet:///modules/debian-org/db.debian.org.db',
+		key        => 'puppet:///modules/debian-org/db.debian.org.gpg',
 	}
 
 	augeas { 'inittab_replicate':
