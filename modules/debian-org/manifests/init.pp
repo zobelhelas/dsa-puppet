@@ -99,6 +99,13 @@ class debian-org {
 		require => Package['molly-guard'],
 	}
 
+	file { '/etc/apt/trusted-keys.d':
+		ensure => absent,
+	}
+	file { '/etc/apt/trusted.gpg',
+		mode    => '0600',
+		content => "",
+	}
 	site::aptrepo { 'security':
 		url        => 'http://security.debian.org/',
 		suite      => "${::lsbdistcodename}/updates",
@@ -109,11 +116,6 @@ class debian-org {
 		url        => $mirror_backports,
 		suite      => "${::lsbdistcodename}-backports",
 		components => ['main','contrib','non-free']
-	}
-	site::aptrepo { 'backports.org':
-		ensure => absent,
-		keyid  => '16BA136C',
-		key    => 'puppet:///modules/debian-org/backports.org.asc',
 	}
 
 	site::aptrepo { 'volatile':
