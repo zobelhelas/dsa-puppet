@@ -101,7 +101,7 @@ class debian-org {
 
 	file { '/etc/apt/trusted-keys.d':
 		ensure => absent,
-		force  => yes,
+		force  => true,
 	}
 
 	file { '/etc/apt/trusted.gpg':
