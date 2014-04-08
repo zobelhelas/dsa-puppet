@@ -60,6 +60,8 @@ nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
 nagios		franck=(ALL)	NOPASSWD: /usr/bin/arrayprobe -f /dev/cciss/c1d0
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller all show
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] ld all show
+nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] ld [0-9] show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] pd all show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] pd [0-9]\:[0-9] show
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] pd [0-9][EIC]\:[0-9]\:[0-9] show
