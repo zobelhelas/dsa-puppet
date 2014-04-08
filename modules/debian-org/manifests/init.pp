@@ -179,10 +179,6 @@ class debian-org {
 	file { '/etc/apt/preferences':
 		source => 'puppet:///modules/debian-org/apt.preferences',
 	}
-	file { '/etc/apt/trusted-keys.d/':
-		ensure => directory,
-		purge  => true,
-	}
 	file { '/etc/apt/apt.conf.d/local-compression':
 		source => 'puppet:///modules/debian-org/apt.conf.d/local-compression',
 	}
