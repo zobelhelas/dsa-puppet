@@ -23,4 +23,4 @@ START_EKEYD_EGD_LINUX=YES
 # SHANNONS=7
 
 # How many seconds between connection retries. Zero means do-not-retry.
-RETRYTIME=30
+RETRYTIME=300
