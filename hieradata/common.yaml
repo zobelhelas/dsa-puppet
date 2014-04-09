@@ -115,3 +115,5 @@ roles:
     - wolkenstein.debian.org
   postgres_backup_server:
     - backuphost.debian.org
+  gobby_debian_org:
+    - gombert.debian.org:
