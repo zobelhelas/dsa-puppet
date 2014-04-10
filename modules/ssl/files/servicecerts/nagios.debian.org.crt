@@ -2,7 +2,7 @@ Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number:
-            7e:cb:b4:21:03:eb:9e:1c:7c:40:bf:42:b9:0f:7d:b7
+            c1:ed:2e:02:fe:e4:b0:81:f2:85:8b:f8:a1:19:7b:6d
     Signature Algorithm: sha1WithRSAEncryption
         Issuer: C=FR, O=GANDI SAS, CN=Gandi Standard SSL CA
         Validity
@@ -11,33 +11,41 @@ Certificate:
         Subject: OU=Domain Control Validated, OU=Gandi Standard SSL, CN=nagios.debian.org
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-                Public-Key: (2048 bit)
+                Public-Key: (3072 bit)
                 Modulus:
-                    00:c4:2d:9f:7a:25:b6:7a:62:94:cc:64:4e:c7:1e:
-                    56:8c:40:c2:9e:10:a8:db:75:65:42:7b:eb:9e:8a:
-                    4e:95:d3:7c:ef:b1:ae:d1:07:af:d4:ff:e1:9d:df:
-                    d9:b1:fa:bb:c2:ba:5b:83:b2:d5:0b:cf:5e:fa:07:
-                    9b:ca:7b:2b:15:24:b0:f8:36:d5:6e:13:4b:c7:ac:
-                    6d:d1:2d:02:df:f2:7d:10:ba:2a:25:ce:10:da:bb:
-                    df:39:a6:ab:ee:e5:96:ca:d5:83:50:84:e9:a8:5c:
-                    d9:55:0c:28:ca:07:b8:fb:b5:73:00:a6:2d:f0:fe:
-                    bd:77:3c:60:c1:f8:69:b2:0d:79:7b:74:dc:29:cc:
-                    2d:ae:f4:93:0b:91:f7:07:61:c6:58:78:00:21:3f:
-                    8f:21:ea:32:2a:43:aa:34:8f:e6:37:a9:e8:b0:31:
-                    36:70:25:db:35:36:49:aa:13:ab:73:2b:52:b1:db:
-                    9f:6f:cd:e8:3f:32:9a:13:88:79:ee:ba:13:b8:7a:
-                    e7:d6:14:bd:71:62:ae:4c:ca:97:a8:59:b4:9e:b2:
-                    42:90:33:3e:22:90:b3:f7:b8:f8:e0:02:2f:22:30:
-                    02:d6:ba:e2:b5:70:c7:ad:a6:41:c7:e3:b5:6f:05:
-                    ce:62:25:c7:87:ad:67:24:5a:0a:74:fc:b9:44:d5:
-                    34:c5
+                    00:f6:87:c1:2b:63:cf:7f:a2:2e:5e:2e:6e:61:c5:
+                    93:a4:ac:b3:49:82:be:78:f7:8a:bf:3f:58:fd:c6:
+                    7d:65:58:9b:b5:53:90:57:f1:3d:40:27:b5:ad:0a:
+                    6e:ec:b0:96:7e:cd:ce:8e:86:f0:19:62:15:60:df:
+                    d4:68:38:f6:92:25:43:36:1d:f5:9d:4b:20:04:52:
+                    0b:3a:1e:d3:ef:29:fc:97:d6:e8:5d:98:62:0c:4a:
+                    8d:74:d9:33:4c:6f:0c:43:95:ed:bb:90:88:ea:e1:
+                    99:76:8f:a1:00:41:62:01:78:60:a5:69:65:4b:a9:
+                    e3:a1:c8:b7:fc:c5:6c:c5:a7:f5:31:df:62:aa:ab:
+                    52:eb:17:ad:d1:38:66:54:fd:ee:56:6e:0e:7e:bb:
+                    5e:5b:94:78:e1:dc:70:fa:6e:3b:cc:92:f2:fd:4e:
+                    2d:08:4a:d8:9f:5b:3c:58:54:a6:ac:fb:ef:52:8a:
+                    e5:3d:9a:72:28:2d:9e:92:df:29:f0:be:79:b4:d2:
+                    89:7c:73:2d:33:57:74:66:0d:35:df:93:1a:7e:f2:
+                    59:ad:8b:81:b4:fb:5e:a1:f2:b8:8c:1b:86:99:00:
+                    3a:e0:43:7c:41:11:18:ff:34:40:f1:14:c0:cf:31:
+                    8b:5a:6b:5f:44:9e:8b:9a:d1:cf:50:1c:18:61:b2:
+                    cd:1f:5e:a2:f5:83:44:7d:4c:2a:b4:1d:cb:4c:28:
+                    37:f2:c1:d0:3a:12:67:85:58:0f:d8:70:0c:e5:99:
+                    07:81:75:4a:8c:24:17:93:a0:6b:08:eb:26:7c:5c:
+                    41:a3:50:91:b5:79:53:63:c3:3f:b9:6f:d1:36:45:
+                    b6:8a:e9:2a:ea:5f:d7:2f:37:0f:2d:dd:bd:1f:b0:
+                    e6:5e:c9:0c:b2:57:fe:42:f8:c2:17:6c:12:a4:ec:
+                    b5:e2:60:db:ca:c7:82:e7:3c:38:1d:d3:e0:e2:0f:
+                    b0:dc:1f:4b:73:e7:1c:88:b7:fe:9b:f0:14:f6:34:
+                    10:18:50:8c:54:5f:f6:04:6f:19
                 Exponent: 65537 (0x10001)
         X509v3 extensions:
             X509v3 Authority Key Identifier: 
                 keyid:B6:A8:FF:A2:A8:2F:D0:A6:CD:4B:B1:68:F3:E7:50:10:31:A7:79:21
 
             X509v3 Subject Key Identifier: 
-                55:2C:B3:1F:17:C7:92:3B:A2:48:91:CE:C4:15:B9:90:AC:43:9B:38
+                E7:37:33:C0:4E:90:E6:DB:38:C3:85:47:49:5A:66:75:07:87:07:E0
             X509v3 Key Usage: critical
                 Digital Signature, Key Encipherment
             X509v3 Basic Constraints: critical
@@ -61,47 +69,49 @@ Certificate:
             X509v3 Subject Alternative Name: 
                 DNS:nagios.debian.org, DNS:www.nagios.debian.org
     Signature Algorithm: sha1WithRSAEncryption
-         3d:93:d2:0c:8e:ae:13:08:04:b6:56:35:a3:f7:2c:9a:68:f2:
-         25:8c:69:aa:4a:2a:c0:84:45:b7:9f:7e:ec:08:7c:82:2c:81:
-         90:62:4d:8f:32:00:c1:44:3c:da:a2:92:3b:21:f5:5a:da:ff:
-         0c:92:34:98:7a:a6:8c:cf:34:8e:88:c0:b1:7a:94:c7:e0:47:
-         6e:52:56:45:50:da:5c:d8:eb:91:6f:ef:fe:85:a4:07:c4:da:
-         e9:70:fb:23:bd:62:ca:52:6e:f3:f7:0a:0b:31:bd:c8:42:9b:
-         46:af:95:09:26:59:05:7a:d8:7d:26:1f:9a:11:3d:2b:d9:69:
-         b5:c7:0c:1b:b3:3c:44:ab:56:c1:58:c3:70:b7:aa:a5:2e:d6:
-         6a:fa:76:2c:2f:5e:22:36:b2:15:64:b9:49:e4:ba:91:29:e4:
-         44:19:9d:c3:5c:22:64:27:a7:5f:53:c7:ce:23:50:b6:15:c8:
-         c5:db:cf:93:17:b8:a4:16:78:17:97:9d:50:cf:37:11:f3:6d:
-         3f:a0:ec:54:81:29:c8:34:60:80:6a:2b:70:b4:6c:f0:99:c2:
-         1f:c2:28:d8:c1:ab:33:30:ef:5d:77:f7:c1:53:76:8e:fa:93:
-         37:05:04:c9:59:6b:56:54:fc:ca:b7:cd:ff:38:f3:46:4e:c6:
-         11:88:25:2e
+         aa:df:01:0e:da:20:0d:25:8f:b2:40:48:de:7a:f1:4d:21:34:
+         24:93:5d:b8:fc:c7:ff:e1:d4:7b:8d:e8:04:56:9a:78:4d:71:
+         8d:a2:de:b5:a5:95:98:6d:0c:c9:2d:0c:5f:0b:58:f3:21:83:
+         9d:26:04:ca:1b:78:fe:2e:25:e0:6a:47:84:16:99:20:3e:5e:
+         91:3c:f0:f6:45:51:c4:d6:20:e2:94:a3:57:7c:3e:51:94:64:
+         1f:6d:eb:f0:a4:45:9c:88:cf:c1:0a:ff:a8:36:a4:56:20:2b:
+         f1:b3:b3:22:b2:1d:97:59:e2:04:e8:aa:02:a4:62:16:26:a3:
+         55:d7:cb:35:e0:d2:1d:1a:80:e0:03:f3:3c:88:54:c0:0d:2f:
+         b5:49:e7:0c:84:cf:52:a3:f0:92:e9:ad:86:36:17:85:5f:03:
+         c2:58:aa:61:9e:88:66:37:8a:69:ea:80:d3:22:84:f8:8c:93:
+         60:67:47:98:ca:25:a0:b4:e3:ea:93:57:7c:38:7a:77:bd:fa:
+         f5:87:c9:78:69:e4:b7:05:2d:78:bc:6e:87:4c:28:8a:86:fd:
+         27:f1:95:c9:43:92:4b:d7:fd:c7:b9:4d:9b:eb:ba:ba:39:ed:
+         bf:e7:b5:5b:fb:4b:c0:2b:88:20:a4:e0:db:75:67:2a:94:94:
+         d1:82:a8:19
 -----BEGIN CERTIFICATE-----
-MIIE6zCCA9OgAwIBAgIQfsu0IQPrnhx8QL9CuQ99tzANBgkqhkiG9w0BAQUFADBB
-MQswCQYDVQQGEwJGUjESMBAGA1UEChMJR0FOREkgU0FTMR4wHAYDVQQDExVHYW5k
-aSBTdGFuZGFyZCBTU0wgQ0EwHhcNMTQwMTAxMDAwMDAwWhcNMTUwMTAxMjM1OTU5
-WjBcMSEwHwYDVQQLExhEb21haW4gQ29udHJvbCBWYWxpZGF0ZWQxGzAZBgNVBAsT
-EkdhbmRpIFN0YW5kYXJkIFNTTDEaMBgGA1UEAxMRbmFnaW9zLmRlYmlhbi5vcmcw
-ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDELZ96JbZ6YpTMZE7HHlaM
-QMKeEKjbdWVCe+ueik6V03zvsa7RB6/U/+Gd39mx+rvCuluDstULz176B5vKeysV
-JLD4NtVuE0vHrG3RLQLf8n0QuiolzhDau985pqvu5ZbK1YNQhOmoXNlVDCjKB7j7
-tXMApi3w/r13PGDB+GmyDXl7dNwpzC2u9JMLkfcHYcZYeAAhP48h6jIqQ6o0j+Y3
-qeiwMTZwJds1NkmqE6tzK1Kx259vzeg/MpoTiHnuuhO4eufWFL1xYq5MypeoWbSe
-skKQMz4ikLP3uPjgAi8iMALWuuK1cMetpkHH47VvBc5iJceHrWckWgp0/LlE1TTF
-AgMBAAGjggHCMIIBvjAfBgNVHSMEGDAWgBS2qP+iqC/Qps1LsWjz51AQMad5ITAd
-BgNVHQ4EFgQUVSyzHxfHkjuiSJHOxBW5kKxDmzgwDgYDVR0PAQH/BAQDAgWgMAwG
-A1UdEwEB/wQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMGAGA1Ud
-IARZMFcwSwYLKwYBBAGyMQECAhowPDA6BggrBgEFBQcCARYuaHR0cDovL3d3dy5n
-YW5kaS5uZXQvY29udHJhY3RzL2ZyL3NzbC9jcHMvcGRmLzAIBgZngQwBAgEwPAYD
-VR0fBDUwMzAxoC+gLYYraHR0cDovL2NybC5nYW5kaS5uZXQvR2FuZGlTdGFuZGFy
-ZFNTTENBLmNybDBqBggrBgEFBQcBAQReMFwwNwYIKwYBBQUHMAKGK2h0dHA6Ly9j
-cnQuZ2FuZGkubmV0L0dhbmRpU3RhbmRhcmRTU0xDQS5jcnQwIQYIKwYBBQUHMAGG
-FWh0dHA6Ly9vY3NwLmdhbmRpLm5ldDAzBgNVHREELDAqghFuYWdpb3MuZGViaWFu
-Lm9yZ4IVd3d3Lm5hZ2lvcy5kZWJpYW4ub3JnMA0GCSqGSIb3DQEBBQUAA4IBAQA9
-k9IMjq4TCAS2VjWj9yyaaPIljGmqSirAhEW3n37sCHyCLIGQYk2PMgDBRDzaopI7
-IfVa2v8MkjSYeqaMzzSOiMCxepTH4EduUlZFUNpc2OuRb+/+haQHxNrpcPsjvWLK
-Um7z9woLMb3IQptGr5UJJlkFeth9Jh+aET0r2Wm1xwwbszxEq1bBWMNwt6qlLtZq
-+nYsL14iNrIVZLlJ5LqRKeREGZ3DXCJkJ6dfU8fOI1C2FcjF28+TF7ikFngXl51Q
-zzcR820/oOxUgSnINGCAaitwtGzwmcIfwijYwaszMO9dd/fBU3aO+pM3BQTJWWtW
-VPzKt83/OPNGTsYRiCUu
+MIIFbDCCBFSgAwIBAgIRAMHtLgL+5LCB8oWL+KEZe20wDQYJKoZIhvcNAQEFBQAw
+QTELMAkGA1UEBhMCRlIxEjAQBgNVBAoTCUdBTkRJIFNBUzEeMBwGA1UEAxMVR2Fu
+ZGkgU3RhbmRhcmQgU1NMIENBMB4XDTE0MDEwMTAwMDAwMFoXDTE1MDEwMTIzNTk1
+OVowXDEhMB8GA1UECxMYRG9tYWluIENvbnRyb2wgVmFsaWRhdGVkMRswGQYDVQQL
+ExJHYW5kaSBTdGFuZGFyZCBTU0wxGjAYBgNVBAMTEW5hZ2lvcy5kZWJpYW4ub3Jn
+MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA9ofBK2PPf6IuXi5uYcWT
+pKyzSYK+ePeKvz9Y/cZ9ZVibtVOQV/E9QCe1rQpu7LCWfs3OjobwGWIVYN/UaDj2
+kiVDNh31nUsgBFILOh7T7yn8l9boXZhiDEqNdNkzTG8MQ5Xtu5CI6uGZdo+hAEFi
+AXhgpWllS6njoci3/MVsxaf1Md9iqqtS6xet0ThmVP3uVm4OfrteW5R44dxw+m47
+zJLy/U4tCErYn1s8WFSmrPvvUorlPZpyKC2ekt8p8L55tNKJfHMtM1d0Zg0135Ma
+fvJZrYuBtPteofK4jBuGmQA64EN8QREY/zRA8RTAzzGLWmtfRJ6LmtHPUBwYYbLN
+H16i9YNEfUwqtB3LTCg38sHQOhJnhVgP2HAM5ZkHgXVKjCQXk6BrCOsmfFxBo1CR
+tXlTY8M/uW/RNkW2iukq6l/XLzcPLd29H7DmXskMslf+QvjCF2wSpOy14mDbyseC
+5zw4HdPg4g+w3B9Lc+cciLf+m/AU9jQQGFCMVF/2BG8ZAgMBAAGjggHCMIIBvjAf
+BgNVHSMEGDAWgBS2qP+iqC/Qps1LsWjz51AQMad5ITAdBgNVHQ4EFgQU5zczwE6Q
+5ts4w4VHSVpmdQeHB+AwDgYDVR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYD
+VR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMGAGA1UdIARZMFcwSwYLKwYBBAGy
+MQECAhowPDA6BggrBgEFBQcCARYuaHR0cDovL3d3dy5nYW5kaS5uZXQvY29udHJh
+Y3RzL2ZyL3NzbC9jcHMvcGRmLzAIBgZngQwBAgEwPAYDVR0fBDUwMzAxoC+gLYYr
+aHR0cDovL2NybC5nYW5kaS5uZXQvR2FuZGlTdGFuZGFyZFNTTENBLmNybDBqBggr
+BgEFBQcBAQReMFwwNwYIKwYBBQUHMAKGK2h0dHA6Ly9jcnQuZ2FuZGkubmV0L0dh
+bmRpU3RhbmRhcmRTU0xDQS5jcnQwIQYIKwYBBQUHMAGGFWh0dHA6Ly9vY3NwLmdh
+bmRpLm5ldDAzBgNVHREELDAqghFuYWdpb3MuZGViaWFuLm9yZ4IVd3d3Lm5hZ2lv
+cy5kZWJpYW4ub3JnMA0GCSqGSIb3DQEBBQUAA4IBAQCq3wEO2iANJY+yQEjeevFN
+ITQkk124/Mf/4dR7jegEVpp4TXGNot61pZWYbQzJLQxfC1jzIYOdJgTKG3j+LiXg
+akeEFpkgPl6RPPD2RVHE1iDilKNXfD5RlGQfbevwpEWciM/BCv+oNqRWICvxs7Mi
+sh2XWeIE6KoCpGIWJqNV18s14NIdGoDgA/M8iFTADS+1SecMhM9So/CS6a2GNheF
+XwPCWKphnohmN4pp6oDTIoT4jJNgZ0eYyiWgtOPqk1d8OHp3vfr1h8l4aeS3BS14
+vG6HTCiKhv0n8ZXJQ5JL1/3HuU2b67q6Oe2/57Vb+0vAK4ggpODbdWcqlJTRgqgZ
 -----END CERTIFICATE-----
