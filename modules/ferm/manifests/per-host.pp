@@ -14,8 +14,24 @@ class ferm::per-host {
 	case $::hostname {
 		oyens: {
 			@ferm::rule { 'dsa-amqp':
-				description     => 'Allow upsmon access',
+				description     => 'Allow rabbitmq access',
 				rule            => '&SERVICE_RANGE(tcp, 5672, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-keystone':
+				description     => 'Allow keystone access',
+				rule            => '&SERVICE_RANGE(tcp, 5000, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-keystone2':
+				description     => 'Allow keystone access',
+				rule            => '&SERVICE_RANGE(tcp, 35357, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-glance':
+				description     => 'Allow glance access',
+				rule            => '&SERVICE_RANGE(tcp, 9292, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-nova':
+				description     => 'Allow nova access',
+				rule            => '&SERVICE_RANGE(tcp, 8774, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
 		}
 	}
