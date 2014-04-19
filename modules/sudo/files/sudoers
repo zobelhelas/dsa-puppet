@@ -210,3 +210,7 @@ nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 # voip stuff
 %debvoip	VOIPHOSTS=(root)	/usr/sbin/service resiprocate-turn-server restart, /usr/sbin/service repro restart
 
+# Openstack stuff
+Defaults:neutron !requiretty
+nova		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/nova-rootwrap *
+neutron		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf *
