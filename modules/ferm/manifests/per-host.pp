@@ -233,12 +233,12 @@ class ferm::per-host {
 			@ferm::rule { 'dsa-postgres-udd':
 				description     => 'Allow postgress access',
 				# quantz, moszumanska, master, couper, coccia, franck
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 206.12.19.122/32 5.153.231.21/32 82.195.75.110/32 5.153.231.14/32 5.153.231.11/32 138.16.160.12/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 5.153.231.28/32 5.153.231.21/32 82.195.75.110/32 5.153.231.14/32 5.153.231.11/32 138.16.160.12/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-udd6':
 				domain          => '(ip6)',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 2001:41c8:1000:21::21:14/128 2001:41c8:1000:21::21:11/32 2001:41c8:1000:21::21:21/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2001:41c8:1000:21::21:28/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 2001:41c8:1000:21::21:14/128 2001:41c8:1000:21::21:11/32 2001:41c8:1000:21::21:21/128 ))'
 			}
 		}
 		franck: {
@@ -274,12 +274,12 @@ class ferm::per-host {
 			}
 			@ferm::rule { 'dsa-postgres-dak':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 206.12.19.122/32 206.12.19.123/32 206.12.19.134/32 5.153.231.21/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 5.153.231.28/32 206.12.19.123/32 206.12.19.134/32 5.153.231.21/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-dak6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2001:41c8:1000:21::21:11/128 2607:f8f0:610:4000:216:36ff:fe40:3860/128 2607:f8f0:610:4000:216:36ff:fe40:3861/128 2607:f8f0:610:4000:6564:a62:ce0c:1386/128 2001:41c8:1000:21::21:21/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2001:41c8:1000:21::21:11/128 2001:41c8:1000:21::21:28/128 2607:f8f0:610:4000:216:36ff:fe40:3861/128 2607:f8f0:610:4000:6564:a62:ce0c:1386/128 2001:41c8:1000:21::21:21/128 ))'
 			}
 			@ferm::rule { 'dsa-postgres-wanna-build':
 				# wuiet, ullmann, franck
