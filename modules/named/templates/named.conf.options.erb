@@ -51,6 +51,11 @@ options {
 	};
 <% end -%>
 
+	// Defaults are 100 and 10, causing lots and lots of tiny updates.
+	// This way, I hope, we'll get fewer (and thus bigger) updates. -- weasel
+	sig-signing-nodes 5000;
+	sig-signing-signatures 1000;
+
 	max-journal-size 100K;
 };
 
