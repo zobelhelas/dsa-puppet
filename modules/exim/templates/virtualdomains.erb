@@ -50,7 +50,7 @@ end
 vdoms
 %>
 <% if classes.include?("roles::mailrelay") -%>
-debian.org: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.org/mail
-admin.debian.org: user=mail_admin group=mail_admin directory=/etc/exim4/email-virtualdomains/admin.debian.org/mail
-ftp-master.debian.org: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/ftp-master.debian.org/mail
+debian.org: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.org
+admin.debian.org: user=mail_admin group=mail_admin directory=/etc/exim4/email-virtualdomains/admin.debian.org
+ftp-master.debian.org: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/ftp-master.debian.org
 <% end -%>
