@@ -181,6 +181,10 @@ class roles {
 		include roles::rtc
 	}
 
+	if has_role('keystone') {
+		include roles::keystone
+	}
+
 	if has_role('postgres_backup_server') {
 		include postgres::backup_server
 	}
