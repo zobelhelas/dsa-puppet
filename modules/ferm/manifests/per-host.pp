@@ -29,7 +29,7 @@ class ferm::per-host {
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9191, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-glance1':
+			@ferm::rule { 'dsa-glance2':
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9191, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
