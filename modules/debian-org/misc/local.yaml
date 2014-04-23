@@ -152,7 +152,6 @@ footer:
 host_settings:
   heavy_exim:
     - buxtehude.debian.org
-    - chopin.debian.org
     - draghi.debian.org
     - franck.debian.org
     - gombert.debian.org
