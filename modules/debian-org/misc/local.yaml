@@ -150,12 +150,14 @@ footer:
   #zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 host_settings:
   heavy_exim:
+    # mail front-ends
+    - mailly.debian.org
+    - muffat.debian.org
+    # other mail receivers
     - buxtehude.debian.org
     - draghi.debian.org
     - franck.debian.org
-    - mailly.debian.org
     - master.debian.org
-    - muffat.debian.org
     - nono.debian.org
     - picconi.debian.org
     - popov.debian.org
