@@ -215,3 +215,4 @@ nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 Defaults:neutron !requiretty
 nova		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/nova-rootwrap *
 neutron		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf *
+cinder		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/cinder-rootwrap /etc/cinder/rootwrap.conf *
