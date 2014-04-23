@@ -13,13 +13,6 @@ vdoms = case @fqdn
 
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
 
-        when "master.debian.org" then "debian.com: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.net: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.gr: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.us: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.es: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.eu: user=nobody group=Debian directory=/srv/star.debian.star/"
-
         when "nono.debian.org" then "nm.debian.org: user=nm group=nm directory=/srv/nm.debian.org/mail/"
 
 	when "picconi.debian.org" then "packages.debian.org: user=pkg_user group=Debian directory=/srv/packages.debian.org/mail/"
@@ -47,4 +40,11 @@ debian.org: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/d
 admin.debian.org: user=mail_admin group=mail_admin directory=/etc/exim4/email-virtualdomains/admin.debian.org
 ftp-master.debian.org: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/ftp-master.debian.org
 security.debian.org: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/security.debian.org
+
+debian.com: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.star/
+debian.net: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.star/
+debian.gr: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.star/
+debian.us: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.star/
+debian.es: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.star/
+debian.eu: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.star/
 <% end -%>
