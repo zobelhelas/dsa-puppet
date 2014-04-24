@@ -634,7 +634,7 @@ check_recipient:
 
   deny    condition     = ${if match_domain{$sender_address_domain}{+virtual_domains}{1}{0}}
           condition     = ${if exists {${extract{directory}{VSENDERDOMAINDATA}{${value}/neversenders}}}{1}{0}}
-          condition     = ${lookup{$sender_address_local_part}lsearch{${extract{directory}{VSENDERDOMAINDATA}{${value}/neversenders}}{true}}
+          condition     = ${lookup{$sender_address_local_part}lsearch{${extract{directory}{VSENDERDOMAINDATA}{${value}/neversenders}}}{true}}
 	  message       = no mail should ever come from <$sender_address>
 
   warn    condition     = ${if eq{$acl_m_prf}{localonly}}
