@@ -251,6 +251,7 @@ received_header_text = Received: ${if def:sender_rcvhost {from $sender_rcvhost\n
 # macro definitions.
 # Do not wrap!
 VDOMAINDATA = ${lookup{$domain}partial-lsearch{/etc/exim4/virtualdomains}{$value}}
+VSENDERDOMAINDATA = ${lookup{$sender_address_domain}partial-lsearch{/etc/exim4/virtualdomains}{$value}}
 WHITELIST = ${if match_domain{$domain}{+virtual_domains}\
             {${if exists {${extract{directory}{VDOMAINDATA}{${value}/whitelist}}}\
             {${lookup{$local_part}lsearch{${extract{directory}{VDOMAINDATA}{${value}/whitelist}}}{$value}{}}}{}}}\
@@ -626,14 +627,14 @@ check_recipient:
 	  message       = mail from <$sender_address> not allowed externally
 
   deny    sender_domains= +virtual_domains
-          condition     = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/localusers}}}}
-          condition     = ${lookup{$sender_address_local_part}lsearch{${extract{directory}{VDOMAINDATA}{${value}/localusers}}}{true}}
+          condition     = ${if exists {${extract{directory}{VSENDERDOMAINDATA}{${value}/localusers}}}}
+          condition     = ${lookup{$sender_address_local_part}lsearch{${extract{directory}{VSENDERDOMAINDATA}{${value}/localusers}}}{true}}
 	  hosts         = !+debianhosts
 	  message       = mail from <$sender_address> not allowed externally
 
   deny    condition     = ${if match_domain{$sender_address_domain}{+virtual_domains}{1}{0}}
-          condition     = ${if exists {${extract{directory}{VDOMAINDATA}{${value}/neversenders}}}{1}{0}}
-          condition     = ${lookup{$sender_address_local_part}lsearch{${extract{directory}{VDOMAINDATA}{${value}/neversenders}}{true}}
+          condition     = ${if exists {${extract{directory}{VSENDERDOMAINDATA}{${value}/neversenders}}}{1}{0}}
+          condition     = ${lookup{$sender_address_local_part}lsearch{${extract{directory}{VSENDERDOMAINDATA}{${value}/neversenders}}{true}}
 	  message       = no mail should ever come from <$sender_address>
 
   warn    condition     = ${if eq{$acl_m_prf}{localonly}}
