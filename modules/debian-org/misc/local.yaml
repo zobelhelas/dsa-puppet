@@ -156,7 +156,6 @@ host_settings:
     # other mail receivers
     - buxtehude.debian.org
     - draghi.debian.org
-    - franck.debian.org
     - master.debian.org
     - nono.debian.org
     - picconi.debian.org
