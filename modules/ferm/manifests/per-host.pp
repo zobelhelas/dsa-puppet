@@ -21,15 +21,15 @@ class ferm::per-host {
 				description     => 'Allow keystone access',
 				rule            => '&SERVICE_RANGE(tcp, 5000, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-keystone2':
+			@ferm::rule { 'dsa-keystone-admin':
 				description     => 'Allow keystone access',
 				rule            => '&SERVICE_RANGE(tcp, 35357, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-glance1':
+			@ferm::rule { 'dsa-glance-api':
 				description     => 'Allow glance access',
-				rule            => '&SERVICE_RANGE(tcp, 9191, ( 5.153.231.240/27 172.29.123.0/24 ))'
+				rule            => '&SERVICE_RANGE(tcp, 9292, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-glance2':
+			@ferm::rule { 'dsa-glance-registry':
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9191, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
@@ -37,7 +37,7 @@ class ferm::per-host {
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9696, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-nova1':
+			@ferm::rule { 'dsa-nova-ec2':
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8773, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
@@ -45,7 +45,7 @@ class ferm::per-host {
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8774, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-nova3':
+			@ferm::rule { 'dsa-nova-metadata':
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8775, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
