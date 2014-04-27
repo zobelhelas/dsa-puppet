@@ -39,6 +39,9 @@ get_suites() {
       s390)
         echo "wheezy squeeze"
         ;;
+      sparc)
+        echo "sid wheezy squeeze"
+        ;;
       *)
         echo "sid jessie wheezy squeeze"
         ;;
