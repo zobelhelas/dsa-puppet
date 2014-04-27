@@ -12,6 +12,12 @@ class ferm::per-host {
 	}
 
 	case $::hostname {
+		bm-bl9: {
+			@ferm::rule { 'dsa-iscsi':
+				description     => 'Allow iscsi access',
+				rule            => '&SERVICE_RANGE(tcp, 3260, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+		}
 		oyens: {
 			@ferm::rule { 'dsa-amqp':
 				description     => 'Allow rabbitmq access',
