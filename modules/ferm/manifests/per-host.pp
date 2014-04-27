@@ -130,21 +130,6 @@ class ferm::per-host {
 				rule            => '&SERVICE(tcp, 636)'
 			}
 		}
-		cilea: {
-			ferm::module { 'nf_conntrack_sip': }
-			ferm::module { 'nf_conntrack_h323': }
-
-			@ferm::rule { 'dsa-sip':
-				domain          => '(ip ip6)',
-				description     => 'Allow sip access',
-				rule            => '&TCP_UDP_SERVICE(5060)'
-			}
-			@ferm::rule { 'dsa-sipx':
-				domain          => '(ip ip6)',
-				description     => 'Allow sipx access',
-				rule            => '&TCP_UDP_SERVICE(5080)'
-			}
-		}
 		sonntag: {
 			@ferm::rule { 'dsa-bugs-search':
 				description  => 'port 1978 for bugs-search from bug web frontends',

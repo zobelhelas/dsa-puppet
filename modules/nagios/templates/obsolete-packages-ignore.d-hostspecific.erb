@@ -6,7 +6,6 @@
 <%=
 ignore = []
 case fqdn
-when "cilea.debian.org" then                                   ignore << "/freeswitch.*/"
 when /draghi.debian.org/ then                                  ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb ud python-cdb python-nameparser}
 when /orff.debian.org/ then                                    ignore << %w{libnet-dns-sec-perl libnet-dns-zone-parser-perl}
 when /(zandonai|zelenka).debian.org/ then                      ignore << %w{samhain zabbix-agent rrdcollect}
