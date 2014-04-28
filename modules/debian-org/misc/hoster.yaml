@@ -182,5 +182,6 @@ zivit:
   netrange:
     - 80.245.144.0/22
   nameservers: [80.245.147.53, 80.245.147.54]
+  mirror-debian: http://debian.netcologne.de/debian/
 
 # vim:set et sts=2 ts=2 sw=2:
