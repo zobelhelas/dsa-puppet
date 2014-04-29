@@ -281,12 +281,12 @@ class ferm::per-host {
 			}
 			@ferm::rule { 'dsa-postgres-dak':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 5.153.231.28/32 206.12.19.123/32 206.12.19.134/32 5.153.231.21/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 5.153.231.28/32 206.12.19.123/32 206.12.19.134/32 5.153.231.21/32 5.153.231.18/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-dak6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2001:41c8:1000:21::21:11/128 2001:41c8:1000:21::21:28/128 2607:f8f0:610:4000:216:36ff:fe40:3861/128 2607:f8f0:610:4000:6564:a62:ce0c:1386/128 2001:41c8:1000:21::21:21/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2001:41c8:1000:21::21:11/128 2001:41c8:1000:21::21:28/128 2607:f8f0:610:4000:216:36ff:fe40:3861/128 2607:f8f0:610:4000:6564:a62:ce0c:1386/128 2001:41c8:1000:21::21:21/128 2001:41c8:1000:21::21:18/128 ))'
 			}
 			@ferm::rule { 'dsa-postgres-wanna-build':
 				# wuiet, ullmann, franck
