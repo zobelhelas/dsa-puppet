@@ -93,7 +93,7 @@ nameinfo:
   philp.debian.org: Elizabeth Philp (1827 - November 26th, 1885)
   popov.debian.org: Gavriil Nikolayevich Popov (Гаврии́л Никола́евич Попо́в) (September 12th, 1904 - February 17th, 1972)
   porpora.debian.org: Niccolò (Antonio) Porpora (17 August 1686 - 3 March 1768)
-  porter.debian.org: Rachel Portman (11 December 1960 - )
+  portman.debian.org: Rachel Portman (11 December 1960 - )
   poulenc.debian.org: Francis Jean Marcel Poulenc (January 7th, 1899 - January 30th, 1963)
   powell.debian.org: Andrew Powell (b. April 18th, 1949)
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
@@ -261,6 +261,7 @@ host_settings:
     # Not worth backing up
     - rainier.debian.org
     - rapoport.debian.org
+    - portman.debian.org
   broken-rtc:
     - abel.debian.org
     - alwyn.debian.org
