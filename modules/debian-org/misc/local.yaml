@@ -261,7 +261,6 @@ host_settings:
     # Not worth backing up
     - rainier.debian.org
     - rapoport.debian.org
-    - portman.debian.org
   broken-rtc:
     - abel.debian.org
     - alwyn.debian.org
