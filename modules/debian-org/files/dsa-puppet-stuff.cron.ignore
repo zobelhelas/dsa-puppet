@@ -8,3 +8,4 @@
 ^v6: error fetching interface information: Device not found$
 ^pcilib: Cannot open /proc/bus/pci$
 ^lspci: Cannot find any working access method\.$
+^can't open /proc/dma at /usr/bin/lsdev line 32\.$
