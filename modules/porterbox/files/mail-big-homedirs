@@ -225,7 +225,7 @@ class HomedirReminder(object):
         realname = pwd.getpwnam(username).pw_gecos.decode('utf-8').split(',', 1)[0]
       except:
         realname = username
-      lastlog_time = self.lastlog_times[username]
+      lastlog_time = self.lastlog_times.get(username, 0)
       days_ago = int( (current_time - lastlog_time) / 3600 / 24 )
       kwargs = {
           'hostname': platform.node(),
