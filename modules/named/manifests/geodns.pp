@@ -23,12 +23,15 @@ class named::geodns inherits named {
 	}
 	file { '/etc/bind/named.conf.options':
 		content => template('named/named.conf.options.erb'),
+		notify  => Service['bind9'],
 	}
 	file { '/etc/bind/named.conf.local':
 		source => 'puppet:///modules/named/common/named.conf.local',
+		notify  => Service['bind9'],
 	}
 	file { '/etc/bind/named.conf.acl':
 		source => 'puppet:///modules/named/common/named.conf.acl',
+		notify  => Service['bind9'],
 	}
 	file { '/etc/bind/geodns/zonefiles':
 		ensure => directory,
@@ -38,6 +41,7 @@ class named::geodns inherits named {
 	}
 	file { '/etc/bind/geodns/named.conf.geo':
 		source => 'puppet:///modules/named/common/named.conf.geo',
+		notify  => Service['bind9'],
 	}
 	file { '/etc/bind/geodns/trigger':
 		mode   => '0555',
