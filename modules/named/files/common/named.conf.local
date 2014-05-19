@@ -3,9 +3,6 @@
 // USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 //
 
-include "/etc/bind/named.conf.acl";
-include "/etc/bind/geodns/named.conf.geo";
-
 zone "29.172.in-addr.arpa" {
         type slave;
         notify no;
@@ -17,3 +14,6 @@ zone "29.172.in-addr.arpa" {
         allow-query { any; };
         allow-transfer { };
 };
+
+include "/etc/bind/named.conf.acl";
+include "/etc/bind/geodns/named.conf.geo";
