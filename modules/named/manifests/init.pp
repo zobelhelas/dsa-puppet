@@ -62,4 +62,12 @@ class named {
 		group  => bind,
 		mode   => '0775',
 	}
+
+	file { '/etc/bind/named.conf.puppet-shared-keys':
+		mode    => '0640',
+		content => template('named/named.conf.puppet-shared-keys.erb'),
+		owner   => root,
+		group   => bind,
+		notify  => Service['bind9'],
+	}
 }

@@ -5,3 +5,24 @@
 
 include "/etc/bind/named.conf.acl";
 include "/etc/bind/geodns/named.conf.geo";
+
+view "default" {
+  match-clients { any; };
+
+  zone "security.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.security.debian.org";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+  zone "www.debian.org" {
+    type master;
+    file "/etc/bind/geodns/zonefiles/db.www.debian.org";
+    notify no;
+    allow-query { any; };
+    allow-transfer { };
+  };
+
+};
