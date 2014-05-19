@@ -22,6 +22,17 @@ view "AF" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-AF";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };
 view "AN" {
   match-clients { AN; };
@@ -42,6 +53,17 @@ view "AN" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-AN";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };
 view "AS" {
   match-clients { AS; };
@@ -62,6 +84,17 @@ view "AS" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-AS";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };
 view "EU" {
   match-clients { EU; };
@@ -82,6 +115,17 @@ view "EU" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-EU";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };
 view "NA" {
   match-clients { NA; };
@@ -102,6 +146,17 @@ view "NA" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-NA";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };
 view "OC" {
   match-clients { OC; };
@@ -122,6 +177,17 @@ view "OC" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-OC";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };
 view "SA" {
   match-clients { SA; };
@@ -142,6 +208,17 @@ view "SA" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-SA";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };
 view "undef" {
   match-clients { undef; };
@@ -162,6 +239,17 @@ view "undef" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-undef";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };
 view "default" {
   match-clients { any; };
@@ -182,4 +270,15 @@ view "default" {
     allow-transfer { };
   };
 
+  zone "29.172.in-addr.arpa" {
+    type slave;
+    notify no;
+    file "db.29.172.in-addr.arpa-default";
+    masters {
+      82.195.75.91; // denis
+      2001:41b8:202:deb:1b1b::91; // denis
+    };
+    allow-query { any; };
+    allow-transfer { };
+  };
 };

@@ -3,17 +3,5 @@
 // USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 //
 
-zone "29.172.in-addr.arpa" {
-        type slave;
-        notify no;
-        file "db.29.172.in-addr.arpa";
-        masters {
-                82.195.75.91; // denis
-                2001:41b8:202:deb:1b1b::91; // denis
-        };
-        allow-query { any; };
-        allow-transfer { };
-};
-
 include "/etc/bind/named.conf.acl";
 include "/etc/bind/geodns/named.conf.geo";
