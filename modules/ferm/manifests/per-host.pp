@@ -82,7 +82,7 @@ class ferm::per-host {
 				rule        => 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
 			}
 		}
-		abel,alwyn,rietz,jenkins: {
+		abel,rietz,jenkins: {
 			@ferm::rule { 'dsa-tftp':
 				description     => 'Allow tftp access',
 				rule            => '&SERVICE(udp, 69)'
