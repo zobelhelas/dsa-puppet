@@ -24,7 +24,6 @@ when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabb
 when /(pasquini|tristano).debian.org/ then                     ignore << %w{ganeti-instance-image}
 when "zemlinsky.debian.org" then                               ignore << %w{initramfs-tools}
 when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-api64 gskssl64 gskcrypt64}
-when "denis.debian.org" then                                   ignore << %w{libdns100 libbind9-90 libisccc90 bind9 liblwres90 libisc95 bind9utils libisccfg90}
 when "vogler.debian.org" then                                  ignore << %w{repro libresiprocate-1.9 resiprocate-turn-server}
 when /(mailly|muffat).debian.org/ then                         ignore << %w{python-dsa-mq}
 end
