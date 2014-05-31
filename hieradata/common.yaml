@@ -22,10 +22,6 @@ roles:
   dns_primary:
     - denis.debian.org
   dns_secondary:
-    - ravel.debian.org
-    - senfl.debian.org
-    - diamond.debian.org
-    - orff.debian.org
   dns_geo:
     - geo1.debian.org
     - geo2.debian.org
