@@ -16,30 +16,37 @@ class nfs-server {
 		status      => '/bin/true',
 	}
 
+	case $::hostname {
+		lw01,lw02,lw03,lw04: {
+			$client_range    = '10.0.0.0/8'
+		}
+		milanollo: {
+			$client_range    = '172.29.122.0/24'
+		}
+		default: {
+			$client_range    = '0.0.0.0/0'
+		}
+	}
+
 	@ferm::rule { 'dsa-portmap':
-		domain      => '(ip ip6)',
 		description => 'Allow portmap access',
-		rule        => '&TCP_UDP_SERVICE(111)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(111, $client_range)"
 	}
 	@ferm::rule { 'dsa-nfs':
-		domain      => '(ip ip6)',
 		description => 'Allow nfsd access',
-		rule        => '&TCP_UDP_SERVICE(2049)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(2049, $client_range)"
 	}
 	@ferm::rule { 'dsa-status':
-		domain      => '(ip ip6)',
 		description => 'Allow statd access',
-		rule        => '&TCP_UDP_SERVICE(10000)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(10000, $client_range)"
 	}
 	@ferm::rule { 'dsa-mountd':
-		domain      => '(ip ip6)',
 		description => 'Allow mountd access',
-		rule        => '&TCP_UDP_SERVICE(10002)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(10002, $client_range)"
 	}
 	@ferm::rule { 'dsa-lockd':
-		domain      => '(ip ip6)',
 		description => 'Allow lockd access',
-		rule        => '&TCP_UDP_SERVICE(10003)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(10003, $client_range)"
 	}
 
 	file { '/etc/default/nfs-common':
