@@ -29,7 +29,7 @@ Host_Alias	FTPHOSTS	= franck
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= respighi, beethoven, pettersson
 Host_Alias	MEGARAIDHOSTS	= rautavaara, sibelius
-Host_Alias	MPTRAIDHOSTS	= barber, biber, vitry, orff
+Host_Alias	MPTRAIDHOSTS	= barber, biber, vitry
 Host_Alias	MEGACTLHOSTS	= nielsen
 Host_Alias	LISTHOSTS	= bendel
 Host_Alias	BUILDD_MASTER	= wuiet
@@ -167,8 +167,6 @@ piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
 #pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 dnsadm		denis=(root)			NOPASSWD: /usr/sbin/service bind9 reload
-%dnsadm		orff=(root)		NOPASSWD: /etc/init.d/bind9 reload
-%dnsadm		orff=(geodnssync)	NOPASSWD: /usr/bin/make -C /srv/dns.debian.org/geo
 %adm		draghi=(puppet)			NOPASSWD: /usr/bin/make -s -C /srv/db.debian.org/var/gitnagios/dsa-nagios/config install
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		BUILDD_MASTER=(wb-buildd)	ALL

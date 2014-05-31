@@ -27,7 +27,6 @@ roles:
     - geo3.debian.org
   extranrpeclient:
     - denis.debian.org
-    - orff.debian.org
   ftp.d.o:
     - klecker.debian.org
   ftp_master:
