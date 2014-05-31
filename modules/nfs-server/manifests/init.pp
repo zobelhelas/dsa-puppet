@@ -30,23 +30,23 @@ class nfs-server {
 
 	@ferm::rule { 'dsa-portmap':
 		description => 'Allow portmap access',
-		rule        => '&TCP_UDP_SERVICE_RANGE(111, $client_range)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(111, $client_range)"
 	}
 	@ferm::rule { 'dsa-nfs':
 		description => 'Allow nfsd access',
-		rule        => '&TCP_UDP_SERVICE_RANGE(2049, $client_range)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(2049, $client_range)"
 	}
 	@ferm::rule { 'dsa-status':
 		description => 'Allow statd access',
-		rule        => '&TCP_UDP_SERVICE_RANGE(10000, $client_range)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(10000, $client_range)"
 	}
 	@ferm::rule { 'dsa-mountd':
 		description => 'Allow mountd access',
-		rule        => '&TCP_UDP_SERVICE_RANGE(10002, $client_range)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(10002, $client_range)"
 	}
 	@ferm::rule { 'dsa-lockd':
 		description => 'Allow lockd access',
-		rule        => '&TCP_UDP_SERVICE_RANGE(10003, $client_range)'
+		rule        => "&TCP_UDP_SERVICE_RANGE(10003, $client_range)"
 	}
 
 	file { '/etc/default/nfs-common':
