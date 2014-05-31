@@ -32,7 +32,6 @@ nameinfo:
   danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
   delfin.debian.org: Carmelina Delfin (c. 1900 - after 1948)
   diabelli.debian.org: Anton Diabelli (September 5th, 1781 - April 7th, 1858)
-  diamond.debian.org: David Leo Diamond (July 9th, 1915 - June 13th, 2005)
   dinis.debian.org: Dinis of Portugal (9 October 1261 – 7 January 1325)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   dillon.debian.org: Fannie Charles Dillon (March 16th, 1881 - February 21st, 1947)
@@ -187,7 +186,6 @@ host_settings:
     - beach.debian.org
     - bizet.debian.org
     - busoni.debian.org
-    - diamond.debian.org
     - gluck.debian.org
     - lobos.debian.org
     - pkgmirror-1and1.debian.org
