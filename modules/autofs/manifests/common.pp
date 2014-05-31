@@ -1,4 +1,4 @@
-class autofs::bytemark {
+class autofs::common {
 	package { 'autofs': ensure => installed }
 	package { 'nfs-common': ensure => installed }
 

@@ -1,4 +1,4 @@
-class autofs::bytemark {
+class autofs::leaseweb {
 	include autofs::common
 
 	file { '/etc/auto.master.d/dsa.autofs':
