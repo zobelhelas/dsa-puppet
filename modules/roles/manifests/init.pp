@@ -125,9 +125,6 @@ class roles {
 	if has_role('dns_primary') {
 		include named::primary
 	}
-	if has_role('dns_secondary') {
-		include named::authoritative
-	}
 
 	if has_role('weblog_destination') {
 		include roles::weblog_destination

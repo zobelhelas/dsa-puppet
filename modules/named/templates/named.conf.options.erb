@@ -42,15 +42,6 @@ options {
 	dnssec-validation yes;
 <% end -%>
 
-<% if scope.function_has_role(['dns_secondary']) -%>
-	rate-limit {
-		responses-per-second 25;
-		window 5;
-		slip 5;
-		qps-scale 250;
-	};
-<% end -%>
-
 	// Defaults are 100 and 10, causing lots and lots of tiny updates.
 	// This way, I hope, we'll get fewer (and thus bigger) updates. -- weasel
 	sig-signing-nodes 5000;

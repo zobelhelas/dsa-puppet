@@ -21,8 +21,6 @@ roles:
     - draghi.debian.org
   dns_primary:
     - denis.debian.org
-  dns_secondary:
-    - orff.debian.org
   dns_geo:
     - geo1.debian.org
     - geo2.debian.org
