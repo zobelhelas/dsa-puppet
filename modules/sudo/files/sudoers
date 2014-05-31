@@ -153,7 +153,7 @@ dsa		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component dsa.d
 dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component metadata.ftp-master.debian.org
 %debbits	master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
 %webwml		master=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component network-test.debian.org
-planet		philp,senfl=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
+planet		philp=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component planet.debian.org
 debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component www.debian.org
 %blends		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component blends.debian.org
 %Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component wnpp-by-tags.debian.net
@@ -175,7 +175,6 @@ dnsadm		denis=(root)			NOPASSWD: /usr/sbin/service bind9 reload
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 dak		franck=(backports)	NOPASSWD: /home/backports/bin/update-archive
-planet		senfl=(archvsync)	NOPASSWD: /home/archvsync/bin/runplanet ""
 # archvsync triggers snapshot
 archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
 archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
