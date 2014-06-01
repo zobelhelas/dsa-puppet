@@ -23,8 +23,13 @@ class nfs-server {
 		milanollo: {
 			$client_range    = '172.29.122.0/24'
 		}
+		beach,glinka: {
+			$client_range    = '192.168.2.0/24'
+		}
 		default: {
-			$client_range    = '0.0.0.0/0'
+			# Better than 0.0.0.0/0 - we really ought to configure a
+			# client range for them all instead of exporting to the world.
+			$client_range    = '127.0.0.0/8'
 		}
 	}
 
