@@ -397,6 +397,7 @@ class ferm::per-host {
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5439, ( 185.17.185.181/32 185.17.185.182/32 ))'
 			}
+		}
 		default: {}
 	}
 	# vpn fu
