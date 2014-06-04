@@ -189,6 +189,16 @@ class ferm::per-host {
 				rule            => 'proto tcp daddr 185.17.185.181 dport 80 REDIRECT to-ports 6081',
 			}
 		}
+		lw06: {
+			@ferm::rule { 'dsa-snapshot-varnish':
+				rule            => '&SERVICE(tcp, 6081)',
+			}
+			@ferm::rule { 'dsa-nat-snapshot-varnish':
+				table           => 'nat',
+				chain           => 'PREROUTING',
+				rule            => 'proto tcp daddr 185.17.185.182 dport 80 REDIRECT to-ports 6081',
+			}
+		}
 		default: {}
 	}
 	case $::hostname {
