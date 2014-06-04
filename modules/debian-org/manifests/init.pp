@@ -120,6 +120,10 @@ class debian-org {
 			suite      => "${::lsbdistcodename}-lts",
 			components => ['main','contrib','non-free']
 		}
+	else
+		site::aptrepo { 'debian-lts':
+			ensure => absent,
+		}
 	}
 
 	site::aptrepo { 'backports.debian.org':
