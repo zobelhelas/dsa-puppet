@@ -114,6 +114,13 @@ class debian-org {
 		suite      => "${::lsbdistcodename}/updates",
 		components => ['main','contrib','non-free']
 	}
+	if $::lsbmajdistrelease < 7 {
+		site::aptrepo { 'debian-lts':
+			url        => $mirror,
+			suite      => "${::lsbdistcodename}-lts",
+			components => ['main','contrib','non-free']
+		}
+	}
 
 	site::aptrepo { 'backports.debian.org':
 		url        => $mirror_backports,
