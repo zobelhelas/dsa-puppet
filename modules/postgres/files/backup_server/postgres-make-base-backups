@@ -47,6 +47,18 @@ else
 	console=""
 fi
 
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+	echo "Usage: $0 [<host>:<port>]"
+	exit 0
+fi
+
+if [ "$#" -gt 0 ]; then
+	forcehostport="$1"
+	shift
+else
+	forcehostport=""
+fi
+
 export PGSSLMODE=verify-full
 export PGSSLROOTCERT=/etc/ssl/debian/certs/ca.crt
 
@@ -54,6 +66,11 @@ date=$(date "+%Y%m%d-%H%M%S")
 
 while read host port username  cluster version; do
 	[ "${host#\#}" = "$host" ] || continue
+
+	if [ -n "$forcehostport" ] && [ "$forcehostport" != "$host:$port" ]; then
+		[ "$verbose" -gt 0 ] && echo "Skipping $host:$port $version/$cluster."
+		continue
+	fi
 
 	label="$date-$host-$cluster-$version-backup"
 	[ "$verbose" -gt 0 ] && echo "Doing $host:$port $version/$cluster: $label"
