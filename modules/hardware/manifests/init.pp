@@ -6,4 +6,6 @@ class hardware {
 			content => "Package: hp-health\nPin: version 8.6*\nPin-Priority: 1100\n"
 		}
 	}
+
+	include hardware::sensors
 }
