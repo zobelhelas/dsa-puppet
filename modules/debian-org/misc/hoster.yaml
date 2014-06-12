@@ -110,7 +110,7 @@ uni-karlsruhe:
   searchpaths: [debprivate-darmstadt.debian.org]
   #nameservers: [82.195.66.249, 217.198.242.225]
   nameservers: [82.195.75.109, 82.195.75.103]
-  mirror-debian: http://debian.netcologne.de/debian/
+  mirror-debian: http://mirror.unitedcolo.de/debian/
 leaseweb:
   netrange:
     - 185.17.185.176/28
@@ -182,6 +182,6 @@ zivit:
   netrange:
     - 80.245.144.0/22
   nameservers: [80.245.147.53, 80.245.147.54]
-  mirror-debian: http://debian.netcologne.de/debian/
+  mirror-debian: http://mirror.unitedcolo.de/debian/
 
 # vim:set et sts=2 ts=2 sw=2:
