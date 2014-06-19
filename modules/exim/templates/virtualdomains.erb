@@ -3,28 +3,11 @@ vdoms = case @fqdn
 
         when "buxtehude.debian.org" then "bugs.debian.org: user=debbugs group=debbugs directory=/srv/bugs.debian.org/mail"
 
-        when "chopin.debian.org" then "security.debian.org: user=mail_security group=nogroup directory=/srv/security-master.debian.org/mail/"
-
         when "draghi.debian.org" then "db.debian.org: user=mail_db group=nogroup directory=/srv/db.debian.org/mail"
 
-        when "franck.debian.org" then "release.debian.org: user=release group=debian-release directory=/org/release.debian.org/mail
-ftp-master.debian.org: user=dak group=debadmin directory=/srv/ftp-master.debian.org/mail group_writable=true"
-
-        when "gombert.debian.org" then "gobby.debian.org: user=gobby group=gobby directory=/srv/gobby.debian.org/mail"
-
         when "wuiet.debian.org" then "buildd.debian.org: user=wbadm group=wbadm directory=/srv/buildd.debian.org/mail"
-#logs.buildd.debian.org: user=wbadm group=wbadm directory=/srv/logs.buildd.debian.org/mail"
 
         when "handel.debian.org" then "puppet.debian.org: user=sgran group=Debian directory=/srv/puppet.debian.org/mail"
-
-        when "kaufmann.debian.org" then "keyring.debian.org: user=keyring group=Debian directory=/srv/keyring.debian.org/mail"
-
-        when "master.debian.org" then "debian.com: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.net: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.gr: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.us: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.es: user=nobody group=Debian directory=/srv/star.debian.star/
-debian.eu: user=nobody group=Debian directory=/srv/star.debian.star/"
 
         when "nono.debian.org" then "nm.debian.org: user=nm group=nm directory=/srv/nm.debian.org/mail/"
 
@@ -35,14 +18,9 @@ debian.eu: user=nobody group=Debian directory=/srv/star.debian.star/"
         when "quantz.debian.org" then "qa.debian.org: user=qa group=qa directory=/srv/qa.debian.org/mail/
 packages.qa.debian.org: user=qa group=qa directory=/srv/packages.qa.debian.org/mail"
 
-        when "ravel.debian.org" then "women.debian.org: user=nobody group=mujeres directory=/org/women.debian.org/mail"
-
 	when "reger.debian.org" then "rt.debian.org: user=rt group=rt directory=/srv/rt.debian.org/mail"
 
-        when "tartini.debian.org" then "forums.debian.net: user=forums group=forums directory=/srv/forums.debian.net/mail"
-
-        when "tye.debian.org" then "i18n.debian.org: user=debian-i18n group=debian-i18n directory=/srv/i18n.debian.org/mail
-l10n.debian.org: user=debian-i18n group=debian-i18n directory=/srv/l10n.debian.org/mail"
+        when "tye.debian.org" then "i18n.debian.org: user=debian-i18n group=debian-i18n directory=/srv/i18n.debian.org/mail"
 
 	when "vento.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/srv/vote.debian.org/mail/"
 
@@ -51,6 +29,17 @@ end
 vdoms
 %>
 <% if classes.include?("roles::mailrelay") -%>
-debian.org: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.org/mail
-admin.debian.org: user=mail_admin group=mail_admin directory=/etc/exim4/email-virtualdomains/admin.debian.org/mail
+debian.org: user=nobody group=Debian directory=/etc/exim4/email-virtualdomains/debian.org
+admin.debian.org: user=mail_admin group=mail_admin directory=/etc/exim4/email-virtualdomains/admin.debian.org
+ftp-master.debian.org: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/ftp-master.debian.org
+security.debian.org: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/security.debian.org
+women.debian.org: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/women.debian.org
+release.debian.org: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/release.debian.org
+
+debian.com: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/debian.star
+debian.net: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/debian.star
+debian.gr: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/debian.star
+debian.us: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/debian.star
+debian.es: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/debian.star
+debian.eu: user=nobody group=nogroup directory=/etc/exim4/email-virtualdomains/debian.star
 <% end -%>

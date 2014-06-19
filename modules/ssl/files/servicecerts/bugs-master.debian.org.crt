@@ -2,7 +2,7 @@ Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number:
-            64:0a:f9:3e:ca:0c:c2:e8:43:81:f8:67:d0:8a:b9:d2
+            e8:3b:f2:37:2b:c5:46:e3:53:5c:56:07:62:19:04:84
     Signature Algorithm: sha1WithRSAEncryption
         Issuer: C=FR, O=GANDI SAS, CN=Gandi Standard SSL CA
         Validity
@@ -11,33 +11,41 @@ Certificate:
         Subject: OU=Domain Control Validated, OU=Gandi Standard SSL, CN=bugs-master.debian.org
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-                Public-Key: (2048 bit)
+                Public-Key: (3072 bit)
                 Modulus:
-                    00:ac:7a:84:53:95:1f:36:19:0c:8d:c8:98:31:b7:
-                    06:1b:39:c6:fa:86:9a:0a:51:96:4c:fc:5e:47:58:
-                    91:a8:85:90:19:50:42:cf:43:b5:33:f0:f1:bc:5c:
-                    81:3f:00:8f:83:b3:a9:8c:5c:e1:2a:ad:77:40:d5:
-                    54:21:cd:d0:85:ce:42:67:f6:39:d5:55:31:26:74:
-                    dd:80:69:ed:e6:13:00:22:7f:94:1a:93:07:d9:3d:
-                    84:70:03:fd:73:88:8a:95:c5:5a:a3:2c:30:b0:d3:
-                    38:6d:80:1d:2c:78:8d:d4:d7:a2:96:02:d7:e3:d9:
-                    b1:f2:7c:23:1f:1d:ae:cd:c7:5f:70:92:9d:23:53:
-                    8a:c2:8f:ac:6a:95:8a:2c:39:6d:28:6c:0b:c5:70:
-                    83:53:98:ae:53:1b:d5:df:f8:83:11:b4:a9:90:d9:
-                    8b:20:e4:57:fb:58:20:e4:f1:8d:fe:95:7b:a3:e1:
-                    78:19:61:d3:c9:88:95:7f:55:18:98:34:77:70:53:
-                    79:41:30:5d:e2:bf:bf:78:7c:6e:dc:f1:d7:08:15:
-                    1b:4d:4d:90:bb:57:2d:57:15:41:45:25:80:ef:36:
-                    02:aa:67:bb:f3:2e:87:dc:20:3d:3b:5d:56:f0:a1:
-                    99:6b:32:09:47:b6:5d:05:1d:e4:59:e9:55:92:b9:
-                    14:2f
+                    00:d8:01:a7:ff:eb:85:59:62:de:55:35:d4:f5:d9:
+                    d9:b4:b7:93:53:3f:76:b1:c5:b1:c6:c1:c5:e4:1b:
+                    4e:ab:41:03:98:09:72:08:66:c1:b7:ce:7a:da:2f:
+                    75:53:1e:da:db:d3:ad:1d:ff:28:a7:58:ad:57:f0:
+                    f7:90:a7:ff:a1:0d:ce:5e:23:ae:96:b5:8f:27:56:
+                    7b:72:67:2b:7c:ab:c2:39:14:9a:2c:42:c0:ab:7b:
+                    46:fb:f6:bf:7a:73:db:ba:7c:44:62:52:72:90:fd:
+                    d8:b6:ce:ea:e8:8c:b8:78:f7:e0:32:c5:b9:e1:1f:
+                    c5:84:eb:c3:3f:b5:39:ea:cb:7e:33:35:11:f8:b2:
+                    dc:59:4a:d3:d2:a4:78:c0:10:26:33:a4:f2:3b:e0:
+                    53:ca:ee:91:60:22:63:84:85:16:92:f3:91:3b:77:
+                    e7:c7:57:5d:b7:d7:61:f2:00:f9:66:53:92:80:d2:
+                    3f:cf:c4:c8:72:06:bf:60:1e:74:c2:de:21:ca:09:
+                    0a:42:7a:3c:44:d6:e7:6d:40:ba:f7:1c:1a:ce:53:
+                    5c:bf:ad:2c:d2:14:dc:61:aa:7e:46:30:ce:59:82:
+                    f2:f6:64:7a:a7:a9:4d:80:3d:5e:e9:c3:27:88:22:
+                    4d:81:58:af:76:35:1e:63:1d:e5:60:bf:e9:b1:d7:
+                    ea:86:6b:9a:ab:e6:1e:1f:38:f3:0c:ae:f1:1f:66:
+                    5a:fa:22:21:0a:1b:e1:c3:35:b1:9c:a6:2f:ba:5b:
+                    a7:f8:4b:fa:2e:0b:08:bf:0e:2f:ae:f7:b0:c5:6e:
+                    32:72:ee:66:60:9f:99:8e:1a:cd:dc:c2:ce:19:15:
+                    ab:94:b6:c2:b2:7b:b4:a9:12:3e:aa:a4:45:49:d2:
+                    f3:8c:3c:c8:d2:84:74:27:3e:c0:41:18:95:ef:b2:
+                    97:27:2e:d7:03:db:6c:fb:03:4a:8c:14:44:90:9a:
+                    9b:e4:ee:ac:4c:90:e7:9a:1f:b2:35:c7:59:18:c1:
+                    29:61:6e:b1:39:d2:bf:03:b7:b1
                 Exponent: 65537 (0x10001)
         X509v3 extensions:
             X509v3 Authority Key Identifier: 
                 keyid:B6:A8:FF:A2:A8:2F:D0:A6:CD:4B:B1:68:F3:E7:50:10:31:A7:79:21
 
             X509v3 Subject Key Identifier: 
-                72:36:67:14:9F:79:71:77:F7:1F:C4:6E:B8:FC:19:3A:74:FA:15:54
+                09:1A:78:0C:6A:7D:BD:55:05:11:87:87:C8:13:2A:C2:76:E3:69:DC
             X509v3 Key Usage: critical
                 Digital Signature, Key Encipherment
             X509v3 Basic Constraints: critical
@@ -61,47 +69,50 @@ Certificate:
             X509v3 Subject Alternative Name: 
                 DNS:bugs-master.debian.org, DNS:www.bugs-master.debian.org
     Signature Algorithm: sha1WithRSAEncryption
-         ab:ca:37:db:a7:b7:75:e2:08:1e:91:79:5f:7a:cf:4a:c4:3f:
-         5c:ea:ea:da:c0:55:00:1e:3b:47:b0:60:a3:e0:2b:60:0f:a6:
-         57:91:45:c6:23:9b:f1:31:c6:38:c3:00:a2:8c:35:3c:ab:4b:
-         aa:19:88:11:37:25:36:75:6b:19:3f:c3:be:08:2f:b7:ca:70:
-         74:aa:94:de:56:67:21:0e:a7:97:c0:bf:4f:81:02:80:8f:e1:
-         3d:bf:66:cd:f8:4b:c4:c5:0a:2d:21:35:6e:9a:95:ed:df:5e:
-         a3:f3:d4:21:45:16:5c:a4:42:f6:83:cd:b2:3c:0c:63:88:65:
-         15:b2:30:9e:c7:6a:66:88:15:0d:10:12:f9:d5:2a:28:a9:b2:
-         d1:0a:d4:c9:a9:90:7c:da:72:48:be:f2:53:cb:2d:c9:ba:1e:
-         62:f2:c8:ae:bc:c2:c7:d1:1e:31:29:61:e0:e9:c4:6a:0e:99:
-         80:58:46:5a:93:3b:d7:34:b4:f0:fe:ab:25:ef:08:f1:3a:6e:
-         b7:95:14:b6:20:94:a0:67:26:57:7f:c7:f6:b8:3b:7f:39:fd:
-         6f:06:61:22:5a:20:d8:d3:2b:9f:bf:6b:fb:63:69:ad:60:a1:
-         3c:76:9a:5f:dc:7e:53:b1:bf:42:e5:89:80:80:ee:1c:3d:a4:
-         e6:f5:45:0d
+         7c:0a:e8:69:23:7e:e3:2c:98:b9:91:4a:82:9c:4f:f7:79:b1:
+         18:1a:8d:f0:bc:6a:61:84:77:58:4b:60:f8:0a:b7:54:34:ca:
+         32:cf:b6:04:a9:e4:41:1e:f5:61:13:55:ea:05:69:f0:9a:43:
+         b4:18:cf:5d:02:fd:14:ba:15:76:d4:53:7c:81:2d:9d:7e:e5:
+         68:91:e6:ec:27:79:2d:f1:77:4e:40:b3:9e:87:d7:ff:b5:d8:
+         ca:9b:4d:74:b2:6f:45:9c:e7:7e:88:da:90:75:53:1e:e6:9a:
+         5b:f0:cf:7f:3f:46:04:e4:51:4a:4f:fc:0f:f6:42:c2:3d:5f:
+         40:bf:0f:0f:15:44:0c:b8:cd:a9:a5:56:cd:d1:0d:c2:7a:f4:
+         0b:ec:3c:c9:9c:16:02:60:28:4a:c1:09:19:e2:80:8c:7f:4c:
+         c5:22:d7:38:e8:36:f9:88:54:c1:bb:39:6f:4c:21:12:ad:6d:
+         33:b5:64:8e:6e:58:28:cc:8a:d6:77:00:0e:a3:c7:c3:c8:09:
+         2a:fa:9e:fa:25:b2:44:4a:cd:fd:8e:88:91:8f:5b:b8:0d:cd:
+         e9:80:0a:95:c9:6d:b4:a4:3a:55:b2:7e:6e:cf:b5:93:00:97:
+         c8:1c:90:b7:ab:ab:28:3e:1a:1c:0f:7f:0b:2c:7c:c6:ac:b0:
+         95:9c:6d:da
 -----BEGIN CERTIFICATE-----
-MIIE+jCCA+KgAwIBAgIQZAr5PsoMwuhDgfhn0Iq50jANBgkqhkiG9w0BAQUFADBB
-MQswCQYDVQQGEwJGUjESMBAGA1UEChMJR0FOREkgU0FTMR4wHAYDVQQDExVHYW5k
-aSBTdGFuZGFyZCBTU0wgQ0EwHhcNMTQwMjEwMDAwMDAwWhcNMTUwMjEwMjM1OTU5
-WjBhMSEwHwYDVQQLExhEb21haW4gQ29udHJvbCBWYWxpZGF0ZWQxGzAZBgNVBAsT
-EkdhbmRpIFN0YW5kYXJkIFNTTDEfMB0GA1UEAxMWYnVncy1tYXN0ZXIuZGViaWFu
-Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKx6hFOVHzYZDI3I
-mDG3Bhs5xvqGmgpRlkz8XkdYkaiFkBlQQs9DtTPw8bxcgT8Aj4OzqYxc4Sqtd0DV
-VCHN0IXOQmf2OdVVMSZ03YBp7eYTACJ/lBqTB9k9hHAD/XOIipXFWqMsMLDTOG2A
-HSx4jdTXopYC1+PZsfJ8Ix8drs3HX3CSnSNTisKPrGqViiw5bShsC8Vwg1OYrlMb
-1d/4gxG0qZDZiyDkV/tYIOTxjf6Ve6PheBlh08mIlX9VGJg0d3BTeUEwXeK/v3h8
-btzx1wgVG01NkLtXLVcVQUUlgO82Aqpnu/Muh9wgPTtdVvChmWsyCUe2XQUd5Fnp
-VZK5FC8CAwEAAaOCAcwwggHIMB8GA1UdIwQYMBaAFLao/6KoL9CmzUuxaPPnUBAx
-p3khMB0GA1UdDgQWBBRyNmcUn3lxd/cfxG64/Bk6dPoVVDAOBgNVHQ8BAf8EBAMC
-BaAwDAYDVR0TAQH/BAIwADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIw
-YAYDVR0gBFkwVzBLBgsrBgEEAbIxAQICGjA8MDoGCCsGAQUFBwIBFi5odHRwOi8v
-d3d3LmdhbmRpLm5ldC9jb250cmFjdHMvZnIvc3NsL2Nwcy9wZGYvMAgGBmeBDAEC
-ATA8BgNVHR8ENTAzMDGgL6AthitodHRwOi8vY3JsLmdhbmRpLm5ldC9HYW5kaVN0
-YW5kYXJkU1NMQ0EuY3JsMGoGCCsGAQUFBwEBBF4wXDA3BggrBgEFBQcwAoYraHR0
-cDovL2NydC5nYW5kaS5uZXQvR2FuZGlTdGFuZGFyZFNTTENBLmNydDAhBggrBgEF
-BQcwAYYVaHR0cDovL29jc3AuZ2FuZGkubmV0MD0GA1UdEQQ2MDSCFmJ1Z3MtbWFz
-dGVyLmRlYmlhbi5vcmeCGnd3dy5idWdzLW1hc3Rlci5kZWJpYW4ub3JnMA0GCSqG
-SIb3DQEBBQUAA4IBAQCryjfbp7d14ggekXlfes9KxD9c6urawFUAHjtHsGCj4Ctg
-D6ZXkUXGI5vxMcY4wwCijDU8q0uqGYgRNyU2dWsZP8O+CC+3ynB0qpTeVmchDqeX
-wL9PgQKAj+E9v2bN+EvExQotITVumpXt316j89QhRRZcpEL2g82yPAxjiGUVsjCe
-x2pmiBUNEBL51SooqbLRCtTJqZB82nJIvvJTyy3Juh5i8siuvMLH0R4xKWHg6cRq
-DpmAWEZakzvXNLTw/qsl7wjxOm63lRS2IJSgZyZXf8f2uDt/Of1vBmEiWiDY0yuf
-v2v7Y2mtYKE8dppf3H5Tsb9C5YmAgO4cPaTm9UUN
+MIIFezCCBGOgAwIBAgIRAOg78jcrxUbjU1xWB2IZBIQwDQYJKoZIhvcNAQEFBQAw
+QTELMAkGA1UEBhMCRlIxEjAQBgNVBAoTCUdBTkRJIFNBUzEeMBwGA1UEAxMVR2Fu
+ZGkgU3RhbmRhcmQgU1NMIENBMB4XDTE0MDIxMDAwMDAwMFoXDTE1MDIxMDIzNTk1
+OVowYTEhMB8GA1UECxMYRG9tYWluIENvbnRyb2wgVmFsaWRhdGVkMRswGQYDVQQL
+ExJHYW5kaSBTdGFuZGFyZCBTU0wxHzAdBgNVBAMTFmJ1Z3MtbWFzdGVyLmRlYmlh
+bi5vcmcwggGiMA0GCSqGSIb3DQEBAQUAA4IBjwAwggGKAoIBgQDYAaf/64VZYt5V
+NdT12dm0t5NTP3axxbHGwcXkG06rQQOYCXIIZsG3znraL3VTHtrb060d/yinWK1X
+8PeQp/+hDc5eI66WtY8nVntyZyt8q8I5FJosQsCre0b79r96c9u6fERiUnKQ/di2
+zurojLh49+AyxbnhH8WE68M/tTnqy34zNRH4stxZStPSpHjAECYzpPI74FPK7pFg
+ImOEhRaS85E7d+fHV12312HyAPlmU5KA0j/PxMhyBr9gHnTC3iHKCQpCejxE1udt
+QLr3HBrOU1y/rSzSFNxhqn5GMM5ZgvL2ZHqnqU2APV7pwyeIIk2BWK92NR5jHeVg
+v+mx1+qGa5qr5h4fOPMMrvEfZlr6IiEKG+HDNbGcpi+6W6f4S/ouCwi/Di+u97DF
+bjJy7mZgn5mOGs3cws4ZFauUtsKye7SpEj6qpEVJ0vOMPMjShHQnPsBBGJXvspcn
+LtcD22z7A0qMFESQmpvk7qxMkOeaH7I1x1kYwSlhbrE50r8Dt7ECAwEAAaOCAcww
+ggHIMB8GA1UdIwQYMBaAFLao/6KoL9CmzUuxaPPnUBAxp3khMB0GA1UdDgQWBBQJ
+GngMan29VQURh4fIEyrCduNp3DAOBgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIw
+ADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwYAYDVR0gBFkwVzBLBgsr
+BgEEAbIxAQICGjA8MDoGCCsGAQUFBwIBFi5odHRwOi8vd3d3LmdhbmRpLm5ldC9j
+b250cmFjdHMvZnIvc3NsL2Nwcy9wZGYvMAgGBmeBDAECATA8BgNVHR8ENTAzMDGg
+L6AthitodHRwOi8vY3JsLmdhbmRpLm5ldC9HYW5kaVN0YW5kYXJkU1NMQ0EuY3Js
+MGoGCCsGAQUFBwEBBF4wXDA3BggrBgEFBQcwAoYraHR0cDovL2NydC5nYW5kaS5u
+ZXQvR2FuZGlTdGFuZGFyZFNTTENBLmNydDAhBggrBgEFBQcwAYYVaHR0cDovL29j
+c3AuZ2FuZGkubmV0MD0GA1UdEQQ2MDSCFmJ1Z3MtbWFzdGVyLmRlYmlhbi5vcmeC
+Gnd3dy5idWdzLW1hc3Rlci5kZWJpYW4ub3JnMA0GCSqGSIb3DQEBBQUAA4IBAQB8
+CuhpI37jLJi5kUqCnE/3ebEYGo3wvGphhHdYS2D4CrdUNMoyz7YEqeRBHvVhE1Xq
+BWnwmkO0GM9dAv0UuhV21FN8gS2dfuVokebsJ3kt8XdOQLOeh9f/tdjKm010sm9F
+nOd+iNqQdVMe5ppb8M9/P0YE5FFKT/wP9kLCPV9Avw8PFUQMuM2ppVbN0Q3CevQL
+7DzJnBYCYChKwQkZ4oCMf0zFItc46Db5iFTBuzlvTCESrW0ztWSOblgozIrWdwAO
+o8fDyAkq+p76JbJESs39joiRj1u4Dc3pgAqVyW20pDpVsn5uz7WTAJfIHJC3q6so
+PhocD38LLHzGrLCVnG3a
 -----END CERTIFICATE-----

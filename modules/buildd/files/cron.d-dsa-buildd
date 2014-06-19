@@ -3,3 +3,4 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 @reboot buildd [ -f ~buildd/NO-DAEMON-PLEASE ] && grep 'delete-on-boot' ~buildd/NO-DAEMON-PLEASE > /dev/null && rm -f ~buildd/NO-DAEMON-PLEASE && if [ -x ~buildd/.bootscript ]; then ~buildd/.bootscript; else buildd-watcher; fi
+@reboot buildd2 [ -f ~buildd2/NO-DAEMON-PLEASE ] && grep 'delete-on-boot' ~buildd2/NO-DAEMON-PLEASE > /dev/null && rm -f ~buildd2/NO-DAEMON-PLEASE && if [ -x ~buildd2/.bootscript ]; then ~buildd2/.bootscript; else buildd-watcher; fi

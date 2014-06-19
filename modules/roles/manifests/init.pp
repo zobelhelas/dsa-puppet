@@ -125,9 +125,6 @@ class roles {
 	if has_role('dns_primary') {
 		include named::primary
 	}
-	if has_role('dns_secondary') {
-		include named::authoritative
-	}
 
 	if has_role('weblog_destination') {
 		include roles::weblog_destination
@@ -181,6 +178,10 @@ class roles {
 		include roles::rtc
 	}
 
+	if has_role('keystone') {
+		include roles::keystone
+	}
+
 	if has_role('postgres_backup_server') {
 		include postgres::backup_server
 	}
@@ -188,6 +189,12 @@ class roles {
 	if has_role('packages') {
 		ssl::service { 'packages.debian.org':
 			notify => Service['apache2'],
+		}
+	}
+
+	if has_role('gobby_debian_org') {
+		ssl::service { 'gobby.debian.org':
+			tlsaport => 0,
 		}
 	}
 }

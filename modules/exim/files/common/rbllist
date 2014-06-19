@@ -11,7 +11,6 @@ da-manager : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.
 events: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
 ftpmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
 ftp-master : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
-gandi-discount : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net : combined.njabl.org
 hardware-donations : sbl-xbl.spamhaus.org
 hostmaster : sbl-xbl.spamhaus.org : cbl.abuseat.org
 iana : sbl-xbl.spamhaus.org : cbl.abuseat.org

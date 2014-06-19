@@ -21,18 +21,12 @@ roles:
     - draghi.debian.org
   dns_primary:
     - denis.debian.org
-  dns_secondary:
-    - ravel.debian.org
-    - senfl.debian.org
-    - diamond.debian.org
-    - orff.debian.org
   dns_geo:
     - geo1.debian.org
     - geo2.debian.org
     - geo3.debian.org
   extranrpeclient:
     - denis.debian.org
-    - orff.debian.org
   ftp.d.o:
     - klecker.debian.org
   ftp_master:
@@ -44,6 +38,8 @@ roles:
     - adayevskaya.debian.org
   keyring:
     - kaufmann.debian.org
+  keystone:
+    - oyens.debian.org
   lists:
     - bendel.debian.org
   mailrelay:
@@ -115,3 +111,5 @@ roles:
     - wolkenstein.debian.org
   postgres_backup_server:
     - backuphost.debian.org
+  gobby_debian_org:
+    - gombert.debian.org

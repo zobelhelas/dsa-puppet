@@ -413,6 +413,7 @@ file=/etc/cron.d/dsa-buildd
 file=/etc/cron.weekly/stunnel-ekey-restart
 file=/etc/default/schroot
 file=/etc/schroot/default/nssdatabases
+file=/etc/openvswitch/conf.db
 
 <% if scope.function_has_role(['nagiosmaster']) -%>
 file=/etc/nagios3/puppetconf.d/auto-hostgroups.cfg
@@ -461,6 +462,7 @@ file=/usr/share/puppet-dashboard/public/stylesheets
 file=/usr/share/puppet-dashboard/public/javascripts
 file=/usr/share/puppet-dashboard/public/stylesheets/all.css
 file=/usr/share/puppet-dashboard/public/javascripts/all.js
+dir=1/usr/share/puppet-dashboard/tmp/pids
 <% end -%>
 
 <% if classes.include?("porterbox") %>

@@ -48,10 +48,9 @@ server:
 local-zone: "29.172.in-addr.arpa" nodefault
 forward-zone:
 	name: "29.172.in-addr.arpa"
-	forward-host: ns1.debian.org
-	forward-host: ns2.debian.org
-	forward-host: ns3.debian.org
-	forward-host: ns4.debian.com
+	forward-host: geo1.debian.org
+	forward-host: geo2.debian.org
+	forward-host: geo3.debian.org
 
 # recursive: <%= @is_recursor ? "y" : "n" %>
 <% if not @is_recursor -%>

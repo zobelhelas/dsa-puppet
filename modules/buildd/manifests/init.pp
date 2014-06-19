@@ -39,7 +39,7 @@ class buildd ($ensure=present) {
 	}
 
 	site::aptrepo { 'buildd.debian.org':
-		key        => 'puppet:///modules/buildd/buildd.debian.org.asc',
+		key        => 'puppet:///modules/buildd/buildd.debian.org.gpg',
 		url        => 'https://buildd.debian.org/apt/',
 		suite      => $suite,
 		components => 'main',

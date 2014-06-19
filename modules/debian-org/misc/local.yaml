@@ -2,13 +2,9 @@
 nameinfo:
   abel.debian.org: Carl Friedrich Abel (1723 - 1787)
   adayevskaya.debian.org: Ella Georgiyevna Adayevskaya (February, 22nd 1846 [O.S. February 10th] - July 26th, 1926)
-  agricola.debian.org: Alexander Agricola (1445 or 1446 - August 15th, 1506)
-  alain.debian.org: Jehan Alain (1911 - 1940)
-  alwyn.debian.org: William Alwyn (1905 - 1985)
   ancina.debian.org: Giovanni Giovenale Ancina (October 19th, 1545 - August 30th, 1604)
   antheil.debian.org: George Antheil (1900 - 1959)
   arcadelt.debian.org: Jacques Arcadelt (also Jacob Arcadelt) (?1507 - October 14th, 1568)
-  arne.debian.org: Thomas Augustine Arne (1710 - 1778)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
   babin.debian.org: Stanley Babin (1932 - 2010)
   barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
@@ -29,7 +25,6 @@ nameinfo:
   byrd.debian.org: William Byrd (1543 - July 4th, 1623)
   clementi.debian.org: Muzio Clementi (January 23rd, 1752 - March 10th, 1832)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
-  cilea.debian.org: Francesco Cilèa (July 26th, 1866 - November 20th, 1950)
   coccia.debian.org: Maria Rosa Coccia (January 4th, 1759 - November 1833)
   corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
   couper.debian.org: Mildred Couper (1887 - 1974)
@@ -37,7 +32,6 @@ nameinfo:
   danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
   delfin.debian.org: Carmelina Delfin (c. 1900 - after 1948)
   diabelli.debian.org: Anton Diabelli (September 5th, 1781 - April 7th, 1858)
-  diamond.debian.org: David Leo Diamond (July 9th, 1915 - June 13th, 2005)
   dinis.debian.org: Dinis of Portugal (9 October 1261 – 7 January 1325)
   dijkstra.debian.org: Lowell Dijkstra (b.1952)
   dillon.debian.org: Fannie Charles Dillon (March 16th, 1881 - February 21st, 1947)
@@ -60,8 +54,8 @@ nameinfo:
   gombert.debian.org: Nicolas Gombert (c. 1495 – c. 1560)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
   harris.debian.org: Sir William Henry Harris (March 28th, 1883 - September 6th, 1973)
+  hartmann.debian.org: Karl Amadeus Hartmann (August 2nd, 1905 – December 5th, 1963)
   hasse.debian.org: Johann Adolph Hasse (March 25th, 1699 - December 16th, 1783)
-  hebden.debian.org: John Hebden (1712 - 1765)
   henze.debian.org: Hans Werner Henze (July 1st, 1926 - October 27th, 2012)
   hoiby.debian.org: Lee Henry Hoiby (February 17th, 1926 - March 28th, 2011)
   jenkins.debian.org: John Jenkins (1592 - 1678)
@@ -85,7 +79,7 @@ nameinfo:
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
   nono.debian.org: Luigi Nono (January 29th, 1924 - May 8th, 1990)
-  orff.debian.org: Carl Orff (July 10th, 1895 - March 29th, 1982)
+  oyens.debian.org: Tera de Marez Oyens (August 5th, 1932 - August 29th, 1996)
   parry.debian.org: Sir Charles Hubert Hastings Parry, 1st Baronet (February 27th, 1848 – October 7th, 1918)
   partch.debian.org: Harry Partch (June 24th, 1901 - September 3rd, 1974)
   pasquini.debian.org: Bernardo Pasquini (December 7th, 1637 - November 22nd, 1710)
@@ -96,6 +90,7 @@ nameinfo:
   philp.debian.org: Elizabeth Philp (1827 - November 26th, 1885)
   popov.debian.org: Gavriil Nikolayevich Popov (Гаврии́л Никола́евич Попо́в) (September 12th, 1904 - February 17th, 1972)
   porpora.debian.org: Niccolò (Antonio) Porpora (17 August 1686 - 3 March 1768)
+  portman.debian.org: Rachel Portman (11 December 1960 - )
   poulenc.debian.org: Francis Jean Marcel Poulenc (January 7th, 1899 - January 30th, 1963)
   powell.debian.org: Andrew Powell (b. April 18th, 1949)
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
@@ -104,7 +99,6 @@ nameinfo:
   rainier.debian.org: Ivy Priaulx Rainier (February 3rd, 1903 - October 10th, 1986) 
   rapoport.debian.org: Eda Rothstein Rapoport (December 25th, 1890 - May 9th, 1968)
   ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
-  respighi.debian.org: Ottorino Respighi (July 9th, 1879 - April 18th, 1936)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19th, 1873 - May 11th, 1916)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   rossini.debian.org: Gioachino Rossini (February 29th, 1792 - November 13th, 1868)
@@ -124,11 +118,11 @@ nameinfo:
   sonntag.debian.org: Brunhilde Sonntag (September 27th, 1936 - December 18th, 2002)
   stadler.debian.org: Maximilian Johann Karl Dominik Stadler, Abbé Stadler (August 4th 1748 - November 8th 1833)
   stockhausen.debian.org: Karlheinz Stockhausen (August 22nd, 1928 - December 5th, 2007)
+  storace.debian.org: Stephen Storace (April 4th, 1762 – March 19th, 1796)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
   stabile.debian.org: Annibale Stabile (~1535 - April 1595)
   steffani.debian.org: Agostino Steffani (July 25th, 1653 - February 12th, 1728)
-  tartini.debian.org: Giuseppe Tartini (April 8th, 1692 - February 26th, 1770)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
   ticharich.debian.org: Zdenka Ticharich (September 26th, 1900 - February 15th, 1979)
   traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (March 30th, 1727 - April 6th, 1779)
@@ -136,7 +130,6 @@ nameinfo:
   tye.debian.org: Christopher Tye (c.1505 - 1573)
   ullmann.debian.org: Viktor Ullmann (January 1st, 1898 - October 17th, 1944)
   vento.debian.org: Ivo de Vento (1543/1545 - 1575)
-  vieuxtemps.debian.org: Henri Vieuxtemps (February 17th, 1820 - June 6th, 1881)
   vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
   vogler.debian.org: Georg Joseph Vogler (June 15th, 1749 - May 6th, 1814)
   wieck.debian.org: Clara Josephine Wieck (September 13th, 1819 - May 20th, 1896)
@@ -153,19 +146,17 @@ footer:
   #zelenka.debian.org: "Debian s390 porter system kindly provided by Zentrum fuer Informationsverarbeitung und Informationstechnik [zivit]"
 host_settings:
   heavy_exim:
-    - buxtehude.debian.org
-    - chopin.debian.org
-    - draghi.debian.org
-    - franck.debian.org
-    - gombert.debian.org
+    # mail front-ends
     - mailly.debian.org
-    - master.debian.org
     - muffat.debian.org
+    # other mail receivers
+    - buxtehude.debian.org
+    - draghi.debian.org
+    - master.debian.org
     - nono.debian.org
     - picconi.debian.org
     - popov.debian.org
     - quantz.debian.org
-    - ravel.debian.org
     - reger.debian.org
     - tye.debian.org
     - vento.debian.org
@@ -195,7 +186,6 @@ host_settings:
     - beach.debian.org
     - bizet.debian.org
     - busoni.debian.org
-    - diamond.debian.org
     - gluck.debian.org
     - lobos.debian.org
     - pkgmirror-1and1.debian.org
@@ -209,7 +199,6 @@ host_settings:
     - wieck.debian.org
     # porterbox
     - abel.debian.org
-    - agricola.debian.org
     - barriere.debian.org
     - binet.debian.org
     - eder.debian.org
@@ -222,13 +211,10 @@ host_settings:
     - smetana.debian.org
     - zelenka.debian.org
     # buildd
-    - alain.debian.org
     - alkman.debian.org
-    - alwyn.debian.org
     - ancina.debian.org
     - antheil.debian.org
     - arcadelt.debian.org
-    - arne.debian.org
     - arnold.debian.org
     - babin.debian.org
     - ball.debian.org
@@ -246,7 +232,6 @@ host_settings:
     - hartmann.debian.org
     - hasse.debian.org
     - henze.debian.org
-    - hildegard.debian.org
     - hoiby.debian.org
     - howells.debian.org
     - hummel.debian.org
@@ -272,18 +257,13 @@ host_settings:
     - rapoport.debian.org
   broken-rtc:
     - abel.debian.org
-    - alain.debian.org
-    - alwyn.debian.org
     - ancina.debian.org
     - antheil.debian.org
-    - arne.debian.org
     - arnold.debian.org
     - ball.debian.org
     - harris.debian.org
     - hasse.debian.org
-    - hebden.debian.org
     - henze.debian.org
-    - hildegard.debian.org
     - hoiby.debian.org
     - howells.debian.org
     - hummel.debian.org

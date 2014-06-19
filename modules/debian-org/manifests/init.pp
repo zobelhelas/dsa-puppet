@@ -99,21 +99,37 @@ class debian-org {
 		require => Package['molly-guard'],
 	}
 
+	file { '/etc/apt/trusted-keys.d':
+		ensure => absent,
+		force  => true,
+	}
+
+	file { '/etc/apt/trusted.gpg':
+		mode    => '0600',
+		content => "",
+	}
+
 	site::aptrepo { 'security':
 		url        => 'http://security.debian.org/',
 		suite      => "${::lsbdistcodename}/updates",
 		components => ['main','contrib','non-free']
+	}
+	if $::lsbmajdistrelease < 7 {
+		site::aptrepo { 'debian-lts':
+			url        => $mirror,
+			suite      => "${::lsbdistcodename}-lts",
+			components => ['main','contrib','non-free']
+		}
+	} else {
+		site::aptrepo { 'debian-lts':
+			ensure => absent,
+		}
 	}
 
 	site::aptrepo { 'backports.debian.org':
 		url        => $mirror_backports,
 		suite      => "${::lsbdistcodename}-backports",
 		components => ['main','contrib','non-free']
-	}
-	site::aptrepo { 'backports.org':
-		ensure => absent,
-		keyid  => '16BA136C',
-		key    => 'puppet:///modules/debian-org/backports.org.asc',
 	}
 
 	site::aptrepo { 'volatile':
@@ -138,7 +154,7 @@ class debian-org {
 		url        => 'http://db.debian.org/debian-admin',
 		suite      => 'lenny',
 		components => 'main',
-		key        => 'puppet:///modules/debian-org/db.debian.org.asc',
+		key        => 'puppet:///modules/debian-org/db.debian.org.gpg',
 	}
 
 	augeas { 'inittab_replicate':
@@ -174,10 +190,6 @@ class debian-org {
 	}
 	file { '/etc/apt/preferences':
 		source => 'puppet:///modules/debian-org/apt.preferences',
-	}
-	file { '/etc/apt/trusted-keys.d/':
-		ensure => directory,
-		purge  => true,
 	}
 	file { '/etc/apt/apt.conf.d/local-compression':
 		source => 'puppet:///modules/debian-org/apt.conf.d/local-compression',

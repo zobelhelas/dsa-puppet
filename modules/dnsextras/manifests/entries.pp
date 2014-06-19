@@ -14,7 +14,7 @@ class dnsextras::entries {
 
 	exec { 'rebuild debian.org zone':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
-		command => '/bin/su - dnsadm -c "/srv/dns.debian.org/bin/update-zones"',
+		command => '/bin/su - dnsadm -c "/srv/dns.debian.org/bin/update"',
 		refreshonly => true,
 	}
 }

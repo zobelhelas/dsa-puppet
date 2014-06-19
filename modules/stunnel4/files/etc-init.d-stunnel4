@@ -23,6 +23,8 @@ DESC="SSL tunnels"
 OPTIONS=""
 ENABLED=0
 
+ulimit -n 4096
+
 if [ -n "${2:-}" ]; then
 	if [ -e "/etc/stunnel/$2.conf" ]; then
 		FILES="/etc/stunnel/$2.conf"
