@@ -285,5 +285,6 @@ host_settings:
     - czerny.debian.org
     - rautavaara.debian.org
     - salieri.debian.org
+    - storace.debian.org
   buildd_master:
     - wuiet.debian.org
