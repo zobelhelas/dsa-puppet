@@ -306,4 +306,14 @@ class debian-org {
 		matches  => [ 'paths', 'contents' ],
 		schedule => weekly
 	}
+
+	file { '/root/.bashrc':
+		source => 'puppet:///modules/debian-org/root-dotfiles/bashrc',
+	}
+	file { '/root/.screenrc':
+		source => 'puppet:///modules/debian-org/root-dotfiles/screenrc',
+	}
+	file { '/root/.vimrc':
+		source => 'puppet:///modules/debian-org/root-dotfiles/vimrc',
+	}
 }

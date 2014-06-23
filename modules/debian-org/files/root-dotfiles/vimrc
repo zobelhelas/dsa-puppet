@@ -1,0 +1,83 @@
+runtime! debian.vim
+filetype plugin on
+set ai
+:set nocompatible
+:syn on
+:set title
+:set pastetoggle=<F10>
+:set listchars=tab:»­,trail:·
+:set list
+:nmap <F11> :set invlist<return>
+:imap <F11> <C-O>:set invlist<return>
+:set clipboard^=autoselectml guioptions+=A
+let g:Imap_UsePlaceHolders = 1
+let g:Imap_FreezeImap = 1
+:hi MatchParen ctermbg=black
+colorscheme peachpuff
+
+map <F3> :n<return>
+map <F2> :N<return>
+map <F5> :wn<return>
+map <F4> :wN<return>
+map fd ggV/^-- <CR><up>gq
+
+nnoremap <silent> <C-M> :make<return>
+
+nnoremap <silent> <S-left> :bprevious<return>
+nnoremap <silent> <S-right> :bnext<return>
+inoremap <silent> <S-left> <C-O>:bprevious<return>
+inoremap <silent> <S-right> <C-O>:bnext<return>
+
+nnoremap <silent> <C-left> :bprevious<return>
+nnoremap <silent> <C-right> :bnext<return>
+inoremap <silent> <C-left> <C-O>:bprevious<return>
+inoremap <silent> <C-right> <C-O>:bnext<return>
+
+nnoremap <silent> <Esc>[1;2D :bprevious<return>
+nnoremap <silent> <Esc>[1;2C :bnext<return>
+inoremap <silent> <Esc>[1;2D <C-O>:bprevious<return>
+inoremap <silent> <Esc>[1;2C <C-O>:bnext<return>
+
+nnoremap <silent> <Esc>[D :bprevious<return>
+nnoremap <silent> <Esc>[C :bnext<return>
+inoremap <silent> <Esc>[D <C-O>:bprevious<return>
+inoremap <silent> <Esc>[C <C-O>:bnext<return>
+
+nnoremap <silent> <Esc>[d :bprevious<return>
+nnoremap <silent> <Esc>[c :bnext<return>
+inoremap <silent> <Esc>[d <C-O>:bprevious<return>
+inoremap <silent> <Esc>[c <C-O>:bnext<return>
+
+" nnoremap <space><space> :bnew<return>
+nnoremap <silent> <space><left> :bprevious<return>
+nnoremap <silent> <space><right> :bnext<return>
+
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when xterm-keys is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
+
+
+" wild/tab behavior
+" =================
+set wildmode=longest,list:longest,list:full
+
+" spelling stuff
+" ==============
+set spellfile=~/.vim.spell.en.add
+:nmap <F8> :set invspell<return>
+:imap <F8> <C-O>:set invspell<return>
+
+" Searching and highlighting
+" ==========================
+hi Search cterm=NONE ctermfg=yellow ctermbg=19
+set hlsearch
+nnoremap <CR> :noh<CR><CR>
+
+set tabpagemax=50
+" Do not close buffers we don't see
+set hidden

@@ -1,0 +1,70 @@
+startup_message off
+deflogin on
+#vbell off
+defscrollback 10000
+
+# The vt100 description does not mention "dl". *sigh*
+#termcapinfo vt100 dl=5\E[M
+
+## turn sending of screen messages to hardstatus off
+#hardstatus on
+#
+## Set the hardstatus prop on gui terms to set the titlebar/icon title
+#termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]0;:fs=\007:ds=\E]0;\007
+## use this for the hard status string
+#hardstatus string "%h%? users: %u%?"
+#hardstatus alwayslastline "%{b w} %H %{=} | %{+bry}%D %d-%m-%y %c %{=  d} | %w"
+#
+## set these terminals up to be 'optimal' instead of vt100
+#termcapinfo xterm*|linux*|rxvt*|Eterm* OP
+
+
+#caption always "%{rw} * %H * | $LOGNAME | %{-}%-Lw%{rw}%50>%{rW}%n%f* %t %{-}%+Lw%<"
+#caption always "%{rw} * %H * | $LOGNAME | %{bw}%c %D | %{-}%-Lw%{rw}%50>%{rW}%n%f* %t %{-}%+Lw%<"
+#caption always "%{=b}%?%F%:%45=%n*%f %t%?%?%F%{r}%:%{s kk}%?%H%?%F%{-}%? %L=%-Lw%45L>%?%F%{g}%?%n*%f %t%?%F%{-}%?%+Lw%-17= %?%F%{y}%?%c %Y-%m-%d%?"
+
+#caption always " %{r}%H%{d} %?%F*%: %? | %{r}$LOGNAME%{d} | %{b}%-Lw%{b}%50>%{kw}%n%f* %t %{-}%+Lw%<"
+caption always " %?%F%{r}%?%H%{r}%?%F*%: %? %{rd}| %{r}$LOGNAME%{d} | %{b}%-Lw%{b}%50>%{kw}%n%f* %t %{-}%+Lw%<"
+#caption always " %{r}%H%{d} | %{r}$LOGNAME%{d} | %{b}%-Lw%{b}%50>%{kw}%n%f* %t %{-}%+Lw%<"
+#caption always " %{r}%H%{d} | %{r}$LOGNAME%{d} | %{b-}%-Lw%{b-}%50>%{bW}%n%f* %t %{-}%+Lw%<"
+#caption always " %{=r-}%H%{=b-} | %{=}$LOGNAME%{=b-} | %{b-}%-Lw%{b-}%50>%{bW}%n%f* %t %{-}%+Lw%<"
+
+# To get screen to add lines to xterm's scrollback buffer, uncomment the
+# following termcapinfo line which tells xterm to use the normal screen buffer
+# (which has scrollback), not the alternate screen buffer.
+#
+# also makes screen block so irssi ping timeouts
+#termcapinfo xterm|xterms|xs|rxvt ti@:te@
+
+# fix screens copy&paste
+defbce on
+
+
+bindkey ® next
+bindkey ¬ prev
+# home and end
+#bindkey -k kh prev
+#bindkey -k kH next
+
+bindkey î screen
+# xterm:
+bindkey "^[[1;5D" prev
+bindkey "^[[1;5C" next
+bindkey "^[[1;5A" focus up
+bindkey "^[[1;5B" focus down
+
+# gnome terminal (in screen:
+#bindkey "^[n" screen
+bindkey "^[O5D" prev
+bindkey "^[O5C" next
+bindkey "^[O5A" focus up
+bindkey "^[O5B" focus down
+
+# urxvt shift+left/right
+#bindkey "^[[d" prev
+#bindkey "^[[c" next
+#bindkey "^[[a" focus up
+#bindkey "^[[b" focus down
+
+
+defnonblock 5
