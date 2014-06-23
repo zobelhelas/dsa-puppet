@@ -52,7 +52,7 @@ class buildd ($ensure=present) {
 	}
 
 	file { '/etc/apt/apt.conf.d/puppet-https-buildd':
-		content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/certs/buildd.debian.org.crt\";\n",
+		content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/servicecerts/buildd.debian.org.crt\";\n",
 		#require => File['/etc/ssl/certs/buildd.debian.org.crt']
 	}
 	site::aptrepo { 'buildd.debian.org-proposed':
