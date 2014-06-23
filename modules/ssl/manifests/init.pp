@@ -14,13 +14,21 @@ class ssl {
 	}
 
 	file { '/etc/ssl/servicecerts':
+		ensure   => link,
+		purge    => true,
+		force    => true,
+		target   => '/usr/local/share/ca-certificates/debian.org',
+		notify   => Exec['retire_debian_links'],
+	}
+
+	file { '/usr/local/share/ca-certificates/debian.org':
 		ensure   => directory,
 		source   => 'puppet:///modules/ssl/servicecerts/',
 		mode     => '0644', # this works; otherwise all files are +x
 		purge    => true,
 		recurse  => true,
 		force    => true,
-		notify   => Exec['refresh_debian_links'],
+		notify   => Exec['refresh_normal_hashes'],
 	}
 	file { '/etc/ssl/debian':
 		ensure   => directory,
@@ -72,23 +80,11 @@ class ssl {
 		require => Package['ssl-cert'],
 	}
 
-	exec { 'refresh_debian_links':
-		command     => 'cp -f -s ../servicecerts/* .',
+	exec { 'retire_debian_links':
+		command     => 'find -lname "../servicecerts/*" -exec rm {} +',
 		cwd         => '/etc/ssl/certs',
 		refreshonly => true,
-		notify      => Exec['delete_unused_links'],
-	}
-	exec { 'delete_unused_links':
-		command     => 'find -L . -mindepth 1 -maxdepth 1 -type l -delete',
-		cwd         => '/etc/ssl/certs',
-		refreshonly => true,
-		notify      => Exec['refresh_normal_hashes'], # see NOTE 1
-	}
-	exec { 'modify_configuration':
-		command     => "sed -i -e 's#!${cacert}#${cacert}#' ${caconf}",
-		onlyif      => "grep -Fqx '!${cacert}' ${caconf}",
 		notify      => Exec['refresh_normal_hashes'],
-		require     => Package['ca-certificates'],
 	}
 	exec { 'refresh_debian_hashes':
 		command     => 'c_rehash /etc/ssl/debian/certs',
