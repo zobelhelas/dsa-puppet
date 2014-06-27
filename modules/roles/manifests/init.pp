@@ -154,6 +154,10 @@ class roles {
 		include roles::sso
 	}
 
+	if has_role('tracker') {
+		include roles::tracker
+	}
+
 	if has_role('buildd_master') {
 		include roles::buildd_master
 	}
