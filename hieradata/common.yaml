@@ -95,6 +95,8 @@ roles:
     - wolkenstein.debian.org
   syncproxy:
     - milanollo.debian.org
+  tracker:
+    - ticharich.debian.org
   udd:
     - ullmann.debian.org
   vote:
