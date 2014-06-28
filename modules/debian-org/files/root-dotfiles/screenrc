@@ -1,3 +1,8 @@
+# ~/.screenrc - ViM configuration file
+
+## THIS FILE IS UNDER PUPPET CONTROL.
+## LOCAL CHANGES WILL BE OVERWRITTEN.
+
 startup_message off
 deflogin on
 #vbell off

@@ -1,3 +1,8 @@
+" ~/.vimrc - ViM configuration file
+
+" THIS FILE IS UNDER PUPPET CONTROL.
+" LOCAL CHANGES WILL BE OVERWRITTEN.
+
 runtime! debian.vim
 filetype plugin on
 set ai

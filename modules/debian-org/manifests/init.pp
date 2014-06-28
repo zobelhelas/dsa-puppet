@@ -310,6 +310,9 @@ class debian-org {
 	file { '/root/.bashrc':
 		source => 'puppet:///modules/debian-org/root-dotfiles/bashrc',
 	}
+	file { '/root/.profile':
+		source => 'puppet:///modules/debian-org/root-dotfiles/profile',
+	}
 	file { '/root/.screenrc':
 		source => 'puppet:///modules/debian-org/root-dotfiles/screenrc',
 	}
