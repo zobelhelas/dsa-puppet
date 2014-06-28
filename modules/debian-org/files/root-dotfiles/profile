@@ -11,7 +11,4 @@ fi
 
 mesg n
 
-LANG=C
-LANGUAGE=C
-
 # vim: set ft=sh ts=2 sw=2 et ai si:
