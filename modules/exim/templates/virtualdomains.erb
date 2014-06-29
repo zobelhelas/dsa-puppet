@@ -20,6 +20,8 @@ packages.qa.debian.org: user=qa group=qa directory=/srv/packages.qa.debian.org/m
 
 	when "reger.debian.org" then "rt.debian.org: user=rt group=rt directory=/srv/rt.debian.org/mail"
 
+	when "ticharich.debian.org" then "tracker.debian.org: user=qa group=qa directory=/srv/tracker.debian.org/mail"
+
         when "tye.debian.org" then "i18n.debian.org: user=debian-i18n group=debian-i18n directory=/srv/i18n.debian.org/mail"
 
 	when "vento.debian.org" then "vote.debian.org: user=secretary group=debvote directory=/srv/vote.debian.org/mail/"
