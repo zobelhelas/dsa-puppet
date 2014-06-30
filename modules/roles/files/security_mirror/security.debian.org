@@ -28,7 +28,7 @@
    ExpiresActive On
    ExpiresDefault "access plus 2 minutes"
 
-   Alias /debian-security /srv/security.debian.org/ftp
+   Alias /debian-security /srv/ftp.root/debian-security
 
    <Directory /srv/ftp.root/debian-security/pool>
       <FilesMatch "\.(bz2|gz|deb|dsc|xz)$">
