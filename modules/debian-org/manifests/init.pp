@@ -138,7 +138,7 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	if $::hostname in [ball, corelli, eysler, lucatelli, mayer, mayr, rem] {
+	if $::hostname in [ball, corelli, eysler, lucatelli, mayer, mayr, rem, pettersson] {
 		site::aptrepo { 'proposed-updates':
 			url        => $mirror,
 			suite      => "${::lsbdistcodename}-proposed-updates",
