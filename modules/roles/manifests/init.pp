@@ -196,6 +196,12 @@ class roles {
 		}
 	}
 
+	if has_role('qamaster') {
+		ssl::service { 'qa.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if has_role('packagesqamaster') {
 		ssl::service { 'packages.qa.debian.org':
 			notify => Service['apache2'],

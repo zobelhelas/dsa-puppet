@@ -65,6 +65,8 @@ roles:
     - rapoport.debian.org
   puppetmaster:
     - handel.debian.org
+  qamaster:
+    - quantz.debian.org
   release:
     - franck.debian.org
   rtmaster:
