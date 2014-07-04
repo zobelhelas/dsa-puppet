@@ -88,7 +88,7 @@ class WrappedRunner():
     def __init__(self, session, args, unshare=True):
         self.unshare = unshare
         if not os_supports_unshare(): self.unshare = False
-        s,r = self.run('schroot', '-c', session, '--run-session', '--', 'env', 'DEBIAN_FRONTEND=noninteractive', *args)
+        s,r = self.run('schroot', '-c', session, '--directory=/', '--run-session', '--', 'env', 'DEBIAN_FRONTEND=noninteractive', *args)
         if s != 0:
             die("Command %s exited due to signal %d."%(' '.join(args), s))
         if r != 0:
