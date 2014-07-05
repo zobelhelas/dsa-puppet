@@ -139,7 +139,7 @@ class debian-org {
 	}
 
 	if ($::hostname in [ball, corelli, eysler, lucatelli, mayer, mayr, rem, pettersson]) or
-	   ($::hoster in [bytemark]) {
+	   ($::hoster in [bytemark, man-da]) {
 		site::aptrepo { 'proposed-updates':
 			url        => $mirror,
 			suite      => "${::lsbdistcodename}-proposed-updates",
