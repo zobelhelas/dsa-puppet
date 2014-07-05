@@ -144,6 +144,10 @@ class debian-org {
 			suite      => "${::lsbdistcodename}-proposed-updates",
 			components => ['main','contrib','non-free']
 		}
+	} else {
+		site::aptrepo { 'proposed-updates':
+			ensure => absent,
+		}
 	}
 
 	site::aptrepo { 'debian.org':
