@@ -8,7 +8,7 @@ if FileTest.exist?('/usr/sbin/gnt-cluster') and FileTest.exist?('/var/lib/ganeti
 			end
 			Facter.add('cluster_nodes') do
 				setcode do
-					open('/var/lib/ganeti/ssconf_node_list').read().split()
+					open('/var/lib/ganeti/ssconf_node_list').read().split().join(" ")
 				end
 			end
 		end
