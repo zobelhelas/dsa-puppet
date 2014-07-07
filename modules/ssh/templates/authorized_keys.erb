@@ -14,7 +14,7 @@ localkeys
   ganetikeys = []
   allnodeinfo = scope.lookupvar('site::allnodeinfo')
   if scope.lookupvar('::cluster').to_s != 'undefined'
-    scope.lookupvar('::cluster_nodes').to_s.split.sort.each do |node|
+    scope.lookupvar('::cluster_nodes').sort.each do |node|
       if allnodeinfo.has_key?(node)
         ganetikeys << "# for ganeti cluster #{scope.lookupvar('::cluster').to_s}: #{allnodeinfo[node]['hostname'][0]}"
         ganetikeys << "from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\" #{allnodeinfo[node]['sshRSAHostKey'][0]}"
