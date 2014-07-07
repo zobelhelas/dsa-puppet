@@ -27,6 +27,7 @@ class debian-org {
 			'klogd',
 			'sysklogd',
 			'rsyslog',
+			'os-prober',
 		]:
 		ensure => purged,
 	}
