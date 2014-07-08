@@ -126,6 +126,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %uddadm		ALL=(udd)	ALL
 %volatile	ALL=(volatile)	ALL
 %wbadm		ALL=(wbadm)	ALL
+%wbadm-ports	ALL=(wbadm-ports)	ALL
 %mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki,wikiweb)	ALL
 %qa-core	ALL=(qa)	ALL
