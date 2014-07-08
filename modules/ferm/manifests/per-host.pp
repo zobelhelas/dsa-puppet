@@ -318,6 +318,16 @@ class ferm::per-host {
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5436, ( 2001:41c8:1000:21::21:18/128 2607:f8f0:610:4000:6564:a62:ce0c:138d/128 ))'
 			}
+			@ferm::rule { 'dsa-postgres-wanna-build-ports':
+				# portman
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5438, ( 5.153.231.29/25 ))'
+			}
+			@ferm::rule { 'dsa-postgres-wanna-build-ports6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5438, ( 2001:41c8:1000:21::21:29/64 ))'
+			}
 			@ferm::rule { 'dsa-postgres-bacula':
 				# dinis
 				description     => 'Allow postgress access1',
