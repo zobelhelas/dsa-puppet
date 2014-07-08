@@ -36,7 +36,7 @@ get_suites() {
       armhf|s390x)
         echo "sid jessie wheezy"
         ;;
-      s390)
+      ia64|s390)
         echo "wheezy squeeze"
         ;;
       sparc)
