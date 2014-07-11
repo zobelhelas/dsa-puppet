@@ -455,10 +455,16 @@ REJECT reject-with icmp-admin-prohibited
 	}
 	# tftp
 	case $::hostname {
-		abel,jenkins: {
+		abel: {
 			@ferm::rule { 'dsa-tftp':
 				description     => 'Allow tftp access',
-				rule            => '&SERVICE(udp, 69)'
+				rule            => '&SERVICE_RANGE(udp, 69, ( 172.28.17.0/24 ))'
+			}
+		}
+		jenkins: {
+			@ferm::rule { 'dsa-tftp':
+				description     => 'Allow tftp access',
+				rule            => '&SERVICE_RANGE(udp, 69, ( 192.168.2.0/24 206.12.19.0/24 ))'
 			}
 		}
 		master: {
