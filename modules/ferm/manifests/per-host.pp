@@ -10,6 +10,14 @@ class ferm::per-host {
 			rule        => '&SERVICE(tcp, 873)'
 		}
 	}
+	case $::hostname {
+		adayevskaya: {
+			@ferm::rule { 'dsa-iscsi':
+				description     => 'Allow mfl (local admin) access',
+				rule            => '&SERVICE_RANGE(tcp, 22, ( 130.83.226.60/32 ))'
+			}
+		}
+	}
 
 	case $::hostname {
 		bm-bl9: {
