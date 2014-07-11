@@ -82,12 +82,6 @@ class ferm::per-host {
 				rule        => 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
 			}
 		}
-		abel,rietz,jenkins: {
-			@ferm::rule { 'dsa-tftp':
-				description     => 'Allow tftp access',
-				rule            => '&SERVICE(udp, 69)'
-			}
-		}
 		lotti,lully: {
 			@ferm::rule { 'dsa-syslog':
 				description     => 'Allow syslog access',
@@ -458,5 +452,21 @@ REJECT reject-with icmp-admin-prohibited
 			}
 		}
 		default: {}
+	}
+	# tftp
+	case $::hostname {
+		abel,jenkins: {
+			@ferm::rule { 'dsa-tftp':
+				description     => 'Allow tftp access',
+				rule            => '&SERVICE(udp, 69)'
+			}
+		}
+		master: {
+			@ferm::rule { 'dsa-tftp':
+				description     => 'Allow tftp access',
+				rule            => '&SERVICE(udp, 69)'
+				rule            => '&SERVICE_RANGE(udp, 69, ( 82.195.75.64/26 ))'
+			}
+		}
 	}
 }
