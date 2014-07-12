@@ -16,8 +16,7 @@ class schroot {
 	}
 
 	file { '/etc/schroot/mount-defaults':
-		content => template('schroot/mount-defaults.erb'),
-		require => Package['schroot'],
+		ensure => absent,
 	}
 	file { '/etc/schroot/default/nssdatabases':
 		source  => 'puppet:///modules/schroot/nssdatabases',
