@@ -48,4 +48,9 @@ class schroot {
 		content => template('schroot/schroot-dsa/fstab.erb'),
 		require => Package['schroot'],
 	}
+
+	file { '/etc/schroot/buildd/fstab':
+		content => template('schroot/schroot-buildd/fstab.erb'),
+		require => Package['schroot'],
+	}
 }
