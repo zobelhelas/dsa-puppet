@@ -242,6 +242,8 @@ host_settings:
     - lucatelli.debian.org
     - mayer.debian.org
     - mayr.debian.org
+    - mipsel-manda-01.debian.org
+    - mipsel-manda-02.debian.org
     - mundy.debian.org
     - parry.debian.org
     - porpora.debian.org
