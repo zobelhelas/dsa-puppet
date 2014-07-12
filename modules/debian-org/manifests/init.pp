@@ -38,6 +38,12 @@ class debian-org {
 		ensure => installed,
 		tag    => extra_repo,
 	}
+	file { '/etc/ssh/ssh_known_hosts':
+		ensure  => present,
+		replace => false,
+		mode    => '0644',
+		source  => 'puppet:///modules/debian-org/basic-ssh_known_hosts'
+	}
 
 	package { [
 			'apt-utils',
