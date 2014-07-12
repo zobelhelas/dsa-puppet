@@ -10,6 +10,7 @@ proc		/proc		linprocfs	defaults	0	0
 dev		/dev		devfs	rw,bind		0	0
 dev		/dev/fd		fdescfs	rw,bind		0	0
 
+/srv/build-trees	/build	nullfs	rw		0	0
 <% else -%>
 # Linux version
 /proc		/proc		none	rw,bind		0	0
@@ -17,6 +18,5 @@ dev		/dev/fd		fdescfs	rw,bind		0	0
 /dev/pts	/dev/pts	none	rw,bind		0	0
 tmpfs-shm	/dev/shm	tmpfs	defaults,size=64m	0 0
 
-<% end %>
-
 /srv/build-trees	/build	none	rw,bind		0	0
+<% end %>
