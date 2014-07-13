@@ -422,6 +422,12 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5439, ( 185.17.185.181/32 185.17.185.182/32 ))'
 			}
 		}
+		lw07: {
+			@ferm::rule { 'dsa-postgres-snapshot':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5439, ( 185.17.185.176/28 ))'
+			}
+		}
 		default: {}
 	}
 	# vpn fu
