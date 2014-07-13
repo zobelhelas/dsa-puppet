@@ -413,7 +413,7 @@ class ferm::per-host {
 			}
 			@ferm::rule { 'dsa-postgres-replication':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 185.17.185.180/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 185.17.185.180/32 185.17.185.187/32 ))'
 			}
 		}
 		lw04: {
