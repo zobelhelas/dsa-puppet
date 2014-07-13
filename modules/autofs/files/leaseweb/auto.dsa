@@ -3,3 +3,4 @@ snapshot-2              -fstype=nfs,ro,tcp     10.0.0.2:/storage/snapshot-farm-2
 snapshot-3              -fstype=nfs,ro,tcp     10.0.0.3:/storage/snapshot-farm-3
 snapshot-4              -fstype=nfs,ro,tcp     10.0.0.4:/storage/snapshot-farm-4
 morgue.debian.org       -fstype=nfs,ro,tcp     10.0.0.3:/srv/morgue.debian.org
+qa.debian.org           -fstype=nfs,ro,tcp     10.0.0.4:/srv/qa.debian.org
