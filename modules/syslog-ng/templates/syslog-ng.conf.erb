@@ -1,7 +1,6 @@
 <%- if has_variable?("syslogversion") and syslogversion.to_s == "3.1" -%>
 @version: 3.0
-<%- end -%>
-<%- if has_variable?("syslogversion") and syslogversion.to_s == "3.3" -%>
+<%- else -%>
 @version: 3.3
 <%- end -%>
 ##
@@ -47,8 +46,7 @@ options {
         # the number of lines fitting in the output queue
 <%- if has_variable?("syslogversion") and syslogversion.to_s == "3.1" -%>
         log_fifo_size(2048);
-<%- end -%>
-<%- if has_variable?("syslogversion") and syslogversion.to_s == "3.3" -%>
+<%- else -%>
         log_fifo_size(10000);
 <%- end -%>
 
