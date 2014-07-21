@@ -460,7 +460,7 @@ REJECT reject-with icmp-admin-prohibited
 		master: {
 			@ferm::rule { 'dsa-tftp':
 				description     => 'Allow tftp access',
-				rule            => '&SERVICE_RANGE(udp, 69, ( 82.195.75.64/26 ))'
+				rule            => '&SERVICE_RANGE(udp, 69, ( 82.195.75.64/26 192.168.43.0/24 ))'
 			}
 		}
 	}
