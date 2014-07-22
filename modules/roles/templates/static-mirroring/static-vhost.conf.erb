@@ -1,4 +1,15 @@
 # puppet maintained
+<Macro common-dsa-vhost-https-redirect $name>
+	<VirtualHost <%= vhost_listen %> >
+		ServerName $name
+		ServerAdmin debian-admin@lists.debian.org
+
+		CustomLog /var/log/apache2/$name-access.log privacy
+		ErrorLog /var/log/apache2/$name-error.log
+
+		Redirect permanent / https://$name/
+	</VirtualHost>
+</Macro>
 
 <Macro common-static-base $name>
 	<IfModule mod_userdir.c>
@@ -38,15 +49,7 @@
 
 
 <Macro common-static-vhost-ssl $name>
-	<VirtualHost <%= vhost_listen %> >
-		ServerName $name
-		ServerAdmin debian-admin@lists.debian.org
-
-		CustomLog /var/log/apache2/$name-access.log privacy
-		ErrorLog /var/log/apache2/$name-error.log
-
-		Redirect permanent / https://$name/
-	</VirtualHost>
+	Use common-dsa-vhost-https-redirect $name
 
 	<Virtualhost <%= vhost_listen_443 %> >
 		ServerName $name
