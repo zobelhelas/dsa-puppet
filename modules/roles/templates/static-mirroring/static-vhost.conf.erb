@@ -32,21 +32,6 @@
 	</VirtualHost>
 </Macro>
 
-<Macro common-static-vhost-publiclog $name>
-	<Virtualhost <%= vhost_listen %> >
-		ServerName $name
-		ServerAdmin debian-admin@lists.debian.org
-
-		ErrorLog /var/log/apache2/$name-error.log
-		CustomLog /var/log/apache2/$name-access.log privacy
-		<IfModule mod_geoip.c>
-			CustomLog /var/log/apache2/$name-public-access.log privacy+geo
-		</IfModule>
-
-		Use common-static-base $name
-	</VirtualHost>
-</Macro>
-
 <Macro common-static-vhost $name>
 	Use common-static-vhost-with-extra $name "# nada"
 </Macro>
