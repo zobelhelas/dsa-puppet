@@ -13,6 +13,8 @@ Use common-static-vhost-ssl dsa.debian.org
 Use common-static-vhost-ssl rtc.debian.org
 Use common-static-vhost-with-extra security-team.debian.org "ServerAlias security-team-backend.debian.org"
 
+# www.backports.org
+###################
 # www.backports.org is the historical place for the backports
 # website and archive.  It is now a CNAME to backports.debian.org:
 # redirect http requests.
@@ -27,25 +29,8 @@ Use common-static-vhost-with-extra security-team.debian.org "ServerAlias securit
 </VirtualHost>
 
 
-<VirtualHost <%= vhost_listen %> >
-	ServerName women.debian.org
-	ServerAdmin debian-admin@debian.org
-
-	RedirectPermanent / http://www.debian.org/women/
-
-	RedirectPermanent /about/ http://www.debian.org/women/about
-	RedirectPermanent /contact/ http://www.debian.org/women/contact
-	RedirectPermanent /faqs/ http://www.debian.org/women/faq
-	RedirectPermanent /home/ http://www.debian.org/women/
-	RedirectPermanent /images/dw.png http://www.debian.org/women/dw.png
-	RedirectPermanent /involvement/ http://www.debian.org/women/participate
-	RedirectPermanent /mentoring/ http://www.debian.org/women/mentoring
-	RedirectPermanent /press/ http://wiki.debian.org/DebianWomen/Press
-	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
-</VirtualHost>
-
-# debian ports stuff
-####################
+# www.ports.debian.org
+######################
 <Virtualhost <%= vhost_listen %> >
 	ServerName www.ports.debian.org
 	ServerAlias www.ports-backend.debian.org
@@ -88,6 +73,26 @@ Use common-static-vhost-with-extra security-team.debian.org "ServerAlias securit
 	ServerName ports.debian.net
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://www.ports.debian.org/
+</VirtualHost>
+
+# historical sites
+##################
+# now only redirects remain
+<VirtualHost <%= vhost_listen %> >
+	ServerName women.debian.org
+	ServerAdmin debian-admin@debian.org
+
+	RedirectPermanent / http://www.debian.org/women/
+
+	RedirectPermanent /about/ http://www.debian.org/women/about
+	RedirectPermanent /contact/ http://www.debian.org/women/contact
+	RedirectPermanent /faqs/ http://www.debian.org/women/faq
+	RedirectPermanent /home/ http://www.debian.org/women/
+	RedirectPermanent /images/dw.png http://www.debian.org/women/dw.png
+	RedirectPermanent /involvement/ http://www.debian.org/women/participate
+	RedirectPermanent /mentoring/ http://www.debian.org/women/mentoring
+	RedirectPermanent /press/ http://wiki.debian.org/DebianWomen/Press
+	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
 </VirtualHost>
 
 <VirtualHost <%= vhost_listen %> >
