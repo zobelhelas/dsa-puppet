@@ -52,7 +52,7 @@ case fqdn
       if allnodeinfo.has_key?(node)
         hostname = allnodeinfo[node]['hostname'][0]
 
-        machine_keys << "#  #{hostname}"
+        machine_keys << "# #{hostname}"
         machine_keys << "command=\"/usr/lib/da-backup/da-backup-ssh-wrap #{hostname}\",from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-user-rc #{allnodeinfo[node]['sshRSAHostKey'][0]}"
       else
         machine_keys << "# host #{node} not found in allnodeinfo"
