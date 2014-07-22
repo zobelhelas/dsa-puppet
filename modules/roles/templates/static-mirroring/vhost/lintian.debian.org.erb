@@ -1,0 +1,54 @@
+<Virtualhost <%= vhost_listen %> >
+	ServerName lintian.debian.org
+	ServerAdmin lintian-maint@debian.org
+
+	ErrorLog /var/log/apache2/lintian.debian.org-error.log
+	CustomLog /var/log/apache2/lintian.debian.org-access.log privacy
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+
+	DocumentRoot /srv/static.debian.org/mirrors/lintian.debian.org/cur
+	AddDefaultCharset utf-8
+
+	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur>
+		# These two lines makes apache serve "lintian.log.gz" as a text/plain with encoding gzip
+		# making it easier to view the log in the browser.
+		RemoveType .gz
+		AddEncoding x-gzip .gz
+		AddType text/plain .log
+
+		<IfModule mod_userdir.c>
+			AddOutputFilterByType DEFLATE image/svg+xml
+			AddOutputFilterByType DEFLATE text/plain
+		</IfModule>
+	</Directory>
+
+	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur/graphs>
+		# Cache graphs for an hour (Technically, a "expires" of "24h after last mod"
+		# might be better, but oh well)
+		Header set Cache-Control "max-age=3600, must-revalidate, public"
+	</Directory>
+
+	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur/resources>
+		# Cache these for a year (3600 * 24 * 365.25)
+		# Files in here will change name if their content change
+		Header set Cache-Control "max-age=31557600, public"
+	</Directory>
+
+	RewriteEngine on
+	RewriteMap source-map txt:/srv/static.debian.org/mirrors/lintian.debian.org/cur/lookup-tables/source-packages
+
+	# Re-direct from the "old" locations to the new ones
+	RewriteRule ^/reports/T(.*)\.html$ /tags/$1.html [L,R=permanent]
+	RewriteRule ^/reports/(.*)$ /$1 [L,R=permanent]
+
+	# Map source packages to reports (this mapping is re-written once per lintian run,
+	# serve it as a 302 rather than a permanent redirect)
+	# Version-less request
+	RewriteRule ^/source/([a-z0-9-]+)/?$ /${source-map:$1} [L,R,NE]
+	# Versioned request
+	RewriteRule ^/source/([a-z0-9-]+)/([a-zA-Z0-9.+:~-]+)$ /${source-map:$1/$2} [L,R,NE]
+</VirtualHost>
+# vim:set syn=apache:
