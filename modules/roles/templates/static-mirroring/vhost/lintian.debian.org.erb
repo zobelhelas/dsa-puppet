@@ -1,4 +1,3 @@
-Use common-dsa-vhost-https-redirect-temp lintian.debian.org
 Use common-dsa-vhost-https-redirect lintian.debian.org
 
 <Virtualhost <%= vhost_listen_443 %> >
@@ -9,7 +8,7 @@ Use common-dsa-vhost-https-redirect lintian.debian.org
 	CustomLog /var/log/apache2/lintian.debian.org-access.log privacyssl
 
 	Use common-debian-service-ssl lintian.debian.org
-	#Use common-ssl-HSTS
+	Use common-ssl-HSTS
 
 	<IfModule mod_userdir.c>
 		UserDir disabled
