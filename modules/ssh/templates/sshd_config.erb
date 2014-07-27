@@ -11,8 +11,11 @@ Port 22
 <%= extraports = case fqdn
                         when "ravel.debian.org" then "Port 443"
                         when "paradis.debian.org" then "
-Port 5.153.231.31:443
-Port 2001:41c8:1000:21::21:31:443"
+ListenAddress 5.153.231.30:22
+ListenAddress [2001:41c8:1000:21::21:30]:22
+ListenAddress 5.153.231.31:443
+ListenAddress [2001:41c8:1000:21::21:31]:443
+"
                  end
 extraports
 %>
