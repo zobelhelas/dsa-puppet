@@ -75,6 +75,12 @@ class roles {
 		include roles::git_master
 	}
 
+	if has_role('people') {
+		ssl::service { 'people.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if has_role('security_master') {
 		include roles::security_master
 		include roles::dakmaster
