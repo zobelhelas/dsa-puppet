@@ -58,6 +58,8 @@ roles:
     - picconi.debian.org
   packagesqamaster:
     - quantz.debian.org
+  people:
+    - paradis.debian.org
   piuparts:
     - pejacevic.debian.org
   pubsub:
