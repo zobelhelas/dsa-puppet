@@ -1,3 +1,8 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
 # Package generated configuration file
 # See the sshd(8) manpage for details
 
@@ -5,6 +10,9 @@
 Port 22
 <%= extraports = case fqdn
                         when "ravel.debian.org" then "Port 443"
+                        when "paradis.debian.org" then "
+Port 5.153.231.31:443
+Port 2001:41c8:1000:21::21:31:443"
                  end
 extraports
 %>
