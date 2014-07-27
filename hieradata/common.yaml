@@ -33,7 +33,7 @@ roles:
     - franck.debian.org
   ftp.upload.d.o:
     - franck.debian.org
-    - ravel.debian.org
+    - coccia.debian.org
   git_master:
     - adayevskaya.debian.org
   keyring:
