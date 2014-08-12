@@ -185,6 +185,7 @@ ynic:
   netrange:
     - 144.32.168.64/28
   nameservers: [144.32.169.74, 144.32.169.75, 144.32.169.76]
+  mirror-debian: http://mirror.ynic.york.ac.uk/debian
 zivit:
   netrange:
     - 80.245.144.0/22
