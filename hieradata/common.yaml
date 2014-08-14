@@ -106,12 +106,12 @@ roles:
     - ullmann.debian.org
   vote:
     - vento.debian.org
-  weblog_destination:
-    - ravel.debian.org
-  weblog_provider:
-    - busoni.debian.org
-    - klecker.debian.org
-    - senfter.debian.org
+  #weblog_destination:
+  #  - ravel.debian.org
+  #weblog_provider:
+  #  - busoni.debian.org
+  #  - klecker.debian.org
+  #  - senfter.debian.org
   wiki:
     - wilder.debian.org
   www_master:
