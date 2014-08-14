@@ -218,6 +218,8 @@ host_settings:
     - ancina.debian.org
     - antheil.debian.org
     - arcadelt.debian.org
+    - arm-arm-01.debian.org
+    - arm-arm-02.debian.org
     - arnold.debian.org
     - babin.debian.org
     - ball.debian.org
