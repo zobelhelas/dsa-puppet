@@ -1,4 +1,4 @@
-class roles::buildd_master {
+class roles::buildd_ports_master {
 	ssl::service { 'buildd.debian-ports.org':
 		notify => Service['apache2'],
 	}
