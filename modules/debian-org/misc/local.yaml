@@ -266,6 +266,8 @@ host_settings:
     - abel.debian.org
     - ancina.debian.org
     - antheil.debian.org
+    - arm-arm-01.debian.org
+    - arm-arm-02.debian.org
     - arnold.debian.org
     - ball.debian.org
     - harris.debian.org
