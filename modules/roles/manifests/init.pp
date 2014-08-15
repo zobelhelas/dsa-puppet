@@ -168,6 +168,10 @@ class roles {
 		include roles::buildd_master
 	}
 
+	if has_role('buildd_ports_master') {
+		include roles::buildd_ports_master
+	}
+
 	if has_role('piuparts') {
 		include roles::piuparts
 	}
