@@ -250,6 +250,7 @@ host_settings:
     - parry.debian.org
     - porpora.debian.org
     - poulenc.debian.org
+    - powerpc-unicamp-01.debian.org
     - praetorius.debian.org
     - rem.debian.org
     - schroeder.debian.org
