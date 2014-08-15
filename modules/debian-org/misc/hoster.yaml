@@ -169,6 +169,10 @@ ugent:
 umn:
   netrange:
     - 128.101.240.212
+unicamp:
+  netrange:
+    - 143.106.0.0/16
+  mirror-debian: debian.las.ic.unicamp.br
 utwente:
   netrange:
     - 130.89.0.0/16
