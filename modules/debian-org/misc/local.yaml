@@ -215,6 +215,7 @@ host_settings:
     - zelenka.debian.org
     # buildd
     - alkman.debian.org
+    - all-bm-01.debian.org
     - ancina.debian.org
     - antheil.debian.org
     - arcadelt.debian.org
