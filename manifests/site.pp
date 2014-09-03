@@ -64,7 +64,7 @@ node default {
 		}
 	}
 
-	if $::hostname == 'backuphost' {
+	if $::hostname == 'storace' {
 		include bacula::storage
 	}
 
