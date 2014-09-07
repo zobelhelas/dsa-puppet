@@ -21,7 +21,7 @@ check_puppet_manifest () {
         git cat-file blob :0:${file} | sed 's/^import .*/#&/' >${pp}
         trap "rm -f ${pp}" RETURN
 
-        local output=$(puppet parser validate --storeconfigs true ${pp} 2>&1)
+        local output=$(puppet parser validate ${pp} 2>&1)
         if [ $? -ne 0 ] || [ -n "${output}" ]; then
                 echo '** Syntax check failed:' >&2
                 echo "${output}" >&2

@@ -19,6 +19,10 @@ class ferm::per-host {
 			}
 		}
 		oyens: {
+			@ferm::rule { 'dsa-memcache':
+				description     => 'Allow memcache access',
+				rule            => '&SERVICE_RANGE(tcp, 11211, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
 			@ferm::rule { 'dsa-amqp':
 				description     => 'Allow rabbitmq access',
 				rule            => '&SERVICE_RANGE(tcp, 5672, ( 5.153.231.240/27 172.29.123.0/24 ))'
