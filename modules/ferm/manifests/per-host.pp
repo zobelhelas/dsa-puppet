@@ -19,6 +19,10 @@ class ferm::per-host {
 			}
 		}
 		oyens: {
+			@ferm::rule { 'dsa-spice':
+				description     => 'Allow spice-console access',
+				rule            => '&SERVICE(tcp, 6082)'
+			}
 			@ferm::rule { 'dsa-memcache':
 				description     => 'Allow memcache access',
 				rule            => '&SERVICE_RANGE(tcp, 11211, ( 5.153.231.240/27 172.29.123.0/24 ))'
