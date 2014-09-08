@@ -7,14 +7,12 @@ nameinfo:
   arcadelt.debian.org: Jacques Arcadelt (also Jacob Arcadelt) (?1507 - October 14th, 1568)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
   babin.debian.org: Stanley Babin (1932 - 2010)
-  barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
   barriere.debian.org: Jean-Baptiste Barrière (May 2nd, 1707 - June 6th, 1747)
   beach.debian.org: Amy Marcy Cheney Beach (September 5th, 1867 - December 27th, 1944)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
   bendel.debian.org: Franz Bendel (March 23rd, 1833 - July 3rd, 1874)
   berlioz.debian.org: Hector Berlioz (December 11th, 1803 - March 8th, 1869)
   bertali.debian.org: Antonio Bertali (March 1605 - 17 April 1669)
-  biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
   binet.debian.org: Jocelyne Binet (September 27th, 1923 - January 13th, 1968)
   bizet.debian.org: Georges Bizet, (October 25th, 1838 - June 3rd, 1875)
   blavet.debian.org: Michel Blavet (March 13th, 1700 - October 28th, 1768)
@@ -132,7 +130,6 @@ nameinfo:
   tye.debian.org: Christopher Tye (c.1505 - 1573)
   ullmann.debian.org: Viktor Ullmann (January 1st, 1898 - October 17th, 1944)
   vento.debian.org: Ivo de Vento (1543/1545 - 1575)
-  vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
   vogler.debian.org: Georg Joseph Vogler (June 15th, 1749 - May 6th, 1814)
   wieck.debian.org: Clara Josephine Wieck (September 13th, 1819 - May 20th, 1896)
   wilder.debian.org: Alec Wilder (February 16th, 1907 - December 24th, 1980)
@@ -181,8 +178,6 @@ host_settings:
     - stabile.debian.org
     # decommissioning
     - rautavaara.debian.org
-    - scelsi.debian.org
-    - vitry.debian.org
     # dead/not running
     - berlioz.debian.org
     # mirrors, secondaries, syncproxies
@@ -223,8 +218,6 @@ host_settings:
     - arnold.debian.org
     - babin.debian.org
     - ball.debian.org
-    - barber.debian.org
-    - biber.debian.org
     - brahms.debian.org
     - caballero.debian.org
     - corelli.debian.org

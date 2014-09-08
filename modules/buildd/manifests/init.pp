@@ -47,7 +47,7 @@ class buildd ($ensure=present) {
 	}
 
 	$buildd_prop_ensure = $::hostname ? {
-		/^(alkman|barber|brahms|porpora|zandonai)$/ => 'present',
+		/^(alkman|brahms|porpora|zandonai)$/ => 'present',
 		default => 'absent',
 	}
 
