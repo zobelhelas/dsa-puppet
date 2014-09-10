@@ -126,6 +126,7 @@ leaseweb:
 marist:
   netrange:
     - 148.100.96.0/25
+  mirror-debian: http://ftp.us.debian.org/debian/
   nameservers: []
 osuosl:
   netrange:
