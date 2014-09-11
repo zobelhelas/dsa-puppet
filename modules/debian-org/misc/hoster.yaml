@@ -68,7 +68,8 @@ csail:
     - 128.31.0.0/24
   searchpaths: [debprivate-csail.debian.org]
   nameservers: [128.30.2.24, 128.30.2.25, 128.30.0.125]
-  mirror-debian: http://debian.csail.mit.edu/debian/
+  #mirror-debian: http://debian.csail.mit.edu/debian/
+  mirror-debian: http://ftp.us.debian.org/debian/
 dgi:
   netrange:
     - 93.94.130.128/26
