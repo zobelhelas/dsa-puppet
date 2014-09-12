@@ -4,12 +4,6 @@
 %>
 
 # local admin
-<%= hosterkeys = case scope.lookupvar('site::nodeinfo')['hoster']['name']
-         when "ubcece" then
-         "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvEEyxznxleAhk98K7SkAeAKWibijL5uFjIl1+tr8rz+XmFsjabTK2+hQXkgzmU+jqQ2+MPp6btfAq9Oe27GQYWUFfsAZMRb907dReFQYPKbPhQZoo5LUfkrCiR3tD0Nm2JfepTV0079K1+Q50EMImttwbI94FfSoSgTxgF4rCoLpUgmF0IHDR1+kTGow7YnuS1Y/I1zKAbofg8KBGXOLArkcZbxArt25Y2wlnE+ZHIb3Rn3pYc3/KmPPvEQy9IkR/uzzkWSaCBVMFJEO0ejjWrV4HR64GlKUPQ0CekSYn1EErY55CF5sWkasXhflluwSf7b+/jedDM1A1Vrp9Z/F8Q== chrisd"
-    end
-hosterkeys
-%>
 <%= localkeys = case fqdn
          when "pettersson.debian.org" then "from=\"nixon.acc.umu.se\" ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAwDw56/XK0/uQB+ZIOZIfZ3vpz9zLRuv6G0U4eU4VavqvaL0dXSNhGJLBDLlfpxtJYwYf/mSoK4WZasbbfHxz8jtIxK9c9aGkVA0GKT+xiHWB3J1SlwJaA7S7Ed8nNcG5PNOVd30BD5LimkS53Nz841e+MgZRuL9SfLALq7er03U= root@nixon"
 end
