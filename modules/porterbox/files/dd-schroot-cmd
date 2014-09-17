@@ -180,7 +180,7 @@ class AptSchroot:
         self.apt_simulate_and_ask(['install', '--'] + packages)
 
     def apt_build_dep(self, packages, archonly=False):
-        cmd = ['build-dep'] + (['--arch-only'] if archonly else []) + ['--']
+        cmd = (['--arch-only'] if archonly else []) + ['build-dep', '--']
         self.apt_simulate_and_ask(cmd + packages)
 
     def apt_simulate_and_ask(self, cmd, split_download=True, run_clean=True):
