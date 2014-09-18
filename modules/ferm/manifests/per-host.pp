@@ -422,7 +422,12 @@ class ferm::per-host {
 		lw07: {
 			@ferm::rule { 'dsa-postgres-snapshot':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5439, ( 185.17.185.176/28 2001:1af8:4020:b030::/64 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5439, ( 185.17.185.176/28 ))'
+			}
+			@ferm::rule { 'dsa-postgres-snapshot6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5439, ( 2001:1af8:4020:b030::/64 ))'
 			}
 		}
 		default: {}
