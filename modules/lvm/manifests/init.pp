@@ -6,6 +6,9 @@ class lvm {
 		tristano,pasquini,bertali,boito: {
 			$conffile = 'lvm-ubc-ganeti-p410.conf'
 		}
+		csail-node01,csail-node02: {
+			$conffile = 'lvm-csail-nodeX-ganeti.conf'
+		}
 		default: {
 			$conffile = ''
 		}
