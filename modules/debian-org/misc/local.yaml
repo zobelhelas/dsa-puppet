@@ -241,6 +241,7 @@ host_settings:
     - mipsel-manda-02.debian.org
     - mundy.debian.org
     - parry.debian.org
+    - piu-slave-1und1-01.debian.org
     - porpora.debian.org
     - poulenc.debian.org
     - powerpc-unicamp-01.debian.org
