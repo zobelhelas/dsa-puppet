@@ -25,6 +25,7 @@ when "zemlinsky.debian.org" then                               ignore << %w{init
 when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-api64 gskssl64 gskcrypt64}
 when "vogler.debian.org" then                                  ignore << %w{repro libresiprocate-1.9 resiprocate-turn-server}
 when /(mailly|muffat).debian.org/ then                         ignore << %w{python-dsa-mq}
+when /csail-node(01|02).debian.org/ then                       ignore << %w{openvswitch-switch openvswitch-common}
 end
 
 case fqdn
