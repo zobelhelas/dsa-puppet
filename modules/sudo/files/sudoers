@@ -101,7 +101,7 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 %emdebian	ALL=(emdebian)	ALL
 %forums		ALL=(forums)	ALL
 %httpredir	ALL=(httpredir)	ALL
-%httpredir	ALL=(httpredir-all)	ALL
+%httpredir	ALL=(httpredir-app)	ALL
 %keyring	ALL=(keyring)	ALL
 %lintian	ALL=(lintian)	ALL
 %listweb	ALL=(listweb)	ALL
@@ -140,6 +140,9 @@ nagios		beethoven,backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-c
 dak		ALL=(dak-unpriv)	NOPASSWD: ALL
 # and ftpmaster can access the role user for their web services
 %debadmin	FTPHOSTS=(dak-web)	ALL
+
+# the httpredir role use can run a couple of things as httpredir-app
+httpredir	ALL=(httpredir-app)	NOPASSWD: /usr/bin/starman
 
 # some groups are in apachectrl on "their" hosts so they can reload apache and update their vhost
 %apachectrl	ALL=(root)	/usr/sbin/apache2-vhost-update
