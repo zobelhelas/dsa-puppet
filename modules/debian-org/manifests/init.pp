@@ -164,9 +164,14 @@ class debian-org {
 
 	site::aptrepo { 'db.debian.org':
 		url        => 'http://db.debian.org/debian-admin',
-		suite      => 'lenny',
+		suite      => 'debian-all',
 		components => 'main',
 		key        => 'puppet:///modules/debian-org/db.debian.org.gpg',
+	}
+	site::aptrepo { 'db.debian.org-suite':
+		url        => 'http://db.debian.org/debian-admin',
+		suite      => $::lsbdistcodename,
+		components => 'main',
 	}
 
 	augeas { 'inittab_replicate':
