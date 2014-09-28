@@ -21,7 +21,7 @@ arm:
   netrange:
     - 217.140.96.0/22
   entropy_provider_hoster: sil
-  mirror-debian: http://ftp.uk.debian.org/debian/
+  mirror-debian: http://mirror.bytemark.co.uk/debian/
 brainfood:
   netrange:
     - 70.103.162.0/24
