@@ -10,4 +10,7 @@ rrdcached_socket /var/run/munin/rrdcached.sock/sock
 #html_strategy cgi
 graph_strategy cgi
 
+# Reduce memory usage spikes and OOM mails
+max_html_jobs 3
+
 includedir /etc/munin/munin-conf.d
