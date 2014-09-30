@@ -2,7 +2,6 @@
 nameinfo:
   abel.debian.org: Carl Friedrich Abel (1723 - 1787)
   adayevskaya.debian.org: Ella Georgiyevna Adayevskaya (February, 22nd 1846 [O.S. February 10th] - July 26th, 1926)
-  ancina.debian.org: Giovanni Giovenale Ancina (October 19th, 1545 - August 30th, 1604)
   antheil.debian.org: George Antheil (1900 - 1959)
   arcadelt.debian.org: Jacques Arcadelt (also Jacob Arcadelt) (?1507 - October 14th, 1568)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
@@ -211,7 +210,6 @@ host_settings:
     - zelenka.debian.org
     # buildd
     - alkman.debian.org
-    - ancina.debian.org
     - antheil.debian.org
     - arcadelt.debian.org
     - arm-arm-01.debian.org
@@ -260,7 +258,6 @@ host_settings:
     - x86-bm-01.debian.org
   broken-rtc:
     - abel.debian.org
-    - ancina.debian.org
     - antheil.debian.org
     - arm-arm-01.debian.org
     - arm-arm-02.debian.org
@@ -278,7 +275,6 @@ host_settings:
     - rem.debian.org
     - sompek.debian.org
   mail_port:
-    ancina.debian.org: 2025
     klecker.debian.org: 2025
     zani.debian.org: 587
   no_munin:
