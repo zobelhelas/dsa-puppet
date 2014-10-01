@@ -80,7 +80,7 @@ def ensure_ok(session):
         die("Session owner mismatch.")
 
 def os_supports_unshare():
-    if platform.uname()[0] == 'GNU/kFreeBSD':
+    if platform.uname()[0] in ('GNU/kFreeBSD', 'GNU'):
         return False
     return True
 
