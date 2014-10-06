@@ -94,8 +94,11 @@
 @def $tfheen   = ($tfheen 194.31.39.0/26); # office network
 @def $tfheen   = ($tfheen 195.159.200.122); # home
 @def $tfheen   = ($tfheen 77.40.254.120/29); # home
+@def $jcristau = ();
+@def $jcristau = ($jcristau 82.225.74.107/32); # home
+@def $jcristau = ($jcristau 109.190.107.82/32); # office
 @def $master   = (82.195.75.110); # master.debian.org
-@def $DSA_IPS = ($sgran $weasel $zobel $luca $paravoid $tfheen $master);
+@def $DSA_IPS = ($sgran $weasel $zobel $luca $paravoid $tfheen $jcristau $master);
 
 @def $sgran6     = (2001:4b10:100b::/48);
 @def $sgran6     = ($sgran6 2001:4b10:0000:810b::/64);
@@ -114,8 +117,9 @@
 @def $tfheen6    = ($tfheen6 2a02:c0:1013:1::/64); # Office
 @def $tfheen6    = ($tfheen6 2001:840:f000:4007::/64); # Home, link
 @def $tfheen6    = ($tfheen6 2001:840:4007::/48); # Home
+@def $jcristau6   = (2a01:e35:2e14:a6b0::/64); # home
 @def $master6     = (2001:41b8:202:deb:216:36ff:fe40:4001); # master.debian.org
-@def $DSA_V6_IPS = ($sgran6 $weasel6 $zobel6 $luca6 $paravoid6 $tfheen6 $master6);
+@def $DSA_V6_IPS = ($sgran6 $weasel6 $zobel6 $luca6 $paravoid6 $tfheen6 $jcristau6 $master6);
 
 @def $USER_christoph = ();
 #@def $USER_christoph = ($USER_christoph 212.114.250.148/31);
