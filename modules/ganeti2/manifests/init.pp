@@ -17,11 +17,6 @@ class ganeti2 {
 		ensure => installed
 	}
 
-	if $drbd {
-		package { 'drbd8-utils':
-			ensure => installed
-		}
-	}
 
 	site::linux_module { 'tun': }
 }
