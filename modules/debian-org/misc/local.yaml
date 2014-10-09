@@ -163,6 +163,7 @@ host_settings:
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org
+    - mirror-csail.debian.org
     - saens.debian.org
     - santoro.debian.org
     - sechter.debian.org
@@ -186,6 +187,7 @@ host_settings:
     - busoni.debian.org
     - gluck.debian.org
     - lobos.debian.org
+    - mirror-csail.debian.org
     - pkgmirror-1and1.debian.org
     - schein.debian.org
     - saens.debian.org
