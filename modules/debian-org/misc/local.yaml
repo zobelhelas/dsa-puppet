@@ -284,7 +284,7 @@ host_settings:
     - malo.debian.org
   entropy_key:
     - czerny.debian.org
-    - rautavaara.debian.org
+    # - rautavaara.debian.org
     - salieri.debian.org
     - storace.debian.org
   buildd_master:
