@@ -92,6 +92,7 @@ grnet:
     - 2001:648:2ffc:deb::/64
   searchpaths: [debprivate-grnet.debian.org]
   nameservers: [194.177.210.10, 194.177.210.210]
+  mirror-debian: http://ftp.gr.debian.org/debian/
 helsinki:
   netrange:
     - 193.167.160.0/23
