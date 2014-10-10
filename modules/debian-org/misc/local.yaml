@@ -187,7 +187,6 @@ host_settings:
     - busoni.debian.org
     - gluck.debian.org
     - lobos.debian.org
-    - mirror-csail.debian.org
     - pkgmirror-1and1.debian.org
     - schein.debian.org
     - saens.debian.org
