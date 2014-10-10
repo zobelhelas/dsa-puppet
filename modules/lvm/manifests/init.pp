@@ -9,6 +9,9 @@ class lvm {
 		csail-node01,csail-node02: {
 			$conffile = 'lvm-csail-nodeX-ganeti.conf'
 		}
+		grnet-node01,grnet-node02: {
+			$conffile = 'lvm-grnet-nodeX-ganeti.conf'
+		}
 		default: {
 			$conffile = ''
 		}
