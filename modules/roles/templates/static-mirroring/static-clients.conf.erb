@@ -4,7 +4,10 @@
 
 <%=
 
-scope.lookupvar('site::roles')['static_mirror'].join("\n")
+# do not include mirrors in static_mirror_nopush
+static_mirror_nopush = scope.lookupvar('site::roles')['static_mirror_nopush']
+
+scope.lookupvar('site::roles')['static_mirror'].reject{ |x| static_mirror_nopush.include?(x) }.join("\n")
 
 # vim:set et:
 # vim:set sts=4 ts=4:
