@@ -154,6 +154,7 @@ buildd		ALL=(ALL)		NOPASSWD: ALL
 
 %backports	franck,coccia=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
 d-i		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component d-i.debian.org
+lucas		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debaday.debian.net
 dsa		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component dsa.debian.org
 dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component incoming.debian.org
 dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component metadata.ftp-master.debian.org
