@@ -117,7 +117,7 @@ source s_local {
 <%- end -%>
 };
 
-<%- if (hostname == "lotti") || (hostname == "lully") -%>
+<%- if (hostname == "lotti") || (hostname == "lully") || (hostname == "loghost-grnet-01") -%>
 source s_network {
 	tcp6(port(5140) max-connections(200)
 		tls( key_file("/etc/exim4/ssl/thishost.key")
@@ -415,6 +415,16 @@ destination loghost-lully {
 	);
 };
  <%- end -%>
+  <%- if hostname != "loghost-grnet-01" -%>
+destination loghost-loghost-grnet-01 {
+	tcp("loghost-grnet-01.debian.org" port (5140)
+		tls( key_file("/etc/ssl/debian/keys/thishost.key")
+		     cert_file("/etc/ssl/debian/certs/thishost.crt")
+		     ca_dir("/etc/ssl/debian/certs/")
+		)
+	);
+};
+ <%- end -%>
 
 log {
 	source(s_local);
@@ -424,11 +434,14 @@ log {
  <%- if hostname != "lully" -%>
 	destination(loghost-lully);
  <%- end -%>
+ <%- if hostname != "loghost01-grnet-01" -%>
+	destination(loghost-loghost-grnet-01);
+ <%- end -%>
 };
 
 
 
-<%- if (hostname == "lotti") || (hostname == "lully") -%>
+<%- if (hostname == "lotti") || (hostname == "lully") || (hostname == "loghost-grnet-01") -%>
 ###############################################################################
 ########## ON LOG HOST ########################################################
 ###############################################################################
