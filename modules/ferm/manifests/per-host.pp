@@ -90,7 +90,7 @@ class ferm::per-host {
 				rule        => 'destination 78.8.208.246/32 proto tcp dport 25 jump DROP',
 			}
 		}
-		lotti,lully: {
+		lotti,lully,loghost-grnet-01: {
 			@ferm::rule { 'dsa-syslog':
 				description     => 'Allow syslog access',
 				rule            => '&SERVICE_RANGE(tcp, 5140, $HOST_DEBIAN_V4)'
