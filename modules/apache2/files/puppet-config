@@ -1,3 +1,8 @@
 <IfModule mod_ssl.c>
   SSLProtocol all -SSLv2 -SSLv3
+  SSLHonorCipherOrder On
+
+  # this is a list that seems suitable as of 2014-10, when running wheezy.  It
+  # probably requires re-visiting regularly.
+  SSLCipherSuite ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!eNULL:!LOW:!MD5:!EXP:!RC4:!SEED
 </IfModule>
