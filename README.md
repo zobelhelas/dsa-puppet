@@ -14,7 +14,7 @@
     apt-get install puppet   # >= 2.7.6
     apt-get install pcregrep
     apt-get install puppet-lint
-    git clone ssh://username@handel.debian.org/srv/puppet.debian.org/git/dsa-puppet.git /path/to/local/repo
+    git clone ssh://username@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git /path/to/local/repo
     make -C /path/to/local/repo git_hooks  # CRITICAL
 
 ### how to validate manifest files
