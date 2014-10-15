@@ -198,6 +198,7 @@ host_settings:
     - wieck.debian.org
     # porterbox
     - abel.debian.org
+    - arm-linaro-01.debian.org
     - barriere.debian.org
     - binet.debian.org
     - eder.debian.org
