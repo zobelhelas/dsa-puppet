@@ -42,6 +42,9 @@ get_suites() {
       sparc)
         echo "sid wheezy squeeze"
         ;;
+      arm64)
+        echo "sid jessie"
+        ;;
       *)
         echo "sid jessie wheezy squeeze"
         ;;
@@ -54,6 +57,9 @@ case "$DPKGARCH" in
         archs="$archs i386"
         ;;
     armhf)
+        if [ "$(uname -m)" = "aarch64" ] ; then
+            archs="$archs arm64"
+        fi
         archs="$archs armel"
         ;;
     armel)
