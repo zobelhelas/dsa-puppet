@@ -3,7 +3,7 @@ class ferm::per-host {
 		include ferm::zivit
 	}
 
-	if $::hostname in [glinka,klecker,ravel,rietz,senfl,sibelius,stabile] {
+	if $::hostname in [glinka,klecker,ravel,rietz,senfl,sibelius] {
 		ferm::rule { 'dsa-rsync':
 			domain      => '(ip ip6)',
 			description => 'Allow rsync access',
@@ -169,16 +169,6 @@ class ferm::per-host {
 				table           => 'nat',
 				chain           => 'PREROUTING',
 				rule            => 'proto tcp daddr 193.62.202.30 dport 80 REDIRECT to-ports 6081',
-			}
-		}
-		stabile: {
-			@ferm::rule { 'dsa-snapshot-varnish':
-				rule            => '&SERVICE(tcp, 6081)',
-			}
-			@ferm::rule { 'dsa-nat-snapshot-varnish':
-				table           => 'nat',
-				chain           => 'PREROUTING',
-				rule            => 'proto tcp daddr 206.12.19.150 dport 80 REDIRECT to-ports 6081',
 			}
 		}
 		lw07: {

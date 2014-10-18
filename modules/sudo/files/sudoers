@@ -184,8 +184,8 @@ dnsadm		denis=(root)			NOPASSWD: /usr/sbin/service bind9 reload
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 dak		franck=(backports)	NOPASSWD: /home/backports/bin/update-archive
 # archvsync triggers snapshot
-archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
-archvsync	sibelius,stabile=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
+archvsync	sibelius=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
+archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
 # dak stuff
 %debian-release	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *
 %ftpteam	FTPHOSTS=(dak)		/usr/local/bin/dak transitions --import *

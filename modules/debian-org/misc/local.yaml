@@ -122,7 +122,6 @@ nameinfo:
   storace.debian.org: Stephen Storace (April 4th, 1762 – March 19th, 1796)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
-  stabile.debian.org: Annibale Stabile (~1535 - April 1595)
   steffani.debian.org: Agostino Steffani (July 25th, 1653 - February 12th, 1728)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
   ticharich.debian.org: Zdenka Ticharich (September 26th, 1900 - February 15th, 1979)
@@ -177,9 +176,9 @@ host_settings:
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
-    - stabile.debian.org
     # decommissioning
     - rautavaara.debian.org
+    - ravel.debian.org
     # dead/not running
     - berlioz.debian.org
     # mirrors, secondaries, syncproxies
