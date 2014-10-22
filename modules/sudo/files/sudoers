@@ -197,6 +197,7 @@ dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %press		WEBHOSTS=(debwww)	/srv/www.debian.org/update-part News
+%debvote	WEBHOSTS=(debwww)	/srv/www.debian.org/update-part vote
 # more list stuff
 %list		LISTHOSTS=(root)		/usr/sbin/postfix reload
 %list		stockhausen=(root)		/usr/sbin/service jetty restart
