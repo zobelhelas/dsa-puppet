@@ -12,3 +12,8 @@
 #    target_port: 5433
 #    ssh_options: -oAddressFamily=inet
 
+dummy:
+  - source_bind_port: 15433
+    target_host: dummy2
+    target_port: 5433
+    ssh_options: -oAddressFamily=inet
