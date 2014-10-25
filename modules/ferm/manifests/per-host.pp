@@ -263,12 +263,12 @@ class ferm::per-host {
 
 			@ferm::rule { 'dsa-postgres-backup':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.12/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V4 ))'
 			}
 			@ferm::rule { 'dsa-postgres-backup6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:12/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V6 ))'
 			}
 		}
 		bmdb1: {
@@ -324,12 +324,12 @@ class ferm::per-host {
 			@ferm::rule { 'dsa-postgres-backup':
 				# ubc, wuit
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, (5435 5436), ( 5.153.231.12/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, (5435 5436), ( $HOST_PGBACKUPHOST_V4 ))'
 			}
 			@ferm::rule { 'dsa-postgres-backup6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, (5435 5436), ( 2001:41c8:1000:21::21:12/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, (5435 5436), ( $HOST_PGBACKUPHOST_V6 ))'
 			}
 
 			@ferm::rule { 'dsa-postgres-dedup':
@@ -370,34 +370,34 @@ class ferm::per-host {
 
 			@ferm::rule { 'dsa-postgres-backup':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.12/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V4 ))'
 			}
 			@ferm::rule { 'dsa-postgres-backup6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:12/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V6 ))'
 			}
 		}
 		chopin: {
 			@ferm::rule { 'dsa-postgres-backup':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5432, ( 5.153.231.12/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5432, ( $HOST_PGBACKUPHOST_V4 ))'
 			}
 			@ferm::rule { 'dsa-postgres-backup6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5432, ( 2001:41c8:1000:21::21:12/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5432, ( $HOST_PGBACKUPHOST_V6 ))'
 			}
 		}
 		sibelius: {
 			@ferm::rule { 'dsa-postgres-backup':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.12/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V4 ))'
 			}
 			@ferm::rule { 'dsa-postgres-backup6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:12/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V6 ))'
 			}
 			@ferm::rule { 'dsa-postgres-replication':
 				description     => 'Allow postgress access',
