@@ -124,6 +124,7 @@ roles:
     - wolkenstein.debian.org
   postgres_backup_server:
     - backuphost.debian.org
+    - storace.debian.org
   dabackup_client:
     - moszumanska.debian.org
     - lw03.debian.org
