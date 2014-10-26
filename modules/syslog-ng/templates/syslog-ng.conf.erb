@@ -1,5 +1,7 @@
 <%- if has_variable?("syslogversion") and syslogversion.to_s == "3.1" -%>
 @version: 3.0
+<%- elsif has_variable?("syslogversion") and syslogversion.to_s == "3.5" -%>
+@version: 3.5
 <%- else -%>
 @version: 3.3
 <%- end -%>
