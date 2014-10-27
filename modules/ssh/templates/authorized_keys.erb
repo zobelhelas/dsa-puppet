@@ -1,10 +1,9 @@
-# local admin
-<%= hosterkeys = case scope.lookupvar('site::nodeinfo')['hoster']['name']
-         when "ubcece" then
-         "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvEEyxznxleAhk98K7SkAeAKWibijL5uFjIl1+tr8rz+XmFsjabTK2+hQXkgzmU+jqQ2+MPp6btfAq9Oe27GQYWUFfsAZMRb907dReFQYPKbPhQZoo5LUfkrCiR3tD0Nm2JfepTV0079K1+Q50EMImttwbI94FfSoSgTxgF4rCoLpUgmF0IHDR1+kTGow7YnuS1Y/I1zKAbofg8KBGXOLArkcZbxArt25Y2wlnE+ZHIb3Rn3pYc3/KmPPvEQy9IkR/uzzkWSaCBVMFJEO0ejjWrV4HR64GlKUPQ0CekSYn1EErY55CF5sWkasXhflluwSf7b+/jedDM1A1Vrp9Z/F8Q== chrisd"
-    end
-hosterkeys
+<%
+  allnodeinfo = scope.lookupvar('site::allnodeinfo')
+  roles = scope.lookupvar('site::roles')
 %>
+
+# local admin
 <%= localkeys = case fqdn
          when "pettersson.debian.org" then "from=\"nixon.acc.umu.se\" ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAwDw56/XK0/uQB+ZIOZIfZ3vpz9zLRuv6G0U4eU4VavqvaL0dXSNhGJLBDLlfpxtJYwYf/mSoK4WZasbbfHxz8jtIxK9c9aGkVA0GKT+xiHWB3J1SlwJaA7S7Ed8nNcG5PNOVd30BD5LimkS53Nz841e+MgZRuL9SfLALq7er03U= root@nixon"
 end
@@ -12,9 +11,8 @@ localkeys
 %>
 <%=
   ganetikeys = []
-  allnodeinfo = scope.lookupvar('site::allnodeinfo')
   if scope.lookupvar('::cluster').to_s != 'undefined'
-    scope.lookupvar('::cluster_nodes').to_s.split.sort.each do |node|
+    scope.lookupvar('::cluster_nodes').split.sort.each do |node|
       if allnodeinfo.has_key?(node)
         ganetikeys << "# for ganeti cluster #{scope.lookupvar('::cluster').to_s}: #{allnodeinfo[node]['hostname'][0]}"
         ganetikeys << "from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\" #{allnodeinfo[node]['sshRSAHostKey'][0]}"
@@ -39,27 +37,21 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDR9rh9AuBKt7yEAgtpvTPTl/SJWi2nAe5h5cnhTpWw
 # sgran
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAuGJnElqbhgLtmJp/de8s42cAwKrkAhFq5u8EAkauEv6BZNqvY/6aRBxCNU55e5JZKa7D1qKMG0upZFCOl5K36uv0KXlCvIMgaQqQcce41dtNRmiyHpw3LXqdV2qJNpJAXMpsEN4F/STkftTOcFhI9nhz88IIwsboCErla1W8NxxRkBU0FxpT4Zn1wBlq30o12gtBFs3lO+nE7+k8H8I791V+3kjVAXCDh5Ep8BY4Bg8eSuhwUgmiNvWf6E6/D0s9pFJdAMFKFLPivsnc13nfgYDmxZQKrkVV8LqIGaisy7Q3LdQLKBraWYmfQ5idkaPK+EUSERdusG7pB0wzp1ieA1iEkgMRFFLBx22tQmEdmu+Wo3vM77FmNYWvvPKDwKYn1uwg0Kgf1JTWlFwq5C73EG3Q6Vb6ExNPaX/GMDkpi0Km5p2/BIM/jyCmCH+ScFRCtzJoxEg3L7BFdCKgY1bQW2pZDMRQ9nc32+EDUGQQbYp44/8mr4mXqDYV4VElZTqWZ6hJZk1cS7hustO8lJE3Yykp+q/5I0cq7fxe5aLBO5DwTPq9EY/dlcTy8z09Itm/AcJuCipg4I0nQ1cSDTNYn+4NVxoga/yS3gJlU5euXKmcaK9SaRCBIHtWR/Semza3Imvgtgd25bwKI+6VT/fHgqgmvo184NZID099w2E90eE= sgran's root key for debian.org machines
 
-<%= machine_keys = case fqdn
-   when "beethoven.debian.org" then
-     out = ''
-     scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
-       out += '# ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'][0] + '
-command="/usr/lib/da-backup/da-backup-ssh-wrap ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'][0] + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].join(',') + '" ' + scope.lookupvar('site::allnodeinfo')[node]['sshRSAHostKey'][0] + '
+<%=
 
-'
-     end
-     out
-   when "backuphost.debian.org" then
-     out = ''
-     scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
-       if %w{moszumanska.debian.org stabile.debian.org}.include?(node) then
-         out += '# ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'][0] + '
-command="/usr/lib/da-backup/da-backup-ssh-wrap ' + scope.lookupvar('site::allnodeinfo')[node]['hostname'][0] + '",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,from="' + scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].join(',') + '" ' + scope.lookupvar('site::allnodeinfo')[node]['sshRSAHostKey'][0] + '
+machine_keys = []
+case fqdn
+  when "backuphost.debian.org", "storace.debian.org" then
+    roles['dabackup_client'].each do |node|
+      if allnodeinfo.has_key?(node)
+        hostname = allnodeinfo[node]['hostname'][0]
 
-'
+        machine_keys << "# #{hostname}"
+        machine_keys << "command=\"/usr/lib/da-backup/da-backup-ssh-wrap #{hostname}\",from=\"#{allnodeinfo[node]['ipHostNumber'].join(',')}\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-user-rc #{allnodeinfo[node]['sshRSAHostKey'][0]}"
+      else
+        machine_keys << "# host #{node} not found in allnodeinfo"
       end
-     end
-     out
-   end
-machine_keys
+  end
+end
+machine_keys.join("\n")
 %>

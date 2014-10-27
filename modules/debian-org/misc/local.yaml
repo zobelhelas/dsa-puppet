@@ -2,19 +2,17 @@
 nameinfo:
   abel.debian.org: Carl Friedrich Abel (1723 - 1787)
   adayevskaya.debian.org: Ella Georgiyevna Adayevskaya (February, 22nd 1846 [O.S. February 10th] - July 26th, 1926)
-  ancina.debian.org: Giovanni Giovenale Ancina (October 19th, 1545 - August 30th, 1604)
   antheil.debian.org: George Antheil (1900 - 1959)
   arcadelt.debian.org: Jacques Arcadelt (also Jacob Arcadelt) (?1507 - October 14th, 1568)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
+  asachi.debian.org: Elena Asachi (1789 - 1877)
   babin.debian.org: Stanley Babin (1932 - 2010)
-  barber.debian.org: Samuel Barber (March 9th, 1910 - January 23rd, 1981)
   barriere.debian.org: Jean-Baptiste Barrière (May 2nd, 1707 - June 6th, 1747)
   beach.debian.org: Amy Marcy Cheney Beach (September 5th, 1867 - December 27th, 1944)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
   bendel.debian.org: Franz Bendel (March 23rd, 1833 - July 3rd, 1874)
   berlioz.debian.org: Hector Berlioz (December 11th, 1803 - March 8th, 1869)
   bertali.debian.org: Antonio Bertali (March 1605 - 17 April 1669)
-  biber.debian.org: Heinrich Ignaz Franz von Biber (August 12th, 1664 - May 3rd, 1704)
   binet.debian.org: Jocelyne Binet (September 27th, 1923 - January 13th, 1968)
   bizet.debian.org: Georges Bizet, (October 25th, 1838 - June 3rd, 1875)
   blavet.debian.org: Michel Blavet (March 13th, 1700 - October 28th, 1768)
@@ -49,6 +47,7 @@ nameinfo:
   fischer.debian.org: Johann Caspar Ferdinand Fischer (September 9th, 1656 - August 27th, 1746)
   franck.debian.org: Melchior Franck (1579 - June 1st, 1639)
   gabrielli.debian.org: Domenico Gabrielli (April 15th, 1651 - July 10th, 1690)
+  gideon.debian.org: Miriam Gideon (October 23rd, 1906 - June 18th, 1996)
   glinka.debian.org: Mikhail Ivanovich Glinka (1804 - 1857)
   gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
   gombert.debian.org: Nicolas Gombert (c. 1495 – c. 1560)
@@ -80,6 +79,7 @@ nameinfo:
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
   nono.debian.org: Luigi Nono (January 29th, 1924 - May 8th, 1990)
   oyens.debian.org: Tera de Marez Oyens (August 5th, 1932 - August 29th, 1996)
+  paradis.debian.org: Maria Theresia Paradis (May 15th, 1759 - February 1st, 1824)
   parry.debian.org: Sir Charles Hubert Hastings Parry, 1st Baronet (February 27th, 1848 – October 7th, 1918)
   partch.debian.org: Harry Partch (June 24th, 1901 - September 3rd, 1974)
   pasquini.debian.org: Bernardo Pasquini (December 7th, 1637 - November 22nd, 1710)
@@ -109,6 +109,7 @@ nameinfo:
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
+  sechter.debian.org: Simon Sechter (October 11th, 1788 - September 10th, 1867)
   senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
   senfter.debian.org: Johanna Senfter (November, 27th, 1879 - August 11th, 1961)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
@@ -121,7 +122,6 @@ nameinfo:
   storace.debian.org: Stephen Storace (April 4th, 1762 – March 19th, 1796)
   spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
-  stabile.debian.org: Annibale Stabile (~1535 - April 1595)
   steffani.debian.org: Agostino Steffani (July 25th, 1653 - February 12th, 1728)
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
   ticharich.debian.org: Zdenka Ticharich (September 26th, 1900 - February 15th, 1979)
@@ -130,7 +130,6 @@ nameinfo:
   tye.debian.org: Christopher Tye (c.1505 - 1573)
   ullmann.debian.org: Viktor Ullmann (January 1st, 1898 - October 17th, 1944)
   vento.debian.org: Ivo de Vento (1543/1545 - 1575)
-  vitry.debian.org: Philippe de Vitry (October 31st, 1291 - June 9th, 1361)
   vogler.debian.org: Georg Joseph Vogler (June 15th, 1749 - May 6th, 1814)
   wieck.debian.org: Clara Josephine Wieck (September 13th, 1819 - May 20th, 1896)
   wilder.debian.org: Alec Wilder (February 16th, 1907 - December 24th, 1980)
@@ -164,8 +163,10 @@ host_settings:
   apache2_security_mirror:
     - gluck.debian.org
     - lobos.debian.org
+    - mirror-csail.debian.org
     - saens.debian.org
     - santoro.debian.org
+    - sechter.debian.org
     - schein.debian.org
     - steffani.debian.org
     - villa.debian.org
@@ -175,11 +176,9 @@ host_settings:
     - santoro.debian.org
     - senfl.debian.org
   not-bacula-client:
-    - stabile.debian.org
     # decommissioning
     - rautavaara.debian.org
-    - scelsi.debian.org
-    - vitry.debian.org
+    - ravel.debian.org
     # dead/not running
     - berlioz.debian.org
     # mirrors, secondaries, syncproxies
@@ -199,6 +198,7 @@ host_settings:
     - wieck.debian.org
     # porterbox
     - abel.debian.org
+    - asachi.debian.org
     - barriere.debian.org
     - binet.debian.org
     - eder.debian.org
@@ -212,14 +212,15 @@ host_settings:
     - zelenka.debian.org
     # buildd
     - alkman.debian.org
-    - ancina.debian.org
     - antheil.debian.org
     - arcadelt.debian.org
+    - arm-arm-01.debian.org
+    - arm-arm-02.debian.org
+    - arm-linaro-01.debian.org
+    - arm-linaro-03.debian.org
     - arnold.debian.org
     - babin.debian.org
     - ball.debian.org
-    - barber.debian.org
-    - biber.debian.org
     - brahms.debian.org
     - caballero.debian.org
     - corelli.debian.org
@@ -239,10 +240,13 @@ host_settings:
     - lucatelli.debian.org
     - mayer.debian.org
     - mayr.debian.org
+    - mipsel-manda-01.debian.org
+    - mipsel-manda-02.debian.org
     - mundy.debian.org
     - parry.debian.org
     - porpora.debian.org
     - poulenc.debian.org
+    - powerpc-unicamp-01.debian.org
     - praetorius.debian.org
     - rem.debian.org
     - schroeder.debian.org
@@ -255,10 +259,12 @@ host_settings:
     # Not worth backing up
     - rainier.debian.org
     - rapoport.debian.org
+    - x86-bm-01.debian.org
   broken-rtc:
     - abel.debian.org
-    - ancina.debian.org
     - antheil.debian.org
+    - arm-arm-01.debian.org
+    - arm-arm-02.debian.org
     - arnold.debian.org
     - ball.debian.org
     - harris.debian.org
@@ -273,7 +279,6 @@ host_settings:
     - rem.debian.org
     - sompek.debian.org
   mail_port:
-    ancina.debian.org: 2025
     klecker.debian.org: 2025
     zani.debian.org: 587
   no_munin:
@@ -283,7 +288,10 @@ host_settings:
     - malo.debian.org
   entropy_key:
     - czerny.debian.org
-    - rautavaara.debian.org
+    # - rautavaara.debian.org
     - salieri.debian.org
+    - storace.debian.org
   buildd_master:
     - wuiet.debian.org
+  buildd_ports_master:
+    - portman.debian.org

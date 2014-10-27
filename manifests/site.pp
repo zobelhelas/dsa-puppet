@@ -48,7 +48,7 @@ node default {
 		}
 	}
 
-	if $::hostname in [pasquini,tristano,bertali,boito,rossini,salieri,dijkstra,luchesi,byrd,clementi,czerny,bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8] {
+	if $::hostname in [pasquini,tristano,bertali,boito,rossini,salieri,dijkstra,luchesi,byrd,clementi,czerny,bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,csail-node01,csail-node02,grnet-node01,grnet-node02] {
 		include ganeti2
 	}
 
@@ -64,7 +64,7 @@ node default {
 		}
 	}
 
-	if $::hostname == 'backuphost' {
+	if $::hostname == 'storace' {
 		include bacula::storage
 	}
 
@@ -101,7 +101,7 @@ node default {
 	#	include dacs
 	#}
 
-	if $::hostname in [stabile,beach,glinka,milanollo,rautavaara,lw01,lw02,lw03,lw04] {
+	if $::hostname in [beach,glinka,milanollo,rautavaara,lw01,lw02,lw03,lw04] {
 		include nfs-server
 	}
 

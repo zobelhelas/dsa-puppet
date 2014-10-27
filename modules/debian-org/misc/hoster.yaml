@@ -21,6 +21,7 @@ arm:
   netrange:
     - 217.140.96.0/22
   entropy_provider_hoster: sil
+  mirror-debian: http://mirror.bytemark.co.uk/debian/
 brainfood:
   netrange:
     - 70.103.162.0/24
@@ -32,6 +33,7 @@ brown:
     - 138.16.160.0/24
   # all hosts have their own recursor
   nameservers: []
+  mirror-debian: file:///srv/ftp-master.debian.org/mirror/
 br:
   # rename to c3sl
   # University Federal do Parana (.br)
@@ -66,6 +68,7 @@ csail:
     - 128.31.0.0/24
   searchpaths: [debprivate-csail.debian.org]
   nameservers: [128.30.2.24, 128.30.2.25, 128.30.0.125]
+  mirror-debian: http://debian.csail.mit.edu/debian/
 dgi:
   netrange:
     - 93.94.130.128/26
@@ -78,12 +81,18 @@ ftcollins:
     - 192.25.206.0/24
   searchpaths: [debprivate-ftcollins.debian.org]
   mirror-debian: http://spohr.debian.org/debian
+gatech:
+  netrange:
+    - 128.61.240.0/23
+  nameservers: [143.215.130.231 143.215.130.232]
+  mirror-debian: http://debian.gtisc.gatech.edu/debian/
 grnet:
   netrange:
     - 194.177.211.192/27
     - 2001:648:2ffc:deb::/64
   searchpaths: [debprivate-grnet.debian.org]
   nameservers: [194.177.210.10, 194.177.210.210]
+  mirror-debian: http://ftp.gr.debian.org/debian/
 helsinki:
   netrange:
     - 193.167.160.0/23
@@ -110,14 +119,15 @@ uni-karlsruhe:
   searchpaths: [debprivate-darmstadt.debian.org]
   #nameservers: [82.195.66.249, 217.198.242.225]
   nameservers: [82.195.75.109, 82.195.75.103]
-  mirror-debian: http://mirror.unitedcolo.de/debian/
+  mirror-debian: http://debian.netcologne.de/debian/
 leaseweb:
   netrange:
     - 185.17.185.176/28
   mirror-debian: http://mirror.nl.leaseweb.net/debian/
 marist:
   netrange:
-    - 148.100.96.0/25
+    - 148.100.0.0/16
+  mirror-debian: http://ftp.us.debian.org/debian/
   nameservers: []
 osuosl:
   netrange:
@@ -130,6 +140,7 @@ sanger:
   # broken with dnssec
   # nameservers: [193.62.203.96, 193.62.203.97]
   #resolvoptions: [single-request]
+  mirror-debian: http://mirror.bytemark.co.uk/debian/
   nameservers: [193.62.202.28, 193.62.202.29]
   searchpaths: [debprivate-sanger.debian.org]
 rapidswitch:
@@ -162,6 +173,10 @@ ugent:
 umn:
   netrange:
     - 128.101.240.212
+unicamp:
+  netrange:
+    - 143.106.0.0/16
+  mirror-debian: http://debian.c3sl.ufpr.br/debian/
 utwente:
   netrange:
     - 130.89.0.0/16
@@ -178,10 +193,11 @@ ynic:
   netrange:
     - 144.32.168.64/28
   nameservers: [144.32.169.74, 144.32.169.75, 144.32.169.76]
+  mirror-debian: http://mirror.ynic.york.ac.uk/debian
 zivit:
   netrange:
     - 80.245.144.0/22
   nameservers: [80.245.147.53, 80.245.147.54]
-  mirror-debian: http://mirror.unitedcolo.de/debian/
+  mirror-debian: http://debian.netcologne.de/debian/
 
 # vim:set et sts=2 ts=2 sw=2:

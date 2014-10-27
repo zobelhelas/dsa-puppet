@@ -1,21 +1,14 @@
-if FileTest.exist?('/usr/sbin/gnt-cluster') and FileTest.exist?('/var/lib/ganeti/config.data')
+if FileTest.exist?('/usr/sbin/gnt-cluster') and FileTest.exist?('/var/lib/ganeti/ssconf_cluster_name')
 	begin
 		if system('/usr/sbin/gnt-cluster getmaster >/dev/null')
-			require 'yaml'
-			yaml = YAML.load_file('/var/lib/ganeti/config.data')
 			Facter.add('cluster') do
 				setcode do
-					yaml['cluster']['cluster_name']
+					open('/var/lib/ganeti/ssconf_cluster_name').read().chomp()
 				end
-				Facter.add('cluster_nodes') do
-					nodename = []
-					yaml["nodes"].each do |uuid,value|
-						nodename << value["name"]
-					end
-					ret = nodename.join(" ")
-					setcode do
-						ret
-					end
+			end
+			Facter.add('cluster_nodes') do
+				setcode do
+					open('/var/lib/ganeti/ssconf_node_list').read().split().join(" ")
 				end
 			end
 		end

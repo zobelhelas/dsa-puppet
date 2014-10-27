@@ -80,7 +80,7 @@ def ensure_ok(session):
         die("Session owner mismatch.")
 
 def os_supports_unshare():
-    if platform.uname()[0] == 'GNU/kFreeBSD':
+    if platform.uname()[0] in ('GNU/kFreeBSD', 'GNU'):
         return False
     return True
 
@@ -88,7 +88,7 @@ class WrappedRunner():
     def __init__(self, session, args, unshare=True):
         self.unshare = unshare
         if not os_supports_unshare(): self.unshare = False
-        s,r = self.run('schroot', '-c', session, '--run-session', '--', 'env', 'DEBIAN_FRONTEND=noninteractive', *args)
+        s,r = self.run('schroot', '-c', session, '--directory=/', '--run-session', '--', 'env', 'DEBIAN_FRONTEND=noninteractive', *args)
         if s != 0:
             die("Command %s exited due to signal %d."%(' '.join(args), s))
         if r != 0:
@@ -180,7 +180,7 @@ class AptSchroot:
         self.apt_simulate_and_ask(['install', '--'] + packages)
 
     def apt_build_dep(self, packages, archonly=False):
-        cmd = ['build-dep'] + (['--arch-only'] if archonly else []) + ['--']
+        cmd = (['--arch-only'] if archonly else []) + ['build-dep', '--']
         self.apt_simulate_and_ask(cmd + packages)
 
     def apt_simulate_and_ask(self, cmd, split_download=True, run_clean=True):

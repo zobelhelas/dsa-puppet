@@ -1,4 +1,27 @@
 # puppet maintained
+<Macro common-dsa-vhost-https-redirect $name>
+	<VirtualHost <%= vhost_listen %> >
+		ServerName $name
+		ServerAdmin debian-admin@lists.debian.org
+
+		CustomLog /var/log/apache2/$name-access.log privacy
+		ErrorLog /var/log/apache2/$name-error.log
+
+		Redirect permanent / https://$name/
+	</VirtualHost>
+</Macro>
+
+<Macro common-dsa-vhost-https-redirect-temp $name>
+	<VirtualHost <%= vhost_listen %> >
+		ServerName $name
+		ServerAdmin debian-admin@lists.debian.org
+
+		CustomLog /var/log/apache2/$name-access.log privacy
+		ErrorLog /var/log/apache2/$name-error.log
+
+		Redirect / https://$name/
+	</VirtualHost>
+</Macro>
 
 <Macro common-static-base $name>
 	<IfModule mod_userdir.c>
@@ -13,6 +36,8 @@
 		Order allow,deny
 		Allow from all
 	</Directory>
+
+	Header set Surrogate-Key <%= hostname %>
 
 	DefaultType text/plain
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
@@ -32,43 +57,20 @@
 	</VirtualHost>
 </Macro>
 
-<Macro common-static-vhost-publiclog $name>
-	<Virtualhost <%= vhost_listen %> >
-		ServerName $name
-		ServerAdmin debian-admin@lists.debian.org
-
-		ErrorLog /var/log/apache2/$name-error.log
-		CustomLog /var/log/apache2/$name-access.log privacy
-		<IfModule mod_geoip.c>
-			CustomLog /var/log/apache2/$name-public-access.log privacy+geo
-		</IfModule>
-
-		Use common-static-base $name
-	</VirtualHost>
-</Macro>
-
 <Macro common-static-vhost $name>
 	Use common-static-vhost-with-extra $name "# nada"
 </Macro>
 
 
 <Macro common-static-vhost-ssl $name>
-	<VirtualHost <%= vhost_listen %> >
-		ServerName $name
-		ServerAdmin debian-admin@lists.debian.org
-
-		CustomLog /var/log/apache2/$name-access.log privacy
-		ErrorLog /var/log/apache2/$name-error.log
-
-		Redirect permanent / https://$name/
-	</VirtualHost>
+	Use common-dsa-vhost-https-redirect $name
 
 	<Virtualhost <%= vhost_listen_443 %> >
 		ServerName $name
 		ServerAdmin debian-admin@lists.debian.org
 
 		ErrorLog /var/log/apache2/$name-error.log
-		CustomLog /var/log/apache2/$name-access.log privacy
+		CustomLog /var/log/apache2/$name-access.log privacyssl
 
 		Use common-debian-service-ssl $name
 		Use common-ssl-HSTS

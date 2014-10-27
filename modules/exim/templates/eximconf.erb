@@ -151,6 +151,11 @@ host_lookup = *
 
 untrusted_set_sender = *
 
+# Some spam scanners (*cough* irritated *cough*) want the Sender field
+# to exist.  Appease them by not actually adding a Sender field.
+
+local_from_check = false
+
 # Some operating systems use the "gecos" field in the system password file
 # to hold other information in addition to users' real names. Exim looks up
 # this field when it is creating "sender" and "from" headers. If these options

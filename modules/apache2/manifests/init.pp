@@ -43,6 +43,8 @@ class apache2 {
 
 	if has_role('buildd_master') {
 		$memlimit = 192 * 1024 * 1024
+	} elsif has_role('buildd_ports_master') {
+		$memlimit = 192 * 1024 * 1024
 	} elsif has_role('nagiosmaster') {
 		$memlimit = 96 * 1024 * 1024
 	} elsif has_role('packagesqamaster') {
@@ -75,6 +77,10 @@ class apache2 {
 
 	apache2::config { 'puppet-ssl-macros':
 		source => 'puppet:///modules/apache2/puppet-ssl-macros',
+	}
+
+	apache2::config { 'puppet-config':
+		source => 'puppet:///modules/apache2/puppet-config',
 	}
 
 	file { '/etc/apache2/sites-available/common-ssl.inc':

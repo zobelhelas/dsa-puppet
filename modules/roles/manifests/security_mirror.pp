@@ -6,6 +6,7 @@ class roles::security_mirror {
 		source => 'puppet:///modules/roles/security_mirror/security.debian.org'
 	}
 
+	include ferm::ftp_conntrack
 	vsftpd::site { 'security':
 		banner       => 'security.debian.org FTP server (vsftpd)',
 		logfile      => '/var/log/ftp/vsftpd-security.debian.org.log',

@@ -27,6 +27,7 @@ class debian-org {
 			'klogd',
 			'sysklogd',
 			'rsyslog',
+			'os-prober',
 		]:
 		ensure => purged,
 	}
@@ -36,6 +37,12 @@ class debian-org {
 		]:
 		ensure => installed,
 		tag    => extra_repo,
+	}
+	file { '/etc/ssh/ssh_known_hosts':
+		ensure  => present,
+		replace => false,
+		mode    => '0644',
+		source  => 'puppet:///modules/debian-org/basic-ssh_known_hosts'
 	}
 
 	package { [
@@ -138,13 +145,18 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	if $::hostname in [ball, corelli, eysler, lucatelli, mayer, mayr, rem] {
+	#if ($::hostname in [ball, corelli, eysler, lucatelli, mayer, mayr, rem, pettersson]) or
+	#   ($::hoster and ($::hoster in [bytemark, man-da, brown])) {
+	#	site::aptrepo { 'proposed-updates':
+	#		url        => $mirror,
+	#		suite      => "${::lsbdistcodename}-proposed-updates",
+	#		components => ['main','contrib','non-free']
+	#	}
+	#} else {
 		site::aptrepo { 'proposed-updates':
-			url        => $mirror,
-			suite      => "${::lsbdistcodename}-proposed-updates",
-			components => ['main','contrib','non-free']
+			ensure => absent,
 		}
-	}
+	#}
 
 	site::aptrepo { 'debian.org':
 		ensure => absent,
@@ -152,9 +164,14 @@ class debian-org {
 
 	site::aptrepo { 'db.debian.org':
 		url        => 'http://db.debian.org/debian-admin',
-		suite      => 'lenny',
+		suite      => 'debian-all',
 		components => 'main',
 		key        => 'puppet:///modules/debian-org/db.debian.org.gpg',
+	}
+	site::aptrepo { 'db.debian.org-suite':
+		url        => 'http://db.debian.org/debian-admin',
+		suite      => $::lsbdistcodename,
+		components => 'main',
 	}
 
 	augeas { 'inittab_replicate':
@@ -305,5 +322,18 @@ class debian-org {
 		type     => ctime,
 		matches  => [ 'paths', 'contents' ],
 		schedule => weekly
+	}
+
+	file { '/root/.bashrc':
+		source => 'puppet:///modules/debian-org/root-dotfiles/bashrc',
+	}
+	file { '/root/.profile':
+		source => 'puppet:///modules/debian-org/root-dotfiles/profile',
+	}
+	file { '/root/.screenrc':
+		source => 'puppet:///modules/debian-org/root-dotfiles/screenrc',
+	}
+	file { '/root/.vimrc':
+		source => 'puppet:///modules/debian-org/root-dotfiles/vimrc',
 	}
 }

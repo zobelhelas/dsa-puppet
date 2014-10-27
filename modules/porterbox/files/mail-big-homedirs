@@ -114,10 +114,21 @@ class SendmailError(Error):
   pass
 
 class LastlogTimes(dict):
-  LASTLOG_STRUCT = '=L32s256s'
+  LASTLOG_STRUCT_32 = '=L32s256s'
+  LASTLOG_STRUCT_64 = '=Q32s256s'
 
   def __init__(self):
-    record_size = struct.calcsize(self.LASTLOG_STRUCT)
+    record_size_32 = struct.calcsize(self.LASTLOG_STRUCT_32)
+    record_size_64 = struct.calcsize(self.LASTLOG_STRUCT_64)
+    lastlog_size = os.path.getsize('/var/log/lastlog')
+    if 0 == (lastlog_size % record_size_32):
+        self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_32
+        record_size = record_size_32
+    elif 0 == (lastlog_size % record_size_64):
+        self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_64
+        record_size = record_size_64
+    else:
+        raise RuntimeError('Unknown architecture, cannot interpret /var/log/lastlog file size (%d)' % lastlog_size)
     with open('/var/log/lastlog', 'r') as fp:
       uid = -1 # there is one record per uid in lastlog
       for record in iter(lambda: fp.read(record_size), ''):

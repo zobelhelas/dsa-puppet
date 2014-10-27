@@ -28,6 +28,16 @@ class ganeti2::params {
 			$ganeti_priv  = ['172.29.120.0/24']
 			$drbd         = false
 		}
+		'ganeti.csail.debian.org': {
+			$ganeti_hosts = ['128.31.0.16/32', '128.31.0.46/32']
+			$ganeti_priv  = ['172.29.178.0/24']
+			$drbd         = true
+		}
+		'ganeti.grnet.debian.org': {
+			$ganeti_hosts = ['194.177.211.195/32', '194.177.211.196/32']
+			$ganeti_priv  = ['172.29.175.0/24']
+			$drbd         = true
+		}
 		default: {
 			$ganeti_hosts = []
 			$ganeti_priv  = []

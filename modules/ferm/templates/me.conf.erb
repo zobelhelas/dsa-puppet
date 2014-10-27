@@ -44,6 +44,8 @@ if restrict_ssh.include?(hostname) then
 	end
 
 	if %w{adayevskaya}.include?(hostname) then
+                out << '@def $MFL_LOCAL = ( 130.83.226.60 );' # Michael Fladerer
+                ssh4allowed << '$MFL_LOCAL'
 		ssh4allowed << %w{$HOST_DEBIAN_V4}
 		ssh6allowed << %w{$HOST_DEBIAN_V6}
 	end

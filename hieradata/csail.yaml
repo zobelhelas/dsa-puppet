@@ -4,4 +4,4 @@ nameservers:
   - 128.30.2.25
   - 128.30.0.125
 searchpaths:
-  - debprivate-csail.debian.org
+  - priv.csail.debian.org

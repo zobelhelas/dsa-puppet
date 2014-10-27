@@ -47,12 +47,12 @@ class buildd ($ensure=present) {
 	}
 
 	$buildd_prop_ensure = $::hostname ? {
-		/^(alkman|barber|brahms|porpora|zandonai)$/ => 'present',
+		/^(alkman|brahms|porpora|zandonai)$/ => 'present',
 		default => 'absent',
 	}
 
 	file { '/etc/apt/apt.conf.d/puppet-https-buildd':
-		content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/certs/buildd.debian.org.crt\";\n",
+		content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/servicecerts/buildd.debian.org.crt\";\n",
 		#require => File['/etc/ssl/certs/buildd.debian.org.crt']
 	}
 	site::aptrepo { 'buildd.debian.org-proposed':

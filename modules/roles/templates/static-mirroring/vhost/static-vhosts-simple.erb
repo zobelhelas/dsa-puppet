@@ -2,8 +2,9 @@
 
 Use common-static-vhost mozilla.debian.net
 Use common-static-vhost backports.debian.org
-Use common-static-vhost-publiclog bits.debian.org
+Use common-static-vhost incoming.debian.org
 Use common-static-vhost news.debian.net
+Use common-static-vhost debaday.debian.net
 Use common-static-vhost-with-extra metadata.ftp-master.debian.org "AddDefaultCharset utf-8"
 Use common-static-vhost-with-extra d-i.debian.org "ServerAlias d-i-backend.debian.org"
 Use common-static-vhost-with-extra network-test.debian.org "ServerAlias network-test-backend.debian.org"
@@ -13,6 +14,43 @@ Use common-static-vhost-ssl dsa.debian.org
 Use common-static-vhost-ssl rtc.debian.org
 Use common-static-vhost-with-extra security-team.debian.org "ServerAlias security-team-backend.debian.org"
 
+
+# bits.debian.org
+######################
+<Macro static-bits.debian.org-base>
+	ServerName bits.debian.org
+	ServerAdmin debian-admin@lists.debian.org
+
+	ErrorLog /var/log/apache2/bits.debian.org-error.log
+	<IfModule mod_geoip.c>
+		CustomLog /var/log/apache2/bits.debian.org-public-access.log privacy+geo
+	</IfModule>
+
+	Use common-static-base bits.debian.org
+</Macro>
+
+<Virtualhost <%= vhost_listen %> >
+	RewriteEngine on
+
+	RewriteEngine On
+	RewriteCond %{REQUEST_URI} !^/feeds/
+	RewriteRule ^/(.*)$ https://bits.debian.org/$1 [R,L]
+	#RewriteRule ^/(.*)$ https://bits.debian.org/$1 [R=301,L]
+
+	Use static-bits.debian.org-base
+	CustomLog /var/log/apache2/bits.debian.org-access.log privacy
+</VirtualHost>
+
+<Virtualhost <%= vhost_listen_443 %> >
+	Use static-bits.debian.org-base
+	CustomLog /var/log/apache2/bits.debian.org-access.log privacyssl
+
+	Use common-debian-service-ssl bits.debian.org
+	Use common-ssl-HSTS
+</VirtualHost>
+
+# www.backports.org
+###################
 # www.backports.org is the historical place for the backports
 # website and archive.  It is now a CNAME to backports.debian.org:
 # redirect http requests.
@@ -27,25 +65,8 @@ Use common-static-vhost-with-extra security-team.debian.org "ServerAlias securit
 </VirtualHost>
 
 
-<VirtualHost <%= vhost_listen %> >
-	ServerName women.debian.org
-	ServerAdmin debian-admin@debian.org
-
-	RedirectPermanent / http://www.debian.org/women/
-
-	RedirectPermanent /about/ http://www.debian.org/women/about
-	RedirectPermanent /contact/ http://www.debian.org/women/contact
-	RedirectPermanent /faqs/ http://www.debian.org/women/faq
-	RedirectPermanent /home/ http://www.debian.org/women/
-	RedirectPermanent /images/dw.png http://www.debian.org/women/dw.png
-	RedirectPermanent /involvement/ http://www.debian.org/women/participate
-	RedirectPermanent /mentoring/ http://www.debian.org/women/mentoring
-	RedirectPermanent /press/ http://wiki.debian.org/DebianWomen/Press
-	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
-</VirtualHost>
-
-# debian ports stuff
-####################
+# www.ports.debian.org
+######################
 <Virtualhost <%= vhost_listen %> >
 	ServerName www.ports.debian.org
 	ServerAlias www.ports-backend.debian.org
@@ -88,6 +109,26 @@ Use common-static-vhost-with-extra security-team.debian.org "ServerAlias securit
 	ServerName ports.debian.net
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://www.ports.debian.org/
+</VirtualHost>
+
+# historical sites
+##################
+# now only redirects remain
+<VirtualHost <%= vhost_listen %> >
+	ServerName women.debian.org
+	ServerAdmin debian-admin@debian.org
+
+	RedirectPermanent / http://www.debian.org/women/
+
+	RedirectPermanent /about/ http://www.debian.org/women/about
+	RedirectPermanent /contact/ http://www.debian.org/women/contact
+	RedirectPermanent /faqs/ http://www.debian.org/women/faq
+	RedirectPermanent /home/ http://www.debian.org/women/
+	RedirectPermanent /images/dw.png http://www.debian.org/women/dw.png
+	RedirectPermanent /involvement/ http://www.debian.org/women/participate
+	RedirectPermanent /mentoring/ http://www.debian.org/women/mentoring
+	RedirectPermanent /press/ http://wiki.debian.org/DebianWomen/Press
+	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
 </VirtualHost>
 
 <VirtualHost <%= vhost_listen %> >

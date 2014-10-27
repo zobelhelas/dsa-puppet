@@ -9,6 +9,8 @@
 
 set -e
 
+[ "$CHROOT_PROFILE" = "dsa" ] || exit 0
+
 . "$SETUP_DATA_DIR/common-data"
 . "$SETUP_DATA_DIR/common-functions"
 

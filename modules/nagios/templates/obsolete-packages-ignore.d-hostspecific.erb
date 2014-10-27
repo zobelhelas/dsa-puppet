@@ -12,7 +12,8 @@ when /zappa.debian.org/ then                                   ignore << %w{samh
 when /(mayer|corelli).debian.org/ then                         ignore << "linux-base"
 when /(alkman|caballero|merulo|mundy|zani).debian.org/ then    ignore << "samhain"
 when "franck.debian.org" then                                  ignore << %w{python-apt}
-when /(abel|arnold|antheil).debian.org/ then  ignore << %w{flash-kernel linux-firmware-image}
+when /(abel|arnold|antheil).debian.org/ then                   ignore << %w{flash-kernel linux-firmware-image}
+when /(asachi|arm-linaro-01|arm-linaro-03).debian.org/ then    ignore << "flash-kernel"
 when /harris.debian.org/ then                                  ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(hartmann|hasse|henze|howells|hummel|hoiby).debian.org/ then ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(parry|partch).debian.org/ then                          ignore << "yaboot"
@@ -25,10 +26,15 @@ when "zemlinsky.debian.org" then                               ignore << %w{init
 when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-api64 gskssl64 gskcrypt64}
 when "vogler.debian.org" then                                  ignore << %w{repro libresiprocate-1.9 resiprocate-turn-server}
 when /(mailly|muffat).debian.org/ then                         ignore << %w{python-dsa-mq}
+when /(csail|grnet)-node(01|02).debian.org/ then               ignore << %w{openvswitch-switch openvswitch-common}
 end
 
 case fqdn
 when /geo[123].debian.org/ then                    ignore << %w{geoip-database}
+end
+
+case fqdn
+when /((csail|grnet)-node(01|02)|powell|bm-bl1).debian.org/ then       ignore << %w{ganeti-os-noop}
 end
 
 ignore.flatten.join("\n")

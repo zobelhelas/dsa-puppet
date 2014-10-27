@@ -6,7 +6,6 @@ class roles::static_mirror {
 	package { 'libapache2-mod-geoip': ensure => installed, }
 	package { 'geoip-database': ensure => installed, }
 
-	apache2::module { 'rewrite': }
 	apache2::module { 'include': }
 	apache2::module { 'ssl': }
 	apache2::module { 'geoip': require => [Package['libapache2-mod-geoip'], Package['geoip-database']]; }
@@ -45,6 +44,11 @@ class roles::static_mirror {
 		content => template('roles/static-mirroring/vhost/planet.debian.org.erb'),
 	}
 
+	apache2::site { '010-lintian.debian.org':
+		site    => 'lintian.debian.org',
+		content => template('roles/static-mirroring/vhost/lintian.debian.org.erb'),
+	}
+
 	apache2::site { '010-static-vhosts-simple':
 		site => 'static-vhosts-simple',
 		content => template('roles/static-mirroring/vhost/static-vhosts-simple.erb'),
@@ -60,6 +64,12 @@ class roles::static_mirror {
 		notify => Service['apache2'],
 	}
 	ssl::service { 'www.debian.org':
+		notify => Service['apache2'],
+	}
+	ssl::service { 'bits.debian.org':
+		notify => Service['apache2'],
+	}
+	ssl::service { 'lintian.debian.org':
 		notify => Service['apache2'],
 	}
 	ssl::service { 'rtc.debian.org':

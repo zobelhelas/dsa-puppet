@@ -75,6 +75,12 @@ class roles {
 		include roles::git_master
 	}
 
+	if has_role('people') {
+		ssl::service { 'people.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	if has_role('security_master') {
 		include roles::security_master
 		include roles::dakmaster
@@ -154,8 +160,16 @@ class roles {
 		include roles::sso
 	}
 
+	if has_role('tracker') {
+		include roles::tracker
+	}
+
 	if has_role('buildd_master') {
 		include roles::buildd_master
+	}
+
+	if has_role('buildd_ports_master') {
+		include roles::buildd_ports_master
 	}
 
 	if has_role('piuparts') {
@@ -188,6 +202,18 @@ class roles {
 
 	if has_role('packages') {
 		ssl::service { 'packages.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
+	if has_role('qamaster') {
+		ssl::service { 'qa.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
+	if has_role('packagesqamaster') {
+		ssl::service { 'packages.qa.debian.org':
 			notify => Service['apache2'],
 		}
 	}

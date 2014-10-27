@@ -1,0 +1,25 @@
+# fstab: static file system information for chroots.
+# Note that the mount point will be prefixed by the chroot path
+# (CHROOT_PATH)
+#
+# <file system>	<mount point>	<type>	<options>	<dump>	<pass>
+
+<% if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture') and scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0].start_with?('kfreebsd') -%>
+# kFreeBSD version
+proc		/proc		linprocfs	defaults	0	0
+dev		/dev		devfs	rw,bind		0	0
+dev		/dev/fd		fdescfs	rw,bind		0	0
+/home		/home		nullfs	rw		0	0
+/tmp		/tmp		nullfs	rw		0	0
+
+<% else -%>
+# Linux version
+/proc		/proc		none	rw,bind		0	0
+/sys		/sys		none	rw,bind		0	0
+/dev		/dev		none	rw,bind		0	0
+/dev/pts	/dev/pts	none	rw,bind		0	0
+/home		/home		none	rw,bind		0	0
+/tmp		/tmp		none	rw,bind		0	0
+tmpfs-shm	/dev/shm	tmpfs	defaults,size=64m	0 0
+
+<% end %>

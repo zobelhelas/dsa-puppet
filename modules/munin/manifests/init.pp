@@ -40,6 +40,11 @@ class munin {
 		notify  => Service['munin-node'],
 	}
 
+	file { '/etc/logrotate.d/munin-node':
+		source => 'puppet:///modules/munin/logrotate',
+		require => Package['munin-node'],
+	}
+
 	file { [ '/etc/munin/plugins/df', '/etc/munin/plugins/df_abs', '/etc/munin/plugins/df_inode' ]:
 		source => 'puppet:///modules/munin/df-wrap',
 		mode    => '0555',

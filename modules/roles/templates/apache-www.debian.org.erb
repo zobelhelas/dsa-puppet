@@ -127,6 +127,9 @@
    ServerAlias www.debian.es
    ServerAlias debian.es
 
+   ServerAlias www.debian.org.tw
+   ServerAlias debian.org.tw
+
    ServerAlias www.debian.at
    ServerAlias www.debian.de
    ServerAlias newwww.deb.at
@@ -148,8 +151,6 @@
    ServerAdmin webmaster@debian.org
    ServerAlias www-*.debian.org
    DocumentRoot <%= wwwdo_document_root %>/
-   ErrorLog /var/log/apache2/www.debian.org-error.log
-   CustomLog /var/log/apache2/www.debian.org-access.log privacy
 
    # CacheNegotiatedDocs: By default, Apache sends Pragma: no-cache with each
    # document that was negotiated on the basis of content. This asks proxy
@@ -266,9 +267,15 @@
 
 
 <VirtualHost <%= vhost_listen %> >
+   ErrorLog /var/log/apache2/www.debian.org-error.log
+   CustomLog /var/log/apache2/www.debian.org-access.log privacy
+
    Use common-www.d.o
 </VirtualHost>
 <VirtualHost <%= vhost_listen_443 %> >
+   ErrorLog /var/log/apache2/www.debian.org-error.log
+   CustomLog /var/log/apache2/www.debian.org-access.log privacyssl
+
    Use common-www.d.o
 
    Use common-debian-service-ssl www.debian.org
@@ -280,10 +287,11 @@
    ServerName debian.org
    ServerAdmin webmaster@debian.org
 
-   CustomLog /var/log/apache2/www-other-access.log privacy
+   CustomLog /var/log/apache2/www-other-access.log privacyssl
    ErrorLog /var/log/apache2/www-other-error.log
 
    Redirect permanent / https://www.debian.org/
+
 
    Use common-debian-service-ssl www.debian.org
    Use common-ssl-HSTS

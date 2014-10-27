@@ -20,4 +20,16 @@ class roles::static_base {
 	}
 	file { '/usr/local/bin/static-mirror-ssh-wrap': ensure => absent; }
 	file { '/usr/local/bin/static-master-ssh-wrap': ensure => absent; }
+
+	@ferm::rule { 'dsa-static-bt-v4':
+		description => 'Allow bt between static hosts',
+		rule        => 'proto tcp mod state state (NEW) mod multiport destination-ports (6881:6999) @subchain \'static-bt\' { saddr ($HOST_STATIC_V4) ACCEPT; }',
+		notarule    => true,
+	}
+	@ferm::rule { 'dsa-static-bt-v6':
+		description => 'Allow bt between static hosts',
+		domain      => 'ip6',
+		rule        => 'proto tcp mod state state (NEW) mod multiport destination-ports (6881:6999) @subchain \'static-bt\' { saddr ($HOST_STATIC_V6) ACCEPT; }',
+		notarule    => true,
+	}
 }

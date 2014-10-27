@@ -36,11 +36,14 @@ get_suites() {
       armhf|s390x)
         echo "sid jessie wheezy"
         ;;
-      s390)
+      ia64|s390)
         echo "wheezy squeeze"
         ;;
       sparc)
         echo "sid wheezy squeeze"
+        ;;
+      arm64)
+        echo "sid jessie"
         ;;
       *)
         echo "sid jessie wheezy squeeze"
@@ -54,6 +57,9 @@ case "$DPKGARCH" in
         archs="$archs i386"
         ;;
     armhf)
+        if [ "$(uname -m)" = "aarch64" ] ; then
+            archs="$archs arm64"
+        fi
         archs="$archs armel"
         ;;
     armel)

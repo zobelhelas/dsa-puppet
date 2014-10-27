@@ -5,10 +5,15 @@
 # port on the remote instead of just encoding it in authkeys.
 
 # from host:port to host:port
-danzi.debian.org:
-  # snapshot postgresql streaming replication.  sibelius is the master, danzi the slave.
+#danzi.debian.org:
+#  # snapshot postgresql streaming replication.  sibelius is the master, danzi the slave.
+#  - source_bind_port: 15433
+#    target_host: sibelius.debian.org
+#    target_port: 5433
+#    ssh_options: -oAddressFamily=inet
+
+dummy:
   - source_bind_port: 15433
-    target_host: sibelius.debian.org
+    target_host: dummy2
     target_port: 5433
     ssh_options: -oAddressFamily=inet
-

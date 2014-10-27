@@ -1,0 +1,14 @@
+# ~/.profile: executed by Bourne-compatible login shells.
+
+## THIS FILE IS UNDER PUPPET CONTROL.
+## LOCAL CHANGES WILL BE OVERWRITTEN.
+
+if [ "$BASH" ]; then
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
+
+mesg n
+
+# vim: set ft=sh ts=2 sw=2 et ai si:

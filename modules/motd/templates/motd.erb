@@ -110,13 +110,13 @@ end
 if scope.lookupvar('::cluster').to_s != 'undefined'
   purp += "\n This server is a node in ganeti cluster: "
   purp += scope.lookupvar('::cluster').to_s + ":\n"
-  purp += "\t" + scope.lookupvar('::cluster_nodes').to_s.split.sort.map{ |x| x.split('.')[0] }.join(", ") + ".\n"
+  purp += "\t" + scope.lookupvar('::cluster_nodes').split.sort.map{ |x| x.split('.')[0] }.join(", ") + ".\n"
 
   if @lsbmajdistrelease >= '7'
     purp += ""
     purp += "\tCurrently the master node is $(cat /var/lib/ganeti/ssconf_master_node).\n"
   end
-  #nodes = scope.lookupvar('::cluster_nodes').to_s.split.sort
+  #nodes = scope.lookupvar('::cluster_nodes').sort
   #nodes.each do |node|
   #  purp += "\t" + node + "\n"
   #end
