@@ -1,5 +1,7 @@
 class porterbox ($ensure = present){
-	include schroot
+	if $ensure in present {
+		include schroot
+	}
 
 	file { '/usr/local/bin/dd-schroot-cmd':
 		mode    => '0555',
