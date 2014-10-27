@@ -30,12 +30,10 @@ class roles {
 
 	# XXX: turn this into a real role
 	if getfromhash($site::nodeinfo, 'porterbox') {
-		include porterbox
 		class {'porterbox':
 			ensure => present,
 		}
 	} else {
-		include porterbox
 		class {'porterbox':
 			ensure => absent,
 		}
