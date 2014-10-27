@@ -50,7 +50,7 @@ if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
   if p.delete('buildd')
     entries += ", the Debian #{arch} build daemon"
   end
-  if p.delete('porterbox') or scope.lookupvar('site::nodeinfo').has_key?('porterbox')
+  if p.delete('porterbox') or classes.include?("porterbox")
     entries += ", the Debian #{arch} porterbox"
   end
 
@@ -129,7 +129,7 @@ if scope.lookupvar('::cluster').to_s != 'undefined'
 end
 
 
-if scope.lookupvar('site::nodeinfo').has_key?('porterbox')
+if classes.include?("porterbox")
   purp += "\n " + wrap("Disk space on porter boxes is often limited.  Please respect your fellow porters by cleaning up after yourself and deleting schroots and source/build trees in your ~ as soon as feasible.  DSA reserves the right to recover disk space as necessary.  See <URL:http://dsa.debian.org/doc/schroot/> for a brief tutorial on using schroot.")
 end
 

@@ -30,13 +30,7 @@ class roles {
 
 	# XXX: turn this into a real role
 	if getfromhash($site::nodeinfo, 'porterbox') {
-		class {'porterbox':
-			ensure => present,
-		}
-	} else {
-		class {'porterbox':
-			ensure => absent,
-		}
+		include porterbox
 	}
 
 	if has_role('bugs_mirror') {
