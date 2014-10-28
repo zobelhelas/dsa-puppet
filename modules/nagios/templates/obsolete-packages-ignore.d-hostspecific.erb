@@ -23,7 +23,7 @@ when "reger.debian.org" then                                   ignore << %w{libr
 when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabbitmq-server}
 when /(pasquini|tristano).debian.org/ then                     ignore << %w{ganeti-instance-image}
 when "zemlinsky.debian.org" then                               ignore << %w{initramfs-tools}
-when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-api64 gskssl64 gskcrypt64}
+when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-api64 gskssl64 gskcrypt64 tivsm-api gskssl gskcrypt}
 when "vogler.debian.org" then                                  ignore << %w{repro libresiprocate-1.9 resiprocate-turn-server}
 when /(mailly|muffat).debian.org/ then                         ignore << %w{python-dsa-mq}
 when /(csail|grnet)-node(01|02).debian.org/ then               ignore << %w{openvswitch-switch openvswitch-common}
