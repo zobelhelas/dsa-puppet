@@ -100,3 +100,9 @@ out
 # filter out all the short-lived sbuild/schroot filesystems for diskstats:
 [diskstats]
 env.exclude sbuild,schroot
+
+<% if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture') and scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0].start_with?('kfreebsd') -%>
+# Workaround for https://bugs.debian.org/767102
+[df*]
+env.exclude devfs fdescfs linprocfs sysfs noprocfs linsysfs nfs nullfs
+<% end %>
