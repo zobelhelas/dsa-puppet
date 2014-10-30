@@ -234,8 +234,6 @@ host_settings:
     - hasse.debian.org
     - henze.debian.org
     - hoiby.debian.org
-    - howells.debian.org
-    - hummel.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
     - mayer.debian.org
@@ -271,8 +269,6 @@ host_settings:
     - hasse.debian.org
     - henze.debian.org
     - hoiby.debian.org
-    - howells.debian.org
-    - hummel.debian.org
     - lucatelli.debian.org
     - corelli.debian.org
     - gabrielli.debian.org
