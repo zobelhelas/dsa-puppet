@@ -28,6 +28,7 @@ class debian-org {
 			'sysklogd',
 			'rsyslog',
 			'os-prober',
+			'apt-listchanges',
 		]:
 		ensure => purged,
 	}
