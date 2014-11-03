@@ -274,6 +274,7 @@ host_settings:
     - gabrielli.debian.org
     - rem.debian.org
     - sompek.debian.org
+    - mips-aql-02.debian.org
   mail_port:
     klecker.debian.org: 2025
     zani.debian.org: 587
