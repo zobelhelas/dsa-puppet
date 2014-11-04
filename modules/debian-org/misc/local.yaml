@@ -247,7 +247,6 @@ host_settings:
     - poulenc.debian.org
     - powerpc-unicamp-01.debian.org
     - praetorius.debian.org
-    - rem.debian.org
     - schroeder.debian.org
     - sompek.debian.org
     - spontini.debian.org
@@ -274,7 +273,6 @@ host_settings:
     - hoiby.debian.org
     - lucatelli.debian.org
     - mips-aql-02.debian.org
-    - rem.debian.org
     - sompek.debian.org
   mail_port:
     klecker.debian.org: 2025
