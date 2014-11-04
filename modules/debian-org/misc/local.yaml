@@ -234,6 +234,7 @@ host_settings:
     - hasse.debian.org
     - henze.debian.org
     - hoiby.debian.org
+    - ia64-arm-01.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
     - mayer.debian.org
