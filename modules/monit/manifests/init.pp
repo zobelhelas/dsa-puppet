@@ -13,9 +13,8 @@ class monit {
 	}
 
 	$cmd = $::lsbdistcodename ? {
-		'sid'    => '/usr/bin/monit',
-		'wheezy' => '/usr/bin/monit',
-		default  => '/usr/sbin/monit',
+		'squeeze'    => '/usr/sbin/monit',
+		default  => '/usr/bin/monit',
 	}
 
 	augeas { 'inittab_monit':
