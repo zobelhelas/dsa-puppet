@@ -27,6 +27,7 @@
   %w{mailrelay nagiosmaster extranrpeclient muninmaster dbmaster static_mirror static_source static_master dns_geo postgres_backup_server}.each do |role|
     rolehost[role] = []
     roles[role].each do |node|
+        next unless allnodeinfo.has_key(node) and allnodeinfo[node].has_key?('ipHostNumber')
         rolehost[role] << allnodeinfo[node]['ipHostNumber']
     end
     rolehost[role].flatten!.sort.uniq
