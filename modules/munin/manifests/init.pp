@@ -79,7 +79,8 @@ class munin {
 	#		ensure => 'absent',
 	#	}
 	#}
-	if $::lsbmajdistrelease == "testing" or $::lsbmajdistrelease >= 7 {
+	warning("foo $::lsbmajdistrelease")
+	if $::lsbmajdistrelease == "testing/unstable" or $::lsbmajdistrelease >= 7 {
 		package { 'munin-async':
 			ensure => installed
 		}
