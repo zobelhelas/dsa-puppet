@@ -7,7 +7,7 @@
 #   include motd
 #
 class motd {
-	if $::lsbmajdistrelease >= 7 {
+	if $::lsbmajdistrelease == "testing" or $::lsbmajdistrelease >= 7 {
 		$fname  = '/etc/update-motd.d/puppet-motd'
 		$notify = undef
 		$mode   = '0555'
