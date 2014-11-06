@@ -169,6 +169,7 @@ debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-componen
 %debvoip	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component rtc.debian.org
 %security	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component security-team.debian.org
 %lintian	lilburn=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component lintian.debian.org
+%lintian	lindsay=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component lintian.debian.org
 
 # The piuparts slave needs to handle chroots
 piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
