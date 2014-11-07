@@ -12,11 +12,10 @@ class portforwarder {
 	}
 	file { '/etc/xinetd.d/dsa-portforwader':
 		content => template('portforwarder/xinetd.erb'),
-		notify  => Exec['xinetd reload']
+		notify  => Exec['service xinetd reload']
 	}
 
-	exec { 'xinetd reload':
-		path        => '/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin',
+	exec { 'service xinetd reload':
 		refreshonly => true,
 	}
 }
