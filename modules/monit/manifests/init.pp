@@ -31,7 +31,7 @@ class monit {
 		ensure  => directory,
 		mode    => '0755',
 		purge   => true,
-		notify  => Exec['monit stop'],
+		notify  => Exec['service monit stop'],
 		require => Package['monit'],
 	}
 	file { '/etc/monit/monit.d':
@@ -54,11 +54,10 @@ class monit {
 	file { '/etc/default/monit':
 		content => template('monit/default.erb'),
 		require => Package['monit'],
-		notify  => Exec['monit stop']
+		notify  => Exec['service monit stop']
 	}
 
-	exec { 'monit stop':
-		path        => '/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin',
+	exec { 'service monit stop':
 		refreshonly => true,
 	}
 }
