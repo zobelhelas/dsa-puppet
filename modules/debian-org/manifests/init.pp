@@ -251,7 +251,7 @@ class debian-org {
 	file { '/etc/rc.local':
 		mode   => '0755',
 		source => 'puppet:///modules/debian-org/rc.local',
-		notify => Exec['rc.local start'],
+		notify => Exec['service rc.local start'],
 	}
 	file { '/etc/dsa':
 		ensure => directory,
@@ -309,8 +309,7 @@ class debian-org {
 		path        => '/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin',
 		refreshonly => true
 	}
-	exec { 'rc.local start':
-		path        => '/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin',
+	exec { 'service rc.local start':
 		refreshonly => true
 	}
 	exec { 'init q':
