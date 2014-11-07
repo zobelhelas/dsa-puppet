@@ -207,7 +207,7 @@ debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %list		LISTHOSTS=(amavis)		NOPASSWD: /usr/bin/sa-learn
 %list		LISTHOSTS=(amavis)		ALL
 # geodns may reload bind
-geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /etc/init.d/bind9 reload
+geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/service bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 # pushed nagiosadm reload icinga on tchaikovsky
 nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
