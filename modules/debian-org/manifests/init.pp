@@ -8,7 +8,7 @@ class debian-org {
 	} else {
 		$mirror = 'http://http.debian.net/debian/'
 	}
-	if $::lsbmajdistrelease != "testing/unstable" and $::lsbmajdistrelease < 7 {
+	if $::lsbmajdistrelease != "testing" and $::lsbmajdistrelease < 7 {
 		$mirror_backports = 'http://backports.debian.org/debian-backports/'
 	} else {
 		$mirror_backports = $mirror
@@ -60,7 +60,7 @@ class debian-org {
 		ensure => installed,
 	}
 
-	if $::lsbmajdistrelease == "testing/unstable" or $::lsbmajdistrelease >= 7 {
+	if $::lsbmajdistrelease == "testing" or $::lsbmajdistrelease >= 7 {
 		package { 'libfilesystem-ruby1.9.1':
 			ensure => installed,
 		}
@@ -122,7 +122,7 @@ class debian-org {
 		suite      => "${::lsbdistcodename}/updates",
 		components => ['main','contrib','non-free']
 	}
-	if $::lsbmajdistrelease != "testing/unstable" and $::lsbmajdistrelease < 7 {
+	if $::lsbmajdistrelease != "testing" and $::lsbmajdistrelease < 7 {
 		site::aptrepo { 'debian-lts':
 			url        => $mirror,
 			suite      => "${::lsbdistcodename}-lts",

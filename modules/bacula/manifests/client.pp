@@ -48,7 +48,7 @@ class bacula::client inherits bacula {
 		require => Package['bacula-fd'],
 		notify  => Service['bacula-fd'],
 	}
-	if $::lsbmajdistrelease != "testing/unstable" and $::lsbmajdistrelease < 7 {
+	if $::lsbmajdistrelease != "testing" and $::lsbmajdistrelease < 7 {
 		file { '/etc/apt/preferences.d/dsa-bacula-client':
 			content => template('bacula/apt.preferences.bacula-client.erb'),
 			mode    => '0444',
