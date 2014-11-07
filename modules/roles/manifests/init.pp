@@ -53,6 +53,12 @@ class roles {
 		include roles::dakmaster
 	}
 
+	if has_role('api.ftp-master') {
+		ssl::service { 'api.ftp-master.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	# XXX: turn this into a real role
 	if getfromhash($site::nodeinfo, 'apache2_security_mirror') {
 		include roles::security_mirror

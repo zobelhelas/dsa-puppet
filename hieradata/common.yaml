@@ -36,6 +36,8 @@ roles:
   ftp.upload.d.o:
     - franck.debian.org
     - coccia.debian.org
+  api.ftp-master:
+    - coccia.debian.org
   git_master:
     - adayevskaya.debian.org
   keyring:
