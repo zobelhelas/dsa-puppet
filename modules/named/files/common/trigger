@@ -8,4 +8,4 @@
 set -e
 
 rsync -az --delete geodnssync@dns.debian.org:zonefiles/ /etc/bind/geodns/zonefiles/
-sudo /etc/init.d/bind9 reload
+sudo /usr/sbin/service bind9 reload
