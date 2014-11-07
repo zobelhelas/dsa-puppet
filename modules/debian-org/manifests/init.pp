@@ -60,8 +60,12 @@ class debian-org {
 		ensure => installed,
 	}
 
-	if $::lsbmajdistrelease >= 7 {
+	if $::lsbmajdistrelease == 7 {
 		package { 'libfilesystem-ruby1.9.1':
+			ensure => installed,
+		}
+	} elsif $::lsbmajdistrelease >= 8 {
+		package { 'ruby-filesystem':
 			ensure => installed,
 		}
 	}
