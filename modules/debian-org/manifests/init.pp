@@ -305,8 +305,7 @@ class debian-org {
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
 		refreshonly => true
 	}
-	exec { 'puppetmaster restart':
-		path        => '/etc/init.d:/usr/bin:/usr/sbin:/bin:/sbin',
+	exec { 'service puppetmaster restart':
 		refreshonly => true
 	}
 	exec { 'service rc.local start':
