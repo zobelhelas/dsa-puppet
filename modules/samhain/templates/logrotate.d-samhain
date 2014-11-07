@@ -15,6 +15,6 @@
 	sharedscripts
 	postrotate
 	   if [ -f /var/run/samhain/samhain.pid ]; then \
-		/etc/init.d/samhain reload > /dev/null; fi
+		invoke-rc.d samhain reload > /dev/null; fi
 	endscript
 }
