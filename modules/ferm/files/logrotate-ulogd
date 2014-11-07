@@ -13,6 +13,6 @@
     sharedscripts
     create 640 root adm
     postrotate
-        /etc/init.d/ulogd reload
+        invoke-rc.d ulogd reload
     endscript
 }
