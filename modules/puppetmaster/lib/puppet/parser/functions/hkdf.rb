@@ -77,7 +77,7 @@ module Puppet::Parser::Functions
     begin
       secret = File.new(secretfile, "r").read
     rescue => e
-      raise Puppet::ParseError, "Error loading secret from #{seccretfile}: #{e.message}\n#{e.backtrace}"
+      raise Puppet::ParseError, "Error loading secret from #{secretfile}: #{e.message}\n#{e.backtrace}"
     end
 
     hkdf = HKDF.new(secret, :info => data)
