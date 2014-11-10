@@ -141,24 +141,6 @@ class ferm::per-host {
 		default: {}
 	}
 
-	if $::hostname in [rautavaara] {
-		@ferm::rule { 'dsa-from-mgmt':
-			description     => 'Traffic routed from mgmt net vlan/bridge',
-			chain           => 'INPUT',
-			rule            => 'interface eth1 ACCEPT'
-		}
-		@ferm::rule { 'dsa-mgmt-mark':
-			table           => 'mangle',
-			chain           => 'PREROUTING',
-			rule            => 'interface eth1 MARK set-mark 1',
-		}
-		@ferm::rule { 'dsa-mgmt-nat':
-			table           => 'nat',
-			chain           => 'POSTROUTING',
-			rule            => 'outerface eth1 mod mark mark 1 MASQUERADE',
-		}
-	}
-
 	# redirect snapshot into varnish
 	case $::hostname {
 		sibelius: {
