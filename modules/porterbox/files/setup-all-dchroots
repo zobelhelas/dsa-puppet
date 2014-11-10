@@ -76,7 +76,7 @@ err=0
 
 for a in $archs; do
     for s in `get_suites "$a"`; do
-        if ! setup-dchroot -f -a "$a" "$s"; then
+        if ! chronic setup-dchroot -f -a "$a" "$s"; then
             err=1
             echo >&2
             echo >&2 "Error: setting up $s:$a dchroot failed."
