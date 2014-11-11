@@ -41,7 +41,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAuGJnElqbhgLtmJp/de8s42cAwKrkAhFq5u8EAkauEv6B
 
 machine_keys = []
 case fqdn
-  when "backuphost.debian.org", "storace.debian.org" then
+  when "storace.debian.org" then
     roles['dabackup_client'].each do |node|
       if allnodeinfo.has_key?(node)
         hostname = allnodeinfo[node]['hostname'][0]

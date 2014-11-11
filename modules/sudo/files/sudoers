@@ -75,7 +75,7 @@ nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr
 nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, /usr/local/bin/megarc -dispCfg -a0 -nolog
 nagios		MEGACTLHOSTS=(ALL)	NOPASSWD: /usr/sbin/megactl -Hv
 # other nagios things
-nagios		backuphost,storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg ""
+nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg ""
 
 # groups and their role accounts
 %auditor	ALL=(accounting)	ALL
