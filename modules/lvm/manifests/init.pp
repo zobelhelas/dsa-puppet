@@ -12,6 +12,9 @@ class lvm {
 		grnet-node01,grnet-node02: {
 			$conffile = 'lvm-grnet-nodeX-ganeti.conf'
 		}
+		bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12: {
+			$conffile = 'lvm-bm-blades.conf'
+		}
 		default: {
 			$conffile = ''
 		}
