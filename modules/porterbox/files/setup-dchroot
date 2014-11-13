@@ -94,11 +94,7 @@ root-groups=$grouproot
 #source-root-groups=adm
 EOF
 
-    if dpkg --compare-versions "$(lsb_release --release --short)" '<' 7; then
-        echo "script-config=$personality/config"
-    else
-        echo "profile=$personality"
-    fi
+    echo "profile=$personality"
 
     if [ "$THISARCH" = "$arch" ]; then
         echo "aliases=$suite"
