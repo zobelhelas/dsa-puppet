@@ -37,16 +37,19 @@ get_suites() {
         echo "sid jessie wheezy"
         ;;
       ia64|s390)
-        echo "wheezy squeeze"
+        echo "wheezy"
         ;;
       sparc)
-        echo "sid wheezy squeeze"
+        echo "sid wheezy"
         ;;
       arm64)
         echo "sid jessie"
         ;;
-      *)
+      amd64|i386)
         echo "sid jessie wheezy squeeze"
+        ;;
+      *)
+        echo "sid jessie wheezy"
         ;;
     esac
 }
