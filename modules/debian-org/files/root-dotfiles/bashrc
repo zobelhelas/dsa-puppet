@@ -11,6 +11,10 @@ if [ "$PS1" ]; then
   alias ls='ls $LS_OPTIONS'
   alias ll='ls $LS_OPTIONS -l'
   alias l='ls $LS_OPTIONS -lA'
+
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  fi
 fi
 
 # vim: set ft=sh ts=2 sw=2 et ai si:
