@@ -240,7 +240,7 @@ class debian-org {
 		ensure  => directory,
 		recurse => true,
 	}
-        file { '/etc/systemd/system/puppet-service':
+        file { '/etc/systemd/system/puppet.service':
 		ensure => 'link',
 		target => '/dev/null',
 		notify => Exec['systemctl daemon-reload'],
