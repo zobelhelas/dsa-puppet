@@ -236,14 +236,11 @@ class debian-org {
 	file { '/etc/default/puppet':
 		source => 'puppet:///modules/debian-org/puppet.default',
 	}
-	file { '/etc/systemd/system':
-		ensure  => directory,
-		recurse => true,
-	}
         file { '/etc/systemd/system/puppet.service':
 		ensure => 'link',
 		target => '/dev/null',
 		notify => Exec['systemctl daemon-reload'],
+		onlyif => "test -d /etc/systemd/system",
 	}
 
 	file { '/etc/cron.d/dsa-puppet-stuff':
