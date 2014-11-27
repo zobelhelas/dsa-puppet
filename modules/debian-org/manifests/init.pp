@@ -238,9 +238,11 @@ class debian-org {
 	}
 	file { '/etc/systemd':
 		ensure  => directory,
+		mode => 0755,
 	}
 	file { '/etc/systemd/system':
 		ensure  => directory,
+		mode => 0755,
 	}
         file { '/etc/systemd/system/puppet.service':
 		ensure => 'link',
