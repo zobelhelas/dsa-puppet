@@ -51,9 +51,15 @@ class buildd ($ensure=present) {
 		default => 'absent',
 	}
 
-	file { '/etc/apt/apt.conf.d/puppet-https-buildd':
-		content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/servicecerts/buildd.debian.org.crt\";\n",
-		#require => File['/etc/ssl/certs/buildd.debian.org.crt']
+	if ($::lsbmajdistrelease >= 8) {
+		file { '/etc/apt/apt.conf.d/puppet-https-buildd':
+			ensure => absent,
+		}
+	} else {
+		file { '/etc/apt/apt.conf.d/puppet-https-buildd':
+			content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/servicecerts/buildd.debian.org.crt\";\n",
+			#require => File['/etc/ssl/certs/buildd.debian.org.crt']
+		}
 	}
 	site::aptrepo { 'buildd.debian.org-proposed':
 		ensure     => $buildd_prop_ensure,
