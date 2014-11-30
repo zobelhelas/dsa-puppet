@@ -115,6 +115,7 @@ nameinfo:
   sechter.debian.org: Simon Sechter (October 11th, 1788 - September 10th, 1867)
   senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
   senfter.debian.org: Johanna Senfter (November, 27th, 1879 - August 11th, 1961)
+  setoguchi.debian.org: 瀬戸口藤吉, Tokichi Setoguchi (June 28th, 1868  - November 8th, 1941)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
   soler.debian.org: Padre Antonio Soler (December 3rd, 1729 (baptized) - December 20th, 1783)
@@ -169,6 +170,7 @@ host_settings:
     - mirror-csail.debian.org
     - saens.debian.org
     - santoro.debian.org
+    - setoguchi.debian.org
     - sechter.debian.org
     - schein.debian.org
     - steffani.debian.org
@@ -177,6 +179,7 @@ host_settings:
   apache2_www_mirror:
     - gluck.debian.org
     - santoro.debian.org
+    - setoguchi.debian.org
     - senfl.debian.org
   not-bacula-client:
     # decommissioning
@@ -194,6 +197,7 @@ host_settings:
     - schein.debian.org
     - saens.debian.org
     - santoro.debian.org
+    - setoguchi.debian.org
     - senfter.debian.org
     - spohr.debian.org
     - steffani.debian.org
