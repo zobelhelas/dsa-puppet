@@ -251,7 +251,7 @@ class debian-org {
 	}
 
 	file { '/etc/cron.d/dsa-puppet-stuff':
-		content => template('debian-org/dsa-puppet-stuff.cron.erb')
+		content => template('debian-org/dsa-puppet-stuff.cron.erb'),
 		require => Package['debian.org'],
 	}
 	file { '/etc/ldap/ldap.conf':
