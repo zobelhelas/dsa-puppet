@@ -31,6 +31,16 @@
 DPKGARCH=$(dpkg --print-architecture)
 UNAMEARCH=$(uname -m)
 
+if [ "${1:-}" = "buildd" ]; then
+    MODE=buildd
+    if ! [ -d /srv/buildd/ ]; then
+        echo >&2 "Error: /srv/buildd does not exist or is not a directory."
+        exit 1
+    fi
+else
+    MODE=porterbox
+fi
+
 get_suites() {
     case "$1" in
       armhf|s390x)
@@ -42,7 +52,7 @@ get_suites() {
       sparc)
         echo "sid wheezy"
         ;;
-      arm64)
+      arm64|ppc64el)
         echo "sid jessie"
         ;;
       amd64|i386)
@@ -77,9 +87,34 @@ esac
 
 err=0
 
+do_one() {
+    local a="$1"; shift
+    local s="$1"; shift
+
+    case "$MODE" in
+        buildd)
+            mkdir -p /srv/buildd/unpack
+            if ! chronic setup-dchroot -f -a "$a" -D -d '/srv/buildd/unpack' -K "$s"
+            then
+                return 1
+            fi
+            ;;
+        porterbox)
+            if ! chronic setup-dchroot -f -a "$a" "$s"
+            then
+                return 1
+            fi
+            ;;
+        *)
+            echo >&2 "Invalid mode $MODE"
+            exit 1
+    esac
+    return 0
+}
+
 for a in $archs; do
     for s in `get_suites "$a"`; do
-        if ! chronic setup-dchroot -f -a "$a" "$s"; then
+        if ! do_one "$a" "$s"; then
             err=1
             echo >&2
             echo >&2 "Error: setting up $s:$a dchroot failed."

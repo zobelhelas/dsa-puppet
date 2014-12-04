@@ -39,15 +39,20 @@ OPTIONS:
     -a ARCH    debootstrap arch [$arch]
     -m MIRROR  http mirror to use [$mirror]
     -b basedir place where to put the tarball [$basedir]
-    -B         install less stuff into chroot
+    -B         install less stuff into chroot [$bare]
     -c         write config only
+    -D         set up a buildd schroot - changes conffile name and various defaults.  Run -D -h)."
     -d dir     place where to build the chroot [${builddir:-$basedir}]
     -f         overwrite config and target tarball
     -g GROUPS  groups that should have access to the schroot [$groupuser]
+    -K         keep old tarballs around for a while (4 iterations)
     -k KEYRING use an alternate keyring [$keyring]
+    -o USER    users that should have access to the schroot [$users]
+    -O USER    users that should have root in the schroot [$usersroot]
     -p PERS    use a different sbuild personality [$personality]
     -r GROUPS  groups that should have root in the schroot [$grouproot]
-    -s         use sbuild compatible naming scheme
+    -s         use sbuild compatible naming scheme [$sbuildnames]
+    -S SUFFIX  conffile suffix [$suffix]
     -u         Ubuntu target
     -h         this help
 EOF
@@ -88,11 +93,11 @@ cat << EOF
 description=[${name}] Debian $suite chroot for $arch
 type=file
 file=$target
-groups=$groupuser
-root-groups=$grouproot
-#source-groups=adm
-#source-root-groups=adm
 EOF
+[ -n "$groupuser" ] && echo "groups=$groupuser"
+[ -n "$grouproot" ] && echo "root-groups=$grouproot"
+[ -n "$users" ] &&     echo "users=$users"
+[ -n "$usersroot" ] && echo "root-users=$usersroot"
 
     echo "profile=$personality"
 
@@ -149,11 +154,16 @@ sbuildnames=""
 ubuntu=""
 groupuser="Debian,guest"
 grouproot=""
+users=""
+usersroot=""
 bare=""
+keep=""
+suffix="dchroot"
 declare -a cleanup
+cleanup+=(":")
 trap do_cleanup EXIT
 
-while getopts "a:b:Bcd:fg:hk:m:p:r:su" OPTION
+while getopts "a:b:Bcd:Dfg:hKk:m:o:O:p:r:sS:u" OPTION
 do
     case $OPTION in
         a)
@@ -168,6 +178,16 @@ do
         c)
             configonly="1"
             ;;
+        D)
+            sbuildnames="0"
+            bare="1"
+            groupuser=""
+            grouproot=""
+            users="buildd"
+            usersroot="buildd"
+            personality="buildd"
+            suffix="sbuild"
+            ;;
         d)
             builddir="$OPTARG"
             ;;
@@ -181,11 +201,20 @@ do
             usage
             exit 0
             ;;
+        K)
+            keep="4"
+            ;;
         k)
             keyring="$OPTARG"
             ;;
         m)
             mirror="$OPTARG"
+            ;;
+        o)
+            users="$OPTARG"
+            ;;
+        O)
+            usersroot="$OPTARG"
             ;;
         p)
             personality="$OPTARG"
@@ -195,6 +224,9 @@ do
             ;;
         s)
             sbuildnames="1"
+            ;;
+        S)
+            suffix="$OPTARG"
             ;;
         u)
             ubuntu="1"
@@ -221,7 +253,7 @@ builddir=${builddir:-$basedir}
 target="$basedir/$tuple.tar.gz"
 ! [ -e "$target" ] || [ -n "$force" ] || die "Error: $target already exists."
 
-schrootconfig="/etc/schroot/chroot.d/${tuple}-dchroot"
+schrootconfig="/etc/schroot/chroot.d/${tuple}-$suffix"
 ! [ -e "$schrootconfig" ] || [ -n "$force" ] || die "Error: $schrootconfig already exists."
 
 
@@ -289,7 +321,7 @@ while true; do
 done
 EOF
 chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
-[ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends locales-all
+[ -z "$bare" ] && [ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends locales-all
 chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends build-essential
 [ -z "$bare" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
@@ -299,6 +331,13 @@ umount "$rootdir/sys" 2>/dev/null || true
 
 tartmp=$(tempfile --directory "$basedir" --suffix=".tar.gz")
 cleanup+=("rm -f $tartmp")
-(cd "$rootdir" && tar caf "$tartmp" . && mv "$tartmp" "$target")
+(
+  cd "$rootdir"
+  tar caf "$tartmp" .
+  if ! [ -z "$keep" ]; then
+    savelog -d -l -c 4 "$target"
+  fi
+  mv "$tartmp" "$target"
+)
 
 do_config
