@@ -185,7 +185,7 @@ do
             grouproot=""
             users="buildd"
             usersroot="buildd"
-            personality="buildd"
+            personality="buildd-dsa"
             suffix="sbuild"
             ;;
         d)
@@ -287,6 +287,7 @@ debootstrap \
     "$suite" "$rootdir" "$mirror" "$script"
 echo "$tuple" > "$rootdir/etc/debian_chroot"
 echo "force-unsafe-io" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-unsafe-io"
+echo "force-confnew" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-confnew"
 
 cleanup+=("umount $rootdir/dev")
 case "$(uname -s)" in
