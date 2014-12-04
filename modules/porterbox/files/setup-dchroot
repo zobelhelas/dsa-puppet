@@ -336,7 +336,7 @@ cleanup+=("rm -f $tartmp")
   cd "$rootdir"
   tar caf "$tartmp" .
   if ! [ -z "$keep" ]; then
-    savelog -d -l -c 4 "$target"
+    savelog -l -c 4 "$target"
   fi
   mv "$tartmp" "$target"
 )
