@@ -26,7 +26,7 @@ class named {
 		@ferm::rule { '01-dsa-bind-4':
 			domain      => '(ip)',
 			description => 'Allow nameserver access',
-			rule        => '&TCP_UDP_SERVICE_RANGE(53, ( $HOST_DNS_GEO_V4 $HOST_NAGIOS_V4 $HOST_RCODE0_V4 $HOST_EASYDNS_V4 5.153.231.21 ) )',
+			rule        => '&TCP_UDP_SERVICE_RANGE(53, ( $HOST_DNS_GEO_V4 $HOST_NAGIOS_V4 $HOST_RCODE0_V4 $HOST_EASYDNS_V4 $HOST_NETNOD_V4 5.153.231.21 ) )',
 		}
 		@ferm::rule { '01-dsa-bind-6':
 			domain      => '(ip6)',

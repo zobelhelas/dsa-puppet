@@ -236,8 +236,22 @@ class debian-org {
 	file { '/etc/default/puppet':
 		source => 'puppet:///modules/debian-org/puppet.default',
 	}
+	file { '/etc/systemd':
+		ensure  => directory,
+		mode => 0755,
+	}
+	file { '/etc/systemd/system':
+		ensure  => directory,
+		mode => 0755,
+	}
+        file { '/etc/systemd/system/puppet.service':
+		ensure => 'link',
+		target => '/dev/null',
+		notify => Exec['systemctl daemon-reload'],
+	}
+
 	file { '/etc/cron.d/dsa-puppet-stuff':
-		source  => 'puppet:///modules/debian-org/dsa-puppet-stuff.cron',
+		content => template('debian-org/dsa-puppet-stuff.cron.erb'),
 		require => Package['debian.org'],
 	}
 	file { '/etc/ldap/ldap.conf':
@@ -317,6 +331,11 @@ class debian-org {
 	}
 	exec { 'init q':
 		refreshonly => true
+	}
+
+	exec { 'systemctl daemon-reload':
+		refreshonly => true,
+		onlyif  => "test -x /bin/systemctl"
 	}
 
 	tidy { '/var/lib/puppet/clientbucket/':

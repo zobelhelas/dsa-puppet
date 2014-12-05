@@ -130,7 +130,7 @@ end
 
 
 if classes.include?("porterbox")
-  purp += "\n " + wrap("Disk space on porter boxes is often limited.  Please respect your fellow porters by cleaning up after yourself and deleting schroots and source/build trees in your ~ as soon as feasible.  DSA reserves the right to recover disk space as necessary.  See <URL:http://dsa.debian.org/doc/schroot/> for a brief tutorial on using schroot.")
+  purp += "\n " + wrap("Disk space on porter boxes is often limited.  Please respect your fellow porters by cleaning up after yourself and deleting schroots and source/build trees in your ~ as soon as feasible.  DSA reserves the right to recover disk space as necessary.  See <URL:http://dsa.debian.org/doc/schroot/> for a brief tutorial on using schroot.  There may be chroots for architectures other than #{arch} available, please list available chroots to check.")
 end
 
 if ninfo['not-bacula-client'] then

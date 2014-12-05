@@ -16,8 +16,18 @@ class ferm {
 	package { 'ferm':
 		ensure => installed
 	}
-	package { 'ulogd':
-		ensure => installed
+	if ($::lsbmajdistrelease >= 8) {
+		package { 'ulogd2':
+			ensure => installed
+		}
+		package { 'ulogd':
+			# Remove instead of purge ulogd because it deletes log files on purge.
+			ensure => absent
+		}
+	} else {
+		package { 'ulogd':
+			ensure => installed
+		}
 	}
 
 	service { 'ferm':
@@ -82,10 +92,25 @@ class ferm {
 		content => template('ferm/interfaces.conf.erb'),
 		notify  => Service['ferm'],
 	}
-	file { '/etc/logrotate.d/ulogd':
-		source  => 'puppet:///modules/ferm/logrotate-ulogd',
-		mode    => '0444',
-		require => Package['debian.org'],
+	if ($::lsbmajdistrelease >= 8) {
+		augeas { 'logrotate_ulogd2':
+			context => '/files/etc/logrotate.d/ulogd2',
+			changes => [
+				'set rule/schedule daily',
+				'set rule/delaycompress delaycompress',
+				'set rule/rotate 10',
+				'set rule/ifempty notifempty',
+			],
+		}
+		file { '/etc/logrotate.d/ulogd':
+			ensure  => absent,
+		}
+	} else {
+		file { '/etc/logrotate.d/ulogd':
+			source  => 'puppet:///modules/ferm/logrotate-ulogd',
+			mode    => '0444',
+			require => Package['debian.org'],
+		}
 	}
 
 }

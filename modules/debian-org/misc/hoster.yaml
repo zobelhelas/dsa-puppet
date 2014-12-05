@@ -76,7 +76,6 @@ csail:
 dgi:
   netrange:
     - 93.94.130.128/26
-  nameservers: [195.49.152.215, 195.49.152.213, 195.49.152.214]
 freenet:
   netrange:
     - 62.104.0.0/16
@@ -116,6 +115,11 @@ uni-karlsruhe:
     - 2001:7c0:400:1337::/64
   nameservers: []
   mirror-debian: http://ftp-stud.hs-esslingen.de/debian/
+linaro:
+  netrange:
+    - 64.28.108.83/32
+    - 64.28.108.84/32
+    - 64.28.108.85/32
 'man-da':
   netrange:
     - 82.195.75.64/26

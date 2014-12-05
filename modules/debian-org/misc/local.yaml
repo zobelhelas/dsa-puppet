@@ -42,6 +42,7 @@ nameinfo:
   falla.debian.org: Manuel de Falla y Matheu (November 23rd, 1876 - November 14th, 1946)
   fano.debian.org: Guido Alberto Fano (March 18th, 1875 - August 14th, 1961)
   fayrfax.debian.org: Robert Fayrfax (April 23rd, 1464 - October 24th, 1521)
+  fede.debian.org: Johannes Fedé (c. 1415 - 1477?)
   fils.debian.org: Anton Fils (September 22nd, 1733 (baptized) - March 14th, 1760 (buried))
   finzi.debian.org: Gerald Raphael Finzi (July 14th, 1901 - September 27th, 1956)
   fischer.debian.org: Johann Caspar Ferdinand Fischer (September 9th, 1656 - August 27th, 1746)
@@ -95,6 +96,7 @@ nameinfo:
   poulenc.debian.org: Francis Jean Marcel Poulenc (January 7th, 1899 - January 30th, 1963)
   powell.debian.org: Andrew Powell (b. April 18th, 1949)
   praetorius.debian.org: Hieronymus Praetorius (August 10th, 1560 - January 27th, 1629)
+  prokofiev.debian.org: Sergei Sergeyevich Prokofiev (April 27th, 1891 - March 5th, 1953)
   quantz.debian.org: Johann Joachim Quantz (January 30th, 1697 - July 12th, 1773)
   rautavaara.debian.org: Einojuhani Rautavaara (born October 9th, 1928)
   rainier.debian.org: Ivy Priaulx Rainier (February 3rd, 1903 - October 10th, 1986) 
@@ -113,6 +115,7 @@ nameinfo:
   sechter.debian.org: Simon Sechter (October 11th, 1788 - September 10th, 1867)
   senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
   senfter.debian.org: Johanna Senfter (November, 27th, 1879 - August 11th, 1961)
+  setoguchi.debian.org: 瀬戸口藤吉, Tokichi Setoguchi (June 28th, 1868  - November 8th, 1941)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
   soler.debian.org: Padre Antonio Soler (December 3rd, 1729 (baptized) - December 20th, 1783)
@@ -167,6 +170,7 @@ host_settings:
     - mirror-csail.debian.org
     - saens.debian.org
     - santoro.debian.org
+    - setoguchi.debian.org
     - sechter.debian.org
     - schein.debian.org
     - steffani.debian.org
@@ -242,6 +246,8 @@ host_settings:
     - mayr.debian.org
     - mips-aql-01.debian.org
     - mips-aql-02.debian.org
+    - mipsel-aql-01.debian.org
+    - mipsel-aql-02.debian.org
     - mipsel-manda-01.debian.org
     - mipsel-manda-02.debian.org
     - mundy.debian.org
