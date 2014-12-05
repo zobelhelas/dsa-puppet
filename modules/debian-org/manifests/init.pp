@@ -14,6 +14,12 @@ class debian-org {
 		$mirror_backports = $mirror
 	}
 
+	if $systemd {
+		$servicefiles = 'present'
+	} else {
+		$servicefiles = 'absent'
+	}
+
 	$debianadmin = [
 		'debian-archive-debian-samhain-reports@master.debian.org',
 		'debian-admin@ftbfs.de',
@@ -244,7 +250,12 @@ class debian-org {
 		ensure  => directory,
 		mode => 0755,
 	}
-        file { '/etc/systemd/system/puppet.service':
+	file { '/etc/systemd/system/ud-replicated.service':
+		ensure => $servicefiles,
+		source => 'puppet:///modules/debian-org/ud-replicated.service',
+		notify => Exec['systemctl daemon-reload'],
+	}
+	file { '/etc/systemd/system/puppet.service':
 		ensure => 'link',
 		target => '/dev/null',
 		notify => Exec['systemctl daemon-reload'],
