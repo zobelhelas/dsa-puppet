@@ -1,0 +1,9 @@
+[Unit]
+Description=Userdir-Ldap Replication Daemon
+
+[Service]
+ExecStart=/usr/bin/ud-replicated -d
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
