@@ -34,6 +34,15 @@ class schroot {
 		require => Package['schroot'],
 	}
 
+	file { '/usr/local/sbin/setup-dchroot':
+		mode    => '0555',
+		source  => 'puppet:///modules/schroot/setup-dchroot',
+	}
+	file { '/usr/local/sbin/setup-all-dchroots':
+		mode    => '0555',
+		source  => 'puppet:///modules/schroot/setup-all-dchroots',
+	}
+
 	file { '/etc/schroot/dsa':
 		ensure => directory,
 		require => Package['schroot'],
