@@ -29,4 +29,13 @@ class syslog-ng {
 			require => Package['syslog-ng']
 		}
 	}
+	# while syslog-ng breaks on boot
+
+	if $systemd {
+		file { '/etc/systemd/system/syslog-ng.service':
+			ensure => $servicefiles,
+			source => 'puppet:///modules/syslog-ng/syslog-ng.service',
+			notify => Exec['systemctl daemon-reload'],
+		}
+	}
 }
