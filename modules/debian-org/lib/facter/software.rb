@@ -137,7 +137,8 @@ Facter.add("samhain") do
 end
 Facter.add("systemd") do
 	setcode do
-		if File.realpath('/sbin/init') == "/lib/systemd/systemd"
+		init = '/sbin/init'
+		if File.symlink?(init) and File.readlink(init) == "/lib/systemd/systemd"
 			true
 		else
 			''
