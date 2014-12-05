@@ -1,4 +1,4 @@
-Facter.add("has-srv-build-trees") do
+Facter.add("has_srv_build_trees") do
 	setcode do
 		if FileTest.exist?("/srv/build-trees")
 			true
@@ -7,7 +7,7 @@ Facter.add("has-srv-build-trees") do
 		end
 	end
 end
-Facter.add("has-srv-buildd") do
+Facter.add("has_srv_buildd") do
 	setcode do
 		if FileTest.exist?("/srv/buildd")
 			true
