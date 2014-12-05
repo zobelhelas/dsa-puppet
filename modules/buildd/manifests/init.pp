@@ -98,4 +98,11 @@ class buildd ($ensure=present) {
 	file { '/etc/cron.d/puppet-buildd-aptitude':
 		content => "*/5 * * * * root /usr/local/sbin/buildd-schroot-aptitude-kill\n",
 	}
+
+
+	if $has_srv_buildd {
+		file { '/etc/cron.d/puppet-update-buildd-schroots':
+			content  => "13 21 * * 0 root PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin setup-all-dchroots buildd\n",
+		}
+	}
 }
