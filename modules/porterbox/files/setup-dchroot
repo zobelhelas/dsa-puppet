@@ -41,7 +41,8 @@ OPTIONS:
     -b basedir place where to put the tarball [$basedir]
     -B         install less stuff into chroot [$bare]
     -c         write config only
-    -D         set up a buildd schroot - changes conffile name and various defaults.  Run -D -h)."
+    -D         set up a buildd schroot - changes conffile name and
+               various defaults.  Run -D -h.  Also creates more aliases.
     -d dir     place where to build the chroot [${builddir:-$basedir}]
     -f         overwrite config and target tarball
     -g GROUPS  groups that should have access to the schroot [$groupuser]
@@ -101,7 +102,7 @@ EOF
 
     echo "profile=$personality"
 
-    if [ "$THISARCH" = "$arch" ]; then
+    if [ "$THISARCH" = "$arch" ] && [ -z "$buildd" ]; then
         echo "aliases=$suite"
     fi
     case "$arch" in
@@ -122,6 +123,10 @@ EOF
         *)
             if [ -z "$extra" ] && [ -z "$ubuntu" ]; then
                 genschrootconf "$suite" "$arch" "$target" "backports"
+                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "backports-sloppy"
+                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "lts"
+                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "proposed-updates"
+                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "security"
             fi
     esac
 }
@@ -163,6 +168,7 @@ suffix="dchroot"
 declare -a cleanup
 cleanup+=(":")
 trap do_cleanup EXIT
+buildd=""
 
 while getopts "a:b:Bcd:Dfg:hKk:m:o:O:p:r:sS:u" OPTION
 do
@@ -180,13 +186,14 @@ do
             configonly="1"
             ;;
         D)
+            buildd="1"
             sbuildnames="0"
             bare="1"
             groupuser=""
             grouproot=""
             users="buildd"
             usersroot="buildd"
-            personality="buildd-dsa"
+            personality="buildd"
             suffix="sbuild"
             ;;
         d)
