@@ -18,7 +18,7 @@ dev		/dev/fd		fdescfs	rw,bind		0	0
 /dev/pts	/dev/pts	none	rw,bind		0	0
 tmpfs-shm	/dev/shm	tmpfs	defaults,size=64m	0 0
 
-<%- if has_variable?("has_srv_build_trees") && has-srv-build-trees == "true" -%>
+<%- if has_variable?("has_srv_build_trees") && has_srv_build_trees == "true" -%>
 /srv/build-trees	/build	none	rw,bind		0	0
 
 <% end %>
