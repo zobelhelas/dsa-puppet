@@ -135,3 +135,12 @@ Facter.add("samhain") do
 		end
 	end
 end
+Facter.add("systemd") do
+	setcode do
+		if File.realpath('/sbin/init') == "/lib/systemd/systemd"
+			true
+		else
+			''
+		end
+	end
+end
