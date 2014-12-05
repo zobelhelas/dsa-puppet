@@ -155,6 +155,7 @@ file=/etc/monit
 file=/etc/monit/monit.d
 file=/etc/pam.d
 file=/etc/schroot/default
+file=/etc/schroot/setup.d
 file=/etc/sysctl.d
 file=/etc/syslog-ng
 file=/etc/stunnel
@@ -414,6 +415,8 @@ file=/etc/cron.d/dsa-buildd
 file=/etc/cron.weekly/stunnel-ekey-restart
 file=/etc/default/schroot
 file=/etc/schroot/default/nssdatabases
+file=/etc/schroot/setup.d/99porterbox-extra-sources
+file=/etc/schroot/setup.d/99porterbox-extra-apt-options
 file=/etc/openvswitch/conf.db
 
 <% if scope.function_has_role(['nagiosmaster']) -%>
