@@ -129,6 +129,7 @@ EOF
                 [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "security"
             fi
     esac
+    return 0
 }
 
 do_config() {
