@@ -142,6 +142,9 @@ osuosl:
     - 140.211.166.0/25
     - 140.211.15.0/24
   mirror-debian: http://debian.osuosl.org/debian
+sakura:
+  netrange:
+    - 133.242.99.74/32
 sanger:
   netrange:
     - 193.62.202.24/29
