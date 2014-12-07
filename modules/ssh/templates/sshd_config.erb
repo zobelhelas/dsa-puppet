@@ -25,6 +25,9 @@ extraports
 Protocol 2
 # HostKeys for protocol version 2
 HostKey /etc/ssh/ssh_host_rsa_key
+<%- if has_variable?("has_etc_ssh_ssh_host_ed25519_key") && has_srv_build_trees == "true" -%>
+HostKey /etc/ssh/ssh_host_ed25519_key
+<% end %>
 #Privilege Separation is turned on for security
 UsePrivilegeSeparation yes
 
