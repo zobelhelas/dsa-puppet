@@ -2,7 +2,7 @@
 
 import re
 
-MI_RE = re.compile(r'(?P<mountid>\d+) (?P<parentid>\d+) (?P<majorminor>\d+:\d+) (?P<root>\S+) (?P<mountpoint>\S+) (?P<options>\S+) (?P<optional>(?:\S+\s)+ )?- (?P<fstype>\S+) (?P<mountsrc>\S+) (?P<superopts>\S+)')
+MI_RE = re.compile(r'(?P<mountid>\d+) (?P<parentid>\d+) (?P<majorminor>\d+:\d+) (?P<root>\S+) (?P<mountpoint>\S+) (?P<options>\S+) (?P<optional>(?:\S+\s)+)?- (?P<fstype>\S+) (?P<mountsrc>\S+) (?P<superopts>\S+)')
 
 for line in file("/proc/self/mountinfo"):
     mi = MI_RE.match(line)
