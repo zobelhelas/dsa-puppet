@@ -255,6 +255,13 @@ class debian-org {
 		source => 'puppet:///modules/debian-org/ud-replicated.service',
 		notify => Exec['systemctl daemon-reload'],
 	}
+	if $systemd {
+		file { '/etc/systemd/system/multi-user.target.wants/ud-replicated.service':
+			ensure => 'link',
+			target => '../ud-replicated.service',
+			notify => Exec['systemctl daemon-reload'],
+		}
+	}
 	file { '/etc/systemd/system/puppet.service':
 		ensure => 'link',
 		target => '/dev/null',
