@@ -76,6 +76,7 @@ nameinfo:
   menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st,, 2007)
   merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
   milanollo.debian.org: Teresa Milanollo (August 28th, 1827 - October 25th, 1904)
+  minkus.debian.org: Ludwig Minkus (March 23rd 1826 - December 7th, 1917)
   muffat.debian.org: George Muffat (June 1st, 1653 - February 23rd, 1704)
   mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
@@ -213,6 +214,7 @@ host_settings:
     - gabrielli.debian.org
     - harris.debian.org
     - merulo.debian.org
+    - minkus.debian.org
     - partch.debian.org
     - smetana.debian.org
     - zelenka.debian.org
