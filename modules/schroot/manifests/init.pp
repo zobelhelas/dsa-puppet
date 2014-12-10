@@ -62,4 +62,11 @@ class schroot {
 		content => template('schroot/schroot-buildd/fstab.erb'),
 		require => Package['schroot'],
 	}
+
+	if $has_srv_buildd {
+		file { '/etc/schroot/buildd/config':
+			content => "CHROOT_FILE_UNPACK_DIR=/srv/buildd/unpack",
+			require => Package['schroot'],
+		}
+	}
 }
