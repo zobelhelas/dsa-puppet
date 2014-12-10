@@ -65,7 +65,7 @@ class schroot {
 
 	if $has_srv_buildd {
 		file { '/etc/schroot/buildd/config':
-			content => "CHROOT_FILE_UNPACK_DIR=/srv/buildd/unpack",
+			content => "CHROOT_FILE_UNPACK_DIR=/srv/buildd/unpack\n",
 			require => Package['schroot'],
 		}
 	}
