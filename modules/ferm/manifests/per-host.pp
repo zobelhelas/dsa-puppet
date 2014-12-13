@@ -27,7 +27,7 @@ class ferm::per-host {
 				description     => 'Allow memcache access',
 				rule            => '&SERVICE_RANGE(tcp, 11211, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-memcache':
+			@ferm::rule { 'dsa-memcache6':
 				domain          => 'ip6',
 				description     => 'Allow memcache access',
 				rule            => '&SERVICE_RANGE(tcp, 11211, ( 2001:41c8:1000::/48 ))'
@@ -36,7 +36,7 @@ class ferm::per-host {
 				description     => 'Allow rabbitmq access',
 				rule            => '&SERVICE_RANGE(tcp, 5672, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-amqp':
+			@ferm::rule { 'dsa-amqp6':
 				domain          => 'ip6',
 				description     => 'Allow rabbitmq access',
 				rule            => '&SERVICE_RANGE(tcp, 5672, ( 2001:41c8:1000::/48 ))'
@@ -45,7 +45,7 @@ class ferm::per-host {
 				description     => 'Allow keystone access',
 				rule            => '&SERVICE_RANGE(tcp, 5000, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-keystone':
+			@ferm::rule { 'dsa-keystone6':
 				domain          => 'ip6',
 				description     => 'Allow keystone access',
 				rule            => '&SERVICE_RANGE(tcp, 5000, ( 2001:41c8:1000::/48 ))'
@@ -54,7 +54,7 @@ class ferm::per-host {
 				description     => 'Allow keystone access',
 				rule            => '&SERVICE_RANGE(tcp, 35357, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-keystone-admin':
+			@ferm::rule { 'dsa-keystone-admin6':
 				domain          => 'ip6',
 				description     => 'Allow keystone access',
 				rule            => '&SERVICE_RANGE(tcp, 35357, ( 2001:41c8:1000::/48 ))'
@@ -63,7 +63,7 @@ class ferm::per-host {
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9292, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-glance-api':
+			@ferm::rule { 'dsa-glance-api6':
 				domain          => 'ip6',
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9292, ( 2001:41c8:1000::/48 ))'
@@ -72,7 +72,7 @@ class ferm::per-host {
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9191, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-glance-registry':
+			@ferm::rule { 'dsa-glance-registry6':
 				domain          => 'ip6',
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9191, ( 2001:41c8:1000::/48 ))'
@@ -81,7 +81,7 @@ class ferm::per-host {
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9696, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-neutron':
+			@ferm::rule { 'dsa-neutron6':
 				domain          => 'ip6',
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9696, ( 2001:41c8:1000::/48 ))'
@@ -90,7 +90,7 @@ class ferm::per-host {
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8773, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-nova-ec2':
+			@ferm::rule { 'dsa-nova-ec26':
 				domain          => 'ip6',
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8773, ( 2001:41c8:1000::/48 ))'
@@ -99,7 +99,7 @@ class ferm::per-host {
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8774, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-nova2':
+			@ferm::rule { 'dsa-nova26':
 				domain          => 'ip6',
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8774, ( 2001:41c8:1000::/48 ))'
@@ -108,7 +108,7 @@ class ferm::per-host {
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8775, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-nova-metadata':
+			@ferm::rule { 'dsa-nova-metadata6':
 				domain          => 'ip6',
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8775, ( 2001:41c8:1000::/48 ))'
@@ -117,7 +117,7 @@ class ferm::per-host {
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8776, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
-			@ferm::rule { 'dsa-cinder':
+			@ferm::rule { 'dsa-cinder6':
 				domain          => 'ip6',
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8776, ( 2001:41c8:1000::/48 ))'
