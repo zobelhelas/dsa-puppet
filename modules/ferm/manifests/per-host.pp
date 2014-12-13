@@ -27,45 +27,100 @@ class ferm::per-host {
 				description     => 'Allow memcache access',
 				rule            => '&SERVICE_RANGE(tcp, 11211, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
+			@ferm::rule { 'dsa-memcache':
+				domain          => 'ip6',
+				description     => 'Allow memcache access',
+				rule            => '&SERVICE_RANGE(tcp, 11211, ( 2001:41c8:1000::/48 ))'
+			}
 			@ferm::rule { 'dsa-amqp':
 				description     => 'Allow rabbitmq access',
 				rule            => '&SERVICE_RANGE(tcp, 5672, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-amqp':
+				domain          => 'ip6',
+				description     => 'Allow rabbitmq access',
+				rule            => '&SERVICE_RANGE(tcp, 5672, ( 2001:41c8:1000::/48 ))'
 			}
 			@ferm::rule { 'dsa-keystone':
 				description     => 'Allow keystone access',
 				rule            => '&SERVICE_RANGE(tcp, 5000, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
+			@ferm::rule { 'dsa-keystone':
+				domain          => 'ip6',
+				description     => 'Allow keystone access',
+				rule            => '&SERVICE_RANGE(tcp, 5000, ( 2001:41c8:1000::/48 ))'
+			}
 			@ferm::rule { 'dsa-keystone-admin':
 				description     => 'Allow keystone access',
 				rule            => '&SERVICE_RANGE(tcp, 35357, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-keystone-admin':
+				domain          => 'ip6',
+				description     => 'Allow keystone access',
+				rule            => '&SERVICE_RANGE(tcp, 35357, ( 2001:41c8:1000::/48 ))'
 			}
 			@ferm::rule { 'dsa-glance-api':
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9292, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
+			@ferm::rule { 'dsa-glance-api':
+				domain          => 'ip6',
+				description     => 'Allow glance access',
+				rule            => '&SERVICE_RANGE(tcp, 9292, ( 2001:41c8:1000::/48 ))'
+			}
 			@ferm::rule { 'dsa-glance-registry':
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9191, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-glance-registry':
+				domain          => 'ip6',
+				description     => 'Allow glance access',
+				rule            => '&SERVICE_RANGE(tcp, 9191, ( 2001:41c8:1000::/48 ))'
 			}
 			@ferm::rule { 'dsa-neutron':
 				description     => 'Allow glance access',
 				rule            => '&SERVICE_RANGE(tcp, 9696, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
+			@ferm::rule { 'dsa-neutron':
+				domain          => 'ip6',
+				description     => 'Allow glance access',
+				rule            => '&SERVICE_RANGE(tcp, 9696, ( 2001:41c8:1000::/48 ))'
+			}
 			@ferm::rule { 'dsa-nova-ec2':
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8773, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-nova-ec2':
+				domain          => 'ip6',
+				description     => 'Allow nova access',
+				rule            => '&SERVICE_RANGE(tcp, 8773, ( 2001:41c8:1000::/48 ))'
 			}
 			@ferm::rule { 'dsa-nova2':
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8774, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
+			@ferm::rule { 'dsa-nova2':
+				domain          => 'ip6',
+				description     => 'Allow nova access',
+				rule            => '&SERVICE_RANGE(tcp, 8774, ( 2001:41c8:1000::/48 ))'
+			}
 			@ferm::rule { 'dsa-nova-metadata':
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8775, ( 5.153.231.240/27 172.29.123.0/24 ))'
 			}
+			@ferm::rule { 'dsa-nova-metadata':
+				domain          => 'ip6',
+				description     => 'Allow nova access',
+				rule            => '&SERVICE_RANGE(tcp, 8775, ( 2001:41c8:1000::/48 ))'
+			}
 			@ferm::rule { 'dsa-cinder':
 				description     => 'Allow nova access',
 				rule            => '&SERVICE_RANGE(tcp, 8776, ( 5.153.231.240/27 172.29.123.0/24 ))'
+			}
+			@ferm::rule { 'dsa-cinder':
+				domain          => 'ip6',
+				description     => 'Allow nova access',
+				rule            => '&SERVICE_RANGE(tcp, 8776, ( 2001:41c8:1000::/48 ))'
 			}
 		}
 	}
