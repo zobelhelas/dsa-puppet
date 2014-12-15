@@ -50,6 +50,7 @@ root	ALL=(ALL) ALL
 %zivit-admins	ZIVITHOSTS=(ALL)	NOPASSWD: ALL
 
 # nagios
+nagios		ALL=(ALL)	NOPASSWD: /bin/systemctl is-system-running
 nagios		MQ_HOSTS=(rabbitmq)	NOPASSWD: /usr/sbin/rabbitmqctl list_queues -p dsa name messages consumers
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service ekeyd-egd-linux restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service samhain restart
