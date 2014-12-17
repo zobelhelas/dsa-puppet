@@ -1,6 +1,4 @@
 class ssl {
-
-	$cacert = 'mozilla/UTN_USERFirst_Hardware_Root_CA.crt'
 	$caconf = '/etc/ca-certificates.conf'
 
 	package { 'openssl':
