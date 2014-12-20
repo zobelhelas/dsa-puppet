@@ -5,7 +5,7 @@ class ntp {
 	}
 
 	service { 'ntp':
-		ensure  => running,
+		ensure  => stopped,
 		require => Package['ntp']
 	}
 
