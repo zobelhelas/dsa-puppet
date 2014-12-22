@@ -3,6 +3,7 @@ class autofs::common {
 	package { 'nfs-common': ensure => installed }
 
 	site::linux_module { 'nfs': }
+	site::linux_module { 'nfsv4': }
 	site::linux_module { 'autofs4': }
 
 	exec { 'autofs reload':
