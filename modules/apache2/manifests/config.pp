@@ -49,14 +49,14 @@ define apache2::config (
 			}
 		}
 
-		$link_ensure = $ensure == present ? {
-			present => 'link',
-			absent  => 'absent'
+		$link_ensure = $ensure ? {
+			present => link,
+			absent  => absent
 		}
 
-		file { "/etc/apache2/conf-enabled/${name}":
+		file { "/etc/apache2/conf-enabled/${name}.conf":
 			ensure => $link_ensure,
-			target => "/etc/apache2/conf-available/${base}.conf",
+			target => "../conf-available/${name}.conf",
 			notify => Service['apache2'],
 		}
 	}
