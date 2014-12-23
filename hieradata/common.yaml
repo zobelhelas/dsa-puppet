@@ -86,7 +86,7 @@ roles:
   search_backend:
     - wolkenstein.debian.org
   search_frontend:
-    - search-grnet-01.debian.org
+    - cgi-grnet-01.debian.org
   sso:
     - diabelli.debian.org
   static_master:
