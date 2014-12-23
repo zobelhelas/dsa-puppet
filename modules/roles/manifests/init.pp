@@ -229,4 +229,11 @@ class roles {
 			tlsaport => 0,
 		}
 	}
+
+	if has_role('search_backend') {
+		include search_backend
+	}
+	if has_role('search_frontend') {
+		include search_frontend
+	}
 }
