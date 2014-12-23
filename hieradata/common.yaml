@@ -42,8 +42,8 @@ roles:
     - adayevskaya.debian.org
   keyring:
     - kaufmann.debian.org
-  keystone:
-    - oyens.debian.org
+  #keystone:
+  #  - oyens.debian.org
   lists:
     - bendel.debian.org
   mailrelay:
