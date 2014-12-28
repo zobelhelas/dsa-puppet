@@ -4,16 +4,9 @@ class ntp {
 		ensure => installed
 	}
 
-	if ($::lsbmajdistrelease >= 8) {
-		service { 'ntp':
-			ensure  => stopped,
-			require => Package['ntp']
-		}
-	} else {
-		service { 'ntp':
-			ensure  => running,
-			require => Package['ntp']
-		}
+	service { 'ntp':
+		ensure  => running,
+		require => Package['ntp']
 	}
 
 	@ferm::rule { 'dsa-ntp':
