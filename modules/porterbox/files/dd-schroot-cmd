@@ -56,7 +56,7 @@ def die(s):
     sys.exit(1)
 
 def get_session_owner(session):
-    if re.search('[^0-9a-zA-Z_-]', session):
+    if re.search('^\.|~$|[^0-9a-zA-Z_.~-]', session):
         die("Invalid session name.")
 
     path = os.path.join('/var/lib/schroot/session', session)
