@@ -11,6 +11,33 @@ class ssl {
 		ensure   => installed,
 	}
 
+	file { '/etc/ca-certificates.conf':
+		content => "# This file is under puppet control\n# Only debian.org service certs are trusted, see /etc/ssl/certs/README",
+		notify  => Exec['refresh_normal_hashes'],
+	}
+	file { '/etc/ca-certificates-debian.conf':
+		mode    => '0444',
+		content => "# This file is under puppet control\n# Only the CAs for debian.org are trusted, see /etc/ssl/ca-debian/README\nmozilla/AddTrust_External_Root.crt",
+		notify  => Exec['refresh_ca_debian_hashes'],
+	}
+	file { '/etc/ca-certificates-global.conf':
+		content => "# This file is under puppet control\n# All CAs are trusted, see /etc/ssl/ca-global/README",
+		notify  => Exec['refresh_ca_global_hashes'],
+	}
+
+	file { '/etc/apt/apt.conf.d/99dsa-ssl-ca-global':
+		mode   => '0444',
+		source => 'puppet:///modules/ssl/apt.conf.d-99dsa-ssl-ca-global',
+	}
+
+	file { '/etc/ssl/certs/ssl-cert-snakeoil.pem':
+		ensure => absent,
+		notify => Exec['refresh_normal_hashes'],
+	}
+	file { '/etc/ssl/private/ssl-cert-snakeoil.key':
+		ensure => absent,
+	}
+
 	file { '/etc/ssl/servicecerts':
 		ensure   => link,
 		purge    => true,
@@ -27,6 +54,26 @@ class ssl {
 		recurse  => true,
 		force    => true,
 		notify   => Exec['refresh_normal_hashes'],
+	}
+	file { '/etc/ssl/certs/README':
+		mode   => '0444',
+		source => 'puppet:///modules/ssl/README.certs',
+	}
+	file { '/etc/ssl/ca-debian':
+		ensure => directory,
+		mode   => '0755',
+	}
+	file { '/etc/ssl/ca-debian/README':
+		mode   => '0444',
+		source => 'puppet:///modules/ssl/README.ca-debian',
+	}
+	file { '/etc/ssl/ca-global':
+		ensure => directory,
+		mode   => '0755',
+	}
+	file { '/etc/ssl/ca-debian/README':
+		mode   => '0444',
+		source => 'puppet:///modules/ssl/README.ca-global',
 	}
 	file { '/etc/ssl/debian':
 		ensure   => directory,
@@ -78,6 +125,11 @@ class ssl {
 		require => Package['ssl-cert'],
 	}
 
+	file { '/usr/local/sbin/update-ca-certificates-dsa':
+		mode   => '0555',
+		source => 'puppet:///modules/ssl/update-ca-certificates-dsa',
+	}
+
 	exec { 'retire_debian_links':
 		command     => 'find -lname "../servicecerts/*" -exec rm {} +',
 		cwd         => '/etc/ssl/certs',
@@ -98,6 +150,26 @@ class ssl {
 		command     => '/usr/sbin/update-ca-certificates -f',
 		refreshonly => true,
 		require     => Package['ca-certificates'],
+	}
+	exec { 'refresh_ca_debian_hashes':
+		command     => '/usr/local/sbin/update-ca-certificates-dsa --fresh --certsconf /etc/ca-certificates-debian.conf --localcertsdir /dev/null --etccertsdir /etc/ssl/ca-debian --hooksdir /dev/null',
+		refreshonly => true,
+		require     => [
+			Package['ca-certificates'],
+			File['/etc/ssl/ca-debian'],
+			File['/etc/ca-certificates-debian.conf'],
+			File['/usr/local/sbin/update-ca-certificates-dsa'],
+		]
+	}
+	exec { 'refresh_ca_global_hashes':
+		command     => '/usr/local/sbin/update-ca-certificates-dsa --fresh --default --certsconf /etc/ca-certificates-global.conf --etccertsdir /etc/ssl/ca-global --hooksdir /dev/null',
+		refreshonly => true,
+		require     => [
+			Package['ca-certificates'],
+			File['/etc/ssl/ca-global'],
+			File['/etc/ca-certificates-global.conf'],
+			File['/usr/local/sbin/update-ca-certificates-dsa'],
+		]
 	}
 
 }

@@ -53,7 +53,7 @@ class buildd ($ensure=present) {
 
 	if ($::lsbmajdistrelease >= 8) {
 		file { '/etc/apt/apt.conf.d/puppet-https-buildd':
-			content => "Acquire::https::buildd.debian.org::CaInfo \"/usr/share/ca-certificates/mozilla/AddTrust_External_Root.crt\";\n",
+			content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/ca-debian/ca-certificates.crt\";\n",
 		}
 	} else {
 		file { '/etc/apt/apt.conf.d/puppet-https-buildd':
