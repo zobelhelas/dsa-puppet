@@ -119,6 +119,10 @@
    daily
    compress
    postrotate
-      /usr/sbin/invoke-rc.d syslog-ng reload >/dev/null
+      if [ -d /run/systemd/system ]; then
+          /bin/systemctl reload syslog-ng.service >/dev/null
+      else
+          /usr/sbin/invoke-rc.d syslog-ng reload >/dev/null
+      fi
    endscript
 }
