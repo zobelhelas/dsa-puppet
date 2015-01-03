@@ -150,7 +150,7 @@ arch="$THISARCH"
 if [ -e /etc/schroot/dsa/default-mirror ]; then
     mirror=$(cat /etc/schroot/dsa/default-mirror )
 fi
-mirror="${mirror:-http://cdn.debian.net/debian}"
+mirror="${mirror:-http://http.debian.net/debian}"
 configonly=""
 force=""
 basedir="/srv/chroot"
