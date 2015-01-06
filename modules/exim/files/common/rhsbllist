@@ -3,25 +3,25 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-admin : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-books : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-cdvendors : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-consultants : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-da-manager : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-events : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-ftp-master : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-ftpmaster : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-hostmaster : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-iana : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-keyring-maint : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-mailer-daemon : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-merchandise : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-mirrors : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-new-maintainer : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-override-change : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-partners : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-preinstallvendors : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-press : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-wat : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-wbadm : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
-webmaster : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain : rhsbl.ahbl.org/$sender_address_domain
+admin : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+books : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+cdvendors : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+consultants : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+da-manager : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+events : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+ftp-master : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+ftpmaster : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+hostmaster : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+iana : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+keyring-maint : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+mailer-daemon : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+merchandise : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+mirrors : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+new-maintainer : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+override-change : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+partners : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+preinstallvendors : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+press : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+wat : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+wbadm : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain
+webmaster : bogusmx.rfc-ignorant.org/$sender_address_domain : dsn.rfc-ignorant.org/$sender_address_domain

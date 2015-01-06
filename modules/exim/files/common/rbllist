@@ -3,32 +3,32 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-admin : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-books : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-cdvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-consultants : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-da-manager : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
-events: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-ftpmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
-ftp-master : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+admin : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
+books : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
+cdvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
+consultants : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
+da-manager : zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
+events: zen.spamhaus.org : dul.dnsbl.sorbs.net
+ftpmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
+ftp-master : zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
 hardware-donations : sbl-xbl.spamhaus.org
 hostmaster : sbl-xbl.spamhaus.org : cbl.abuseat.org
 iana : sbl-xbl.spamhaus.org : cbl.abuseat.org
-keyring-maint : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-leader : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+keyring-maint : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
+leader : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
 mailer-daemon : sbl-xbl.spamhaus.org : cbl.abuseat.org
-merchandise : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+merchandise : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
 mia : sbl-xbl.spamhaus.org
-mirrors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
-new-maintainer : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
-override-change : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
-partners : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
-planet : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
-preinstallvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-press: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org
+mirrors : zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
+new-maintainer : zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
+override-change : zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
+partners : zen.spamhaus.org : dul.dnsbl.sorbs.net
+planet : zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
+preinstallvendors : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
+press: zen.spamhaus.org : dul.dnsbl.sorbs.net
 rmurray : sbl-xbl.spamhaus.org
-security: zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
+security: zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
 treasurer : sbl-xbl.spamhaus.org
-wat : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : combined.njabl.org
-wbadm : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
-webmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : dnsbl.ahbl.org : bl.spamcop.net
+wat : zen.spamhaus.org : dul.dnsbl.sorbs.net : combined.njabl.org
+wbadm : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
+webmaster : zen.spamhaus.org : dul.dnsbl.sorbs.net : bl.spamcop.net
