@@ -12,16 +12,16 @@ class ssl {
 	}
 
 	file { '/etc/ca-certificates.conf':
-		content => "# This file is under puppet control\n# Only debian.org service certs are trusted, see /etc/ssl/certs/README",
+		content => "# This file is under puppet control\n# Only debian.org service certs are trusted, see /etc/ssl/certs/README\n",
 		notify  => Exec['refresh_normal_hashes'],
 	}
 	file { '/etc/ca-certificates-debian.conf':
 		mode    => '0444',
-		content => "# This file is under puppet control\n# Only the CAs for debian.org are trusted, see /etc/ssl/ca-debian/README\nmozilla/AddTrust_External_Root.crt",
+		content => "# This file is under puppet control\n# Only the CAs for debian.org are trusted, see /etc/ssl/ca-debian/README\nmozilla/AddTrust_External_Root.crt\n",
 		notify  => Exec['refresh_ca_debian_hashes'],
 	}
 	file { '/etc/ca-certificates-global.conf':
-		content => "# This file is under puppet control\n# All CAs are trusted, see /etc/ssl/ca-global/README",
+		content => "# This file is under puppet control\n# All CAs are trusted, see /etc/ssl/ca-global/README\n",
 		notify  => Exec['refresh_ca_global_hashes'],
 	}
 
