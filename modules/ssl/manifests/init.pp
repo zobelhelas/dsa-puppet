@@ -17,7 +17,7 @@ class ssl {
 	}
 	file { '/etc/ca-certificates-debian.conf':
 		mode    => '0444',
-		content => "# This file is under puppet control\n# Only the CAs for debian.org are trusted, see /etc/ssl/ca-debian/README\nmozilla/AddTrust_External_Root.crt\n",
+		content => "# This file is under puppet control\n# Only the CAs for debian.org are trusted, see /etc/ssl/ca-debian/README\nmozilla/AddTrust_External_Root.crt\nmozilla/UTN_USERFirst_Hardware_Root_CA.crt\nspi-inc.org/spi-cacert-2008.crt\n",
 		notify  => Exec['refresh_ca_debian_hashes'],
 	}
 	file { '/etc/ca-certificates-global.conf':
