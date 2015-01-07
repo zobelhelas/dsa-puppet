@@ -71,7 +71,7 @@ class ssl {
 		ensure => directory,
 		mode   => '0755',
 	}
-	file { '/etc/ssl/ca-debian/README':
+	file { '/etc/ssl/ca-global/README':
 		mode   => '0444',
 		source => 'puppet:///modules/ssl/README.ca-global',
 	}
