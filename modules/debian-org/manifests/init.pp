@@ -6,12 +6,18 @@ class debian-org {
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
 		$mirror = getfromhash($site::nodeinfo, 'hoster', 'mirror-debian')
 	} else {
-		$mirror = 'http://http.debian.net/debian/'
+		$mirror = 'http://ftp.debian.org/debian/'
 	}
 	if $::lsbmajdistrelease < 7 {
 		$mirror_backports = 'http://backports.debian.org/debian-backports/'
 	} else {
 		$mirror_backports = $mirror
+	}
+
+	if $systemd {
+		$servicefiles = 'present'
+	} else {
+		$servicefiles = 'absent'
 	}
 
 	$debianadmin = [
@@ -244,7 +250,19 @@ class debian-org {
 		ensure  => directory,
 		mode => 0755,
 	}
-        file { '/etc/systemd/system/puppet.service':
+	file { '/etc/systemd/system/ud-replicated.service':
+		ensure => $servicefiles,
+		source => 'puppet:///modules/debian-org/ud-replicated.service',
+		notify => Exec['systemctl daemon-reload'],
+	}
+	if $systemd {
+		file { '/etc/systemd/system/multi-user.target.wants/ud-replicated.service':
+			ensure => 'link',
+			target => '../ud-replicated.service',
+			notify => Exec['systemctl daemon-reload'],
+		}
+	}
+	file { '/etc/systemd/system/puppet.service':
 		ensure => 'link',
 		target => '/dev/null',
 		notify => Exec['systemctl daemon-reload'],

@@ -53,7 +53,7 @@ class buildd ($ensure=present) {
 
 	if ($::lsbmajdistrelease >= 8) {
 		file { '/etc/apt/apt.conf.d/puppet-https-buildd':
-			content => "Acquire::https::buildd.debian.org::CaInfo \"/usr/share/ca-certificates/mozilla/UTN_USERFirst_Hardware_Root_CA.crt\";\n",
+			content => "Acquire::https::buildd.debian.org::CaInfo \"/usr/share/ca-certificates/mozilla/AddTrust_External_Root.crt\";\n",
 		}
 	} else {
 		file { '/etc/apt/apt.conf.d/puppet-https-buildd':
@@ -97,5 +97,12 @@ class buildd ($ensure=present) {
 	}
 	file { '/etc/cron.d/puppet-buildd-aptitude':
 		content => "*/5 * * * * root /usr/local/sbin/buildd-schroot-aptitude-kill\n",
+	}
+
+
+	if $has_srv_buildd {
+		file { '/etc/cron.d/puppet-update-buildd-schroots':
+			content  => "13 21 * * 0 root PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin setup-all-dchroots buildd\n",
+		}
 	}
 }

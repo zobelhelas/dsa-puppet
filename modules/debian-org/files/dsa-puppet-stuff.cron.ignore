@@ -9,3 +9,7 @@
 ^pcilib: Cannot open /proc/bus/pci$
 ^lspci: Cannot find any working access method\.$
 ^can't open /proc/dma at /usr/bin/lsdev line 32\.$
+^/usr/lib/ruby/1.9.1/rubygems/custom_require\.rb:36:in `require': iconv will be deprecated in the future, use String#encode instead\.$
+^/usr/lib/ruby/vendor_ruby/puppet/provider/service/freebsd\.rb:[8910]*: warning: class variable access from toplevel$
+^/usr/lib/ruby/vendor_ruby/puppet/provider/service/bsd\.rb:12: warning: class variable access from toplevel$
+^/usr/lib/ruby/vendor_ruby/puppet/type/tidy\.rb:1[0-9][0-9]: warning: class variable access from toplevel$

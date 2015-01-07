@@ -3,6 +3,10 @@ class named::geodns inherits named {
 		script => bind
 	}
 
+	package { 'geoip-database':
+		ensure => installed,
+	}
+
 	#site::aptrepo { 'geoip':
 	#	url        => 'http://db.debian.org/debian-admin',
 	#	suite      => 'lenny-bind-geoip',

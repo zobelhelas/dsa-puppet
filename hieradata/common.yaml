@@ -83,6 +83,10 @@ roles:
     - soler.debian.org
   rtc:
     - vogler.debian.org
+  search_backend:
+    - wolkenstein.debian.org
+  search_frontend:
+    - cgi-grnet-01.debian.org
   sso:
     - diabelli.debian.org
   static_master:

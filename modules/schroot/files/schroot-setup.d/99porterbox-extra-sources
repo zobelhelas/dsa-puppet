@@ -26,7 +26,7 @@ fi
 if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
   SRCL="${CHROOT_PATH}/etc/apt/sources.list.d/auto.list"
   rm -f "$SRCL"
-  mirror=${MIRROR:-http://cdn.debian.net/debian}
+  mirror=${MIRROR:-http://http.debian.net/debian}
 
   case "${SUITE_BASE:-}" in
     experimental)
