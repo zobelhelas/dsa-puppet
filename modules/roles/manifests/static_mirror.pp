@@ -15,6 +15,11 @@ class roles::static_mirror {
 		mode   => '0555',
 	}
 
+	file { '/usr/local/bin/static-mirror-run-all':
+		source => 'puppet:///modules/roles/static-mirroring/static-mirror-run-all',
+		mode   => '0555',
+	}
+
 	file { '/srv/static.debian.org':
 		ensure => directory,
 		owner  => staticsync,
@@ -23,7 +28,7 @@ class roles::static_mirror {
 	}
 
 	file { '/etc/cron.d/puppet-static-mirror':
-			content => "PATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; awk '!/^ *(#|$)/ {print \$1, \$2}' /etc/static-components.conf | while read master component; do static-mirror-run --one-stage /srv/static.debian.org/mirrors/\$component \"\$master:\$component/-live-\" > /dev/null; done\n",
+			content => "MAILTO=root\nPATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; chronic static-mirror-run-all\n",
 	}
 
 	$vhost_listen = $::hostname ? {

@@ -13,19 +13,19 @@ base="/srv/static.debian.org"
 serialname = '.serial'
 had_warnings = False
 
-clients = []
+allclients = set()
 with open('/etc/static-clients.conf') as f:
   for line in f:
     line = line.strip()
     if line == "": continue
     if line.startswith('#'): continue
-    clients.append(line)
+    allclients.add(line)
 
 def log(m):
   t = time.strftime("[%Y-%m-%d %H:%M:%S]", time.gmtime())
   print t, m
 
-def stage1(pipes, status):
+def stage1(pipes, status, clients):
   for c in clients:
     p = pipes[c]
     while 1:
@@ -71,7 +71,7 @@ def count_statuses(status):
     else: cnt[v] += 1
   return cnt
 
-def stage2(pipes, status, command):
+def stage2(pipes, status, command, clients):
   for c in clients:
     if status[c] != 'waiting': continue
     log("%s << %s"%(c, command))
@@ -86,7 +86,7 @@ def stage2(pipes, status, command):
       log("%s >> %s"%(c, l))
     log("%s: returned %d"%(c, p.returncode))
 
-def callout(component, serial):
+def callout(component, serial, clients):
   log("Calling clients...")
   pipes = {}
   status = {}
@@ -97,13 +97,13 @@ def callout(component, serial):
     status[c] = 'in-progress'
 
   log("Stage 1...")
-  stage1(pipes, status)
+  stage1(pipes, status, clients)
   log("Stage 1 done.")
   cnt = count_statuses(status)
 
   if 'failed' in cnt and cnt['failed'] >= 2:
     log("%d clients failed, aborting..."%(cnt['failed'],))
-    stage2(pipes, status, 'abort')
+    stage2(pipes, status, 'abort', clients)
     return False
 
   failedmirrorsfile = os.path.join(base, 'master', component + "-failedmirrors")
@@ -120,15 +120,37 @@ def callout(component, serial):
 
   if 'waiting' in cnt:
     log("Committing...")
-    stage2(pipes, status, 'go')
+    stage2(pipes, status, 'go', clients)
     return True
   else:
     log("All clients up to date.")
     return True
 
+def load_component_info(component):
+  with open('/etc/static-components.conf') as f:
+    for line in f:
+      if line.startswith('#'): continue
+      field = line.strip().split()
+      if len(field) < 4: continue
+      if field[1] != component: continue
+      meta = {}
+      meta['master'] = field[0]
+      meta['sourcehost'] = field[2]
+      meta['sourcedir'] = field[3]
+      meta['extrapushhosts'] = set(field[4].split(',')) if len(field) > 4 else set()
+      meta['extraignoreclients'] = set(field[5].split(',')) if len(field) > 5 else set()
+      return meta
+    else:
+      return None
 
 cleanup_dirs = []
 def run_mirror(component):
+  meta = load_component_info(component)
+  if meta is None:
+    log("Component %s not found."%(component,))
+    return False
+  clients = allclients - meta['extraignoreclients']
+
   # setup
   basemaster = os.path.join(base, 'master')
   componentdir = os.path.join(basemaster, component)
@@ -165,7 +187,7 @@ def run_mirror(component):
   log("Renaming %s to %s."%(tmpdir_new, cur))
   os.rename(tmpdir_new, cur)
 
-  proceed = callout(component, serial)
+  proceed = callout(component, serial, clients)
 
   if proceed:
     log("Moving %s aside."%(live,))
