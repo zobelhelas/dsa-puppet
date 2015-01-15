@@ -85,9 +85,16 @@ class buildd ($ensure=present) {
 		package { 'python-psutil':
 			ensure => installed,
 		}
-		file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
-			source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill',
-			mode    => '0555',
+		if ($::lsbmajdistrelease >= 8) {
+			file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
+				source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill',
+				mode    => '0555',
+			}
+		} else {
+			file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
+				source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill.wheezy',
+				mode    => '0555',
+			}
 		}
 	} else {
 		file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
