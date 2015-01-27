@@ -56,6 +56,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service ekeyd-egd-linux restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service samhain restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-filesystems ""
+nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-libs ""
 # with smartarray controllers
 nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
