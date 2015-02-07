@@ -201,7 +201,6 @@ host_settings:
     - senfter.debian.org
     - spohr.debian.org
     - steffani.debian.org
-    - villa.debian.org
     - wieck.debian.org
     # porterbox
     - abel.debian.org
