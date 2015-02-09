@@ -1,5 +1,6 @@
 [Unit]
 Description=Userdir-Ldap Replication Daemon
+Wants=syslog.service
 
 [Service]
 ExecStart=/usr/bin/ud-replicated -d
