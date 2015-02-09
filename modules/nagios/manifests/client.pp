@@ -74,6 +74,7 @@ class nagios::client inherits nagios {
 	}
 	file { '/usr/local/sbin/dsa-check-libs':
 		source  => 'puppet:///modules/nagios/dsa-check-libs',
+		mode    => '0555',
 	}
 
 }
