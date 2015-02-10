@@ -7,7 +7,7 @@ MI_RE = re.compile(r'(?P<mountid>\d+) (?P<parentid>\d+) (?P<majorminor>\d+:\d+) 
 for line in file("/proc/self/mountinfo"):
     mi = MI_RE.match(line)
     if mi is None:
-	# XXX: handle error?
+        # XXX: handle error?
         continue
     gd = mi.groupdict()
     # Skip bind mounts
