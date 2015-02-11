@@ -15,6 +15,7 @@ class debian-org {
 	}
 
 	if $systemd {
+		include systemd
 		$servicefiles = 'present'
 	} else {
 		$servicefiles = 'absent'
