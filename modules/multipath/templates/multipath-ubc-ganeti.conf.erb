@@ -25,6 +25,9 @@ blacklist {
         devnode "^hd[a-z][[0-9]*]"
         devnode "^vd[a-z]"
         devnode "^cciss!c[0-9]d[0-9]*[p[0-9]*]"
+<%- if %w{pasquini tristano boito bertali}.include?(hostname) then -%>
+        devnode "^sda[0-9]*"
+<%- end -%>
         device {
                 vendor DEC.*
                 product MSA[15]00

@@ -34,7 +34,7 @@ class multipath {
 		}
 
 		file { '/etc/multipath.conf':
-			source  => "puppet:///modules/multipath/${conffile}",
+			content  => template("multipath/${conffile}.erb"),
 			notify  => Exec['multipath reload']
 		}
 	}
