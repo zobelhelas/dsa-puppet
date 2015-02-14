@@ -3,7 +3,7 @@ class roles::buildd_master {
 		notify => Service['apache2'],
 	}
 
-	file { '/etc/ssh/userkeys/wb-buildd.TEST':
+	file { '/etc/ssh/userkeys/wb-buildd.more':
 		content => template('roles/buildd_master_wb-authorized_keys.erb'),
 	}
 }
