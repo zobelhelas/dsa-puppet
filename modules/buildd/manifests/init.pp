@@ -142,12 +142,6 @@ class buildd ($ensure=present) {
 		group   => buildd,
 		owner   => buildd,
 	}
-	file { '/home/buildd/status':
-		ensure  => directory,
-		mode    => '2755',
-		group   => buildd,
-		owner   => buildd,
-	}
 	file { '/home/buildd/stats/graphs':
 		ensure  => directory,
 		mode    => '2755',
