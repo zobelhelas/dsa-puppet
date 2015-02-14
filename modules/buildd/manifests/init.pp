@@ -106,10 +106,62 @@ class buildd ($ensure=present) {
 		content => "*/5 * * * * root /usr/local/sbin/buildd-schroot-aptitude-kill\n",
 	}
 
-
 	if $has_srv_buildd {
 		file { '/etc/cron.d/puppet-update-buildd-schroots':
 			content  => "13 21 * * 0 root PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin setup-all-dchroots buildd\n",
 		}
 	}
+
+	file { '/home/buildd':
+		ensure  => directory,
+		mode    => '2755',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/build':
+		ensure  => directory,
+		mode    => '2750',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/logs':
+		ensure  => directory,
+		mode    => '2750',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/old-logs':
+		ensure  => directory,
+		mode    => '2750',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/upload-security':
+		ensure  => directory,
+		mode    => '2750',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/status':
+		ensure  => directory,
+		mode    => '2755',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/stats/graphs':
+		ensure  => directory,
+		mode    => '2755',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/upload':
+		ensure  => directory,
+		mode    => '2755',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/.forward':
+		content  => "|/usr/bin/buildd-mail\n",
+	}
+
 }
