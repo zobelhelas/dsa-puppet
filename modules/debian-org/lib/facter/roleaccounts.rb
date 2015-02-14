@@ -26,7 +26,6 @@ begin
     end
 
 
-
     Facter.add("weblogsync_key") do
         setcode do
             key = nil
@@ -50,6 +49,18 @@ begin
             result
         end
     end
+
+    Facter.add("buildd_key") do
+        setcode do
+            key = nil
+            keyfile = '/home/buildd/.ssh/id_rsa.pub'
+            if FileTest.exist?(keyfile)
+                key = File.open(keyfile).read.chomp
+            end
+            key
+        end
+    end
+
 
 rescue Exception => e
 end
