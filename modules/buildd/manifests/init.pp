@@ -166,11 +166,11 @@ class buildd ($ensure=present) {
 		owner   => buildd,
 	}
 
-        if ! $::buildd_key {
-                exec { 'create-buildd-key':
-                        command => '/bin/su - buildd -c \'mkdir -p -m 02700 .ssh && ssh-keygen -C "`whoami`@`hostname` (`date +%Y-%m-%d`)" -P "" -f .ssh/id_rsa -q\'',
-                        onlyif  => '/usr/bin/getent passwd buildd > /dev/null && ! [ -e /home/buildd/.ssh/id_rsa ]'
-                }
-        }
+	if ! $::buildd_key {
+		exec { 'create-buildd-key':
+			command => '/bin/su - buildd -c \'mkdir -p -m 02700 .ssh && ssh-keygen -C "`whoami`@`hostname` (`date +%Y-%m-%d`)" -P "" -f .ssh/id_rsa -q\'',
+			onlyif  => '/usr/bin/getent passwd buildd > /dev/null && ! [ -e /home/buildd/.ssh/id_rsa ]'
+		}
+	}
 
 }
