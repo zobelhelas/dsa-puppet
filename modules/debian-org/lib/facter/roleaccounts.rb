@@ -50,6 +50,7 @@ begin
         end
     end
 
+
     Facter.add("buildd_key") do
         setcode do
             key = nil
@@ -58,6 +59,19 @@ begin
                 key = File.open(keyfile).read.chomp
             end
             key
+        end
+    end
+
+    Facter.add("buildd_user_exists") do
+        setcode do
+            result = ''
+            begin
+                if Etc.getpwnam('buildd')
+                    result = true
+                end
+            rescue ArgumentError
+            end
+            result
         end
     end
 
