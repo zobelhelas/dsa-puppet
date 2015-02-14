@@ -173,4 +173,11 @@ class buildd ($ensure=present) {
 		}
 	}
 
+
+	if $::buildd_user_exists {
+		exec { 'add-buildd-user-to-sbuild':
+			command => 'adduser buildd sbuild',
+			onlyif  => "getent group sbuild > /dev/null && ! getent group sbuild | grep '\\<buildd\\>' > /dev/null"
+		}
+	}
 }
