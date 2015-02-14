@@ -162,6 +162,8 @@ class buildd ($ensure=present) {
 	}
 	file { '/home/buildd/.forward':
 		content  => "|/usr/bin/buildd-mail\n",
+		group   => buildd,
+		owner   => buildd,
 	}
 
 }
