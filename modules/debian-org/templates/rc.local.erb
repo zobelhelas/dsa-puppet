@@ -13,7 +13,7 @@ fi
 
 touch /var/run/reboot-lock
 <%- if hostname == "zani" then -%>
-  if [ -n "$(awk '$4 == "dasdb1" && $3 == "249999" {print}' /proc/partitions)" ]; then
+  if [ -n "$(awk '$4 == \"dasdb1\" && $3 == \"249999\" {print}' /proc/partitions)" ]; then
     mkswap /dev/dasdb1 && swapon /dev/dasdb1
   fi
 <%- end -%>
