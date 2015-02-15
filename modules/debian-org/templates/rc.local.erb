@@ -12,6 +12,7 @@
     mkswap /dev/dasdc1 && swapon -p 30 /dev/dasdc1
   fi
 <%- end -%>
+
 if [ -e /proc/sys/kernel/modules_disabled ]; then
 	( sleep 60;
 	  echo 1 > /proc/sys/kernel/modules_disabled || true
