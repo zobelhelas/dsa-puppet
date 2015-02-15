@@ -287,7 +287,7 @@ class debian-org {
 	}
 	file { '/etc/rc.local':
 		mode   => '0755',
-		source => 'puppet:///modules/debian-org/rc.local',
+		content => template('debian-org/rc.local.erb'),
 		notify => Exec['service rc.local start'],
 	}
 	file { '/etc/dsa':
