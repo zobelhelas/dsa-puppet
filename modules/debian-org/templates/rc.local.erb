@@ -6,7 +6,10 @@
 ##
 <%- if hostname == "zani" then -%>
   if [ -n "$(awk '$4 == "dasdb1" && $3 == "249999" {print}' /proc/partitions)" ]; then
-    mkswap /dev/dasdb1 && swapon /dev/dasdb1
+    mkswap /dev/dasdb1 && swapon -p 30 /dev/dasdb1
+  fi
+  if [ -n "$(awk '$4 == "dasdc1" && $3 == "249999" {print}' /proc/partitions)" ]; then
+    mkswap /dev/dasdc1 && swapon -p 30 /dev/dasdc1
   fi
 <%- end -%>
 if [ -e /proc/sys/kernel/modules_disabled ]; then
