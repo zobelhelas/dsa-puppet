@@ -53,6 +53,7 @@ if (!GetOptions (
 	'--version'	=> \$params->{'version'},
 	'--quiet'       => \$params->{'quiet'},
 	'--verbose'	=> \$params->{'verbose'},
+	'-v'		=> \$params->{'verbose'},
 	'--config=s'	=> \$params->{'config'},
 	)) {
 	dief ("$PROGRAM_NAME: Usage: $PROGRAM_NAME [--help|--version] [--verbose] [--quiet] [--config=<CONFIGFILE>]\n");
