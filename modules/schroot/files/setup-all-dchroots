@@ -69,6 +69,9 @@ case "$DPKGARCH" in
     amd64)
         archs="$archs i386"
         ;;
+    arm64)
+        archs="$archs armhf armel"
+        ;;
     armhf)
         if [ "$(uname -m)" = "aarch64" ] ; then
             archs="$archs arm64"
