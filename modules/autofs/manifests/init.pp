@@ -1,6 +1,6 @@
 class autofs {
 	case $::hostname {
-		pejacevic, piu-slave-bm-a, picconi, coccia, couper, dillon, donizetti, ticharich, delfin, quantz, sor: {
+		pejacevic, piu-slave-bm-a, picconi, coccia, couper, dillon, donizetti, ticharich, delfin, quantz, sor, lindsay: {
 			include autofs::bytemark
 		}
 		lw07,lw08: {
