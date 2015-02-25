@@ -34,6 +34,7 @@ class buildd ($ensure=present) {
 	$suite = $::lsbdistcodename ? {
 		squeeze => $::lsbdistcodename,
 		wheezy  => $::lsbdistcodename,
+		jessie  => $::lsbdistcodename,
 		undef   => 'squeeze',
 		default => 'wheezy'
 	}
