@@ -4,4 +4,7 @@ class roles::search_frontend {
 		connecthost => 'wolkenstein.debian.org',
 		connectport => 17010,
 	}
+	ssl::service { 'search.debian.org':
+		notify => Service['apache2'],
+	}
 }
