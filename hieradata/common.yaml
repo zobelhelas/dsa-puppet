@@ -109,7 +109,6 @@ roles:
     - lindsay.debian.org
     - philp.debian.org
     - ravel.debian.org
-    - senfl.debian.org
     - wolkenstein.debian.org
   syncproxy:
     - milanollo.debian.org

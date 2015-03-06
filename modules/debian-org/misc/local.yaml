@@ -179,7 +179,6 @@ host_settings:
   apache2_www_mirror:
     - gluck.debian.org
     - santoro.debian.org
-    - senfl.debian.org
   not-bacula-client:
     # decommissioning
     - rautavaara.debian.org
