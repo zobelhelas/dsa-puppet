@@ -214,7 +214,7 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 # pushed nagiosadm reload icinga on tchaikovsky
 nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 
-%Debian,%guest	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
+%Debian,%guest,%d-i	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
 
 # voip stuff
 %debvoip	VOIPHOSTS=(root)	/usr/sbin/service resiprocate-turn-server restart, /usr/sbin/service repro restart
