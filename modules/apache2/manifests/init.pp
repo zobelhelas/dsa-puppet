@@ -83,6 +83,10 @@ class apache2 {
 		source => 'puppet:///modules/apache2/puppet-config',
 	}
 
+	apache2::config { 'pratchett':
+		source => 'puppet:///modules/apache2/pratchett',
+	}
+
 	file { '/etc/apache2/sites-available/common-ssl.inc':
 		ensure => absent,
 	}

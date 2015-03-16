@@ -1,0 +1,3 @@
+<IfModule mod_headers.c>
+  Header set X-Clacks-Overhead "GNU Terry Pratchett"
+</IfModule>
