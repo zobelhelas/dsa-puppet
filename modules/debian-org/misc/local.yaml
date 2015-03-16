@@ -259,6 +259,7 @@ host_settings:
     - sompek.debian.org
     - spontini.debian.org
     - stadler.debian.org
+    - x86-grnet-01.debian.org
     - zandonai.debian.org
     - zani.debian.org
     - zemlinsky.debian.org
