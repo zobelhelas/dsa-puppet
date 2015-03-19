@@ -78,7 +78,7 @@ CRITERIA = [
     { 'size':    20,  'notifyafter': 90, 'deleteafter': 150 },
     { 'size':     5,                     'deleteafter': 700 }
   ]
-EXCLUDED_USERNAMES = ['lost+found', 'debian', 'buildd']
+EXCLUDED_USERNAMES = ['lost+found', 'debian', 'buildd', 'd-i']
 MAIL_FROM = 'debian-admin (via Cron) <bulk@admin.debian.org>'
 MAIL_TO = '{username}@{hostname}.debian.org'
 MAIL_CC = 'debian-admin (bulk sink) <bulk@admin.debian.org>'
