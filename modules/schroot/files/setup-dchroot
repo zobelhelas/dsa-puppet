@@ -312,7 +312,7 @@ esac
 
 
 chroot "$rootdir" apt-get update
-chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends policyrcd-script-zg2
+chroot "$rootdir" apt-get install -y --no-install-recommends policyrcd-script-zg2
 cat > "$rootdir/usr/local/sbin/policy-rc.d" << 'EOF'
 #!/bin/sh
 
@@ -331,9 +331,9 @@ while true; do
 done
 EOF
 chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
-[ -z "$bare" ] && [ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends locales-all
-chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends build-essential
-[ -z "$bare" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh less vim fakeroot devscripts gdb
+[ -z "$bare" ] && [ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --no-install-recommends locales-all
+chroot "$rootdir" apt-get install -y --no-install-recommends build-essential
+[ -z "$bare" ] && chroot "$rootdir" apt-get install -y --no-install-recommends zsh less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
 chroot "$rootdir" apt-get clean
 umount "$rootdir/dev" 2>/dev/null || true
