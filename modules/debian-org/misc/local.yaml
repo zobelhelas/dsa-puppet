@@ -222,6 +222,7 @@ host_settings:
     - arcadelt.debian.org
     - arm-arm-01.debian.org
     - arm-arm-02.debian.org
+    - arm-arm-03.debian.org
     - arm-linaro-01.debian.org
     - arm-linaro-03.debian.org
     - arnold.debian.org
@@ -274,6 +275,7 @@ host_settings:
     - antheil.debian.org
     - arm-arm-01.debian.org
     - arm-arm-02.debian.org
+    - arm-arm-03.debian.org
     - arnold.debian.org
     - ball.debian.org
     - corelli.debian.org
