@@ -105,7 +105,6 @@ roles:
     - master.debian.org
     - dillon.debian.org
     - franck.debian.org
-    - lilburn.debian.org
     - lindsay.debian.org
     - philp.debian.org
     - ravel.debian.org
