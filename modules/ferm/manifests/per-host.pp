@@ -263,12 +263,18 @@ class ferm::per-host {
 		default: {}
 	}
 
-	# solr stuff
+	# elasticsearch stuff
 	case $::hostname {
 		stockhausen: {
-			@ferm::rule { 'dsa-solr-jetty':
-				description     => 'Allow jetty access',
-				rule            => '&SERVICE_RANGE(tcp, 8080, ( 82.195.75.100/32 ))'
+			@ferm::rule { 'dsa-elasticsearch-bendel':
+				domain          => '(ip)',
+				description     => 'Allow elasticsearch access from bendel',
+				rule            => '&SERVICE_RANGE(tcp, 9200:9300, ( 82.195.75.100/32 ))'
+			}
+			@ferm::rule { 'dsa-elasticsearch-bendel6':
+				domain          => '(ip6)',
+				description     => 'Allow elasticsearch access from bendel',
+				rule            => '&SERVICE_RANGE(tcp, 9200:9300, ( 2001:41b8:202:deb:216:36ff:fe40:4002/128 ))'
 			}
 		}
 	}
