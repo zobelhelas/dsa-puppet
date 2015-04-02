@@ -46,6 +46,8 @@ roles:
     - oyens.debian.org
   lists:
     - bendel.debian.org
+  list_search:
+    - stockhausen.debian.org
   mailrelay:
     - mailly.debian.org
     - muffat.debian.org
