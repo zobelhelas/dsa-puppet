@@ -1,9 +1,9 @@
 class roles::listsearch {
 
-#  class { 'elasticsearch':
-#    autoupgrade => false,
-#    config => { 'cluster.name' => 'listsearch' }
-#  }
+  class { 'elasticsearch':
+    autoupgrade => false,
+    config => { 'cluster.name' => 'listsearch' }
+  }
 
   elasticsearch::instance { 'es-01':
     config => { 'node.name' => 'stockhausen' },
