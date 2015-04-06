@@ -76,9 +76,9 @@ killdaemons()
 {
   for file in $FILES; do
     PROCLIST=`get_pids $file`
-    if [ "$PROCLIST" ] && kill -0 $PROCLIST 2>/dev/null; then
-       kill $PROCLIST
-       echo -n "[stopped: $file] "
+    for p in $PROCLIST; do
+      start-stop-daemon --stop --retry 30 --pid "$p"
+      echo -n "[stopped: $file] "
     fi
   done
 }
