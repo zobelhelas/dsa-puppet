@@ -79,7 +79,7 @@ killdaemons()
     for p in $PROCLIST; do
       start-stop-daemon --stop --retry 30 --pid "$p"
       echo -n "[stopped: $file] "
-    fi
+    done
   done
 }
 
