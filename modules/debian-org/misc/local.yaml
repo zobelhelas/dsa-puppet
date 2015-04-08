@@ -298,7 +298,7 @@ host_settings:
   entropy_key:
     - czerny.debian.org
     # - rautavaara.debian.org
-    - grnet-node01.debian.org
+    #- grnet-node01.debian.org
     #- rossini.debian.org
     - storace.debian.org
   buildd_master:
