@@ -77,7 +77,16 @@ killdaemons()
   for file in $FILES; do
     PROCLIST=`get_pids $file`
     for p in $PROCLIST; do
-      start-stop-daemon --stop --retry 30 --pid "$p"
+      #start-stop-daemon --stop --retry 30 --pid "$p"
+      # start-stop-daemon in wheezy does not have a --pid yet, it interprets it as --pidfile
+      kill "$p"
+      c=150
+      while [ "$c" -gt 0 ] && kill -0 "$p" 2> /dev/null ; do
+        sleep 0.20
+        c=$((c - 1))
+        [ "$((c % 5))" = 0 ] && echo -n .
+      done
+      if kill -0 "$p" 2> /dev/null; then kill -9 "$p"; fi
       echo -n "[stopped: $file] "
     done
   done
@@ -113,7 +122,7 @@ case "$1" in
   force-reload|restart)
         echo -n "Restarting $DESC: "
         killdaemons
-        sleep 5
+        #sleep 5
         startdaemons
         echo "$NAME."
         ;;
