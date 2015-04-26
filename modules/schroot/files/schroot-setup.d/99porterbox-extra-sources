@@ -33,7 +33,7 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
       echo "deb     $mirror sid main" >> "$SRCL"
       echo "deb-src $mirror sid main" >> "$SRCL"
       ;;
-    sid|jessie)
+    sid|stretch)
       ;;
     *)
       echo "deb     http://security.debian.org/ ${SUITE_BASE}/updates main" >> "$SRCL"
