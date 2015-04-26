@@ -44,7 +44,7 @@ fi
 get_suites() {
     case "$1" in
       armhf|s390x)
-        echo "sid stretch jessie wheezy"
+        echo "sid jessie wheezy"
         ;;
       ia64|s390)
         echo "wheezy"
@@ -53,13 +53,13 @@ get_suites() {
         echo "sid wheezy"
         ;;
       arm64|ppc64el)
-        echo "sid stretch jessie"
+        echo "sid jessie"
         ;;
       amd64|i386)
-        echo "sid stretch jessie wheezy squeeze"
+        echo "sid jessie wheezy squeeze"
         ;;
       *)
-        echo "sid stretch jessie wheezy"
+        echo "sid jessie wheezy"
         ;;
     esac
 }
