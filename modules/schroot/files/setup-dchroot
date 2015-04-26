@@ -254,7 +254,17 @@ fi
 suite="$1"; shift
 tuple="${suite}_${arch}"
 
-builddir=${builddir:-$basedir}
+if [ -z "${builddir:-}" ]; then
+  builddir=${builddir:-$basedir}
+  for u in schroot-unpack unpack; do
+    # if one of these directories exists and is on a different filesystem, prefer it.
+    candidate="$builddir/$u"
+    if [ -e "$candidate" ] &&
+       [ "$(stat -f --printf '%i\n' "$builddir" )" != "$(stat -f --printf '%i\n' "$candidate")" ]; then
+      builddir="$candidate"
+    fi
+  done
+fi
 [ -d "$basedir" ] || die "Error: $basedir does not exist (or is not a directory)."
 [ -d "$builddir" ] || die "Error: $builddir does not exist (or is not a directory)."
 
