@@ -10,6 +10,10 @@
   # Make sure that the srm.conf directive is commented out.
   AddDefaultCharSet Off
   AllowOverride AuthConfig FileInfo
+  <% if @lsbmajdistrelease > '7' -%>
+    Require all granted
+  <% end -%>
+
 
   # Serve icons as image/x-icon
   AddType image/x-icon .ico
