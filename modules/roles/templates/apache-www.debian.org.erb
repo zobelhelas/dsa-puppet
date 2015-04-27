@@ -137,8 +137,8 @@
    DocumentRoot <%= wwwdo_document_root %>/
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
-   RewriteLog /var/log/apache2/www-other.debian.org-redirect.log
-   RewriteLogLevel 1
+   #RewriteLog /var/log/apache2/www-other.debian.org-redirect.log
+   #RewriteLogLevel 1
 
    RewriteEngine on
    RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
