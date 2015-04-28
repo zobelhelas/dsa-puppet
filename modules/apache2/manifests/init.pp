@@ -87,6 +87,12 @@ class apache2 {
 		source => 'puppet:///modules/apache2/pratchett',
 	}
 
+	if $::lsbmajdistrelease > 7 {
+		file { '/etc/apache2/mods-available/mpm_worker.conf':
+			source => 'puppet:///modules/apache2/mpm_worker',
+		}
+	}
+
 	file { '/etc/apache2/sites-available/common-ssl.inc':
 		ensure => absent,
 	}
