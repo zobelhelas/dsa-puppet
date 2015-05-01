@@ -12,6 +12,11 @@
 
 	DocumentRoot /srv/static.debian.org/mirrors/planet.debian.org/cur
 	AddDefaultCharset utf-8
+	<% if @lsbmajdistrelease > '7' -%>
+		<Directory /srv/static.debian.org/mirrors/planet.debian.org/cur>
+			Require all granted
+		</Directory>
+	<% end -%>
 
 	RewriteEngine On
 	RewriteCond %{HTTP_HOST} ^planeta.debian.net$ [NC]

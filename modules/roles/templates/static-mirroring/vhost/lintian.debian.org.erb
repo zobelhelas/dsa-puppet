@@ -20,6 +20,10 @@ Use common-dsa-vhost-https-redirect lintian.debian.org
 	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur>
 		# These two lines makes apache serve "lintian.log.gz" as a text/plain with encoding gzip
 		# making it easier to view the log in the browser.
+		<% if @lsbmajdistrelease > '7' -%>
+			Require all granted
+		<% end -%>
+
 		RemoveType .gz
 		AddEncoding x-gzip .gz
 		AddType text/plain .log
