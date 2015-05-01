@@ -34,12 +34,6 @@ Use common-dsa-vhost-https-redirect lintian.debian.org
 		</IfModule>
 	</Directory>
 
-	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur/graphs>
-		# Cache graphs for an hour (Technically, a "expires" of "24h after last mod"
-		# might be better, but oh well)
-		Header set Cache-Control "max-age=3600, must-revalidate, public"
-	</Directory>
-
 	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur/resources>
 		# Cache these for a year (3600 * 24 * 365.25)
 		# Files in here will change name if their content change
