@@ -105,7 +105,8 @@ do_rsync_on_source() {
 
 	if [ -e "$COMPONENTLIST" ]; then
 		for path in $(awk -v host="$(hostname -f)" '!/^ *(#|$)/ && $3 == host {print $4}' $COMPONENTLIST); do
-			allowed_rsyncs+=("--server --sender -lHtrze.iLsf --safe-links . $path/.")
+			allowed_rsyncs+=("--server --sender -lHtrze.iLsf --safe-links . $path/.") # wheezy
+			allowed_rsyncs+=("--server --sender -lHtrze.iLsfx --safe-links . $path/.") # jessie
 		done
 	fi
 	for cmd_idx in ${!allowed_rsyncs[*]}; do
