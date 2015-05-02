@@ -1,5 +1,5 @@
 class ntp::timeserver {
-	if ($::lsbmajdistrelease >= 9) {
+	if ($::lsbmajdistrelease >= 8) {
 		file { '/var/lib/ntp/leap-seconds.list':
 			ensure => absent,
 		}
