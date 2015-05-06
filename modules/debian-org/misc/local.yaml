@@ -191,7 +191,6 @@ host_settings:
     - bizet.debian.org
     - busoni.debian.org
     - gluck.debian.org
-    - lobos.debian.org
     - pkgmirror-1and1.debian.org
     - schein.debian.org
     - saens.debian.org
