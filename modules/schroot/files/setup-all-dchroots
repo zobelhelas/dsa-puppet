@@ -43,9 +43,6 @@ fi
 
 get_suites() {
     case "$1" in
-      armhf|s390x)
-        echo "sid stretch jessie wheezy"
-        ;;
       ia64|s390)
         echo "wheezy"
         ;;
