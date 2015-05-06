@@ -2,7 +2,7 @@
   <IfModule mod_macro.c>
     <Macro common-ssl-HSTS>
       <IfModule mod_headers.c>
-        # Add two month HSTS header
+        # Add six months HSTS header
         Header always add Strict-Transport-Security "max-age=15552000"
       </IfModule>
     </Macro>
