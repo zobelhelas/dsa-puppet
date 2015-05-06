@@ -274,6 +274,17 @@ target="$basedir/$tuple.tar.gz"
 schrootconfig="/etc/schroot/chroot.d/${tuple}-$suffix"
 ! [ -e "$schrootconfig" ] || [ -n "$force" ] || die "Error: $schrootconfig already exists."
 
+suite_alias="$suite"
+case "$arch" in
+    kfreebsd-*)
+        case "$suite" in
+            jessie)
+                suite_alias="$suite-kfreebsd"
+                ;;
+        esac
+        ;;
+esac
+
 
 #
 # let's go
@@ -302,7 +313,7 @@ debootstrap \
     --include="apt" \
     --variant=buildd \
     --arch="$arch" \
-    "$suite" "$rootdir" "$mirror" "$script"
+    "$suite_alias" "$rootdir" "$mirror" "$script"
 echo "$tuple" > "$rootdir/etc/debian_chroot"
 echo "force-unsafe-io" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-unsafe-io"
 echo "force-confnew" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-confnew"
