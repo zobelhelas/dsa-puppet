@@ -20,14 +20,18 @@ if [ "$CHROOT_SESSION_PURGE" = "true" ]; then
     case $CHROOT_DESCRIPTION in
         "["*-*_*-dchroot"]"*)
             chroot_type="$CHROOT_DESCRIPTION"; chroot_type="${chroot_type#\[}"; chroot_type="${chroot_type%%]*}"
-            suitevariant_arch_tuple="${chroot_type%%-dchroot-*}"
+            suitevariant_arch_tuple="${chroot_type%%-dchroot}"
             suitevariant=${suitevariant_arch_tuple%_*}
+            SUITE_ARCH=${suitevariant_arch_tuple##*_}
             SUITE_BASE=${suitevariant%-*}
             SUITE_VARIANT=${suitevariant##*-}
         ;;
         "["*_*-dchroot"]"*)
             chroot_type="$CHROOT_DESCRIPTION"; chroot_type="${chroot_type#\[}"; chroot_type="${chroot_type%%]*}"
-            SUITE_BASE="${chroot_type%%_*}"
+            suite_arch_tuple="${chroot_type%%-dchroot}"
+            SUITE_ARCH=${suite_arch_tuple##*_}
+            SUITE_BASE="${suite_arch_tuple%%_*}"
+            SUITE_VARIANT=""
         ;;
         *)
             if [ "$STAGE" = "setup-start" ]; then
