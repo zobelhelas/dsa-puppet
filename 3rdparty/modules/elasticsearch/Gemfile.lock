@@ -186,7 +186,7 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    google-api-client (0.8.5)
+    google-api-client (0.8.6)
       activesupport (>= 3.2)
       addressable (~> 2.3)
       autoparse (~> 0.3)
@@ -268,7 +268,7 @@ GEM
       puppet-lint (~> 1.0)
     puppet-syntax (2.0.0)
       rake
-    puppetlabs_spec_helper (0.10.1)
+    puppetlabs_spec_helper (0.10.2)
       mocha
       puppet-lint
       puppet-syntax
@@ -318,7 +318,7 @@ GEM
     slop (3.6.0)
     spdx-licenses (1.0.0)
       json
-    specinfra (2.28.1)
+    specinfra (2.28.2)
       net-scp
       net-ssh
     thread_safe (0.3.5)

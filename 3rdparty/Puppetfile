@@ -6,4 +6,4 @@ forge "http://forge.puppetlabs.com"
 #mod 'puppetlabs/xinetd', '1.5.0'
 #mod 'puppetlabs/stunnel', '0.1.0'
 
-mod 'elasticsearch/elasticsearch', '0.9.4'
+mod 'elasticsearch/elasticsearch', '0.9.5'
