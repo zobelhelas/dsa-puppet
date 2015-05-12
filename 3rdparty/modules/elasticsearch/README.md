@@ -111,7 +111,7 @@ See [Advanced features](#advanced-features) for more information
 
 ###Plug-ins
 
-Install [a variety of plugins](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-plugins.html#known-plugins):
+Install [a variety of plugins](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-plugins.html#known-plugins). Note that `module_dir` is where the plugin will install itself to and must match that published by the plugin author; it is not where you would like to install it yourself.
 
 ####From official repository
 ```puppet
@@ -145,6 +145,19 @@ elasticsearch::plugin { 'lmenezes/elasticsearch-kopf',
 * `elasticsearch/plugin/version` for official elasticsearch plugins (download from download.elasticsearch.org)
 * `groupId/artifactId/version`   for community plugins (download from maven central or oss sonatype)
 * `username/repository`          for site plugins (download from github master)
+
+
+###Scripts
+
+Install [scripts](http://www.elastic.co/guide/en/elasticsearch/reference/1.x/modules-scripting.html) to be used by Elasticsearch.
+These scripts are shared accross all defined instances on the same host.
+
+```puppet
+elasticsearch::script { 'myscript':
+  ensure => 'present',
+  source => 'puppet:///path/to/my/script.groovy'
+}
+```
 
 ###Templates
 

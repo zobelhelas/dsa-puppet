@@ -40,7 +40,7 @@ class elasticsearch::repo {
         location    => "http://packages.elasticsearch.org/elasticsearch/${elasticsearch::repo_version}/debian",
         release     => 'stable',
         repos       => 'main',
-        key         => 'D88E42B4',
+        key         => '46095ACC8548582C1A2699A9D27D666CD88E42B4',
         key_source  => 'http://packages.elasticsearch.org/GPG-KEY-elasticsearch',
         include_src => false,
       }
@@ -58,7 +58,7 @@ class elasticsearch::repo {
       exec { 'elasticsearch_suse_import_gpg':
         command => 'rpmkeys --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch',
         unless  => 'test $(rpm -qa gpg-pubkey | grep -i "D88E42B4" | wc -l) -eq 1 ',
-        notify  => [ Zypprepo['elasticsearch'] ]
+        notify  => [ Zypprepo['elasticsearch'] ],
       }
 
       zypprepo { 'elasticsearch':
@@ -68,7 +68,7 @@ class elasticsearch::repo {
         name        => 'elasticsearch',
         gpgcheck    => 1,
         gpgkey      => 'http://packages.elasticsearch.org/GPG-KEY-elasticsearch',
-        type        => 'yum'
+        type        => 'yum',
       }
     }
     default: {
