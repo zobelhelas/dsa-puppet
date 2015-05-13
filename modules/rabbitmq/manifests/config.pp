@@ -3,7 +3,6 @@
 # Sets up the rabbitmq config file
 #
 class rabbitmq::config {
-	include concat::setup
 
 	concat { '/etc/rabbitmq/rabbitmq.config':
 		require => Package['rabbitmq-server'],
