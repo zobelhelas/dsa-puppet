@@ -120,6 +120,7 @@ linaro:
     - 64.28.108.83/32
     - 64.28.108.84/32
     - 64.28.108.85/32
+  mirror-debian: http://ftp.us.debian.org/debian/
 'man-da':
   netrange:
     - 82.195.75.64/26

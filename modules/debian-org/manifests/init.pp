@@ -14,7 +14,16 @@ class debian-org {
 		$mirror_backports = $mirror
 	}
 
+	if $::lsbmajdistrelease <= 7 {
+		$mungedcodename = $::lsbdistcodename
+	} elsif ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
+		$mungedcodename = "${::lsbdistcodename}-kfreebsd"
+	} else {
+		$mungedcodename = $::lsbdistcodename
+	}
+
 	if $systemd {
+		include systemd
 		$servicefiles = 'present'
 	} else {
 		$servicefiles = 'absent'
@@ -129,7 +138,7 @@ class debian-org {
 
 	site::aptrepo { 'security':
 		url        => 'http://security.debian.org/',
-		suite      => "${::lsbdistcodename}/updates",
+		suite      => "${mungedcodename}/updates",
 		components => ['main','contrib','non-free']
 	}
 	if $::lsbmajdistrelease < 7 {
@@ -198,7 +207,7 @@ class debian-org {
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
 		site::aptrepo { 'debian':
 			url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
-			suite      => $::lsbdistcodename,
+			suite      => $mungedcodename,
 			components => ['main','contrib','non-free']
 		}
 	}
@@ -286,7 +295,7 @@ class debian-org {
 	}
 	file { '/etc/rc.local':
 		mode   => '0755',
-		source => 'puppet:///modules/debian-org/rc.local',
+		content => template('debian-org/rc.local.erb'),
 		notify => Exec['service rc.local start'],
 	}
 	file { '/etc/dsa':

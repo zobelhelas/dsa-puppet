@@ -12,22 +12,22 @@ class ssl {
 	}
 
 	file { '/etc/ca-certificates.conf':
-		content => "# This file is under puppet control\n# Only debian.org service certs are trusted, see /etc/ssl/certs/README",
+		source => 'puppet:///modules/ssl/ca-certificates.conf',
 		notify  => Exec['refresh_normal_hashes'],
 	}
 	file { '/etc/ca-certificates-debian.conf':
 		mode    => '0444',
-		content => "# This file is under puppet control\n# Only the CAs for debian.org are trusted, see /etc/ssl/ca-debian/README\nmozilla/AddTrust_External_Root.crt",
+		source => 'puppet:///modules/ssl/ca-certificates-debian.conf',
 		notify  => Exec['refresh_ca_debian_hashes'],
 	}
 	file { '/etc/ca-certificates-global.conf':
-		content => "# This file is under puppet control\n# All CAs are trusted, see /etc/ssl/ca-global/README",
+		source => 'puppet:///modules/ssl/ca-certificates-global.conf',
 		notify  => Exec['refresh_ca_global_hashes'],
 	}
 
-	file { '/etc/apt/apt.conf.d/99dsa-ssl-ca-global':
+	file { '/etc/apt/apt.conf.d/local-ssl-ca-global':
 		mode   => '0444',
-		source => 'puppet:///modules/ssl/apt.conf.d-99dsa-ssl-ca-global',
+		source => 'puppet:///modules/ssl/local-ssl-ca-global',
 	}
 
 	file { '/etc/ssl/certs/ssl-cert-snakeoil.pem':
@@ -71,7 +71,7 @@ class ssl {
 		ensure => directory,
 		mode   => '0755',
 	}
-	file { '/etc/ssl/ca-debian/README':
+	file { '/etc/ssl/ca-global/README':
 		mode   => '0444',
 		source => 'puppet:///modules/ssl/README.ca-global',
 	}

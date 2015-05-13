@@ -43,9 +43,6 @@ fi
 
 get_suites() {
     case "$1" in
-      armhf|s390x)
-        echo "sid jessie wheezy"
-        ;;
       ia64|s390)
         echo "wheezy"
         ;;
@@ -53,13 +50,16 @@ get_suites() {
         echo "sid wheezy"
         ;;
       arm64|ppc64el)
-        echo "sid jessie"
+        echo "sid stretch jessie"
         ;;
       amd64|i386)
-        echo "sid jessie wheezy squeeze"
+        echo "sid stretch jessie wheezy squeeze"
+        ;;
+      kfreebsd-*)
+        echo "sid         jessie wheezy"
         ;;
       *)
-        echo "sid jessie wheezy"
+        echo "sid stretch jessie wheezy"
         ;;
     esac
 }
@@ -68,6 +68,9 @@ archs="$DPKGARCH"
 case "$DPKGARCH" in
     amd64)
         archs="$archs i386"
+        ;;
+    arm64)
+        archs="$archs armhf armel"
         ;;
     armhf)
         if [ "$(uname -m)" = "aarch64" ] ; then

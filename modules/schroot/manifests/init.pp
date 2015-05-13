@@ -33,6 +33,13 @@ class schroot {
 		source  => 'puppet:///modules/schroot/schroot-setup.d/99porterbox-extra-sources',
 		require => Package['schroot'],
 	}
+	if ($::lsbmajdistrelease >= 8) {
+		file { '/etc/schroot/setup.d/99builddsourceslist':
+			mode    => '0555',
+			source  => 'puppet:///modules/schroot/schroot-setup.d/99builddsourceslist',
+			require => Package['schroot'],
+		}
+	}
 
 	file { '/usr/local/sbin/setup-dchroot':
 		mode    => '0555',

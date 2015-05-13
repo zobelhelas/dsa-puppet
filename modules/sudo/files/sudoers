@@ -32,7 +32,7 @@ Host_Alias	MEGARAIDHOSTS	= rautavaara, sibelius
 Host_Alias	MEGACTLHOSTS	= nielsen
 Host_Alias	LISTHOSTS	= bendel
 Host_Alias	BUILDD_MASTER	= wuiet
-Host_Alias	PORTERBOXES	= abel, asachi, barriere, eder, falla, fischer, gabrielli, harris, merulo, partch, smetana, zelenka
+Host_Alias	PORTERBOXES	= abel, asachi, barriere, eder, falla, fischer, gabrielli, harris, merulo, minkus, partch, plummer, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
 Host_Alias	MQ_HOSTS	= rainier, rapoport
 Host_Alias	NOVAHOSTS	= oyens, bm-bl9, bm-bl10, bm-bl11, bm-bl12
@@ -56,6 +56,9 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service ekeyd-egd-linux restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/service samhain restart
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-dabackup ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-filesystems ""
+nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-libs ""
+nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-stunnel-sanity ""
+nagios		ALL=(ALL)	NOPASSWD: /usr/local/sbin/dsa-check-libs ""
 # with smartarray controllers
 nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
@@ -169,7 +172,6 @@ debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-componen
 %ports		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component www.ports.debian.org
 %debvoip	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component rtc.debian.org
 %security	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component security-team.debian.org
-%lintian	lilburn=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component lintian.debian.org
 %lintian	lindsay=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component lintian.debian.org
 
 # The piuparts slave needs to handle chroots
@@ -213,7 +215,7 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 # pushed nagiosadm reload icinga on tchaikovsky
 nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 
-%Debian,%guest	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
+%Debian,%guest,%d-i	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
 
 # voip stuff
 %debvoip	VOIPHOSTS=(root)	/usr/sbin/service resiprocate-turn-server restart, /usr/sbin/service repro restart

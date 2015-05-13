@@ -10,6 +10,11 @@
 	CustomLog /var/log/apache2/access.log privacy
 
 	DocumentRoot /srv/www/default.debian.org/htdocs
+	<% if @lsbmajdistrelease > '7' -%>
+	<Directory /srv/www/default.debian.org/htdocs>
+		Require all granted
+	</Directory>
+	<% end -%>
 
 	HostnameLookups Off
 	UseCanonicalName Off

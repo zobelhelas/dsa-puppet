@@ -7,7 +7,6 @@
 #   include roles::pubsub::config::setup
 #
 class roles::pubsub::config::setup {
-	include concat::setup
 
 	concat { '/etc/dsa/pubsub.conf':
 		owner   => root,

@@ -10,6 +10,10 @@
   # Make sure that the srm.conf directive is commented out.
   AddDefaultCharSet Off
   AllowOverride AuthConfig FileInfo
+  <% if @lsbmajdistrelease > '7' -%>
+    Require all granted
+  <% end -%>
+
 
   # Serve icons as image/x-icon
   AddType image/x-icon .ico
@@ -137,8 +141,8 @@
    DocumentRoot <%= wwwdo_document_root %>/
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
-   RewriteLog /var/log/apache2/www-other.debian.org-redirect.log
-   RewriteLogLevel 1
+   #RewriteLog /var/log/apache2/www-other.debian.org-redirect.log
+   #RewriteLogLevel 1
 
    RewriteEngine on
    RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
@@ -209,6 +213,7 @@
    RedirectPermanent /intl /international
    RedirectPermanent /ports/armel  /ports/arm
    RedirectPermanent /ports/armhf  /ports/arm
+   RedirectPermanent /ports/arm64  /ports/arm
    RedirectPermanent /ports/mipsel /ports/mips
    RedirectPermanent /ports/kfreebsd-amd64 /ports/kfreebsd-gnu
    RedirectPermanent /ports/kfreebsd-i386  /ports/kfreebsd-gnu
@@ -227,6 +232,8 @@
    RedirectPermanent /releases/6.0 /releases/squeeze
    RedirectPermanent /releases/7 /releases/wheezy
    RedirectPermanent /releases/8 /releases/jessie
+   RedirectPermanent /releases/9 /releases/stretch
+   RedirectPermanent /releases/10 /releases/buster
    RedirectPermanent /releases/unstable /releases/sid
 
    RewriteRule ^/ports/freebsd(.*) /ports/kfreebsd-gnu/ [R=301]

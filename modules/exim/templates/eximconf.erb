@@ -803,9 +803,6 @@ check_recipient:
     message        = ${sg{$acl_m_pgr}{^\\w+\\s*}{}}
 
 <%- end -%>
-  accept  local_parts   = +postmasterish
-          domains       = +virtual_domains : +bsmtp_domains
-
   deny    hosts        = ${if exists{/etc/exim4/host_blacklist}{/etc/exim4/host_blacklist}{}}
           message      = I'm terribly sorry, but it seems you have been blacklisted
           log_message  = blacklisted IP
@@ -813,6 +810,9 @@ check_recipient:
   deny   log_message   = <$sender_address> is blacklisted
          senders       = ${if exists{/etc/exim4/blacklist}{/etc/exim4/blacklist}{}}
          message       = We have blacklisted <$sender_address>.  Please stop mailing us
+
+  accept  local_parts   = +postmasterish
+          domains       = +virtual_domains : +bsmtp_domains
 
 <%- if scope.lookupvar('site::nodeinfo')['smarthost'].empty? -%>
   deny    message  = host $sender_host_address is listed in $dnslist_domain; see $dnslist_text
@@ -1332,7 +1332,7 @@ rt_force_new_verbose:
   local_parts = ${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}{$local_part}{}}
   local_part_suffix = +new
   pipe_transport = rt_pipe
-  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
+  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --ca-file /etc/ssl/ca-debian/ca-certificates.crt --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_remove = Subject
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\\\[?debian rt\\\\]?[:\\s]*(.*)}}} {$1$2}{$h_subject:}}"
 
@@ -1349,7 +1349,7 @@ rt_force_new_quiesce:
   local_parts = ${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}{$local_part}{}}
   local_part_suffix = +new-quiesce
   pipe_transport = rt_pipe
-  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
+  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-comment}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --ca-file /etc/ssl/ca-debian/ca-certificates.crt --action ${if match{$local_part}{.*-comment.*}{comment}{correspond}}"
   headers_remove = Subject
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nX-RT-Mode: quiesce\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\\\[?debian rt\\\\]?[:\\s]*(.*)}}} {$1$2}{$h_subject:}}"
 
@@ -1362,7 +1362,7 @@ rt_otherwise:
   local_part_suffix = +*
   local_part_suffix_optional
   pipe_transport = rt_pipe
-  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-(comment|done)}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --extension ticket --action ${if match{$local_part}{.*-comment.*}{comment}{${if match{$local_part}{.*-done.*}{correspond-resolve}{correspond}}}}"
+  data = "|/usr/bin/rt-mailgate --queue '${lookup{${sg{$local_part}{-(comment|done)}{}}}lsearch{RT_QUEUE_MAP}}' --url https://rt.debian.org/ --ca-file /etc/ssl/ca-debian/ca-certificates.crt --extension ticket --action ${if match{$local_part}{.*-comment.*}{comment}{${if match{$local_part}{.*-done.*}{correspond-resolve}{correspond}}}}"
   headers_remove = Subject
   headers_add = "Delivered-To: ${local_part}${local_part_suffix}@${domain}\nSubject: ${if and {{first_delivery}{match {$h_subject:}{(?i)(.*?)\\\\[?debian rt\\\\]?[:\\s]*(.*)}}} {$1$2}{$h_subject:}}"
 <%- end -%>

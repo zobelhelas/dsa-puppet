@@ -59,12 +59,12 @@ nameinfo:
   henze.debian.org: Hans Werner Henze (July 1st, 1926 - October 27th, 2012)
   hoiby.debian.org: Lee Henry Hoiby (February 17th, 1926 - March 28th, 2011)
   jenkins.debian.org: John Jenkins (1592 - 1678)
+  jerea.debian.org: Hilda Jerea (March 17th, 1916 - May 14th, 1980)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
   lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
   lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
-  lilburn.debian.org: Douglas Gordon Lilburn (November 2nd, 1915 - June 6th, 2001)
   lindsay.debian.org: Maria Lindsay Bliss (May 15th, 1827 - April 3rd, 1898)
   locke.debian.org: Matthew Locke (ca. 1621 - 1677)
   lotti.debian.org: Antonio Lotti (ca. 1667 - January 5th, 1740)
@@ -91,6 +91,7 @@ nameinfo:
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
   picconi.debian.org: Maria Antonietta Picconi (September 23rd, 1869 - 1926)
   philp.debian.org: Elizabeth Philp (1827 - November 26th, 1885)
+  plummer.debian.org: John Plummer (c. 1410 - c. 1483)
   popov.debian.org: Gavriil Nikolayevich Popov (Гаврии́л Никола́евич Попо́в) (September 12th, 1904 - February 17th, 1972)
   porpora.debian.org: Niccolò (Antonio) Porpora (17 August 1686 - 3 March 1768)
   portman.debian.org: Rachel Portman (11 December 1960 - )
@@ -105,9 +106,7 @@ nameinfo:
   ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19th, 1873 - May 11th, 1916)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
-  rossini.debian.org: Gioachino Rossini (February 29th, 1792 - November 13th, 1868)
   saens.debian.org: Charles-Camille Saint-Saëns  (October 9th, 1835 - December 16th, 1921)
-  salieri.debian.org: Antonio Salieri (August 18th, 1750 - May 7th, 1825)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   santoro.debian.org: Cláudio Santoro (November 23rd, 1919 - March 27th, 1989)
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
@@ -181,7 +180,6 @@ host_settings:
   apache2_www_mirror:
     - gluck.debian.org
     - santoro.debian.org
-    - senfl.debian.org
   not-bacula-client:
     # decommissioning
     - rautavaara.debian.org
@@ -193,7 +191,6 @@ host_settings:
     - bizet.debian.org
     - busoni.debian.org
     - gluck.debian.org
-    - lobos.debian.org
     - pkgmirror-1and1.debian.org
     - schein.debian.org
     - saens.debian.org
@@ -201,7 +198,6 @@ host_settings:
     - senfter.debian.org
     - spohr.debian.org
     - steffani.debian.org
-    - villa.debian.org
     - wieck.debian.org
     # porterbox
     - abel.debian.org
@@ -216,6 +212,7 @@ host_settings:
     - merulo.debian.org
     - minkus.debian.org
     - partch.debian.org
+    - plummer.debian.org
     - smetana.debian.org
     - zelenka.debian.org
     # buildd
@@ -224,6 +221,7 @@ host_settings:
     - arcadelt.debian.org
     - arm-arm-01.debian.org
     - arm-arm-02.debian.org
+    - arm-arm-03.debian.org
     - arm-linaro-01.debian.org
     - arm-linaro-03.debian.org
     - arnold.debian.org
@@ -263,6 +261,7 @@ host_settings:
     - sompek.debian.org
     - spontini.debian.org
     - stadler.debian.org
+    - x86-grnet-01.debian.org
     - zandonai.debian.org
     - zani.debian.org
     - zemlinsky.debian.org
@@ -275,6 +274,7 @@ host_settings:
     - antheil.debian.org
     - arm-arm-01.debian.org
     - arm-arm-02.debian.org
+    - arm-arm-03.debian.org
     - arnold.debian.org
     - ball.debian.org
     - corelli.debian.org
@@ -298,7 +298,8 @@ host_settings:
   entropy_key:
     - czerny.debian.org
     # - rautavaara.debian.org
-    - salieri.debian.org
+    - grnet-node01.debian.org
+    #- rossini.debian.org
     - storace.debian.org
   buildd_master:
     - wuiet.debian.org

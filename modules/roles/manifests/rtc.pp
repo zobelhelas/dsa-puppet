@@ -1,5 +1,4 @@
 class roles::rtc {
-	include concat::setup
 
 	ssl::service { 'www.debian.org':
 	}

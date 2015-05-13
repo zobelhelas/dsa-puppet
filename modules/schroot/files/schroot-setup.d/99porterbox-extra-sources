@@ -22,37 +22,47 @@ else
     fatal "Cannot find config script"
 fi
 
+suite_alias="$SUITE_BASE"
+case "$SUITE_ARCH" in
+    kfreebsd-*)
+        case "$SUITE_BASE" in
+            jessie)
+                suite_alias="$SUITE_BASE-kfreebsd"
+            ;;
+        esac
+        ;;
+esac
 
 if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
   SRCL="${CHROOT_PATH}/etc/apt/sources.list.d/auto.list"
   rm -f "$SRCL"
-  mirror=${MIRROR:-http://http.debian.net/debian}
+  mirror=${MIRROR:-http://ftp.debian.org/debian}
 
   case "${SUITE_BASE:-}" in
     experimental)
       echo "deb     $mirror sid main" >> "$SRCL"
       echo "deb-src $mirror sid main" >> "$SRCL"
       ;;
-    sid|jessie)
+    sid|stretch)
       ;;
     *)
-      echo "deb     http://security.debian.org/ ${SUITE_BASE}/updates main" >> "$SRCL"
-      echo "deb-src http://security.debian.org/ ${SUITE_BASE}/updates main" >> "$SRCL"
+      echo "deb     http://security.debian.org/ ${suite_alias}/updates main" >> "$SRCL"
+      echo "deb-src http://security.debian.org/ ${suite_alias}/updates main" >> "$SRCL"
       ;;
   esac
-  echo "deb     $mirror ${SUITE_BASE} main" >> "$SRCL"
-  echo "deb-src $mirror ${SUITE_BASE} main" >> "$SRCL"
+  echo "deb     $mirror ${suite_alias} main" >> "$SRCL"
+  echo "deb-src $mirror ${suite_alias} main" >> "$SRCL"
 
   case "${SUITE_VARIANT:-}" in
     backports)
       case "${SUITE_BASE:-}" in
         squeeze)
-          echo "deb     http://backports.debian.org/debian-backports/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
-          echo "deb-src http://backports.debian.org/debian-backports/ ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb     http://backports.debian.org/debian-backports/ ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb-src http://backports.debian.org/debian-backports/ ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
           ;;
         *)
-          echo "deb     $mirror ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
-          echo "deb-src $mirror ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb     $mirror ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb-src $mirror ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
           ;;
       esac
       ;;

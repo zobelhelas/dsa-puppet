@@ -39,10 +39,10 @@ cutoff_time = 60*10
 
 for p in psutil.process_iter():
 	try:
-		if p.name != 'aptitude': continue
-		parent = p.parent
+		if p.name() != 'aptitude': continue
+		parent = p.parent()
 		if parent is None: continue
-		if parent.name != 'schroot': continue
+		if parent.name() != 'schroot': continue
 		#
 		try:
 			rootdir = os.readlink('/proc/%d/root'%(p.pid,))
@@ -60,5 +60,5 @@ for p in psutil.process_iter():
 		if cputime < cutoff_time: continue
 		#
 		p.kill()
-	except psutil.error.NoSuchProcess:
+	except psutil.NoSuchProcess:
 		pass

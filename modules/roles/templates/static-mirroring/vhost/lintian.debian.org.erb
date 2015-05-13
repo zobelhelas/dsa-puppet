@@ -18,7 +18,12 @@ Use common-dsa-vhost-https-redirect lintian.debian.org
 	AddDefaultCharset utf-8
 
 	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur>
-		# These two lines makes apache serve "lintian.log.gz" as a text/plain with encoding gzip
+		<% if @lsbmajdistrelease > '7' -%>
+			Require all granted
+		<% end -%>
+
+		# These three lines makes apache serve
+		# "lintian.log.gz" as a text/plain with encoding gzip
 		# making it easier to view the log in the browser.
 		RemoveType .gz
 		AddEncoding x-gzip .gz
@@ -28,12 +33,6 @@ Use common-dsa-vhost-https-redirect lintian.debian.org
 			AddOutputFilterByType DEFLATE image/svg+xml
 			AddOutputFilterByType DEFLATE text/plain
 		</IfModule>
-	</Directory>
-
-	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur/graphs>
-		# Cache graphs for an hour (Technically, a "expires" of "24h after last mod"
-		# might be better, but oh well)
-		Header set Cache-Control "max-age=3600, must-revalidate, public"
 	</Directory>
 
 	<Directory /srv/static.debian.org/mirrors/lintian.debian.org/cur/resources>

@@ -46,6 +46,8 @@ roles:
     - oyens.debian.org
   lists:
     - bendel.debian.org
+  list_search:
+    - stockhausen.debian.org
   mailrelay:
     - mailly.debian.org
     - muffat.debian.org
@@ -105,11 +107,9 @@ roles:
     - master.debian.org
     - dillon.debian.org
     - franck.debian.org
-    - lilburn.debian.org
     - lindsay.debian.org
     - philp.debian.org
     - ravel.debian.org
-    - senfl.debian.org
     - wolkenstein.debian.org
   syncproxy:
     - milanollo.debian.org

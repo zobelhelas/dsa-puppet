@@ -25,16 +25,16 @@ blacklist {
         devnode "^hd[a-z][[0-9]*]"
         devnode "^vd[a-z]"
         devnode "^cciss!c[0-9]d[0-9]*[p[0-9]*]"
+<%- if %w{pasquini tristano boito bertali}.include?(hostname) then -%>
+        devnode "^sda[0-9]*$"
+<%- end -%>
         device {
                 vendor DEC.*
                 product MSA[15]00
         }
 }
 multipaths {
-        multipath {
-                wwid 3600c0ff000d5f6bdedbe744e01000000
-                alias ganeti-mini
-        }
+        # reger
         multipath {
                 wwid 3600c0ff000d5f6bd5dabd64c01000000
                 alias reger-boot
@@ -47,18 +47,12 @@ multipaths {
                 wwid 3600c0ff000d5f6bd1dfe9d5101000000
                 alias r10-reger
         }
-        multipath {
-                wwid 3600c0ff000d5f6bd8ca3735101000000
-                alias r10-fischer
-        }
-        multipath {
-                wwid 3600c0ff000d5f6bd2af5de4f01000000
-                alias r10-fischer-srv
-        }
+        # geo2
         multipath {
                 wwid 3600c0ff000d5f6bd3ed7995101000000
                 alias r10-geo2
         }
+        # brahms
         multipath {
                 wwid 3600c0ff000d5f6bdf4fa995101000000
                 alias r10-brahms
@@ -67,6 +61,7 @@ multipaths {
                 wwid 3600c0ff000d5f6bdfdfa995101000000
                 alias r10-brahms-srv
         }
+        # lotti
         multipath {
                 wwid 3600c0ff000d5f6bd9a2a9a5101000000
                 alias r10-lotti
@@ -75,30 +70,17 @@ multipaths {
                 wwid 3600c0ff000d5f6bd1ab08c4c01000000
                 alias r6-lotti-srv
         }
-        multipath {
-                wwid 3600c0ff000d5f6bd40329a5101000000
-                alias r10-lilburn
-        }
-        multipath {
-                wwid 3600c0ff000d5f6bd46329a5101000000
-                alias r10-lilburn-srv
-        }
-        multipath {
-                wwid 3600c0ff000d5f6bde56a9a5101000000
-                alias r10-wolkenstein
-        }
-        multipath {
-                wwid 3600c0ff000d5f6bde96a9a5101000000
-                alias r10-wolkenstein-srv
-        }
+        # elgar
         multipath {
                 wwid 3600c0ff000d5f6bd04849b5101000000
                 alias r10-elgar
         }
+        # jenkins
         multipath {
                 wwid 3600c0ff000d5f6bdf38f9b5101000000
                 alias r10-jenkins
         }
+        # popov
         multipath {
                 wwid 3600c0ff000d5f6bda9a19b5101000000
                 alias r10-popov
@@ -107,6 +89,7 @@ multipaths {
                 wwid 3600c0ff000d5f6bdaaa19b5101000000
                 alias r10-popov-srv
         }
+        # fano
         multipath {
                 wwid 3600c0ff000d5f6bd71c19c5101000000
                 alias r10-fano
@@ -115,14 +98,7 @@ multipaths {
                 wwid 3600c0ff000d5f6bd87c49c5101000000
                 alias r10-fano-srv
         }
-        multipath {
-                wwid 3600c0ff000d5f6bd19d69c5101000000
-                alias r10-falla
-        }
-        multipath {
-                wwid 3600c0ff000d5f6bd1bd69c5101000000
-                alias r10-falla-srv
-        }
+        # finzi
         multipath {
                 wwid 3600c0ff000d5f6bd68ec9c5101000000
                 alias r10-finzi
@@ -131,26 +107,22 @@ multipaths {
                 wwid 3600c0ff000d5f6bddd0bee4f01000000
                 alias r10-finzi-srv
         }
+        # tchaikovsky
         multipath {
                 wwid 3600c0ff000d5f6bd06f29c5101000000
                 alias r10-tchaikovsky
         }
+        # gombert
         multipath {
                 wwid 3600c0ff000d5f6bd318a9e5101000000
                 alias r10-gombert
         }
+        # blavet
         multipath {
                 wwid 3600c0ff000d5f6bd736aa05101000000
                 alias r10-blavet
         }
-        multipath {
-                wwid 3600c0ff000d5f6bd5671a05101000000
-                alias r10-barriere
-        }
-        multipath {
-                wwid 3600c0ff000d5f6bd5871a05101000000
-                alias r10-barriere-lvm
-        }
+        # tye
         multipath {
                 wwid 3600c0ff000d5f6bdb08aa05101000000
                 alias r10-tye
@@ -159,6 +131,7 @@ multipaths {
                 wwid 3600c0ff000d5f6bdb28aa05101000000
                 alias r10-tye-srv
         }
+        # glinka
         multipath {
                 wwid 3600c0ff000d5f6bdf0eaa45101000000
                 alias r10-glinka
@@ -171,20 +144,23 @@ multipaths {
                 wwid 3600c0ff000d5f6bd866d4c5101000000
                 alias r6-glinka-mirrors
         }
+        # diabelli
         multipath {
                 wwid 3600c0ff000d5f6bdfa42aa5101000000
                 alias r10-diabelli
         }
+        # nono
         multipath {
                 wwid 3600c0ff000d5f6bd0944b85101000000
                 alias r10-nono
         }
+        # bizet
         multipath {
-                wwid 3600c0ff000d5f6bd0335625201000000
-                alias r10-quantz
+                wwid 3600c0ff000d5f6bdba31435501000000
+                alias r10-bizet
         }
         multipath {
-                wwid 3600c0ff000d5f6bd2d35625201000000
-                alias r10-quantz-srv
+                wwid 3600c0ff000d5f6bdc5d83f4f01000000
+                alias bizet-srv
         }
 }

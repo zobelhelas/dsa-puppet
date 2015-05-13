@@ -105,6 +105,12 @@ class ferm {
 		file { '/etc/logrotate.d/ulogd':
 			ensure  => absent,
 		}
+		file { '/etc/logrotate.d/ulogd.dpkg-bak':
+			ensure  => absent,
+		}
+		file { '/etc/logrotate.d/ulogd.dpkg-dist':
+			ensure  => absent,
+		}
 	} else {
 		file { '/etc/logrotate.d/ulogd':
 			source  => 'puppet:///modules/ferm/logrotate-ulogd',

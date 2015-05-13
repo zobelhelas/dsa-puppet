@@ -32,9 +32,14 @@
 	DocumentRoot /srv/static.debian.org/mirrors/$name/cur
 	<Directory /srv/static.debian.org/mirrors/$name/cur>
 		AllowOverride FileInfo Indexes Options=Multiviews
+		Options Indexes SymLinksIfOwnerMatch
 		IndexOptions FancyIndexing NameWidth=*
-		Order allow,deny
-		Allow from all
+		<% if @lsbmajdistrelease > '7' -%>
+			Require all granted
+		<% else -%>
+			Order allow,deny
+			Allow from all
+		<% end -%>
 	</Directory>
 
 	Header set Surrogate-Key <%= hostname %>

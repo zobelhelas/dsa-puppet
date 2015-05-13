@@ -14,3 +14,5 @@ SHELL=/bin/bash
 <% else -%>
 34 */4 * * * root if [ -x /usr/bin/puppet ]; then sleep $(( $RANDOM \% 7200 )); if [ -x /usr/bin/timeout ]; then TO="timeout --kill-after=900 3600"; else TO=""; fi; tmp="$(tempfile)"; egrep -v '^(#|$)' /etc/dsa/cron.ignore.dsa-puppet-stuff > "$tmp" && $TO /usr/bin/puppet agent --onetime --no-daemonize 2>&1 | egrep --text -v -f "$tmp"; rm -f "$tmp"; fi
 <% end -%>
+
+@hourly root sleep $(( $RANDOM \% 300 )); if [ -x /usr/lib/nagios/plugins/dsa-check-stunnel-sanity ] && [ -e /etc/stunnel/puppet-ekeyd.conf ] && ! /usr/lib/nagios/plugins/dsa-check-stunnel-sanity > /dev/null && grep -q '^client = yes' /etc/stunnel/puppet-ekeyd.conf; then /usr/sbin/service stunnel4 restart > /dev/null; fi

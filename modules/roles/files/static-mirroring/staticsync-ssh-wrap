@@ -74,25 +74,31 @@ do_mirror() {
 
 do_rsync_on_master() {
 	local remote_host="$1"; shift
-	local args="--server --sender -vlHtrze.iLsf --safe-links ."
+	local allowed_rsyncs
+	allowed_rsyncs=()
+	allowed_rsyncs+=("--server --sender -vlHtrze.iLsf --safe-links .") # wheezy
+	allowed_rsyncs+=("--server --sender -vlHtrze.iLsfx --safe-links .") # jessie
 
-	for component in $(awk -v this_host="$(hostname -f)" '!/^ *(#|$)/ && $1 == this_host {print $2}' $COMPONENTLIST); do
-		if [ "$*" = "$args $component/-new-/" ] || [ "$*" = "$args ./$component/-new-/" ] ; then
-			local path="$BASEDIR/master/$component-current-push"
-			info "serving $remote_host with $path"
-			exec rsync $args "$path/."
-			croak "Exec failed"
-		elif [ "$*" = "$args $component/-live-/" ] || [ "$*" = "$args ./$component/-live-/" ] ; then
-			local path="$BASEDIR/master/$component-current-live"
-			info "host $remote_host wants $path, acquiring lock"
-			exec 200< "$path"
-			if ! flock -s -w 0 200; then
-			echo >&2 "Cannot acquire shared lock on $path - this should mean an update is already underway anyway."
-			exit 1
+	for cmd_idx in ${!allowed_rsyncs[*]}; do
+		args="${allowed_rsyncs[$cmd_idx]}"
+		for component in $(awk -v this_host="$(hostname -f)" '!/^ *(#|$)/ && $1 == this_host {print $2}' $COMPONENTLIST); do
+			if [ "$*" = "$args $component/-new-/" ] || [ "$*" = "$args ./$component/-new-/" ] ; then
+				local path="$BASEDIR/master/$component-current-push"
+				info "serving $remote_host with $path"
+				exec rsync $args "$path/."
+				croak "Exec failed"
+			elif [ "$*" = "$args $component/-live-/" ] || [ "$*" = "$args ./$component/-live-/" ] ; then
+				local path="$BASEDIR/master/$component-current-live"
+				info "host $remote_host wants $path, acquiring lock"
+				exec 200< "$path"
+				if ! flock -s -w 0 200; then
+				echo >&2 "Cannot acquire shared lock on $path - this should mean an update is already underway anyway."
+				exit 1
+				fi
+				exec rsync $args "$path/."
+				croak "Exec failed"
 			fi
-			exec rsync $args "$path/."
-			croak "Exec failed"
-		fi
+		done
 	done
 }
 
@@ -105,7 +111,8 @@ do_rsync_on_source() {
 
 	if [ -e "$COMPONENTLIST" ]; then
 		for path in $(awk -v host="$(hostname -f)" '!/^ *(#|$)/ && $3 == host {print $4}' $COMPONENTLIST); do
-			allowed_rsyncs+=("--server --sender -lHtrze.iLsf --safe-links . $path/.")
+			allowed_rsyncs+=("--server --sender -lHtrze.iLsf --safe-links . $path/.") # wheezy
+			allowed_rsyncs+=("--server --sender -lHtrze.iLsfx --safe-links . $path/.") # jessie
 		done
 	fi
 	for cmd_idx in ${!allowed_rsyncs[*]}; do

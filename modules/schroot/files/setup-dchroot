@@ -116,7 +116,6 @@ EOF
         sid)
             genschrootconf "experimental" "$arch" "$target"
             ;;
-        #experimental|jessie)
         experimental)
             :
             ;;
@@ -150,7 +149,7 @@ arch="$THISARCH"
 if [ -e /etc/schroot/dsa/default-mirror ]; then
     mirror=$(cat /etc/schroot/dsa/default-mirror )
 fi
-mirror="${mirror:-http://http.debian.net/debian}"
+mirror="${mirror:-http://ftp.debian.org/debian}"
 configonly=""
 force=""
 basedir="/srv/chroot"
@@ -159,7 +158,7 @@ keyring=/usr/share/keyrings/debian-archive-keyring.gpg
 personality="dsa"
 sbuildnames=""
 ubuntu=""
-groupuser="Debian,guest"
+groupuser="Debian,guest,d-i"
 grouproot=""
 users=""
 usersroot=""
@@ -255,7 +254,17 @@ fi
 suite="$1"; shift
 tuple="${suite}_${arch}"
 
-builddir=${builddir:-$basedir}
+if [ -z "${builddir:-}" ]; then
+  builddir=${builddir:-$basedir}
+  for u in schroot-unpack unpack; do
+    # if one of these directories exists and is on a different filesystem, prefer it.
+    candidate="$builddir/$u"
+    if [ -e "$candidate" ] &&
+       [ "$(stat -f --printf '%i\n' "$builddir" )" != "$(stat -f --printf '%i\n' "$candidate")" ]; then
+      builddir="$candidate"
+    fi
+  done
+fi
 [ -d "$basedir" ] || die "Error: $basedir does not exist (or is not a directory)."
 [ -d "$builddir" ] || die "Error: $builddir does not exist (or is not a directory)."
 
@@ -264,6 +273,17 @@ target="$basedir/$tuple.tar.gz"
 
 schrootconfig="/etc/schroot/chroot.d/${tuple}-$suffix"
 ! [ -e "$schrootconfig" ] || [ -n "$force" ] || die "Error: $schrootconfig already exists."
+
+suite_alias="$suite"
+case "$arch" in
+    kfreebsd-*)
+        case "$suite" in
+            jessie)
+                suite_alias="$suite-kfreebsd"
+                ;;
+        esac
+        ;;
+esac
 
 
 #
@@ -293,7 +313,7 @@ debootstrap \
     --include="apt" \
     --variant=buildd \
     --arch="$arch" \
-    "$suite" "$rootdir" "$mirror" "$script"
+    "$suite_alias" "$rootdir" "$mirror" "$script"
 echo "$tuple" > "$rootdir/etc/debian_chroot"
 echo "force-unsafe-io" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-unsafe-io"
 echo "force-confnew" > "$rootdir/etc/dpkg/dpkg.cfg.d/force-confnew"
@@ -312,7 +332,7 @@ esac
 
 
 chroot "$rootdir" apt-get update
-chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends policyrcd-script-zg2
+chroot "$rootdir" apt-get install -y --no-install-recommends policyrcd-script-zg2
 cat > "$rootdir/usr/local/sbin/policy-rc.d" << 'EOF'
 #!/bin/sh
 
@@ -331,9 +351,9 @@ while true; do
 done
 EOF
 chmod +x "$rootdir/usr/local/sbin/policy-rc.d"
-[ -z "$bare" ] && [ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends locales-all
-chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends build-essential
-[ -z "$bare" ] && chroot "$rootdir" apt-get install -y --force-yes --no-install-recommends zsh less vim fakeroot devscripts gdb
+[ -z "$bare" ] && [ -z "$ubuntu" ] && chroot "$rootdir" apt-get install -y --no-install-recommends locales-all
+chroot "$rootdir" apt-get install -y --no-install-recommends build-essential
+[ -z "$bare" ] && chroot "$rootdir" apt-get install -y --no-install-recommends zsh less vim fakeroot devscripts gdb
 rm -f "$rootdir/etc/apt/sources.list" "$rootdir/etc/apt/sources.list.d/*"
 chroot "$rootdir" apt-get clean
 umount "$rootdir/dev" 2>/dev/null || true

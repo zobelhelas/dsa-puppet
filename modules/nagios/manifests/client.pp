@@ -64,9 +64,17 @@ class nagios::client inherits nagios {
 		source  => 'puppet:///modules/nagios/common/obsolete-packages-ignore',
 		require => Package['dsa-nagios-checks'],
 	}
+	file { '/etc/nagios/check-libs.conf':
+		source  => 'puppet:///modules/nagios/common/check-libs.conf',
+		require => Package['dsa-nagios-checks'],
+	}
 	file { '/etc/nagios/obsolete-packages-ignore.d/hostspecific':
 		content => template('nagios/obsolete-packages-ignore.d-hostspecific.erb'),
 		require => Package['dsa-nagios-checks'],
+	}
+	file { '/usr/local/sbin/dsa-check-libs':
+		source  => 'puppet:///modules/nagios/dsa-check-libs',
+		mode    => '0555',
 	}
 
 }

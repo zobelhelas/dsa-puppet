@@ -37,5 +37,10 @@ class syslog-ng {
 			source => 'puppet:///modules/syslog-ng/syslog-ng.service',
 			notify => Exec['systemctl daemon-reload'],
 		}
+
+		file { '/etc/systemd/system/syslog.service':
+			ensure => absent,
+			notify => Exec['systemctl daemon-reload'],
+		}
 	}
 }

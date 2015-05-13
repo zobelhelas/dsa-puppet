@@ -32,6 +32,7 @@ debug = notice
 client = <%= client ? "yes" : "no" %>
 
 socket = a:SO_LINGER=1:60
+socket = a:SO_KEEPALIVE=1
 
 [<%= name %>-server]
 accept = <%= accept =~ /:/ ? accept : ":::#{accept}" %>

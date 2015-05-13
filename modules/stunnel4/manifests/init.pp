@@ -11,6 +11,7 @@ class stunnel4 {
 	file { '/etc/init.d/stunnel4':
 		source => 'puppet:///modules/stunnel4/etc-init.d-stunnel4',
 		mode   => '0555',
+		notify => Exec['systemctl daemon-reload'],
 	}
 	file { '/etc/stunnel/stunnel.conf':
 		ensure  => absent,

@@ -46,14 +46,25 @@ define apache2::site (
 		}
 	}
 
-	if $ensure == present {
+	if $::lsbmajdistrelease <= 7 {
+		$symlink = "/etc/apache2/sites-enabled/${name}"
+	} else {
+		$symlink = "/etc/apache2/sites-enabled/${name}.conf"
+
 		file { "/etc/apache2/sites-enabled/${name}":
+			ensure => absent,
+			notify => Service['apache2'],
+		}
+	}
+
+	if $ensure == present {
+		file { $symlink:
 			ensure => link,
 			target => $link_target,
 			notify => Service['apache2'],
 		}
 	} else {
-		file { "/etc/apache2/sites-enabled/${name}":
+		file { $symlink:
 			ensure => absent,
 			notify => Service['apache2'],
 		}

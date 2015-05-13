@@ -32,8 +32,10 @@ class buildd ($ensure=present) {
 	}
 
 	$suite = $::lsbdistcodename ? {
-		squeeze => $::lsbdistcodename,
-		wheezy  => $::lsbdistcodename,
+		squeeze  => $::lsbdistcodename,
+		wheezy   => $::lsbdistcodename,
+		jessie   => $::lsbdistcodename,
+		stretch  => $::lsbdistcodename,
 		undef   => 'squeeze',
 		default => 'wheezy'
 	}
@@ -47,7 +49,7 @@ class buildd ($ensure=present) {
 	}
 
 	$buildd_prop_ensure = $::hostname ? {
-		/^(alkman|brahms|porpora|zandonai)$/ => 'present',
+		/^(alkman|zandonai)$/ => 'present',
 		default => 'absent',
 	}
 
@@ -85,9 +87,16 @@ class buildd ($ensure=present) {
 		package { 'python-psutil':
 			ensure => installed,
 		}
-		file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
-			source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill',
-			mode    => '0555',
+		if ($::lsbmajdistrelease >= 8) {
+			file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
+				source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill',
+				mode    => '0555',
+			}
+		} else {
+			file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
+				source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill.wheezy',
+				mode    => '0555',
+			}
 		}
 	} else {
 		file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
@@ -99,10 +108,78 @@ class buildd ($ensure=present) {
 		content => "*/5 * * * * root /usr/local/sbin/buildd-schroot-aptitude-kill\n",
 	}
 
-
 	if $has_srv_buildd {
 		file { '/etc/cron.d/puppet-update-buildd-schroots':
 			content  => "13 21 * * 0 root PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin setup-all-dchroots buildd\n",
+		}
+	}
+
+	file { '/home/buildd':
+		ensure  => directory,
+		mode    => '2755',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/build':
+		ensure  => directory,
+		mode    => '2750',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/logs':
+		ensure  => directory,
+		mode    => '2750',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/old-logs':
+		ensure  => directory,
+		mode    => '2750',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/upload-security':
+		ensure  => directory,
+		mode    => '2750',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/stats':
+		ensure  => directory,
+		mode    => '2755',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/stats/graphs':
+		ensure  => directory,
+		mode    => '2755',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/upload':
+		ensure  => directory,
+		mode    => '2755',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/.forward':
+		content  => "|/usr/bin/buildd-mail\n",
+		group   => buildd,
+		owner   => buildd,
+	}
+
+	if ! $::buildd_key {
+		exec { 'create-buildd-key':
+			command => '/bin/su - buildd -c \'mkdir -p -m 02700 .ssh && ssh-keygen -C "`whoami`@`hostname` (`date +%Y-%m-%d`)" -P "" -f .ssh/id_rsa -q\'',
+			onlyif  => '/usr/bin/getent passwd buildd > /dev/null && ! [ -e /home/buildd/.ssh/id_rsa ]'
+		}
+	}
+
+
+	if $::buildd_user_exists {
+		exec { 'add-buildd-user-to-sbuild':
+			command => 'adduser buildd sbuild',
+			onlyif  => "getent group sbuild > /dev/null && ! getent group sbuild | grep '\\<buildd\\>' > /dev/null"
 		}
 	}
 }
