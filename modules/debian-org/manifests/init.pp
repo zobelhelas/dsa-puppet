@@ -159,16 +159,10 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	if (($::lsbmajdistrelease) >= 8 and ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386'])) {
-		site::aptrepo { 'volatile':
-			ensure => absent,
-		}
-	} else {
-		site::aptrepo { 'volatile':
-			url        => $mirror,
-			suite      => "${::lsbdistcodename}-updates",
-			components => ['main','contrib','non-free']
-		}
+	site::aptrepo { 'volatile':
+		url        => $mirror,
+		suite      => "${::lsbdistcodename}-updates",
+		components => ['main','contrib','non-free']
 	}
 
 	#if ($::hostname in [ball, corelli, eysler, lucatelli, mayer, mayr, pettersson]) or
