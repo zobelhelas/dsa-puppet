@@ -14,6 +14,14 @@ class debian-org {
 		$mirror_backports = $mirror
 	}
 
+	if $::lsbmajdistrelease <= 7 {
+		$mungedcodename = $::lsbdistcodename
+	} elsif ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
+		$mungedcodename = "${::lsbdistcodename}-kfreebsd"
+	} else {
+		$mungedcodename = $::lsbdistcodename
+	}
+
 	if $systemd {
 		include systemd
 		$servicefiles = 'present'
@@ -130,7 +138,7 @@ class debian-org {
 
 	site::aptrepo { 'security':
 		url        => 'http://security.debian.org/',
-		suite      => "${::lsbdistcodename}/updates",
+		suite      => "${mungedcodename}/updates",
 		components => ['main','contrib','non-free']
 	}
 	if $::lsbmajdistrelease < 7 {
@@ -151,10 +159,16 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	site::aptrepo { 'volatile':
-		url        => $mirror,
-		suite      => "${::lsbdistcodename}-updates",
-		components => ['main','contrib','non-free']
+	if (($::lsbmajdistrelease) >= 8 and ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386'])) {
+		site::aptrepo { 'volatile':
+			ensure => absent,
+		}
+	} else {
+		site::aptrepo { 'volatile':
+			url        => $mirror,
+			suite      => "${::lsbdistcodename}-updates",
+			components => ['main','contrib','non-free']
+		}
 	}
 
 	#if ($::hostname in [ball, corelli, eysler, lucatelli, mayer, mayr, pettersson]) or
@@ -199,7 +213,7 @@ class debian-org {
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
 		site::aptrepo { 'debian':
 			url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
-			suite      => $::lsbdistcodename,
+			suite      => $mungedcodename,
 			components => ['main','contrib','non-free']
 		}
 	}
