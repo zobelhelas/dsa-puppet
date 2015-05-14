@@ -17,7 +17,6 @@ when /(asachi|arm-linaro-01|arm-linaro-03).debian.org/ then    ignore << "flash-
 when /harris.debian.org/ then                                  ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(hartmann|hasse|henze|hoiby).debian.org/ then            ignore << %w{flash-kernel kernel linux-firmware-image}
 when /(parry|partch).debian.org/ then                          ignore << "yaboot"
-when "blavet.debian.org" then                                  ignore << %w{dpkg-dev libdpkg-perl dpkg}
 when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
 when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}
 when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabbitmq-server}
