@@ -103,7 +103,6 @@ nameinfo:
   rautavaara.debian.org: Einojuhani Rautavaara (b. October 9th, 1928)
   rainier.debian.org: Ivy Priaulx Rainier (February 3rd, 1903 - October 10th, 1986) 
   rapoport.debian.org: Eda Rothstein Rapoport (December 25th, 1890 - May 9th, 1968)
-  ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19th, 1873 - May 11th, 1916)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   saens.debian.org: Charles-Camille Saint-Saëns  (October 9th, 1835 - December 16th, 1921)
@@ -183,7 +182,6 @@ host_settings:
   not-bacula-client:
     # decommissioning
     - rautavaara.debian.org
-    - ravel.debian.org
     # dead/not running
     - berlioz.debian.org
     # mirrors, secondaries, syncproxies

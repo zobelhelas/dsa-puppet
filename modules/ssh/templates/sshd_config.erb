@@ -9,7 +9,6 @@
 # What ports, IPs and protocols we listen for
 Port 22
 <%= extraports = case fqdn
-                        when "ravel.debian.org" then "Port 443"
                         when "paradis.debian.org" then "
 ListenAddress 0.0.0.0:22
 ListenAddress [::]:22
