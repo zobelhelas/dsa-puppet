@@ -7,8 +7,8 @@
 <% if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture') and scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0].start_with?('kfreebsd') -%>
 # kFreeBSD version
 proc		/proc		linprocfs	defaults	0	0
-dev		/dev		devfs	rw,bind		0	0
-dev		/dev/fd		fdescfs	rw,bind		0	0
+dev		/dev		devfs	rw		0	0
+dev		/dev/fd		fdescfs	rw		0	0
 
 /srv/build-trees	/build	nullfs	rw		0	0
 <% else -%>
