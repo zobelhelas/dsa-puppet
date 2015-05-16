@@ -9,7 +9,7 @@ class ntpdate {
 		}
 
 		$ntpservers = $::hostname ? {
-			default => ['czerny.debian.org', 'clementi.debian.org', 'bm-bl1.debian.org', 'bm-bl2.debian.org', 'dijkstra.debian.org', 'luchesi.debian.org']
+			default => ['czerny.debian.org', 'clementi.debian.org', 'bm-bl1.debian.org', 'bm-bl2.debian.org', 'ubc-bl8.debian.org', 'luchesi.debian.org']
 		}
 
 		file { '/etc/default/ntpdate':

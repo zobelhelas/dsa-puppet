@@ -14,7 +14,7 @@ class multipath {
 		bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl13,bm-bl14: {
 			$conffile = 'multipath-bm.conf'
 		}
-		dijkstra,luchesi,pasquini,tristano,bertali,boito: {
+		ubc-bl8,luchesi,pasquini,tristano,bertali,boito: {
 			$conffile = 'multipath-ubc-ganeti.conf'
 		}
 		default: {
