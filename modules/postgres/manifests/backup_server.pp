@@ -1,5 +1,5 @@
 class postgres::backup_server {
-	package { 'postgresql-client':
+	package { 'postgresql-client-9.1':
 		ensure => installed
 	}
 
