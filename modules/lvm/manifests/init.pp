@@ -3,7 +3,7 @@ class lvm {
 		ubc-bl8,luchesi: {
 			$conffile = 'lvm-ubc-ganeti.conf'
 		}
-		tristano,pasquini,ubc-bl2,boito: {
+		ubc-bl3,pasquini,ubc-bl2,boito: {
 			$conffile = 'lvm-ubc-ganeti-p410.conf'
 		}
 		csail-node01,csail-node02: {

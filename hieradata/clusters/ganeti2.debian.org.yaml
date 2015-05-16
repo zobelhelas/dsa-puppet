@@ -1,6 +1,6 @@
 ---
 nodes:
-  - 'tristano.debian.org'
+  - 'ubc-bl3.debian.org'
   - 'pasquini.debian.org'
   - 'ubc-bl2.debian.org'
   - 'boito.debian.org'

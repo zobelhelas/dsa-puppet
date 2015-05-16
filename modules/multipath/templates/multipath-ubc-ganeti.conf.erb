@@ -25,7 +25,7 @@ blacklist {
         devnode "^hd[a-z][[0-9]*]"
         devnode "^vd[a-z]"
         devnode "^cciss!c[0-9]d[0-9]*[p[0-9]*]"
-<%- if %w{pasquini tristano boito ubc-bl2}.include?(hostname) then -%>
+<%- if %w{pasquini ubc-bl3 boito ubc-bl2}.include?(hostname) then -%>
         devnode "^sda[0-9]*$"
 <%- end -%>
         device {
