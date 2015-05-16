@@ -293,7 +293,7 @@ host_settings:
     - czerny.debian.org
     # - rautavaara.debian.org
     - grnet-node01.debian.org
-    #- rossini.debian.org
+    - ubc-bl2.debian.org
     - storace.debian.org
   buildd_master:
     - wuiet.debian.org
