@@ -23,6 +23,11 @@ class unbound {
 		pattern   => 'unbound',
 	}
 
+	file { '/etc/init.d/unbound':
+		source => 'puppet:///modules/unbound/unbound.init',
+		mode   => '0555',
+		notify => Exec['systemctl daemon-reload'],
+	}
 	file { '/var/lib/unbound':
 		ensure  => directory,
 		owner   => unbound,
