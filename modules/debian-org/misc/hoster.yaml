@@ -177,7 +177,9 @@ ubcece:
     - 206.12.19.0/24
   searchpaths: [debprivate-ubc.debian.org]
   mirror-debian: http://mirror-ubc.debian.org/debian/
-  nameservers: ['206.12.19.214', '2607:f8f0:610:4000:224:81ff:fea7:e952', '206.12.19.218', '2607:f8f0:610:4000:224:81ff:fef8:7cb8', '206.12.19.21', '2607:f8f0:610:4000:21c:c4ff:fee5:e890']
+  nameservers: ['206.12.19.212', '2607:f8f0:610:4000:6564:a62:ce0c:13d4', # ubc-bl2
+                '206.12.19.216', '2607:f8f0:610:4000:6564:a62:ce0c:13d8', # ubc-bl6
+                '206.12.19.218', '2607:f8f0:610:4000:224:81ff:fef8:7cb8'] # ubc-bl8
 ugent:
   netrange:
     - 157.193.0.0/16
