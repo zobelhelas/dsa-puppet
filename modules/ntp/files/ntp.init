@@ -65,7 +65,7 @@ case $1 in
   		;;
 	stop)
 		log_daemon_msg "Stopping NTP server" "ntpd"
-  		start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
+		start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE --retry 5
 		log_end_msg $?
 		rm -f $PIDFILE
   		;;
