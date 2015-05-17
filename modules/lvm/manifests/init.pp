@@ -1,6 +1,6 @@
 class lvm {
 	case $::hostname {
-		ubc-bl8,luchesi: {
+		ubc-bl8,ubc-bl4: {
 			$conffile = 'lvm-ubc-ganeti.conf'
 		}
 		ubc-bl3,ubc-bl7,ubc-bl2,ubc-bl6: {
