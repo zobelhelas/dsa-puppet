@@ -15,6 +15,11 @@ class ntp {
 		rule        => '&SERVICE(udp, 123)'
 	}
 
+	file { '/etc/init.d/ntp':
+		source => 'puppet:///modules/ntp/ntp.init',
+		mode   => '0555',
+		notify => Exec['systemctl daemon-reload'],
+	}
 	file { '/var/lib/ntp':
 		ensure  => directory,
 		owner   => ntp,
