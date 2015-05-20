@@ -191,8 +191,8 @@ do
             bare="1"
             groupuser=""
             grouproot=""
-            users="buildd"
-            usersroot="buildd"
+            users="buildd,buildd2"
+            usersroot="buildd,buildd2"
             personality="buildd"
             suffix="sbuild"
             ;;
