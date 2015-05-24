@@ -13,7 +13,7 @@
     if scope.lookupvar('site::allnodeinfo')[node]['purpose'].include?('buildd')
       lines << "  # #{scope.lookupvar('site::allnodeinfo')[node]['hostname'][0]}"
       scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |addr|
-        lines << "  allow from #{addr}"
+        lines << "  Require ip #{addr}"
       end
     end
   end
