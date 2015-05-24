@@ -80,7 +80,7 @@ class apache2 {
 	}
 
 	apache2::config { 'puppet-config':
-		source => 'puppet:///modules/apache2/puppet-config',
+		content => template('apache2/puppet-config.erb'),
 	}
 
 	apache2::config { 'pratchett':
