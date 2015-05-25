@@ -89,7 +89,7 @@ class apache2 {
 
 	if $::lsbmajdistrelease > 7 {
 		file { '/etc/apache2/mods-available/mpm_worker.conf':
-			content => template('apache2/mpm_worker'),
+			content => template('apache2/mpm_worker.erb'),
 		}
 	}
 
