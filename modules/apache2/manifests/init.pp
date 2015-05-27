@@ -51,6 +51,8 @@ class apache2 {
 		$memlimit = 192 * 1024 * 1024
 	} elsif has_role('nm') {
 		$memlimit = 96 * 1024 * 1024
+	} elsif has_role('udd') {
+		$memlimit = 512 * 1024 * 1024
 	} else {
 		$memlimit = 32 * 1024 * 1024
 	}
