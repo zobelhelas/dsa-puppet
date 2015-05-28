@@ -45,22 +45,10 @@ class apache2 {
 		ensure => absent,
 	}
 
-	if has_role('buildd_master') {
-		$memlimit = 192 * 1024 * 1024
-	} elsif has_role('buildd_ports_master') {
-		$memlimit = 192 * 1024 * 1024
-	} elsif has_role('nagiosmaster') {
-		$memlimit = 96 * 1024 * 1024
-	} elsif has_role('packagesqamaster') {
-		$memlimit = 192 * 1024 * 1024
-	} elsif has_role('nm') {
-		$memlimit = 96 * 1024 * 1024
-	} elsif has_role('udd') {
+	if has_role('udd') {
 		$memlimit = 512 * 1024 * 1024
-	} elsif has_role('soo') {
-		$memlimit = 192 * 1024 * 1024
 	} else {
-		$memlimit = 64 * 1024 * 1024
+		$memlimit = 192 * 1024 * 1024
 	}
 
 	apache2::config { 'resource-limits':
