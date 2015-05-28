@@ -37,6 +37,10 @@ class apache2 {
 		ensure => absent,
 	}
 
+	apache2::config { 'serve-cgi-bin':
+		ensure => absent,
+	}
+
 	apache2::config { 'ressource-limits':
 		ensure => absent,
 	}
