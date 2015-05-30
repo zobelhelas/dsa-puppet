@@ -107,7 +107,7 @@ class elasticsearch::config {
     file { '/etc/init.d/elasticsearch':
       ensure => 'absent',
     }
-    file { '/lib/systemd/system/elasticsearch.service':
+    file { '/usr/lib/systemd/system/elasticsearch.service':
       ensure => 'absent',
     }
 
