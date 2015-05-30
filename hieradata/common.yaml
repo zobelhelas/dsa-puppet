@@ -109,7 +109,6 @@ roles:
     - franck.debian.org
     - lindsay.debian.org
     - philp.debian.org
-    - ravel.debian.org
     - wolkenstein.debian.org
   syncproxy:
     - milanollo.debian.org
@@ -120,7 +119,7 @@ roles:
   vote:
     - vento.debian.org
   #weblog_destination:
-  #  - ravel.debian.org
+  #  - rXXXX.debian.org
   #weblog_provider:
   #  - busoni.debian.org
   #  - klecker.debian.org

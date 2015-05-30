@@ -12,11 +12,8 @@ nameinfo:
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
   bendel.debian.org: Franz Bendel (March 23rd, 1833 - July 3rd, 1874)
   berlioz.debian.org: Hector Berlioz (December 11th, 1803 - March 8th, 1869)
-  bertali.debian.org: Antonio Bertali (March 1605 - 17 April 1669)
   binet.debian.org: Jocelyne Binet (September 27th, 1923 - January 13th, 1968)
   bizet.debian.org: Georges Bizet, (October 25th, 1838 - June 3rd, 1875)
-  blavet.debian.org: Michel Blavet (March 13th, 1700 - October 28th, 1768)
-  boiti.debian.org: Arrigo Boito (February 24th, 1842 - June 10th, 1918)
   brahms.debian.org: Johannes Brahms (May 7th, 1833 - April 3rd, 1897)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
   buxtehude.debian.org: Dieterich Buxtehude (c. 1637 to 1639 - May 9th, 1707)
@@ -31,7 +28,6 @@ nameinfo:
   delfin.debian.org: Carmelina Delfin (c. 1900 - after 1948)
   diabelli.debian.org: Anton Diabelli (September 5th, 1781 - April 7th, 1858)
   dinis.debian.org: Dinis of Portugal (October 9th, 1261 - January 7th, 1325)
-  dijkstra.debian.org: Lowell Dijkstra (b. September 14th, 1952)
   dillon.debian.org: Fannie Charles Dillon (March 16th, 1881 - February 21st, 1947)
   donizetti.debian.org: Gaetano Donizetti (November 29th, 1797 - April 8th, 1848)
   draghi.debian.org: Antonio Draghi (1635 - January 16th, 1700)
@@ -85,7 +81,6 @@ nameinfo:
   paradis.debian.org: Maria Theresia Paradis (May 15th, 1759 - February 1st, 1824)
   parry.debian.org: Sir Charles Hubert Hastings Parry, 1st Baronet (February 27th, 1848 - October 7th, 1918)
   partch.debian.org: Harry Partch (June 24th, 1901 - September 3rd, 1974)
-  pasquini.debian.org: Bernardo Pasquini (December 7th, 1637 - November 22nd, 1710)
   pejacevic: Dora Pejačević (September 10th, 1885 - March 5th, 1923)
   petrova.debian.org: Mara Petrova (May 15th, 1921 - June 7th. 1997)
   pettersson.debian.org: Gustav Allan Pettersson (September 19th, 1911 - June 20th, 1980)
@@ -103,7 +98,6 @@ nameinfo:
   rautavaara.debian.org: Einojuhani Rautavaara (b. October 9th, 1928)
   rainier.debian.org: Ivy Priaulx Rainier (February 3rd, 1903 - October 10th, 1986) 
   rapoport.debian.org: Eda Rothstein Rapoport (December 25th, 1890 - May 9th, 1968)
-  ravel.debian.org: Joseph-Maurice Ravel (March 7th, 1875 - December 28th, 1937)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19th, 1873 - May 11th, 1916)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   saens.debian.org: Charles-Camille Saint-Saëns  (October 9th, 1835 - December 16th, 1921)
@@ -131,7 +125,6 @@ nameinfo:
   tchaikovsky.debian.org: Pyotr Ilyich Tchaikovsky (Пётр Ильич Чайковский) (May 7th, 1840 - November 6th, 1893)
   ticharich.debian.org: Zdenka Ticharich (September 26th, 1900 - February 15th, 1979)
   traetta.debian.org: Tommaso Michele Francesco Saverio Traetta (March 30th, 1727 - April 6th, 1779)
-  tristano.debian.org: Gerardo Tristano (July 1st, 1955 - ongoing)
   tye.debian.org: Christopher Tye (c.1505 - 1573)
   ullmann.debian.org: Viktor Ullmann (January 1st, 1898 - October 17th, 1944)
   vento.debian.org: Ivo de Vento (1543/1545 - 1575)
@@ -183,7 +176,6 @@ host_settings:
   not-bacula-client:
     # decommissioning
     - rautavaara.debian.org
-    - ravel.debian.org
     # dead/not running
     - berlioz.debian.org
     # mirrors, secondaries, syncproxies
@@ -299,7 +291,7 @@ host_settings:
     - czerny.debian.org
     # - rautavaara.debian.org
     - grnet-node01.debian.org
-    #- rossini.debian.org
+    - ubc-bl2.debian.org
     - storace.debian.org
   buildd_master:
     - wuiet.debian.org

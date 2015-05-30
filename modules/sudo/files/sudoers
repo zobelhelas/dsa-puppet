@@ -183,7 +183,6 @@ dnsadm		denis=(root)			NOPASSWD: /usr/sbin/service bind9 reload
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		BUILDD_MASTER=(wb-buildd)	ALL
 %wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
-#wbadm		BUILDD_MASTER=(postgres)	NOPASSWD: /usr/bin/pg_dumpall --cluster 8.4/wanna-build
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 dak		franck=(backports)	NOPASSWD: /home/backports/bin/update-archive

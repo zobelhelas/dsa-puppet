@@ -1,9 +1,9 @@
 class lvm {
 	case $::hostname {
-		dijkstra,luchesi: {
+		ubc-bl8,luchesi: {
 			$conffile = 'lvm-ubc-ganeti.conf'
 		}
-		tristano,pasquini,bertali,boito: {
+		ubc-bl3,ubc-bl7,ubc-bl2,ubc-bl6: {
 			$conffile = 'lvm-ubc-ganeti-p410.conf'
 		}
 		csail-node01,csail-node02: {

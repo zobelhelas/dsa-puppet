@@ -1,8 +1,8 @@
 ---
 nodes:
-  - 'tristano.debian.org'
-  - 'pasquini.debian.org'
-  - 'bertali.debian.org'
-  - 'boito.debian.org'
-  - 'dijkstra.debian.org'
+  - 'ubc-bl3.debian.org'
+  - 'ubc-bl7.debian.org'
+  - 'ubc-bl2.debian.org'
+  - 'ubc-bl6.debian.org'
+  - 'ubc-bm8.debian.org'
   - 'luchesi.debian.org'

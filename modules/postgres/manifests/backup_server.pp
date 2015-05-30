@@ -2,6 +2,9 @@ class postgres::backup_server {
 	package { 'postgresql-client-9.1':
 		ensure => installed
 	}
+	package { 'postgresql-client-9.4':
+		ensure => installed
+	}
 
 	file { '/usr/local/bin/postgres-make-base-backups':
 		source => 'puppet:///modules/postgres/backup_server/postgres-make-base-backups',

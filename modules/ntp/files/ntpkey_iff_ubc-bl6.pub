@@ -1,0 +1,14 @@
+# ntpkey_iffpar_ubc-bl6.3640839818
+# Sun May 17 08:23:38 2015
+
+# This is the public version of this 'private' key -
+# the private data has been replaced by 0x01.
+# (just ask 'openssl dsa -text < foo.pub')
+
+-----BEGIN DSA PRIVATE KEY-----
+MIHkAgEAAkEA0gSSF1QzTIr4vGVzf3GrmPYS+VO0txjykuuHz0O86SKdd16yAv1r
+p/0jvOzZJEucH2mOtdCEFxmcPyM6SRpX9wIVANugqs7MBpyfEGEmLdLHeR3e/S+T
+AkBZAW9K23bTFIwr8U00Sac873SrdobLiByM/ZObcgKzajnnEiWiK3vHEEhxGLLF
++IFXTtIRkzzVGo9nU/bfisCMAkBZAW9K23bTFIwr8U00Sac873SrdobLiByM/ZOb
+cgKzajnnEiWiK3vHEEhxGLLF+IFXTtIRkzzVGo9nU/bfisCMAgEB
+-----END DSA PRIVATE KEY-----
