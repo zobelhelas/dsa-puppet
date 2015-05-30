@@ -6,4 +6,4 @@ forge "http://forge.puppetlabs.com"
 
 mod 'puppetlabs/stdlib', '4.6.0'
 mod 'puppetlabs/concat', '1.2.2'
-mod 'elasticsearch/elasticsearch', '0.9.5'
+mod 'elasticsearch/elasticsearch', '0.9.6'
