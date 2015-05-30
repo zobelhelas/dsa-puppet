@@ -163,6 +163,12 @@
 #   Enable Hiera's merging function for the plugins
 #   Defaults to: false
 #
+# [*package_pin*]
+#   Enables package version pinning.
+#   This pins the package version to the set version number and avoids
+#   package upgrades.
+#   Defaults to: true
+#
 # The default values for the parameters are set in elasticsearch::params. Have
 # a look at the corresponding <tt>params.pp</tt> manifest file if you need more
 # technical information about them.
@@ -197,6 +203,7 @@ class elasticsearch(
   $package_url           = undef,
   $package_dir           = $elasticsearch::params::package_dir,
   $package_name          = $elasticsearch::params::package,
+  $package_pin           = true,
   $purge_package_dir     = $elasticsearch::params::purge_package_dir,
   $package_dl_timeout    = $elasticsearch::params::package_dl_timeout,
   $elasticsearch_user    = $elasticsearch::params::elasticsearch_user,
@@ -227,7 +234,6 @@ class elasticsearch(
 ) inherits elasticsearch::params {
 
   anchor {'elasticsearch::begin': }
-  anchor {'elasticsearch::end': }
 
 
   #### Validate parameters
@@ -330,7 +336,7 @@ class elasticsearch(
       distribution => 'jre',
     }
 
-    # ensure we first java java and then manage the service
+    # ensure we first install java, the package and then the rest
     Anchor['elasticsearch::begin']
     -> Class['::java']
     -> Class['elasticsearch::package']
@@ -373,10 +379,12 @@ class elasticsearch(
     -> Class['elasticsearch::config']
     -> Elasticsearch::Instance <| |>
     -> Elasticsearch::Template <| |>
+
   } else {
 
     # make sure all services are getting stopped before software removal
-    Elasticsearch::Instance <| |>
+    Anchor['elasticsearch::begin']
+    -> Elasticsearch::Instance <| |>
     -> Class['elasticsearch::config']
     -> Class['elasticsearch::package']
 
