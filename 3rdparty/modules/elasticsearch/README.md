@@ -46,7 +46,7 @@ This module has been tested against ES 1.0 and up.
 #### Repository management
 When using the repository management you will need the following dependency modules:
 
-* Debian/Ubuntu: [Puppetlabs/apt](http://forge.puppetlabs.com/puppetlabs/apt) Version 1.8.x or lower.
+* Debian/Ubuntu: [Puppetlabs/apt](http://forge.puppetlabs.com/puppetlabs/apt)
 * OpenSuSE: [Darin/zypprepo](https://forge.puppetlabs.com/darin/zypprepo)
 
 ##Usage
@@ -146,24 +146,6 @@ elasticsearch::plugin { 'lmenezes/elasticsearch-kopf',
 * `groupId/artifactId/version`   for community plugins (download from maven central or oss sonatype)
 * `username/repository`          for site plugins (download from github master)
 
-####Upgrading plugins
-When you specify a certain plugin version, you can upgrade that plugin by specifying the new version.
-
-```puppet
-elasticsearch::plugin { 'elasticsearch/elasticsearch-cloud-aws/2.1.1':
-  module_dir => 'cloud-aws',
-}
-```
-
-And to upgrade, you would simply change it to
-
-```puppet
-elasticsearch::plugin { 'elasticsearch/elasticsearch-cloud-aws/2.4.1':
-  module_dir => 'cloud-aws',
-}
-```
-
-Please note that this does not work when you specify 'latest' as a version number.
 
 ###Scripts
 
@@ -344,20 +326,6 @@ Note: `init_defaults` hash can be passed to the main class and to the instance.
 
 ##Advanced features
 
-###Package version pinning
-
-The module supports pinning the package version to avoid accidental upgrades that are not done by Puppet.
-To enable this feature:
-
-```puppet
-class { 'elasticsearch':
-  package_pin => true,
-  version     => '1.5.2',
-}
-```
-
-In this example we pin the package version to 1.5.2.
-
 
 ###Data directories
 
@@ -509,8 +477,8 @@ This module has been built on and tested against Puppet 3.2 and higher.
 
 The module has been tested on:
 
-* Debian 6/7/8
-* CentOS 6/7
+* Debian 6/7
+* CentOS 6
 * Ubuntu 12.04, 14.04
 * OpenSuSE 13.x
 
