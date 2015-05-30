@@ -175,8 +175,6 @@ host_settings:
   not-bacula-client:
     # decommissioning
     - rautavaara.debian.org
-    # dead/not running
-    - berlioz.debian.org
     # mirrors, secondaries, syncproxies
     - beach.debian.org
     - bizet.debian.org
