@@ -33,6 +33,11 @@ environments = development,testing,production,staging
 report = true
 configtimeout = 240
 
+[production]
+manifestdir=/srv/puppet.debian.org/stages/production/manifests
+fileserverconfig=/srv/puppet.debian.org/stages/production/fileserver.conf
+modulepath=/srv/puppet.debian.org/stages/production/modules:/srv/puppet.debian.org/stages/production/3rdparty/modules
+
 [staging]
 manifestdir=/srv/puppet.debian.org/stages/staging/manifests
 fileserverconfig=/srv/puppet.debian.org/stages/staging/fileserver.conf
