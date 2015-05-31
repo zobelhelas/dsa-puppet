@@ -283,7 +283,7 @@ class debian-org {
 	}
 	file { '/etc/ldap/ldap.conf':
 		require => Package['debian.org'],
-		source  => 'puppet:///modules/debian-org/ldap.conf',
+		content  => template('debian-org/ldap.conf.erb'),
 	}
 	file { '/etc/pam.d/common-session':
 		require => Package['debian.org'],
