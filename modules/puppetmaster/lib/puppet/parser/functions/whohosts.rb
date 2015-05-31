@@ -8,8 +8,6 @@ module Puppet::Parser::Functions
     parser = Puppet::Parser::Parser.new(environment)
     parser.watch_file(yamlfile)
 
-    $KCODE = 'utf-8'
-
     ans = {"name" => "unknown"}
     yaml = YAML.load_file(yamlfile)
 
