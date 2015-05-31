@@ -30,6 +30,7 @@ module Puppet::Parser::Functions
         hoster[name] = [] unless hoster[name]
         hoster[name] << node
       end
+      raise Puppet::ParseError, "entropy_provider: no entropy providers" unless provider.size > 0
 
       # figure out which entropy provider to use
       consumer_hoster = nodeinfo['hoster']
