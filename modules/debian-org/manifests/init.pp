@@ -63,6 +63,8 @@ class debian-org {
 
 	if ($::lsbmajdistrelease >= 8) {
 		$rubyfs_package = 'ruby-filesystem'
+	} elsif $::lsbmajdistrelease == 7  {
+		$rubyfs_package = 'libfilesystem-ruby1.9'
 	} else {
 		$rubyfs_package = 'libfilesystem-ruby1.8'
 	}
@@ -78,16 +80,6 @@ class debian-org {
 			'pciutils',
 		]:
 		ensure => installed,
-	}
-
-	if $::lsbmajdistrelease == 7 {
-		package { 'libfilesystem-ruby1.9.1':
-			ensure => installed,
-		}
-	} elsif $::lsbmajdistrelease >= 8 {
-		package { 'ruby-filesystem':
-			ensure => installed,
-		}
 	}
 
 	munin::check { [
