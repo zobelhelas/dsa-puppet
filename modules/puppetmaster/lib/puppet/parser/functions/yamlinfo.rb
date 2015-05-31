@@ -42,7 +42,6 @@ module Puppet::Parser::Functions
     }
 
     require 'yaml'
-    $KCODE = 'utf-8'
 
     yaml = YAML.load_file(yamlfile)
     ret = {}
