@@ -11,7 +11,7 @@ localkeys
 %>
 <%=
   ganetikeys = []
-  if scope.lookupvar('::cluster').to_s != 'undefined'
+  if scope.lookupvar('::cluster')
     scope.lookupvar('::cluster_nodes').split.sort.each do |node|
       if allnodeinfo.has_key?(node)
         ganetikeys << "# for ganeti cluster #{scope.lookupvar('::cluster').to_s}: #{allnodeinfo[node]['hostname'][0]}"
