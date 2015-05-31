@@ -16,7 +16,7 @@ environment=staging
 
 <%- if scope.lookupvar('::hostname') == 'handel' -%>
 [master]
-environments = development,testing,production,staging
+environments = production,staging
 reports = store, http
 reporturl = http://puppet-dashboard.debian.org:3000/reports/upload
 config_version = cat /etc/puppet/.config-version
