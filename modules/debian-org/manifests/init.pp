@@ -61,13 +61,18 @@ class debian-org {
 		source  => 'puppet:///modules/debian-org/basic-ssh_known_hosts'
 	}
 
+	if ($::lsbmajdistrelease >= 8) {
+		$rubyfs_package = 'ruby-filesystem'
+	} else {
+		$rubyfs_package = 'libfilesystem-ruby1.8'
+	}
 	package { [
 			'apt-utils',
 			'bash-completion',
 			'dnsutils',
 			'less',
 			'lsb-release',
-			'libfilesystem-ruby1.8',
+			$rubyfs_package,
 			'mtr-tiny',
 			'nload',
 			'pciutils',
