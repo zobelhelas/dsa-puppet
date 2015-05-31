@@ -20,7 +20,7 @@
 URI             ldap://db.debian.org
 BASE            dc=debian,dc=org
 
-<% if @lsbmajdistrelease >= 8 -%>
+<% if @lsbmajdistrelease.to_i >= 8 -%>
 TLS_CACERT      /etc/ssl/ca-debian/ca-certificates.crt
 <% else -%>
 TLS_CACERT      /etc/ssl/servicecerts/db.debian.org.crt
