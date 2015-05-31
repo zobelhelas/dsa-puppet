@@ -153,7 +153,7 @@ sanger:
   # broken with dnssec
   # nameservers: [193.62.203.96, 193.62.203.97]
   #resolvoptions: [single-request]
-  mirror-debian: http://mirror.bytemark.co.uk/debian/
+  mirror-debian: http://ukdebian.mirror.anlx.net/debian/
   nameservers: [193.62.202.28, 193.62.202.29]
   searchpaths: [debprivate-sanger.debian.org]
 rapidswitch:
