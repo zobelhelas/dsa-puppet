@@ -58,6 +58,10 @@ class roles::pubsub::entities {
 		password => $pet_password,
 	}
 
+	$do_hosts = keys($site::localinfo)
+
+	pubsub::autouser { $do_hosts: }
+
 	rabbitmq_vhost { 'packages':
 		ensure   => present,
 	}
@@ -111,8 +115,8 @@ class roles::pubsub::entities {
 	}
 
 	rabbitmq_user_permissions { 'wbadm@packages':
-		read_permission      => 'unchecked',
-		write_permission     => 'wbadm',
+		read_permission  => 'unchecked',
+		write_permission => 'wbadm',
 	}
 
 	rabbitmq_user_permissions { 'buildd@buildd':
