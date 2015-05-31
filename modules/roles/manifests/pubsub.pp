@@ -8,30 +8,25 @@ class roles::pubsub {
 	$cc_secondary    = rapoport
 
 	class { 'rabbitmq':
-		cluster           => true,
-		clustermembers    => [
+		config_cluster    => true,
+		cluster_nodes     => [
 			"rabbit@${cc_master}",
 			"rabbit@${cc_secondary}",
 		],
-		clustercookie     => '8r17so6o1s124ns49sr08n0o24342160',
+		cluster_node_type => 'disc',
+		erlang_cookie     => '8r17so6o1s124ns49sr08n0o24342160',
 		delete_guest_user => true,
-		master            => $cc_master,
+		tcp_keepalive     => true,
+		ssl_only          => true,
+		ssl               => true,
+		ssl_cacert        => '/etc/ssl/debian/certs/ca.crt',
+		ssl_cert          => '/etc/ssl/debian/certs/thishost-server.crt',
+		ssl_key           => '/etc/ssl/debian/keys/thishost-server.key',
+		manage_repo       => false,
 	}
 
 	user { 'rabbitmq':
 		groups => 'ssl-cert'
-	}
-
-	concat::fragment { 'rabbit_ssl':
-		target => '/etc/rabbitmq/rabbitmq.config',
-		order  => 35,
-		source => 'puppet:///modules/roles/pubsub/rabbitmq.config'
-	}
-
-	concat::fragment { 'rabbit_mgmt_ssl':
-		target => '/etc/rabbitmq/rabbitmq.config',
-		order  => 55,
-		source => 'puppet:///modules/roles/pubsub/rabbitmq-mgmt.config'
 	}
 
 	@ferm::rule { 'rabbitmq':
