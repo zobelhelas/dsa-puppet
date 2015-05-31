@@ -230,7 +230,7 @@ class roles {
 
 	if has_role('gobby_debian_org') {
 		ssl::service { 'gobby.debian.org':
-			tlsaport => 0,
+			notify => Service['apache2'],
 		}
 	}
 
