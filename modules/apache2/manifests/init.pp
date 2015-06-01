@@ -52,7 +52,7 @@ class apache2 {
 	} elsif has_role('qamaster') {
 		$memlimit = 300 * 1024 * 1024
 	} elsif has_role('snapshot_master') {
-		$memlimit = 300 * 1024 * 1024
+		$memlimit = 1536 * 1024 * 1024
 	} else {
 		$memlimit = 192 * 1024 * 1024
 	}
