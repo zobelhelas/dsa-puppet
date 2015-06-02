@@ -1,8 +1,0 @@
-This directory *only* contains the certificate(s) for the current service
-certificates for debian.org services.
-
-The purpose of this directory is to allow verification of service certificates
-for debian.org services by software that is able to properly verify service
-certificates that are available in the default certificate store.
-
-Please *use it* in preference to other certificate stores when possible.

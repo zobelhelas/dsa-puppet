@@ -1,0 +1,44 @@
+/------------------------------------------------------------------------------
+| /etc/ssl/certs
+
+The purpose of this directory is to allow verification of service certificates
+for debian.org services by software that is able to properly verify service
+certificates that are available in the default certificate store.
+
+Please *use it* in preference to other certificate stores when possible.
+
+/------------------------------------------------------------------------------
+| /etc/ssl/ca-debian
+
+This directory contains the certificate(s) for the certificate authorities
+that have signed current service certificates for debian.org services.
+
+The purpose of this directory is to allow verification of service certificates
+for debian.org services by software that is unable to properly verify service
+certificates that are available in the default certificate store.
+
+Please *do not* use it for verification of debian.org service certificates
+unless the software you are using is buggy and there is no other alternative.
+Please *file bugs* on any software that you find that needs to use this
+directory and usertag those bugs using this bts command:
+
+bts user debian-admin@lists.debian.org , usertags 123456 + needed-by-DSA-Team
+
+/------------------------------------------------------------------------------
+| /etc/ssl/ca-global
+
+This directory contains all of the certificates for certificate authorities
+trusted by the ca-certificates Debian package, which is mostly a copy
+of the certificates trusted by the Mozilla certificate store.
+
+The purpose of this directory is to allow verification of certificates from
+a wide variety of external services on the global Internet that could
+change their certificate at any time and could change their certificate
+signing authority at any time.
+
+Please *do not* use it for verification of debian.org service certificates.
+
+Please *do not* use it for verification of certificates when pinning to a
+specific service certificate or certificate authority is a viable option.
+This directory *only* contains the certificate(s) for the current service
+certificates for debian.org services.

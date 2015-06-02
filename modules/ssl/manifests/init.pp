@@ -11,6 +11,10 @@ class ssl {
 		ensure   => installed,
 	}
 
+	file { '/etc/ssl/README':
+		mode   => '0444',
+		source => 'puppet:///modules/ssl/README',
+	}
 	file { '/etc/ca-certificates.conf':
 		source => 'puppet:///modules/ssl/ca-certificates.conf',
 		notify  => Exec['refresh_normal_hashes'],
@@ -56,24 +60,21 @@ class ssl {
 		notify   => Exec['refresh_normal_hashes'],
 	}
 	file { '/etc/ssl/certs/README':
-		mode   => '0444',
-		source => 'puppet:///modules/ssl/README.certs',
+		ensure => absent,
 	}
 	file { '/etc/ssl/ca-debian':
 		ensure => directory,
 		mode   => '0755',
 	}
 	file { '/etc/ssl/ca-debian/README':
-		mode   => '0444',
-		source => 'puppet:///modules/ssl/README.ca-debian',
+		ensure => absent,
 	}
 	file { '/etc/ssl/ca-global':
 		ensure => directory,
 		mode   => '0755',
 	}
 	file { '/etc/ssl/ca-global/README':
-		mode   => '0444',
-		source => 'puppet:///modules/ssl/README.ca-global',
+		ensure => absent,
 	}
 	file { '/etc/ssl/debian':
 		ensure   => directory,
