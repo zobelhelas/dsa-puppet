@@ -7,24 +7,11 @@
 ignore = []
 case fqdn
 when /draghi.debian.org/ then                                  ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb ud python-cdb python-nameparser}
-when /(zandonai|zelenka).debian.org/ then                      ignore << %w{samhain zabbix-agent rrdcollect}
-when /zappa.debian.org/ then                                   ignore << %w{samhain}
-when /(mayer|corelli).debian.org/ then                         ignore << "linux-base"
-when /(alkman|caballero|merulo|mundy|zani).debian.org/ then    ignore << "samhain"
-when "franck.debian.org" then                                  ignore << %w{python-apt}
-when /(abel|arnold|antheil).debian.org/ then                   ignore << %w{flash-kernel linux-firmware-image}
-when /(asachi|arm-linaro-01|arm-linaro-03).debian.org/ then    ignore << "flash-kernel"
-when /harris.debian.org/ then                                  ignore << %w{flash-kernel kernel linux-firmware-image}
-when /(hartmann|hasse|henze|hoiby).debian.org/ then            ignore << %w{flash-kernel kernel linux-firmware-image}
-when /(parry|partch).debian.org/ then                          ignore << "yaboot"
 when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
 when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}
 when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabbitmq-server}
-when "zemlinsky.debian.org" then                               ignore << %w{initramfs-tools}
 when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-api64 gskssl64 gskcrypt64 tivsm-api gskssl gskcrypt}
-when "vogler.debian.org" then                                  ignore << %w{repro libresiprocate-1.9 resiprocate-turn-server}
 when "storace.debian.org" then                                 ignore << %w{postgresql-client-9.1}
-when /(mailly|muffat).debian.org/ then                         ignore << %w{python-dsa-mq}
 end
 
 case fqdn
