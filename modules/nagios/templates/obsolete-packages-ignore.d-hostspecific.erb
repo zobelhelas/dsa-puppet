@@ -25,7 +25,6 @@ when "sibelius.debian.org" then                                ignore << %w{tivs
 when "vogler.debian.org" then                                  ignore << %w{repro libresiprocate-1.9 resiprocate-turn-server}
 when "storace.debian.org" then                                 ignore << %w{postgresql-client-9.1}
 when /(mailly|muffat).debian.org/ then                         ignore << %w{python-dsa-mq}
-when /(csail|grnet)-node(01|02).debian.org/ then               ignore << %w{openvswitch-switch openvswitch-common}
 end
 
 case fqdn
