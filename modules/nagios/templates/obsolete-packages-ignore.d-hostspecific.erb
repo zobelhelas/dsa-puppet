@@ -14,13 +14,5 @@ when "sibelius.debian.org" then                                ignore << %w{tivs
 when "storace.debian.org" then                                 ignore << %w{postgresql-client-9.1}
 end
 
-case fqdn
-when /geo[123].debian.org/ then                    ignore << %w{geoip-database}
-end
-
-case fqdn
-when /((csail|grnet)-node(01|02)|powell|bm-bl1).debian.org/ then       ignore << %w{ganeti-os-noop}
-end
-
 ignore.flatten.join("\n")
 %>
