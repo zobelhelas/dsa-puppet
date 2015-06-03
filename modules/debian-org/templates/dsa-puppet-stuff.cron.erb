@@ -17,4 +17,5 @@ SHELL=/bin/bash
 
 @hourly root sleep $(( $RANDOM \% 300 )); if [ -x /usr/lib/nagios/plugins/dsa-check-stunnel-sanity ] && [ -e /etc/stunnel/puppet-ekeyd.conf ] && ! /usr/lib/nagios/plugins/dsa-check-stunnel-sanity > /dev/null && grep -q '^client = yes' /etc/stunnel/puppet-ekeyd.conf; then /usr/sbin/service stunnel4 restart > /dev/null; fi
 
-@daily munin-async [ -d /var/lib/munin-async ] && find /var/lib/munin-async -type f -name '*.gz' -mtime +90 -delete
+@daily munin-async [ -d /var/lib/munin-async ] && find /var/lib/munin-async -type f -mtime +90 -name '*.gz' -delete
+@daily munin-async [ -d /var/lib/munin-async ] && find /var/lib/munin-async -type f -mtime +90 -size 0 -delete
