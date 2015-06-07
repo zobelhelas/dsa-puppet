@@ -257,8 +257,6 @@ host_settings:
     - zani.debian.org
     - zemlinsky.debian.org
     # Not worth backing up
-    - rainier.debian.org
-    - rapoport.debian.org
     - x86-bm-01.debian.org
   broken-rtc:
     - abel.debian.org
