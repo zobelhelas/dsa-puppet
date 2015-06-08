@@ -68,6 +68,8 @@ roles:
     - paradis.debian.org
   piuparts:
     - pejacevic.debian.org
+  popcon:
+    - popov.debian.org
   pubsub:
     - rainier.debian.org
     - rapoport.debian.org
