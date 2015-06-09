@@ -40,7 +40,13 @@ class buildd ($ensure=present) {
 		default => 'wheezy'
 	}
 
+	$buildd_apt_main_ensure = $::hostname ? {
+		/^(schroeder|sompek|stadler)$/ => 'absent',
+		default => 'present',
+	}
+
 	site::aptrepo { 'buildd.debian.org':
+		ensure     => $buildd_apt_main_ensure,
 		key        => 'puppet:///modules/buildd/buildd.debian.org.gpg',
 		url        => 'https://buildd.debian.org/apt/',
 		suite      => $suite,
