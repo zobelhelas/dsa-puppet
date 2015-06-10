@@ -108,6 +108,7 @@ roles:
   static_source:
     - master.debian.org
     - dillon.debian.org
+    - donizetti.debian.org
     - franck.debian.org
     - lindsay.debian.org
     - philp.debian.org
