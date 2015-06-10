@@ -18,6 +18,14 @@ class vsftpd {
 		notify  => Service['vsftpd']
 	}
 
+	# Mask the vsftpd service as we are using xinetd
+	file { '/etc/systemd/system/vsftpd.service':
+		ensure => 'link',
+		target => '/dev/null',
+		notify => Exec['systemctl daemon-reload'],
+	}
+
+
 	munin::check { 'vsftpd':
 		ensure => absent
 	}
@@ -42,5 +50,4 @@ class vsftpd {
 			Package['debian.org']
 		]
 	}
-
 }

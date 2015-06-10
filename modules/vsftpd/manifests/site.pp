@@ -48,12 +48,5 @@ define vsftpd::site (
 		require     => File[$fname]
 	}
 
-	# Mask the vsftpd service as we are using xinetd
-	file { '/etc/systemd/system/vsftpd.service':
-		ensure => 'link',
-		target => '/dev/null',
-		notify => Exec['systemctl daemon-reload'],
-	}
-
 	Service['vsftpd']->Service['xinetd']
 }
