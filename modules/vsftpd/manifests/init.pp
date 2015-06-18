@@ -27,7 +27,7 @@ class vsftpd {
 
 	# Ensure the empty dir is present, workaround for #789127
 	file { '/etc/tmpfiles.d/vsftpd.conf':
-		content => 'd /var/run/vsftpd/empty 0755 root root -'
+		content => 'd /var/run/vsftpd/empty 0755 root root -',
 		notify => Exec['systemd-tmpfiles --create --exclude-prefix=/dev'],
 	}
 
