@@ -362,6 +362,11 @@ class debian-org {
 		onlyif  => "test -x /bin/systemctl"
 	}
 
+	exec { 'systemd-tmpfiles --create --exclude-prefix=/dev':
+		refreshonly => true,
+		onlyif  => "test -x /bin/systemd-tmpfiles"
+	}
+
 	tidy { '/var/lib/puppet/clientbucket/':
 		age      => '2w',
 		recurse  => 9,
