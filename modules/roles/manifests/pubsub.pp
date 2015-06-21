@@ -73,11 +73,11 @@ class roles::pubsub {
 	}
 	@ferm::rule { 'rabbitmq_mgmt':
 		description => 'rabbitmq cluster connections',
-		rule        => '&SERVICE_RANGE(tcp, 15672, $DSA_IPS)'
+		rule        => '&SERVICE_RANGE(tcp, 15671, $DSA_IPS)'
 	}
 	@ferm::rule { 'rabbitmq_mgmt_v6':
 		domain      => '(ip6)',
 		description => 'rabbitmq cluster connections',
-		rule        => '&SERVICE_RANGE(tcp, 15672, $DSA_V6_IPS)'
+		rule        => '&SERVICE_RANGE(tcp, 15671, $DSA_V6_IPS)'
 	}
 }
