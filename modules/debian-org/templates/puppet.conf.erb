@@ -17,8 +17,7 @@ environment=production
 <%- if scope.lookupvar('::hostname') == 'handel' -%>
 [master]
 environments = production,staging
-reports = store, http
-reporturl = http://puppet-dashboard.debian.org:3000/reports/upload
+reports = store
 config_version = cat /etc/puppet/.config-version
 storeconfigs = true
 thin_storeconfigs = true
