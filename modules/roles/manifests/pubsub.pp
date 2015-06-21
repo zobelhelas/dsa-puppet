@@ -10,8 +10,8 @@ class roles::pubsub {
 	class { 'rabbitmq':
 		config_cluster    => true,
 		cluster_nodes     => [
-			"rabbit@${cc_master}",
-			"rabbit@${cc_secondary}",
+			$cc_master,
+			$cc_secondary,
 		],
 		cluster_node_type => 'disc',
 		erlang_cookie     => '8r17so6o1s124ns49sr08n0o24342160',
