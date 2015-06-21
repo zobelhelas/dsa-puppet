@@ -12,3 +12,4 @@ mod 'elasticsearch/elasticsearch', '0.9.5'
 mod 'nanliu/staging', '1.0.3'
 
 mod 'stackforge/openstacklib', '5.1.0'
+mod 'aimonb/aviator', '0.5.1'
