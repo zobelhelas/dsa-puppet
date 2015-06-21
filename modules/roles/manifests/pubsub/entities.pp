@@ -183,9 +183,6 @@ class roles::pubsub::entities {
 		},
 	}
 
-	rabbitmq_plugin { 'rabbitmq_management':
-		ensure   => present,
-	}
 	rabbitmq_plugin { 'rabbitmq_management_agent':
 		ensure   => present,
 	}
