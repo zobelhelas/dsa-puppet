@@ -24,7 +24,7 @@ class roles::pubsub {
 		ssl_key           => '/etc/ssl/debian/keys/thishost-server.key',
 		ssl_port          => 5671,
 		ssl_verify        => 'verify_none',
-		manage_repo       => false,
+		manage_repos      => false,
 	}
 
 	user { 'rabbitmq':
