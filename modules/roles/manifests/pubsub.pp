@@ -16,8 +16,6 @@ class roles::pubsub {
 		cluster_node_type => 'disc',
 		erlang_cookie     => '8r17so6o1s124ns49sr08n0o24342160',
 		delete_guest_user => true,
-		tcp_keepalive     => true,
-		ssl_only          => true,
 		ssl               => true,
 		ssl_cacert        => '/etc/ssl/debian/certs/ca.crt',
 		ssl_cert          => '/etc/ssl/debian/certs/thishost-server.crt',
