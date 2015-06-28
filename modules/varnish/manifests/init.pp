@@ -30,5 +30,11 @@ class varnish {
 		notify =>  Service['varnish'],
 		mode    => '0444',
         }
+
+        file { '/etc/logrotate.d/varnish':
+		source => 'puppet:///modules/varnish/varnish.logrotate',
+		require =>  Package['varnish'],
+		mode    => '0444',
+        }
 }
 
