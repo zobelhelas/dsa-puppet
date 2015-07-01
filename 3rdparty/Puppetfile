@@ -12,19 +12,3 @@ mod 'elasticsearch/elasticsearch', '0.9.5'
 mod 'nanliu/staging', '1.0.3'
 
 # OpenStack
-mod 'keystone', 
-  :git => 'https://github.com/openstack/puppet-keystone', 
-  :tag => '5.1.0'
-mod 'puppetlabs/apache', '1.5.0'
-mod 'openstacklib', 
-  :git => 'https://github.com/openstack/puppet-openstacklib',
-  :tag => '5.1.0'
-mod 'cinder',
-  :git => 'https://github.com/openstack/puppet-cinder',
-  :tag => '5.1.0'
-mod 'glance',
-  :git => 'https://github.com/openstack/puppet-glance',
-  :tag => '5.1.0'
-mod 'neutron',
-  :git => 'https://github.com/openstack/puppet-neutron',
-  :tag => '5.1.0'
