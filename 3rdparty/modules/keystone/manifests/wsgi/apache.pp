@@ -1,6 +1,7 @@
 #
 # Class to serve keystone with apache mod_wsgi in place of keystone service
 #
+#
 # Serving keystone from apache is the recommended way to go for production
 # systems as the current keystone implementation is not multi-processor aware,
 # thus limiting the performance for concurrent accesses.
