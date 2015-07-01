@@ -14,11 +14,12 @@ class roles::keystone {
 		catalog_type        => 'sql',
 		admin_token         => $admin_token,
 		enabled             => false,
+		rabbit_host         => undef,
 		rabbit_hosts        => ['rapoport.debian.org','rainier.debian.org'],
 		rabbit_password     => $rabbit_pass,
 		rabbit_userid       => 'openstack',
 		rabbit_virtual_host => '/keystone',
-		memcache_servers    => 'localhost',
+		memcache_servers    => ['localhost'],
 	}
 	class { 'keystone::roles::admin':
 		email    => 'test@puppetlabs.com',
