@@ -90,7 +90,7 @@ node default {
 	}
 
 	if $::apache2 {
-		if !$::hostname in [oyens] {
+		if $::hostname in ![oyens] {
 			include apache2
 		}
 	}
