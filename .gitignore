@@ -9,6 +9,7 @@ modules/hiera-puppet
 modules/puppetmaster/manifests/db.pp
 modules/exim/files/email-virtualdomains/
 modules/roles/manifests/pubsub/params.pp
+modules/roles/manifests/openstack/params.pp
 *.swp
 *~
 /secret
