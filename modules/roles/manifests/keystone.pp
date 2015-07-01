@@ -3,8 +3,8 @@ class roles::keystone {
 	include roles::openstack::params
 
 	$keystone_dbpass = $roles::openstack::params::keystone_dbpass
-	$admin_token     = roles::openstack::params::admin_token
-	$admin_pass      = roles::openstack::params::admin_pass
+	$admin_token     = $roles::openstack::params::admin_token
+	$admin_pass      = $roles::openstack::params::admin_pass
 
 	class { '::keystone':
 		verbose        => true,
