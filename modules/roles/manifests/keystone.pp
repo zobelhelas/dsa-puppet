@@ -5,14 +5,19 @@ class roles::keystone {
 	$keystone_dbpass = $roles::openstack::params::keystone_dbpass
 	$admin_token     = $roles::openstack::params::admin_token
 	$admin_pass      = $roles::openstack::params::admin_pass
+	$rabbit_pass      = $roles::openstack::params::rabbit_pass
 
 	class { '::keystone':
-		verbose        => true,
-		debug          => true,
-		sql_connection => 'postgresql://keystone:$keystone_postgres_password@bmdb1.debian.org/keystone',
-		catalog_type   => 'sql',
-		admin_token    => $admin_token,
-		enabled        => false,
+		verbose             => true,
+		debug               => true,
+		sql_connection      => "postgresql://keystone:${keystone_dbpass}@bmdb1.debian.org/keystone",
+		catalog_type        => 'sql',
+		admin_token         => $admin_token,
+		enabled             => false,
+		rabbit_hosts        => ['rapoport.debian.org','rainier.debian.org'],
+		rabbit_password     => $rabbit_pass,
+		rabbit_userid       => 'openstack',
+		rabbit_virtual_host => '/keystone',
 	}
 	class { 'keystone::roles::admin':
 		email    => 'test@puppetlabs.com',
