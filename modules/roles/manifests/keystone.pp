@@ -1,5 +1,7 @@
 class roles::keystone {
 
+	Exec { logoutput => 'on_failure' }
+
 	include roles::openstack::params
 
 	$keystone_dbpass = $roles::openstack::params::keystone_dbpass
@@ -22,18 +24,20 @@ class roles::keystone {
 		memcache_servers    => ['localhost:11211'],
 		cache_backend       => 'keystone.cache.memcache_pool',
 		admin_endpoint      => 'https://openstack.bm.debian.org:35357/',
+		validate_cacert     => '/etc/ssl/debian/certs/ca.crt',
+		validate_service    => true,
 	}
-	class { 'keystone::roles::admin':
+	class { '::keystone::roles::admin':
 		email    => 'test@puppetlabs.com',
 		password => $admin_pass,
 	}
-	class { 'keystone::endpoint':
+	class { '::keystone::endpoint':
 		public_url => 'https://openstack.bm.debian.org:5000/',
 		admin_url  => 'https://openstack.bm.debian.org:35357/',
 	}
 
 	include apache
-	class { 'keystone::wsgi::apache':
+	class { '::keystone::wsgi::apache':
 		ssl      => true,
 		ssl_cert => '/etc/ssl/debian/certs/openstack.bm.debian.org.crt-chained',
 		ssl_key  => '/etc/ssl/private/openstack.bm.debian.org.key',
