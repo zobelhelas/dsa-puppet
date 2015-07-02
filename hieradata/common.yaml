@@ -44,6 +44,8 @@ roles:
     - kaufmann.debian.org
   keystone:
     - oyens.debian.org
+  memcached:
+    - oyens.debian.org
   lists:
     - bendel.debian.org
   list_search:
