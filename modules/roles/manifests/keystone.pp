@@ -21,6 +21,7 @@ class roles::keystone {
 		rabbit_virtual_host => '/keystone',
 		memcache_servers    => ['localhost:11211'],
 		cache_backend       => 'keystone.cache.memcache_pool',
+		admin_endpoint      => 'https://openstack.bm.debian.org:35357/',
 	}
 	class { 'keystone::roles::admin':
 		email    => 'test@puppetlabs.com',
