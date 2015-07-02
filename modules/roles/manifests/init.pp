@@ -205,6 +205,9 @@ class roles {
 	if has_role('keystone') {
 		include roles::keystone
 	}
+	if has_role('keystone_rabbitmq') {
+		include roles::keystone::rabbitmq
+	}
 
 	if has_role('memcached') {
 		include roles::memcached

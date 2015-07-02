@@ -44,6 +44,9 @@ roles:
     - kaufmann.debian.org
   keystone:
     - oyens.debian.org
+  keystone_rabbitmq:
+    - rainier.debian.org
+    - rapoport.debian.org
   memcached:
     - oyens.debian.org
   lists:
