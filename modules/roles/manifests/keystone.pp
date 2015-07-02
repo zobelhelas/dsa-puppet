@@ -27,8 +27,8 @@ class roles::keystone {
 		password => $admin_pass,
 	}
 	class { 'keystone::endpoint':
-		public_url => "https://${::fqdn}:5000/",
-		admin_url  => "https://${::fqdn}:35357/",
+		public_url => "https://openstack.bm.debian.org:5000/",
+		admin_url  => "https://openstack.bm.debian.org:35357/",
 	}
 
 	include apache
