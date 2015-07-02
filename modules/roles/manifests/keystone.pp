@@ -5,7 +5,7 @@ class roles::keystone {
 	$keystone_dbpass = $roles::openstack::params::keystone_dbpass
 	$admin_token     = $roles::openstack::params::admin_token
 	$admin_pass      = $roles::openstack::params::admin_pass
-	$rabbit_pass      = $roles::openstack::params::rabbit_pass
+	$rabbit_pass     = $roles::openstack::params::rabbit_pass
 
 	class { '::keystone':
 		verbose             => true,
@@ -27,8 +27,8 @@ class roles::keystone {
 		password => $admin_pass,
 	}
 	class { 'keystone::endpoint':
-		public_url => "https://openstack.bm.debian.org:5000/",
-		admin_url  => "https://openstack.bm.debian.org:35357/",
+		public_url => 'https://openstack.bm.debian.org:5000/',
+		admin_url  => 'https://openstack.bm.debian.org:35357/',
 	}
 
 	include apache
