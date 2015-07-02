@@ -10,7 +10,7 @@ class roles::keystone {
 	class { '::keystone':
 		verbose             => true,
 		debug               => true,
-		sql_connection      => "postgresql://keystone:${keystone_dbpass}@bmdb1.debian.org/keystone",
+		sql_connection      => "postgresql://keystone:${keystone_dbpass}@bmdb1.debian.org:5435/keystone",
 		catalog_type        => 'sql',
 		admin_token         => $admin_token,
 		enabled             => false,
