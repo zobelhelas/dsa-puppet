@@ -1,7 +1,7 @@
 require 'puppetlabs_spec_helper/module_spec_helper'
-require 'vcr'
+require 'shared_examples'
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcr'
-  c.hook_into :faraday
+RSpec.configure do |c|
+  c.alias_it_should_behave_like_to :it_configures, 'configures'
+  c.alias_it_should_behave_like_to :it_raises, 'raises'
 end

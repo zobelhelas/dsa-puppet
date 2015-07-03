@@ -11,7 +11,6 @@ openstacklib
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 7. [Contributors - Those with commits](#contributors)
-8. [Release Notes - Notes on the most recent updates to the module](#release-notes)
 
 Overview
 --------
@@ -120,6 +119,60 @@ array or string; optional; default to undef
 Privileges given to the database user;
 string or array of strings; optional; default to 'ALL'
 
+#### Defined type: openstacklib::db::postgresql
+
+The db::postgresql resource is a library resource that can be used by nova,
+cinder, ceilometer, etc., to create a postgresql database and a user with
+configurable privileges.
+
+Typically this resource will be declared with a notify parameter to configure
+the sync command to execute when the database resource is changed.
+
+For example, in heat::db::postgresql you might declare:
+
+```
+::openstacklib::db::postgresql { $dbname:
+  password_hash => postgresql_password($user, $password),
+  dbname        => $dbname,
+  user          => $user,
+  notify        => Exec['heat-dbsync'],
+}
+```
+
+Some modules should ensure that the database is created before the service is
+set up. For example, in keystone::db::postgresql you would have:
+
+```
+::openstacklib::db::postgresql { $dbname:
+  password_hash => postgresql_password($user, $password),
+  dbname        => $dbname,
+  user          => $user,
+  notify        => Exec['keystone-manage db_sync'],
+  before        => Service['keystone'],
+}
+```
+
+** Parameters for openstacklib::db::postgresql: **
+
+#####`password_hash`
+Password hash to use for the database user for this service;
+string; required
+
+#####`dbname`
+The name of the database
+string; optional; default to the $title of the resource, i.e. 'nova'
+
+#####`user`
+The database user to create;
+string; optional; default to the $title of the resource, i.e. 'nova'
+
+#####`encoding`
+The encoding use for the database;
+string; optional; default to undef
+
+#####`privileges`
+Privileges given to the database user;
+string or array of strings; optional; default to 'ALL'
 
 #### Defined type: openstacklib::service_validation
 
@@ -228,7 +281,23 @@ configuration and extra functionality through types and providers.
 Limitations
 -----------
 
-* Limitations will be added as they are discovered.
+The python-migrate system package for RHEL 6 and below is out of date and may
+fail to correctly migrate postgresql databases. While this module does not
+handle database migrations, it is common to set up refresh relationships
+between openstacklib::db::postgresql resource and the database sync exec
+resource. Relying on this behavior may cause errors.
+
+Beaker-Rspec
+------------
+
+This module has beaker-rspec tests
+
+To run:
+
+```shell
+bundle install
+bundle exec rspec spec/acceptance
+```
 
 Development
 -----------
@@ -255,17 +324,3 @@ Puppet Module :: OpenStack Version :: OpenStack Codename
 4.0.0         -> 2014.1.0          -> Icehouse
 5.0.0         -> 2014.2.0          -> Juno
 ```
-
-Release Notes
--------------
-
-**5.1.0**
-
-* Update .gitreview file for project rename
-* Adding augeas insertion check
-* MySQL: change default MySQL collate to utf8_general_ci
-* spec: pin rspec-puppet to 1.0.1
-
-**5.0.0**
-
-* This is the initial release of this module.
