@@ -58,7 +58,12 @@ Puppet::Type.type(:keystone_tenant).provide(
   end
 
   def self.instances
-    list = request('project', 'list', nil, nil, '--long')
+    if not resource[:os_cacert].nil?
+      resource_args = ['project', 'list', nil, nil, '--long', '--os-cacert', resource[:os_cacert]]
+    else
+      resource_args = ['project', 'list', nil, nil, '--long']
+    end
+    list = request(resource_args)
     list.collect do |project|
       new(
         :name        => project[:name],
@@ -71,7 +76,12 @@ Puppet::Type.type(:keystone_tenant).provide(
   end
 
   def instances
-    instances = request('project', 'list', nil, resource[:auth], '--long')
+    if not resource[:os_cacert].nil?
+      resource_args = ['project', 'list', nil, resource[:auth], '--long', '--os-cacert', resource[:os_cacert]]
+    else
+      resource_args = ['project', 'list', nil, resource[:auth], '--long']
+    end
+    instances = request(resource_args)
     instances.collect do |project|
       {
         :name        => project[:name],

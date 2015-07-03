@@ -30,6 +30,7 @@ class roles::keystone {
 	class { '::keystone::roles::admin':
 		email    => 'test@puppetlabs.com',
 		password => $admin_pass,
+		validate_cacert     => '/etc/ssl/debian/certs/ca.crt',
 	}
 	class { '::keystone::endpoint':
 		public_url => 'https://openstack.bm.debian.org:5000/',

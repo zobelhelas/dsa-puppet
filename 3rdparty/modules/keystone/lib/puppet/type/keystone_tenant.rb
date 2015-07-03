@@ -12,6 +12,10 @@ Puppet::Type.newtype(:keystone_tenant) do
     newvalues(/\w+/)
   end
 
+  newparam(:os_cacert) do
+    desc 'Parse os_cacert.'
+  end
+
   newproperty(:enabled) do
     desc 'Whether the tenant should be enabled. Defaults to true.'
     newvalues(/(t|T)rue/, /(f|F)alse/, true, false )

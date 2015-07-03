@@ -43,17 +43,20 @@ class keystone::roles::admin(
   $service_tenant_desc    = 'Tenant for the openstack services',
   $configure_user         = true,
   $configure_user_role    = true,
+  $validate_cacert        = undef,
 ) {
 
   keystone_tenant { $service_tenant:
     ensure      => present,
     enabled     => true,
     description => $service_tenant_desc,
+    os_cacert   => $validate_cacert,
   }
   keystone_tenant { $admin_tenant:
     ensure      => present,
     enabled     => true,
     description => $admin_tenant_desc,
+    os_cacert   => $validate_cacert,
   }
   keystone_role { 'admin':
     ensure => present,
