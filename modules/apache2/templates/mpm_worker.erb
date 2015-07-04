@@ -23,9 +23,7 @@
 #    MaxConnectionsPerChild    0
 
 <IfModule mpm_worker_module>
-<% if scope.function_has_role(['bugs_base']) or
-      scope.function_has_role(['popcon'])
-      -%>
+<% if scope.function_has_role(['bugs_base']) -%>
     StartServers                 2
     MinSpareThreads             25
     MaxSpareThreads             75
