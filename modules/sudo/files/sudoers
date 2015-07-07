@@ -102,6 +102,7 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %debwww		ALL=(debwww)	ALL
 %dedup		ALL=(dedup)	ALL
 %dgit		ALL=(dgit)	ALL
+%dgit		ALL=(dgit-unpriv)	ALL
 %emdebian	ALL=(emdebian)	ALL
 %forums		ALL=(forums)	ALL
 %httpredir	ALL=(httpredir)	ALL
