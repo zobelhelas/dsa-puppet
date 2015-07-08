@@ -217,7 +217,6 @@ host_settings:
     - arm-linaro-03.debian.org
     - arnold.debian.org
     - babin.debian.org
-    - ball.debian.org
     - brahms.debian.org
     - caballero.debian.org
     - corelli.debian.org
@@ -265,7 +264,6 @@ host_settings:
     - arm-arm-02.debian.org
     - arm-arm-03.debian.org
     - arnold.debian.org
-    - ball.debian.org
     - corelli.debian.org
     - gabrielli.debian.org
     - harris.debian.org
