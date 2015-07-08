@@ -75,6 +75,7 @@ roles:
     - pejacevic.debian.org
   popcon:
     - popov.debian.org
+    - pinel.debian.org
   pubsub:
     - rainier.debian.org
     - rapoport.debian.org
