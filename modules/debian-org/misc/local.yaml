@@ -154,6 +154,7 @@ host_settings:
     - master.debian.org
     - nono.debian.org
     - picconi.debian.org
+    - pinel.debian.org
     - popov.debian.org
     - quantz.debian.org
     - reger.debian.org
