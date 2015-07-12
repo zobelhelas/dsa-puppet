@@ -247,4 +247,8 @@ class roles {
 	if has_role('search_frontend') {
 		include search_frontend
 	}
+
+	if has_role('dgit_browse') {
+		include dgit_browse
+	}
 }

@@ -1,0 +1,25 @@
+#
+# cgit config
+# see cgitrc(5) for details
+
+css=/cgit-css/cgit.css
+logo=/cgit-css/cgit.png
+
+root-title=gitweb.debian.org
+root-desc=debian dgit's repository browser
+logo=/static/logo.jpg
+
+enable-commit-graph=1
+enable-http-clone=0
+
+source-filter=/usr/lib/cgit/filters/syntax-highlighting.py
+mimetype.gif=image/gif
+mimetype.html=text/html
+mimetype.jpg=image/jpeg
+mimetype.jpeg=image/jpeg
+mimetype.pdf=application/pdf
+mimetype.png=image/png
+mimetype.svg=image/svg+xml
+
+max-repo-count=999999
+include=/srv/dgit.debian.org/etc/projects.cgit

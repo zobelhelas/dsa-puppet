@@ -38,6 +38,8 @@ roles:
     - coccia.debian.org
   api.ftp-master:
     - coccia.debian.org
+  dgit_browse:
+    - cgi-grnet-01.debian.org
   git_master:
     - adayevskaya.debian.org
   keyring:

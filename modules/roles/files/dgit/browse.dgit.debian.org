@@ -1,0 +1,30 @@
+#Use common-dsa-vhost-https-redirect browse.dgit.debian.org
+
+<VirtualHost *:80>
+	ServerName browse.dgit.debian.org
+	ServerAdmin dgit-owner@debian.org
+
+	ErrorLog /var/log/apache2/browse.dgit.debian.org-ssl-error.log
+	CustomLog /var/log/apache2/browse.dgit.debian.org-ssl-access.log privacy
+
+	#Use common-debian-service-ssl lintian.debian.org
+	#Use common-ssl-HSTS
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+
+	Alias /cgit-css "/usr/share/cgit/"
+	Alias /static "/srv/dgit.debian.org/static"
+	ScriptAlias / "/usr/lib/cgit/cgit.cgi/"
+	<Directory "/usr/lib/cgit/">
+		AllowOverride None
+		Options ExecCGI FollowSymlinks
+	</Directory>
+
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/x-js text/javascript text/css 
+	AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/x-javascript application/javascript
+	AddOutputFilterByType DEFLATE application/json
+</VirtualHost>
+
+# vim:set syntax=apache:
