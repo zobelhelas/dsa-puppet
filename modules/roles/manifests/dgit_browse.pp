@@ -6,7 +6,7 @@ class roles::dgit_browse {
 	#	source => 'puppet:///modules/roles/wiki/rsyncd.conf',
 	#}
 
-	package { 'cgi': ensure => installed, }
+	package { 'cgit': ensure => installed, }
 
 	file { '/etc/cgitrc':
 		source => 'puppet:///modules/roles/dgit/cgitrc',
