@@ -5,6 +5,7 @@ class roles::dgit_browse {
 
 	package { 'cgit': ensure => installed, }
 	package { 'python-pygments': ensure => installed, }
+	package { 'python-chardet': ensure => installed, }
 
 	file { '/etc/cgitrc':
 		source => 'puppet:///modules/roles/dgit/cgitrc',
