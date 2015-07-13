@@ -1,4 +1,4 @@
-class roles::dgit_browse {
+class roles::dgit_git {
 	#ssl::service { 'git.dgit.debian.org':
 	#	notify => Service['apache2'],
 	#}
