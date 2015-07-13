@@ -1,7 +1,7 @@
 class roles::dgit_git {
-	#ssl::service { 'git.dgit.debian.org':
-	#	notify => Service['apache2'],
-	#}
+	ssl::service { 'git.dgit.debian.org':
+		notify => Service['apache2'],
+	}
 
 	apache2::site { '010-git.dgit.debian.org':
 		site    => 'git.dgit.debian.org',
