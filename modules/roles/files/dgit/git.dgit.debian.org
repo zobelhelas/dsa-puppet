@@ -22,7 +22,6 @@ Use common-debian-service-https-redirect * git.dgit.debian.org
 	</Directory>
 
 	SetEnv GIT_PROJECT_ROOT /srv/dgit.debian.org/unpriv/repos
-	SetEnv GIT_HTTP_EXPORT_ALL
 	AliasMatch ^/git/(.*/objects/[0-9a-f]{2}/[0-9a-f]{38})$          /srv/dgit.debian.org/unpriv/repos/$1
 	AliasMatch ^/git/(.*/objects/pack/pack-[0-9a-f]{40}.(pack|idx))$ /srv/dgit.debian.org/unpriv/repos/$1
 	ScriptAlias /git/ /usr/lib/git-core/git-http-backend/
