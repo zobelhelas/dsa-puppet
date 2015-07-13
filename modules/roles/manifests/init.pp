@@ -251,4 +251,7 @@ class roles {
 	if has_role('dgit_browse') {
 		include dgit_browse
 	}
+	if has_role('dgit_git') {
+		include dgit_git
+	}
 }

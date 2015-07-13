@@ -1,0 +1,37 @@
+#Use common-dsa-vhost-https-redirect git.dgit.debian.org
+
+<VirtualHost *:80>
+	ServerName git.dgit.debian.org
+	ServerAdmin dgit-owner@debian.org
+
+	ErrorLog /var/log/apache2/git.dgit.debian.org-ssl-error.log
+	CustomLog /var/log/apache2/git.dgit.debian.org-ssl-access.log privacy
+
+	#Use common-debian-service-ssl git.dgit.debian.org
+	#Use common-ssl-HSTS
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+
+	DocumentRoot /srv/dgit.debian.org/unpriv/repos
+	<Directory /srv/dgit.debian.org/unpriv/repos>
+		AllowOverride None
+		Options SymlinksIfOwnerMatch Indexes
+		IndexOptions FancyIndexing NameWidth=*
+	</Directory>
+
+	SetEnv GIT_PROJECT_ROOT /srv/dgit.debian.org/unpriv/repos
+	AliasMatch ^/git/(.*/objects/[0-9a-f]{2}/[0-9a-f]{38})$          /srv/dgit.debian.org/unpriv/repos/$1
+	AliasMatch ^/git/(.*/objects/pack/pack-[0-9a-f]{40}.(pack|idx))$ /srv/dgit.debian.org/unpriv/repos/$1
+	ScriptAlias /git/ /usr/lib/git-core/git-http-backend/
+
+	RewriteEngine On
+	RewriteRule ^/$ http://browse.dgit.debian.org/ [L,R=301]
+	RewriteRule ^/git/?$ http://browse.dgit.debian.org/ [L,R=301]
+
+	RewriteRule ^/git/ - [L]
+	RewriteRule ^/(.*) /git/$1 [PT,L]
+</VirtualHost>
+
+# vim:set syntax=apache:

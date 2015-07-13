@@ -40,6 +40,8 @@ roles:
     - coccia.debian.org
   dgit_browse:
     - cgi-grnet-01.debian.org
+  dgit_git:
+    - cgi-grnet-01.debian.org
   git_master:
     - adayevskaya.debian.org
   keyring:
