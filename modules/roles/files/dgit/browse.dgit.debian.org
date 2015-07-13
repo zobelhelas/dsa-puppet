@@ -1,14 +1,14 @@
-#Use common-dsa-vhost-https-redirect browse.dgit.debian.org
+Use common-dsa-vhost-https-redirect browse.dgit.debian.org
 
-<VirtualHost *:80>
+<VirtualHost *:443>
 	ServerName browse.dgit.debian.org
 	ServerAdmin dgit-owner@debian.org
 
 	ErrorLog /var/log/apache2/browse.dgit.debian.org-ssl-error.log
 	CustomLog /var/log/apache2/browse.dgit.debian.org-ssl-access.log privacy
 
-	#Use common-debian-service-ssl browse.dgit.debian.org
-	#Use common-ssl-HSTS
+	Use common-debian-service-ssl browse.dgit.debian.org
+	Use common-ssl-HSTS
 
 	<IfModule mod_userdir.c>
 		UserDir disabled

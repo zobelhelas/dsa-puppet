@@ -1,0 +1,118 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            ed:8d:5e:ee:dd:94:a8:08:26:5d:b1:14:4c:20:f6:bf
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=FR, ST=Paris, L=Paris, O=Gandi, CN=Gandi Standard SSL CA 2
+        Validity
+            Not Before: Jul 13 00:00:00 2015 GMT
+            Not After : Jul 13 23:59:59 2016 GMT
+        Subject: OU=Domain Control Validated, OU=Gandi Standard SSL, CN=git.dgit.debian.org
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (3072 bit)
+                Modulus:
+                    00:bc:d0:db:2b:ea:a2:d3:27:74:e6:6a:14:17:72:
+                    99:90:2a:15:55:27:dc:25:87:9d:9c:19:f6:59:51:
+                    80:f4:a0:2f:36:81:bc:b7:b6:3a:95:5d:bf:3f:4b:
+                    b8:cb:53:8b:7f:83:81:92:23:a1:16:69:4b:3e:d7:
+                    07:01:2f:44:fb:5f:52:74:47:f6:48:14:b5:1f:71:
+                    b5:4c:a2:69:31:1f:a3:52:ad:bd:f8:c3:62:9d:dc:
+                    2d:9a:cb:2a:30:e6:6f:b0:83:03:f0:99:32:af:8c:
+                    06:33:4c:e1:ac:a0:8d:1c:e8:70:3a:35:56:a5:be:
+                    a5:b4:e8:08:37:c6:77:1d:81:f9:18:ea:21:31:30:
+                    f3:78:c9:70:ca:9e:05:e3:4f:74:8f:b3:3c:90:9b:
+                    46:40:2d:fc:52:ec:8a:58:e1:ea:d5:37:6b:a9:24:
+                    94:74:ab:c4:6e:7c:4d:cd:49:25:a1:1f:7d:7b:5d:
+                    f4:73:98:c4:0b:30:3b:56:3e:b6:2c:9e:9a:85:3a:
+                    50:85:69:13:f4:fe:4b:6a:4a:61:ca:e5:c3:af:2e:
+                    d5:24:88:cf:2b:a3:41:19:42:d2:65:3e:b1:e5:da:
+                    88:f8:32:97:17:9f:d5:0d:91:e9:49:b3:23:cc:23:
+                    16:b7:42:d2:cc:37:77:d2:43:7f:54:ee:03:ad:da:
+                    a9:31:27:06:82:72:29:b1:f6:74:c4:94:91:2c:74:
+                    a3:b6:d6:19:67:e3:ce:07:86:35:7e:97:37:45:40:
+                    69:aa:5f:81:53:2b:11:32:39:37:64:fb:30:d0:a3:
+                    c0:ce:e3:5c:8d:af:de:79:6d:23:ec:be:f2:1a:e9:
+                    99:be:2e:f6:17:92:67:ea:90:68:69:43:42:c0:ac:
+                    a5:b0:10:21:bc:32:07:1c:b4:79:ea:b7:3d:8b:71:
+                    6a:64:81:d2:6f:95:23:b6:32:0c:b8:1e:cc:dd:5d:
+                    37:3c:fa:13:17:74:87:bc:8e:20:9b:1b:87:88:ac:
+                    8e:02:01:b3:1b:74:d8:c6:c4:bd
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Authority Key Identifier: 
+                keyid:B3:90:A7:D8:C9:AF:4E:CD:61:3C:9F:7C:AD:5D:7F:41:FD:69:30:EA
+
+            X509v3 Subject Key Identifier: 
+                85:BD:B3:23:61:CE:04:DC:A1:CD:A1:C7:11:40:51:40:F2:AB:BA:62
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Certificate Policies: 
+                Policy: 1.3.6.1.4.1.6449.1.2.2.26
+                  CPS: https://cps.usertrust.com
+                Policy: 2.23.140.1.2.1
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://crl.usertrust.com/GandiStandardSSLCA2.crl
+
+            Authority Information Access: 
+                CA Issuers - URI:http://crt.usertrust.com/GandiStandardSSLCA2.crt
+                OCSP - URI:http://ocsp.usertrust.com
+
+            X509v3 Subject Alternative Name: 
+                DNS:git.dgit.debian.org, DNS:www.git.dgit.debian.org
+    Signature Algorithm: sha256WithRSAEncryption
+         73:10:70:2b:e8:45:5e:33:1b:60:49:74:5e:2e:dd:44:79:e9:
+         43:c6:21:ef:37:39:07:8d:4e:28:98:a8:be:17:f9:45:9e:4e:
+         6f:ae:be:9d:35:b8:9f:79:95:b5:30:6a:70:17:98:76:86:fb:
+         34:fa:e7:36:52:18:bd:93:07:f7:1a:db:25:67:92:06:93:9d:
+         cd:ad:e7:d7:4d:a5:a8:00:57:57:2c:a5:47:fc:be:0f:03:36:
+         6e:34:bd:a9:c7:0f:84:2f:e1:7e:78:e2:0f:94:6d:97:5b:19:
+         04:3b:cb:25:5e:ff:c1:f4:38:ee:a8:07:e3:2a:49:6f:37:d1:
+         c8:84:9c:af:30:ef:d6:af:35:31:19:ac:ef:f1:a0:d9:bb:6e:
+         66:68:62:99:d9:4c:1c:d1:67:d2:53:8e:32:a9:06:8d:24:81:
+         0e:85:40:e7:c1:0e:44:70:40:85:42:5d:e8:f9:dc:f9:b9:81:
+         90:02:9b:76:7c:48:61:30:6b:5b:bd:8a:13:66:c2:88:fd:4c:
+         6d:c7:d5:d8:64:3a:99:f5:0b:3d:ff:39:e7:32:14:06:83:b5:
+         c9:8b:51:05:46:ad:9a:27:3b:f0:0f:15:a2:9b:e2:ce:14:04:
+         18:df:43:58:1b:53:b5:08:75:02:7c:7b:36:7c:d2:cd:9f:6f:
+         2f:ae:e9:72
+-----BEGIN CERTIFICATE-----
+MIIFiTCCBHGgAwIBAgIRAO2NXu7dlKgIJl2xFEwg9r8wDQYJKoZIhvcNAQELBQAw
+XzELMAkGA1UEBhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEO
+MAwGA1UEChMFR2FuZGkxIDAeBgNVBAMTF0dhbmRpIFN0YW5kYXJkIFNTTCBDQSAy
+MB4XDTE1MDcxMzAwMDAwMFoXDTE2MDcxMzIzNTk1OVowXjEhMB8GA1UECxMYRG9t
+YWluIENvbnRyb2wgVmFsaWRhdGVkMRswGQYDVQQLExJHYW5kaSBTdGFuZGFyZCBT
+U0wxHDAaBgNVBAMTE2dpdC5kZ2l0LmRlYmlhbi5vcmcwggGiMA0GCSqGSIb3DQEB
+AQUAA4IBjwAwggGKAoIBgQC80Nsr6qLTJ3TmahQXcpmQKhVVJ9wlh52cGfZZUYD0
+oC82gby3tjqVXb8/S7jLU4t/g4GSI6EWaUs+1wcBL0T7X1J0R/ZIFLUfcbVMomkx
+H6NSrb34w2Kd3C2ayyow5m+wgwPwmTKvjAYzTOGsoI0c6HA6NValvqW06Ag3xncd
+gfkY6iExMPN4yXDKngXjT3SPszyQm0ZALfxS7IpY4erVN2upJJR0q8RufE3NSSWh
+H317XfRzmMQLMDtWPrYsnpqFOlCFaRP0/ktqSmHK5cOvLtUkiM8ro0EZQtJlPrHl
+2oj4MpcXn9UNkelJsyPMIxa3QtLMN3fSQ39U7gOt2qkxJwaCcimx9nTElJEsdKO2
+1hln484HhjV+lzdFQGmqX4FTKxEyOTdk+zDQo8DO41yNr955bSPsvvIa6Zm+LvYX
+kmfqkGhpQ0LArKWwECG8MgcctHnqtz2LcWpkgdJvlSO2Mgy4HszdXTc8+hMXdIe8
+jiCbG4eIrI4CAbMbdNjGxL0CAwEAAaOCAb8wggG7MB8GA1UdIwQYMBaAFLOQp9jJ
+r07NYTyffK1df0H9aTDqMB0GA1UdDgQWBBSFvbMjYc4E3KHNoccRQFFA8qu6YjAO
+BgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNVHSUEFjAUBggrBgEFBQcD
+AQYIKwYBBQUHAwIwSwYDVR0gBEQwQjA2BgsrBgEEAbIxAQICGjAnMCUGCCsGAQUF
+BwIBFhlodHRwczovL2Nwcy51c2VydHJ1c3QuY29tMAgGBmeBDAECATBBBgNVHR8E
+OjA4MDagNKAyhjBodHRwOi8vY3JsLnVzZXJ0cnVzdC5jb20vR2FuZGlTdGFuZGFy
+ZFNTTENBMi5jcmwwcwYIKwYBBQUHAQEEZzBlMDwGCCsGAQUFBzAChjBodHRwOi8v
+Y3J0LnVzZXJ0cnVzdC5jb20vR2FuZGlTdGFuZGFyZFNTTENBMi5jcnQwJQYIKwYB
+BQUHMAGGGWh0dHA6Ly9vY3NwLnVzZXJ0cnVzdC5jb20wNwYDVR0RBDAwLoITZ2l0
+LmRnaXQuZGViaWFuLm9yZ4IXd3d3LmdpdC5kZ2l0LmRlYmlhbi5vcmcwDQYJKoZI
+hvcNAQELBQADggEBAHMQcCvoRV4zG2BJdF4u3UR56UPGIe83OQeNTiiYqL4X+UWe
+Tm+uvp01uJ95lbUwanAXmHaG+zT65zZSGL2TB/ca2yVnkgaTnc2t59dNpagAV1cs
+pUf8vg8DNm40vanHD4Qv4X544g+UbZdbGQQ7yyVe/8H0OO6oB+MqSW830ciEnK8w
+79avNTEZrO/xoNm7bmZoYpnZTBzRZ9JTjjKpBo0kgQ6FQOfBDkRwQIVCXej53Pm5
+gZACm3Z8SGEwa1u9ihNmwoj9TG3H1dhkOpn1Cz3/OecyFAaDtcmLUQVGrZonO/AP
+FaKb4s4UBBjfQ1gbU7UIdQJ8ezZ80s2fby+u6XI=
+-----END CERTIFICATE-----
