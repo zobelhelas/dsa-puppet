@@ -1,9 +1,6 @@
 class roles::dgit_browse {
-	#ssl::service { 'wiki.debian.org':
+	#ssl::service { 'browse.dgit.debian.org':
 	#	notify => Service['apache2'],
-	#}
-	#rsync::site { 'wiki':
-	#	source => 'puppet:///modules/roles/wiki/rsyncd.conf',
 	#}
 
 	package { 'cgit': ensure => installed, }
