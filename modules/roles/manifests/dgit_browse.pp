@@ -11,6 +11,10 @@ class roles::dgit_browse {
 	file { '/etc/cgitrc':
 		source => 'puppet:///modules/roles/dgit/cgitrc',
 	}
+	file { '/etc/apache2/conf-enabled/cgit.conf':
+		ensure => absent,
+		notify => Service['apache2'],
+	}
 
 	apache2::site { '010-browse.dgit.debian.org':
 		site    => 'browse.dgit.debian.org',
