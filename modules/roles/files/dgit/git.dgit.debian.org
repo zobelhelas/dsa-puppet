@@ -1,4 +1,4 @@
-Use common-dsa-vhost-https-redirect git.dgit.debian.org
+Use common-debian-service-https-redirect git.dgit.debian.org
 
 <VirtualHost *:443>
 	ServerName git.dgit.debian.org
