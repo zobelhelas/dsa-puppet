@@ -158,6 +158,7 @@ httpredir	ALL=(httpredir-app)	NOPASSWD: ALL
 Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
+%appstream	mekeel=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component appstream.debian.org
 %backports	franck,coccia=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
 d-i		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component d-i.debian.org
 lucas		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debaday.debian.net
