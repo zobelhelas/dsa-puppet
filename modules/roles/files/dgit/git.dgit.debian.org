@@ -31,8 +31,8 @@ Use common-debian-service-https-redirect * git.dgit.debian.org
 	</Directory>
 
 	RewriteEngine On
-	RewriteRule ^/$ http://browse.dgit.debian.org/ [L,R=301]
-	RewriteRule ^/git/?$ http://browse.dgit.debian.org/ [L,R=301]
+	RewriteRule ^/$ https://browse.dgit.debian.org/ [L,R=301]
+	RewriteRule ^/git/?$ https://browse.dgit.debian.org/ [L,R=301]
 
 	RewriteRule ^/git/ - [L]
 	RewriteRule ^/(.*) /git/$1 [PT,L]
