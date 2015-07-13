@@ -120,6 +120,7 @@ roles:
     - donizetti.debian.org
     - franck.debian.org
     - lindsay.debian.org
+    - mekeel.debian.org
     - philp.debian.org
     - wolkenstein.debian.org
   syncproxy:
