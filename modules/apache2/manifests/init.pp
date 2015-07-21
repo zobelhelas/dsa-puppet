@@ -47,6 +47,8 @@ class apache2 {
 
 	if has_role('udd') {
 		$memlimit = 512 * 1024 * 1024
+	} elsif has_role('dgit_git') {
+		$memlimit = 512 * 1024 * 1024
 	} elsif has_role('sso') {
 		$memlimit = 512 * 1024 * 1024
 	} elsif has_role('popcon') {
