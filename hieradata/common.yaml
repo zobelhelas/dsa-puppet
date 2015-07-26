@@ -142,12 +142,15 @@ roles:
     - ullmann.debian.org
   vote:
     - vento.debian.org
-  #weblog_destination:
-  #  - rXXXX.debian.org
-  #weblog_provider:
-  #  - busoni.debian.org
-  #  - klecker.debian.org
-  #  - senfter.debian.org
+  weblog_destination:
+    - wolkenstein.debian.org
+  weblog_provider:
+    - gluck.debian.org
+    - santoro.debian.org
+    - busoni.debian.org
+    - klecker.debian.org
+    - senfter.debian.org
+    - mirror-csail.debian.org
   wiki:
     - wilder.debian.org
   www_master:
