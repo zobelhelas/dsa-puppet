@@ -43,11 +43,8 @@ fi
 
 get_suites() {
     case "$1" in
-      ia64|s390)
+      ia64|s390|sparc)
         echo "wheezy"
-        ;;
-      sparc)
-        echo "sid wheezy"
         ;;
       arm64|ppc64el)
         echo "sid stretch jessie"
