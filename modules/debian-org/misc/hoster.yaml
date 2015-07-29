@@ -141,8 +141,7 @@ marist:
   nameservers: []
 osuosl:
   netrange:
-    - 140.211.166.0/25
-    - 140.211.15.0/24
+    - 140.211.0.0/16
   mirror-debian: http://debian.osuosl.org/debian
 sakura:
   netrange:
