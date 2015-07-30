@@ -248,6 +248,8 @@ host_settings:
     - porpora.debian.org
     - poulenc.debian.org
     - powerpc-unicamp-01.debian.org
+    - ppc64el-osuosl-01.debian.org
+    - ppc64el-unicamp-01.debian.org
     - praetorius.debian.org
     - schroeder.debian.org
     - sompek.debian.org
