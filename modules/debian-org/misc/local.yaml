@@ -78,7 +78,6 @@ nameinfo:
   nono.debian.org: Luigi Nono (January 29th, 1924 - May 8th, 1990)
   oyens.debian.org: Tera de Marez Oyens (August 5th, 1932 - August 29th, 1996)
   paradis.debian.org: Maria Theresia Paradis (May 15th, 1759 - February 1st, 1824)
-  parry.debian.org: Sir Charles Hubert Hastings Parry, 1st Baronet (February 27th, 1848 - October 7th, 1918)
   partch.debian.org: Harry Partch (June 24th, 1901 - September 3rd, 1974)
   pejacevic: Dora Pejačević (September 10th, 1885 - March 5th, 1923)
   petrova.debian.org: Mara Petrova (May 15th, 1921 - June 7th. 1997)
@@ -245,7 +244,6 @@ host_settings:
     - mipsel-manda-01.debian.org
     - mipsel-manda-02.debian.org
     - mundy.debian.org
-    - parry.debian.org
     - porpora.debian.org
     - poulenc.debian.org
     - powerpc-ousosl-01.debian.org
