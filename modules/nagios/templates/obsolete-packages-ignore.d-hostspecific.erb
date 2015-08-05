@@ -6,7 +6,7 @@
 <%=
 ignore = []
 case fqdn
-when /draghi.debian.org/ then                                  ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb ud python-cdb python-nameparser}
+when /draghi.debian.org/ then                                  ignore << %w{userdir-ldap userdir-ldap-cgi libheimdal-kadm5-perl django-ldapdb ud python-cdb python-nameparser python-django-ldapdb}
 when "handel.debian.org" then                                  ignore << %w{puppet-dashboard}
 when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}
 when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabbitmq-server}
