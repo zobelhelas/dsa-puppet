@@ -59,7 +59,7 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-filesystems ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-libs ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-stunnel-sanity ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/local/sbin/dsa-check-libs ""
-nagios		handel=(ALL)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-cert-expire /var/lib/puppet/ssl/certs/ca.pem
+nagios		handel=(puppet)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-cert-expire /var/lib/puppet/ssl/certs/ca.pem
 # with smartarray controllers
 nagios		ALL=(ALL)	NOPASSWD: /sbin/hpasmcli ""
 nagios		ALL=(ALL)	NOPASSWD: /usr/bin/arrayprobe ""
