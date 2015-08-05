@@ -40,15 +40,14 @@ class buildd ($ensure=present) {
 		default => 'wheezy'
 	}
 
-	$buildd_apt_main_ensure = $::hostname ? {
-		/^(schroeder|sompek|stadler)$/ => 'absent',
-		default => 'present',
+	$buildd_apt_url = $::debarchitecture ? {
+		/^sparc$/ => 'http://buildd.debian.org/apt/',
+		default   => 'https://buildd.debian.org/apt/',
 	}
 
 	site::aptrepo { 'buildd.debian.org':
-		ensure     => $buildd_apt_main_ensure,
 		key        => 'puppet:///modules/buildd/buildd.debian.org.gpg',
-		url        => 'https://buildd.debian.org/apt/',
+		url        => $buildd_apt_url,
 		suite      => $suite,
 		components => 'main',
 		require    => Package['apt-transport-https'],
