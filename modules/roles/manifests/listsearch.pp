@@ -5,9 +5,9 @@ class roles::listsearch {
     config => { 'cluster.name' => 'listsearch' }
   }
 
-  elasticsearch::instance { 'es-01':
-    config => { 'node.name' => 'stockhausen' },
-    init_defaults => { }, # Init defaults hash
-    datadir => [ '/srv/listsearch.debian.org/es-data-es01' ],       # Data directory
-  }
+ # elasticsearch::instance { 'es-01':
+ #   config => { 'node.name' => 'stockhausen' },
+ #   init_defaults => { }, # Init defaults hash
+ #   datadir => [ '/srv/listsearch.debian.org/es-data-es01' ],       # Data directory
+ # }
 }
