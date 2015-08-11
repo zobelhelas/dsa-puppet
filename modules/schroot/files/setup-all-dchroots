@@ -55,34 +55,48 @@ get_suites() {
       kfreebsd-*)
         echo "sid         jessie wheezy"
         ;;
+      ppc64)
+        echo "sid"
+        ;;
       *)
         echo "sid stretch jessie wheezy"
         ;;
     esac
 }
 
-archs="$DPKGARCH"
-case "$DPKGARCH" in
-    amd64)
-        archs="$archs i386"
+extra=""
+
+case `hostname` in
+    pizzetti)
+        archs="ppc64"
+        extra="$extra -m http://debian-ports.org/debian-ports"
+        extra="$extra -k /root/debian-ports-archive-2015.gpg"
         ;;
-    arm64)
-        archs="$archs armhf armel"
-        ;;
-    armhf)
-        if [ "$(uname -m)" = "aarch64" ] ; then
-            archs="$archs arm64"
-        fi
-        archs="$archs armel"
-        ;;
-    armel)
-        if [ "$(uname -m)" = "armv7l" ] && grep -w vfpv3 -q /proc/cpuinfo ; then
-            archs="$archs armhf"
-        fi
-        ;;
-    s390|s390x)
-        archs="s390 s390x"
-        ;;
+    *)
+        archs="$DPKGARCH"
+        case "$DPKGARCH" in
+            amd64)
+                archs="$archs i386"
+                ;;
+            arm64)
+                archs="$archs armhf armel"
+                ;;
+            armhf)
+                if [ "$(uname -m)" = "aarch64" ] ; then
+                    archs="$archs arm64"
+                fi
+                archs="$archs armel"
+                ;;
+            armel)
+                if [ "$(uname -m)" = "armv7l" ] && grep -w vfpv3 -q /proc/cpuinfo ; then
+                    archs="$archs armhf"
+                fi
+                ;;
+            s390|s390x)
+                archs="s390 s390x"
+                ;;
+        esac
+    ;;
 esac
 
 err=0
@@ -94,7 +108,7 @@ do_one() {
     case "$MODE" in
         buildd)
             mkdir -p /srv/buildd/unpack
-            if ! chronic setup-dchroot -f -a "$a" -D -d '/srv/buildd/unpack' -K "$s"
+            if ! chronic setup-dchroot -f -a "$a" $extra -D -d '/srv/buildd/unpack' -K "$s"
             then
                 return 1
             fi
