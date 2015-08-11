@@ -43,17 +43,17 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
       case "${SUITE_BASE:-}" in
         experimental)
           echo "deb     http://ftp.de.debian.org/debian-ports experimental main" >> "$SRCL"
-          echo "deb-src http://$mirror/debian experimental main" >> "$SRCL"
+          echo "deb-src $mirror experimental main" >> "$SRCL"
 
           echo "deb     http://ftp.de.debian.org/debian-ports sid main" >> "$SRCL"
-          echo "deb-src http://$mirror/debian sid main" >> "$SRCL"
+          echo "deb-src $mirror sid main" >> "$SRCL"
 
           echo "deb     http://ftp.de.debian.org/debian-ports unreleased main" >> "$SRCL"
           echo "deb-src http://ftp.de.debian.org/debian-ports unreleased main" >> "$SRCL"
           ;;
         sid)
           echo "deb     http://ftp.de.debian.org/debian-ports sid main" >> "$SRCL"
-          echo "deb-src http://$mirror/debian sid main" >> "$SRCL"
+          echo "deb-src $mirror sid main" >> "$SRCL"
 
           echo "deb     http://ftp.de.debian.org/debian-ports unreleased main" >> "$SRCL"
           echo "deb-src http://ftp.de.debian.org/debian-ports unreleased main" >> "$SRCL"
