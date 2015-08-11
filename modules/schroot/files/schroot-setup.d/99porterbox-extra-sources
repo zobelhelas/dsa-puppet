@@ -38,31 +38,48 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
   rm -f "$SRCL"
   mirror=${MIRROR:-http://ftp.debian.org/debian}
 
-  case "${SUITE_BASE:-}" in
-    experimental)
-      echo "deb     $mirror sid main" >> "$SRCL"
-      echo "deb-src $mirror sid main" >> "$SRCL"
-      ;;
-    sid|stretch)
-      ;;
-    *)
-      echo "deb     http://security.debian.org/ ${suite_alias}/updates main" >> "$SRCL"
-      echo "deb-src http://security.debian.org/ ${suite_alias}/updates main" >> "$SRCL"
-      ;;
-  esac
-  echo "deb     $mirror ${suite_alias} main" >> "$SRCL"
-  echo "deb-src $mirror ${suite_alias} main" >> "$SRCL"
-
-  case "${SUITE_VARIANT:-}" in
-    backports)
+  case "$SUITE_ARCH" in
+    ppc64)
       case "${SUITE_BASE:-}" in
-        squeeze)
-          echo "deb     http://backports.debian.org/debian-backports/ ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
-          echo "deb-src http://backports.debian.org/debian-backports/ ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+        sid)
+          echo "deb http://ftp.de.debian.org/debian-ports sid main" >> "$SRCL"
+          echo "deb-src http://http.debian.net/debian sid main" >> "$SRCL"
+          echo "deb http://ftp.de.debian.org/debian-ports unreleased main" >> "$SRCL"
+          echo "deb-src http://ftp.de.debian.org/debian-ports unreleased main" >> "$SRCL"
           ;;
         *)
-          echo "deb     $mirror ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
-          echo "deb-src $mirror ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+          fatal "Unexpected suite base $SUITE_BASE"
+          ;;
+      esac
+      ;;
+    *)
+      case "${SUITE_BASE:-}" in
+        experimental)
+          echo "deb     $mirror sid main" >> "$SRCL"
+          echo "deb-src $mirror sid main" >> "$SRCL"
+          ;;
+        sid|stretch)
+          ;;
+        *)
+          echo "deb     http://security.debian.org/ ${suite_alias}/updates main" >> "$SRCL"
+          echo "deb-src http://security.debian.org/ ${suite_alias}/updates main" >> "$SRCL"
+          ;;
+      esac
+      echo "deb     $mirror ${suite_alias} main" >> "$SRCL"
+      echo "deb-src $mirror ${suite_alias} main" >> "$SRCL"
+
+      case "${SUITE_VARIANT:-}" in
+        backports)
+          case "${SUITE_BASE:-}" in
+            squeeze)
+              echo "deb     http://backports.debian.org/debian-backports/ ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+              echo "deb-src http://backports.debian.org/debian-backports/ ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+              ;;
+            *)
+              echo "deb     $mirror ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+              echo "deb-src $mirror ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+              ;;
+          esac
           ;;
       esac
       ;;
