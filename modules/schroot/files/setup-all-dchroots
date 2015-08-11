@@ -69,7 +69,7 @@ extra=""
 case `hostname` in
     pizzetti)
         archs="ppc64"
-        extra="$extra -m http://debian-ports.org/debian-ports"
+        extra="$extra -m http://ftp.de.debian.org/debian-ports"
         extra="$extra -k /root/debian-ports-archive-2015.gpg"
         ;;
     *)
@@ -114,7 +114,7 @@ do_one() {
             fi
             ;;
         porterbox)
-            if ! chronic setup-dchroot -f -a "$a" "$s"
+            if ! chronic setup-dchroot -f -a "$a" $extra "$s"
             then
                 return 1
             fi
