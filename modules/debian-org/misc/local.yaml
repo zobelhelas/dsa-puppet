@@ -204,6 +204,7 @@ host_settings:
     - merulo.debian.org
     - minkus.debian.org
     - partch.debian.org
+    - pizzetti.debian.org
     - plummer.debian.org
     - smetana.debian.org
     - zelenka.debian.org
