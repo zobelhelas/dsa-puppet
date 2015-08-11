@@ -160,6 +160,7 @@ sbuildnames=""
 ubuntu=""
 groupuser="Debian,guest,d-i"
 grouproot=""
+include="apt"
 users=""
 usersroot=""
 bare=""
@@ -170,7 +171,7 @@ cleanup+=(":")
 trap do_cleanup EXIT
 buildd=""
 
-while getopts "a:b:Bcd:Dfg:hKk:m:o:O:p:r:sS:u" OPTION
+while getopts "a:b:Bcd:Dfg:hI:Kk:m:o:O:p:r:sS:u" OPTION
 do
     case $OPTION in
         a)
@@ -208,6 +209,9 @@ do
         h)
             usage
             exit 0
+            ;;
+        I)
+            include="$include,$OPTARG"
             ;;
         K)
             keep="4"
@@ -310,7 +314,7 @@ fi
 set -x
 debootstrap \
     --keyring "$keyring" \
-    --include="apt" \
+    --include="$include" \
     --variant=buildd \
     --arch="$arch" \
     "$suite_alias" "$rootdir" "$mirror" "$script"
