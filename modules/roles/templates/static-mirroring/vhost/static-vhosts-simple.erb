@@ -6,7 +6,6 @@ Use common-static-vhost incoming.debian.org
 Use common-static-vhost news.debian.net
 Use common-static-vhost debaday.debian.net
 Use common-static-vhost debdeltas.debian.net
-Use common-static-vhost-with-extra metadata.ftp-master.debian.org "AddDefaultCharset utf-8"
 Use common-static-vhost-with-extra d-i.debian.org "ServerAlias d-i-backend.debian.org"
 Use common-static-vhost-with-extra network-test.debian.org "ServerAlias network-test-backend.debian.org"
 Use common-static-vhost-with-extra blends.debian.org "ServerAlias blends-backend.debian.org"
@@ -16,6 +15,20 @@ Use common-static-vhost-ssl dsa.debian.org
 Use common-static-vhost-ssl rtc.debian.org
 Use common-static-vhost-with-extra security-team.debian.org "ServerAlias security-team-backend.debian.org"
 
+# metadata.ftp-master.debian.org
+<VirtualHost <%= vhost_listen %> >
+	ServerName metadata.ftp-master.debian.org
+	ServerAdmin debian-admin@lists.debian.org
+
+	ErrorLog /var/log/apache2/metadata.ftp-master.debian.org-error.log
+	CustomLog /var/log/apache2/metadata.ftp-master.debian.org-access.log privacy
+
+	Use common-static-base metadata.ftp-master.debian.org
+	AddDefaultCharset utf-8
+	<LocationMatch "/changelogs/(main|contrib|non-free)">
+		ForceType text/plain
+	</LocationMatch>
+</VirtualHost>
 
 # bits.debian.org
 ######################
