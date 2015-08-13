@@ -1,0 +1,43 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+##
+
+<%=
+def getbuilddkey(host)
+  key = nil
+  begin
+    facts = YAML.load(File.open("/var/lib/puppet/yaml/facts/#{host}.yaml").read)
+    return facts.values['buildd_key']
+  rescue Exception => e
+  end
+  return key
+end
+
+allnodeinfo = scope.lookupvar('site::allnodeinfo')
+buildds = []
+
+allnodeinfo.keys.sort.each do |node|
+  next unless scope.lookupvar('site::allnodeinfo')[node]['purpose']
+  next unless scope.lookupvar('site::allnodeinfo')[node]['purpose'].include?('buildd')
+  key = getbuilddkey(node)
+  buildds << { 'node' => node, 'addr' => allnodeinfo[node]['ipHostNumber'], 'key' => key}
+end
+
+lines = []
+for m in buildds do
+  lines << '# ' + m['node']
+  if m['key'].nil?
+    lines << "## no key for node"
+  else
+    lines << "command=\"/home/buildd-uploader/rsync-ssh-wrap #{m['node'].split('.')[0]}\"," +
+             'no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-user-rc,' +
+             'from="' + m['addr'].join(',') + '" ' +
+             m['key']
+  end
+end
+
+lines.join("\n")
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:
+%>

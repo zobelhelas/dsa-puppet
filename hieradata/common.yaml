@@ -101,6 +101,8 @@ roles:
     - wolkenstein.debian.org
   search_frontend:
     - cgi-grnet-01.debian.org
+  ssh.upload.d.o:
+    - coccia.debian.org
   sso:
     - diabelli.debian.org
   static_master:

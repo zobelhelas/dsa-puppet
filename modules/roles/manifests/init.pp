@@ -77,6 +77,10 @@ class roles {
 		include roles::ftp_upload
 	}
 
+	if has_role('ssh.upload.d.o') {
+		include roles::ssh_upload
+	}
+
 	if has_role('git_master') {
 		include roles::git_master
 	}
