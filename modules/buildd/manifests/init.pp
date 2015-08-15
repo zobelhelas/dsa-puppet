@@ -23,6 +23,13 @@ class buildd ($ensure=present) {
 			source  => 'puppet:///modules/buildd/dupload.conf',
 			require => Package['dupload'],
 		}
+		package { 'buildd':
+			ensure => installed,
+		}
+		file { '/etc/buildd/buildd.conf':
+			source  => 'puppet:///modules/buildd/buildd.conf',
+			require => Package['buildd'],
+		}
 		site::linux_module { 'dm_snapshot': }
 		include ferm::ftp_conntrack
 	}
