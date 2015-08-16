@@ -36,6 +36,27 @@ class roles::rtc {
 		require     => File['/etc/ssl/debian/certs/sip-ws.debian.org.crt-chain'],
 	}
 
+	@ferm::rule { 'dsa-xmpp-client-ip4':
+		domain      => 'ip',
+		description => 'XMPP connections (client to server)',
+		rule        => 'proto tcp dport (5222) ACCEPT'
+	}
+	@ferm::rule { 'dsa-xmpp-client-ip6':
+		domain      => 'ip6',
+		description => 'XMPP connections (client to server)',
+		rule        => 'proto tcp dport (5222) ACCEPT'
+	}
+	@ferm::rule { 'dsa-xmpp-server-ip4':
+		domain      => 'ip',
+		description => 'XMPP connections (server to server)',
+		rule        => 'proto tcp dport (5269) ACCEPT'
+	}
+	@ferm::rule { 'dsa-xmpp-server-ip6':
+		domain      => 'ip6',
+		description => 'XMPP connections (server to server)',
+		rule        => 'proto tcp dport (5269) ACCEPT'
+	}
+
 	@ferm::rule { 'dsa-sip-ws-ip4':
 		domain      => 'ip',
 		description => 'SIP connections (WebSocket; for WebRTC)',
