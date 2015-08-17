@@ -239,6 +239,7 @@ file=/var/log/syslog
 file=/etc/resolv.conf
 <% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
 file=/etc/dupload.conf
+file=/etc/buildd/buildd.conf
 <% end -%>
 file=/etc/resolv.conf.pcmcia.save
 file=/etc/nologin
