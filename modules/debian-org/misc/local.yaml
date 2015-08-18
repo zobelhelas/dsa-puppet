@@ -263,6 +263,8 @@ host_settings:
     - zemlinsky.debian.org
     # Not worth backing up
     - x86-bm-01.debian.org
+    - x86-csail-01.debian.org
+    - x86-csail-02.debian.org
   broken-rtc:
     - abel.debian.org
     - antheil.debian.org
