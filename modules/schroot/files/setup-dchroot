@@ -123,6 +123,7 @@ EOF
             if [ -z "$extra" ] && [ -z "$ubuntu" ]; then
                 genschrootconf "$suite" "$arch" "$target" "backports"
                 [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "backports-sloppy"
+                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "kfreebsd"
                 [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "lts"
                 [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "proposed-updates"
                 [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "security"
