@@ -234,3 +234,11 @@ Defaults:neutron !requiretty
 nova		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/nova-rootwrap *
 neutron		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf *
 cinder		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/cinder-rootwrap /etc/cinder/rootwrap.conf *
+%openstack	NOVAHOSTS=(keystone)	ALL
+%openstack	NOVAHOSTS=(memcache)	ALL
+%openstack	NOVAHOSTS=(ceilometer)	ALL
+%openstack	NOVAHOSTS=(cinder)	ALL
+%openstack	NOVAHOSTS=(glance)	ALL
+%openstack	NOVAHOSTS=(heat)	ALL
+%openstack	NOVAHOSTS=(neutron)	ALL
+%openstack	NOVAHOSTS=(nova)	ALL
