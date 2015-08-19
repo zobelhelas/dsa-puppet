@@ -24,7 +24,7 @@ Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
 # Host alias specification
 Host_Alias	VOIPHOSTS	= vogler
 Host_Alias	WEBHOSTS	= wolkenstein
-Host_Alias	SECHOSTS	= chopin
+Host_Alias	SECHOSTS	= chopin, seger
 Host_Alias	FTPHOSTS	= franck
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= beethoven, pettersson

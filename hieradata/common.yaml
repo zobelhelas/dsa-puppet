@@ -92,6 +92,7 @@ roles:
     - reger.debian.org
   security_master:
     - chopin.debian.org
+    - seger.debian.org
   security_tracker:
     - soler.debian.org
     - soriano.debian.org
