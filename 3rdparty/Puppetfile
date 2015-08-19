@@ -12,7 +12,7 @@ mod 'elasticsearch/elasticsearch', '0.9.5'
 mod 'nanliu/staging', '1.0.3'
 
 # OpenStack
-mod 'stackforge/keystone', '5.1.0'
+mod 'openstack/keystone', '6.0.0'
 mod 'puppetlabs/apache', '1.5.0'
 mod 'stackforge/openstacklib', '5.1.0'
 mod 'aimonb/aviator', '0.5.1'
