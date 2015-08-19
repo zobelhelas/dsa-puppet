@@ -12,7 +12,7 @@ class roles::keystone {
 	class { '::keystone':
 		verbose             => true,
 		debug               => true,
-		sql_connection      => "postgresql://keystone:${keystone_dbpass}@bmdb1.debian.org:5435/keystone",
+		database_connection => "postgresql://keystone:${keystone_dbpass}@bmdb1.debian.org:5435/keystone",
 		catalog_type        => 'sql',
 		admin_token         => $admin_token,
 		enabled             => false,
@@ -24,22 +24,25 @@ class roles::keystone {
 		memcache_servers    => ['localhost:11211'],
 		cache_backend       => 'keystone.cache.memcache_pool',
 		admin_endpoint      => 'https://openstack.bm.debian.org:35357/',
-		validate_cacert     => '/etc/ssl/debian/certs/ca.crt',
+		validate_cacert     => '/etc/ssl/ca-debian/spi-cacert-2008.pem',
 		validate_service    => true,
+		enable_ssl          => true,
+		validate_auth_url   => 'https://openstack.bm.debian.org:35357/',
+		signing_cert_subject => '/C=US/ST=Unset/L=Unset/O=Unset/CN=openstack.bm.debian.org',
 	}
-	class { '::keystone::roles::admin':
-		email    => 'test@puppetlabs.com',
-		password => $admin_pass,
-	}
+	#class { '::keystone::roles::admin':
+	#	email    => 'test@puppetlabs.com',
+	#	password => $admin_pass,
+	#}
 	class { '::keystone::endpoint':
 		public_url => 'https://openstack.bm.debian.org:5000/',
 		admin_url  => 'https://openstack.bm.debian.org:35357/',
 	}
 
-	include apache
+	include ::apache
 	class { '::keystone::wsgi::apache':
 		ssl      => true,
-		ssl_cert => '/etc/ssl/debian/certs/openstack.bm.debian.org.crt-chained',
+		ssl_cert => '/etc/ssl/certs/openstack.bm.debian.org-chained.pem',
 		ssl_key  => '/etc/ssl/private/openstack.bm.debian.org.key',
 
 	}
