@@ -18,7 +18,7 @@ dummy:
     target_port: 5433
     ssh_options: -oAddressFamily=inet
 
-cgi-grnet-01:
+cgi-grnet-01.debian.org:
   - source_bind_port: 7010
     target_host: wolkenstein.debian.org
     target_port: 7010
