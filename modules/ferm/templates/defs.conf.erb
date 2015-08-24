@@ -128,9 +128,6 @@
 @def $USER_christoph = ();
 #@def $USER_christoph = ($USER_christoph 212.114.250.148/31);
 #@def $USER_christoph = ($USER_christoph 128.111.48.6/32); # U of Cal at Santa Barbara, until 2013-03
-@def $USER_aurel32 = ();
-@def $USER_aurel32 = ($USER_aurel32 88.191.126.93); # hall.aurel32.net
-@def $USER_aurel32 = ($USER_aurel32 82.232.2.251); # farad.aurel32.net
 @def $USER_joerg   = ();
 @def $USER_joerg   = ($USER_joerg 213.146.108.160/29);
 @def $USER_joerg   = ($USER_joerg 46.4.205.32);
@@ -144,4 +141,4 @@
 @def $BUILDD_SSH_ACCESS = ($BUILDD_SSH_ACCESS 82.195.75.110); # new-master
 @def $FREEBSD_SSH_ACCESS = ();
 @def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $DSA_IPS $BUILDD_SSH_ACCESS);
-@def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $USER_christoph $USER_aurel32); # buildd admins
+@def $FREEBSD_SSH_ACCESS = ($FREEBSD_SSH_ACCESS $USER_christoph); # buildd admins
