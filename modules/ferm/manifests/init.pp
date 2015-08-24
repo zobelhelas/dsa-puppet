@@ -77,7 +77,7 @@ class ferm {
 		mode    => '0444',
 	}
 	file { '/etc/ferm/ferm.conf':
-		source  => 'puppet:///modules/ferm/ferm.conf',
+		content => template('ferm/ferm.conf.erb'),
 		notify  => Service['ferm'],
 	}
 	file { '/etc/ferm/conf.d/me.conf':
