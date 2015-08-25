@@ -142,6 +142,7 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %gobby		gombert=(gobby)	ALL
 %dacshelper	diabelli=(www-data)	ALL
 %debsso		diabelli=(debsso)	ALL
+%debsso-web	diabelli=(debsso-web)	ALL
 
 # the dak user gets to run stuff as dak-unpriv (for things like lintian checks)
 %ftptrainee	FTPHOSTS=(dak-unpriv)	NOPASSWD: /usr/bin/lintian
