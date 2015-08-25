@@ -1,0 +1,28 @@
+<%=
+def getcrl(host)
+  crl = nil
+  begin
+    facts = YAML.load(File.open("/var/lib/puppet/yaml/facts/#{host}.yaml").read)
+    return facts.values['debsso_skac_crl']
+  rescue Exception => e
+  end
+  return crl
+end
+
+allnodeinfo = scope.lookupvar('site::allnodeinfo')
+crl = []
+
+allnodeinfo.keys.sort.each do |node|
+  next unless scope.lookupvar('site::allnodeinfo')[node]['purpose']
+  next unless scope.lookupvar('site::allnodeinfo')[node]['purpose'].include?('sso')
+  c = getcrl(node)
+  next if c.nil?
+  crl << c
+end
+
+crl.join("\n")
+
+# vim:set et:
+# vim:set sts=4 ts=4:
+# vim:set shiftwidth=4:
+%>
