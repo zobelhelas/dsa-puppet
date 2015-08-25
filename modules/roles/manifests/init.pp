@@ -174,6 +174,10 @@ class roles {
 		include roles::sso
 	}
 
+	if has_role('sso_rp') {
+		include roles::sso_rp
+	}
+
 	if has_role('tracker') {
 		include roles::tracker
 	}
