@@ -55,6 +55,9 @@ get_suites() {
       kfreebsd-*)
         echo "sid         jessie wheezy"
         ;;
+      mips64el)
+        echo "sid"
+        ;;
       ppc64)
         echo "sid"
         ;;
@@ -91,6 +94,14 @@ case `hostname` in
             armel)
                 if [ "$(uname -m)" = "armv7l" ] && grep -w vfpv3 -q /proc/cpuinfo ; then
                     archs="$archs armhf"
+                fi
+                ;;
+            mips64el)
+                archs="$archs mipsel"
+                ;;
+            mipsel)
+                if grep -w "Loongson-3" /proc/cpuinfo ; then
+                    archs="$archs mips64el"
                 fi
                 ;;
             s390|s390x)
