@@ -38,6 +38,7 @@ node default {
 	include bacula::client
 	include autofs
 	include lvm
+	include grub
 	include multipath
 	if $::lsbdistcodename == squeeze {
 		include roles::udldap::client
