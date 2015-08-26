@@ -100,7 +100,7 @@ case `hostname` in
                 archs="$archs mipsel"
                 ;;
             mipsel)
-                if grep -w "Loongson-3" /proc/cpuinfo ; then
+                if grep -w "Loongson-3" -q /proc/cpuinfo ; then
                     archs="$archs mips64el"
                 fi
                 ;;
