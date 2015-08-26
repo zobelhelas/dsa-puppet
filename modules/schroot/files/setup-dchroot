@@ -106,7 +106,7 @@ EOF
         echo "aliases=$suite"
     fi
     case "$arch" in
-        armel|armhf|i386|powerpc|s390|sparc)
+        armel|armhf|i386|mips|mipsel|powerpc|s390|sparc)
             echo "personality=linux32"
             ;;
     esac
