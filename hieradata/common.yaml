@@ -108,6 +108,7 @@ roles:
     - diabelli.debian.org
   # single sign on relying party (host)
   sso_rp:
+    - diabelli.debian.org
     - nono.debian.org
   static_master:
     - bizet.debian.org
