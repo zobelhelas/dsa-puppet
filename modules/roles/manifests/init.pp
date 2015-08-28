@@ -262,4 +262,8 @@ class roles {
 	if has_role('dgit_git') {
 		include dgit_git
 	}
+
+	if $::hostname in [lw01, lw02, lw03, lw04] {
+		include snapshot
+	}
 }
