@@ -54,10 +54,8 @@ for p in psutil.process_iter():
 		if not rootdir.startswith('/var/lib/schroot/mount'): continue
 		#
 		used = p.get_memory_info().vms
-		if used < total_mem: continue
-		#
 		cputime = p.get_cpu_times().user
-		if cputime < cutoff_time: continue
+		if used < total_mem and cputime < cutoff_time: continue
 		#
 		p.kill()
 	except psutil.NoSuchProcess:
