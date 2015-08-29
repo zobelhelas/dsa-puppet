@@ -130,6 +130,15 @@ Use common-static-vhost-with-extra security-team.debian.org "ServerAlias securit
 	RedirectPermanent / http://www.ports.debian.org/
 </VirtualHost>
 
+# video.debian.net
+###################
+<VirtualHost <%= vhost_listen %> >
+	ServerName video.debian.net
+	ServerAdmin debian-admin@debian.org
+
+	Redirect / http://meetings-archive.debian.net/pub/debian-meetings/
+</VirtualHost>
+
 # historical sites
 ##################
 # now only redirects remain
