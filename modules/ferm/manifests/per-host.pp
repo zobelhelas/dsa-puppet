@@ -512,7 +512,7 @@ REJECT reject-with icmp-admin-prohibited
 				rule            => '&SERVICE_RANGE(udp, 69, ( 172.28.17.0/24 ))'
 			}
 		}
-		jenkins: {
+		jenko: {
 			@ferm::rule { 'dsa-tftp':
 				description     => 'Allow tftp access',
 				rule            => '&SERVICE_RANGE(udp, 69, ( 192.168.2.0/24 206.12.19.0/24 ))'
