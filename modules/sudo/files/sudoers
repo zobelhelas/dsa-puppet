@@ -111,6 +111,7 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %httpredir	ALL=(httpredir)	ALL
 %httpredir	ALL=(httpredir-app)	ALL
 %keyring	ALL=(keyring)	ALL
+%jenkins-adm	ALL=(jenkins-adm)	ALL
 %lintian	ALL=(lintian)	ALL
 %listweb	ALL=(listweb)	ALL
 %list		LISTHOSTS=(list)	ALL
