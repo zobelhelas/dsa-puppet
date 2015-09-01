@@ -106,7 +106,7 @@ roles:
     - coccia.debian.org
   sso:
     - diabelli.debian.org
-  # single sign on relying party (host)
+  # single sign on relying party (host) - also required apache2 module enabled on that host via other means
   sso_rp:
     - diabelli.debian.org
     - nono.debian.org
