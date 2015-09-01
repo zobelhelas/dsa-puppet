@@ -9,12 +9,10 @@ def getcrl(host)
   return crl
 end
 
-allnodeinfo = scope.lookupvar('site::allnodeinfo')
 crl = []
 
-allnodeinfo.keys.sort.each do |node|
-  next unless scope.lookupvar('site::allnodeinfo')[node]['purpose']
-  next unless scope.lookupvar('site::allnodeinfo')[node]['purpose'].include?('sso')
+roles = scope.lookupvar('site::roles')
+roles['sso'].each do |node|
   c = getcrl(node)
   next if c.nil?
   crl << c
