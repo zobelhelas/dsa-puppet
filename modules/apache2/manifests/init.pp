@@ -143,4 +143,11 @@ class apache2 {
 		description     => 'Allow web access',
 		rule            => '&SERVICE(tcp, (http https))'
 	}
+
+	exec { 'service apache2 reload':
+		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
+		command     => 'service apache2 reload',
+		refreshonly => true,
+		require =>  Package['apache2'],
+	}
 }
