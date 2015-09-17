@@ -66,7 +66,6 @@ nameinfo:
   lotti.debian.org: Antonio Lotti (ca. 1667 - January 5th, 1740)
   lully.debian.org: Jean-Baptiste de Lully (November 28th, 1632 - March 22nd, 1687)
   mailly.debian.org: Alphonse Jean Ernest Mailly (November 27th, 1833 - January 10th, 1918)
-  mayer.debian.org: John Mayer (October 28th, 1930 - March 9th, 2004)
   mayr.debian.org: Johann(es) Simon Mayr (June 14th, 1763 - December 2nd, 1845)
   menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st, 2007)
   mekeel.debian.org: Joyce Mekeel (July 6th, 1931 - Dec 29th, 1997)
@@ -238,7 +237,6 @@ host_settings:
     - ia64-arm-01.debian.org
     - lebrun.debian.org
     - lucatelli.debian.org
-    - mayer.debian.org
     - mayr.debian.org
     - mips-aql-01.debian.org
     - mips-aql-02.debian.org
