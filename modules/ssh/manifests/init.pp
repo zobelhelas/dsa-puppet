@@ -43,5 +43,11 @@ class ssh {
 				command => 'ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -q -P "" -t ed25519',
 			}
 		}
+
+		if $systemd {
+			package { [ 'libpam-systemd' ]:
+				ensure => installed
+			}
+		}
 	}
 }
