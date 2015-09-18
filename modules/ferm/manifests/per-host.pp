@@ -477,7 +477,7 @@ class ferm::per-host {
 	}
 	# vpn fu
 	case $::hostname {
-		draghi,eysler: {
+		draghi: {
 			@ferm::rule { 'dsa-vpn':
 				description     => 'Allow openvpn access',
 				rule            => '&SERVICE(udp, 17257)'

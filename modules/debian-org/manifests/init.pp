@@ -162,7 +162,7 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	#if ($::hostname in [corelli, eysler, lucatelli, mayr, pettersson]) or
+	#if ($::hostname in [corelli, lucatelli, mayr, pettersson]) or
 	#   ($::hoster and ($::hoster in [bytemark, man-da, brown])) {
 	#	site::aptrepo { 'proposed-updates':
 	#		url        => $mirror,
