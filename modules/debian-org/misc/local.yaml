@@ -3,7 +3,6 @@ nameinfo:
   abel.debian.org: Carl Friedrich Abel (1723 - 1787)
   adayevskaya.debian.org: Ella Georgiyevna Adayevskaya (February, 22nd 1846 [O.S. February 10th] - July 26th, 1926)
   antheil.debian.org: George Antheil (1900 - 1959)
-  arcadelt.debian.org: Jacques Arcadelt (also Jacob Arcadelt) (?1507 - October 14th, 1568)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
   asachi.debian.org: Elena Asachi (1789 - 1877)
   babin.debian.org: Stanley Babin (1932 - 2010)
@@ -210,7 +209,6 @@ host_settings:
     # buildd
     - alkman.debian.org
     - antheil.debian.org
-    - arcadelt.debian.org
     - arm-arm-01.debian.org
     - arm-arm-02.debian.org
     - arm-arm-03.debian.org
