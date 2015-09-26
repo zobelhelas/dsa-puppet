@@ -19,7 +19,6 @@ nameinfo:
   clementi.debian.org: Muzio Clementi (January 23rd, 1752 - March 10th, 1832)
   chopin.debian.org: Frédéric Chopin (March 1st, 1810 - October 17th, 1849)
   coccia.debian.org: Maria Rosa Coccia (January 4th, 1759 - November 1833)
-  corelli.debian.org: Arcangelo Corelli (February 17th, 1653 - January 8th, 1713)
   czerny.debian.org: Carl Czerny (February 21st, 1791 - July 15th, 1857)
   danzi.debian.org: Franz Ignaz Danzi (June 15th, 1763 - April 13th, 1826)
   delfin.debian.org: Carmelina Delfin (c. 1900 - after 1948)
@@ -216,7 +215,6 @@ host_settings:
     - arnold.debian.org
     - babin.debian.org
     - caballero.debian.org
-    - corelli.debian.org
     - eberlin.debian.org
     - fano.debian.org
     - fayrfax.debian.org
@@ -265,7 +263,6 @@ host_settings:
     - arm-arm-02.debian.org
     - arm-arm-03.debian.org
     - arnold.debian.org
-    - corelli.debian.org
     - harris.debian.org
     - hasse.debian.org
     - henze.debian.org
