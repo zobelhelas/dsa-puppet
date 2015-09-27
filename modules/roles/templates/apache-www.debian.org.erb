@@ -273,6 +273,9 @@
 # Canonical place for manuals under /doc/manuals/
    RewriteCond %{DOCUMENT_ROOT}/doc/manuals/$1 -d
    RewriteRule ^/doc/([^/]+)/?(.*)? /doc/manuals/$1/$2 [L,R=301]
+
+# Relocation of blends pages
+   RewriteRule ^/devel/hamradio(.*)$ /blends/hamradio$1 [R=301,L]
 </Macro>
 
 
