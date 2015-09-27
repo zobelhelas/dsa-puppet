@@ -214,7 +214,7 @@ archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
 dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
-%press		WEBHOSTS=(debwww)	/srv/www.debian.org/update-part News
+%publicity	WEBHOSTS=(debwww)	/srv/www.debian.org/update-part News
 %debvote	WEBHOSTS=(debwww)	/srv/www.debian.org/update-part vote
 # more list stuff
 %list		LISTHOSTS=(root)		/usr/sbin/postfix reload
