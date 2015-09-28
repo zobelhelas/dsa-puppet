@@ -120,7 +120,7 @@ node default {
 		include samhain
 	}
 
-	if $::hostname in [chopin,geo3,soler,wieck] {
+	if $::hostname in [chopin,geo3,wieck] {
 		include debian-org::radvd
 	}
 

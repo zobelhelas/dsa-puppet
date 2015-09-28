@@ -94,7 +94,6 @@ roles:
     - chopin.debian.org
     - seger.debian.org
   security_tracker:
-    - soler.debian.org
     - soriano.debian.org
   rtc:
     - vogler.debian.org
