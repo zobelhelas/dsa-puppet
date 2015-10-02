@@ -122,12 +122,18 @@ EOF
         *)
             if [ -z "$extra" ] && [ -z "$ubuntu" ]; then
                 genschrootconf "$suite" "$arch" "$target" "backports"
-                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "backports-sloppy"
-                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "kfreebsd"
-                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "lts"
-                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "proposed-updates"
-                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "security"
-                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "kfreebsd-security"
+                if [ -n "$buildd" ] ; then
+                    genschrootconf "$suite" "$arch" "$target" "backports-sloppy"
+                    genschrootconf "$suite" "$arch" "$target" "lts"
+                    genschrootconf "$suite" "$arch" "$target" "proposed-updates"
+                    genschrootconf "$suite" "$arch" "$target" "security"
+                    case "$arch" in
+                        kfreebsd-*)
+                            genschrootconf "$suite" "$arch" "$target" "kfreebsd"
+                            genschrootconf "$suite" "$arch" "$target" "kfreebsd-security"
+                            ;;
+                    esac
+                fi
             fi
     esac
     return 0
