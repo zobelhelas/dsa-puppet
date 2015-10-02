@@ -127,6 +127,7 @@ EOF
                 [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "lts"
                 [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "proposed-updates"
                 [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "security"
+                [ -n "$buildd" ] && genschrootconf "$suite" "$arch" "$target" "kfreebsd-security"
             fi
     esac
     return 0
