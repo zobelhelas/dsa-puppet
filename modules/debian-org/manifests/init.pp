@@ -162,18 +162,17 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	#if ($::hostname in [corelli, lucatelli, mayr, pettersson]) or
-	#   ($::hoster and ($::hoster in [bytemark, man-da, brown])) {
-	#	site::aptrepo { 'proposed-updates':
-	#		url        => $mirror,
-	#		suite      => "${::lsbdistcodename}-proposed-updates",
-	#		components => ['main','contrib','non-free']
-	#	}
-	#} else {
+	if ($::hostname in [mips-aql-05 mipsel-aql-02]) or {
+		site::aptrepo { 'proposed-updates':
+			url        => $mirror,
+			suite      => "${::lsbdistcodename}-proposed-updates",
+			components => ['main','contrib','non-free']
+		}
+	} else {
 		site::aptrepo { 'proposed-updates':
 			ensure => absent,
 		}
-	#}
+	}
 
 	site::aptrepo { 'debian.org':
 		ensure => absent,
