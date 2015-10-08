@@ -63,6 +63,7 @@ export PGSSLMODE=verify-full
 export PGSSLROOTCERT=/etc/ssl/debian/certs/ca.crt
 
 date=$(date "+%Y%m%d-%H%M%S")
+thishost=$(hostname -f)
 
 while read host port username  cluster version; do
 	[ "${host#\#}" = "$host" ] || continue
@@ -72,7 +73,7 @@ while read host port username  cluster version; do
 		continue
 	fi
 
-	label="$date-$host-$cluster-$version-backup"
+	label="$thishost-$date-$host-$cluster-$version-backup"
 	[ "$verbose" -gt 0 ] && echo "Doing $host:$port $version/$cluster: $label"
 
 	target="$cluster.BASE.$label.tar.gz"
