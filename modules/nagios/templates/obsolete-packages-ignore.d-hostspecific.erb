@@ -11,7 +11,7 @@ when "handel.debian.org" then                                  ignore << %w{pupp
 when "reger.debian.org" then                                   ignore << %w{librt-extension-commandbymail-perl}
 when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabbitmq-server}
 when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-api64 gskssl64 gskcrypt64 tivsm-api gskssl gskcrypt}
-when "storace.debian.org" then                                 ignore << %w{postgresql-client-9.1}
+when /(storace|backuphost).debian.org/ then                    ignore << %w{postgresql-client-9.1}
 when /(sompek|stadler|schroeder).debian.org/ then              ignore << %w{libsbuild-perl buildd sbuild}
 end
 
