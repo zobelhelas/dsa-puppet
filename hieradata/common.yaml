@@ -110,6 +110,7 @@ roles:
   # single sign on relying party (host) - also required apache2 module enabled on that host via other means
   sso_rp:
     - diabelli.debian.org
+    - jerea.debian.org
     - nono.debian.org
     - ticharich.debian.org
   static_master:

@@ -7,6 +7,13 @@ Use common-debian-service-https-redirect * jenkins.debian.org
 	Use common-debian-service-ssl jenkins.debian.org
 	Use common-ssl-HSTS
 
+	SSLCACertificateFile /var/lib/dsa/sso/ca.crt
+	SSLCARevocationCheck chain
+	SSLCARevocationFile /var/lib/dsa/sso/ca.crl
+	SSLVerifyClient optional
+
+	SSLOptions +StdEnvVars
+
 	<IfModule mod_userdir.c>
 		UserDir disabled
 	</IfModule>
@@ -14,6 +21,8 @@ Use common-debian-service-https-redirect * jenkins.debian.org
 	CustomLog /var/log/apache2/jenkins.debian.org-access.log privacy
 	ServerSignature On
 	<IfModule mod_proxy.c>
+		RequestHeader unset X-Forwarded-User
+		RequestHeader set X-Forwarded-User "%{SSL_CLIENT_S_DN_CN}e" env=SSL_CLIENT_S_DN_CN
 		<Proxy *>
 			Order deny,allow
 			Allow from all
