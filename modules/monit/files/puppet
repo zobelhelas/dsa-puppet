@@ -6,4 +6,4 @@
 check file cronalive
     with path /var/cache/dsa/cron.alive
     # a cycle is 5 minutes, 24 cycles is thus 2 hours
-    if timestamp > 120 minutes for 24 cycles then exec "service cron restart"
+    if timestamp > 120 minutes for 24 cycles then exec "/usr/sbin/service cron restart"
