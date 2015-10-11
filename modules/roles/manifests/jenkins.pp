@@ -1,4 +1,5 @@
 class roles::jenkins {
+	apache2::module { 'ssl': }
 	apache2::module { 'proxy_http': }
 
 	apache2::site { '010-jenkins.debian.org':
