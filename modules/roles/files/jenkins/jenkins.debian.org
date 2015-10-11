@@ -1,0 +1,31 @@
+Use common-debian-service-https-redirect * jenkins.debian.org
+
+<VirtualHost *:443>
+	ServerName jenkins.debian.org
+	ServerAdmin debian-admin@lists.debian.org
+
+	Use common-debian-service-ssl jenkins.debian.org
+	Use common-ssl-HSTS
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+	ErrorLog /var/log/apache2/jenkins.debian.org-error.log
+	CustomLog /var/log/apache2/jenkins.debian.org-access.log privacy
+	ServerSignature On
+	<IfModule mod_proxy.c>
+		<Proxy *>
+			Order deny,allow
+			Allow from all
+		</Proxy>
+		AllowEncodedSlashes NoDecode
+		ProxyPass / http://127.0.0.1:8080/ retry=15 nocanon
+		ProxyPassReverse / http://127.0.0.1:8080/
+		ProxyPassReverse / http://jenkins.debian.org/
+		ProxyRequests     Off
+		ProxyPreserveHost on
+		RequestHeader set X-Forwarded-Proto "https"
+		RequestHeader set X-Forwarded-Port "443"
+	</IfModule>
+</VirtualHost>
+

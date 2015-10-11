@@ -210,6 +210,10 @@ class roles {
 		include roles::rtc
 	}
 
+	if has_role('jenkins') {
+		include roles::jenkins
+	}
+
 	if has_role('keystone') {
 		include roles::keystone
 	}
