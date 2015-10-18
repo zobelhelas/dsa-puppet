@@ -282,12 +282,14 @@
 <VirtualHost <%= vhost_listen %> >
    ErrorLog /var/log/apache2/www.debian.org-error.log
    CustomLog /var/log/apache2/www.debian.org-access.log privacy
+   CustomLog /var/log/apache2/www.debian.org-public-access.log privacy
 
    Use common-www.d.o
 </VirtualHost>
 <VirtualHost <%= vhost_listen_443 %> >
    ErrorLog /var/log/apache2/www.debian.org-error.log
    CustomLog /var/log/apache2/www.debian.org-access.log privacyssl
+   CustomLog /var/log/apache2/www.debian.org-public-access.log privacyssl
 
    Use common-www.d.o
 
