@@ -6,7 +6,7 @@ class roles::weblog_provider {
 		}
 	} else {
 		file { '/etc/cron.d/puppet-weblog-provider':
-			content => "SHELL=/bin/bash\n\n0 */4 * * * weblogsync sleep $((RANDOM \% 1800)); rsync -a --delete-excluded --include '*-public-access.log-*gz' --exclude '**' /var/log/apache2/. weblogsync@rXXXXX:-weblogs-incoming-\n",
+			content => "SHELL=/bin/bash\n\n0 */4 * * * weblogsync sleep $((RANDOM \% 1800)); rsync -a --delete-excluded --include '*-public-access.log-*gz' --exclude '**' /var/log/apache2/. weblogsync@wolkenstein.debian.org:-weblogs-incoming-\n",
 		}
 	}
 }
