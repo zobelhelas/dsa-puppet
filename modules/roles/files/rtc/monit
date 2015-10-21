@@ -1,7 +1,0 @@
-check process repro with pidfile /var/run/repro/repro.pid
-  start program = "/usr/sbin/service repro start"
-  stop  program = "/usr/sbin/service repro stop"
-
-check process reTurnServer with pidfile /var/run/reTurnServer/reTurnServer.pid
-  start program = "/usr/sbin/service resiprocate-turn-server start"
-  stop  program = "/usr/sbin/service resiprocate-turn-server stop"

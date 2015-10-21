@@ -107,9 +107,4 @@ class roles::rtc {
 		description => 'RTP streams',
 		rule        => 'proto udp dport (49152:65535) ACCEPT'
 	}
-
-	file { '/etc/monit/monit.d/50rtc':
-		source  => 'puppet:///modules/roles/rtc/monit',
-		mode    => '0440'
-	}
 }
