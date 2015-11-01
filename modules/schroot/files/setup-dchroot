@@ -77,6 +77,7 @@ genschrootconf() {
     local arch="$1"; shift
     local target="$1"; shift
     local extra="${1:-}"; shift || true
+    local aliases=""
 
     if [ -n "$extra" ]; then
         local suite="${suite}-${extra}"
@@ -88,6 +89,15 @@ genschrootconf() {
         local name="${suite}_${arch}-dchroot"
     fi
 
+    case "$arch" in
+        kfreebsd-*)
+            aliases="$name"
+            # FreeBSD only allows relatively short paths to mountpoints
+            # therefore saving a few charakters making the chroot dir fit
+            name=${name/kfreebsd-amd64/k-a}
+            name=${name/kfreebsd-i386/k-i}
+        ;;
+    esac
 
 cat << EOF
 [${name}]
@@ -103,7 +113,14 @@ EOF
     echo "profile=$personality"
 
     if [ "$THISARCH" = "$arch" ] && [ -z "$buildd" ]; then
-        echo "aliases=$suite"
+        if [ -z "$aliases" ] ; then
+            aliases="$suite"
+        else
+            aliases="$aliases,$suite"
+        fi
+    fi
+    if [ -n "$aliases" ] ; then
+        echo "aliases=$aliases"
     fi
     case "$arch" in
         armel|armhf|i386|mips|mipsel|powerpc|s390|sparc)
