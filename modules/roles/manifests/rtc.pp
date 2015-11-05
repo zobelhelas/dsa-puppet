@@ -6,36 +6,6 @@ class roles::rtc {
 	ssl::service { 'sip-ws.debian.org':
 	}
 
-	concat { '/etc/repro/www.debian.org-chained.crt':
-	}
-	concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt':
-		target      => '/etc/repro/www.debian.org-chained.crt',
-		source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt',
-		order       => 00,
-		require     => File['/etc/ssl/debian/certs/www.debian.org.crt'],
-	}
-	concat::fragment { '/etc/ssl/debian/certs/www.debian.org.crt-chain':
-		target      => '/etc/repro/www.debian.org-chained.crt',
-		source      => 'file:///etc/ssl/debian/certs/www.debian.org.crt-chain',
-		order       => 99,
-		require     => File['/etc/ssl/debian/certs/www.debian.org.crt-chain'],
-	}
-
-	concat { '/etc/repro/sip-ws.debian.org-chained.crt':
-	}
-	concat::fragment { '/etc/ssl/debian/certs/sip-ws.debian.org.crt':
-		target      => '/etc/repro/sip-ws.debian.org-chained.crt',
-		source      => 'file:///etc/ssl/debian/certs/sip-ws.debian.org.crt',
-		order       => 00,
-		require     => File['/etc/ssl/debian/certs/sip-ws.debian.org.crt'],
-	}
-	concat::fragment { '/etc/ssl/debian/certs/sip-ws.debian.org.crt-chain':
-		target      => '/etc/repro/sip-ws.debian.org-chained.crt',
-		source      => 'file:///etc/ssl/debian/certs/sip-ws.debian.org.crt-chain',
-		order       => 99,
-		require     => File['/etc/ssl/debian/certs/sip-ws.debian.org.crt-chain'],
-	}
-
 	@ferm::rule { 'dsa-xmpp-client-ip4':
 		domain      => 'ip',
 		description => 'XMPP connections (client to server)',
