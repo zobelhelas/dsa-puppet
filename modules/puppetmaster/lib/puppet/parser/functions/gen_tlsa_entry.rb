@@ -11,6 +11,7 @@ module Puppet::Parser::Functions
     end
 
     res = []
+    res << "; cert #{certfile} for #{hostname}:#{port}."
     ports.each{ |port|
       if File.exist?(certfile)
         cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', certfile, '--port', port.to_s, hostname]
