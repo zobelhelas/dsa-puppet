@@ -6,6 +6,13 @@ class roles::rtc {
 	ssl::service { 'sip-ws.debian.org':
 	}
 
+	dnsextras::tlsa_record{ 'tlsa-xmpp':
+		zone     => 'debian.org',
+		certfile => "/etc/puppet/modules/ssl/files/servicecerts/www.debian.org.crt",
+		port     => [5061, 5222, 5269],
+		hostname => $::fqdn,
+	}
+
 	@ferm::rule { 'dsa-xmpp-client-ip4':
 		domain      => 'ip',
 		description => 'XMPP connections (client to server)',
