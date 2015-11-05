@@ -12,7 +12,7 @@ module Puppet::Parser::Functions
 
     res = []
     res << "; cert #{certfile} for #{hostname}:#{ports}."
-    ports.each { |port|
+    ports.each do |port|
       cf = certfile
       if File.exist?(cf)
         cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', cf, '--port', port.to_s, hostname]
@@ -29,7 +29,7 @@ module Puppet::Parser::Functions
           res << new_entry
         end
       end
-    }
+    end
 
     return res.join("\n")
   end
