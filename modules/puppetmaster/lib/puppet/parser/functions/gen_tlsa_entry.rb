@@ -13,16 +13,16 @@ module Puppet::Parser::Functions
     res = []
     res << "; cert #{certfile} for #{hostname}:#{ports}."
     ports.each do |port|
-      cf = certfile
-      if File.exist?(cf)
-        cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', cf, '--port', port.to_s, hostname]
+      if File.exist?(certfile)
+        cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', certfile, '--port', port.to_s, hostname]
         IO.popen(cmd, "r") {|i| res << i.read }
       else
-        res << "; certfile #{cf} did not exist to create TLSA record for #{hostname}:#{port}."
+        res << "; certfile #{certfile} did not exist to create TLSA record for #{hostname}:#{port}."
       end
 
-      if cf.gsub!(/\.crt$/, '-new.crt') and File.exist?(cf)
-        cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', cf, '--port', port.to_s, hostname]
+      cfnew = certfile.gsub(/\.crt$/, '-new.crt')
+      if cfnew != certfile and File.exist?(cfnew)
+        cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', cfnew, '--port', port.to_s, hostname]
         new_entry = ''
         IO.popen(cmd, "r") {|i| new_entry = i.read }
         if not res.include?(new_entry)
