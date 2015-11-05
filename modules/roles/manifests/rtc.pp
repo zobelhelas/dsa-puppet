@@ -10,7 +10,7 @@ class roles::rtc {
 	dnsextras::tlsa_record{ 'tlsa-xmpp':
 		zone     => 'debian.org',
 		certfile => "/etc/puppet/modules/ssl/files/servicecerts/www.debian.org.crt",
-		port     => '5061 5222 5269',
+		port     => [5061, 5222, 5269],
 		hostname => $::fqdn,
 	}
 
