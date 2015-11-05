@@ -1,6 +1,7 @@
 class roles::rtc {
 
 	ssl::service { 'www.debian.org':
+		tlsaport => 0,
 	}
 
 	ssl::service { 'sip-ws.debian.org':
