@@ -4,10 +4,10 @@ module Puppet::Parser::Functions
     hostname = args.shift()
     port = args.shift()
 
-    if port.kind_of?(Array)
-      ports = port
+    if port.kind_of?(String)
+      ports = port.split()
     else
-      ports = [ port ]
+      ports = port
     end
 
     res = []
