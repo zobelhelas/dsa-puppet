@@ -136,6 +136,7 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %security	ALL=(security)	ALL
 %snapshot	ALL=(snapshot)	ALL
 %uddadm		ALL=(udd)	ALL
+%videoteam	vittoria=(veyepar)	ALL
 %volatile	ALL=(volatile)	ALL
 %wbadm		ALL=(wbadm)	ALL
 %wbadm-ports	ALL=(wbadm-ports)	ALL
