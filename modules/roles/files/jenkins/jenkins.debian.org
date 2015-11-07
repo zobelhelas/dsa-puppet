@@ -28,6 +28,27 @@ Use common-debian-service-https-redirect * jenkins.debian.org
 			Allow from all
 		</Proxy>
 		AllowEncodedSlashes NoDecode
+
+		<Location /http-auth-jenkins/>
+			AuthName "Debian Jenkins"
+			AuthType Digest
+			AuthDigestProvider file
+			AuthUserFile /srv/jenkins.debian.org/etc/htdigest
+			Require valid-user
+
+			RewriteEngine On
+			# see the Apache documentation on why this has to be lookahead
+			RewriteCond %{LA-U:REMOTE_USER} (.+)
+			# this actually doesn't rewrite anything. what we do here is to set RU to the match above
+			# "NS" prevents flooding the error log
+			RewriteRule .* - [E=RU:%1,NS]
+			RequestHeader set X-Forwarded-User %{RU}e
+
+			ProxyPass http://127.0.0.1:8080/ retry=15 nocanon
+			ProxyPassReverse http://127.0.0.1:8080/
+			ProxyPassReverse http://jenkins.debian.org/http-auth-jenkins/
+		</Location>
+
 		ProxyPass / http://127.0.0.1:8080/ retry=15 nocanon
 		ProxyPassReverse / http://127.0.0.1:8080/
 		ProxyPassReverse / http://jenkins.debian.org/
