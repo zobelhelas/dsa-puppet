@@ -270,4 +270,10 @@ class roles {
 	if $::hostname in [lw01, lw02, lw03, lw04] {
 		include snapshot
 	}
+
+	if has_role('veyepar.debian.org') {
+		ssl::service { 'veyepar.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 }

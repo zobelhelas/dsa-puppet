@@ -163,3 +163,5 @@ roles:
     - lw03.debian.org
   gobby_debian_org:
     - gombert.debian.org
+  veyepar.debian.org:
+    - vittoria.debian.org
