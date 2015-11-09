@@ -21,5 +21,6 @@ class acpi {
 			package { 'acpi-support-base':
 				ensure => installed
 			}
+		}
 	}
 }
