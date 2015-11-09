@@ -1,16 +1,25 @@
 class acpi {
 	if ! ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
-		package { 'acpid':
-			ensure => installed
-		}
+		if ($::lsbmajdistrelease >= 8) {
+			package { 'acpid':
+				ensure => purged
+			}
 
-		service { 'acpid':
-			ensure  => running,
-			require => Package['acpid'],
-		}
+			package { 'acpi-support-base':
+				ensure => purged
+			}
+		} else {
+			package { 'acpid':
+				ensure => installed
+			}
 
-		package { 'acpi-support-base':
-			ensure => installed
-		}
+			service { 'acpid':
+				ensure  => running,
+				require => Package['acpid'],
+			}
+
+			package { 'acpi-support-base':
+				ensure => installed
+			}
 	}
 }
