@@ -71,9 +71,7 @@ node default {
 
 	if $::kernel == Linux {
 		include linux
-		if $::kvmdomain {
-			include acpi
-		}
+		include acpi
 	} elsif $::kernel == 'GNU/kFreeBSD' {
 		include kfreebsd
 	}

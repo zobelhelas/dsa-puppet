@@ -8,7 +8,7 @@ class acpi {
 			package { 'acpi-support-base':
 				ensure => purged
 			}
-		} else {
+		} elsif ($::kvmdomain) {
 			package { 'acpid':
 				ensure => installed
 			}
