@@ -87,7 +87,6 @@ while read host port username  cluster version; do
 	fi
 	mv "$tmp" "$ROOTDIR/${host%%.*}/$target"
 done << EOF
-chopin.debian.org	5432	debian-backup		dak		9.4
 bmdb1.debian.org	5435	debian-backup		main		9.4
 bmdb1.debian.org	5436	debian-backup		wannabuild	9.4
 danzi.debian.org	5433	debian-backup		main		9.4

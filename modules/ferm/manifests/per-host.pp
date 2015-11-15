@@ -431,7 +431,7 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V6 ))'
 			}
 		}
-		seger,chopin: {
+		seger: {
 			@ferm::rule { 'dsa-postgres-backup':
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5432, ( $HOST_PGBACKUPHOST_V4 ))'

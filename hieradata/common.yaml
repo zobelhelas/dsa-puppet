@@ -93,7 +93,6 @@ roles:
   rtmaster:
     - reger.debian.org
   security_master:
-    - chopin.debian.org
     - seger.debian.org
   security_tracker:
     - soriano.debian.org

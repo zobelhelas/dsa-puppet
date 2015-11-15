@@ -118,7 +118,7 @@ node default {
 		include samhain
 	}
 
-	if $::hostname in [chopin,geo3,wieck] {
+	if $::hostname in [geo3,wieck] {
 		include debian-org::radvd
 	}
 
