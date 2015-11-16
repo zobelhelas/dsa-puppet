@@ -47,7 +47,7 @@ CHROOT_FILE_UNPACK_DIR=/srv/chroot/schroot-unpack
 if [ -e /etc/schroot/dsa/default-mirror ]; then
     MIRROR=$(cat /etc/schroot/dsa/default-mirror )
 fi
-MIRROR=${MIRROR:-ftp.debian.org}
+MIRROR=${MIRROR:-http://ftp.debian.org/debian/}
 
 if [ "$(basename "$0")" = "00check" ] &&
    [ "$CHROOT_TYPE" = "file" ] &&
