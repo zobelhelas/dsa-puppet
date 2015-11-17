@@ -7,7 +7,7 @@ class postgres::backup_server {
 	}
 
 	file { '/usr/local/bin/postgres-make-base-backups':
-		source => 'puppet:///modules/postgres/backup_server/postgres-make-base-backups',
+		content => template('postgres/postgres-make-base-backups.erb'),
 		mode   => '0555',
 	}
 	if $::hostname in [backuphost] {
