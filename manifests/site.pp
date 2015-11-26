@@ -37,7 +37,7 @@ node default {
 	include unbound
 	include bacula::client
 	include autofs
-	include lvm
+	include dsa_lvm
 	include grub
 	include multipath
 	if $::lsbdistcodename == squeeze {

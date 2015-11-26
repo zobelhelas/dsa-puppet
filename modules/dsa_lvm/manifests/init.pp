@@ -1,4 +1,4 @@
-class lvm {
+class dsa_lvm {
 	case $::hostname {
 		ubc-bl8,ubc-bl4: {
 			$conffile = 'lvm-ubc-ganeti.conf'
@@ -29,7 +29,7 @@ class lvm {
 		}
 
 		file { '/etc/lvm/lvm.conf':
-			source  => "puppet:///modules/lvm/$conffile",
+			source  => "puppet:///modules/dsa_lvm/$conffile",
 		}
 	}
 }
