@@ -1,21 +1,21 @@
 class dsa_lvm {
 	case $::hostname {
-		ubc-bl8,ubc-bl4: {
+		'ubc-bl8','ubc-bl4': {
 			$conffile = 'lvm-ubc-ganeti.conf'
 		}
-		ubc-bl3,ubc-bl7,ubc-bl2,ubc-bl6: {
+		'ubc-bl3','ubc-bl7','ubc-bl2','ubc-bl6': {
 			$conffile = 'lvm-ubc-ganeti-p410.conf'
 		}
-		csail-node01,csail-node02: {
+		'csail-node01','csail-node02': {
 			$conffile = 'lvm-csail-nodeX-ganeti.conf'
 		}
-		grnet-node01,grnet-node02: {
+		'grnet-node01','grnet-node02': {
 			$conffile = 'lvm-grnet-nodeX-ganeti.conf'
 		}
-		bm-bl1,bm-bl2,bm-bl3,bm-bl4,bm-bl5,bm-bl6,bm-bl7,bm-bl8,bm-bl9,bm-bl10,bm-bl11,bm-bl12: {
+		'bm-bl1','bm-bl2','bm-bl3','bm-bl4','bm-bl5','bm-bl6','bm-bl7','bm-bl8','bm-bl9','bm-bl10','bm-bl11','bm-bl12': {
 			$conffile = 'lvm-bm-blades.conf'
 		}
-		prokofiev: {
+		'prokofiev': {
 			$conffile = 'lvm-prokofiev.conf'
 		}
 		default: {
@@ -29,7 +29,8 @@ class dsa_lvm {
 		}
 
 		file { '/etc/lvm/lvm.conf':
-			source  => "puppet:///modules/dsa_lvm/$conffile",
+			ensure => file,
+			source => "puppet:///modules/dsa_lvm/${conffile}",
 		}
 	}
 }
