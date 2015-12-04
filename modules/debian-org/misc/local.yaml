@@ -158,8 +158,10 @@ host_settings:
   apache2_security_mirror:
     - gluck.debian.org
     - mirror-anu.debian.org
-    - lobos.debian.org
     - mirror-csail.debian.org
+    - mirror-isc.debian.org
+    - mirror-umn.debian.org
+    - lobos.debian.org
     - saens.debian.org
     - santoro.debian.org
     - setoguchi.debian.org
@@ -180,7 +182,6 @@ host_settings:
     - bizet.debian.org
     - busoni.debian.org
     - gluck.debian.org
-    - mirror-anu.debian.org
     - pkgmirror-1and1.debian.org
     - schein.debian.org
     - saens.debian.org
@@ -189,6 +190,9 @@ host_settings:
     - spohr.debian.org
     - steffani.debian.org
     - wieck.debian.org
+    - mirror-anu.debian.org
+    - mirror-isc.debian.org
+    - mirror-umn.debian.org
     # porterbox
     - abel.debian.org
     - asachi.debian.org
