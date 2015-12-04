@@ -145,6 +145,7 @@ roles:
     - wolkenstein.debian.org
   weblog_provider:
     - gluck.debian.org
+    - mirror-anu.debian.org
     - santoro.debian.org
     - busoni.debian.org
     - klecker.debian.org

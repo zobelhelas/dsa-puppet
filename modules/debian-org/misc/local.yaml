@@ -157,6 +157,7 @@ host_settings:
     - wuiet.debian.org
   apache2_security_mirror:
     - gluck.debian.org
+    - mirror-anu.debian.org
     - lobos.debian.org
     - mirror-csail.debian.org
     - saens.debian.org
@@ -169,6 +170,7 @@ host_settings:
     - wieck.debian.org
   apache2_www_mirror:
     - gluck.debian.org
+    - mirror-anu.debian.org
     - santoro.debian.org
   not-bacula-client:
     # decommissioning
@@ -178,6 +180,7 @@ host_settings:
     - bizet.debian.org
     - busoni.debian.org
     - gluck.debian.org
+    - mirror-anu.debian.org
     - pkgmirror-1and1.debian.org
     - schein.debian.org
     - saens.debian.org
