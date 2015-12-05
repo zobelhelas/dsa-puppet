@@ -189,9 +189,6 @@ host_settings:
     - spohr.debian.org
     - steffani.debian.org
     - wieck.debian.org
-    - mirror-anu.debian.org
-    - mirror-isc.debian.org
-    - mirror-umn.debian.org
     # porterbox
     - abel.debian.org
     - asachi.debian.org
