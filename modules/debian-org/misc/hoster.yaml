@@ -190,7 +190,7 @@ umn:
     - 128.101.240.212
 unicamp:
   netrange:
-    - 143.106.0.0/16
+    - 177.220.10.64/26
   mirror-debian: http://debian.c3sl.ufpr.br/debian/
 utwente:
   netrange:
