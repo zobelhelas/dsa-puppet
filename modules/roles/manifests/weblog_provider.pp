@@ -5,6 +5,10 @@ class roles::weblog_provider {
 			onlyif  => '/usr/bin/getent passwd weblogsync > /dev/null && ! [ -e /home/weblogsync/.ssh/id_rsa ]'
 		}
 	} else {
+		file { '/var/log/apache2':
+			ensure => directory,
+			mode   => '0755',
+		}
 		file { '/etc/cron.d/puppet-weblog-provider':
 			content => "SHELL=/bin/bash\n\n0 1 * * * weblogsync sleep $((RANDOM \% 1800)); rsync -a --delete-excluded --include 'www.debian.org-access.log-*gz' --exclude '**' /var/log/apache2/. weblogsync@wolkenstein.debian.org:-weblogs-incoming-\n",
 		}
