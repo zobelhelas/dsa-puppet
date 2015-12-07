@@ -253,7 +253,6 @@ host_settings:
     - zandonai.debian.org
     - zani.debian.org
     - zemlinsky.debian.org
-    # Not worth backing up
     - x86-bm-01.debian.org
     - x86-csail-01.debian.org
     - x86-csail-02.debian.org
