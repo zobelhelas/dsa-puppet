@@ -1,0 +1,73 @@
+--- 
+
+components:
+  bits.debian.org:
+    master: bizet.debian.org
+    source: master.debian.org:/srv/bits-master.debian.org/htdocs
+  network-test.debian.org:
+    master: bizet.debian.org
+    source: master.debian.org:/srv/network-test.debian.org/htdocs
+  planet.debian.org:
+    master: bizet.debian.org
+    source: philp.debian.org:/srv/planet.debian.org/www
+  www.debian.org:
+    master: bizet.debian.org
+    source: wolkenstein.debian.org:/srv/www.debian.org/www
+  appstream.debian.org:
+    master: dillon.debian.org
+    source: mekeel.debian.org:/srv/appstream.debian.org/public
+  blends.debian.org:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/blends.debian.org/www
+  d-i.debian.org:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/d-i.debian.org/www
+  debaday.debian.net:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/debaday.debian.net/htdocs
+  debdeltas.debian.net:
+    master: dillon.debian.org
+    source: donizetti.debian.org:/srv/debdelta.debian.org/www/debdeltas
+  dsa.debian.org:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/dsa.debian.org/htdocs
+  lintian.debian.org:
+    master: dillon.debian.org
+    source: lindsay.debian.org:/srv/lintian.debian.org/www
+  mozilla.debian.net:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/mozilla.debian.net/htdocs
+  news.debian.net:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/news.debian.net/htdocs
+  rtc.debian.org:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/rtc.debian.org/htdocs
+  security-team.debian.org:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/security-team.debian.org/htdocs
+  wnpp-by-tags.debian.net:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/wnpp-by-tags.debian.net/www
+  www.ports.debian.org:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/ports.debian.org/htdocs
+  timeline.debian.net:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/timeline.debian.net/htdocs
+  backports.debian.org:
+    master: franck.debian.org
+    source: franck.debian.org:/srv/backports.debian.org/htdocs
+  incoming.debian.org:
+    master: franck.debian.org
+    source: franck.debian.org:/srv/ftp-master.debian.org/public/incoming.debian.org/web
+  metadata.ftp-master.debian.org:
+    master: franck.debian.org
+    source: franck.debian.org:/srv/ftp-master.debian.org/export
+
+# The list of mirrors comes from puppet's hieradata.  This is just to set some arguments for specific mirrors.
+mirrors:
+  mirror-anu.debian.org:
+    components-include: # all others are thus excluded
+      - www.debian.org
+

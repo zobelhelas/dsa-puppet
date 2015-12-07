@@ -7,7 +7,7 @@ class roles::static_base {
 	}
 
 	file { '/etc/static-components.conf':
-		source => 'puppet:///modules/roles/static-mirroring/static-components.conf',
+		content => template('roles/static-mirroring/static-components.conf.erb'),
 	}
 
 	file { '/etc/ssh/userkeys/staticsync':
