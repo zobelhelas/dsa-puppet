@@ -120,13 +120,11 @@ roles:
     - busoni.debian.org
     - klecker.debian.org
     - senfter.debian.org
-    - mirror-anu.debian.org
     - mirror-csail.debian.org
     - mirror-isc.debian.org
   # when adding a new static mirror, allow it to sync etc, but do not push to it and wait for it.  For this, also add it to static_mirror_nopush.
   static_mirror_nopush:
     - dummy
-    - mirror-anu.debian.org
     - mirror-isc.debian.org
   static_source:
     - master.debian.org
