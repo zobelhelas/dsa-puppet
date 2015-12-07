@@ -125,6 +125,7 @@ roles:
   static_mirror_nopush:
     - dummy
     - mirror-anu.debian.org
+    - mirror-isc.debian.org
   static_source:
     - master.debian.org
     - dillon.debian.org
