@@ -2,5 +2,11 @@
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
+
+# Restart the build daemons on reboot
 @reboot buildd [ -f ~buildd/NO-DAEMON-PLEASE ] && grep 'delete-on-boot' ~buildd/NO-DAEMON-PLEASE > /dev/null && rm -f ~buildd/NO-DAEMON-PLEASE && if [ -x ~buildd/.bootscript ]; then ~buildd/.bootscript; else buildd-watcher; fi
 @reboot buildd2 [ -f ~buildd2/NO-DAEMON-PLEASE ] && grep 'delete-on-boot' ~buildd2/NO-DAEMON-PLEASE > /dev/null && rm -f ~buildd2/NO-DAEMON-PLEASE && if [ -x ~buildd2/.bootscript ]; then ~buildd2/.bootscript; else buildd-watcher; fi
+
+# Clean old files in the upload queues after 60 days
+@daily buildd [ -d ~buildd/upload ] && find ~buildd/upload -type f -mtime +60 -delete
+@daily buildd [ -d ~buildd/upload-security ] && find ~buildd/upload-security -type f -mtime +60 -delete
