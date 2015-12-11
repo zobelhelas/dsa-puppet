@@ -2,13 +2,13 @@
 
 components:
   bits.debian.org:
-    master: bizet.debian.org
+    master: dillon.debian.org
     source: master.debian.org:/srv/bits-master.debian.org/htdocs
   network-test.debian.org:
-    master: bizet.debian.org
+    master: dillon.debian.org
     source: master.debian.org:/srv/network-test.debian.org/htdocs
   planet.debian.org:
-    master: bizet.debian.org
+    master: dillon.debian.org
     source: philp.debian.org:/srv/planet.debian.org/www
   www.debian.org:
     master: dillon.debian.org
