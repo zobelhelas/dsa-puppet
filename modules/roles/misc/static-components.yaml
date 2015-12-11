@@ -11,7 +11,7 @@ components:
     master: bizet.debian.org
     source: philp.debian.org:/srv/planet.debian.org/www
   www.debian.org:
-    master: bizet.debian.org
+    master: dillon.debian.org
     source: wolkenstein.debian.org:/srv/www.debian.org/www
   appstream.debian.org:
     master: dillon.debian.org
