@@ -2,12 +2,12 @@ Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number:
-            69:cf:43:dd:53:e9:99:5c:81:d8:6c:93:8f:79:c6:3b
+            1c:99:e2:87:2e:2d:80:c2:0f:1b:b9:07:5e:e7:d2:71
     Signature Algorithm: sha256WithRSAEncryption
         Issuer: C=FR, ST=Paris, L=Paris, O=Gandi, CN=Gandi Standard SSL CA 2
         Validity
-            Not Before: Dec 17 00:00:00 2014 GMT
-            Not After : Dec 31 23:59:59 2015 GMT
+            Not Before: Dec 11 00:00:00 2015 GMT
+            Not After : Jan 20 23:59:59 2017 GMT
         Subject: OU=Domain Control Validated, OU=Gandi Standard SSL, CN=sso.debian.org
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
@@ -69,26 +69,26 @@ Certificate:
             X509v3 Subject Alternative Name: 
                 DNS:sso.debian.org, DNS:www.sso.debian.org
     Signature Algorithm: sha256WithRSAEncryption
-         8e:cb:09:c6:4c:3a:a1:c9:e3:f9:37:02:9e:6d:0d:49:d9:61:
-         cc:5f:3a:7f:8e:7f:b8:75:d5:5f:8f:73:ea:e0:3e:38:b6:3b:
-         bd:1e:fa:64:00:e0:6b:bb:be:2b:23:cf:01:4f:34:48:6f:0b:
-         e9:53:30:dc:23:cf:99:75:07:1b:a5:62:69:ba:a3:6d:79:f0:
-         38:2f:4a:8f:0b:ff:cd:ff:c9:0a:58:9f:91:a2:1f:d9:45:9a:
-         15:12:e9:0d:a0:3a:d8:55:68:08:cd:22:79:22:6b:d1:4f:a4:
-         3e:c3:d0:53:0b:44:5a:a8:b4:29:24:e0:56:20:4e:96:d4:02:
-         f9:4f:31:a9:d5:ac:65:19:73:04:7e:98:da:75:17:d5:e0:0c:
-         21:37:fd:5c:60:46:08:28:cb:c7:de:9b:ae:a3:73:9e:93:d4:
-         ed:d7:f9:a6:13:81:52:a5:83:62:e7:ad:fb:44:a4:da:37:93:
-         55:05:0e:d6:84:63:88:02:55:48:8f:88:db:b4:02:2b:d5:87:
-         6e:e7:e1:b1:0e:95:47:27:de:09:b9:bd:0f:c6:ed:34:1e:ce:
-         0a:bd:ba:b2:a4:a3:a3:4c:5f:c4:a2:1e:36:db:f0:d9:33:95:
-         fd:c2:92:cb:4a:b3:43:0b:8e:fc:5a:eb:a7:b0:83:02:b5:68:
-         1d:b2:e5:77
+         29:22:24:5f:6f:c6:c1:ee:ca:c1:7a:67:04:11:bf:e4:20:22:
+         e1:4c:b7:5d:eb:ee:20:4c:19:7e:d8:58:8b:18:7f:f4:d1:66:
+         89:6a:c5:f4:88:00:8b:26:35:78:56:18:8a:0d:4d:3b:d5:8f:
+         b6:11:ee:ec:64:ea:44:ae:e1:82:c5:d0:c5:f2:c1:4a:9f:5b:
+         9a:27:94:43:2d:3c:51:43:ea:db:a9:60:50:e9:d9:28:b3:9e:
+         74:72:56:ae:46:dd:86:1a:47:88:4b:a0:81:d9:e4:ee:59:cf:
+         ee:aa:6e:d1:69:30:34:9e:92:41:7a:10:dd:b9:9d:7b:c5:f4:
+         89:01:f8:84:6b:75:9f:5a:31:9d:99:a3:35:6e:dd:17:66:e9:
+         4c:d3:24:99:21:72:25:a2:08:43:f8:87:92:26:70:8d:3a:b5:
+         6c:d5:c8:72:8d:0e:38:83:47:13:bf:0e:3c:26:00:0b:c0:4c:
+         34:9d:58:0c:c0:63:59:1e:66:f7:9c:bc:9f:7d:69:1b:5f:70:
+         2a:77:1b:0e:e4:7d:bc:d6:91:d0:84:be:06:6b:62:2d:e7:b1:
+         e0:98:e9:56:0d:17:6d:0f:33:f8:de:ef:2e:c3:1a:ad:69:8b:
+         0f:ac:d6:75:df:89:c8:c7:7b:d8:5e:79:a6:69:c7:a3:61:e9:
+         5b:fa:8a:98
 -----BEGIN CERTIFICATE-----
-MIIFeTCCBGGgAwIBAgIQac9D3VPpmVyB2GyTj3nGOzANBgkqhkiG9w0BAQsFADBf
+MIIFeTCCBGGgAwIBAgIQHJnihy4tgMIPG7kHXufScTANBgkqhkiG9w0BAQsFADBf
 MQswCQYDVQQGEwJGUjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQ4w
 DAYDVQQKEwVHYW5kaTEgMB4GA1UEAxMXR2FuZGkgU3RhbmRhcmQgU1NMIENBIDIw
-HhcNMTQxMjE3MDAwMDAwWhcNMTUxMjMxMjM1OTU5WjBZMSEwHwYDVQQLExhEb21h
+HhcNMTUxMjExMDAwMDAwWhcNMTcwMTIwMjM1OTU5WjBZMSEwHwYDVQQLExhEb21h
 aW4gQ29udHJvbCBWYWxpZGF0ZWQxGzAZBgNVBAsTEkdhbmRpIFN0YW5kYXJkIFNT
 TDEXMBUGA1UEAxMOc3NvLmRlYmlhbi5vcmcwggGiMA0GCSqGSIb3DQEBAQUAA4IB
 jwAwggGKAoIBgQDQXpfkF9lCMpG45zMy/SNg45Vg+/j0vSBHgWUYldZCmLi6Py2+
@@ -108,11 +108,11 @@ NKAyhjBodHRwOi8vY3JsLnVzZXJ0cnVzdC5jb20vR2FuZGlTdGFuZGFyZFNTTENB
 Mi5jcmwwcwYIKwYBBQUHAQEEZzBlMDwGCCsGAQUFBzAChjBodHRwOi8vY3J0LnVz
 ZXJ0cnVzdC5jb20vR2FuZGlTdGFuZGFyZFNTTENBMi5jcnQwJQYIKwYBBQUHMAGG
 GWh0dHA6Ly9vY3NwLnVzZXJ0cnVzdC5jb20wLQYDVR0RBCYwJIIOc3NvLmRlYmlh
-bi5vcmeCEnd3dy5zc28uZGViaWFuLm9yZzANBgkqhkiG9w0BAQsFAAOCAQEAjssJ
-xkw6ocnj+TcCnm0NSdlhzF86f45/uHXVX49z6uA+OLY7vR76ZADga7u+KyPPAU80
-SG8L6VMw3CPPmXUHG6ViabqjbXnwOC9Kjwv/zf/JClifkaIf2UWaFRLpDaA62FVo
-CM0ieSJr0U+kPsPQUwtEWqi0KSTgViBOltQC+U8xqdWsZRlzBH6Y2nUX1eAMITf9
-XGBGCCjLx96brqNznpPU7df5phOBUqWDYuet+0Sk2jeTVQUO1oRjiAJVSI+I27QC
-K9WHbufhsQ6VRyfeCbm9D8btNB7OCr26sqSjo0xfxKIeNtvw2TOV/cKSy0qzQwuO
-/Frrp7CDArVoHbLldw==
+bi5vcmeCEnd3dy5zc28uZGViaWFuLm9yZzANBgkqhkiG9w0BAQsFAAOCAQEAKSIk
+X2/Gwe7KwXpnBBG/5CAi4Uy3XevuIEwZfthYixh/9NFmiWrF9IgAiyY1eFYYig1N
+O9WPthHu7GTqRK7hgsXQxfLBSp9bmieUQy08UUPq26lgUOnZKLOedHJWrkbdhhpH
+iEuggdnk7lnP7qpu0WkwNJ6SQXoQ3bmde8X0iQH4hGt1n1oxnZmjNW7dF2bpTNMk
+mSFyJaIIQ/iHkiZwjTq1bNXIco0OOINHE78OPCYAC8BMNJ1YDMBjWR5m95y8n31p
+G19wKncbDuR9vNaR0IS+BmtiLeex4JjpVg0XbQ8z+N7vLsMarWmLD6zWdd+JyMd7
+2F55pmnHo2HpW/qKmA==
 -----END CERTIFICATE-----
