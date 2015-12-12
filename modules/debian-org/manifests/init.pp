@@ -134,7 +134,7 @@ class debian-org {
 	}
 
 	site::aptrepo { 'security':
-		url        => 'http://security.debian.org/',
+		url        => 'http://security-cdn.debian.org/',
 		suite      => "${mungedcodename}/updates",
 		components => ['main','contrib','non-free']
 	}
