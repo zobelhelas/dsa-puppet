@@ -177,7 +177,7 @@ ubcece:
     - 137.82.84.64/27
     - 206.12.19.0/24
   searchpaths: [debprivate-ubc.debian.org]
-  mirror-debian: http://ftp.debian.org/debian/
+  mirror-debian: http://mirror-ubc.debian.org/debian/
   nameservers: ['206.12.19.212', '2607:f8f0:610:4000:6564:a62:ce0c:13d4', # ubc-bl2
                 '206.12.19.216', '2607:f8f0:610:4000:6564:a62:ce0c:13d8', # ubc-bl6
                 '206.12.19.218', '2607:f8f0:610:4000:224:81ff:fef8:7cb8'] # ubc-bl8
