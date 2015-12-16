@@ -102,7 +102,7 @@ node default {
 	#	include dacs
 	#}
 
-	if $::hostname in [beach,glinka,milanollo,lw01,lw02,lw03,lw04] {
+	if $::hostname in [buxtehude,glinka,milanollo,lw01,lw02,lw03,lw04] {
 		include nfs-server
 	}
 
