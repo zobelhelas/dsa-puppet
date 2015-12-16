@@ -14,7 +14,7 @@ class hardware::raid::proliant {
 		ensure  => installed,
 		tag    => extra_repo,
 	}
-	if !("$::systemproductname" in ["ProLiant DL180 G5", "ProLiant DL120 G5"]) {
+	if !("$::systemproductname" in ["ProLiant DL180 G5", "ProLiant DL120 G5", "ProLiant ML150 G5"]) {
 		package { 'hp-health':
 			ensure => installed,
 			tag    => extra_repo,
