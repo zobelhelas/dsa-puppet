@@ -2,6 +2,7 @@ class roles::rtc {
 
 	ssl::service { 'www.debian.org':
 		tlsaport => 0,
+		notify  => Exec['service repro reload'],
 	}
 
 	ssl::service { 'sip-ws.debian.org':
@@ -88,5 +89,11 @@ class roles::rtc {
 
 	file { '/etc/monit/monit.d/50rtc':
 		ensure  => absent,
+	}
+
+	exec { 'service repro reload':
+		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
+		command     => 'service repro reload',
+		refreshonly => true,
 	}
 }
