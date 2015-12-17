@@ -162,7 +162,7 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	if ($::hostname in [mips-aql-05, mipsel-aql-01, mipsel-aql-02, mipsel-manda-02, eberlin, etler]) {
+	if ($::hostname in []) {
 		site::aptrepo { 'proposed-updates':
 			url        => $mirror,
 			suite      => "${::lsbdistcodename}-proposed-updates",
