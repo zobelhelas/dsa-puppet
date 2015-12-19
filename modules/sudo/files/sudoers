@@ -107,6 +107,7 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %debadmin	ALL=(dak)	ALL
 %debbugs	ALL=(debbugs)	ALL
 %debbugs	ALL=(debbugs-mirror)	ALL
+%debconfstatic	ALL=(debconfstatic)	ALL
 %debdelta	ALL=(debdelta)	ALL
 %debian-cd	ALL=(debian-cd)	ALL
 %debian-i18n	ALL=(debian-i18n)	ALL
