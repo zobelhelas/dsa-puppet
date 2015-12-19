@@ -64,6 +64,18 @@ components:
   metadata.ftp-master.debian.org:
     master: franck.debian.org
     source: franck.debian.org:/srv/ftp-master.debian.org/export
+  10years.debconf.org   : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/10years.debconf.org' }
+  debconf0.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf0.debconf.org' }
+  debconf1.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf1.debconf.org' }
+  debconf2.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf2.debconf.org' }
+  debconf3.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf3.debconf.org' }
+  debconf4.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf4.debconf.org' }
+  debconf5.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf5.debconf.org' }
+  debconf6.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf6.debconf.org' }
+  debconf7.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf7.debconf.org' }
+  es.debconf.org        : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/es.debconf.org' }
+  fr.debconf.org        : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/fr.debconf.org' }
+  miniconf10.debconf.org: { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/miniconf10.debconf.org' }
 
 # The list of mirrors comes from puppet's hieradata.  This is just to set some arguments for specific mirrors.
 mirrors:

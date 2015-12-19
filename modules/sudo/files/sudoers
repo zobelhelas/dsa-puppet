@@ -197,6 +197,18 @@ debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-componen
 %publicity	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component timeline.debian.net
 pabs		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component timeline.debian.net
 %lintian	lindsay=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component lintian.debian.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component 10years.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf0.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf1.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf2.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf3.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf4.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf5.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf6.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf7.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component es.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component fr.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component miniconf10.debconf.org
 
 # The piuparts slave needs to handle chroots
 piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
