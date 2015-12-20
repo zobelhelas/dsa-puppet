@@ -1,0 +1,26 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<VirtualHost 130.89.148.14:80 [2001:610:1908:b000::148:14]:80>
+<VirtualHost <%= vhost_listen %> >
+        ServerAdmin webmaster@debian.org
+        ServerName debug.mirrors.debian.org
+
+        RedirectMatch "^/$" /debian-debug/
+        Alias /debian-debug /srv/mirrors/debian-debug
+
+        ErrorLog /var/log/apache2/debug.mirrors.debian.org-error.log
+        LogLevel warn
+        CustomLog /var/log/apache2/debug.mirrors.debian.org-access.log privacy
+
+        <Directory /srv/mirrors/debian-debug>
+                Require all granted
+                IndexOptions NameWidth=* +SuppressDescription
+                Options +Indexes
+                Options +FollowSymLinks
+        </Directory>
+</VirtualHost>
+
+

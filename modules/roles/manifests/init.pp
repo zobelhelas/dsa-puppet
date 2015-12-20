@@ -69,6 +69,10 @@ class roles {
 		include roles::www_mirror
 	}
 
+	if has_role('mirror_debug') {
+		include roles::debug_mirror
+	}
+
 	if has_role('ftp.d.o') {
 		include roles::ftp
 	}

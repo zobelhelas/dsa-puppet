@@ -170,3 +170,6 @@ roles:
     - gombert.debian.org
   veyepar.debian.org:
     - vittoria.debian.org
+  mirror_debug:
+    - klecker.debian.org
+    - mirror-isc.debian.org
