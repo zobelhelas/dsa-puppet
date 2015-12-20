@@ -113,7 +113,6 @@ roles:
     - nono.debian.org
     - ticharich.debian.org
   static_master:
-    - bizet.debian.org
     - dillon.debian.org
     - franck.debian.org
   static_mirror:
