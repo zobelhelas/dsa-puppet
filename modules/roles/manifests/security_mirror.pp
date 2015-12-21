@@ -1,10 +1,10 @@
 class roles::security_mirror {
 	$rsync_bind = $::hostname ? {
-		mirror-isc => '149.20.20.19'
+		mirror-isc => '149.20.20.19',
 		default    => '',
 	}
 	$rsync_bind6 = $::hostname ? {
-		mirror-isc => '2001:4f8:8:36::1deb:19'
+		mirror-isc => '2001:4f8:8:36::1deb:19',
 		default    => '',
 	}
 
