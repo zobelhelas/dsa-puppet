@@ -1,6 +1,6 @@
 class roles::syncproxy {
 	rsync::site { 'syncproxy':
-		content => template('roles/syncproxy/rsyncd.conf.erb',
+		content => template('roles/syncproxy/rsyncd.conf.erb'),
 		bind   => $::hostname ? {
 			'milanollo' => '5.153.231.9',
 			'mirror-isc' => '149.20.20.21',
