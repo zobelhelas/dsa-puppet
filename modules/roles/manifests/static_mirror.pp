@@ -32,12 +32,14 @@ class roles::static_mirror {
 	}
 
 	$vhost_listen = $::hostname ? {
-		klecker => '130.89.148.14:80 [2001:610:1908:b000::148:14]:80',
-		default => '*:80',
+		klecker    => '130.89.148.14:80 [2001:610:1908:b000::148:14]:80',
+		mirror-isc => '149.20.20.20:80 [2001:4f8:8:36::1deb:20]:80',
+		default    => '*:80',
 	}
 	$vhost_listen_443 = $::hostname ? {
-		klecker => '130.89.148.14:443 [2001:610:1908:b000::148:14]:443',
-		default => '*:443',
+		klecker    => '130.89.148.14:443 [2001:610:1908:b000::148:14]:443',
+		mirror-isc => '149.20.20.20:443 [2001:4f8:8:36::1deb:20]:443',
+		default    => '*:443',
 	}
 
 	apache2::config { 'local-static-vhost.conf':
