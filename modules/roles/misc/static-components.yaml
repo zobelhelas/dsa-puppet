@@ -76,6 +76,7 @@ components:
   es.debconf.org        : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/es.debconf.org' }
   fr.debconf.org        : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/fr.debconf.org' }
   miniconf10.debconf.org: { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/miniconf10.debconf.org' }
+  deb.debian.org        : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/deb.debian.org/htdocs' }
 
 # The list of mirrors comes from puppet's hieradata.  This is just to set some arguments for specific mirrors.
 mirrors:
