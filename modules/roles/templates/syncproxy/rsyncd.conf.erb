@@ -29,10 +29,10 @@ log file =  /var/log/rsyncd/rsyncd.log
   secrets file = /etc/rsyncd/debian.secrets
 
 [debian-debug]
+  path = /srv/mirrors/debian-debug/
 <%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug == "true" -%>
   list = no
 <%- end -%>
-  path = /srv/mirrors/debian-debug/
   comment = Debug packages.  Probably large.  Starting end of 2015.
   auth users = *
   read only = true
