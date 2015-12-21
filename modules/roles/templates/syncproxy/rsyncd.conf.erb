@@ -10,6 +10,9 @@ log file =  /var/log/rsyncd/rsyncd.log
 
 [debian]
   path = /srv/mirrors/debian/
+<%- unless has_variable?("has_srv_mirrors_debian") && has_srv_mirrors_debian == "true" -%>
+  list = no
+<%- end -%>
   comment = Full Debian FTP Archive (~1.5 TB as of 2015; contact mirrors@debian.org for access)
   auth users = *
   read only = true
@@ -17,20 +20,28 @@ log file =  /var/log/rsyncd/rsyncd.log
 
 [debian-backports]
   path = /srv/mirrors/debian-backports/
+<%- unless has_variable?("has_srv_mirrors_debian_backports") && has_srv_mirrors_debian_backports == "true" -%>
+  list = no
+<%- end -%>
   comment = Debian backports archive (up to, including Debian 6.0(squeeze) - ~35 GB; contact mirrors@debian.org for access)
   auth users = *
   read only = true
   secrets file = /etc/rsyncd/debian.secrets
 
 [debian-debug]
+<%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug == "true" -%>
+  list = no
+<%- end -%>
   path = /srv/mirrors/debian-debug/
   comment = Debug packages.  Probably large.  Starting end of 2015.
   auth users = *
   read only = true
   secrets file = /etc/rsyncd/debian.secrets
-  list = no
 
 [debian-security]
+<%- unless has_variable?("has_srv_mirrors_debian_security") && has_srv_mirrors_debian_security == "true" -%>
+  list = no
+<%- end -%>
   path = /srv/mirrors/debian-security/
   comment = Debian security archive (~100 GB; contact mirrors@debian.org for access)
   auth users = *
