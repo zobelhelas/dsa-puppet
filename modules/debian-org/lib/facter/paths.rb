@@ -7,7 +7,7 @@
    /srv/mirrors/debian-debug
    /srv/mirrors/debian-security
 }.each do |path|
-	Facter.add("has" + path.gsub('/','_')) do
+	Facter.add("has" + path.gsub(/[\/-]/,'_')) do
 		setcode do
 			if FileTest.exist?(path)
 				true
