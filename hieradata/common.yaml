@@ -137,6 +137,7 @@ roles:
     - wolkenstein.debian.org
   syncproxy:
     - milanollo.debian.org
+    - mirror-isc.debian.org
   tracker:
     - ticharich.debian.org
   udd:
