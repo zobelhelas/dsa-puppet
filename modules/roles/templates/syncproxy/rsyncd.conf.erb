@@ -13,7 +13,7 @@ log file =  /var/log/rsyncd/rsyncd.log
 <%- unless has_variable?("has_srv_mirrors_debian") && has_srv_mirrors_debian == "true" -%>
   list = no
 <%- end -%>
-  comment = Full Debian FTP Archive (~1.5 TB as of 2015; contact mirrors@debian.org for access)
+  comment = Full Debian FTP Archive (contact mirrors@debian.org for access; see https://www.debian.org/mirror/size for size)
   auth users = *
   read only = true
   secrets file = /etc/rsyncd/debian.secrets
