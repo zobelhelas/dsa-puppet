@@ -33,7 +33,7 @@ components:
     source: dillon.debian.org:/srv/dsa.debian.org/htdocs
   lintian.debian.org:
     master: dillon.debian.org
-    source: lindsay.debian.org:/srv/lintian.debian.org/www
+    source: lindsay.debian.org:/srv/lintian.debian.org/reports-directory/www
   mozilla.debian.net:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/mozilla.debian.net/htdocs
