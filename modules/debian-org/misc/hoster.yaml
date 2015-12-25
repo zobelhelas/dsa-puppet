@@ -38,7 +38,7 @@ brown:
     - 138.16.160.0/24
   # all hosts have their own recursor
   nameservers: []
-  mirror-debian: file:///srv/ftp-master.debian.org/mirror/
+  mirror-debian: file:///srv/ftp-master.debian.org/mirror/ftp-master/
 br:
   # rename to c3sl
   # University Federal do Parana (.br)
