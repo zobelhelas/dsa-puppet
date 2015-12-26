@@ -473,6 +473,17 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5439, ( 2001:1af8:4020:b030::/64 ))'
 			}
 		}
+		vittoria: {
+			@ferm::rule { 'dsa-postgres-backup':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5432, ( $HOST_PGBACKUPHOST_V4 ))'
+			}
+			@ferm::rule { 'dsa-postgres-backup6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5432, ( $HOST_PGBACKUPHOST_V6 ))'
+			}
+		}
 		default: {}
 	}
 	# vpn fu
