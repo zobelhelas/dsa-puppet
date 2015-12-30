@@ -122,6 +122,8 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %emdebian	ALL=(emdebian)	ALL
 %forums		ALL=(forums)	ALL
 %gitdoadm	ALL=(gitdoadm)	ALL
+# the git user also exists on adayevskaya where it's a different service..
+%gitdoadm	gigault=(git)	ALL
 %httpredir	ALL=(httpredir)	ALL
 %httpredir	ALL=(httpredir-app)	ALL
 %keyring	ALL=(keyring)	ALL
