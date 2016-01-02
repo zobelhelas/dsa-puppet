@@ -1,35 +1,59 @@
 # puppet maintained
 
-Use common-static-vhost mozilla.debian.net
-Use common-static-vhost backports.debian.org
-Use common-static-vhost incoming.debian.org
-Use common-static-vhost news.debian.net
-Use common-static-vhost debaday.debian.net
-Use common-static-vhost debdeltas.debian.net
-Use common-static-vhost timeline.debian.net
-Use common-static-vhost-with-extra d-i.debian.org "ServerAlias d-i-backend.debian.org"
-Use common-static-vhost-with-extra network-test.debian.org "ServerAlias network-test-backend.debian.org"
-Use common-static-vhost-with-extra blends.debian.org "ServerAlias blends-backend.debian.org"
-Use common-static-vhost-with-extra wnpp-by-tags.debian.net "ServerAlias wnpp-by-tags-backend.debian.org"
-Use common-static-vhost-ssl appstream.debian.org
-Use common-static-vhost-ssl dsa.debian.org
-Use common-static-vhost-ssl rtc.debian.org
-Use common-static-vhost-with-extra security-team.debian.org "ServerAlias security-team-backend.debian.org"
-Use common-static-vhost 10years.debconf.org
-Use common-static-vhost debconf0.debconf.org
-Use common-static-vhost debconf1.debconf.org
-Use common-static-vhost debconf2.debconf.org
-Use common-static-vhost debconf3.debconf.org
-Use common-static-vhost debconf4.debconf.org
-Use common-static-vhost debconf5.debconf.org
-Use common-static-vhost debconf6.debconf.org
-Use common-static-vhost debconf7.debconf.org
-Use common-static-vhost es.debconf.org
-Use common-static-vhost fr.debconf.org
-Use common-static-vhost miniconf10.debconf.org
-Use common-static-vhost deb.debian.org
+<% if scope.function_has_static_component(['XXX']) -%>
+<% end -%>
 
+<%=
+
+def vhost(lines, sn, type=nil, extra=nil)
+  if scope.function_has_static_component([sn])
+    t = 'common-static-vhost'
+    if type then t += "-#{type}"; end
+
+    e = ''
+    if extra then e += " #{extra}"; end
+
+    lines << "Use #{t} #{sn}#{e}"
+  end
+end
+
+lines = []
+vhost(lines, "mozilla.debian.net")
+vhost(lines, "backports.debian.org")
+vhost(lines, "incoming.debian.org")
+vhost(lines, "news.debian.net")
+vhost(lines, "debaday.debian.net")
+vhost(lines, "debdeltas.debian.net")
+vhost(lines, "timeline.debian.net")
+vhost(lines, "d-i.debian.org"          , "with-extra", '"ServerAlias d-i-backend.debian.org"')
+vhost(lines, "network-test.debian.org" , "with-extra", '"ServerAlias network-test-backend.debian.org"')
+vhost(lines, "blends.debian.org"       , "with-extra", '"ServerAlias blends-backend.debian.org"')
+vhost(lines, "wnpp-by-tags.debian.net" , "with-extra", '"ServerAlias wnpp-by-tags-backend.debian.org"')
+vhost(lines, "security-team.debian.org", "with-extra", '"ServerAlias security-team-backend.debian.org"')
+vhost(lines, "appstream.debian.org", "ssl")
+vhost(lines, "dsa.debian.org"      , "ssl")
+vhost(lines, "rtc.debian.org"      , "ssl")
+
+vhost(lines, "10years.debconf.org")
+vhost(lines, "debconf0.debconf.org")
+vhost(lines, "debconf1.debconf.org")
+vhost(lines, "debconf2.debconf.org")
+vhost(lines, "debconf3.debconf.org")
+vhost(lines, "debconf4.debconf.org")
+vhost(lines, "debconf5.debconf.org")
+vhost(lines, "debconf6.debconf.org")
+vhost(lines, "debconf7.debconf.org")
+vhost(lines, "es.debconf.org")
+vhost(lines, "fr.debconf.org")
+vhost(lines, "miniconf10.debconf.org")
+vhost(lines, "deb.debian.org")
+
+lines.join("\n")
+-%>
+
+######################
 # metadata.ftp-master.debian.org
+<% if scope.function_has_static_component(['metadata.ftp-master.debian.org']) -%>
 <VirtualHost <%= vhost_listen %> >
 	ServerName metadata.ftp-master.debian.org
 	ServerAdmin debian-admin@lists.debian.org
@@ -43,9 +67,11 @@ Use common-static-vhost deb.debian.org
 		ForceType text/plain
 	</LocationMatch>
 </VirtualHost>
+<% end -%>
 
-# bits.debian.org
 ######################
+# bits.debian.org
+<% if scope.function_has_static_component(['bits.debian.org']) -%>
 <Macro static-bits.debian.org-base>
 	ServerName bits.debian.org
 	ServerAdmin debian-admin@lists.debian.org
@@ -77,6 +103,7 @@ Use common-static-vhost deb.debian.org
 	Use common-debian-service-ssl bits.debian.org
 	Use common-ssl-HSTS
 </VirtualHost>
+<% end -%>
 
 # www.backports.org
 ###################
@@ -93,9 +120,9 @@ Use common-static-vhost deb.debian.org
 	RedirectPermanent / http://backports.debian.org/
 </VirtualHost>
 
-
-# www.ports.debian.org
 ######################
+# www.ports.debian.org
+<% if scope.function_has_static_component(['www.ports.debian.org']) -%>
 <Virtualhost <%= vhost_listen %> >
 	ServerName www.ports.debian.org
 	ServerAlias www.ports-backend.debian.org
@@ -125,6 +152,7 @@ Use common-static-vhost deb.debian.org
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
 	AddOutputFilter INCLUDES .xhtml
 </VirtualHost>
+<% end -%>
 
 <VirtualHost <%= vhost_listen %> >
 	ServerName www.debian-ports.org
