@@ -8,5 +8,4 @@
 @reboot buildd2 [ -f ~buildd2/NO-DAEMON-PLEASE ] && grep 'delete-on-boot' ~buildd2/NO-DAEMON-PLEASE > /dev/null && rm -f ~buildd2/NO-DAEMON-PLEASE && if [ -x ~buildd2/.bootscript ]; then ~buildd2/.bootscript; else buildd-watcher; fi
 
 # Clean old files in the upload queues after 60 days
-@daily buildd [ -d ~buildd/upload ] && find ~buildd/upload -type f -mtime +60 -delete
-@daily buildd [ -d ~buildd/upload-security ] && find ~buildd/upload-security -type f -mtime +60 -delete
+@daily buildd find ~buildd/upload/ ~buildd/upload-security/ -type f -mtime +60 -name '*.upload' | xargs -r awk 'BEGINFILE { DIRNAME=FILENAME ; sub("/[^/]*$", "", DIRNAME) } /^u/ { print DIRNAME"/"$2 } ENDFILE { print FILENAME }' | xargs -r rm -f
