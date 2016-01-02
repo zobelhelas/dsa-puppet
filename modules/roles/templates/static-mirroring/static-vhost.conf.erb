@@ -66,7 +66,7 @@
 </Macro>
 
 
-<Macro common-static-vhost-ssl-with-extra $name $extra>
+<Macro common-static-vhost-ssl $name>
 	Use common-dsa-vhost-https-redirect $name
 
 	<Virtualhost <%= vhost_listen_443 %> >
@@ -80,12 +80,7 @@
 		Use common-ssl-HSTS
 
 		Use common-static-base $name
-		$extra
 	</VirtualHost>
-</Macro>
-
-<Macro common-static-vhost-ssl $name>
-	Use common-static-vhost-ssl-with-extra $name "# nada"
 </Macro>
 
 # vim:ft=apache:
