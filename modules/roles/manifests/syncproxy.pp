@@ -4,11 +4,13 @@ class roles::syncproxy {
 		bind   => $::hostname ? {
 			'milanollo' => '5.153.231.9',
 			'mirror-isc' => '149.20.20.21',
+			'mirror-umn' => '128.101.240.216',
 			default => ''
 		},
 		bind6   => $::hostname ? {
 			'milanollo' => '2001:41c8:1000:21::21:9',
 			'mirror-isc' => '2001:4f8:8:36::1deb:21',
+			'mirror-umn' => '2607:ea00:101:3c0b::1deb:216',
 			default => ''
 		},
 	}

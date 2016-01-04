@@ -138,6 +138,7 @@ roles:
   syncproxy:
     - milanollo.debian.org
     - mirror-isc.debian.org
+    - mirror-umn.debian.org
   tracker:
     - ticharich.debian.org
   udd:
