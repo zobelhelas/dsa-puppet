@@ -7,7 +7,11 @@ class debian-org {
 		$mirror = getfromhash($site::nodeinfo, 'hoster', 'mirror-debian')
 	} else {
 		#$mirror = 'http://ftp.debian.org/debian/'
-		$mirror = 'http://deb.debian.org/debian/'
+		if $::lsbmajdistrelease <= 8 {
+			$mirror = 'http://cdn-fastly.deb.debian.org/debian/'
+		} else {
+			$mirror = 'http://deb.debian.org/debian/'
+		}
 	}
 	if $::lsbmajdistrelease < 7 {
 		$mirror_backports = 'http://backports.debian.org/debian-backports/'
