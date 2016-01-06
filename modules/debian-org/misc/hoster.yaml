@@ -134,7 +134,7 @@ linaro:
 leaseweb:
   netrange:
     - 185.17.185.176/28
-  mirror-debian: http://mirror.nl.leaseweb.net/debian/
+  #mirror-debian: http://mirror.nl.leaseweb.net/debian/
 marist:
   netrange:
     - 148.100.0.0/16
