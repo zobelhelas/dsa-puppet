@@ -191,7 +191,7 @@ umn:
 unicamp:
   netrange:
     - 177.220.0.0/17
-  mirror-debian: http://debian.c3sl.ufpr.br/debian/
+  mirror-debian: http://ftp.br.debian.org/debian/
 utwente:
   netrange:
     - 130.89.0.0/16
