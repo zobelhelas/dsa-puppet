@@ -139,6 +139,7 @@ roles:
     - milanollo.debian.org
     - mirror-isc.debian.org
     - mirror-umn.debian.org
+    - klecker.debian.org
   tracker:
     - ticharich.debian.org
   udd:
