@@ -13,6 +13,13 @@ class roles::syncproxy {
 		'klecker' => '2001:610:1908:b000::148:10',
 		default => ''
 	}
+	$syncproxy_name = $::hostname ? {
+		'milanollo' => 'syncproxy3.eu.debian.org',
+		'mirror-isc' => 'syncproxy2.wna.debian.org',
+		'mirror-umn' => 'syncproxy.cna.debian.org',
+		'klecker' => 'syncproxy2.eu.debian.org',
+		default => 'unknown'
+	}
 
 	rsync::site { 'syncproxy':
 		content => template('roles/syncproxy/rsyncd.conf.erb'),
@@ -28,5 +35,20 @@ class roles::syncproxy {
 		owner => 'root',
 		group => 'mirroradm',
 		mode => 0660,
+	}
+
+	if $::apache2 and $syncproxy_name != 'unknown' {
+		apache2::site { '010-syncproxy.debian.org':
+			site   => 'security.debian.org',
+			content => template('roles/syncproxy/syncproxy.debian.org-apache.erb')
+		}
+
+		file { [ '/srv/www/syncproxy.debian.org', '/srv/www/syncproxy.debian.org/htdocs' ]:
+			ensure  => directory,
+			mode    => '0755',
+		}
+		file { '/srv/www/syncproxy.debian.org/htdocs/index.html':
+			content => template('roles/syncproxy/syncproxy.debian.org-index.html.erb')
+		}
 	}
 }

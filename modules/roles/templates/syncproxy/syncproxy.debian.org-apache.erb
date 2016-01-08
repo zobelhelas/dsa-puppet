@@ -1,0 +1,40 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<%
+  vhost_listen = [ (bind != '') ? "#{bind}:80" : "*:80",  (bind6 != '') ? "#{bind6}:80" : "*:80"].uniq.join(' ')
+%>
+
+<Virtualhost <%= vhost_listen %> >
+   ServerName <%= syncproxy_name %>
+   DocumentRoot /srv/www/syncproxy.debian.org/htdocs
+
+   <Directory /srv/www/syncproxy.debian.org/htdocs>
+      Require all granted
+   </Directory>
+
+   CustomLog /var/log/apache2/syncproxy.debian.org-access.log privacy
+   ErrorLog /var/log/apache2/syncproxy.debian.org-error.log
+
+<%=
+lines = []
+%w{debian debian-backports debian-debug debian-security}.each do |archive|
+  varname = 'has_srv_mirrors_' + archive.gsub(/[\/-]/,'_')
+  if has_variable?(varname) and (eval(varname)) == 'true'
+    lines << "  Alias /#{archive}/project/trace/ /srv/mirrors/#{archive}/project/trace/"
+    lines << "  <Directory /srv/mirrors/#{archive}/project/trace/>"
+    lines << "    Require all granted"
+    lines << "    IndexOptions NameWidth=* +SuppressDescription"
+    lines << "    Options +Indexes"
+    lines << "  </Directory>"
+  end
+end
+
+lines.join("\n")
+%>
+
+</VirtualHost>
+
+# vim: set ts=3 sw=3 et:
