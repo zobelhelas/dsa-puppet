@@ -1,5 +1,5 @@
 class rng-tools {
-	if inline_template("<% if File.exist?('/dev/hwrng') -%>true<% end -%>") {
+	if $has_dev_hwrng {
 		package { 'rng-tools':
 			ensure => installed
 		}
