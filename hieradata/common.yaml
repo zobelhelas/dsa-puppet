@@ -137,6 +137,7 @@ roles:
     - wolkenstein.debian.org
   syncproxy:
     - milanollo.debian.org
+    - mirror-anu.debian.org
     - mirror-isc.debian.org
     - mirror-umn.debian.org
     - klecker.debian.org
