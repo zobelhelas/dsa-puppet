@@ -42,7 +42,7 @@ class roles::syncproxy {
 
 	if $::apache2 and $syncproxy_name != 'unknown' {
 		apache2::site { '010-syncproxy.debian.org':
-			site   => 'security.debian.org',
+			site   => 'syncproxy.debian.org',
 			content => template('roles/syncproxy/syncproxy.debian.org-apache.erb')
 		}
 
