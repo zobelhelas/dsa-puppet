@@ -36,7 +36,7 @@ Host_Alias	BUILDD_PORTS_MASTER	= portman
 Host_Alias	PORTERBOXES	= abel, asachi, barriere, etler, falla, fischer, harris, merulo, minkus, partch, plummer, pizzetti, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
 Host_Alias	MQ_HOSTS	= rainier, rapoport
-Host_Alias	NOVAHOSTS	= oyens, bm-bl9, bm-bl10, bm-bl11, bm-bl12
+Host_Alias	NOVAHOSTS	= oyens
 
 # Cmnd alias specification
 
