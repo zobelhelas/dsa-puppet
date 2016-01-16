@@ -179,6 +179,17 @@ class buildd ($ensure=present) {
 		group   => buildd,
 		owner   => buildd,
 	}
+	file { '/home/buildd/.gnupg':
+		ensure  => directory,
+		mode    => '700',
+		group   => buildd,
+		owner   => buildd,
+	}
+	file { '/home/buildd/.gnupg/gpg.conf':
+		content  => "personal-digest-preferences SHA512\n",
+		group   => buildd,
+		owner   => buildd,
+	}
 
 	if ! $::buildd_key {
 		exec { 'create-buildd-key':
