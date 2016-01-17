@@ -18,6 +18,9 @@ class dsa_lvm {
 		'prokofiev': {
 			$conffile = 'lvm-prokofiev.conf'
 		}
+		'clementi','czerny': {
+			$conffile = 'lvm-manda-ganeti.conf'
+		}
 		default: {
 			$conffile = ''
 		}
