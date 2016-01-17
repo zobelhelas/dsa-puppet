@@ -280,4 +280,8 @@ class roles {
 			notify => Service['apache2'],
 		}
 	}
+
+	if has_role('httpredir') {
+		include roles::httpredir
+	}
 }
