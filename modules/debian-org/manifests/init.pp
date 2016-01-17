@@ -167,10 +167,10 @@ class debian-org {
 		components => ['main','contrib','non-free']
 	}
 
-	if ($::hostname in []) {
+	if ($::hostname in [] or $::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
 		site::aptrepo { 'proposed-updates':
 			url        => $mirror,
-			suite      => "${::lsbdistcodename}-proposed-updates",
+			suite      => "${mungedcodename}-proposed-updates",
 			components => ['main','contrib','non-free']
 		}
 	} else {
