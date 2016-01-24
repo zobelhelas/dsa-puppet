@@ -60,7 +60,7 @@ carnet:
 anu:
   netrange:
     - 150.203.164.0/24
-    - 2001:388:1034:2900::64
+    - 2001:388:1034:2900::/64
   nameservers: [150.203.1.10, 150.203.164.10, 150.203.164.9]
   mirror-debian: http://mirror.linux.org.au/debian
 conova:
