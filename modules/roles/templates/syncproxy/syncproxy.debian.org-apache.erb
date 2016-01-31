@@ -5,11 +5,16 @@
 
 <%
   vhost_listen = [ (bind != '') ? "#{bind}:80" : "*:80",  (bind6 != '') ? "#{bind6}:80" : "*:80"].uniq.join(' ')
+  vhost_listen_443 = [ (bind != '') ? "#{bind}:443" : "*:443",  (bind6 != '') ? "#{bind6}:443" : "*:443"].uniq.join(' ')
 %>
 
-<Virtualhost <%= vhost_listen %> >
+Use common-debian-service-https-redirect "<%= vhost_listen %>" <%= syncproxy_name %>
+<Virtualhost <%= vhost_listen_443 %> >
    ServerName <%= syncproxy_name %>
    DocumentRoot /srv/www/syncproxy.debian.org/htdocs
+
+   Use common-debian-service-ssl <%= syncproxy_name %>
+   Use common-ssl-HSTS
 
    <Directory /srv/www/syncproxy.debian.org/htdocs>
       Require all granted
