@@ -5,7 +5,7 @@
     out = File.read(fn)
 
     chain = "/etc/puppet/modules/ssl/files/chains/#{name}.crt"
-    File.exist?(chain) ? File.read(chain) : ''
+    out += File.exist?(chain) ? File.read(chain) : ''
   else
     fn = "/etc/puppet/modules/ssl/files/from-letsencrypt/#{name}.crt-chained"
     out = File.read(fn)
