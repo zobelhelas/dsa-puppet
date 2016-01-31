@@ -24,18 +24,18 @@ WSGIDaemonProcess debtags.debian.org user=nobody group=debtags home=/ processes=
 	ServerSignature On
 
 
-	<Directory /srv/debtags.debian.net/htdocs>
+	<Directory /srv/debtags.debian.org/htdocs>
 		Require all granted
 	</Directory>
 
-	<Directory /srv/debtags.debian.net/bin>
+	<Directory /srv/debtags.debian.org/bin>
 		<Files debtags.wsgi>
 			Require all granted
 		</Files>
 	</Directory>
 
-	WSGIScriptAlias / /srv/debtags.debian.net/bin/debtags.wsgi
-	WSGIProcessGroup debtags.debian.net
+	WSGIScriptAlias / /srv/debtags.debian.org/bin/debtags.wsgi
+	WSGIProcessGroup debtags.debian.org
 	WSGIPassAuthorization On
 </VirtualHost>
 
