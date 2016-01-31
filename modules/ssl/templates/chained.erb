@@ -1,7 +1,14 @@
 <%=
-    File.read("/etc/puppet/modules/ssl/files/servicecerts/#{name}.crt")
-%>
-<%=
-    fn = "/etc/puppet/modules/ssl/files/chains/#{name}.crt"
-    File.exist?(fn) ? File.read(fn) : ''
+  out = ""
+  fn = "/etc/puppet/modules/ssl/files/servicecerts/#{name}.crt"
+  if File.exist?(fn) then
+    out = File.read(fn)
+
+    chain = "/etc/puppet/modules/ssl/files/chains/#{name}.crt"
+    File.exist?(chain) ? File.read(chain) : ''
+  else
+    fn = "/etc/puppet/modules/ssl/files/from-letsencrypt/#{name}.crt-chained"
+    out = File.read(fn)
+  end
+  out
 %>

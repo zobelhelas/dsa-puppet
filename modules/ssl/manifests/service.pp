@@ -6,11 +6,11 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
 	}
 
 	file { "/etc/ssl/debian/certs/$name.crt":
-		source => "puppet:///modules/ssl/servicecerts/${name}.crt",
+		source => [ "puppet:///modules/ssl/servicecerts/${name}.crt", "puppet:///modules/ssl/from-letsencrypt/${name}.crt" ],
 		notify => [ Exec['refresh_debian_hashes'], $notify ],
 	}
 	file { "/etc/ssl/debian/certs/$name.crt-chain":
-		source => [ "puppet:///modules/ssl/chains/${name}.crt", "puppet:///modules/ssl/servicecerts/${name}.crt" ],
+		source => [ "puppet:///modules/ssl/chains/${name}.crt", "puppet:///modules/ssl/servicecerts/${name}.crt", "puppet:///modules/ssl/from-letsencrypt/${name}.crt-chain" ],
 		notify => [ $notify ],
 		links  => follow,
 	}
@@ -22,7 +22,7 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
 	if $tlsaport > 0 {
 		dnsextras::tlsa_record{ "tlsa-${name}-${tlsaport}":
 			zone     => 'debian.org',
-			certfile => "/etc/puppet/modules/ssl/files/servicecerts/${name}.crt",
+			certfile => [ "puppet:///modules/ssl/servicecerts/${name}.crt", "puppet:///modules/ssl/from-letsencrypt/${name}.crt" ],
 			port     => $tlsaport,
 			hostname => "$name",
 		}
