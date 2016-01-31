@@ -1,5 +1,5 @@
 class roles::debtags {
-	apache2::module { 'ssl': }
+	include apache2::ssl
 	package { 'libapache2-mod-wsgi': ensure => installed, }
 
 	ssl::service { 'debtags.debian.org':

@@ -6,8 +6,8 @@ class roles::static_mirror {
 	package { 'libapache2-mod-geoip': ensure => installed, }
 	package { 'geoip-database': ensure => installed, }
 
+	include apache2::ssl
 	apache2::module { 'include': }
-	apache2::module { 'ssl': }
 	apache2::module { 'geoip': require => [Package['libapache2-mod-geoip'], Package['geoip-database']]; }
 
 	file { '/usr/local/bin/static-mirror-run':
