@@ -2,7 +2,7 @@ define xinetd::service (
 	$id,
 	$server,
 	$service,
-	$port=$service,
+	$port='',
 	$bind='',
 	$type='',
 	$socket_type=stream,
@@ -27,9 +27,14 @@ define xinetd::service (
 	}
 
 	if $ferm {
+		$fermport = $port ? {
+			"" => $service,
+			default => $port
+		}
+
 		@ferm::rule { "dsa-xinetd-${name}":
 			description => "Allow traffic to ${service}",
-			rule        => "&SERVICE(${protocol}, ${port})"
+			rule        => "&SERVICE(${protocol}, ${fermport})"
 		}
 	}
 
