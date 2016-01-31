@@ -117,6 +117,7 @@ roles:
     - jerea.debian.org
     - nono.debian.org
     - ticharich.debian.org
+    - tate.debian.org
   static_master:
     - dillon.debian.org
     - franck.debian.org
