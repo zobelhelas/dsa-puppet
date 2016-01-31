@@ -91,6 +91,8 @@ class roles::static_mirror {
 		notify => Service['apache2'],
 	}
 
-	ssl::service { 'debconf0.debconf.org': notify => Service['apache2'], key => true, }
-	ssl::service { 'debconf1.debconf.org': notify => Service['apache2'], key => true, }
+	if has_static_component('debconf0.debconf.org') { ssl::service { 'debconf0.debconf.org': notify => Service['apache2'], key => true, } }
+	if has_static_component('debconf1.debconf.org') { ssl::service { 'debconf1.debconf.org': notify => Service['apache2'], key => true, } }
+	if has_static_component('debconf2.debconf.org') { ssl::service { 'debconf2.debconf.org': notify => Service['apache2'], key => true, } }
+	if has_static_component('debconf3.debconf.org') { ssl::service { 'debconf3.debconf.org': notify => Service['apache2'], key => true, } }
 }
