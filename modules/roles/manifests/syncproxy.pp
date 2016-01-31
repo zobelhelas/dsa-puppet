@@ -69,7 +69,7 @@ class roles::syncproxy {
 			server_args => "/etc/rsyncd-syncproxy-stunnel.conf",
 			ferm        => false,
 			instances   => 50,
-			require     => File[/etc/rsyncd-syncproxy-stunnel.conf],
+			require     => File["/etc/rsyncd-syncproxy-stunnel.conf"],
 		}
 
 		if $bind6 != '' {
@@ -83,7 +83,7 @@ class roles::syncproxy {
 				server_args => "/etc/rsyncd-syncproxy-stunnel.conf",
 				ferm        => false,
 				instances   => 50,
-				require     => File[/etc/rsyncd-syncproxy-stunnel.conf],
+				require     => File["/etc/rsyncd-syncproxy-stunnel.conf"],
 			}
 		}
 
