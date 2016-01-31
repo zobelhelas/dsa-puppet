@@ -21,6 +21,8 @@ roles:
     - nono.debian.org
   dbmaster:
     - draghi.debian.org
+  debtags:
+    - tate.debian.org
   dns_primary:
     - denis.debian.org
   dns_geo:

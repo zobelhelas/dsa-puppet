@@ -284,4 +284,8 @@ class roles {
 	if has_role('httpredir') {
 		include roles::httpredir
 	}
+
+	if has_role('debtags') {
+		include roles::debtags
+	}
 }
