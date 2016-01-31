@@ -1,10 +1,13 @@
-service <%= scope.lookupvar('port') %>
+service <%= scope.lookupvar('services') %>
 {
 <%- if scope.lookupvar('bind') != '' -%>
 	bind		= <%= scope.lookupvar('bind') %>
 <%- end -%>
 <%- if scope.lookupvar('type') != '' -%>
 	type		= <%= scope.lookupvar('type') %>
+<%- end -%>
+<%- if scope.lookupvar('port') != '' -%>
+	port		= <%= scope.lookupvar('port') %>
 <%- end -%>
 	id		= <%= scope.lookupvar('id') %>
 

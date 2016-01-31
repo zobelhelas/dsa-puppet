@@ -57,7 +57,7 @@ define rsync::site (
 			bind        => $bind6,
 			id          => "${name}-rsync6",
 			server      => '/usr/bin/rsync',
-			port        => 'rsync',
+			service     => 'rsync',
 			server_args => "--daemon --config=${fname_real}",
 			ferm        => false,
 			instances   => $max_clients,

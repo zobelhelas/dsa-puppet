@@ -41,7 +41,7 @@ define vsftpd::site (
 		bind        => $bind,
 		id          => "${name}-ftp",
 		server      => '/usr/sbin/vsftpd',
-		port        => 'ftp',
+		service     => 'ftp',
 		server_args => $fname,
 		ferm        => false,
 		instances   => $max_clients,
