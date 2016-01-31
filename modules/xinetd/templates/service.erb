@@ -1,4 +1,4 @@
-service <%= scope.lookupvar('services') %>
+service <%= scope.lookupvar('service') %>
 {
 <%- if scope.lookupvar('bind') != '' -%>
 	bind		= <%= scope.lookupvar('bind') %>
