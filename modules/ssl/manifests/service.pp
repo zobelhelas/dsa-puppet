@@ -1,4 +1,4 @@
-define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
+define ssl::service($ensure = present, $tlsaport = 443, $notify = [], $key = false) {
 	$link_target = $ensure ? {
 		present => link,
 		absent  => absent,
@@ -17,6 +17,15 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = []) {
 	file { "/etc/ssl/debian/certs/$name.crt-chained":
 		content => template('ssl/chained.erb'),
 		notify => [ $notify ],
+	}
+	if $key {
+		file { "/etc/ssl/private/$name.key":
+			mode   => '0440',
+			group => 'ssl-cert',
+			source => [ "puppet:///modules/ssl/keys/${name}.crt", "puppet:///modules/ssl/from-letsencrypt/${name}.key" ],
+			notify => [ $notify ],
+			links  => follow,
+		}
 	}
 
 	if $tlsaport > 0 {

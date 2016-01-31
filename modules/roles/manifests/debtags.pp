@@ -4,6 +4,7 @@ class roles::debtags {
 
 	ssl::service { 'debtags.debian.org':
 		notify => Service['apache2'],
+		key => true,
 	}
 
 	apache2::site { '010-debtags.debian.org':
