@@ -90,4 +90,7 @@ class roles::static_mirror {
 	ssl::service { 'd-i.debian.org':
 		notify => Service['apache2'],
 	}
+
+	ssl::service { 'debconf0.debconf.org': notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf1.debconf.org': notify => Service['apache2'], key => true, }
 }

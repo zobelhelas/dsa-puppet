@@ -35,8 +35,8 @@ vhost(lines, "dsa.debian.org"      , "ssl")
 vhost(lines, "rtc.debian.org"      , "ssl")
 
 vhost(lines, "10years.debconf.org")
-vhost(lines, "debconf0.debconf.org")
-vhost(lines, "debconf1.debconf.org")
+vhost(lines, "debconf0.debconf.org", "ssl")
+vhost(lines, "debconf1.debconf.org", "ssl")
 vhost(lines, "debconf2.debconf.org")
 vhost(lines, "debconf3.debconf.org")
 vhost(lines, "debconf4.debconf.org")
@@ -46,6 +46,7 @@ vhost(lines, "debconf7.debconf.org")
 vhost(lines, "es.debconf.org")
 vhost(lines, "fr.debconf.org")
 vhost(lines, "miniconf10.debconf.org")
+
 vhost(lines, "deb.debian.org")
 
 lines.join("\n")
