@@ -218,6 +218,7 @@ piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
 #pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 dnsadm		denis=(root)			NOPASSWD: /usr/sbin/service bind9 reload
+letsencrypt	denis=(dnsadm)			NOPASSWD: /srv/dns.debian.org/bin/update
 %adm		draghi=(puppet)			NOPASSWD: /usr/bin/make -s -C /srv/db.debian.org/var/gitnagios/dsa-nagios/config install
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		BUILDD_MASTER=(wb-buildd)	ALL
