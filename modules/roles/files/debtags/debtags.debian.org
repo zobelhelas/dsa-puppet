@@ -27,14 +27,15 @@ WSGIDaemonProcess debtags.debian.org user=nobody group=debtags home=/ processes=
 	<Directory /srv/debtags.debian.org/htdocs>
 		Require all granted
 	</Directory>
+	Alias /static/ /srv/debtags.debian.org/htdocs/
 
-	<Directory /srv/debtags.debian.org/bin>
-		<Files debtags.wsgi>
+	<Directory /srv/debtags.debian.org/debtagsd/debtagsd>
+		<Files wsgi.py>
 			Require all granted
 		</Files>
 	</Directory>
 
-	WSGIScriptAlias / /srv/debtags.debian.org/bin/debtags.wsgi
+	WSGIScriptAlias / /srv/debtags.debian.org/debtagsd/debtagsd/wsgi.py
 	WSGIProcessGroup debtags.debian.org
 	WSGIPassAuthorization On
 </VirtualHost>
