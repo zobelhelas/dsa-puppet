@@ -33,6 +33,7 @@ WSGIDaemonProcess debtags.debian.org user=nobody group=debtags home=/ processes=
 		<Files wsgi.py>
 			Require all granted
 		</Files>
+		WSGIScriptReloading On
 	</Directory>
 
 	WSGIScriptAlias / /srv/debtags.debian.org/debtagsd/debtagsd/wsgi.py
