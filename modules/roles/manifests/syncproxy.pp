@@ -88,6 +88,7 @@ class roles::syncproxy {
 		}
 
 		@ferm::rule { "dsa-rsync-ssl":
+			domain      => '(ip ip6)',
 			description => "Allow traffic to rsync ssl",
 			rule        => "&SERVICE(tcp, 1873)"
 		}
