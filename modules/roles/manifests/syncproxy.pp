@@ -24,12 +24,6 @@ class roles::syncproxy {
 		default => 'unknown'
 	}
 
-	rsync::site { 'syncproxy':
-		content => template('roles/syncproxy/rsyncd.conf.erb'),
-		bind    => $bind,
-		bind6   => $bind6,
-	}
-
 	file { '/etc/rsyncd':
 		ensure => 'directory'
 	}
@@ -56,41 +50,17 @@ class roles::syncproxy {
 			content => template('roles/syncproxy/syncproxy.debian.org-index.html.erb')
 		}
 
-		file { '/etc/rsyncd-syncproxy-stunnel.conf':
-			content => template('roles/syncproxy/rsyncd-syncproxy-stunnel.conf.erb')
+		rsync::site { 'syncproxy':
+			content => template('roles/syncproxy/rsyncd.conf.erb'),
+			bind    => $bind,
+			bind6   => $bind6,
+			sslname => "$syncproxy_name",
 		}
-		xinetd::service { "rsync-syncproxy-ssl":
-			bind        => $bind,
-			id          => "syncproxy-rsync-ssl",
-			server      => '/usr/bin/stunnel4',
-			service     => 'rsync-ssl',
-			type        => 'UNLISTED',
-			port        => '1873',
-			server_args => "/etc/rsyncd-syncproxy-stunnel.conf",
-			ferm        => false,
-			instances   => 50,
-			require     => File["/etc/rsyncd-syncproxy-stunnel.conf"],
-		}
-
-		if $bind6 != '' {
-			xinetd::service { "rsync-syncproxy-ssl6":
-				bind        => $bind6,
-				id          => "syncproxy-rsync-ssl",
-				server      => '/usr/bin/stunnel4',
-				service     => 'rsync-ssl',
-				type        => 'UNLISTED',
-				port        => '1873',
-				server_args => "/etc/rsyncd-syncproxy-stunnel.conf",
-				ferm        => false,
-				instances   => 50,
-				require     => File["/etc/rsyncd-syncproxy-stunnel.conf"],
-			}
-		}
-
-		@ferm::rule { "dsa-rsync-ssl":
-			domain      => '(ip ip6)',
-			description => "Allow traffic to rsync ssl",
-			rule        => "&SERVICE(tcp, 1873)"
+	} else {
+		rsync::site { 'syncproxy':
+			content => template('roles/syncproxy/rsyncd.conf.erb'),
+			bind    => $bind,
+			bind6   => $bind6,
 		}
 	}
 }

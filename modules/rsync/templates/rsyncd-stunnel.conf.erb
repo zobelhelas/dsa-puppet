@@ -1,0 +1,11 @@
+cert = /etc/ssl/debian/certs/<%= sslname %>.crt-chained
+key = /etc/ssl/private/<%= sslname %>.key
+
+debug = notice
+
+client = no
+socket = a:SO_LINGER=1:60
+socket = a:SO_KEEPALIVE=1
+
+exec = /usr/bin/rsync
+execargs = rsync --daemon --config=/etc/rsyncd-<%= name %>.conf

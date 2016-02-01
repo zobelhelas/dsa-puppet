@@ -5,7 +5,9 @@ define rsync::site (
 	$content='',
 	$fname='',
 	$max_clients=200,
-	$ensure=present
+	$ensure=present,
+	$sslname='',
+	$sslport=1873
 ){
 
 	include rsync
@@ -62,6 +64,43 @@ define rsync::site (
 			ferm        => false,
 			instances   => $max_clients,
 			require     => File[$fname_real]
+		}
+	}
+
+	if $sslname != '' {
+		file { "/etc/rsyncd-${name}-stunnel.conf":
+			content => template('rsync/rsyncd-stunnel.conf.erb')
+		}
+		@ferm::rule { "rsync-${name}-ssl":
+			domain      => '(ip ip6)',
+			description => 'Allow rsync access',
+			rule        => "&SERVICE(tcp, $sslport)",
+		}
+		xinetd::service { "rsync-${name}-ssl":
+			bind        => $bind,
+			id          => "rsync-${name}-ssl",
+			server      => '/usr/bin/stunnel4',
+			server_args => "/etc/rsyncd-${name}-stunnel.conf",
+			service     => "rsync-ssl",
+			type        => 'UNLISTED',
+			port        => "$sslport",
+			ferm        => true,
+			instances   => $max_clients,
+			require     => File["/etc/rsyncd-${name}-stunnel.conf"],
+		}
+		if $bind6 != '' {
+			xinetd::service { "rsync-${name}-ssl6":
+				bind        => $bind6,
+				id          => "rsync-${name}-ssl6",
+				server      => '/usr/bin/stunnel4',
+				server_args => "/etc/rsyncd-${name}-stunnel.conf",
+				service     => "rsync-ssl",
+				type        => 'UNLISTED',
+				port        => "$sslport",
+				ferm        => true,
+				instances   => $max_clients,
+				require     => File["/etc/rsyncd-${name}-stunnel.conf"],
+			}
 		}
 	}
 
