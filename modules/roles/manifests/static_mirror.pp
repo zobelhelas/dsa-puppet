@@ -102,4 +102,8 @@ class roles::static_mirror {
 	if has_static_component('debconf5.debconf.org') { ssl::service { 'debconf5.debconf.org': notify => Service['apache2'], key => true, } }
 	if has_static_component('debconf6.debconf.org') { ssl::service { 'debconf6.debconf.org': notify => Service['apache2'], key => true, } }
 	if has_static_component('debconf7.debconf.org') { ssl::service { 'debconf7.debconf.org': notify => Service['apache2'], key => true, } }
+	if has_static_component('10years.debconf.org' ) { ssl::service { '10years.debconf.org' : notify => Service['apache2'], key => true, } }
+	if has_static_component('es.debconf.org'      ) { ssl::service { 'es.debconf.org'      : notify => Service['apache2'], key => true, } }
+	if has_static_component('fr.debconf.org'      ) { ssl::service { 'fr.debconf.org'      : notify => Service['apache2'], key => true, } }
+	if has_static_component('miniconf10.debconf.org') { ssl::service { 'miniconf10.debconf.org': notify => Service['apache2'], key => true, } }
 }
