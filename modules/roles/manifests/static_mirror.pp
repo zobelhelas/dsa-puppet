@@ -91,8 +91,15 @@ class roles::static_mirror {
 		notify => Service['apache2'],
 	}
 
+	if has_static_component('news.debian.net'     ) { ssl::service { 'news.debian.net'     : notify => Service['apache2'], key => true, } }
+	if has_static_component('debaday.debian.net'  ) { ssl::service { 'debaday.debian.net'  : notify => Service['apache2'], key => true, } }
+	if has_static_component('timeline.debian.net' ) { ssl::service { 'timeline.debian.net' : notify => Service['apache2'], key => true, } }
 	if has_static_component('debconf0.debconf.org') { ssl::service { 'debconf0.debconf.org': notify => Service['apache2'], key => true, } }
 	if has_static_component('debconf1.debconf.org') { ssl::service { 'debconf1.debconf.org': notify => Service['apache2'], key => true, } }
 	if has_static_component('debconf2.debconf.org') { ssl::service { 'debconf2.debconf.org': notify => Service['apache2'], key => true, } }
 	if has_static_component('debconf3.debconf.org') { ssl::service { 'debconf3.debconf.org': notify => Service['apache2'], key => true, } }
+	if has_static_component('debconf4.debconf.org') { ssl::service { 'debconf4.debconf.org': notify => Service['apache2'], key => true, } }
+	if has_static_component('debconf5.debconf.org') { ssl::service { 'debconf5.debconf.org': notify => Service['apache2'], key => true, } }
+	if has_static_component('debconf6.debconf.org') { ssl::service { 'debconf6.debconf.org': notify => Service['apache2'], key => true, } }
+	if has_static_component('debconf7.debconf.org') { ssl::service { 'debconf7.debconf.org': notify => Service['apache2'], key => true, } }
 }
