@@ -32,6 +32,10 @@ class apache2 {
 		site     => 'default-debian.org',
 		content  => template('apache2/default-debian.org.erb'),
 	}
+	apache2::site { 'xx-default-ssl':
+		site     => 'default-debian.org-ssl',
+		content  => template('apache2/default-debian.org-ssl.erb'),
+	}
 
 	apache2::site { '000-default':
 		ensure => absent,

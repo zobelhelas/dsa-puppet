@@ -1,0 +1,31 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+	ServerAdmin debian-admin@debian.org
+	SSLEngine on
+	SSLCertificateFile     /etc/ssl/debian/certs/thishost-server.crt
+	SSLCertificateKeyFile  /etc/ssl/debian/keys/thishost-server.key
+	SSLCertificateChainFile /etc/ssl/debian/certs/ca.crt
+
+	ErrorLog /var/log/apache2/error.log
+	CustomLog /var/log/apache2/access.log privacy
+
+	DocumentRoot /srv/www/default.debian.org/htdocs
+	<Directory /srv/www/default.debian.org/htdocs>
+		Require all granted
+	</Directory>
+
+	HostnameLookups Off
+	UseCanonicalName Off
+	ServerSignature On
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+</VirtualHost>
+</IfModule>
+# vim:set syn=apache:
