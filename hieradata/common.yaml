@@ -15,8 +15,6 @@ roles:
     - beach.debian.org
   buildd_master:
     - wuiet.debian.org
-  buildd_ports_master:
-    - portman.debian.org
   contributors:
     - nono.debian.org
   dbmaster:

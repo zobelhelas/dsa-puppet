@@ -32,7 +32,6 @@ Host_Alias	MEGARAIDHOSTS	= rautavaara, sibelius
 Host_Alias	MEGACTLHOSTS	= nielsen
 Host_Alias	LISTHOSTS	= bendel
 Host_Alias	BUILDD_MASTER	= wuiet
-Host_Alias	BUILDD_PORTS_MASTER	= portman
 Host_Alias	PORTERBOXES	= abel, asachi, barriere, etler, falla, fischer, harris, merulo, minkus, partch, plummer, pizzetti, smetana, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
 Host_Alias	MQ_HOSTS	= rainier, rapoport
@@ -223,9 +222,6 @@ letsencrypt	denis=(dnsadm)			NOPASSWD: /srv/dns.debian.org/bin/update
 # wbadm can update all buildd* users' keys on buildd.d.o
 %wbadm		BUILDD_MASTER=(wb-buildd)	ALL
 %wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
-# wbadm can update all buildd* users' keys on buildd.d.o
-%wbadm-ports	BUILDD_PORTS_MASTER=(wb-buildd)	ALL
-%wbadm-ports	BUILDD_PORTS_MASTER=(root)	/usr/local/bin/update-buildd-sshkeys
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
 dak		franck=(backports)	NOPASSWD: /home/backports/bin/update-archive
