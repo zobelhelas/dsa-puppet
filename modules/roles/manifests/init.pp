@@ -288,6 +288,7 @@ class roles {
 	if has_role('planet_search') {
 		ssl::service { 'planet-search.debian.org':
 			notify => Service['apache2'],
+			key => true,
 		}
 	}
 }
