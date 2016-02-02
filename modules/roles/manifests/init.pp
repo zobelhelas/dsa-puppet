@@ -284,4 +284,10 @@ class roles {
 	if has_role('debtags') {
 		include roles::debtags
 	}
+
+	if has_role('planet_search') {
+		ssl::service { 'planet-search.debian.org':
+			notify => Service['apache2'],
+		}
+	}
 }
