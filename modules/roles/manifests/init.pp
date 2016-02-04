@@ -104,6 +104,13 @@ class roles {
 		include roles::www_master
 	}
 
+	if has_role('cgi.d.o') {
+		ssl::service { 'cgi.debian.org':
+			notify => Service['apache2'],
+			key => true,
+		}
+	}
+
 	if has_role('keyring') {
 		include roles::keyring
 	}

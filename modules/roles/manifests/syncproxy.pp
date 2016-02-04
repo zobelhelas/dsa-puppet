@@ -36,7 +36,10 @@ class roles::syncproxy {
 
 	if $::apache2 and $syncproxy_name != 'unknown' {
 		include apache2::ssl
-		ssl::service { "$syncproxy_name": notify => Service['apache2'], key => true, }
+		ssl::service {
+			"$syncproxy_name": notify => Service['apache2'],
+			key => true,
+		}
 		apache2::site { '010-syncproxy.debian.org':
 			site   => 'syncproxy.debian.org',
 			content => template('roles/syncproxy/syncproxy.debian.org-apache.erb')

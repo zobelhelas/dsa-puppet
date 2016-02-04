@@ -166,6 +166,8 @@ roles:
     - wilder.debian.org
   www_master:
     - wolkenstein.debian.org
+  cgi.d.o:
+    - wolkenstein.debian.org
   postgres_backup_server:
     - backuphost.debian.org
     - storace.debian.org
