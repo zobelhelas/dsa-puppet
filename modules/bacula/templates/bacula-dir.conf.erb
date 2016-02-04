@@ -43,6 +43,9 @@ FileSet {
     Options {
       signature = SHA1
       compression = GZIP9
+      aclsupport = yes
+      xattrsupport = yes
+      Ignore FileSet Changes = yes
     }
     File = "\\|/usr/local/sbin/bacula-backup-dirs"
     # Dont backup directories that contain .nobackup files
@@ -53,7 +56,7 @@ FileSet {
     File = /var/lib/bacula
     File = /var/cache/apt/
     File = /nonexistant
-    File = /swapfile
+    wild = "/swapfile*"
     File = /proc
     File = /tmp
     File = /.journal
@@ -158,6 +161,7 @@ JobDefs {
   Type = Backup
   Level = Incremental
   FileSet = "Standard Set"
+  Accurate = yes
   Schedule = "WeeklyCycle"
   Messages = Standard
   Max Full Interval = 40 days
