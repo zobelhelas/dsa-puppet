@@ -171,11 +171,11 @@
    RewriteRule ^/(?!devel/website/errors/)(.*/)?404\.(.+)\.html$ /devel/website/errors/404.$2.html [L]
 
 # the joys of backwards compatibility
-   RedirectPermanent /cgi-bin/cvsweb http://cvs.debian.org
-   RedirectPermanent /Lists-Archives http://lists.debian.org
-   RedirectPermanent /search http://search.debian.org
-   RedirectPermanent /Packages http://packages.debian.org
-   RedirectPermanent /lintian http://lintian.debian.org
+   RedirectPermanent /cgi-bin/cvsweb https://cvs.debian.org
+   RedirectPermanent /Lists-Archives https://lists.debian.org
+   RedirectPermanent /search https://search.debian.org
+   RedirectPermanent /Packages https://packages.debian.org
+   RedirectPermanent /lintian https://lintian.debian.org
 
    RedirectPermanent /SPI http://www.spi-inc.org
 #   RedirectPermanent /OpenHardware http://www.openhardware.org
@@ -183,9 +183,9 @@
 
    RedirectPermanent /Bugs/db/ix/pseudopackages.html /Bugs/pseudo-packages
    RewriteEngine on
-   RewriteRule ^/Bugs/db/pa/l([^/]+).html$ http://bugs.debian.org/$1
-   RewriteRule ^/Bugs/db/[[:digit:]][[:digit:]]/([[:digit:]][[:digit:]][[:digit:]]+).html$ http://bugs.debian.org/$1
-   RewriteRule ^/Bugs/db/ma/l([^/]+).html$ http://bugs.debian.org/cgi-bin/pkgreport.cgi?maintenc=$1
+   RewriteRule ^/Bugs/db/pa/l([^/]+).html$ https://bugs.debian.org/$1
+   RewriteRule ^/Bugs/db/[[:digit:]][[:digit:]]/([[:digit:]][[:digit:]][[:digit:]]+).html$ https://bugs.debian.org/$1
+   RewriteRule ^/Bugs/db/ma/l([^/]+).html$ https://bugs.debian.org/cgi-bin/pkgreport.cgi?maintenc=$1
 
    <IfModule mod_userdir.c>
       UserDir disabled
@@ -199,7 +199,7 @@
    RedirectPermanent /doc/packaging-manuals/packaging-tutorial /doc/manuals/packaging-tutorial
    RedirectPermanent /doc/prospective-packages /devel/wnpp/
    RedirectPermanent /devel/maintainer_contacts /intro/organization
-   RedirectPermanent /devel/debian-installer/gtk-frontend http://wiki.debian.org/DebianInstaller/GUI
+   RedirectPermanent /devel/debian-installer/gtk-frontend https://wiki.debian.org/DebianInstaller/GUI
    RedirectPermanent /zh/ /international/Chinese/
    RedirectPermanent /chinese/ /international/Chinese/
    RedirectPermanent /devel/help /devel/join/
