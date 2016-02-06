@@ -184,3 +184,7 @@ roles:
     - mirror-isc.debian.org
   planet_search:
     - philp.debian.org
+  i18n.d.o:
+    - tye.debian.org
+  l10n.d.o:
+    - tye.debian.org

@@ -298,4 +298,18 @@ class roles {
 			key => true,
 		}
 	}
+
+	if has_role('i18n.d.o') {
+		ssl::service { 'i18n.debian.org':
+			notify => Service['apache2'],
+			key => true,
+		}
+	}
+
+	if has_role('l10n.d.o') {
+		ssl::service { 'l10n.debian.org':
+			notify => Service['apache2'],
+			key => true,
+		}
+	}
 }
