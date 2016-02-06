@@ -50,11 +50,13 @@ class roles::static_mirror {
 
 	apache2::site { '010-planet.debian.org':
 		site    => 'planet.debian.org',
+		ensure  => has_static_component('planet.debian.org') ? { true => "present", false => "absent" },
 		content => template('roles/static-mirroring/vhost/planet.debian.org.erb'),
 	}
 
 	apache2::site { '010-lintian.debian.org':
 		site    => 'lintian.debian.org',
+		ensure  => has_static_component('lintian.debian.org') ? { true => "present", false => "absent" },
 		content => template('roles/static-mirroring/vhost/lintian.debian.org.erb'),
 	}
 
@@ -66,6 +68,7 @@ class roles::static_mirror {
 	$wwwdo_document_root = '/srv/static.debian.org/mirrors/www.debian.org/cur'
 	apache2::site { '005-www.debian.org':
 		site   => 'www.debian.org',
+		ensure  => has_static_component('www.debian.org') ? { true => "present", false => "absent" },
 		content => template('roles/apache-www.debian.org.erb'),
 	}
 
