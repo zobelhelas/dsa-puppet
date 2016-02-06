@@ -69,27 +69,13 @@ class roles::static_mirror {
 		content => template('roles/apache-www.debian.org.erb'),
 	}
 
-	ssl::service { 'dsa.debian.org':
-		notify => Service['apache2'],
-	}
-	ssl::service { 'www.debian.org':
-		notify => Service['apache2'],
-	}
-	ssl::service { 'bits.debian.org':
-		notify => Service['apache2'],
-	}
-	ssl::service { 'lintian.debian.org':
-		notify => Service['apache2'],
-	}
-	ssl::service { 'rtc.debian.org':
-		notify => Service['apache2'],
-	}
-	ssl::service { 'appstream.debian.org':
-		notify => Service['apache2'],
-	}
-	ssl::service { 'd-i.debian.org':
-		notify => Service['apache2'],
-	}
+	if has_static_component('dsa.debian.org'       ) { ssl::service { 'dsa.debian.org'      : notify => Service['apache2'], } }
+	if has_static_component('www.debian.org'       ) { ssl::service { 'www.debian.org'      : notify => Service['apache2'], } }
+	if has_static_component('bits.debian.org'      ) { ssl::service { 'bits.debian.org'     : notify => Service['apache2'], } }
+	if has_static_component('lintian.debian.org'   ) { ssl::service { 'lintian.debian.org'  : notify => Service['apache2'], } }
+	if has_static_component('rtc.debian.org'       ) { ssl::service { 'rtc.debian.org'      : notify => Service['apache2'], } }
+	if has_static_component('appstream.debian.org' ) { ssl::service { 'appstream.debian.org': notify => Service['apache2'], } }
+	if has_static_component('d-i.debian.org'       ) { ssl::service { 'd-i.debian.org'      : notify => Service['apache2'], } }
 
 	if has_static_component('news.debian.net'     ) { ssl::service { 'news.debian.net'     : notify => Service['apache2'], key => true, } }
 	if has_static_component('debaday.debian.net'  ) { ssl::service { 'debaday.debian.net'  : notify => Service['apache2'], key => true, } }
