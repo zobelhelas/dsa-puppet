@@ -114,36 +114,36 @@ roles:
     - diabelli.debian.org
     - jerea.debian.org
     - nono.debian.org
-    - ticharich.debian.org
     - tate.debian.org
+    - ticharich.debian.org
   static_master:
     - dillon.debian.org
     - franck.debian.org
   static_mirror:
     - busoni.debian.org
     - klecker.debian.org
-    - senfter.debian.org
+    - mirror-anu.debian.org
     - mirror-csail.debian.org
     - mirror-isc.debian.org
-    - mirror-anu.debian.org
+    - senfter.debian.org
   # when adding a new static mirror, allow it to sync etc, but do not push to it and wait for it.  For this, also add it to static_mirror_nopush.
   static_mirror_nopush:
     - dummy
   static_source:
-    - master.debian.org
     - dillon.debian.org
     - donizetti.debian.org
     - franck.debian.org
     - lindsay.debian.org
+    - master.debian.org
     - mekeel.debian.org
     - philp.debian.org
     - wolkenstein.debian.org
   syncproxy:
+    - klecker.debian.org
     - milanollo.debian.org
     - mirror-anu.debian.org
     - mirror-isc.debian.org
     - mirror-umn.debian.org
-    - klecker.debian.org
   tracker:
     - ticharich.debian.org
   udd:
@@ -153,14 +153,14 @@ roles:
   weblog_destination:
     - wolkenstein.debian.org
   weblog_provider:
+    - busoni.debian.org
     - gluck.debian.org
+    - klecker.debian.org
     - mirror-anu.debian.org
-    - mirror-isc.debian.org
     - mirror-csail.debian.org
+    - mirror-isc.debian.org
     - mirror-umn.debian.org
     - santoro.debian.org
-    - busoni.debian.org
-    - klecker.debian.org
     - senfter.debian.org
   wiki:
     - wilder.debian.org
