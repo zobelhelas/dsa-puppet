@@ -72,27 +72,27 @@ class roles::static_mirror {
 		content => template('roles/apache-www.debian.org.erb'),
 	}
 
-	if has_static_component('dsa.debian.org'       ) { ssl::service { 'dsa.debian.org'      : notify => Service['apache2'], } }
-	if has_static_component('www.debian.org'       ) { ssl::service { 'www.debian.org'      : notify => Service['apache2'], } }
-	if has_static_component('bits.debian.org'      ) { ssl::service { 'bits.debian.org'     : notify => Service['apache2'], } }
-	if has_static_component('lintian.debian.org'   ) { ssl::service { 'lintian.debian.org'  : notify => Service['apache2'], } }
-	if has_static_component('rtc.debian.org'       ) { ssl::service { 'rtc.debian.org'      : notify => Service['apache2'], } }
-	if has_static_component('appstream.debian.org' ) { ssl::service { 'appstream.debian.org': notify => Service['apache2'], } }
-	if has_static_component('d-i.debian.org'       ) { ssl::service { 'd-i.debian.org'      : notify => Service['apache2'], } }
+	ssl::service { 'dsa.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
+	ssl::service { 'www.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
+	ssl::service { 'bits.debian.org'     : ensure => "ifstatic", notify => Service['apache2'], }
+	ssl::service { 'lintian.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], }
+	ssl::service { 'rtc.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
+	ssl::service { 'appstream.debian.org': ensure => "ifstatic", notify => Service['apache2'], }
+	ssl::service { 'd-i.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 
-	if has_static_component('news.debian.net'     ) { ssl::service { 'news.debian.net'     : notify => Service['apache2'], key => true, } }
-	if has_static_component('debaday.debian.net'  ) { ssl::service { 'debaday.debian.net'  : notify => Service['apache2'], key => true, } }
-	if has_static_component('timeline.debian.net' ) { ssl::service { 'timeline.debian.net' : notify => Service['apache2'], key => true, } }
-	if has_static_component('debconf0.debconf.org') { ssl::service { 'debconf0.debconf.org': notify => Service['apache2'], key => true, } }
-	if has_static_component('debconf1.debconf.org') { ssl::service { 'debconf1.debconf.org': notify => Service['apache2'], key => true, } }
-	if has_static_component('debconf2.debconf.org') { ssl::service { 'debconf2.debconf.org': notify => Service['apache2'], key => true, } }
-	if has_static_component('debconf3.debconf.org') { ssl::service { 'debconf3.debconf.org': notify => Service['apache2'], key => true, } }
-	if has_static_component('debconf4.debconf.org') { ssl::service { 'debconf4.debconf.org': notify => Service['apache2'], key => true, } }
-	if has_static_component('debconf5.debconf.org') { ssl::service { 'debconf5.debconf.org': notify => Service['apache2'], key => true, } }
-	if has_static_component('debconf6.debconf.org') { ssl::service { 'debconf6.debconf.org': notify => Service['apache2'], key => true, } }
-	if has_static_component('debconf7.debconf.org') { ssl::service { 'debconf7.debconf.org': notify => Service['apache2'], key => true, } }
-	if has_static_component('10years.debconf.org' ) { ssl::service { '10years.debconf.org' : notify => Service['apache2'], key => true, } }
-	if has_static_component('es.debconf.org'      ) { ssl::service { 'es.debconf.org'      : notify => Service['apache2'], key => true, } }
-	if has_static_component('fr.debconf.org'      ) { ssl::service { 'fr.debconf.org'      : notify => Service['apache2'], key => true, } }
-	if has_static_component('miniconf10.debconf.org') { ssl::service { 'miniconf10.debconf.org': notify => Service['apache2'], key => true, } }
+	ssl::service { 'news.debian.net'       : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debaday.debian.net'    : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'timeline.debian.net'   : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf0.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf1.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf2.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf3.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf4.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf5.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf6.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf7.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { '10years.debconf.org'   : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'es.debconf.org'        : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'fr.debconf.org'        : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'miniconf10.debconf.org': ensure => "ifstatic", notify => Service['apache2'], key => true, }
 }
