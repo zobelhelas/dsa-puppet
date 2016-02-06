@@ -83,4 +83,7 @@ mirrors:
   mirror-anu.debian.org:
     components-include: # all others are thus excluded
       - www.debian.org
+  santoro.debian.org:
+    components-include: # all others are thus excluded
+      - www.debian.org
 
