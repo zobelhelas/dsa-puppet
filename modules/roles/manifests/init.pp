@@ -312,4 +312,11 @@ class roles {
 			key => true,
 		}
 	}
+
+	if has_role('dedup.d.n') {
+		ssl::service { 'dedup.debian.net':
+			notify => Service['apache2'],
+			key => true,
+		}
+	}
 }
