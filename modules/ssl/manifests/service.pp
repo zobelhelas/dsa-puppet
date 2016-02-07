@@ -1,4 +1,6 @@
 define ssl::service($ensure = present, $tlsaport = 443, $notify = [], $key = false) {
+	$tlsaports = any2array($tlsaport)
+
 	if ($ensure == "ifstatic") {
 		$ssl_ensure = has_static_component($name) ? {
 			true => "present",
@@ -35,8 +37,9 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = [], $key = fal
 		}
 	}
 
-	if ($tlsaport > 0 and $ssl_ensure == "present") {
-		dnsextras::tlsa_record{ "tlsa-${name}-${tlsaport}":
+	if (size($tlsaports) > 0 and $ssl_ensure == "present") {
+		$portlist = join($tlsaports, "-")
+		dnsextras::tlsa_record{ "tlsa-${name}-${portlist}":
 			zone     => 'debian.org',
 			certfile => [ "/etc/puppet/modules/ssl/files/servicecerts/${name}.crt", "/etc/puppet/modules/ssl/files/from-letsencrypt/${name}.crt" ],
 			port     => $tlsaport,

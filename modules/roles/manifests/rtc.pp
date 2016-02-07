@@ -1,7 +1,7 @@
 class roles::rtc {
 
 	ssl::service { 'www.debian.org':
-		tlsaport => 0,
+		tlsaport => [],
 		notify  => Service['repro'],
 	}
 
