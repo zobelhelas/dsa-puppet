@@ -319,4 +319,15 @@ class roles {
 			key => true,
 		}
 	}
+
+	if has_role('pet.d.n') {
+		ssl::service { 'pet.debian.net':
+			notify => Service['apache2'],
+			key => true,
+		}
+		ssl::service { 'pet-devel.debian.net':
+			notify => Service['apache2'],
+			key => true,
+		}
+	}
 }

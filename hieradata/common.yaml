@@ -190,3 +190,5 @@ roles:
     - tye.debian.org
   dedup.d.n:
     - delfin.debian.org
+  pet.d.n:
+    - petrova.debian.org
