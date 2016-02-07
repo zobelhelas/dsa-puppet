@@ -69,7 +69,8 @@ define rsync::site (
 
 	if $sslname != '' {
 		file { "/etc/rsyncd-${name}-stunnel.conf":
-			content => template('rsync/rsyncd-stunnel.conf.erb')
+			content => template('rsync/rsyncd-stunnel.conf.erb'),
+			require => File["/etc/ssl/debian/certs/${sslname}.crt-chained"],
 		}
 		@ferm::rule { "rsync-${name}-ssl":
 			domain      => '(ip ip6)',
@@ -101,6 +102,13 @@ define rsync::site (
 				instances   => $max_clients,
 				require     => File["/etc/rsyncd-${name}-stunnel.conf"],
 			}
+		}
+
+		dnsextras::tlsa_record{ "tlsa-${sslname}-${sslport}":
+			zone     => 'debian.org',
+			certfile => [ "/etc/puppet/modules/ssl/files/servicecerts/${sslname}.crt", "/etc/puppet/modules/ssl/files/from-letsencrypt/${sslname}.crt" ],
+			port     => $sslport,
+			hostname => "$sslname",
 		}
 	}
 
