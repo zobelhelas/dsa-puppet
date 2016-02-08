@@ -49,29 +49,27 @@ FileSet {
     }
     Options {
       wild = "/swapfile*"
+      File = /.fsck
+      File = /.journal
+      File = /dev
+      File = /lib/init/rw
+      File = /nonexistant
+      File = /proc
+      File = /srv/chroot
+      File = /sys
+      File = /tmp
+      File = /var/cache/apt
+      File = /var/lib/apt
+      File = /var/lib/bacula
+      File = /var/lock
+      File = /var/log/samhaim
+      File = /var/run
+      File = "\\|bash -c 'grep -s -v ^# /etc/bacula/local-exclude || true'"
       exclude = yes
     }
     File = "\\|/usr/local/sbin/bacula-backup-dirs"
     # Dont backup directories that contain .nobackup files
     Exclude Dir Containing = .nobackup
-  }
-
-  Exclude {
-    File = /var/lib/bacula
-    File = /var/cache/apt/
-    File = /nonexistant
-    File = /proc
-    File = /tmp
-    File = /.journal
-    File = /.fsck
-    File = /sys
-    File = /lib/init/rw
-    File = /var/run
-    File = /var/lock
-    File = /dev
-    File = /srv/chroot
-    File = /home/buildd/build-trees
-    File = "\\|bash -c 'grep -s -v ^# /etc/bacula/local-exclude || true'"
   }
 }
 
