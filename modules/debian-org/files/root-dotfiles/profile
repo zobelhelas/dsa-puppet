@@ -7,6 +7,9 @@ if [ "$BASH" ]; then
   if [ -f ~/.bashrc ]; then
     . ~/.bashrc
   fi
+  if [ "$PS1" ]; then
+    PS1='${debian_chroot:+[$debian_chroot] }\h:\w\$ '
+  fi
 fi
 
 mesg n
