@@ -59,9 +59,7 @@ forward-zone:
 <% @ns.to_a.flatten.each do |nms| -%>
 	forward-addr: <%= nms %>
 <% end -%>
-<% if @lsbmajdistrelease >= '7' -%>
 	# This will actually only work starting with unbound 1.4.18 (wheezy has 1.4.17)
 	# previously, forward-first was not implemented for the root zone.
 	forward-first: yes
-<% end -%>
 <% end -%>
