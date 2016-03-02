@@ -13,11 +13,6 @@ class debian-org {
 			$mirror = 'http://deb.debian.org/debian/'
 		}
 	}
-	if $::lsbmajdistrelease < 7 {
-		$mirror_backports = 'http://backports.debian.org/debian-backports/'
-	} else {
-		$mirror_backports = $mirror
-	}
 
 	if $::lsbmajdistrelease <= 7 {
 		$mungedcodename = $::lsbdistcodename
@@ -68,10 +63,8 @@ class debian-org {
 
 	if ($::lsbmajdistrelease >= 8) {
 		$rubyfs_package = 'ruby-filesystem'
-	} elsif $::lsbmajdistrelease == 7  {
-		$rubyfs_package = 'libfilesystem-ruby1.9'
 	} else {
-		$rubyfs_package = 'libfilesystem-ruby1.8'
+		$rubyfs_package = 'libfilesystem-ruby1.9'
 	}
 	package { [
 			'apt-utils',
@@ -143,20 +136,12 @@ class debian-org {
 		suite      => "${mungedcodename}/updates",
 		components => ['main','contrib','non-free']
 	}
-	if $::lsbmajdistrelease < 7 {
-		site::aptrepo { 'debian-lts':
-			url        => $mirror,
-			suite      => "${::lsbdistcodename}-lts",
-			components => ['main','contrib','non-free']
-		}
-	} else {
-		site::aptrepo { 'debian-lts':
-			ensure => absent,
-		}
+	site::aptrepo { 'debian-lts':
+		ensure => absent,
 	}
 
 	site::aptrepo { 'backports.debian.org':
-		url        => $mirror_backports,
+		url        => $mirror,
 		suite      => "${::lsbdistcodename}-backports",
 		components => ['main','contrib','non-free']
 	}
