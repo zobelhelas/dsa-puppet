@@ -12,17 +12,12 @@ class monit {
 			ensure => installed
 		}
 
-		$cmd = $::lsbdistcodename ? {
-			'squeeze'    => '/usr/sbin/monit',
-			default  => '/usr/bin/monit',
-		}
-
 		augeas { 'inittab_monit':
 			context => '/files/etc/inittab',
 			changes => [
 				'set mo/runlevels 2345',
 				'set mo/action respawn',
-				"set mo/process \"$cmd -d 300 -I -c /etc/monit/monitrc -s /var/lib/monit/monit.state\"",
+				"set mo/process \"/usr/bin/monit -d 300 -I -c /etc/monit/monitrc -s /var/lib/monit/monit.state\"",
 			],
 			notify => Exec['init q'],
 		}
