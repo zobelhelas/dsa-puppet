@@ -9,20 +9,10 @@ class munin {
 		require => Package['munin-node'],
 	}
 
-	$owner = $::lsbdistcodename ? {
-		squeeze => munin,
-		default  => root,
-	}
-
-	$gid = $::lsbdistcodename ? {
-		squeeze => adm,
-		default => 'www-data',
-	}
-
 	file { '/var/log/munin':
 		ensure => directory,
-		owner  => $owner,
-		group  => $gid,
+		owner  => root,
+		group  => 'www-data',
 		mode   => '0755',
 	}
 
@@ -79,12 +69,10 @@ class munin {
 	#		ensure => 'absent',
 	#	}
 	#}
-	if $::lsbmajdistrelease >= 7 {
-		package { 'munin-async':
-			ensure => installed
-		}
-		file { '/etc/ssh/userkeys/munin-async':
-			source => 'puppet:///modules/munin/munin-async-authkeys',
-		}
+	package { 'munin-async':
+		ensure => installed
+	}
+	file { '/etc/ssh/userkeys/munin-async':
+		source => 'puppet:///modules/munin/munin-async-authkeys',
 	}
 }
