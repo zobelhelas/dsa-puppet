@@ -144,24 +144,14 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
             SUITES="${SUITE_BASE}"
             [ -n "${debian_mirror}" ] && domirror "${debian_mirror} SUITE COMPONENT" ${APT_LIST}
             domirror "http://ftp.debian.org/debian SUITE COMPONENT" ${APT_LIST}
-            if [ "$SUITE" != "squeeze" ]; then
-                [ -n "${debian_mirror}" ] && domirror "${debian_mirror} SUITE-backports COMPONENT" ${APT_LIST}
-                domirror "http://ftp.debian.org/debian SUITE-backports COMPONENT" ${APT_LIST}
-            else
-                [ -n "${backports_mirror}" ] && domirror "${backports_mirror} SUITE COMPONENT" ${APT_LIST}
-                domirror "http://backports.debian.org/debian-backports/ SUITE-backports COMPONENT" ${APT_LIST}
-            fi
+            [ -n "${debian_mirror}" ] && domirror "${debian_mirror} SUITE-backports COMPONENT" ${APT_LIST}
+            domirror "http://ftp.debian.org/debian SUITE-backports COMPONENT" ${APT_LIST}
             if [ "${debian_incoming}" != 'no' ]; then
                 domirror "http://incoming.debian.org/debian-buildd buildd-SUITE-backports COMPONENT" ${APT_LIST}
             fi
             if [ "$(echo ${SUITE_VARIANT} | cut -d - -f 2)" = "sloppy" ]; then
-                if [ "$SUITE" != "squeeze" ]; then
-                    [ -n "${debian_mirror}" ] && domirror "${debian_mirror} SUITE-backports-sloppy COMPONENT" ${APT_LIST}
-                    domirror "http://ftp.debian.org/debian SUITE-backports-sloppy COMPONENT" ${APT_LIST}
-                else
-                    [ -n "${backports_mirror}" ] && domirror "${backports_mirror} SUITE-backports-sloppy COMPONENT" ${APT_LIST}
-                    domirror "http://backports.debian.org/debian-backports/ SUITE-backports-sloppy COMPONENT" ${APT_LIST}
-                fi
+                [ -n "${debian_mirror}" ] && domirror "${debian_mirror} SUITE-backports-sloppy COMPONENT" ${APT_LIST}
+                domirror "http://ftp.debian.org/debian SUITE-backports-sloppy COMPONENT" ${APT_LIST}
                 if [ "${debian_incoming}" != 'no' ]; then
                     domirror "http://incoming.debian.org/debian-buildd buildd-SUITE-backports-sloppy COMPONENT" ${APT_LIST}
                 fi
