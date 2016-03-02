@@ -88,10 +88,7 @@ AcceptEnv LANG LC_*
 Subsystem sftp /usr/lib/openssh/sftp-server
 
 UsePAM yes
-<% if %w{squeeze}.include?(scope.lookupvar('::lsbdistcodename')) %>
-AuthorizedKeysFile /etc/ssh/userkeys/%u
-AuthorizedKeysFile2 /var/lib/misc/userkeys/%u
-<% else %>
+
 AuthorizedKeysFile /etc/ssh/userkeys/%u /var/lib/misc/userkeys/%u /etc/ssh/userkeys/%u.more
-<% end %>
+
 PasswordAuthentication no
