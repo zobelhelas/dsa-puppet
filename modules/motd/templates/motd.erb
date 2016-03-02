@@ -1,8 +1,6 @@
-<% if @lsbmajdistrelease >= '7' -%>
 #!/bin/bash
 
 cat <<EOD
-<% end -%>
 
 This device is for authorized users only.  All traffic on this device
 is monitored and will be used as evidence for prosecutions.  By using
@@ -112,10 +110,8 @@ if scope.lookupvar('::cluster')
   purp += scope.lookupvar('::cluster').to_s + ":\n"
   purp += "\t" + scope.lookupvar('::cluster_nodes').split.sort.map{ |x| x.split('.')[0] }.join(", ") + ".\n"
 
-  if @lsbmajdistrelease >= '7'
-    purp += ""
-    purp += "\tCurrently the master node is $(cat /var/lib/ganeti/ssconf_master_node).\n"
-  end
+  purp += ""
+  purp += "\tCurrently the master node is $(cat /var/lib/ganeti/ssconf_master_node).\n"
   #nodes = scope.lookupvar('::cluster_nodes').sort
   #nodes.each do |node|
   #  purp += "\t" + node + "\n"
@@ -145,9 +141,7 @@ purp
 -%>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-<% if @lsbmajdistrelease >= '7' -%>
 EOD
-<% end -%>
 <%
 # vim:set et:
 # vim:set sts=2 ts=2:

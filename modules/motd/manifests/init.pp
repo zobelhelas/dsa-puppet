@@ -7,23 +7,12 @@
 #   include motd
 #
 class motd {
-	if $::lsbmajdistrelease >= 7 {
-		$fname  = '/etc/update-motd.d/puppet-motd'
-		$notify = undef
-		$mode   = '0555'
-
-		file { '/etc/update-motd.d':
-			ensure => directory,
-			mode   => '0755'
-		}
-		file { '/etc/motd.tail':
-			ensure => absent,
-		}
-	} else {
-		$fname  = '/etc/motd.tail'
-		$notify = Exec['updatemotd']
-		$mode   = '0444'
-
+	file { '/etc/update-motd.d':
+		ensure => directory,
+		mode   => '0755'
+	}
+	file { '/etc/motd.tail':
+		ensure => absent,
 	}
 
 	file { '/etc/motd':
@@ -31,9 +20,9 @@ class motd {
 		target => '/var/run/motd'
 	}
 
-	file { $fname:
-		notify  => $notify,
-		mode    => $mode,
+	file { '/etc/update-motd.d/puppet-motd':
+		notify  => undef,
+		mode    => '0555',
 		content => template('motd/motd.erb')
 	}
 
