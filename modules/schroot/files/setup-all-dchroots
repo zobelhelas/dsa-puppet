@@ -50,7 +50,7 @@ get_suites() {
         echo "sid stretch jessie"
         ;;
       amd64|i386)
-        echo "sid stretch jessie wheezy squeeze"
+        echo "sid stretch jessie wheezy"
         ;;
       kfreebsd-*)
         echo "sid         jessie wheezy"
