@@ -39,12 +39,11 @@ class buildd ($ensure=present) {
 	}
 
 	$suite = $::lsbdistcodename ? {
-		squeeze  => $::lsbdistcodename,
 		wheezy   => $::lsbdistcodename,
 		jessie   => $::lsbdistcodename,
 		stretch  => $::lsbdistcodename,
-		undef   => 'squeeze',
-		default => 'wheezy'
+		undef   => 'wheezy',
+		default => 'jessie'
 	}
 
 	$buildd_apt_url = $::debarchitecture ? {
@@ -95,7 +94,7 @@ class buildd ($ensure=present) {
 		require => Package['debian.org']
 	}
 
-	if ($::lsbmajdistrelease >= 7 and $::kernel == 'Linux') {
+	if ($::kernel == 'Linux') {
 		package { 'python-psutil':
 			ensure => installed,
 		}
