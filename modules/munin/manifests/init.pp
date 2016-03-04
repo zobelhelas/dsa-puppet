@@ -41,8 +41,9 @@ class munin {
 	}
 
 	file { '/etc/munin/plugins/df_abs':
-		ensure  => link,
-		target  => '/usr/share/munin/plugins/df_abs',
+		ensure  => file,
+		source => 'puppet:///modules/munin/df-wrap',
+		mode    => '0555',
 		require => Package['munin-node'],
 		notify  => Service['munin-node'],
 	}

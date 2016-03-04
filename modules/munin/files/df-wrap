@@ -1,0 +1,39 @@
+#!/bin/sh
+
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+# Calls the appropriate df plugin while filtering out short-lived entries
+# like the sbuild/schroot filesystems.
+
+# Copyright 2011 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+case "${0##*/}" in
+	df)		plugin=/usr/share/munin/plugins/df       ; filter='^_dev\.|^_run|^_lib_init_rw|_sbuild_|_schroot_' ;;
+	df_abs)		plugin=/usr/share/munin/plugins/df_abs   ; filter='^tmpfs|^udev|_sbuild_|_schroot_' ;;
+	df_inode)	plugin=/usr/share/munin/plugins/df_inode ; filter='^_dev\.|^_run|^_lib_init_rw|_sbuild_|_schroot_' ;;
+	*)		echo >&2 "$0: Do not know which plugin to call based on script name."; exit 1 ;;
+esac
+
+"$plugin" "$@" | egrep -v "$filter"
