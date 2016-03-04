@@ -33,9 +33,23 @@ class munin {
 		require => Package['munin-node'],
 	}
 
-	file { [ '/etc/munin/plugins/df', '/etc/munin/plugins/df_abs', '/etc/munin/plugins/df_inode' ]:
-		source => 'puppet:///modules/munin/df-wrap',
-		mode    => '0555',
+	file { '/etc/munin/plugins/df':
+		ensure  => link,
+		target  => '/usr/share/munin/plugins/df',
+		require => Package['munin-node'],
+		notify  => Service['munin-node'],
+	}
+
+	file { '/etc/munin/plugins/df_abs':
+		ensure  => link,
+		target  => '/usr/share/munin/plugins/df_abs',
+		require => Package['munin-node'],
+		notify  => Service['munin-node'],
+	}
+
+	file { '/etc/munin/plugins/df_inode':
+		ensure  => link,
+		target  => '/usr/share/munin/plugins/df_inode',
 		require => Package['munin-node'],
 		notify  => Service['munin-node'],
 	}
