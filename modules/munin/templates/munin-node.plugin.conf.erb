@@ -101,9 +101,9 @@ out
 [diskstats]
 env.exclude sbuild,schroot
 
-# filter out all the short-lived sbuild/schroot/piuparts filesystems for df*:
+# filter out all the short-lived filesystems for df*:
 [df*]
-env.exclude_re ^/srv/piuparts-workspace/tmp.*$ ^/var/lib/schroot/mount/.*$
+env.exclude_re ^/dev$ ^/run/.*$ ^/srv/piuparts-workspace/tmp.*$ ^/sys/.*$ ^/var/lib/schroot/mount/.*$
 
 <% if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture') and scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0].start_with?('kfreebsd') -%>
 # Workaround for https://bugs.debian.org/767102
