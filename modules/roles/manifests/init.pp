@@ -45,6 +45,7 @@ class roles {
 	if has_role('bugs_master') {
 		ssl::service { 'bugs-master.debian.org':
 			notify => Service['apache2'],
+			key => true,
 		}
 	}
 
