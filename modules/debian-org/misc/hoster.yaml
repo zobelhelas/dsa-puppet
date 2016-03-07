@@ -80,11 +80,6 @@ dgi:
 freenet:
   netrange:
     - 62.104.0.0/16
-ftcollins:
-  netrange:
-    - 192.25.206.0/24
-  searchpaths: [debprivate-ftcollins.debian.org]
-  mirror-debian: http://spohr.debian.org/debian
 gatech:
   netrange:
     - 128.61.240.0/23

@@ -113,7 +113,6 @@ nameinfo:
   stadler.debian.org: Maximilian Johann Karl Dominik Stadler, Abbé Stadler (August 4th 1748 - November 8th 1833)
   stockhausen.debian.org: Karlheinz Stockhausen (August 22nd, 1928 - December 5th, 2007)
   storace.debian.org: Stephen Storace (April 4th, 1762 - March 19th, 1796)
-  spohr.debian.org: Louis Spohr (April 5th, 1784 - October 22nd, 1859)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
   steffani.debian.org: Agostino Steffani (July 25th, 1653 - February 12th, 1728)
   tate.debian.org: Phyllis Tate (April 6th, 1911 - May 29th, 1987)
@@ -178,7 +177,6 @@ host_settings:
     - pkgmirror-1and1.debian.org
     - schein.debian.org
     - senfter.debian.org
-    - spohr.debian.org
     - steffani.debian.org
     # porterbox
     - abel.debian.org

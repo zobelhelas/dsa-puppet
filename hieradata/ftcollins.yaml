@@ -1,8 +1,0 @@
----
-nameservers:
-  - 192.25.206.33
-  - 192.25.206.57
-searchpaths:
-  - debprivate-ftcollins.debian.org
-allow_dns_query:
-  - 192.25.206.0/24
