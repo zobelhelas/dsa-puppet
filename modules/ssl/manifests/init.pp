@@ -108,15 +108,15 @@ class ssl {
 		notify  => Exec['refresh_debian_hashes'],
 	}
 
-	#file { '/etc/ssl/debian/keys/thishost.key':
-	#	ensure => absent,
-	#}
-	#file { '/etc/ssl/debian/keys/thishost-server.key':
-	#	ensure => absent,
-	#}
-	#file { '/etc/ssl/debian/keys':
-	#	ensure => absent,
-	#}
+	file { '/etc/ssl/debian/keys/thishost.key':
+		ensure => absent,
+	}
+	file { '/etc/ssl/debian/keys/thishost-server.key':
+		ensure => absent,
+	}
+	file { '/etc/ssl/debian/keys':
+		ensure => absent,
+	}
 	file { '/etc/ssl/private/thishost.key':
 		source  => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
 		mode    => '0440',
