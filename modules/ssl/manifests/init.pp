@@ -92,21 +92,9 @@ class ssl {
 		ensure  => directory,
 		mode    => '0755',
 	}
-	file { '/etc/ssl/debian/keys':
-		ensure  => directory,
-		mode    => '0750',
-		group   => ssl-cert,
-		require => Package['ssl-cert'],
-	}
 	file { '/etc/ssl/debian/certs/thishost.crt':
 		source  => "puppet:///modules/ssl/clientcerts/${::fqdn}.client.crt",
 		notify  => Exec['refresh_debian_hashes'],
-	}
-	file { '/etc/ssl/debian/keys/thishost.key':
-		source  => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
-		mode    => '0440',
-		group   => ssl-cert,
-		require => Package['ssl-cert'],
 	}
 	file { '/etc/ssl/debian/certs/ca.crt':
 		source  => 'puppet:///modules/ssl/clientcerts/ca.crt',
@@ -119,7 +107,23 @@ class ssl {
 		source  => "puppet:///modules/exim/certs/${::fqdn}.crt",
 		notify  => Exec['refresh_debian_hashes'],
 	}
-	file { '/etc/ssl/debian/keys/thishost-server.key':
+
+	#file { '/etc/ssl/debian/keys/thishost.key':
+	#	ensure => absent,
+	#}
+	#file { '/etc/ssl/debian/keys/thishost-server.key':
+	#	ensure => absent,
+	#}
+	#file { '/etc/ssl/debian/keys':
+	#	ensure => absent,
+	#}
+	file { '/etc/ssl/private/thishost.key':
+		source  => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
+		mode    => '0440',
+		group   => ssl-cert,
+		require => Package['ssl-cert'],
+	}
+	file { '/etc/ssl/private/thishost-server.key':
 		source  => "puppet:///modules/exim/certs/${::fqdn}.key",
 		mode    => '0440',
 		group   => ssl-cert,

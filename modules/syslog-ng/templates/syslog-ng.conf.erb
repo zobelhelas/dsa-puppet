@@ -399,7 +399,7 @@ log {
  <%- if hostname != "lotti" -%>
 destination loghost-lotti {
 	tcp("lotti.debian.org" port (5140)
-		tls( key_file("/etc/ssl/debian/keys/thishost.key")
+		tls( key_file("/etc/ssl/private/thishost.key")
 		     cert_file("/etc/ssl/debian/certs/thishost.crt")
 		     ca_dir("/etc/ssl/debian/certs/")
 		)
@@ -409,7 +409,7 @@ destination loghost-lotti {
   <%- if hostname != "lully" -%>
 destination loghost-lully {
 	tcp("lully.debian.org" port (5140)
-		tls( key_file("/etc/ssl/debian/keys/thishost.key")
+		tls( key_file("/etc/ssl/private/thishost.key")
 		     cert_file("/etc/ssl/debian/certs/thishost.crt")
 		     ca_dir("/etc/ssl/debian/certs/")
 		)
@@ -419,7 +419,7 @@ destination loghost-lully {
   <%- if hostname != "loghost-grnet-01" -%>
 destination loghost-loghost-grnet-01 {
 	tcp("loghost-grnet-01.debian.org" port (5140)
-		tls( key_file("/etc/ssl/debian/keys/thishost.key")
+		tls( key_file("/etc/ssl/private/thishost.key")
 		     cert_file("/etc/ssl/debian/certs/thishost.crt")
 		     ca_dir("/etc/ssl/debian/certs/")
 		)

@@ -19,7 +19,7 @@ class roles::pubsub {
 		ssl               => true,
 		ssl_cacert        => '/etc/ssl/debian/certs/ca.crt',
 		ssl_cert          => '/etc/ssl/debian/certs/thishost-server.crt',
-		ssl_key           => '/etc/ssl/debian/keys/thishost-server.key',
+		ssl_key           => '/etc/ssl/private/thishost-server.key',
 		ssl_port          => 5671,
 		ssl_verify        => 'verify_none',
 		manage_repos      => false,

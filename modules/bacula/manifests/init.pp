@@ -30,9 +30,9 @@ class bacula {
 
 	$bacula_ca_path           = '/etc/ssl/debian/certs/ca.crt'
 	$bacula_ssl_client_cert   = '/etc/ssl/debian/certs/thishost.crt'
-	$bacula_ssl_client_key    = '/etc/ssl/debian/keys/thishost.key'
+	$bacula_ssl_client_key    = '/etc/ssl/private/thishost.key'
 	$bacula_ssl_server_cert   = '/etc/ssl/debian/certs/thishost-server.crt'
-	$bacula_ssl_server_key    = '/etc/ssl/debian/keys/thishost-server.key'
+	$bacula_ssl_server_key    = '/etc/ssl/private/thishost-server.key'
 
 	file { '/usr/local/sbin/bacula-idle-restart':
 		mode    => '0555',

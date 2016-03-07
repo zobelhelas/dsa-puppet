@@ -9,7 +9,7 @@ define stunnel4::generic ($client, $verify, $cafile, $accept, $connect, $crlfile
 
 	if $client {
 		$certfile = '/etc/ssl/debian/certs/thishost.crt'
-		$keyfile = '/etc/ssl/debian/keys/thishost.key'
+		$keyfile = '/etc/ssl/private/thishost.key'
 	} else {
 		$certfile = '/etc/exim4/ssl/thishost.crt'
 		$keyfile = '/etc/exim4/ssl/thishost.key'
