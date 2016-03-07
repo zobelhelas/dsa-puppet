@@ -2,6 +2,7 @@ class roles::security_master {
 
 	ssl::service { 'security-master.debian.org':
 		notify => Service['apache2'],
+		key => true,
 	}
 
 	vsftpd::site { 'security':
@@ -15,5 +16,6 @@ class roles::security_master {
 	rsync::site { 'security_master':
 		source        => 'puppet:///modules/roles/security_master/rsyncd.conf',
 		max_clients => 100,
+		sslname => "security-master.debian.org",
 	}
 }
