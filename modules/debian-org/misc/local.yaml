@@ -172,11 +172,9 @@ host_settings:
     # decommissioning
     - rautavaara.debian.org
     # mirrors, secondaries, syncproxies
-    - busoni.debian.org
     - gluck.debian.org
     - pkgmirror-1and1.debian.org
     - schein.debian.org
-    - senfter.debian.org
     - steffani.debian.org
     # porterbox
     - abel.debian.org
