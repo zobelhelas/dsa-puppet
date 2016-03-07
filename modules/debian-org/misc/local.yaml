@@ -94,7 +94,6 @@ nameinfo:
   rapoport.debian.org: Eda Rothstein Rapoport (December 25th, 1890 - May 9th, 1968)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19th, 1873 - May 11th, 1916)
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
-  saens.debian.org: Charles-Camille Saint-Saëns  (October 9th, 1835 - December 16th, 1921)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   santoro.debian.org: Cláudio Santoro (November 23rd, 1919 - March 27th, 1989)
   schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
@@ -162,7 +161,6 @@ host_settings:
     - mirror-isc.debian.org
     - mirror-umn.debian.org
     - lobos.debian.org
-    - saens.debian.org
     - santoro.debian.org
     - setoguchi.debian.org
     - sechter.debian.org
@@ -179,7 +177,6 @@ host_settings:
     - gluck.debian.org
     - pkgmirror-1and1.debian.org
     - schein.debian.org
-    - saens.debian.org
     - senfter.debian.org
     - spohr.debian.org
     - steffani.debian.org
