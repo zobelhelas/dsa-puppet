@@ -116,6 +116,7 @@ class ssl {
 	}
 	file { '/etc/ssl/debian/keys':
 		ensure => absent,
+		force    => true,
 	}
 	file { '/etc/ssl/private/thishost.key':
 		source  => "puppet:///modules/ssl/clientcerts/${::fqdn}.key",
