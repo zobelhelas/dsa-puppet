@@ -4,6 +4,8 @@ searchpaths: []
 resolvoptions: []
 allow_dns_query: []
 roles:
+  archive_master:
+    - sibelius.debian.org
   bugsmx:
     - buxtehude.debian.org
   bugs_master:
