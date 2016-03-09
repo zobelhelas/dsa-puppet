@@ -66,7 +66,7 @@ anu:
 conova:
   netrange:
     - 217.196.149.224/28
-  nameservers: [217.196.144.129, 217.196.144.229]
+  # nameservers: [217.196.144.129, 217.196.144.229]
   mirror-debian: http://cdn-fastly.deb.debian.org/debian/
 csail:
   netrange:
