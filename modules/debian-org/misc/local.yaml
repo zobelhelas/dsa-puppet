@@ -97,7 +97,6 @@ nameinfo:
   rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   santoro.debian.org: Cláudio Santoro (November 23rd, 1919 - March 27th, 1989)
-  schein.debian.org: Johann Hermann Schein (January 20th, 1586 - November 19th, 1630)
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
   sechter.debian.org: Simon Sechter (October 11th, 1788 - September 10th, 1867)
@@ -175,7 +174,6 @@ host_settings:
     # mirrors, secondaries, syncproxies
     - gluck.debian.org
     - pkgmirror-1and1.debian.org
-    - schein.debian.org
     - steffani.debian.org
     # porterbox
     - abel.debian.org
