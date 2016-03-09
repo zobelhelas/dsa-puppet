@@ -33,6 +33,10 @@ class roles {
 		include porterbox
 	}
 
+	if has_role('archive_master') {
+		include archive_master
+	}
+
 	if has_role('bugs_mirror') {
 		include roles::bugs_mirror
 	}
