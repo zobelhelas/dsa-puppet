@@ -116,6 +116,7 @@ roles:
     - diabelli.debian.org
     - jerea.debian.org
     - nono.debian.org
+    - quantz.debian.org
     - tate.debian.org
     - ticharich.debian.org
   static_master:
