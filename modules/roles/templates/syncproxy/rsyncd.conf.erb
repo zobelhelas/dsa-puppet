@@ -18,16 +18,6 @@ log file =  /var/log/rsyncd/rsyncd-syncproxy.log
   read only = true
   secrets file = /etc/rsyncd/debian.secrets
 
-[debian-backports]
-  path = /srv/mirrors/debian-backports/
-<%- unless has_variable?("has_srv_mirrors_debian_backports") && has_srv_mirrors_debian_backports == "true" -%>
-  list = no
-<%- end -%>
-  comment = Debian backports archive (up to, including Debian 6.0(squeeze) - ~35 GB; contact mirrors@debian.org for access)
-  auth users = *
-  read only = true
-  secrets file = /etc/rsyncd/debian.secrets
-
 [debian-debug]
   path = /srv/mirrors/debian-debug/
 <%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug == "true" -%>
