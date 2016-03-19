@@ -244,6 +244,7 @@ class roles {
 	if has_role('packages') {
 		ssl::service { 'packages.debian.org':
 			notify => Service['apache2'],
+			tlsaport => [],
 		}
 	}
 
