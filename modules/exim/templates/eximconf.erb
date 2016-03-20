@@ -77,7 +77,7 @@
 ######################################################################
 
 <%- if scope.lookupvar('site::nodeinfo').has_key?('heavy_exim') and scope.lookupvar('site::nodeinfo')['heavy_exim'] -%>
-# perl_startup = do '/etc/exim4/exim_surbl.pl'
+ perl_startup = do '/etc/exim4/exim_surbl.pl'
 <%- end -%>
 
 # These options specify the Access Control Lists (ACLs) that
@@ -268,6 +268,9 @@ GREYLIST_LOCAL_PARTS = ${if match_domain{$domain}{+virtual_domains}\
                        {${lookup{$local_part}lsearch{/etc/exim4/grey_users}{$local_part}{}}}} : \
                        ${lookup{$local_part}lsearch{/var/lib/misc/$primary_hostname/mail-greylist}{$local_part}{}}
 RT_QUEUE_MAP = /srv/rt.debian.org/mail/rt_queue_map
+
+keep_environment =
+add_environment =
 
 ######################################################################
 #                        ACL CONFIGURATION                           #
@@ -868,25 +871,25 @@ acl_check_mime:
  accept  verify        = certificate
  accept  hosts         = +debianhosts
 
-# discard condition     = ${if <{$message_size}{256000}}
-#         condition     = ${if eq {$acl_m_prf}{blackhole}}
-#         set acl_m_srb = ${perl{surblspamcheck}}
-#         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-#         log_message   = discarded surbl message for $recipients
-#
-#  deny   condition     = ${if <{$message_size}{256000}}
-#         condition     = ${if eq {$acl_m_prf}{markup}{no}{yes}}
-#         condition     = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
-#         set acl_m_srb = ${perl{surblspamcheck}}
-#         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-#         log_message   = $acl_m_srb
-#         message       = $acl_m_srb
-#
-#  warn   condition     = ${if <{$message_size}{256000}}
-#         condition     = ${if eq {$acl_m_prf}{markup}}
-#         set acl_m_srb = ${perl{surblspamcheck}}
-#         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-#         message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
+ discard condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{blackhole}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = discarded surbl message for $recipients
+
+  deny   condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{markup}{no}{yes}}
+         condition     = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = $acl_m_srb
+         message       = $acl_m_srb
+
+  warn   condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{markup}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
 
   accept
 
@@ -972,25 +975,25 @@ check_message:
 
 <%- end -%>
 <%- if scope.lookupvar('site::nodeinfo').has_key?('heavy_exim') and scope.lookupvar('site::nodeinfo')['heavy_exim'] -%>
-# discard condition     = ${if <{$message_size}{256000}}
-#         condition     = ${if eq {$acl_m_prf}{blackhole}}
-#         set acl_m_srb = ${perl{surblspamcheck}}
-#         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-#         log_message   = discarded surbl message for $recipients
-#
-#  deny   condition     = ${if <{$message_size}{256000}}
-#         condition     = ${if eq {$acl_m_prf}{markup}{no}{yes}}
-#         condition     = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
-#         set acl_m_srb = ${perl{surblspamcheck}}
-#         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-#         log_message   = $acl_m_srb
-#         message       = $acl_m_srb
-#
-#  warn   condition     = ${if <{$message_size}{256000}}
-#         condition     = ${if eq {$acl_m_prf}{markup}}
-#         set acl_m_srb = ${perl{surblspamcheck}}
-#         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
-#         message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
+ discard condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{blackhole}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = discarded surbl message for $recipients
+
+  deny   condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{markup}{no}{yes}}
+         condition     = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         log_message   = $acl_m_srb
+         message       = $acl_m_srb
+
+  warn   condition     = ${if <{$message_size}{256000}}
+         condition     = ${if eq {$acl_m_prf}{markup}}
+         set acl_m_srb = ${perl{surblspamcheck}}
+         condition     = ${if eq{$acl_m_srb}{false}{no}{yes}}
+         message       = X-Surbl-Hit: $primary_hostname: $acl_m_srb
 
 <%- end -%>
   # Check header_sender except for survey@popcon.d.o
