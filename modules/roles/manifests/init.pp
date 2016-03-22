@@ -69,11 +69,6 @@ class roles {
 		include roles::security_mirror
 	}
 
-	# XXX: turn this into a real role
-	if getfromhash($site::nodeinfo, 'apache2_www_mirror') {
-		include roles::www_mirror
-	}
-
 	if has_role('mirror_debug') {
 		include roles::debug_mirror
 	}

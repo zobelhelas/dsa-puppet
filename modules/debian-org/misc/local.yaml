@@ -40,7 +40,6 @@ nameinfo:
   gideon.debian.org: Miriam Gideon (October 23rd, 1906 - June 18th, 1996)
   gigault.debian.org: Nicolas Gigault (ca. 1627 - August 20th, 1707)
   glinka.debian.org: Mikhail Ivanovich Glinka (1804 - 1857)
-  gluck.debian.org: Christoph Willibald Ritter von Gluck (July 2nd, 1714 - November 15th, 1787)
   gombert.debian.org: Nicolas Gombert (c. 1495 - c. 1560)
   handel.debian.org: Georg Friedrich Händel (February 23rd, 1685 - April 14th, 1759)
   harris.debian.org: Sir William Henry Harris (March 28th, 1883 - September 6th, 1973)
@@ -92,7 +91,6 @@ nameinfo:
   rainier.debian.org: Ivy Priaulx Rainier (February 3rd, 1903 - October 10th, 1986)
   rapoport.debian.org: Eda Rothstein Rapoport (December 25th, 1890 - May 9th, 1968)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19th, 1873 - May 11th, 1916)
-  rietz.debian.org: August Wilhelm Julius Rietz (December 28th, 1812 - September 12th, 1877)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   santoro.debian.org: Cláudio Santoro (November 23rd, 1919 - March 27th, 1989)
   schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
@@ -152,7 +150,6 @@ host_settings:
     - vento.debian.org
     - wuiet.debian.org
   apache2_security_mirror:
-    - gluck.debian.org
     - mirror-anu.debian.org
     - mirror-csail.debian.org
     - mirror-isc.debian.org
@@ -164,13 +161,10 @@ host_settings:
     - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
-  apache2_www_mirror:
-    - gluck.debian.org
   not-bacula-client:
     # decommissioning
     - rautavaara.debian.org
     # mirrors, secondaries, syncproxies
-    - gluck.debian.org
     - pkgmirror-1and1.debian.org
     - steffani.debian.org
     # porterbox

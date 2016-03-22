@@ -158,7 +158,6 @@ roles:
     - wolkenstein.debian.org
   weblog_provider:
     - busoni.debian.org
-    - gluck.debian.org
     - klecker.debian.org
     - mirror-anu.debian.org
     - mirror-csail.debian.org
