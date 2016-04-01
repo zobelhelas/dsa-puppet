@@ -144,10 +144,6 @@
    DocumentRoot <%= wwwdo_document_root %>/
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
-   #RewriteLog /var/log/apache2/www-other.debian.org-redirect.log
-   #RewriteLogLevel 1
-
-   RewriteEngine on
 </Macro>
 
 <Macro common-www.d.o>
@@ -282,16 +278,6 @@
 
 
 <VirtualHost <%= vhost_listen %> >
-   Use common-www-other.d.o
-   RewriteRule ^/(.*)$ http://www.debian.org/$1 [R=301,L]
-</VirtualHost>
-<VirtualHost <%= vhost_listen_443 %> >
-   Use common-www-other.d.o
-   RewriteRule ^/(.*)$ https://www.debian.org/$1 [R=301,L]
-</VirtualHost>
-
-
-<VirtualHost <%= vhost_listen %> >
    ErrorLog /var/log/apache2/www.debian.org-error.log
    CustomLog /var/log/apache2/www.debian.org-access.log privacy
 
@@ -308,15 +294,21 @@
 </VirtualHost>
 
 
+<VirtualHost <%= vhost_listen %> >
+   Use common-www-other.d.o
+
+   ErrorLog /var/log/apache2/www-other.debian.org-error.log
+   CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
+
+   Redirect permanent / http://www.debian.org/
+</VirtualHost>
 <VirtualHost <%= vhost_listen_443 %> >
-   ServerName debian.org
-   ServerAdmin webmaster@debian.org
+   Use common-www-other.d.o
 
    CustomLog /var/log/apache2/www-other-access.log privacyssl
    ErrorLog /var/log/apache2/www-other-error.log
 
    Redirect permanent / https://www.debian.org/
-
 
    Use common-debian-service-ssl www.debian.org
    Use common-ssl-HSTS
