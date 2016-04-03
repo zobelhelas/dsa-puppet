@@ -57,7 +57,7 @@ class ssl {
 		purge    => true,
 		recurse  => true,
 		force    => true,
-		notify   => Exec['refresh_normal_hashes'],
+		notify   => [ Exec['refresh_normal_hashes'], Exec['refresh_ca_global_hashes'] ],
 	}
 	file { '/etc/ssl/certs/README':
 		ensure => absent,
