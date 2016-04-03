@@ -1,5 +1,5 @@
 DPkg::Pre-Install-Pkgs {
-  "if grep -q '^ca-certificates_.*\.deb$' ; then touch /run/dsa-ca-certificates-global ; fi";
+  "if grep -q '/ca-certificates_.*\.deb$' ; then touch /run/dsa-ca-certificates-global ; fi";
 };
 DPkg::Post-Invoke {
   "if [ -e /run/dsa-ca-certificates-global ]; then /usr/local/sbin/update-ca-certificates-dsa --fresh --default --certsconf /etc/ca-certificates-global.conf --etccertsdir /etc/ssl/ca-global --hooksdir /dev/null ; rm -f /run/dsa-ca-certificates-global ; fi";
