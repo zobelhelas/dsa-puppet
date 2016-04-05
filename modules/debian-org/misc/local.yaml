@@ -251,6 +251,7 @@ host_settings:
     - mips-aql-02.debian.org
     - mips-aql-04.debian.org
     - mips-aql-05.debian.org
+    - mips-aql-06.debian.org
     - sompek.debian.org
   mail_port:
     klecker.debian.org: 2025
