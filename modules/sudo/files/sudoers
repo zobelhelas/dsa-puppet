@@ -152,7 +152,6 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %videoteam	vittoria=(veyepar)	ALL
 %volatile	ALL=(volatile)	ALL
 %wbadm		ALL=(wbadm)	ALL
-%wbadm-ports	ALL=(wbadm-ports)	ALL
 %mujeres	ALL=(women)	ALL
 %wikiadm	ALL=(wiki,wikiweb)	ALL
 %qa-core	ALL=(qa)	ALL
