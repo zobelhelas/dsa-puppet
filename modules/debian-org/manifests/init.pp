@@ -197,6 +197,11 @@ class debian-org {
 			components => ['main','contrib','non-free']
 		}
 	}
+	site::aptrepo { 'debian-cdn':
+		url        => "http://cdn-fastly.deb.debian.org/debian"
+		suite      => $mungedcodename,
+		components => ['main','contrib','non-free']
+	}
 
 	file { '/etc/facter':
 		ensure  => directory,
