@@ -1,5 +1,16 @@
 # puppet maintained
 
+######################
+# deb.debian.org
+<% if scope.function_has_static_component(['deb.debian.org']) -%>
+<Macro vhost-deb.debian.org-extra>
+	RedirectPermanent /debian/           http://cdn-fastly.deb.debian.org/debian/
+	RedirectPermanent /debian-debug/     http://cdn-fastly.deb.debian.org/debian-debug/
+	RedirectPermanent /debian-security/  http://cdn-fastly.deb.debian.org/debian-security/
+</Macro>
+<% end -%>
+
+
 <%=
 
 def vhost(lines, sn, type=nil, extra=nil)
@@ -48,17 +59,6 @@ vhost(lines, "deb.debian.org", "with-extra", '"Use vhost-deb.debian.org-extra"')
 
 lines.join("\n")
 -%>
-
-
-######################
-# deb.debian.org
-<% if scope.function_has_static_component(['deb.debian.org']) -%>
-<Macro vhost-deb.debian.org-extra>
-	RedirectPermanent /debian/           http://cdn-fastly.deb.debian.org/debian/
-	RedirectPermanent /debian-debug/     http://cdn-fastly.deb.debian.org/debian-debug/
-	RedirectPermanent /debian-security/  http://cdn-fastly.deb.debian.org/debian-security/
-</Macro>
-<% end -%>
 
 ######################
 # metadata.ftp-master.debian.org
