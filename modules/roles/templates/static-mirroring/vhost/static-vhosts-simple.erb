@@ -44,10 +44,21 @@ vhost(lines, "es.debconf.org"      , "ssl")
 vhost(lines, "fr.debconf.org"      , "ssl")
 vhost(lines, "miniconf10.debconf.org" , "ssl")
 
-vhost(lines, "deb.debian.org")
+vhost(lines, "deb.debian.org", "with-extra", '"Use vhost-deb.debian.org-extra"')
 
 lines.join("\n")
 -%>
+
+
+######################
+# deb.debian.org
+<% if scope.function_has_static_component(['deb.debian.org']) -%>
+<Macro vhost-deb.debian.org-extra>
+	RedirectPermanent /debian/           http://cdn-fastly.deb.debian.org/debian/
+	RedirectPermanent /debian-debug/     http://cdn-fastly.deb.debian.org/debian-debug/
+	RedirectPermanent /debian-security/  http://cdn-fastly.deb.debian.org/debian-security/
+</Macro>
+<% end -%>
 
 ######################
 # metadata.ftp-master.debian.org
