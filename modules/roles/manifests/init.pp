@@ -67,6 +67,7 @@ class roles {
 	if has_role('manpages') {
 		ssl::service { 'manpages.debian.org':
 			notify => Service['apache2'],
+			key => true,
 		}
 	}
 
