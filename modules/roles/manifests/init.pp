@@ -64,6 +64,12 @@ class roles {
 		}
 	}
 
+	if has_role('manpages') {
+		ssl::service { 'manpages.debian.org':
+			notify => Service['apache2'],
+		}
+	}
+
 	# XXX: turn this into a real role
 	if getfromhash($site::nodeinfo, 'apache2_security_mirror') {
 		include roles::security_mirror
