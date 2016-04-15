@@ -198,6 +198,10 @@ class debian-org {
 		}
 	}
 	site::aptrepo { 'debian-cdn':
+		ensure => absent,
+	}
+
+	site::aptrepo { 'debian2':
 		url        => "http://cdn-fastly.deb.debian.org/debian",
 		suite      => $mungedcodename,
 		components => ['main','contrib','non-free']
