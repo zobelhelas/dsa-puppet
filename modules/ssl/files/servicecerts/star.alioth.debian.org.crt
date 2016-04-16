@@ -2,12 +2,12 @@ Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number:
-            74:4a:e1:1b:54:04:16:ad:bd:28:09:1d:39:1b:7b:4a
+            4e:a8:2d:0b:8c:8b:42:d1:bf:c1:06:1d:c9:72:09:82
     Signature Algorithm: sha256WithRSAEncryption
         Issuer: C=FR, ST=Paris, L=Paris, O=Gandi, CN=Gandi Standard SSL CA 2
         Validity
-            Not Before: Mar 28 00:00:00 2015 GMT
-            Not After : Apr 26 23:59:59 2016 GMT
+            Not Before: Apr 14 00:00:00 2016 GMT
+            Not After : Apr 26 23:59:59 2018 GMT
         Subject: OU=Domain Control Validated, OU=Gandi Standard Wildcard SSL, CN=*.alioth.debian.org
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
@@ -61,28 +61,28 @@ Certificate:
             X509v3 Subject Alternative Name: 
                 DNS:*.alioth.debian.org, DNS:alioth.debian.org
     Signature Algorithm: sha256WithRSAEncryption
-         2f:52:46:c9:67:0a:70:a2:80:fc:7d:2f:bd:ac:c4:6b:8d:8c:
-         d8:48:b1:bc:19:d4:f4:d2:45:43:6d:4a:81:c6:0a:55:2c:c8:
-         15:6c:c3:bd:9e:ee:82:04:44:ee:f5:89:bd:c0:1e:bd:0e:39:
-         c2:0c:6d:49:36:64:d4:4c:b1:59:d8:b0:d9:1a:05:25:a3:14:
-         1c:54:92:f9:ce:3e:d3:71:47:fc:86:ce:ef:d6:89:96:23:72:
-         bb:dd:d2:75:35:12:bf:f5:95:cc:bf:3c:e7:65:8a:70:de:31:
-         f9:62:1b:8d:96:e1:1b:f4:73:96:35:0a:fc:9f:1a:2e:55:04:
-         05:76:2f:2d:af:9d:68:31:0a:09:41:e7:e4:09:ef:b2:ae:09:
-         6d:4c:4e:7b:ef:61:42:c6:f2:22:13:2b:a6:9d:8f:8a:74:47:
-         b0:f8:94:f3:59:6b:bc:bc:40:73:f6:37:00:82:11:2e:83:41:
-         97:37:9c:8f:e7:27:e1:1f:5f:2c:85:17:d2:3f:b6:8b:7d:0a:
-         61:56:66:0c:09:2c:03:dc:5a:64:07:42:db:79:2a:fc:07:e5:
-         fc:8c:0d:33:29:cf:f1:2f:93:a5:ae:dc:5e:20:a6:c4:d3:9b:
-         a9:02:cb:b4:e6:68:ec:00:20:02:2a:62:da:a6:3f:db:57:94:
-         49:bb:87:d7
+         62:5b:e6:aa:0e:3e:79:08:89:5b:13:41:19:fe:1b:c0:e4:86:
+         f7:db:fb:fe:a6:4c:c3:61:22:41:19:81:ae:a3:61:18:b4:2d:
+         e1:98:a2:3b:f7:b9:ca:7a:49:bb:8b:a8:aa:e1:51:78:96:40:
+         58:52:4c:91:de:9e:fb:0e:dc:19:84:29:e2:4b:19:36:ae:9c:
+         76:87:17:4a:57:7b:40:44:00:8d:f4:ba:42:46:f7:ec:79:de:
+         ff:f2:f8:22:fa:d2:c4:cb:3a:e9:ce:b4:7c:6c:80:15:0f:a6:
+         98:d5:84:c8:9d:f7:68:bb:01:77:5a:70:76:eb:16:33:6d:d2:
+         58:aa:b0:e8:f4:01:2b:5c:4c:26:82:bd:80:2f:26:76:4b:31:
+         5a:ef:a8:3a:1a:d3:60:d0:83:3f:83:5e:c3:00:46:1e:6c:4c:
+         f9:09:fc:7f:f8:da:47:dc:cf:7a:59:75:63:c8:13:63:2d:99:
+         9d:81:b1:b5:96:64:73:c2:fe:d3:83:dd:8a:67:59:f6:eb:0f:
+         16:4a:e7:93:56:ef:ff:68:c7:c1:2b:29:7e:51:f0:5d:a8:7c:
+         90:d8:e5:71:fe:d4:7e:ed:17:71:a5:18:64:fd:a1:d3:eb:84:
+         67:21:e1:94:b6:0a:ad:80:0c:33:6c:ce:25:ae:21:6c:bf:2b:
+         eb:4d:38:f1
 -----BEGIN CERTIFICATE-----
-MIIFCzCCA/OgAwIBAgIQdErhG1QEFq29KAkdORt7SjANBgkqhkiG9w0BAQsFADBf
+MIIFCzCCA/OgAwIBAgIQTqgtC4yLQtG/wQYdyXIJgjANBgkqhkiG9w0BAQsFADBf
 MQswCQYDVQQGEwJGUjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQ4w
 DAYDVQQKEwVHYW5kaTEgMB4GA1UEAxMXR2FuZGkgU3RhbmRhcmQgU1NMIENBIDIw
-HhcNMTUwMzI4MDAwMDAwWhcNMTYwNDI2MjM1OTU5WjBnMSEwHwYDVQQLExhEb21h
+HhcNMTYwNDE0MDAwMDAwWhcNMTgwNDI2MjM1OTU5WjBnMSEwHwYDVQQLExhEb21h
 aW4gQ29udHJvbCBWYWxpZGF0ZWQxJDAiBgNVBAsTG0dhbmRpIFN0YW5kYXJkIFdp
-bGRjYXJkIFNTTDEcMBoGA1UEAxQTKi5hbGlvdGguZGViaWFuLm9yZzCCASIwDQYJ
+bGRjYXJkIFNTTDEcMBoGA1UEAwwTKi5hbGlvdGguZGViaWFuLm9yZzCCASIwDQYJ
 KoZIhvcNAQEBBQADggEPADCCAQoCggEBAPGG+jXWzuXeKImRWkTFyzm+UBLQnQ5k
 yS7X96BNsdUXQW4DxQ3//C2Qs/QprRePBuT9bAaFPvtvM+Wps+3a8EmDGKl0H12X
 p7ljQ2FyjSbCeEi25yBNE9LWDvOgEryHjWzkyQoHAdB8ZYM23svZpvY9VyrcR+RG
@@ -98,10 +98,10 @@ ZXJ0cnVzdC5jb20vR2FuZGlTdGFuZGFyZFNTTENBMi5jcmwwcwYIKwYBBQUHAQEE
 ZzBlMDwGCCsGAQUFBzAChjBodHRwOi8vY3J0LnVzZXJ0cnVzdC5jb20vR2FuZGlT
 dGFuZGFyZFNTTENBMi5jcnQwJQYIKwYBBQUHMAGGGWh0dHA6Ly9vY3NwLnVzZXJ0
 cnVzdC5jb20wMQYDVR0RBCowKIITKi5hbGlvdGguZGViaWFuLm9yZ4IRYWxpb3Ro
-LmRlYmlhbi5vcmcwDQYJKoZIhvcNAQELBQADggEBAC9SRslnCnCigPx9L72sxGuN
-jNhIsbwZ1PTSRUNtSoHGClUsyBVsw72e7oIERO71ib3AHr0OOcIMbUk2ZNRMsVnY
-sNkaBSWjFBxUkvnOPtNxR/yGzu/WiZYjcrvd0nU1Er/1lcy/POdlinDeMfliG42W
-4Rv0c5Y1CvyfGi5VBAV2Ly2vnWgxCglB5+QJ77KuCW1MTnvvYULG8iITK6adj4p0
-R7D4lPNZa7y8QHP2NwCCES6DQZc3nI/nJ+EfXyyFF9I/tot9CmFWZgwJLAPcWmQH
-Qtt5KvwH5fyMDTMpz/Evk6Wu3F4gpsTTm6kCy7TmaOwAIAIqYtqmP9tXlEm7h9c=
+LmRlYmlhbi5vcmcwDQYJKoZIhvcNAQELBQADggEBAGJb5qoOPnkIiVsTQRn+G8Dk
+hvfb+/6mTMNhIkEZga6jYRi0LeGYojv3ucp6SbuLqKrhUXiWQFhSTJHenvsO3BmE
+KeJLGTaunHaHF0pXe0BEAI30ukJG9+x53v/y+CL60sTLOunOtHxsgBUPppjVhMid
+92i7AXdacHbrFjNt0liqsOj0AStcTCaCvYAvJnZLMVrvqDoa02DQgz+DXsMARh5s
+TPkJ/H/42kfcz3pZdWPIE2MtmZ2BsbWWZHPC/tOD3YpnWfbrDxZK55NW7/9ox8Er
+KX5R8F2ofJDY5XH+1H7tF3GlGGT9odPrhGch4ZS2Cq2ADDNsziWuIWy/K+tNOPE=
 -----END CERTIFICATE-----
