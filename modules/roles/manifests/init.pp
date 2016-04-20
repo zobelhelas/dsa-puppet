@@ -266,6 +266,7 @@ class roles {
 		ssl::service { 'gobby.debian.org':
 			notify => Service['apache2'],
 			key => true,
+			tlsaport => [443, 6523],
 		}
 	}
 
