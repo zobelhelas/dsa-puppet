@@ -30,7 +30,6 @@ class buildd ($ensure=present) {
 			source  => 'puppet:///modules/buildd/buildd.conf',
 			require => Package['buildd'],
 		}
-		site::linux_module { 'dm_snapshot': }
 		include ferm::ftp_conntrack
 	}
 
