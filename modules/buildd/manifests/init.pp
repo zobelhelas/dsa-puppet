@@ -30,9 +30,16 @@ class buildd ($ensure=present) {
 			source  => 'puppet:///modules/buildd/buildd.conf',
 			require => Package['buildd'],
 		}
-		file { '/etc/sbuild/sbuild.conf':
-			source  => 'puppet:///modules/buildd/sbuild.conf',
-			require => Package['sbuild'],
+		if ($::lsbmajdistrelease >= 8) {
+			file { '/etc/sbuild/sbuild.conf':
+				source  => 'puppet:///modules/buildd/sbuild.conf',
+				require => Package['sbuild'],
+			}
+		} else {
+			file { '/etc/sbuild/sbuild.conf':
+				source  => 'puppet:///modules/buildd/sbuild.conf.wheezy',
+				require => Package['sbuild'],
+			}
 		}
 		include ferm::ftp_conntrack
 	}
