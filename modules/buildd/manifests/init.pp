@@ -30,6 +30,10 @@ class buildd ($ensure=present) {
 			source  => 'puppet:///modules/buildd/buildd.conf',
 			require => Package['buildd'],
 		}
+		file { '/etc/sbuild/sbuild.conf':
+			source  => 'puppet:///modules/buildd/sbuild.conf',
+			require => Package['sbuild'],
+		}
 		include ferm::ftp_conntrack
 	}
 
