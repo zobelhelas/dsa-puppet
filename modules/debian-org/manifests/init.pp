@@ -131,10 +131,16 @@ class debian-org {
 		content => "",
 	}
 
-	site::aptrepo { 'security':
-		url        => 'http://security-cdn.debian.org/',
-		suite      => "${mungedcodename}/updates",
-		components => ['main','contrib','non-free']
+	if ($::lsbmajdistrelease >= 8) {
+		site::aptrepo { 'security':
+			url        => 'http://security-cdn.debian.org/',
+			suite      => "${mungedcodename}/updates",
+			components => ['main','contrib','non-free']
+		}
+	} else {
+		site::aptrepo { 'security':
+			ensure => absent,
+		}
 	}
 	site::aptrepo { 'debian-lts':
 		ensure => absent,
