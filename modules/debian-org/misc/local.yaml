@@ -216,6 +216,7 @@ host_settings:
     - mips-aql-06.debian.org
     - mipsel-aql-01.debian.org
     - mipsel-aql-02.debian.org
+    - mipsel-aql-03.debian.org
     - mipsel-manda-01.debian.org
     - mipsel-manda-02.debian.org
     - mundy.debian.org
@@ -254,6 +255,7 @@ host_settings:
     - mips-aql-04.debian.org
     - mips-aql-05.debian.org
     - mips-aql-06.debian.org
+    - mipsel-aql-03.debian.org
     - sompek.debian.org
   mail_port:
     klecker.debian.org: 2025
