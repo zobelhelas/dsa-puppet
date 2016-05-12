@@ -55,14 +55,17 @@ parser.add_option("-d", "--debug",
 (options, args) = parser.parse_args()
 options.section = 'dsa-homedirs'
 options.config = '/etc/dsa/pubsub.conf'
-config = Config(options)
-mq_conf  = {
-  'rabbit_userid': config.username,
-  'rabbit_password': config.password,
-  'rabbit_virtual_host': config.vhost,
-  'rabbit_hosts': ['pubsub02.debian.org', 'pubsub01.debian.org'],
-  'use_ssl': False
-}
+if os.access(options.config, os.R_OK):
+  mq_config = Config(options)
+  mq_conf  = {
+    'rabbit_userid': mq_config.username,
+    'rabbit_password': mq_config.password,
+    'rabbit_virtual_host': mq_config.vhost,
+    'rabbit_hosts': ['pubsub02.debian.org', 'pubsub01.debian.org'],
+    'use_ssl': False
+  }
+else:
+  mq_config = None
 
 if options.dryrun:
   SENDMAIL_COMMAND = ['/bin/cat']
@@ -214,16 +217,17 @@ class HomedirReminder(object):
           'lastlog': self.lastlog_times.get(user, 0),
         }
 
-      msg = {
-        'timestamp': current_time,
-        'data': data,
-        'host': platform.node(),
-      }
-      conn = Connection(conf=mq_conf)
-      conn.topic_send(config.topic,
-                      msg,
-                      exchange_name=config.exchange,
-                      timeout=5)
+      if mq_config is not None:
+        msg = {
+          'timestamp': current_time,
+          'data': data,
+          'host': platform.node(),
+        }
+        conn = Connection(conf=mq_conf)
+        conn.topic_send(mq_config.topic,
+                        msg,
+                        exchange_name=mq_config.exchange,
+                        timeout=5)
     except Exception, e:
       logging.error("Error sending: %s" % e)
     finally:
