@@ -38,6 +38,7 @@ import pwd
 import subprocess
 import struct
 import time
+import sysconfig
 import StringIO
 
 # avoid base64 encoding for utf-8
@@ -123,14 +124,14 @@ class LastlogTimes(dict):
   def __init__(self):
     record_size_32 = struct.calcsize(self.LASTLOG_STRUCT_32)
     record_size_64 = struct.calcsize(self.LASTLOG_STRUCT_64)
-    if platform.architecture()[0] == "32bit":
+    if sysconfig.get_config_var('SIZEOF_TIME_T') == 4
         self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_32
         record_size = record_size_32
-    elif platform.architecture()[0] == "64bit":
+    elif sysconfig.get_config_var('SIZEOF_TIME_T') == 8:
         self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_64
         record_size = record_size_64
     else:
-        raise RuntimeError('Unknown architecture, cannot interpret platform.architecture()[0] value (%d)' % platform.architecture()[0])
+        raise RuntimeError('Unknown architecture, sizeof time_t is weird (%d)' % (sysconfig.get_config_var('SIZEOF_TIME_T'),))
     with open('/var/log/lastlog', 'r') as fp:
       uid = -1 # there is one record per uid in lastlog
       for record in iter(lambda: fp.read(record_size), ''):
