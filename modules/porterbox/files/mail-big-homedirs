@@ -120,15 +120,14 @@ class LastlogTimes(dict):
   def __init__(self):
     record_size_32 = struct.calcsize(self.LASTLOG_STRUCT_32)
     record_size_64 = struct.calcsize(self.LASTLOG_STRUCT_64)
-    lastlog_size = os.path.getsize('/var/log/lastlog')
-    if 0 == (lastlog_size % record_size_32):
+    if platform.architecture()[0] == "32bit":
         self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_32
         record_size = record_size_32
-    elif 0 == (lastlog_size % record_size_64):
+    elif platform.architecture()[0] == "64bit":
         self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_64
         record_size = record_size_64
     else:
-        raise RuntimeError('Unknown architecture, cannot interpret /var/log/lastlog file size (%d)' % lastlog_size)
+        raise RuntimeError('Unknown architecture, cannot interpret platform.architecture()[0] value (%d)' % platform.architecture()[0])
     with open('/var/log/lastlog', 'r') as fp:
       uid = -1 # there is one record per uid in lastlog
       for record in iter(lambda: fp.read(record_size), ''):
