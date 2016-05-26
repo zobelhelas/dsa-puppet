@@ -28,6 +28,16 @@ log file =  /var/log/rsyncd/rsyncd-syncproxy.log
   read only = true
   secrets file = /etc/rsyncd/debian.secrets
 
+[debian-ports]
+  path = /srv/mirrors/debian-ports/
+<%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug == "true" -%>
+  list = no
+<%- end -%>
+  comment = Debug packages.  Probably large.  Starting end of 2015.
+  auth users = *
+  read only = true
+  secrets file = /etc/rsyncd/debian.secrets
+
 [debian-security]
   path = /srv/mirrors/debian-security/
 <%- unless has_variable?("has_srv_mirrors_debian_security") && has_srv_mirrors_debian_security == "true" -%>

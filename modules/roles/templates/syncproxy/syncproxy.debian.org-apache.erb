@@ -25,7 +25,7 @@ Use common-debian-service-https-redirect "<%= vhost_listen %>" <%= syncproxy_nam
 
 <%=
 lines = []
-%w{debian debian-debug debian-security}.each do |archive|
+%w{debian debian-debug debian-ports debian-security}.each do |archive|
   varname = 'has_srv_mirrors_' + archive.gsub(/[\/-]/,'_')
   if has_variable?(varname) and (eval(varname)) == 'true'
     lines << "  Alias /#{archive}/project/trace/ /srv/mirrors/#{archive}/project/trace/"
