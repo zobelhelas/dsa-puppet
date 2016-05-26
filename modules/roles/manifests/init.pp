@@ -340,4 +340,8 @@ class roles {
 			key => true,
 		}
 	}
+
+	if has_role('ports-master') {
+		include roles::ports-master
+	}
 }

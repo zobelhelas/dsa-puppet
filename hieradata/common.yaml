@@ -198,3 +198,5 @@ roles:
     - delfin.debian.org
   pet.d.n:
     - petrova.debian.org
+  ports-master:
+    - porta.debian.org
