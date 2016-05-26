@@ -167,14 +167,14 @@ Use common-dsa-vhost-https-redirect www.ports.debian.org
 	ServerName www.debian-ports.org
 	ServerAlias debian-ports.org
 	ServerAdmin debian-admin@debian.org
-	RedirectPermanent / http://www.ports.debian.org/
+	RedirectPermanent / https://www.ports.debian.org/
 </VirtualHost>
 
 <VirtualHost <%= vhost_listen %> >
 	ServerName ports.debian.org
 	ServerAlias ports.debian.net
 	ServerAdmin debian-admin@debian.org
-	RedirectPermanent / http://www.ports.debian.org/
+	RedirectPermanent / https://www.ports.debian.org/
 </VirtualHost>
 
 # video.debian.net
