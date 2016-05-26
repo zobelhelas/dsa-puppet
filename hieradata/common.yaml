@@ -125,6 +125,7 @@ roles:
   static_master:
     - dillon.debian.org
     - franck.debian.org
+    - porta.debian.org
   static_mirror:
     - busoni.debian.org
     - klecker.debian.org
@@ -143,6 +144,7 @@ roles:
     - lindsay.debian.org
     - master.debian.org
     - mekeel.debian.org
+    - porta.debian.org
     - philp.debian.org
     - respighi.debian.org
     - wolkenstein.debian.org

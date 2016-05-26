@@ -40,6 +40,9 @@ components:
   news.debian.net:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/news.debian.net/htdocs
+  incoming.ports.debian.org:
+    master: porta.debian.org
+    source: porta.debian.org:/srv/ports-master.debian.org/queue/accepted
   release.debian.org:
     master: dillon.debian.org
     source: respighi.debian.org:/srv/release.debian.org/www
