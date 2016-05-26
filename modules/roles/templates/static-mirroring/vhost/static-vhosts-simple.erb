@@ -142,7 +142,7 @@ Use common-dsa-vhost-https-redirect www.ports.debian.org
 	ErrorLog /var/log/apache2/www.ports.debian.org-error.log
 	CustomLog /var/log/apache2/www.ports.debian.org-access.log privacy
 
-	Use common-debian-service-ssl $name
+	Use common-debian-service-ssl www.ports.debian.org
 	Use common-ssl-HSTS
 
 	<IfModule mod_userdir.c>
