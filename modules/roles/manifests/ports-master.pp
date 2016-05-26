@@ -27,7 +27,7 @@ class roles::ports-master {
 		writable       => true,
 		writable_other => true,
 		chown_user     => mini-dak-unpriv,
-		root           => '/srv/ports-master.debian.org/ftp/incoming',
+		root           => '/srv/ports-master.debian.org/ftp.upload',
 	}
 
 	if $bind6 {
@@ -37,7 +37,7 @@ class roles::ports-master {
 			writable       => true,
 			writable_other => true,
 			chown_user     => mini-dak-unpriv,
-			root           => '/srv/ports-master.debian.org/ftp/incoming',
+			root           => '/srv/ports-master.debian.org/ftp.upload',
 		}
 	}
 }
