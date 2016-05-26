@@ -168,7 +168,8 @@ lines.join("\n")
 </VirtualHost>
 
 <VirtualHost <%= vhost_listen %> >
-	ServerName ports.debian.net
+	ServerName ports.debian.org
+	ServerAlias ports.debian.net
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://www.ports.debian.org/
 </VirtualHost>
