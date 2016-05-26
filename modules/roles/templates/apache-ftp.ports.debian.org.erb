@@ -5,16 +5,16 @@
 
 <VirtualHost <%= vhost_listen %> >
         ServerAdmin debian-admin@debian.org
-        ServerName debug.mirrors.debian.org
+        ServerName ftp.ports.debian.org
 
-        RedirectMatch "^/$" /debian-debug/
-        Alias /debian-debug /srv/mirrors/debian-debug
+        RedirectMatch "^/$" /debian-ports/
+        Alias /debian-ports /srv/mirrors/debian-ports
 
-        ErrorLog /var/log/apache2/debug.mirrors.debian.org-error.log
+        ErrorLog /var/log/apache2/ftp.ports.debian.org-error.log
         LogLevel warn
-        CustomLog /var/log/apache2/debug.mirrors.debian.org-access.log privacy
+        CustomLog /var/log/apache2/ftp.ports.debian.org-access.log privacy
 
-        <Directory /srv/mirrors/debian-debug>
+        <Directory /srv/mirrors/debian-ports>
                 Require all granted
                 IndexOptions NameWidth=* +SuppressDescription
                 Options +Indexes

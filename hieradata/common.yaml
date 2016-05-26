@@ -190,6 +190,9 @@ roles:
   mirror_debug:
     - klecker.debian.org
     - mirror-isc.debian.org
+  mirror_ports:
+    - klecker.debian.org
+    - mirror-isc.debian.org
   planet_search:
     - philp.debian.org
   i18n.d.o:
