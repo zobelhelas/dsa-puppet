@@ -149,12 +149,7 @@ lines.join("\n")
 		AllowOverride FileInfo Indexes Options=Multiviews
 		Options Multiviews Indexes FollowSymLinks Includes
 		IndexOptions FancyIndexing NameWidth=*
-		<% if @lsbmajdistrelease > '7' -%>
-			Require all granted
-		<% else -%>
-			Order allow,deny
-			Allow from all
-		<% end -%>
+		Require all granted
 	</Directory>
 
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
