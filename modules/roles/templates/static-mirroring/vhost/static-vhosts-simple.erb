@@ -131,13 +131,19 @@ lines.join("\n")
 ######################
 # www.ports.debian.org
 <% if scope.function_has_static_component(['www.ports.debian.org']) -%>
-<Virtualhost <%= vhost_listen %> >
+
+Use common-dsa-vhost-https-redirect www.ports.debian.org
+
+<Virtualhost <%= vhost_listen_443 %> >
 	ServerName www.ports.debian.org
 	ServerAlias www.ports-backend.debian.org
 	ServerAdmin debian-admin@lists.debian.org
 
 	ErrorLog /var/log/apache2/www.ports.debian.org-error.log
 	CustomLog /var/log/apache2/www.ports.debian.org-access.log privacy
+
+	Use common-debian-service-ssl $name
+	Use common-ssl-HSTS
 
 	<IfModule mod_userdir.c>
 		UserDir disabled

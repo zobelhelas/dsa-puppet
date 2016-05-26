@@ -81,6 +81,7 @@ class roles::static_mirror {
 	ssl::service { 'd-i.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 
 	ssl::service { 'backports.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'www.ports.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'news.debian.net'       : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'debaday.debian.net'    : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'timeline.debian.net'   : ensure => "ifstatic", notify => Service['apache2'], key => true, }
