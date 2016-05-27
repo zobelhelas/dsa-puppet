@@ -187,6 +187,8 @@ Use common-dsa-vhost-https-redirect www.ports.debian.org
 	ServerName ftp.debian-ports.org
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://ftp.ports.debian.org/
+	RedirectPermanent /debian/ http://ftp.ports.debian.org/debian-ports/
+	RedirectPermanent /debian-cd/ http://ftp.ports.debian.org/debian-ports-cd/
 </VirtualHost>
 
 # video.debian.net
