@@ -7,14 +7,23 @@
         ServerAdmin debian-admin@debian.org
         ServerName ftp.ports.debian.org
 
-        RedirectMatch "^/$" /debian-ports/
-        Alias /debian-ports /srv/mirrors/debian-ports
 
         ErrorLog /var/log/apache2/ftp.ports.debian.org-error.log
         LogLevel warn
         CustomLog /var/log/apache2/ftp.ports.debian.org-access.log privacy
 
+        RedirectMatch "^/$" /debian-ports/
+
+        Alias /debian-ports /srv/mirrors/debian-ports
         <Directory /srv/mirrors/debian-ports>
+                Require all granted
+                IndexOptions NameWidth=* +SuppressDescription
+                Options +Indexes
+                Options +FollowSymLinks
+        </Directory>
+
+        Alias /debian-ports-cd /srv/mirrors/debian-ports-cd
+        <Directory /srv/mirrors/debian-ports-cd>
                 Require all granted
                 IndexOptions NameWidth=* +SuppressDescription
                 Options +Indexes
