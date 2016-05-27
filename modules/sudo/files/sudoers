@@ -278,3 +278,4 @@ cinder		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/cinder-rootwrap /etc/cinder/rootwrap
 
 # ports stuff
 mini-dak	porta=(archvsync)	NOPASSWD: /home/archvsync/signal_ports
+mini-dak	porta=(archvsync)	NOPASSWD: /home/archvsync/signal_ports-cd
