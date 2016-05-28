@@ -186,9 +186,9 @@ Use common-dsa-vhost-https-redirect www.ports.debian.org
 <VirtualHost <%= vhost_listen %> >
 	ServerName ftp.debian-ports.org
 	ServerAdmin debian-admin@debian.org
-	RedirectPermanent /archive/ http://www.ports.debian.org/
-	RedirectPermanent /debian/ http://ftp.ports.debian.org/debian-ports/
-	RedirectPermanent /debian-cd/ http://ftp.ports.debian.org/debian-ports-cd/
+	RedirectPermanent /archive http://www.ports.debian.org
+	RedirectPermanent /debian http://ftp.ports.debian.org/debian-ports
+	RedirectPermanent /debian-cd http://ftp.ports.debian.org/debian-ports-cd
 	RedirectPermanent / http://ftp.ports.debian.org/
 </VirtualHost>
 
