@@ -20,7 +20,7 @@ class nfs-server {
 		lw01,lw02,lw03,lw04: {
 			$client_range    = '10.0.0.0/8'
 		}
-		milanollo: {
+		milanollo,senfter: {
 			$client_range    = '172.29.122.0/24'
 		}
 		buxtehude,glinka: {
