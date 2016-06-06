@@ -43,17 +43,11 @@ fi
 
 get_suites() {
     case "$1" in
-      ia64|s390|sparc)
-        echo "wheezy"
-        ;;
-      arm64|ppc64el)
-        echo "sid stretch jessie"
-        ;;
-      amd64|i386)
+      amd64|i386|armel|armhf)
         echo "sid stretch jessie wheezy"
         ;;
       kfreebsd-*)
-        echo "sid         jessie wheezy"
+        echo "sid         jessie"
         ;;
       mips64el)
         echo "sid"
@@ -62,7 +56,7 @@ get_suites() {
         echo "sid"
         ;;
       *)
-        echo "sid stretch jessie wheezy"
+        echo "sid stretch jessie"
         ;;
     esac
 }
