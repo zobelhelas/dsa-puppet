@@ -38,7 +38,6 @@ import pwd
 import subprocess
 import struct
 import time
-import sysconfig
 import StringIO
 
 # avoid base64 encoding for utf-8
@@ -124,17 +123,20 @@ class LastlogTimes(dict):
   def __init__(self):
     record_size_32 = struct.calcsize(self.LASTLOG_STRUCT_32)
     record_size_64 = struct.calcsize(self.LASTLOG_STRUCT_64)
-    if sysconfig.get_config_var('SIZEOF_TIME_T') == 4:
-        self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_32
-        record_size = record_size_32
-    elif sysconfig.get_config_var('SIZEOF_TIME_T') == 8:
+    # some 64bit arches have 32bit-compatible lastlog structures, others don't,
+    # in apparently incoherent ways, so hardcode a list...
+    if platform.machine() in ('ia64', 'aarch64', 's390x'):
         self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_64
         record_size = record_size_64
     else:
-        raise RuntimeError('Unknown architecture, sizeof time_t is weird (%d)' % (sysconfig.get_config_var('SIZEOF_TIME_T'),))
+        self.LASTLOG_STRUCT = self.LASTLOG_STRUCT_32
+        record_size = record_size_32
     with open('/var/log/lastlog', 'r') as fp:
       uid = -1 # there is one record per uid in lastlog
       for record in iter(lambda: fp.read(record_size), ''):
+        if len(record) != record_size:
+            raise RuntimeError('lastlog has unexpected size, read %d instead of %d'
+                               % (len(record), record_size))
         uid += 1 # so keep incrementing uid for each record read
         lastlog_time, _, _ = list(struct.unpack(self.LASTLOG_STRUCT, record))
         try:
