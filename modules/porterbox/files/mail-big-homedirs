@@ -139,6 +139,9 @@ class LastlogTimes(dict):
                                % (len(record), record_size))
         uid += 1 # so keep incrementing uid for each record read
         lastlog_time, _, _ = list(struct.unpack(self.LASTLOG_STRUCT, record))
+        if lastlog_time < 0:
+            raise RuntimeError('unexpected last login time %d for user %s'
+                               % (lastlog_time, pwd.getpwuid(uid).pw_name))
         try:
           self[pwd.getpwuid(uid).pw_name] = lastlog_time
         except KeyError:
