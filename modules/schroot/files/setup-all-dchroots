@@ -96,9 +96,6 @@ case `hostname` in
             mipsel)
                 archs="$archs mips64el"
                 ;;
-            s390|s390x)
-                archs="s390 s390x"
-                ;;
         esac
     ;;
 esac
