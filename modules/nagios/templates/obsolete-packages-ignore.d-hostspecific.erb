@@ -12,7 +12,7 @@ when "reger.debian.org" then                                   ignore << %w{libr
 when /(rainier|rapoport).debian.org/ then                      ignore << %w{rabbitmq-server}
 when "sibelius.debian.org" then                                ignore << %w{tivsm-ba tivsm-bacit tivsm-api64 gskssl64 gskcrypt64 tivsm-api tivsm-apicit gskssl gskcrypt}
 when /(storace|backuphost).debian.org/ then                    ignore << %w{postgresql-client-9.1}
-when /(sompek|stadler|schroeder).debian.org/ then              ignore << %w{libsbuild-perl buildd sbuild}
+when /(sompek|stadler).debian.org/ then                        ignore << %w{libsbuild-perl buildd sbuild}
 end
 
 ignore.flatten.join("\n")

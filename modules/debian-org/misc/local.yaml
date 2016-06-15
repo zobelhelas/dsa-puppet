@@ -54,7 +54,6 @@ nameinfo:
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
   lamb.debian.org: John David Lamb (b. 1935)
   lafayette.debian.org: Eugenie Lafayette
-  lebrun.debian.org: Francesca Lebrun (March 24th, 1756 - May 14th, 1791)
   lindsay.debian.org: Maria Lindsay Bliss (May 15th, 1827 - April 3rd, 1898)
   locke.debian.org: Matthew Locke (ca. 1621 - 1677)
   lotti.debian.org: Antonio Lotti (ca. 1667 - January 5th, 1740)
@@ -97,7 +96,6 @@ nameinfo:
   respighi.debian.org: Elsa Respighi (née Olivieri-Sangiacomo) (March 24th, 1894 - March 17th, 1996)
   samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   santoro.debian.org: Cláudio Santoro (November 23rd, 1919 - March 27th, 1989)
-  schroeder.debian.org: Hermann Schroeder (March 26th, 1904 - October 7th, 1984)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
   sechter.debian.org: Simon Sechter (October 11th, 1788 - September 10th, 1867)
   seger.debian.org: Josef Seger (March 21st, 1716 - April 22nd, 1782)
@@ -207,7 +205,6 @@ host_settings:
     - henze.debian.org
     - hoiby.debian.org
     - ia64-arm-01.debian.org
-    - lebrun.debian.org
     - lucatelli.debian.org
     - mayr.debian.org
     - mips-aql-01.debian.org
@@ -228,7 +225,6 @@ host_settings:
     - ppc64el-osuosl-01.debian.org
     - ppc64el-unicamp-01.debian.org
     - praetorius.debian.org
-    - schroeder.debian.org
     - sompek.debian.org
     - spontini.debian.org
     - stadler.debian.org

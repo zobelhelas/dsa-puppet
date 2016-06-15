@@ -8,7 +8,7 @@ nodeinfo = scope.lookupvar('site::nodeinfo')
 out = []
 
 restricted_purposes = ['kvm host', 'central syslog server', 'puppet master', 'jumphost']
-restrict_ssh = %w{lebrun beethoven tchaikovsky schroeder draghi adayevskaya}
+restrict_ssh = %w{beethoven tchaikovsky draghi adayevskaya}
 
 if (nodeinfo['ldap'].has_key?('purpose')) then
 	nodeinfo['ldap']['purpose'].each do |purp|
@@ -33,11 +33,6 @@ if restrict_ssh.include?(hostname) then
 	ssh4allowed << %w{$DSA_IPS    $HOST_NAGIOS_V4 $HOST_MUNIN_V4 $HOST_DB_V4}
 	ssh6allowed << %w{$DSA_V6_IPS $HOST_NAGIOS_V6 $HOST_MUNIN_V6 $HOST_DB_V6}
 
-	if %w{lebrun schroeder}.include?(hostname) then
-		out << '@def $CARNET = ( 193.198.184.8/29 161.53.160.133 161.53.160.90 161.53.11.222 161.53.12.134 161.53.12.142 161.53.12.143 );'
-		ssh4allowed << '$CARNET'
-		ssh4allowed << '$BUILDD_SSH_ACCESS'
-	end
 	if %w{beethoven draghi}.include?(hostname) then
 		ssh4allowed << '$HOST_DEBIAN_V4'
 		ssh6allowed << '$HOST_DEBIAN_V6'
