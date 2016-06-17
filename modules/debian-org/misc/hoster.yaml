@@ -123,7 +123,7 @@ linaro:
     - 82.195.75.64/26
     - 2001:41b8:202:deb::/64
   searchpaths: [debprivate-darmstadt.debian.org]
-  #nameservers: [82.195.66.249, 217.198.242.225]
+  #nameservers: [82.195.77.77, 82.195.77.78]
   nameservers: [82.195.75.109, 82.195.75.103]
   #mirror-debian: http://debian.netcologne.de/debian/ [currently unstable]
   mirror-debian: http://ftp.de.debian.org/debian/
