@@ -80,11 +80,14 @@ class roles::static_mirror {
 	ssl::service { 'appstream.debian.org': ensure => "ifstatic", notify => Service['apache2'], }
 	ssl::service { 'd-i.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 
+	# do
 	ssl::service { 'backports.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'www.ports.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	# dn
 	ssl::service { 'news.debian.net'       : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'debaday.debian.net'    : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'timeline.debian.net'   : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	# dc
 	ssl::service { 'debconf0.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'debconf1.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'debconf2.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
