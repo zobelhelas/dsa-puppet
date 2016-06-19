@@ -81,23 +81,23 @@ class roles::static_mirror {
 	ssl::service { 'd-i.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 
 	# do
-	ssl::service { 'backports.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'www.ports.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'backports.debian.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'www.ports.debian.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	# dn
-	ssl::service { 'news.debian.net'       : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'debaday.debian.net'    : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'timeline.debian.net'   : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'news.debian.net'               : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debaday.debian.net'            : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'timeline.debian.net'           : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	# dc
-	ssl::service { 'debconf0.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'debconf1.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'debconf2.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'debconf3.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'debconf4.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'debconf5.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'debconf6.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'debconf7.debconf.org'  : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { '10years.debconf.org'   : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'es.debconf.org'        : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'fr.debconf.org'        : ensure => "ifstatic", notify => Service['apache2'], key => true, }
-	ssl::service { 'miniconf10.debconf.org': ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf0.debconf.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf1.debconf.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf2.debconf.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf3.debconf.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf4.debconf.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf5.debconf.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf6.debconf.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'debconf7.debconf.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { '10years.debconf.org'           : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'es.debconf.org'                : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'fr.debconf.org'                : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'miniconf10.debconf.org'        : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 }
