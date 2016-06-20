@@ -1,7 +1,7 @@
 class roles::dgit_browse {
 	ssl::service { 'browse.dgit.debian.org':
 		notify => Service['apache2'],
-		tlsaport => [],
+		key => true,
 	}
 
 	package { 'cgit': ensure => installed, }

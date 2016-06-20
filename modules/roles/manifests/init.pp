@@ -256,7 +256,7 @@ class roles {
 	if has_role('qamaster') {
 		ssl::service { 'qa.debian.org':
 			notify => Service['apache2'],
-			tlsaport => [],
+			key => true,
 		}
 	}
 
