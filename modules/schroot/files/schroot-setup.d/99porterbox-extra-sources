@@ -37,6 +37,7 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
   SRCL="${CHROOT_PATH}/etc/apt/sources.list.d/auto.list"
   rm -f "$SRCL"
   mirror=${MIRROR:-http://ftp.debian.org/debian}
+  debugmirror=${DEBUGMIRROR:-http://debug.mirrors.debian.org/debian-debug/}
 
   case "$SUITE_ARCH" in
     ppc64)
@@ -68,6 +69,9 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
         experimental)
           echo "deb     $mirror sid main" >> "$SRCL"
           echo "deb-src $mirror sid main" >> "$SRCL"
+
+          echo "deb     $debugmirror sid-debug main" >> "$SRCL"
+          echo "deb-src $debugmirror sid-debug main" >> "$SRCL"
           ;;
         sid|stretch)
           ;;
@@ -76,6 +80,13 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
           echo "deb-src http://security.debian.org/ ${suite_alias}/updates main" >> "$SRCL"
           ;;
       esac
+      case "${SUITE_BASE:-}" in
+        experimental|sid|stretch)
+          echo "deb     $debugmirror ${suite_alias}-debug main" >> "$SRCL"
+          echo "deb-src $debugmirror ${suite_alias}-debug main" >> "$SRCL"
+          ;;
+      esac
+
       echo "deb     $mirror ${suite_alias} main" >> "$SRCL"
       echo "deb-src $mirror ${suite_alias} main" >> "$SRCL"
 
