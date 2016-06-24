@@ -205,7 +205,6 @@ host_settings:
     - hasse.debian.org
     - henze.debian.org
     - hoiby.debian.org
-    - ia64-arm-01.debian.org
     - lucatelli.debian.org
     - mayr.debian.org
     - mips-aql-01.debian.org
