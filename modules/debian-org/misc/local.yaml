@@ -190,6 +190,7 @@ host_settings:
     - arm-arm-01.debian.org
     - arm-arm-02.debian.org
     - arm-arm-03.debian.org
+    - arm-arm-04.debian.org
     - arm-linaro-01.debian.org
     - arm-linaro-03.debian.org
     - arnold.debian.org
