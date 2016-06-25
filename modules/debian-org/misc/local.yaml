@@ -220,7 +220,7 @@ host_settings:
     - mundy.debian.org
     - porpora.debian.org
     - poulenc.debian.org
-    - powerpc-ousosl-01.debian.org
+    - powerpc-osuosl-01.debian.org
     - powerpc-unicamp-01.debian.org
     - ppc64el-osuosl-01.debian.org
     - ppc64el-unicamp-01.debian.org
