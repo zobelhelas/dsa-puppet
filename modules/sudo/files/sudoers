@@ -29,7 +29,6 @@ Host_Alias	FTPHOSTS	= franck
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= pettersson
 Host_Alias	MEGARAIDHOSTS	= rautavaara, sibelius
-Host_Alias	MEGACTLHOSTS	= nielsen
 Host_Alias	LISTHOSTS	= bendel
 Host_Alias	BUILDD_MASTER	= wuiet
 Host_Alias	PORTERBOXES	= abel, asachi, barriere, etler, falla, fischer, harris, merulo, minkus, partch, plummer, pizzetti, smetana, zelenka
@@ -87,7 +86,6 @@ nagios		franck=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=1 enclosure 1E
 nagios		powell=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
 nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, /usr/local/bin/megarc -dispCfg -a0 -nolog
-nagios		MEGACTLHOSTS=(ALL)	NOPASSWD: /usr/sbin/megactl -Hv
 # other nagios things
 nagios		backuphost=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg ""
 nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg ""
