@@ -10,7 +10,6 @@ nameinfo:
   beach.debian.org: Amy Marcy Cheney Beach (September 5th, 1867 - December 27th, 1944)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
   bendel.debian.org: Franz Bendel (March 23rd, 1833 - July 3rd, 1874)
-  berlioz.debian.org: Hector Berlioz (December 11th, 1803 - March 8th, 1869)
   binet.debian.org: Jocelyne Binet (September 27th, 1923 - January 13th, 1968)
   boott.debian.org: Francis Boott (June 24th, 1813 - March 1st, 1904)
   busoni.debian.org: Ferruccio Dante Michelangiolo Benvenuto Busoni (April 1st, 1866 - July 27th, 1924)
@@ -52,10 +51,7 @@ nameinfo:
   jerea.debian.org: Hilda Jerea (March 17th, 1916 - May 14th, 1980)
   kaufmann.debian.org: Georg Friedrich Kauffmann (February 14th, 1679 - February 27th, 1735)
   klecker.debian.org: Dedicated to Joel 'Espy' Klecker (1979 - July 11th, 2000)
-  lamb.debian.org: John David Lamb (b. 1935)
-  lafayette.debian.org: Eugenie Lafayette
   lindsay.debian.org: Maria Lindsay Bliss (May 15th, 1827 - April 3rd, 1898)
-  locke.debian.org: Matthew Locke (ca. 1621 - 1677)
   lotti.debian.org: Antonio Lotti (ca. 1667 - January 5th, 1740)
   lully.debian.org: Jean-Baptiste de Lully (November 28th, 1632 - March 22nd, 1687)
   mailly.debian.org: Alphonse Jean Ernest Mailly (November 27th, 1833 - January 10th, 1918)
@@ -93,12 +89,10 @@ nameinfo:
   rapoport.debian.org: Eda Rothstein Rapoport (December 25th, 1890 - May 9th, 1968)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19th, 1873 - May 11th, 1916)
   respighi.debian.org: Elsa Respighi (née Olivieri-Sangiacomo) (March 24th, 1894 - March 17th, 1996)
-  samosa.debian.org: The samosa is a stuffed pastry and a popular snack in South Asia, Southeast Asia, Central Asia, the Arabian Peninsula, throughout the Mediterranean (Greece), Southwest Asia, the Horn of Africa and North Africa.
   santoro.debian.org: Cláudio Santoro (November 23rd, 1919 - March 27th, 1989)
   schumann.debian.org: Robert Alexander Schumann (June 8th, 1810 - July 29th, 1856)
   sechter.debian.org: Simon Sechter (October 11th, 1788 - September 10th, 1867)
   seger.debian.org: Josef Seger (March 21st, 1716 - April 22nd, 1782)
-  senfl.debian.org: Ludwig Senfl (~1490 - ~1543)
   senfter.debian.org: Johanna Senfter (November, 27th, 1879 - August 11th, 1961)
   setoguchi.debian.org: 瀬戸口藤吉, Tokichi Setoguchi (June 28th, 1868 - November 8th, 1941)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
@@ -259,10 +253,7 @@ host_settings:
     klecker.debian.org: 2025
     zani.debian.org: 587
   no_munin:
-    - allegri.debian.org
-    - escher.debian.org
     - fano.debian.org
-    - malo.debian.org
   entropy_key:
     - czerny.debian.org
     # - rautavaara.debian.org
