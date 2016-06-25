@@ -62,7 +62,6 @@ nameinfo:
   milanollo.debian.org: Teresa Milanollo (August 28th, 1827 - October 25th, 1904)
   minkus.debian.org: Ludwig Minkus (March 23rd 1826 - December 7th, 1917)
   muffat.debian.org: George Muffat (June 1st, 1653 - February 23rd, 1704)
-  mundy.debian.org: William Mundy (c. 1529 - 1591)
   nielsen.debian.org: Carl August Nielsen (June 9th, 1865 - October 3rd, 1931)
   nono.debian.org: Luigi Nono (January 29th, 1924 - May 8th, 1990)
   oyens.debian.org: Tera de Marez Oyens (August 5th, 1932 - August 29th, 1996)
@@ -210,7 +209,6 @@ host_settings:
     - mipsel-manda-01.debian.org
     - mipsel-manda-02.debian.org
     - mipsel-sil-01.debian.org
-    - mundy.debian.org
     - porpora.debian.org
     - poulenc.debian.org
     - powerpc-osuosl-01.debian.org
