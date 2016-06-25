@@ -184,7 +184,6 @@ host_settings:
     - smetana.debian.org
     - zelenka.debian.org
     # buildd
-    - alkman.debian.org
     - antheil.debian.org
     - arm-arm-01.debian.org
     - arm-arm-02.debian.org

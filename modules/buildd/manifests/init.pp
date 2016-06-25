@@ -70,11 +70,6 @@ class buildd ($ensure=present) {
 			require    => Package['apt-transport-https'],
 		}
 
-		$buildd_prop_ensure = $::hostname ? {
-			/^(alkman)$/ => 'present',
-			default => 'absent',
-		}
-
 		if ($::lsbmajdistrelease >= 8) {
 			file { '/etc/apt/apt.conf.d/puppet-https-buildd':
 				content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/ca-debian/ca-certificates.crt\";\n",
@@ -83,14 +78,6 @@ class buildd ($ensure=present) {
 			file { '/etc/apt/apt.conf.d/puppet-https-buildd':
 				content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/servicecerts/buildd.debian.org.crt\";\n",
 			}
-		}
-		site::aptrepo { 'buildd.debian.org-proposed':
-			ensure     => $buildd_prop_ensure,
-			url        => 'https://buildd.debian.org/apt/',
-			suite      => "${suite}-proposed",
-			components => 'main',
-			require    => [ Package['apt-transport-https'],
-					File['/etc/apt/apt.conf.d/puppet-https-buildd'] ],
 		}
 
 		# 'bad' extension
