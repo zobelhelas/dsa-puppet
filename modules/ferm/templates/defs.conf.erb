@@ -106,8 +106,9 @@
 @def $tfheen   = ($tfheen 77.40.254.120/29); # home
 @def $jcristau = ();
 @def $jcristau = ($jcristau 82.225.74.107/32); # home
+@def $jcristau = ($jcristau 62.210.122.202/32); # topinambour
 @def $master   = (82.195.75.110); # master.debian.org
-@def $people   = (5.153.231.30); # paradise.debian.org
+@def $people   = (5.153.231.30); # paradis.debian.org
 @def $DSA_IPS = ($sgran $weasel $zobel $luca $tfheen $jcristau $master $people);
 
 @def $sgran6     = (2001:4b10:100b::/48);
@@ -126,8 +127,9 @@
 @def $tfheen6    = ();
 @def $tfheen6    = ($tfheen6 2001:840:f000:4007::/64); # Home, link
 @def $tfheen6    = ($tfheen6 2001:840:4007::/48); # Home
-@def $jcristau6   = (2a01:e35:2e14:a6b0::/64); # home
-@def $master6     = (2001:41b8:202:deb:216:36ff:fe40:4001); # master.debian.org
+@def $jcristau6  = (2a01:e35:2e14:a6b0::/64); # home
+@def $jcristau6  = ($jcristau6 2001:bc8:3f1d::/48); # topinambour
+@def $master6    = (2001:41b8:202:deb:216:36ff:fe40:4001); # master.debian.org
 @def $DSA_V6_IPS = ($sgran6 $weasel6 $zobel6 $luca6 $tfheen6 $jcristau6 $master6);
 
 @def $USER_christoph = ();
