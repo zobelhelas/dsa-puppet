@@ -74,8 +74,8 @@ class roles::static_mirror {
 
 	ssl::service { 'dsa.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 	ssl::service { 'www.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
-	ssl::service { 'bits.debian.org'     : ensure => "ifstatic", notify => Service['apache2'], }
-	ssl::service { 'lintian.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], }
+	ssl::service { 'bits.debian.org'     : ensure => "ifstatic", notify => Service['apache2'], tlsaport => [], }
+	ssl::service { 'lintian.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], tlsaport => [], }
 	ssl::service { 'rtc.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 	ssl::service { 'd-i.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 
