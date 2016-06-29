@@ -296,6 +296,7 @@ class roles {
 	if has_role('veyepar.debian.org') {
 		ssl::service { 'veyepar.debian.org':
 			notify => Service['apache2'],
+			key => true,
 		}
 	}
 
