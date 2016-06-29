@@ -102,7 +102,7 @@ class roles {
 	if has_role('people') {
 		ssl::service { 'people.debian.org':
 			notify => Service['apache2'],
-			tlsaport => [],
+			key => true,
 		}
 	}
 
