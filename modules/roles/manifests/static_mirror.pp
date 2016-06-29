@@ -74,15 +74,15 @@ class roles::static_mirror {
 
 	ssl::service { 'dsa.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 	ssl::service { 'www.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
-	ssl::service { 'bits.debian.org'     : ensure => "ifstatic", notify => Service['apache2'], tlsaport => [], }
-	ssl::service { 'lintian.debian.org'  : ensure => "ifstatic", notify => Service['apache2'], tlsaport => [], }
 	ssl::service { 'rtc.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 	ssl::service { 'd-i.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], }
 
 	# do
 	ssl::service { 'appstream.debian.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'backports.debian.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'bits.debian.org'               : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'blends.debian.org'             : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'lintian.debian.org'            : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'release.debian.org'            : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'security-team.debian.org'      : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'www.ports.debian.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
