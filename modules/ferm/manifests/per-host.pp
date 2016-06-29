@@ -473,6 +473,10 @@ class ferm::per-host {
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5432, ( $HOST_PGBACKUPHOST_V6 ))'
 			}
+			@ferm::rule { 'dc16-postgres':
+				description	=> 'Allow postgres access',
+				rule		=> '&SERVICE_RANGE(tcp, 5332, ( 137.158.82.4/31 ))'
+			}
 		}
 		default: {}
 	}
