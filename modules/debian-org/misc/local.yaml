@@ -58,7 +58,6 @@ nameinfo:
   menotti.debian.org: Gian Carlo Menotti (July 7th, 1911 - February 1st, 2007)
   manziarly.debian.org: Marcelle de Manziarly (October 1st/13th, 1899 -  May 12th, 1989)
   mekeel.debian.org: Joyce Mekeel (July 6th, 1931 - Dec 29th, 1997)
-  merulo.debian.org: Claudio Merulo (April 8th, 1533 - May 4th, 1604)
   milanollo.debian.org: Teresa Milanollo (August 28th, 1827 - October 25th, 1904)
   minkus.debian.org: Ludwig Minkus (March 23rd 1826 - December 7th, 1917)
   muffat.debian.org: George Muffat (June 1st, 1653 - February 23rd, 1704)
@@ -168,7 +167,6 @@ host_settings:
     - falla.debian.org
     - fischer.debian.org
     - harris.debian.org
-    - merulo.debian.org
     - minkus.debian.org
     - partch.debian.org
     - pizzetti.debian.org
