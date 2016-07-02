@@ -193,7 +193,6 @@ host_settings:
     - hasse.debian.org
     - henze.debian.org
     - hoiby.debian.org
-    - lucatelli.debian.org
     - mips-aql-01.debian.org
     - mips-aql-02.debian.org
     - mips-aql-04.debian.org
@@ -236,7 +235,6 @@ host_settings:
     - hasse.debian.org
     - henze.debian.org
     - hoiby.debian.org
-    - lucatelli.debian.org
     - mips-aql-01.debian.org
     - mips-aql-02.debian.org
     - mips-aql-04.debian.org
