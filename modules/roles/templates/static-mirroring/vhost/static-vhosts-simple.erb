@@ -131,6 +131,28 @@ Use common-dsa-vhost-https-redirect release.debian.org
 	Use common-ssl-HSTS
 
 	Use common-static-base release.debian.org
+
+	RewriteEngine	on
+	RewriteRule		^/migration/$			/migration/testing.pl
+	RewriteRule		^/migration/search/(.+)/$	/migration/testing.pl?package=$1
+	RewriteCond		%{QUERY_STRING} package=((.)(.*))
+	RewriteRule		^/migration/testing.pl		/migration/cache/%2/%1.html [PT,L]
+	RewriteRule		^/migration/testing.pl		/migration/cache/_index.html
+
+	Alias /proposed-updates/ /srv/static.debian.org/mirrors/release.debian.org-pu/cur/
+	<Directory /srv/static.debian.org/mirrors/release.debian.org-pu/cur>
+		Require all granted
+		Options Indexes SymLinksIfOwnerMatch
+		IndexOptions FancyIndexing NameWidth=*
+
+		AddEncoding gzip .gz
+		FilterDeclare gzip CONTENT_SET
+		FilterProvider gzip inflate "%{req:Accept-Encoding} !~ /gzip/"
+		FilterChain gzip
+		<Files *.debdiff.gz>
+			ForceType text/plain
+		</Files>
+	</Directory>
 </VirtualHost>
 <% end -%>
 
