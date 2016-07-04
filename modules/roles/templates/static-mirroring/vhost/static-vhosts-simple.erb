@@ -116,6 +116,24 @@ lines.join("\n")
 </VirtualHost>
 <% end -%>
 
+######################
+# release.debian.org
+<% if scope.function_has_static_component(['release.debian.org']) -%>
+Use common-dsa-vhost-https-redirect release.debian.org
+<VirtualHost <%= vhost_listen_443 %> >
+	ServerName release.debian.org
+	ServerAdmin debian-admin@debian.org
+
+	ErrorLog /var/log/apache2/release.debian.org-error.log
+	CustomLog /var/log/apache2/release.debian.org-access.log privacy
+
+	Use common-debian-service-ssl release.debian.org
+	Use common-ssl-HSTS
+
+	Use common-static-base release.debian.org
+</VirtualHost>
+<% end -%>
+
 # www.backports.org
 ###################
 # www.backports.org is the historical place for the backports
@@ -232,35 +250,6 @@ Use common-dsa-vhost-https-redirect www.ports.debian.org
 	ServerName ftp-master.metadata.debian.org
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://metadata.ftp-master.debian.org/
-</VirtualHost>
-
-<VirtualHost <%= vhost_listen %> >
-	ServerName release.debian.org
-	ServerAdmin debian-admin@debian.org
-	RedirectPermanent / https://release.debian.org/
-</VirtualHost>
-<VirtualHost <%= vhost_listen_443 %> >
-	ServerName release.debian.org
-	ServerAdmin debian-admin@debian.org
-
-	ErrorLog /var/log/apache2/release.debian.org-error.log
-	CustomLog /var/log/apache2/release.debian.org-access.log privacy
-
-	Use common-debian-service-ssl release.debian.org
-	Use common-ssl-HSTS
-
-	<IfModule mod_userdir.c>
-		UserDir disabled
-	</IfModule>
-	ServerSignature On
-
-	DocumentRoot /srv/static.debian.org/mirrors/release.debian.org/cur
-	<Directory /srv/static.debian.org/mirrors/release.debian.org/cur>
-		AllowOverride FileInfo Indexes Options=Multiviews
-		Options Multiviews Indexes FollowSymLinks Includes
-		IndexOptions FancyIndexing NameWidth=*
-		Require all granted
-	</Directory>
 </VirtualHost>
 
 # vim:ft=apache:
