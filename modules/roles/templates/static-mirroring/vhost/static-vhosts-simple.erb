@@ -142,7 +142,7 @@ Use common-dsa-vhost-https-redirect release.debian.org
 	Alias /proposed-updates/ /srv/static.debian.org/mirrors/release.debian.org-pu/cur/
 	<Directory /srv/static.debian.org/mirrors/release.debian.org-pu/cur>
 		Require all granted
-		Options Indexes SymLinksIfOwnerMatch
+		Options Indexes SymLinksIfOwnerMatch MultiViews
 		IndexOptions FancyIndexing NameWidth=*
 
 		AddEncoding gzip .gz
