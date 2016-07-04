@@ -193,6 +193,7 @@ debwww		wolkenstein=(staticsync)	NOPASSWD: /usr/local/bin/static-update-componen
 %Debian		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component mozilla.debian.net
 %ports		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component www.ports.debian.org
 %debian-release	respighi=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component release.debian.org
+%debian-release	coccia=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component release.debian.org-pu
 %debvoip	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component rtc.debian.org
 %security	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component security-team.debian.org
 %publicity	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component timeline.debian.net

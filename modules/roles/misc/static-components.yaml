@@ -46,6 +46,9 @@ components:
   release.debian.org:
     master: dillon.debian.org
     source: respighi.debian.org:/srv/release.debian.org/www
+  release.debian.org-pu:
+    master: dillon.debian.org
+    source: coccia.debian.org:/srv/release.debian.org/www/proposed-updates
   rtc.debian.org:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/rtc.debian.org/htdocs
