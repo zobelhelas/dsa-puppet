@@ -9,9 +9,8 @@
 
     <Macro common-debian-service-ssl $name>
       SSLEngine on
-      SSLCertificateFile    /etc/ssl/debian/certs/$name.crt
+      SSLCertificateFile    /etc/ssl/debian/certs/$name.crt-chained
       SSLCertificateKeyFile /etc/ssl/private/$name.key
-      SSLCertificateChainFile /etc/ssl/debian/certs/$name.crt-chain
     </Macro>
 
     <Macro common-debian-service-https-redirect $bind $name>
