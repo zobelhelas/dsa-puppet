@@ -183,7 +183,6 @@ host_settings:
     - arm-linaro-03.debian.org
     - arnold.debian.org
     - babin.debian.org
-    - caballero.debian.org
     - eberlin.debian.org
     - fano.debian.org
     - fayrfax.debian.org

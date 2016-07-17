@@ -13,11 +13,6 @@ roles['extranrpeclient'].each do |nag|
 	nagii << scope.lookupvar('site::allnodeinfo')[nag]['ipHostNumber']
 end
 
-case fqdn when
-  'caballero.debian.org' then
-    nagii << '192.34.35.49'
-end
-
 out = "allowed_hosts=" + nagii.flatten.sort.uniq.join(',')
 out
 %>

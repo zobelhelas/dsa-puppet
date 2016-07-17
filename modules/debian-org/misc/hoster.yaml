@@ -153,10 +153,6 @@ sanger:
   mirror-debian: http://mirror.bytemark.co.uk/debian/
   nameservers: [193.62.202.28, 193.62.202.29]
   searchpaths: [debprivate-sanger.debian.org]
-rapidswitch:
-  netrange:
-    - 193.201.200.0/23
-  nameservers: [87.117.198.200, 87.117.237.100, 87.117.196.200]
 scanplus:
   netrange:
     - 212.211.132.0/26
