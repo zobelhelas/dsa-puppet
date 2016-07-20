@@ -35,6 +35,7 @@ Host_Alias	PORTERBOXES	= abel, asachi, barriere, etler, falla, fischer, harris, 
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
 Host_Alias	MQ_HOSTS	= rainier, rapoport
 Host_Alias	NOVAHOSTS	= oyens
+Host_Alias	JENKINSHOSTS	= jerea
 
 # Cmnd alias specification
 
@@ -257,6 +258,9 @@ nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 # voip stuff
 %debvoip	VOIPHOSTS=(root)	/usr/sbin/service resiprocate-turn-server restart, /usr/sbin/service repro restart
 %debvoip	VOIPHOSTS=(root)	/usr/sbin/service prosody restart, /usr/sbin/service prosody reload, /usr/sbin/service prosody stop, /usr/sbin/service prosody start
+# jenkins
+%jenkins-adm	JENKINSHOSTS=(jenkins)	ALL
+%jenkins-adm	JENKINSHOSTS=(root)	/usr/sbin/service jenkins restart, /usr/sbin/service jenkins reload, /usr/sbin/service jenkins stop, /usr/sbin/service jenkins start
 
 %Debian,%guest,%d-i	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
 
