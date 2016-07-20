@@ -254,12 +254,12 @@ geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/service bind9 reload
 geodnssync	geo1,geo2,geo3=(root)	NOPASSWD: /usr/sbin/rndc reconfig
 # pushed nagiosadm reload icinga on tchaikovsky
 nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
-
-%Debian,%guest,%d-i	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
-
 # voip stuff
 %debvoip	VOIPHOSTS=(root)	/usr/sbin/service resiprocate-turn-server restart, /usr/sbin/service repro restart
 %debvoip	VOIPHOSTS=(root)	/usr/sbin/service prosody restart, /usr/sbin/service prosody reload, /usr/sbin/service prosody stop, /usr/sbin/service prosody start
+
+%Debian,%guest,%d-i	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
+
 
 # Openstack stuff
 Defaults:neutron !requiretty
