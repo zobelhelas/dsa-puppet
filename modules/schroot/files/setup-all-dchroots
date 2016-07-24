@@ -50,7 +50,7 @@ get_suites() {
         echo "sid         jessie"
         ;;
       mips64el)
-        echo "sid"
+        echo "sid stretch"
         ;;
       ppc64)
         echo "sid"
