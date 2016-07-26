@@ -237,6 +237,9 @@ class debian-org {
 	file { '/etc/apt/apt.conf.d/local-pdiffs':
 		source => 'puppet:///modules/debian-org/apt.conf.d/local-pdiffs',
 	}
+	file { '/etc/apt/apt.conf.d/local-langs':
+		source => 'puppet:///modules/debian-org/apt.conf.d/local-langs',
+	}
 	file { '/etc/timezone':
 		source => 'puppet:///modules/debian-org/timezone',
 		notify => Exec['dpkg-reconfigure tzdata -pcritical -fnoninteractive'],
