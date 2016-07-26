@@ -311,6 +311,11 @@ class debian-org {
 		source => 'puppet:///modules/debian-org/nsswitch.conf',
 	}
 
+	file { '/etc/profile.d/timeout.sh':
+		mode   => '0555',
+		source => 'puppet:///modules/debian-org/etc.profile.d/timeout.sh',
+	}
+
 	# set mmap_min_addr to 4096 to mitigate
 	# Linux NULL-pointer dereference exploits
 	site::sysctl { 'mmap_min_addr':
