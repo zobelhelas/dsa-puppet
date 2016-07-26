@@ -1,0 +1,16 @@
+#
+# THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+# USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+#
+
+# /etc/zsh/zprofile: system-wide .zprofile file for zsh(1).
+#
+# This file is sourced only for login shells (i.e. shells
+# invoked with "-" as the first character of argv[0], and
+# shells invoked with the -l flag.)
+#
+# Global Order: zshenv, zprofile, zshrc, zlogin
+
+if [ -e /etc/profile.d/timeout.sh ]; then
+  .  /etc/profile.d/timeout.sh
+fi

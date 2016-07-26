@@ -315,6 +315,13 @@ class debian-org {
 		mode   => '0555',
 		source => 'puppet:///modules/debian-org/etc.profile.d/timeout.sh',
 	}
+	file { '/etc/zsh':
+		ensure => directory,
+	}
+	file { '/etc/zsh/zprofile':
+		mode   => '0444',
+		source => 'puppet:///modules/debian-org/etc.zsh/zprofile',
+	}
 
 	# set mmap_min_addr to 4096 to mitigate
 	# Linux NULL-pointer dereference exploits
