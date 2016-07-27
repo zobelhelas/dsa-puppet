@@ -21,6 +21,21 @@
                 Options +Indexes
                 Options +FollowSymLinks
         </Directory>
+        <Directory /srv/mirrors/debian-ports/pool>
+                <Files ?*>
+                        Header set Cache-Control "public, max-age=2592000"
+                </Files>
+        </Directory>
+        <Directory /srv/mirrors/debian-ports/dists>
+                <Files ?*>
+                        Header set Cache-Control "public, max-age=120"
+                </Files>
+        </Directory>
+        <DirectoryMatch "^/srv/mirrors/debian-ports/dists/.*/by-hash">
+                <Files ?*>
+                        Header set Cache-Control "public, max-age=2592000"
+                </Files>
+        </DirectoryMatch>
 
         Alias /debian-ports-cd /srv/mirrors/debian-ports-cd
         <Directory /srv/mirrors/debian-ports-cd>
