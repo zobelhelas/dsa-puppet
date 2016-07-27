@@ -32,18 +32,7 @@
    ExpiresDefault "access plus 2 minutes"
 
    Alias /debian-security /srv/ftp.root/debian-security
-
-   <Directory /srv/ftp.root/debian-security/pool>
-      <FilesMatch "\.(bz2|gz|deb|dsc|xz)$">
-         ExpiresDefault "access plus 1 month"
-         Header append Cache-Control "public"
-      </FilesMatch>
-   </Directory>
-
-   <Directory /srv/ftp.root/debian-security/dists>
-      ExpiresDefault "access plus 1 seconds"
-      Header append Cache-Control "public"
-   </Directory>
+   Use ftp-archive /srv/ftp.root/debian-security
 
    RewriteEngine on
    RewriteRule ^/$      http://www.debian.org/security/
