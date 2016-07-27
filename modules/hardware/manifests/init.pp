@@ -5,7 +5,7 @@ class hardware {
 		file { '/etc/apt/preferences.d/dsa-hp-tools':
 			content => "Package: hp-health\nPin: version 8.6*\nPin-Priority: 1100\n"
 		}
-	} elsif "$::systemproductname" in ["ProLiant DL380 G5", "ProLiant DL360 G5"] {
+	} elsif "$::systemproductname" in ["ProLiant DL380 G5", "ProLiant DL360 G5", "ProLiant DL380 G6", "ProLiant DL360 G6"] {
 		file { '/etc/apt/preferences.d/dsa-hp-tools':
 			content => "Package: hp-health\nPin: version 10.0.*\nPin-Priority: 1100\n"
 		}
