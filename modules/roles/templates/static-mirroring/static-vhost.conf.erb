@@ -34,12 +34,7 @@
 		AllowOverride FileInfo Indexes Options=Multiviews
 		Options Indexes SymLinksIfOwnerMatch
 		IndexOptions FancyIndexing NameWidth=*
-		<% if @lsbmajdistrelease > '7' -%>
-			Require all granted
-		<% else -%>
-			Order allow,deny
-			Allow from all
-		<% end -%>
+		Require all granted
 	</Directory>
 
 	Header set Surrogate-Key <%= hostname %>
