@@ -1,0 +1,21 @@
+<IfModule mod_headers.c>
+  <IfModule mod_macro.c>
+    <Macro ftp-archive $root>
+      <Directory $root/pool>
+        <Files ?*>
+          Header set Cache-Control "public, max-age=2592000"
+        </Files>
+      </Directory>
+      <Directory $root/dists>
+        <Files ?*>
+          Header set Cache-Control "public, max-age=120"
+        </Files>
+      </Directory>
+      <DirectoryMatch "^$root/dists/.*/by-hash">
+        <Files ?*>
+          Header set Cache-Control "public, max-age=2592000"
+        </Files>
+      </DirectoryMatch>
+    </Macro>
+  </IfModule>
+</IfModule>

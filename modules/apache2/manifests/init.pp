@@ -87,6 +87,10 @@ class apache2 {
 		source => 'puppet:///modules/apache2/puppet-ssl-macros',
 	}
 
+	apache2::config { 'puppet-ftp-macros':
+		source => 'puppet:///modules/apache2/puppet-ftp-macros',
+	}
+
 	apache2::config { 'puppet-config':
 		content => template('apache2/puppet-config.erb'),
 	}

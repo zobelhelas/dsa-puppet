@@ -20,22 +20,5 @@
                 Options +Indexes
                 Options +FollowSymLinks
         </Directory>
-        <Directory /srv/mirrors/debian-debug/pool>
-                <Files ?*>
-                        Header set Cache-Control "public, max-age=2592000"
-                </Files>
-        </Directory>
-        <Directory /srv/mirrors/debian-debug/dists>
-                <Files ?*>
-                        Header set Cache-Control "public, max-age=120"
-                </Files>
-        </Directory>
-        <DirectoryMatch "^/srv/mirrors/debian-debug/dists/.*/by-hash">
-                <Files ?*>
-                        Header set Cache-Control "public, max-age=2592000"
-                </Files>
-        </DirectoryMatch>
-
+        Use ftp-archive /srv/mirrors/debian-debug
 </VirtualHost>
-
-
