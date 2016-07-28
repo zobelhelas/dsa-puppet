@@ -351,4 +351,12 @@ class roles {
 	if has_role('ports-master') {
 		include roles::ports-master
 	}
+
+	if $::hostname in [klecker] {
+		onion::service { 'ftp.debian.org':
+			port => 80,
+			target_address => '130.89.148.12',
+			target_port => 81,
+		}
+	}
 }
