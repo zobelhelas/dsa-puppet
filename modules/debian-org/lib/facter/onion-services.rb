@@ -15,5 +15,21 @@ begin
         end
     end
 
+    Facter.add("onionbalance_hostname") do
+        services = {}
+
+        Dir['/etc/onionbalance/private_keys/*.key'].each do |p|
+            service = File.basename(p, '.key')
+            begin
+                services[service] = IO.popen(['tor-onion-name', p]).read.chomp
+            rescue Errno::ENOENT
+            end
+        end
+        setcode do
+            services.to_json
+        end
+    end
+
+
 rescue Exception => e
 end
