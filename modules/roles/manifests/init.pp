@@ -359,4 +359,7 @@ class roles {
 			target_port => 81,
 		}
 	}
+	if $::hostname in [olin] {
+		onion::balance_service { 'ftp.debian.org': }
+	}
 }

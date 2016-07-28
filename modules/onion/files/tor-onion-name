@@ -1,0 +1,137 @@
+#!/bin/bash
+
+# Obtain the hidden service name from a tor hidden service RSA key
+
+# Copyright (c) 2016 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+
+set -e
+set -u
+set -o pipefail
+
+usage() {
+    echo "$0 [-p] [hidden service RSA key]"
+    echo "  Computes the Tor onion hostname from a given RSA public or private key."
+    echo "  Use -p to indicate you are passing a public key.  If none is given as an"
+    echo "  argument, one is read from stdin."
+}
+
+umask 077
+export LC_ALL=C
+
+if ! command -v openssl >/dev/null 2>&1 ; then
+    echo >&2 "This program needs the openssl command line tool".
+    exit 1
+fi
+
+tempdir=""
+cleanup() {
+    cd /
+    if [ -n "$tempdir" ]; then
+        rm -rf "$tempdir"
+    fi
+}
+trap 'cleanup' EXIT
+tempdir="$(mktemp -d)"
+
+PUBIN=""
+
+while getopts "ph" OPTION
+do
+    case $OPTION in
+        h)
+            usage
+            exit
+            ;;
+        p)
+            PUBIN=1
+            ;;
+        *)
+            usage >&2
+            exit 1
+            ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+if [ "$#" = 0 ]; then
+    KEY="$tempdir/key"
+    cat > "$KEY"
+elif [ "$#" = 1 ]; then
+    KEY="$1"
+    shift
+else
+    usage >&2
+    exit 1
+fi
+
+if [ -z "$PUBIN" ]; then
+  PKEY="$tempdir/pkey"
+  if ! openssl rsa -pubout < "$KEY" 2>&1 > "$PKEY" | (grep -Fxv 'writing RSA key' >&2 || true); then
+      echo >&2 "Maybe you need to use -p for using a public key?"
+      exit 1
+  fi
+  KEY="$PKEY"
+fi
+
+mod="$(openssl rsa -pubin < "$KEY" -modulus -noout | cut -d= -f 2)"
+exp="$(openssl rsa -pubin < "$KEY" -text -noout | awk '$1=="Exponent:" {print $2}')"
+cat > "$tempdir/asn" << EOF
+asn1=SEQUENCE:seq_sect
+[seq_sect]
+field1=INTEGER:0x$mod
+field2=INTEGER:$exp
+EOF
+
+openssl asn1parse -genconf "$tempdir/asn" -noout -out "$tempdir/blob"
+
+python -c 'import base64, hashlib, sys; \
+    d = hashlib.sha1(sys.stdin.read()).digest()[0:10]; \
+    print "%s.onion"%(base64.b32encode(d).lower(),)
+  ' < "$tempdir/blob"
+#if command -v base32  >/dev/null 2>&1 ; then
+#    echo $(
+#    perl -MDigest::SHA -e '
+#        $/=undef;
+#        $d=Digest::SHA::sha1(<>);
+#        $d=substr($d,0,10);
+#        print $d;
+#      ' < "$tempdir/blob" | base32 | tr A-Z a-z
+#        ).onion
+#else
+#    perl -MDigest::SHA -e '
+#        eval("use MIME::Base32 qw( RFC )");
+#        if ($@) {
+#          print STDERR "This program needs either the base32 command line tool or the MIME::Base32 perl module.\n";
+#          exit 1;
+#        }
+#        $/=undef;
+#        $d=Digest::SHA::sha1(<>);
+#        $d=substr($d,0,10);
+#        print lc(MIME::Base32::encode($d)), ".onion\n"
+#      ' < "$tempdir/blob"
+#fi
+
+# vim:set et:
+# vim:set ts=4:
+# vim:set shiftwidth=4:
