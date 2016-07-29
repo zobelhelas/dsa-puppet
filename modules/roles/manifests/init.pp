@@ -77,9 +77,6 @@ class roles {
 	if has_role('mirror_debug') {
 		include roles::debug_mirror
 	}
-	if has_role('mirror_ports') {
-		include roles::ports_mirror
-	}
 
 	if has_role('ftp.d.o') {
 		include roles::ftp
@@ -348,6 +345,9 @@ class roles {
 
 	if has_role('ports-master') {
 		include roles::ports-master
+	}
+	if has_role('ports_mirror') {
+		include roles::ports_mirror
 	}
 
 	if $::hostname in [klecker] {
