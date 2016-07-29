@@ -149,5 +149,8 @@ class roles::static_mirror {
 		onion::service { 'es.debconf.org'                : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'fr.debconf.org'                : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'miniconf10.debconf.org'        : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+
+		# non-SSL
+		onion::service { 'planet.debian.org'             : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 	}
 }
