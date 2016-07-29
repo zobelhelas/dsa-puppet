@@ -27,6 +27,6 @@ class onion::balance {
 	concat::fragment { 'onion::balance::config_header':
 		target  => "/etc/onionbalance/config.yaml",
 		order   => 05,
-		content => "service:\n",
+		content => "services:\n",
 	}
 }
