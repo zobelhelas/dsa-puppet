@@ -151,6 +151,11 @@ class roles::static_mirror {
 		onion::service { 'miniconf10.debconf.org'        : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 
 		# non-SSL
+		onion::service { 'debdeltas.debian.net'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'incoming.debian.org'           : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'incoming.ports.debian.org'     : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'metadata.ftp-master.debian.org': ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'mozilla.debian.net'            : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'planet.debian.org'             : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 	}
 }

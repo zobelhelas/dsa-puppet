@@ -34,5 +34,10 @@ class roles::onionbalance {
 	onion::balance_service { 'miniconf10.debconf.org': }
 
 	# non-SSL
+	onion::balance_service { 'debdeltas.debian.net': }
+	onion::balance_service { 'incoming.debian.org': }
+	onion::balance_service { 'incoming.ports.debian.org': }
+	onion::balance_service { 'metadata.ftp-master.debian.org': }
+	onion::balance_service { 'mozilla.debian.net': }
 	onion::balance_service { 'planet.debian.org': }
 }
