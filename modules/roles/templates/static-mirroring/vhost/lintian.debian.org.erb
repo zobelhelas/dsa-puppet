@@ -2,15 +2,11 @@
 
 Use common-dsa-vhost-https-redirect lintian.debian.org
 
-<Virtualhost <%= vhost_listen_443 %> >
-	ServerName lintian.debian.org
+<Macro vhost-inner-lintian.debian.org>
 	ServerAdmin lintian-maint@debian.org
 
 	ErrorLog /var/log/apache2/lintian.debian.org-error.log
 	CustomLog /var/log/apache2/lintian.debian.org-access.log privacyssl
-
-	Use common-debian-service-ssl lintian.debian.org
-	Use common-ssl-HSTS
 
 	<IfModule mod_userdir.c>
 		UserDir disabled
@@ -54,7 +50,22 @@ Use common-dsa-vhost-https-redirect lintian.debian.org
 	RewriteRule ^/source/([a-z0-9-]+)/?$ /${source-map:$1} [L,R,NE]
 	# Versioned request
 	RewriteRule ^/source/([a-z0-9-]+)/([a-zA-Z0-9.+:~-]+)$ /${source-map:$1/$2} [L,R,NE]
+</Macro>
+
+<Virtualhost <%= vhost_listen_443 %> >
+	ServerName lintian.debian.org
+	Use common-debian-service-ssl lintian.debian.org
+	Use common-ssl-HSTS
+
+	Use vhost-inner-lintian.debian.org
 </VirtualHost>
+
+<% if scope.function_onion_global_service_hostname(['lintian.debian.org']) -%>
+<Virtualhost <%= vhost_listen %> >
+	ServerName <%= scope.function_onion_global_service_hostname(['lintian.debian.org']) %>
+	Use vhost-inner-lintian.debian.org
+</VirtualHost>
+<% end %>
 <% end -%>
 
 # vim:set syn=apache:
