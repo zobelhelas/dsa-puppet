@@ -43,7 +43,7 @@
 </Macro>
 
 
-<Macro common-static-vhost-with-extra $name $extra>
+<Macro common-static-vhost-with-extra $name>
 	<Virtualhost <%= vhost_listen %> >
 		ServerName $name
 		ServerAdmin debian-admin@lists.debian.org
@@ -52,12 +52,17 @@
 		CustomLog /var/log/apache2/$name-access.log privacy
 
 		Use common-static-base $name
-		$extra
+		Use vhost-$name-extra
 	</VirtualHost>
 </Macro>
 
 <Macro common-static-vhost $name>
-	Use common-static-vhost-with-extra $name "# nada"
+	<Macro vhost-$name-extra>
+		# mod macro does not like empty macros, so here's some content:
+		<Directory /non-existant>
+		</Directory>
+	</Macro>
+	Use common-static-vhost-with-extra $name
 </Macro>
 
 

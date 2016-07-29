@@ -11,18 +11,18 @@
 </Macro>
 <% end -%>
 
+<Macro vhost-network-test.debian.org-extra>
+	ServerAlias network-test-backend.debian.org
+</Macro>
 
 <%=
 
-def vhost(lines, sn, type=nil, extra=nil)
+def vhost(lines, sn, type=nil)
   if scope.function_has_static_component([sn])
     t = 'common-static-vhost'
     if type then t += "-#{type}"; end
 
-    e = ''
-    if extra then e += " #{extra}"; end
-
-    lines << "Use #{t} #{sn}#{e}"
+    lines << "Use #{t} #{sn}"
   end
 end
 
@@ -35,7 +35,7 @@ vhost(lines, "debdeltas.debian.net")
 vhost(lines, "news.debian.net"         , "ssl")
 vhost(lines, "debaday.debian.net"      , "ssl")
 vhost(lines, "timeline.debian.net"     , "ssl")
-vhost(lines, "network-test.debian.org" , "with-extra", '"ServerAlias network-test-backend.debian.org"')
+vhost(lines, "network-test.debian.org" , "with-extra")
 vhost(lines, "blends.debian.org"       , "ssl")
 vhost(lines, "wnpp-by-tags.debian.net" , "ssl")
 vhost(lines, "security-team.debian.org", "ssl")
@@ -57,7 +57,7 @@ vhost(lines, "es.debconf.org"      , "ssl")
 vhost(lines, "fr.debconf.org"      , "ssl")
 vhost(lines, "miniconf10.debconf.org" , "ssl")
 
-vhost(lines, "deb.debian.org", "with-extra", '"Use vhost-deb.debian.org-extra"')
+vhost(lines, "deb.debian.org", "with-extra")
 
 lines.join("\n")
 -%>
