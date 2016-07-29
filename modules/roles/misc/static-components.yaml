@@ -73,6 +73,9 @@ components:
   metadata.ftp-master.debian.org:
     master: franck.debian.org
     source: franck.debian.org:/srv/ftp-master.debian.org/export
+  onion.debian.org:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/onion-master.debian.org/htdocs
   10years.debconf.org   : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/10years.debconf.org' }
   debconf0.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf0.debconf.org' }
   debconf1.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf1.debconf.org' }

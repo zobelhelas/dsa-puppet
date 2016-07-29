@@ -11,6 +11,7 @@ class roles::onionbalance {
 	onion::balance_service { 'bits.debian.org': }
 	onion::balance_service { 'blends.debian.org': }
 	onion::balance_service { 'lintian.debian.org': }
+	onion::balance_service { 'onion.debian.org': }
 	onion::balance_service { 'release.debian.org': }
 	onion::balance_service { 'security-team.debian.org': }
 	onion::balance_service { 'www.ports.debian.org': }
