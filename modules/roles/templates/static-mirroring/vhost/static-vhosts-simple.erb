@@ -85,15 +85,13 @@ lines.join("\n")
 # release.debian.org
 <% if scope.function_has_static_component(['release.debian.org']) -%>
 Use common-dsa-vhost-https-redirect release.debian.org
-<VirtualHost <%= vhost_listen_443 %> >
-	ServerName release.debian.org
+
+<Macro vhost-inner-release.debian.org>
+
 	ServerAdmin debian-admin@debian.org
 
 	ErrorLog /var/log/apache2/release.debian.org-error.log
 	CustomLog /var/log/apache2/release.debian.org-access.log privacy
-
-	Use common-debian-service-ssl release.debian.org
-	Use common-ssl-HSTS
 
 	Use common-static-base release.debian.org
 
@@ -118,7 +116,21 @@ Use common-dsa-vhost-https-redirect release.debian.org
 			ForceType text/plain
 		</Files>
 	</Directory>
+</Macro>
+
+<VirtualHost <%= vhost_listen_443 %> >
+	ServerName release.debian.org
+	Use common-debian-service-ssl release.debian.org
+	Use common-ssl-HSTS
+	Use vhost-inner-release.debian.org
 </VirtualHost>
+<% if scope.function_onion_global_service_hostname(['release.debian.org']) -%>
+<Virtualhost <%= vhost_listen %> >
+	ServerName <%= scope.function_onion_global_service_hostname(['release.debian.org']) %>
+	Use vhost-inner-release.debian.org
+</VirtualHost>
+<% end -%>
+
 <% end -%>
 
 # www.backports.org
