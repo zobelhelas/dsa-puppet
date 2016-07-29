@@ -210,7 +210,7 @@ roles:
     - gombert.debian.org
   veyepar.debian.org:
     - vittoria.debian.org
-  mirror_debug:
+  debug_mirror:
     - klecker.debian.org
     - mirror-isc.debian.org
   ports_mirror:
