@@ -21,6 +21,13 @@
 	</IfModule>
 </Macro>
 
+<Macro vhost-metadata.ftp-master.debian.org-extra>
+	AddDefaultCharset utf-8
+	<LocationMatch "/changelogs/(main|contrib|non-free)">
+		ForceType text/plain
+	</LocationMatch>
+</Macro>
+
 <%=
 
 def vhost(lines, sn, type=nil)
@@ -54,6 +61,7 @@ vhost(lines, "dsa.debian.org"      , "ssl")
 vhost(lines, "rtc.debian.org"      , "ssl")
 
 vhost(lines, "bits.debian.org", "ssl-with-extra")
+vhost(lines, "metadata.ftp-master.debian.org", "with-extra")
 
 vhost(lines, "10years.debconf.org" , "ssl")
 vhost(lines, "debconf0.debconf.org", "ssl")
@@ -72,24 +80,6 @@ vhost(lines, "deb.debian.org", "with-extra")
 
 lines.join("\n")
 -%>
-
-######################
-# metadata.ftp-master.debian.org
-<% if scope.function_has_static_component(['metadata.ftp-master.debian.org']) -%>
-<VirtualHost <%= vhost_listen %> >
-	ServerName metadata.ftp-master.debian.org
-	ServerAdmin debian-admin@lists.debian.org
-
-	ErrorLog /var/log/apache2/metadata.ftp-master.debian.org-error.log
-	CustomLog /var/log/apache2/metadata.ftp-master.debian.org-access.log privacy
-
-	Use common-static-base metadata.ftp-master.debian.org
-	AddDefaultCharset utf-8
-	<LocationMatch "/changelogs/(main|contrib|non-free)">
-		ForceType text/plain
-	</LocationMatch>
-</VirtualHost>
-<% end -%>
 
 ######################
 # release.debian.org
