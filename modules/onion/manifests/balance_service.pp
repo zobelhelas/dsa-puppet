@@ -12,7 +12,7 @@ define onion::balance_service (
 	}
 
 	concat::fragment { "onion::balance::service_header::${name}":
-		target  => "/etc/onionbalance/config",
+		target  => "/etc/onionbalance/config.yaml",
 		order   => "50-${name}-10",
 		content => "  - # ${name} via ${onion_hn}\n    key: private_keys/${name}.key\n    instances:\n",
 	}

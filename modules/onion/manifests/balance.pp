@@ -20,12 +20,12 @@ class onion::balance {
 		content => "ControlPort 9051\n\n",
 	}
 
-	concat { '/etc/onionbalance/config':
+	concat { '/etc/onionbalance/config.yaml':
 		notify  => Service['onionbalance'],
 		require => Package['onionbalance'],
 	}
 	concat::fragment { 'onion::balance::config_header':
-		target  => "/etc/onionbalance/config",
+		target  => "/etc/onionbalance/config.yaml",
 		order   => 05,
 		content => "service:\n",
 	}
