@@ -15,6 +15,12 @@
 	ServerAlias network-test-backend.debian.org
 </Macro>
 
+<Macro vhost-bits.debian.org-extra>
+	<IfModule mod_geoip.c>
+		CustomLog /var/log/apache2/bits.debian.org-public-access.log privacy+geo
+	</IfModule>
+</Macro>
+
 <%=
 
 def vhost(lines, sn, type=nil)
@@ -46,6 +52,8 @@ vhost(lines, "d-i.debian.org"      , "ssl")
 vhost(lines, "appstream.debian.org", "ssl")
 vhost(lines, "dsa.debian.org"      , "ssl")
 vhost(lines, "rtc.debian.org"      , "ssl")
+
+vhost(lines, "bits.debian.org", "ssl-with-extra")
 
 vhost(lines, "10years.debconf.org" , "ssl")
 vhost(lines, "debconf0.debconf.org", "ssl")
@@ -80,42 +88,6 @@ lines.join("\n")
 	<LocationMatch "/changelogs/(main|contrib|non-free)">
 		ForceType text/plain
 	</LocationMatch>
-</VirtualHost>
-<% end -%>
-
-######################
-# bits.debian.org
-<% if scope.function_has_static_component(['bits.debian.org']) -%>
-<Macro static-bits.debian.org-base>
-	ServerName bits.debian.org
-	ServerAdmin debian-admin@lists.debian.org
-
-	ErrorLog /var/log/apache2/bits.debian.org-error.log
-	<IfModule mod_geoip.c>
-		CustomLog /var/log/apache2/bits.debian.org-public-access.log privacy+geo
-	</IfModule>
-
-	Use common-static-base bits.debian.org
-</Macro>
-
-<Virtualhost <%= vhost_listen %> >
-	RewriteEngine on
-
-	RewriteEngine On
-	RewriteCond %{REQUEST_URI} !^/feeds/
-	RewriteRule ^/(.*)$ https://bits.debian.org/$1 [R,L]
-	#RewriteRule ^/(.*)$ https://bits.debian.org/$1 [R=301,L]
-
-	Use static-bits.debian.org-base
-	CustomLog /var/log/apache2/bits.debian.org-access.log privacy
-</VirtualHost>
-
-<Virtualhost <%= vhost_listen_443 %> >
-	Use static-bits.debian.org-base
-	CustomLog /var/log/apache2/bits.debian.org-access.log privacyssl
-
-	Use common-debian-service-ssl bits.debian.org
-	Use common-ssl-HSTS
 </VirtualHost>
 <% end -%>
 
