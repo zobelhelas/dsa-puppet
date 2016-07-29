@@ -25,6 +25,10 @@
    ServerAlias security-cdn1.debian.org
    ServerAlias security-cdn2.debian.org
    ServerAlias security-nagios.debian.org
+   <% if scope.function_onion_global_service_hostname(['security.debian.org']) -%>
+   ServerAlias <%= scope.function_onion_global_service_hostname(['security.debian.org']) %>
+   <% end %>
+
 
    ExpiresActive On
    ExpiresDefault "access plus 2 minutes"

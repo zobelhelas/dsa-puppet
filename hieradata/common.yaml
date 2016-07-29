@@ -120,6 +120,11 @@ roles:
     - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
+  security_mirror_onion:
+    - mirror-isc.debian.org
+    - mirror-umn.debian.org
+    - lobos.debian.org
+    - villa.debian.org
   security_tracker:
     - soriano.debian.org
   ssh.upload.d.o:

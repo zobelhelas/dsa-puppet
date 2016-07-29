@@ -32,4 +32,25 @@ class roles::security_mirror {
 		bind        => $rsync_bind,
 		bind6       => $rsync_bind6,
 	}
+
+
+	$onion_v4_addr = $::hostname ? {
+		mirror-anu => '150.203.164.61',
+		mirror-isc => '149.20.20.19',
+		mirror-umn => '128.101.240.215',
+		villa      => '212.211.132.32',
+		lobos      => '212.211.132.250',
+		default   => undef,
+	}
+	if has_role('security_mirror_onion') {
+		if ! $onion_v4_addr {
+			fail("Do not have an onion_v4_addr set for $::hostname.")
+		}
+
+		onion::service { 'security.debian.org':
+			port => 80,
+			target_port => 80,
+			target_address => $onion_v4_addr,
+		}
+	}
 }

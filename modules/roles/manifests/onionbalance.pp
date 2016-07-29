@@ -41,4 +41,8 @@ class roles::onionbalance {
 	onion::balance_service { 'metadata.ftp-master.debian.org': }
 	onion::balance_service { 'mozilla.debian.net': }
 	onion::balance_service { 'planet.debian.org': }
+
+
+	# non-static.d.o
+	onion::balance_service { 'security.debian.org': }
 }
