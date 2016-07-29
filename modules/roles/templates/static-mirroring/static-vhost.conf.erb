@@ -43,9 +43,12 @@
 </Macro>
 
 
-<Macro common-static-vhost-with-extra $name>
+
+
+<Macro common-static-vhost-with-extra $name $onion>
 	<Virtualhost <%= vhost_listen %> >
 		ServerName $name
+		ServerAlias $onion
 		ServerAdmin debian-admin@lists.debian.org
 
 		ErrorLog /var/log/apache2/$name-error.log
@@ -56,17 +59,17 @@
 	</VirtualHost>
 </Macro>
 
-<Macro common-static-vhost $name>
+<Macro common-static-vhost $name $onion>
 	<Macro vhost-$name-extra>
 		# mod macro does not like empty macros, so here's some content:
 		<Directory /non-existant>
 		</Directory>
 	</Macro>
-	Use common-static-vhost-with-extra $name
+	Use common-static-vhost-with-extra $name $onion
 </Macro>
 
 
-<Macro common-static-vhost-ssl $name>
+<Macro common-static-vhost-ssl $name $onion>
 	Use common-dsa-vhost-https-redirect $name
 
 	<Virtualhost <%= vhost_listen_443 %> >
@@ -78,6 +81,16 @@
 
 		Use common-debian-service-ssl $name
 		Use common-ssl-HSTS
+
+		Use common-static-base $name
+	</VirtualHost>
+
+	<Virtualhost <%= vhost_listen %> >
+		ServerName $onion
+		ServerAdmin debian-admin@lists.debian.org
+
+		ErrorLog /var/log/apache2/$name-error.log
+		CustomLog /var/log/apache2/$name-access.log privacyssl
 
 		Use common-static-base $name
 	</VirtualHost>

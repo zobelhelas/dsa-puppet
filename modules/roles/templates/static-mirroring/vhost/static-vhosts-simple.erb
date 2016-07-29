@@ -22,7 +22,10 @@ def vhost(lines, sn, type=nil)
     t = 'common-static-vhost'
     if type then t += "-#{type}"; end
 
-    lines << "Use #{t} #{sn}"
+    onion = scope.function_onion_global_service_hostname([sn])
+    onion = "unavailable-onion.invalid" if onion.nil?
+
+    lines << "Use #{t} #{sn} #{onion}"
   end
 end
 
