@@ -91,6 +91,10 @@
    ServerName debian.org
    ServerAdmin webmaster@debian.org
 
+   <% if scope.function_onion_global_service_hostname(['www.debian.org']) -%>
+   ServerAlias <%= scope.function_onion_global_service_hostname(['www.debian.org']) %>
+   <% end %>
+
    ServerAlias www.at.debian.org
    ServerAlias www.au.debian.org
    ServerAlias www.bg.debian.org
