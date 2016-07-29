@@ -32,9 +32,9 @@ class roles::static_mirror {
 	}
 
 	$onion_v4_addr = $::hostname ? {
+		busoni     => '140.211.15.34',
 		klecker    => '130.89.148.14',
 		mirror-isc => '149.20.20.22',
-		mirror-anu => '150.203.164.62',
 		senfter    => '5.153.231.4',
 		default    => undef,
 	}
