@@ -6,6 +6,9 @@
 <VirtualHost <%= vhost_listen %> >
         ServerAdmin debian-admin@debian.org
         ServerName debug.mirrors.debian.org
+        <% if scope.function_onion_global_service_hostname(['debug.mirrors.debian.org']) -%>
+        ServerAlias <%= scope.function_onion_global_service_hostname(['debug.mirrors.debian.org']) %>
+        <% end %>
 
         RedirectMatch "^/$" /debian-debug/
         Alias /debian-debug /srv/mirrors/debian-debug

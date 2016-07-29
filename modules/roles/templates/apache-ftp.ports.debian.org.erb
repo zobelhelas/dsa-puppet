@@ -6,7 +6,9 @@
 <VirtualHost <%= vhost_listen %> >
         ServerAdmin debian-admin@debian.org
         ServerName ftp.ports.debian.org
-
+        <% if scope.function_onion_global_service_hostname(['ftp.ports.debian.org']) -%>
+        ServerAlias <%= scope.function_onion_global_service_hostname(['ftp.ports.debian.org']) %>
+        <% end %>
 
         ErrorLog /var/log/apache2/ftp.ports.debian.org-error.log
         LogLevel warn

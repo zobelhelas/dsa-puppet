@@ -213,7 +213,13 @@ roles:
   debug_mirror:
     - klecker.debian.org
     - mirror-isc.debian.org
+  debug_mirror_onion:
+    - klecker.debian.org
+    - mirror-isc.debian.org
   ports_mirror:
+    - klecker.debian.org
+    - mirror-isc.debian.org
+  ports_mirror_onion:
     - klecker.debian.org
     - mirror-isc.debian.org
   planet_search:

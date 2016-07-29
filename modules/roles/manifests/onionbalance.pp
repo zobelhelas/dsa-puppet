@@ -45,4 +45,6 @@ class roles::onionbalance {
 
 	# non-static.d.o
 	onion::balance_service { 'security.debian.org': }
+	onion::balance_service { 'debug.mirrors.debian.org': }
+	onion::balance_service { 'ftp.ports.debian.org': }
 }
