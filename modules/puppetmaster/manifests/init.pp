@@ -16,4 +16,11 @@ class puppetmaster {
 		description     => 'Allow puppet access',
 		rule            => '&SERVICE_RANGE(tcp, 8140, $HOST_DEBIAN_V6)'
 	}
+
+	file { '/srv/puppet.debian.org/puppet-facts':
+		ensure => directory
+	}
+	concat { '/srv/puppet.debian.org/puppet-facts/onionbalance-services.yaml':
+	}
+	Concat::Fragment <<| tag == "onionbalance-services.yaml" |>>
 }
