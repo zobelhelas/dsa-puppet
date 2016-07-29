@@ -5,8 +5,8 @@ class roles::ports_mirror {
 		default => '*:80',
 	}
 
-	apache2::site { '010-ports.mirrors.debian.org':
-		site   => 'ports.mirrors.debian.org',
+	apache2::site { '010-ftp.ports.debian.org':
+		site   => 'ftp.ports.debian.org',
 		content => template('roles/apache-ftp.ports.debian.org.erb'),
 	}
 }
