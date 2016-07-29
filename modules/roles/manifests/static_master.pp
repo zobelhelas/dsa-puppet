@@ -23,7 +23,13 @@ class roles::static_master {
 			ensure => directory
 		}
 		concat { '/srv/puppet.debian.org/puppet-facts/onionbalance-services.yaml':
+			notify  => Exec["rebuild-onion-website"],
 		}
 		Concat::Fragment <<| tag == "onionbalance-services.yaml" |>>
+
+		exec { 'rebuild-onion-website':
+			command => '/bin/su - staticsync -c \'make -C /srv/onion-master.debian.org\'',
+			refreshonly => true,
+		}
 	}
 }
