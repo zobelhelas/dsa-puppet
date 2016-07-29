@@ -100,16 +100,14 @@ roles:
     - franck.debian.org
   rtmaster:
     - reger.debian.org
-  security_master:
-    - seger.debian.org
-  security_tracker:
-    - soriano.debian.org
   rtc:
     - vogler.debian.org
   search_backend:
     - wolkenstein.debian.org
   search_frontend:
     - cgi-grnet-01.debian.org
+  security_master:
+    - seger.debian.org
   security_mirror:
     - mirror-anu.debian.org
     - mirror-csail.debian.org
@@ -122,6 +120,8 @@ roles:
     - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
+  security_tracker:
+    - soriano.debian.org
   ssh.upload.d.o:
     - coccia.debian.org
   sso:
