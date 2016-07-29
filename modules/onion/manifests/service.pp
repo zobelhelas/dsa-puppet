@@ -14,7 +14,7 @@ define onion::service (
 	$onion_hn = onion_hostname($name)
 	if $onion_hn {
 		@@concat::fragment { "onion::balance::instance::$name::$fqdn":
-			target  => "/etc/onionbalance/config",
+			target  => "/etc/onionbalance/config.yaml",
 			content => "      - address: ${onion_hn}\n        name: ${hostname}-${name}\n",
 			order   => "50-${name}-20",
 			tag     => "onion::balance::$name",
