@@ -31,6 +31,13 @@ class roles::static_mirror {
 			content => "MAILTO=root\nPATH=/usr/local/bin:/usr/bin:/bin\n@reboot staticsync sleep 60; chronic static-mirror-run-all\n",
 	}
 
+	$onion_v4_addr = $::hostname ? {
+		klecker    => '130.89.148.14',
+		mirror-isc => '149.20.20.22',
+		mirror-anu => '150.203.164.62',
+		senfter    => '5.153.231.4',
+		default    => undef,
+	}
 	$vhost_listen = $::hostname ? {
 		klecker    => '130.89.148.14:80 [2001:610:1908:b000::148:14]:80',
 		mirror-isc => '149.20.20.22:80 [2001:4f8:8:36::1deb:22]:80',
@@ -104,4 +111,43 @@ class roles::static_mirror {
 	ssl::service { 'es.debconf.org'                : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'fr.debconf.org'                : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'miniconf10.debconf.org'        : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+
+	if has_role('static_mirror_onion') {
+		if ! $onion_v4_addr {
+			fail("Do not have an onion_v4_addr set for $::hostname.")
+		}
+
+		onion::service { 'dsa.debian.org'      : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'www.debian.org'      : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'rtc.debian.org'      : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'd-i.debian.org'      : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+
+		# do
+		onion::service { 'appstream.debian.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'backports.debian.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'bits.debian.org'               : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'blends.debian.org'             : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'lintian.debian.org'            : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'release.debian.org'            : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'security-team.debian.org'      : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'www.ports.debian.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		# dn
+		onion::service { 'news.debian.net'               : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'debaday.debian.net'            : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'timeline.debian.net'           : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'wnpp-by-tags.debian.net'       : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		# dc
+		onion::service { 'debconf0.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'debconf1.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'debconf2.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'debconf3.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'debconf4.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'debconf5.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'debconf6.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'debconf7.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { '10years.debconf.org'           : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'es.debconf.org'                : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'fr.debconf.org'                : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+		onion::service { 'miniconf10.debconf.org'        : ensure => "ifstatic", port => 80, target_port => 81, target_address => $onion_v4_addr }
+	}
 }

@@ -134,6 +134,11 @@ roles:
     - mirror-isc.debian.org
     - senfter.debian.org
     - santoro.debian.org
+  static_mirror_onion:
+    - klecker.debian.org
+    - mirror-anu.debian.org
+    - mirror-isc.debian.org
+    - senfter.debian.org
   # when adding a new static mirror, allow it to sync etc, but do not push to it and wait for it.  For this, also add it to static_mirror_nopush.
   static_mirror_nopush:
     - dummy
@@ -206,3 +211,5 @@ roles:
     - petrova.debian.org
   ports-master:
     - porta.debian.org
+  onionbalance:
+    - olin.debian.org
