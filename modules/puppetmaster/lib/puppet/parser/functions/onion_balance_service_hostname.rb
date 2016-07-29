@@ -1,3 +1,4 @@
+# This function returns the .onion name for a given service name on the local host's onionbalance instance
 module Puppet::Parser::Functions
   newfunction(:onion_balance_service_hostname, :type => :rvalue) do |args|
     servicename = args.shift()
