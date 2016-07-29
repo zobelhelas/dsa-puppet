@@ -32,4 +32,7 @@ class roles::onionbalance {
 	onion::balance_service { 'es.debconf.org': }
 	onion::balance_service { 'fr.debconf.org': }
 	onion::balance_service { 'miniconf10.debconf.org': }
+
+	# non-SSL
+	onion::balance_service { 'planet.debian.org': }
 }

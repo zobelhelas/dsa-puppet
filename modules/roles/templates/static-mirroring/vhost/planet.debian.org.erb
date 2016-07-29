@@ -3,6 +3,9 @@
 <Virtualhost <%= vhost_listen %> >
 	ServerName planet.debian.org
 	ServerAlias planet.debian.net planeta.debian.net planet-backend.debian.org planet-fastly.debian.org planet-maxcdn.debian.org
+	<% if scope.function_onion_global_service_hostname(['planet.debian.org']) -%>
+	ServerAlias <%= scope.function_onion_global_service_hostname(['planet.debian.org']) %>
+	<% end %>
 	ServerAdmin planet@debian.org
 
 	ErrorLog /var/log/apache2/planet.debian.org-error.log
