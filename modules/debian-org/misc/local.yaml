@@ -141,18 +141,6 @@ host_settings:
     - tye.debian.org
     - vento.debian.org
     - wuiet.debian.org
-  apache2_security_mirror:
-    - mirror-anu.debian.org
-    - mirror-csail.debian.org
-    - mirror-isc.debian.org
-    - mirror-umn.debian.org
-    - lobos.debian.org
-    - santoro.debian.org
-    - setoguchi.debian.org
-    - sechter.debian.org
-    - steffani.debian.org
-    - villa.debian.org
-    - wieck.debian.org
   not-bacula-client:
     # decommissioning
     - rautavaara.debian.org
