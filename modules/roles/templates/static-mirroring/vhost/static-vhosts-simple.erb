@@ -177,16 +177,12 @@ Use common-dsa-vhost-https-redirect release.debian.org
 
 Use common-dsa-vhost-https-redirect www.ports.debian.org
 
-<Virtualhost <%= vhost_listen_443 %> >
-	ServerName www.ports.debian.org
-	ServerAlias www.ports-backend.debian.org
+<Macro vhost-inner-www.ports.debian.org>
 	ServerAdmin debian-admin@lists.debian.org
 
 	ErrorLog /var/log/apache2/www.ports.debian.org-error.log
 	CustomLog /var/log/apache2/www.ports.debian.org-access.log privacy
 
-	Use common-debian-service-ssl www.ports.debian.org
-	Use common-ssl-HSTS
 
 	<IfModule mod_userdir.c>
 		UserDir disabled
@@ -203,7 +199,21 @@ Use common-dsa-vhost-https-redirect www.ports.debian.org
 
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
 	AddOutputFilter INCLUDES .xhtml
+</Macro>
+
+<Virtualhost <%= vhost_listen_443 %> >
+	ServerName www.ports.debian.org
+	ServerAlias www.ports-backend.debian.org
+	Use common-debian-service-ssl www.ports.debian.org
+	Use common-ssl-HSTS
+	Use vhost-inner-www.ports.debian.org
 </VirtualHost>
+<% if scope.function_onion_global_service_hostname(['www.ports.debian.org']) -%>
+<Virtualhost <%= vhost_listen %> >
+	ServerName <%= scope.function_onion_global_service_hostname(['www.ports.debian.org']) %>
+	Use vhost-inner-www.ports.debian.org
+</VirtualHost>
+<% end -%>
 <% end -%>
 
 <VirtualHost <%= vhost_listen %> >
