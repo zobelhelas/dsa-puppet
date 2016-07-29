@@ -1,7 +1,7 @@
 begin
     require 'json'
 
-    Facter.add("onion_hostname") do
+    Facter.add("onion_tor_service_hostname") do
         services = {}
 
         Dir['/var/lib/tor/onion/*/hostname'].each do |p|
@@ -15,7 +15,7 @@ begin
         end
     end
 
-    Facter.add("onionbalance_hostname") do
+    Facter.add("onion_balance_service_hostname") do
         services = {}
 
         Dir['/etc/onionbalance/private_keys/*.key'].each do |p|

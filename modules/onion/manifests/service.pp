@@ -11,7 +11,7 @@ define onion::service (
 		content => "HiddenServiceDir /var/lib/tor/onion/${name}\nHiddenServicePort ${port} ${target_address}:${target_port}\n\n",
 	}
 
-	$onion_hn = onion_hostname($name)
+	$onion_hn = onion_tor_service_hostname($name)
 	if $onion_hn {
 		$hostname_without_onion = regsubst($onion_hn, '\.onion$', '')
 		@@concat::fragment { "onion::balance::instance::$name::$fqdn":

@@ -2,7 +2,7 @@ define onion::balance_service (
 ) {
 	include onion::balance
 
-	$onion_hn = onionbalance_hostname($name)
+	$onion_hn = onion_balance_service_hostname($name)
 	if ! $onion_hn {
 		exec { "create-onionbalance-key-${name}":
 			command => "/bin/true && umask 0027 && openssl genrsa -out /etc/onionbalance/private_keys/${name}.key 1024 && chgrp onionbalance /etc/onionbalance/private_keys/${name}.key",
