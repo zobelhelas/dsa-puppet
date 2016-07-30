@@ -4,6 +4,7 @@ module Puppet::Parser::Functions
     servicename = args.shift()
 
     onion_balance_service_hostname_fact = lookupvar('onion_balance_service_hostname')
+    return nil if onion_balance_service_hostname_fact.nil?
 
     require 'json'
     parsed = JSON.parse(onion_balance_service_hostname_fact)
