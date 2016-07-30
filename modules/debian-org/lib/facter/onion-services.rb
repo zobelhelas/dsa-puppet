@@ -21,7 +21,7 @@ begin
         Dir['/etc/onionbalance/private_keys/*.key'].each do |p|
             service = File.basename(p, '.key')
             begin
-                services[service] = IO.popen(['tor-onion-name', p]).read.chomp
+                services[service] = IO.popen(['/usr/local/bin/tor-onion-name', p]).read.chomp
             rescue Errno::ENOENT
             end
         end
