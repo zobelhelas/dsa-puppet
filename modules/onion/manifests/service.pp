@@ -2,7 +2,8 @@ define onion::service (
 	$port,
 	$target_address,
 	$target_port,
-	$ensure = present
+	$ensure = present,
+	$direct = false
 ) {
 	if ($ensure == "ifstatic") {
 		$my_ensure = has_static_component($name) ? {
@@ -30,6 +31,14 @@ define onion::service (
 				content => "      - address: ${hostname_without_onion}\n        name: ${hostname}-${name}\n",
 				order   => "50-${name}-20",
 				tag     => "onion::balance::$name",
+			}
+
+			if ($direct) {
+				@@concat::fragment { "onion::balance::onionbalance-services.yaml::${name}":
+					target  => "/srv/puppet.torproject.org/puppet-facts/onionbalance-services.yaml",
+					content => "{\"${name}\": \"${onion_hn}\"}\n",
+					tag     => "onionbalance-services.yaml",
+				}
 			}
 		}
 	}

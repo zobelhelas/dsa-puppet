@@ -32,7 +32,7 @@ class onion::balance {
 
 	@@concat::fragment { "onion::balance::onionbalance-services.yaml":
 		target  => "/srv/puppet.debian.org/puppet-facts/onionbalance-services.yaml",
-		content => $onion_balance_service_hostname,
+		content => "${onion_balance_service_hostname}\n",
 		tag     => "onionbalance-services.yaml",
 	}
 }

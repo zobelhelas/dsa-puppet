@@ -14,7 +14,10 @@ module Puppet::Parser::Functions
     facts = IO.read(fn)
 
     require 'json'
-    parsed = JSON.parse(facts)
+    parsed = {}
+    facts.each_line do |l|
+      p.update(JSON.parse(l))
+    end
     return parsed[servicename]
   end
 end
