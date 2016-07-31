@@ -96,6 +96,7 @@ class roles::static_mirror {
 	ssl::service { 'www.ports.debian.org'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	# dn
 	ssl::service { 'news.debian.net'               : ensure => "ifstatic", notify => Service['apache2'], key => true, }
+	ssl::service { 'micronews.debian.net'          : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'debaday.debian.net'            : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'timeline.debian.net'           : ensure => "ifstatic", notify => Service['apache2'], key => true, }
 	ssl::service { 'wnpp-by-tags.debian.net'       : ensure => "ifstatic", notify => Service['apache2'], key => true, }
@@ -135,6 +136,7 @@ class roles::static_mirror {
 		onion::service { 'www.ports.debian.org'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		# dn
 		onion::service { 'news.debian.net'               : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'micronews.debian.net'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'debaday.debian.net'            : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'timeline.debian.net'           : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'wnpp-by-tags.debian.net'       : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }

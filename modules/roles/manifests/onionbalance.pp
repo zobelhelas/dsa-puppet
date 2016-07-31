@@ -18,6 +18,7 @@ class roles::onionbalance {
 	# dn
 	onion::balance_service { 'news.debian.net': }
 	onion::balance_service { 'debaday.debian.net': }
+	onion::balance_service { 'micronews.debian.net': }
 	onion::balance_service { 'timeline.debian.net': }
 	onion::balance_service { 'wnpp-by-tags.debian.net': }
 	# dc
