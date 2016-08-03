@@ -16,6 +16,7 @@ class onion::balance {
 	file { '/usr/local/bin/create-onionbalance-config':
 		mode    => '0555',
 		source  => 'puppet:///modules/onion/create-onionbalance-config',
+		notify  => Exec['create-onionbalance-config'],
 	}
 
 	concat::fragment { 'onion::torrc_control_header':
