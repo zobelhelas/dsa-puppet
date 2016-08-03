@@ -48,8 +48,10 @@ class onion::balance {
 	Concat::Fragment <<| tag == "onion::balance::dsa-snippet" |>>
 
 	exec { "create-onionbalance-config":
-		command => "/usr/local/bin/create-onionbalance-config"
+		command => "/usr/local/bin/create-onionbalance-config",
 		refreshonly => true,
-		require =>  File['/usr/local/bin/create-onionbalance-config']
+		require => [  File['/usr/local/bin/create-onionbalance-config'] ],
+		#require => Package['onionbalance'],
+		#notify  => Service['onionbalance'],
 	}
 }
