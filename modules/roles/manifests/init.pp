@@ -358,6 +358,6 @@ class roles {
 		}
 	}
 	if has_role('onionbalance') {
-		include roles::onionbalance
+		include onion::balance
 	}
 }

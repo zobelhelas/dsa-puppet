@@ -47,7 +47,7 @@ import subprocess
 import yaml
 
 j = '/etc/onionbalance/config-dsa-snippet.yaml'
-outfile = '/etc/onionbalance/config.yaml-NEW'
+outfile = '/etc/onionbalance/config.yaml'
 
 relkeydir = 'private_keys'
 keydir = os.path.join('/etc/onionbalance', relkeydir)
@@ -81,7 +81,7 @@ for s in service_instances:
 
 
 config = {}
-config['service'] = services
+config['services'] = services
 
 with open(outfile, 'w') as f:
   yaml.dump(config, f, indent=4)
