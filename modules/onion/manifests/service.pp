@@ -39,6 +39,12 @@ define onion::service (
 					content => "{\"${name}\": \"${onion_hn}\"}\n",
 					tag     => "onionbalance-services.yaml",
 				}
+			} else {
+				@@concat::fragment { "onion::balance::instance::dsa-snippet::$name::$fqdn":
+					target  => "/etc/onionbalance/config-dsa-snippet.yaml",
+					content => "- instance: ${name}\n  address: ${hostname_without_onion}\n  host: ${hostname}-${name}\n",
+					tag     => "onion::balance::dsa-snippet",
+				}
 			}
 		}
 	}
