@@ -35,4 +35,11 @@ class onion::balance {
 		content => "${onion_balance_service_hostname}\n",
 		tag     => "onionbalance-services.yaml",
 	}
+
+
+	concat { '/etc/onionbalance/config-dsa-snippet.yaml':
+		# notify  => Service['onionbalance'],
+		# require => Package['onionbalance'],
+	}
+	Concat::Fragment <<| tag == "onion::balance::dsa-snippet" |>>
 }
