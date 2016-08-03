@@ -42,7 +42,7 @@ define onion::service (
 			} else {
 				@@concat::fragment { "onion::balance::instance::dsa-snippet::$name::$fqdn":
 					target  => "/etc/onionbalance/config-dsa-snippet.yaml",
-					content => "- service: ${name}\n  address: ${hostname_without_onion}\n  host: ${hostname}-${name}\n",
+					content => "- service: ${name}\n  address: ${hostname_without_onion}\n  name: ${hostname}-${name}\n",
 					tag     => "onion::balance::dsa-snippet",
 				}
 			}
