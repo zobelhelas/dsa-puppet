@@ -1,0 +1,87 @@
+#!/usr/bin/python3
+
+# create onionbalance config file
+#
+# create an onionbalance config file from a pre-cursor yaml
+# file that puppet puts together.
+# the input file looks like this:
+#  - service: www.debian.org
+#    address: jmri7yqqjpdxob4s
+#    name: busoni-www.debian.org
+#  - service: www.debian.org
+#    address: ufhzy7r7qfy2tmy3
+#    name: klecker-www.debian.org
+#  - service: www.ports.debian.org
+#    address: g32eridc6ocxni5w
+#    name: busoni-www.ports.debian.org
+# and so on.  This script collect together instances for the same
+# service name, creates a new key if none is present already, and
+# writes a new config.
+
+
+# Copyright (c) 2016 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+
+import os.path
+import subprocess
+import yaml
+
+j = '/etc/onionbalance/config-dsa-snippet.yaml'
+outfile = '/etc/onionbalance/config.yaml-NEW'
+
+relkeydir = 'private_keys'
+keydir = os.path.join('/etc/onionbalance', relkeydir)
+
+data = yaml.safe_load(open(j))
+
+service_instances = {}
+for entry in data:
+  s = entry['service']
+  if s not in service_instances:
+    service_instances[s] = []
+
+  instance = {
+    'address': entry['address'],
+    'name'   : entry['name'],
+  }
+  service_instances[s].append(instance)
+
+services = []
+for s in service_instances:
+  keyfile = os.path.join(keydir, s+'.key')
+  relkeyfile = os.path.join(relkeydir, s+'.key')
+  if (not os.path.exists(keyfile)):
+    subprocess.check_call('umask 0027 && openssl genrsa -out %s 1024 && chgrp onionbalance %s'%(keyfile, keyfile), shell=True)
+
+  service = {
+    'key': relkeyfile,
+    'instances': service_instances[s]
+  }
+  services.append(service)
+
+
+config = {}
+config['service'] = services
+
+with open(outfile, 'w') as f:
+  yaml.dump(config, f, indent=4)

@@ -13,6 +13,10 @@ class onion::balance {
 		mode    => '0555',
 		source  => 'puppet:///modules/onion/tor-onion-name',
 	}
+	file { '/usr/local/bin/create-onionbalance-config':
+		mode    => '0555',
+		source  => 'puppet:///modules/onion/create-onionbalance-config',
+	}
 
 	concat::fragment { 'onion::torrc_control_header':
 		target  => "/etc/tor/torrc",
@@ -38,8 +42,14 @@ class onion::balance {
 
 
 	concat { '/etc/onionbalance/config-dsa-snippet.yaml':
-		# notify  => Service['onionbalance'],
-		# require => Package['onionbalance'],
+		notify  => Exec['create-onionbalance-config'],
+		require => File['/usr/local/bin/create-onionbalance-config']
 	}
 	Concat::Fragment <<| tag == "onion::balance::dsa-snippet" |>>
+
+	exec { "create-onionbalance-config":
+		command => "/usr/local/bin/create-onionbalance-config"
+		refreshonly => true,
+		require =>  File['/usr/local/bin/create-onionbalance-config']
+	}
 }
