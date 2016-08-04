@@ -47,10 +47,7 @@ class roles {
 		}
 	}
 	if has_role('bugs_master') {
-		ssl::service { 'bugs-master.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'bugs-master.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('ftp_master') {
@@ -65,10 +62,7 @@ class roles {
 	}
 
 	if has_role('manpages') {
-		ssl::service { 'manpages.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'manpages.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('security_mirror') {
@@ -95,10 +89,7 @@ class roles {
 	}
 
 	if has_role('people') {
-		ssl::service { 'people.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'people.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('security_master') {
@@ -111,10 +102,7 @@ class roles {
 	}
 
 	if has_role('cgi.d.o') {
-		ssl::service { 'cgi.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'cgi.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('keyring') {
@@ -243,32 +231,19 @@ class roles {
 	}
 
 	if has_role('packages') {
-		ssl::service { 'packages.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'packages.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('qamaster') {
-		ssl::service { 'qa.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'qa.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('packagesqamaster') {
-		ssl::service { 'packages.qa.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'packages.qa.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('gobby_debian_org') {
-		ssl::service { 'gobby.debian.org':
-			notify => Service['apache2'],
-			key => true,
-			tlsaport => [443, 6523],
-		}
+		ssl::service { 'gobby.debian.org': notify => Service['apache2'], key => true, tlsaport => [443, 6523], }
 	}
 
 	if has_role('search_backend') {
@@ -290,10 +265,7 @@ class roles {
 	}
 
 	if has_role('veyepar.debian.org') {
-		ssl::service { 'veyepar.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'veyepar.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('httpredir') {
@@ -305,42 +277,24 @@ class roles {
 	}
 
 	if has_role('planet_search') {
-		ssl::service { 'planet-search.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'planet-search.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('i18n.d.o') {
-		ssl::service { 'i18n.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'i18n.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('l10n.d.o') {
-		ssl::service { 'l10n.debian.org':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'l10n.debian.org': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('dedup.d.n') {
-		ssl::service { 'dedup.debian.net':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'dedup.debian.net': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('pet.d.n') {
-		ssl::service { 'pet.debian.net':
-			notify => Service['apache2'],
-			key => true,
-		}
-		ssl::service { 'pet-devel.debian.net':
-			notify => Service['apache2'],
-			key => true,
-		}
+		ssl::service { 'pet.debian.net': notify => Service['apache2'], key => true, }
+		ssl::service { 'pet-devel.debian.net': notify => Service['apache2'], key => true, }
 	}
 
 	if has_role('ports-master') {
@@ -351,11 +305,7 @@ class roles {
 	}
 
 	if $::hostname in [klecker] {
-		onion::service { 'ftp.debian.org':
-			port => 80,
-			target_address => '130.89.148.12',
-			target_port => 81,
-		}
+		onion::service { 'ftp.debian.org': port => 80, target_address => '130.89.148.12', target_port => 81, }
 	}
 	if has_role('onionbalance') {
 		include onion::balance
