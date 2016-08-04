@@ -41,5 +41,12 @@ define onion::service (
 				}
 			}
 		}
+	} elsif ($my_ensure == "absent") {
+		file { "/var/lib/tor/onion/${name}":
+			ensure => absent,
+			force  => true,
+		}
+	} else {
+		fail("Invalid ensure value ${my_ensure}")
 	}
 }
