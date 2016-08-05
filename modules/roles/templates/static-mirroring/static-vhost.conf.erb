@@ -36,7 +36,7 @@
 </Macro>
 
 <Macro static-vhost-plain-$name>
-	<VirtualHost *:80>
+	<VirtualHost <%= vhost_listen %>>
 		ServerName $name
 
 		ErrorLog /var/log/apache2/$name-error.log
@@ -47,7 +47,7 @@
 </Macro>
 
 <Macro static-vhost-onion-$name $onion>
-	<VirtualHost *:80>
+	<VirtualHost <%= vhost_listen %>>
 		ServerName $onion
 
 		ErrorLog /var/log/apache2/$name-error.log
@@ -58,7 +58,7 @@
 </Macro>
 
 <Macro static-vhost-ssl-$name>
-	<VirtualHost *:443>
+	<VirtualHost <%= vhost_listen_443 %>>
 		ServerName $name
 
 		ErrorLog /var/log/apache2/$name-error.log
