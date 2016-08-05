@@ -63,8 +63,7 @@ class roles::static_mirror {
 
 	apache2::site { '010-lintian.debian.org':
 		site    => 'lintian.debian.org',
-		ensure  => has_static_component('lintian.debian.org') ? { true => "present", false => "absent" },
-		content => template('roles/static-mirroring/vhost/lintian.debian.org.erb'),
+		ensure  => absent,
 	}
 
 	apache2::site { '010-static-vhosts-simple':
