@@ -11,7 +11,10 @@
 	</VirtualHost>
 </Macro>
 
-<Macro common-static-base $name>
+<Macro prepare-static-vhost $name>
+<Macro static-vhost-base-$name>
+	ServerAdmin debian-admin@lists.debian.org
+
 	<IfModule mod_userdir.c>
 		UserDir disabled
 	</IfModule>
@@ -28,41 +31,35 @@
 	Header set Surrogate-Key <%= hostname %>
 
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+
+	Use vstatic-vhost-extra-$name
 </Macro>
 
-
-
-
-<Macro common-static-vhost-with-extra $name $onion>
-	<Virtualhost <%= vhost_listen %> >
+<Macro static-vhost-plain-$name>
+	<VirtualHost *:80>
 		ServerName $name
-		ServerAlias $onion
-		ServerAdmin debian-admin@lists.debian.org
 
 		ErrorLog /var/log/apache2/$name-error.log
 		CustomLog /var/log/apache2/$name-access.log privacy
 
-		Use common-static-base $name
-		Use vhost-$name-extra
+		Use static-vhost-base-$name
 	</VirtualHost>
 </Macro>
 
-<Macro common-static-vhost $name $onion>
-	<Macro vhost-$name-extra>
-		# mod macro does not like empty macros, so here's some content:
-		<Directory /non-existant>
-		</Directory>
-	</Macro>
-	Use common-static-vhost-with-extra $name $onion
+<Macro static-vhost-onion-$name $onion>
+	<VirtualHost *:80>
+		ServerName $onion
+
+		ErrorLog /var/log/apache2/$name-error.log
+		CustomLog /var/log/apache2/$name-access.log privacy
+
+		Use static-vhost-base-$name
+	</VirtualHost>
 </Macro>
 
-
-<Macro common-static-vhost-ssl-with-extra $name $onion>
-	Use common-dsa-vhost-https-redirect $name
-
-	<Virtualhost <%= vhost_listen_443 %> >
+<Macro static-vhost-ssl-$name>
+	<VirtualHost *:443>
 		ServerName $name
-		ServerAdmin debian-admin@lists.debian.org
 
 		ErrorLog /var/log/apache2/$name-error.log
 		CustomLog /var/log/apache2/$name-access.log privacyssl
@@ -70,29 +67,9 @@
 		Use common-debian-service-ssl $name
 		Use common-ssl-HSTS
 
-		Use common-static-base $name
-		Use vhost-$name-extra
-	</VirtualHost>
-
-	<Virtualhost <%= vhost_listen %> >
-		ServerName $onion
-		ServerAdmin debian-admin@lists.debian.org
-
-		ErrorLog /var/log/apache2/$name-error.log
-		CustomLog /var/log/apache2/$name-access.log privacyssl
-
-		Use common-static-base $name
-		Use vhost-$name-extra
+		Use static-vhost-base-$name
 	</VirtualHost>
 </Macro>
-
-<Macro common-static-vhost-ssl $name $onion>
-	<Macro vhost-$name-extra>
-		# mod macro does not like empty macros, so here's some content:
-		<Directory /non-existant>
-		</Directory>
-	</Macro>
-	Use common-static-vhost-ssl-with-extra $name $onion
 </Macro>
 
 # vim:ft=apache:

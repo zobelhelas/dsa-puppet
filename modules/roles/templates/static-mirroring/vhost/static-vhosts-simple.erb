@@ -3,7 +3,7 @@
 ######################
 # deb.debian.org
 <% if scope.function_has_static_component(['deb.debian.org']) -%>
-<Macro vhost-deb.debian.org-extra>
+<Macro vstatic-vhost-extra-deb.debian.org>
 	Redirect /debian/           http://cdn-fastly.deb.debian.org/debian/
 	Redirect /debian-debug/     http://cdn-fastly.deb.debian.org/debian-debug/
 	Redirect /debian-ports/     http://cdn-fastly.deb.debian.org/debian-ports/
@@ -11,92 +11,24 @@
 </Macro>
 <% end -%>
 
-<Macro vhost-network-test.debian.org-extra>
+<Macro vstatic-vhost-extra-network-test.debian.org>
 	ServerAlias network-test-backend.debian.org
 </Macro>
 
-<Macro vhost-bits.debian.org-extra>
+<Macro vstatic-vhost-extra-bits.debian.org>
 	<IfModule mod_geoip.c>
 		CustomLog /var/log/apache2/bits.debian.org-public-access.log privacy+geo
 	</IfModule>
 </Macro>
 
-<Macro vhost-metadata.ftp-master.debian.org-extra>
+<Macro vstatic-vhost-extra-metadata.ftp-master.debian.org>
 	AddDefaultCharset utf-8
 	<LocationMatch "/changelogs/(main|contrib|non-free)">
 		ForceType text/plain
 	</LocationMatch>
 </Macro>
 
-<%=
-
-def vhost(lines, sn, type=nil)
-  if scope.function_has_static_component([sn])
-    t = 'common-static-vhost'
-    if type then t += "-#{type}"; end
-
-    onion = scope.function_onion_global_service_hostname([sn])
-    onion = "unavailable-onion.invalid" if onion.nil?
-
-    lines << "Use #{t} #{sn} #{onion}"
-  end
-end
-
-lines = []
-vhost(lines, "mozilla.debian.net")
-vhost(lines, "backports.debian.org", "ssl")
-vhost(lines, "incoming.debian.org")
-vhost(lines, "incoming.ports.debian.org")
-vhost(lines, "debdeltas.debian.net")
-vhost(lines, "news.debian.net"         , "ssl")
-vhost(lines, "debaday.debian.net"      , "ssl")
-vhost(lines, "timeline.debian.net"     , "ssl")
-vhost(lines, "network-test.debian.org" , "with-extra")
-vhost(lines, "blends.debian.org"       , "ssl")
-vhost(lines, "wnpp-by-tags.debian.net" , "ssl")
-vhost(lines, "security-team.debian.org", "ssl")
-vhost(lines, "d-i.debian.org"      , "ssl")
-vhost(lines, "appstream.debian.org", "ssl")
-vhost(lines, "dsa.debian.org"      , "ssl")
-vhost(lines, "rtc.debian.org"      , "ssl")
-vhost(lines, "onion.debian.org"    , "ssl")
-
-vhost(lines, "bits.debian.org", "ssl-with-extra")
-vhost(lines, "micronews.debian.net", "ssl")
-vhost(lines, "metadata.ftp-master.debian.org", "with-extra")
-
-vhost(lines, "10years.debconf.org" , "ssl")
-vhost(lines, "debconf0.debconf.org", "ssl")
-vhost(lines, "debconf1.debconf.org", "ssl")
-vhost(lines, "debconf2.debconf.org", "ssl")
-vhost(lines, "debconf3.debconf.org", "ssl")
-vhost(lines, "debconf4.debconf.org", "ssl")
-vhost(lines, "debconf5.debconf.org", "ssl")
-vhost(lines, "debconf6.debconf.org", "ssl")
-vhost(lines, "debconf7.debconf.org", "ssl")
-vhost(lines, "es.debconf.org"      , "ssl")
-vhost(lines, "fr.debconf.org"      , "ssl")
-vhost(lines, "miniconf10.debconf.org" , "ssl")
-
-vhost(lines, "deb.debian.org", "with-extra")
-
-lines.join("\n")
--%>
-
-######################
-# release.debian.org
-<% if scope.function_has_static_component(['release.debian.org']) -%>
-Use common-dsa-vhost-https-redirect release.debian.org
-
-<Macro vhost-inner-release.debian.org>
-
-	ServerAdmin debian-admin@debian.org
-
-	ErrorLog /var/log/apache2/release.debian.org-error.log
-	CustomLog /var/log/apache2/release.debian.org-access.log privacy
-
-	Use common-static-base release.debian.org
-
+<Macro vstatic-vhost-extra-release.debian.org>
 	RewriteEngine	on
 	RewriteRule		^/migration/$			/migration/testing.pl
 	RewriteRule		^/migration/search/(.+)/$	/migration/testing.pl?package=$1
@@ -121,20 +53,86 @@ Use common-dsa-vhost-https-redirect release.debian.org
 	</Directory>
 </Macro>
 
-<VirtualHost <%= vhost_listen_443 %> >
-	ServerName release.debian.org
-	Use common-debian-service-ssl release.debian.org
-	Use common-ssl-HSTS
-	Use vhost-inner-release.debian.org
-</VirtualHost>
-<% if scope.function_onion_global_service_hostname(['release.debian.org']) -%>
-<Virtualhost <%= vhost_listen %> >
-	ServerName <%= scope.function_onion_global_service_hostname(['release.debian.org']) %>
-	Use vhost-inner-release.debian.org
-</VirtualHost>
-<% end -%>
+<Macro vstatic-vhost-extra-www.ports.debian.org>
+	<Directory /srv/static.debian.org/mirrors/www.ports.debian.org/cur>
+		AllowOverride FileInfo Indexes Options=Multiviews
+		Options Multiviews Indexes FollowSymLinks Includes
+		IndexOptions FancyIndexing NameWidth=*
+		Require all granted
+	</Directory>
 
-<% end -%>
+	AddOutputFilter INCLUDES .xhtml
+</Macro>
+<%=
+
+def vhost(lines, sn, kwargs={})
+	if scope.function_has_static_component([sn])
+		if not kwargs[:extra]
+				lines << "<Macro vstatic-vhost-extra-#{sn}>"
+				lines << "  # mod macro does not like empty macros, so here's some content:"
+				lines << "  <Directory /non-existant>"
+				lines << "  </Directory>"
+				lines << "</Macro>"
+		end
+
+		lines << "Use prepare-static-vhost #{sn}"
+
+		if kwargs[:ssl]
+			lines << "Use common-dsa-vhost-https-redirect #{sn}"
+			lines << "Use static-vhost-ssl-#{sn}"
+		else
+			lines << "Use static-vhost-plain-#{sn}"
+		end
+
+		onion = scope.function_onion_global_service_hostname([sn])
+		lines << "Use static-vhost-onion-#{sn} #{onion}" if onion
+
+		lines << ""
+	end
+end
+
+lines = []
+vhost(lines, "mozilla.debian.net")
+vhost(lines, "backports.debian.org", :ssl => true)
+vhost(lines, "incoming.debian.org")
+vhost(lines, "incoming.ports.debian.org")
+vhost(lines, "debdeltas.debian.net")
+vhost(lines, "news.debian.net"         , :ssl => true)
+vhost(lines, "debaday.debian.net"      , :ssl => true)
+vhost(lines, "timeline.debian.net"     , :ssl => true)
+vhost(lines, "network-test.debian.org" , :extra => true)
+vhost(lines, "blends.debian.org"       , :ssl => true)
+vhost(lines, "wnpp-by-tags.debian.net" , :ssl => true)
+vhost(lines, "security-team.debian.org", :ssl => true)
+vhost(lines, "d-i.debian.org"      , :ssl => true)
+vhost(lines, "appstream.debian.org", :ssl => true)
+vhost(lines, "dsa.debian.org"      , :ssl => true)
+vhost(lines, "rtc.debian.org"      , :ssl => true)
+vhost(lines, "onion.debian.org"    , :ssl => true)
+
+vhost(lines, "bits.debian.org"     , :ssl => true, :extra => true)
+vhost(lines, "micronews.debian.net", :ssl => true)
+vhost(lines, "metadata.ftp-master.debian.org", :extra => true)
+
+vhost(lines, "10years.debconf.org" , :ssl => true)
+vhost(lines, "debconf0.debconf.org", :ssl => true)
+vhost(lines, "debconf1.debconf.org", :ssl => true)
+vhost(lines, "debconf2.debconf.org", :ssl => true)
+vhost(lines, "debconf3.debconf.org", :ssl => true)
+vhost(lines, "debconf4.debconf.org", :ssl => true)
+vhost(lines, "debconf5.debconf.org", :ssl => true)
+vhost(lines, "debconf6.debconf.org", :ssl => true)
+vhost(lines, "debconf7.debconf.org", :ssl => true)
+vhost(lines, "es.debconf.org"      , :ssl => true)
+vhost(lines, "fr.debconf.org"      , :ssl => true)
+vhost(lines, "miniconf10.debconf.org" , :ssl => true)
+
+vhost(lines, "deb.debian.org", :extra => true)
+vhost(lines, "release.debian.org", :ssl => true, :extra => true)
+vhost(lines, "www.ports.debian.org", :ssl => true, :extra => true)
+
+lines.join("\n")
+-%>
 
 # www.backports.org
 ###################
@@ -149,50 +147,6 @@ Use common-dsa-vhost-https-redirect release.debian.org
 </VirtualHost>
 
 ######################
-# www.ports.debian.org
-<% if scope.function_has_static_component(['www.ports.debian.org']) -%>
-
-Use common-dsa-vhost-https-redirect www.ports.debian.org
-
-<Macro vhost-inner-www.ports.debian.org>
-	ServerAdmin debian-admin@lists.debian.org
-
-	ErrorLog /var/log/apache2/www.ports.debian.org-error.log
-	CustomLog /var/log/apache2/www.ports.debian.org-access.log privacy
-
-
-	<IfModule mod_userdir.c>
-		UserDir disabled
-	</IfModule>
-	ServerSignature On
-
-	DocumentRoot /srv/static.debian.org/mirrors/www.ports.debian.org/cur
-	<Directory /srv/static.debian.org/mirrors/www.ports.debian.org/cur>
-		AllowOverride FileInfo Indexes Options=Multiviews
-		Options Multiviews Indexes FollowSymLinks Includes
-		IndexOptions FancyIndexing NameWidth=*
-		Require all granted
-	</Directory>
-
-	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
-	AddOutputFilter INCLUDES .xhtml
-</Macro>
-
-<Virtualhost <%= vhost_listen_443 %> >
-	ServerName www.ports.debian.org
-	ServerAlias www.ports-backend.debian.org
-	Use common-debian-service-ssl www.ports.debian.org
-	Use common-ssl-HSTS
-	Use vhost-inner-www.ports.debian.org
-</VirtualHost>
-<% if scope.function_onion_global_service_hostname(['www.ports.debian.org']) -%>
-<Virtualhost <%= vhost_listen %> >
-	ServerName <%= scope.function_onion_global_service_hostname(['www.ports.debian.org']) %>
-	Use vhost-inner-www.ports.debian.org
-</VirtualHost>
-<% end -%>
-<% end -%>
-
 <VirtualHost <%= vhost_listen %> >
 	ServerName www.debian-ports.org
 	ServerAlias debian-ports.org
@@ -222,12 +176,9 @@ Use common-dsa-vhost-https-redirect www.ports.debian.org
 	RedirectPermanent / http://ftp.ports.debian.org/
 </VirtualHost>
 
-# video.debian.net
-###################
 <VirtualHost <%= vhost_listen %> >
 	ServerName video.debian.net
 	ServerAdmin debian-admin@debian.org
-
 	Redirect / http://meetings-archive.debian.net/pub/debian-meetings/
 </VirtualHost>
 
