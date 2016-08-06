@@ -35,14 +35,14 @@ define apache2::site (
 			ensure  => $ensure,
 			content => $content,
 			require => Package['apache2'],
-			notify  => Service['apache2'],
+			notify  => Exec['service apache2 reload'],
 		}
 	} else {
 		file { $target:
 			ensure  => $ensure,
 			source  => $source,
 			require => Package['apache2'],
-			notify  => Service['apache2'],
+			notify  => Exec['service apache2 reload'],
 		}
 	}
 
@@ -53,7 +53,7 @@ define apache2::site (
 
 		file { "/etc/apache2/sites-enabled/${name}":
 			ensure => absent,
-			notify => Service['apache2'],
+			notify  => Exec['service apache2 reload'],
 		}
 	}
 
@@ -61,12 +61,12 @@ define apache2::site (
 		file { $symlink:
 			ensure => link,
 			target => $link_target,
-			notify => Service['apache2'],
+			notify  => Exec['service apache2 reload'],
 		}
 	} else {
 		file { $symlink:
 			ensure => absent,
-			notify => Service['apache2'],
+			notify  => Exec['service apache2 reload'],
 		}
 	}
 }

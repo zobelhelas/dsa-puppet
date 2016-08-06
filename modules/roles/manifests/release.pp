@@ -1,5 +1,5 @@
 class roles::release {
 	ssl::service { 'release.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 	}
 }

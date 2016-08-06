@@ -8,6 +8,6 @@ class roles::jenkins {
 	}
 
 	ssl::service { 'jenkins.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 	}
 }

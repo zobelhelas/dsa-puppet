@@ -1,5 +1,5 @@
 class roles::security_tracker {
 	ssl::service { 'security-tracker.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 	}
 }

@@ -3,7 +3,7 @@ class roles::debtags {
 	package { 'libapache2-mod-wsgi': ensure => installed, }
 
 	ssl::service { 'debtags.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 		key => true,
 	}
 

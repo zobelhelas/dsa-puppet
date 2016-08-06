@@ -4,7 +4,7 @@ class roles::keyring {
 	}
 
 	ssl::service { 'keyring.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 		key => true,
 	}
 }

@@ -1,6 +1,6 @@
 class roles::tracker {
 	ssl::service { 'tracker.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 		key => true,
 	}
 }

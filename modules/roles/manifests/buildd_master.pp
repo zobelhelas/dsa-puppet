@@ -1,6 +1,6 @@
 class roles::buildd_master {
 	ssl::service { 'buildd.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 	}
 
 	file { '/etc/ssh/userkeys/wb-buildd.more':

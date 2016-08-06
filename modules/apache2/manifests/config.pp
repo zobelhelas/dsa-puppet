@@ -22,14 +22,14 @@ define apache2::config (
 				ensure  => $ensure,
 				content => $content,
 				require => Package['apache2'],
-				notify  => Service['apache2'],
+				notify  => Exec['service apache2 reload'],
 			}
 		} else {
 			file { "/etc/apache2/conf.d/${name}":
 				ensure  => $ensure,
 				source  => $source,
 				require => Package['apache2'],
-				notify  => Service['apache2'],
+				notify  => Exec['service apache2 reload'],
 			}
 		}
 	} else {
@@ -38,14 +38,14 @@ define apache2::config (
 				ensure  => $ensure,
 				content => $content,
 				require => Package['apache2'],
-				notify  => Service['apache2'],
+				notify  => Exec['service apache2 reload'],
 			}
 		} else {
 			file { "/etc/apache2/conf-available/${name}.conf":
 				ensure  => $ensure,
 				source  => $source,
 				require => Package['apache2'],
-				notify  => Service['apache2'],
+				notify  => Exec['service apache2 reload'],
 			}
 		}
 
@@ -57,7 +57,7 @@ define apache2::config (
 		file { "/etc/apache2/conf-enabled/${name}.conf":
 			ensure => $link_ensure,
 			target => "../conf-available/${name}.conf",
-			notify => Service['apache2'],
+			notify  => Exec['service apache2 reload'],
 		}
 	}
 }

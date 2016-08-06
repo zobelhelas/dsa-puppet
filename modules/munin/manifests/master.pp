@@ -10,7 +10,7 @@ class munin::master {
 	}
 
 	ssl::service { 'munin.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 	}
 	file { '/etc/munin/munin-conf.d':
 		ensure  => directory,

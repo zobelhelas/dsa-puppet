@@ -13,7 +13,7 @@ class roles::dbmaster {
 	$rabbit_password = $roles::pubsub::parameters::rabbit_password
 
 	ssl::service { 'db.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 	}
 
 	roles::pubsub::config { 'generate':

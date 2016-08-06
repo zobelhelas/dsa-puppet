@@ -1,6 +1,6 @@
 class roles::dgit_browse {
 	ssl::service { 'browse.dgit.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 		key => true,
 	}
 
@@ -13,7 +13,7 @@ class roles::dgit_browse {
 	}
 	file { '/etc/apache2/conf-enabled/cgit.conf':
 		ensure => absent,
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 	}
 
 	apache2::site { '010-browse.dgit.debian.org':

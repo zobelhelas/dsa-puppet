@@ -1,6 +1,6 @@
 class roles::wiki {
 	ssl::service { 'wiki.debian.org':
-		notify => Service['apache2'],
+		notify  => Exec['service apache2 reload'],
 		key => true,
 	}
 	rsync::site { 'wiki':
