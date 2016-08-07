@@ -28,6 +28,8 @@ components:
   debdeltas.debian.net:
     master: dillon.debian.org
     source: donizetti.debian.org:/srv/debdelta.debian.org/www/debdeltas
+    exclude-mirrors:
+      - busoni.debian.org
   dsa.debian.org:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/dsa.debian.org/htdocs
