@@ -90,7 +90,7 @@ class roles {
 
 	if has_role('people') {
 		ssl::service { 'people.debian.org': notify  => Exec['service apache2 reload'], key => true, }
-		onion::service { 'people.debian.org': port => 80, target_address => 'people.debian.org', target_port => 80, }
+		onion::service { 'people.debian.org': port => 80, target_address => 'people.debian.org', target_port => 80, direct => true }
 	}
 
 	if has_role('security_master') {
