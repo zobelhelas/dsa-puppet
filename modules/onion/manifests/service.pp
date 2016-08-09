@@ -29,7 +29,7 @@ define onion::service (
 
 			if ($direct) {
 				@@concat::fragment { "onion::balance::onionbalance-services.yaml::${name}":
-					target  => "/srv/puppet.torproject.org/puppet-facts/onionbalance-services.yaml",
+					target  => "/srv/puppet.debian.org/puppet-facts/onionbalance-services.yaml",
 					content => "{\"${name}\": \"${onion_hn}\"}\n",
 					tag     => "onionbalance-services.yaml",
 				}
