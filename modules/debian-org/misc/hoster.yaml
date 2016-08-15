@@ -17,7 +17,7 @@ accumu:
     - 130.236.0.0/14
     - 2001:06B0:000E::/48
   searchpaths: [debprivate-accumu.debian.org]
-  nameservers: [130.239.18.145, 130.239.1.90, 130.239.4.100]
+  nameservers: [130.239.18.251, 130.239.18.252, 130.239.1.90, 130.239.4.100]
 aql:
   netrange:
     - 141.170.6.144/28
