@@ -108,6 +108,7 @@ class roles::static_mirror {
 	ssl::service { 'debconf5.debconf.org'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'debconf6.debconf.org'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'debconf7.debconf.org'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
+	ssl::service { 'debconf16.debconf.org'         : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { '10years.debconf.org'           : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'es.debconf.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'fr.debconf.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
@@ -148,6 +149,7 @@ class roles::static_mirror {
 		onion::service { 'debconf5.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'debconf6.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'debconf7.debconf.org'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'debconf16.debconf.org'         : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { '10years.debconf.org'           : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'es.debconf.org'                : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'fr.debconf.org'                : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
