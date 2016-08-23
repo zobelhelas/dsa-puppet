@@ -210,6 +210,7 @@ pabs		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component time
 %debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf5.debconf.org
 %debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf6.debconf.org
 %debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf7.debconf.org
+%debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debconf16.debconf.org
 %debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component es.debconf.org
 %debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component fr.debconf.org
 %debconfstatic	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component miniconf10.debconf.org

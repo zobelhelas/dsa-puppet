@@ -90,6 +90,7 @@ components:
   debconf5.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf5.debconf.org' }
   debconf6.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf6.debconf.org' }
   debconf7.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf7.debconf.org' }
+  debconf16.debconf.org : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf16.debconf.org' }
   es.debconf.org        : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/es.debconf.org' }
   fr.debconf.org        : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/fr.debconf.org' }
   miniconf10.debconf.org: { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/miniconf10.debconf.org' }
