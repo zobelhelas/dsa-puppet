@@ -74,4 +74,36 @@ logging {
 
 };
 
+<% if scope.function_has_role(['dns_primary']) -%>
+masters "easydns-masters" {
+	// https://cp.easydns.com/manage/domains/secondary/edit.php
+	64.68.200.91;
+	205.210.42.80;
+};
+acl "easydns-ACL" {
+	// https://cp.easydns.com/manage/domains/secondary/edit.php
+	//64.68.200.91/32;
+	//205.210.42.80/32;
+	key 82.195.75.91-key ;
+};
+
+masters "rcode0-masters" {
+	83.136.34.7;   // rcode0.net ipv4 ntfy
+	2A02:850:8::6; // rcode0.net ipv6 ntfy
+};
+acl "rcode0-ACL" {
+	83.136.34.0/27;  // rcode0.net ipv4 axfr
+	2A02:850:8::/47; // rcode0.net ipv6 axfr
+};
+
+masters "dnsnode-masters" {
+	192.36.144.222; // zork-b.sth.dnsnode.net
+	192.36.144.218; // zork-c.sth.dnsnode.net
+};
+acl "dnsnode-ACL" {
+	192.36.144.222; // zork-b.sth.dnsnode.net
+	192.36.144.218; // zork-c.sth.dnsnode.net
+};
+<% end -%>
+
 include "/etc/bind/named.conf.puppet-shared-keys";
