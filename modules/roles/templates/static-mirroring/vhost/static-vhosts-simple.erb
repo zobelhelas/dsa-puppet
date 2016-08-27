@@ -137,7 +137,7 @@ def vhost(lines, sn, kwargs={})
 end
 
 lines = []
-vhost(lines, "mozilla.debian.net")
+vhost(lines, "mozilla.debian.net"            , :ssl => true, :ssl_optional => true)
 vhost(lines, "backports.debian.org"          , :ssl => true)
 vhost(lines, "incoming.debian.org")
 vhost(lines, "incoming.ports.debian.org")

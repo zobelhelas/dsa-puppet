@@ -96,6 +96,7 @@ class roles::static_mirror {
 	# dn
 	ssl::service { 'news.debian.net'               : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'micronews.debian.net'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
+	ssl::service { 'mozilla.debian.net'            : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'debaday.debian.net'            : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'timeline.debian.net'           : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'wnpp-by-tags.debian.net'       : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
@@ -137,6 +138,7 @@ class roles::static_mirror {
 		# dn
 		onion::service { 'news.debian.net'               : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'micronews.debian.net'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'mozilla.debian.net'            : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'debaday.debian.net'            : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'timeline.debian.net'           : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'wnpp-by-tags.debian.net'       : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
@@ -160,7 +162,6 @@ class roles::static_mirror {
 		onion::service { 'incoming.debian.org'           : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'incoming.ports.debian.org'     : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'metadata.ftp-master.debian.org': ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
-		onion::service { 'mozilla.debian.net'            : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'planet.debian.org'             : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 	}
 }
