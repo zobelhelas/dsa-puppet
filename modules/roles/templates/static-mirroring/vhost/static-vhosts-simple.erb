@@ -119,7 +119,10 @@ def vhost(lines, sn, kwargs={})
 
 		lines << "Use prepare-static-vhost #{sn}"
 
-		if kwargs[:ssl]
+		if kwargs[:ssl] and kwargs[:ssl_optional]
+			lines << "Use static-vhost-plain-#{sn}"
+			lines << "Use static-vhost-ssl-#{sn}"
+		elsif kwargs[:ssl]
 			lines << "Use common-dsa-vhost-https-redirect #{sn}"
 			lines << "Use static-vhost-ssl-#{sn}"
 		else
