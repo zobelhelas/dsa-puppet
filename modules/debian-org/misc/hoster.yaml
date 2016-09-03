@@ -165,11 +165,20 @@ sil:
   searchpaths: [priv.sil.debian.org]
   nameservers: []
   mirror-debian: http://ftp.at.debian.org/debian/
+ubc:
+  netrange:
+    - 209.87.16.0/24
+    - 2607:F8F0:614:1::/64
+  searchpaths: [priv.ubc.debian.org, debprivate-ubc.debian.org]
+  mirror-debian: http://mirror-ubc.debian.org/debian/
+  nameservers: ['206.12.19.212', # ubc-bl2
+                '206.12.19.216', # ubc-bl6
+                '206.12.19.218'] # ubc-bl8
 ubcece:
   netrange:
-    - 137.82.84.64/27
     - 206.12.19.0/24
-  searchpaths: [debprivate-ubc.debian.org]
+    - 2607:f8f0:610:4000::/64
+  searchpaths: [debprivate-ubc.debian.org, priv.ubc.debian.org]
   mirror-debian: http://mirror-ubc.debian.org/debian/
   nameservers: ['206.12.19.212', '2607:f8f0:610:4000:6564:a62:ce0c:13d4', # ubc-bl2
                 '206.12.19.216', '2607:f8f0:610:4000:6564:a62:ce0c:13d8', # ubc-bl6
