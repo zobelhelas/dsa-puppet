@@ -180,6 +180,7 @@ buildd		ALL=(ALL)		NOPASSWD: ALL
 
 %appstream	mekeel=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component appstream.debian.org
 %backports	franck,coccia=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
+%boostrap	boott=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bootstrap.debian.org
 d-i		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component d-i.debian.org
 lucas		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debaday.debian.net
 dsa		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component dsa.debian.org
