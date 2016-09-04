@@ -160,6 +160,7 @@ roles:
   static_mirror_nopush:
     - dummy
   static_source:
+    - boott.debian.org
     - coccia.debian.org
     - dillon.debian.org
     - donizetti.debian.org
