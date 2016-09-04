@@ -19,7 +19,7 @@ components:
   blends.debian.org:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/blends.debian.org/www
-  boostrap.debian.net:
+  bootstrap.debian.net:
     master: dillon.debian.org
     source: boott.debian.org:/srv/bootstrap.debian.net/htdocs
   d-i.debian.org:
