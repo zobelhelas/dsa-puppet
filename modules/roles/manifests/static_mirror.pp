@@ -96,6 +96,7 @@ class roles::static_mirror {
 	ssl::service { 'security-team.debian.org'      : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'www.ports.debian.org'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	# dn
+	#ssl::service { 'bootstrap.debian.net'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'debaday.debian.net'            : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'debdeltas.debian.net'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'micronews.debian.net'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
@@ -141,6 +142,7 @@ class roles::static_mirror {
 		onion::service { 'security-team.debian.org'      : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'www.ports.debian.org'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		# dn
+		onion::service { 'bootstrap.debian.net'           : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'debaday.debian.net'            : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'debdeltas.debian.net'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'micronews.debian.net'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }

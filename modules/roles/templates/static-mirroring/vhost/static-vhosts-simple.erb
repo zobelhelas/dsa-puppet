@@ -143,6 +143,8 @@ vhost(lines, "incoming.debian.org"           , :ssl => true, :ssl_optional => tr
 vhost(lines, "incoming.ports.debian.org"     , :ssl => true, :ssl_optional => true)
 vhost(lines, "debdeltas.debian.net"          , :ssl => true, :ssl_optional => true)
 vhost(lines, "news.debian.net"               , :ssl => true)
+#vhost(lines, "bootstrap.debian.net"          , :ssl => true)
+vhost(lines, "bootstrap.debian.net"          )
 vhost(lines, "debaday.debian.net"            , :ssl => true)
 vhost(lines, "timeline.debian.net"           , :ssl => true)
 vhost(lines, "network-test.debian.org"       , :extra => true)
