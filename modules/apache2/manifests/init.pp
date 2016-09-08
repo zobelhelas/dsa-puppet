@@ -113,13 +113,17 @@ class apache2 {
 		source => 'puppet:///modules/apache2/apache2.logrotate',
 	}
 
-	file { [ '/srv/www', '/srv/www/default.debian.org', '/srv/www/default.debian.org/htdocs' ]:
+	file { [ '/srv/www', '/srv/www/default.debian.org', '/srv/www/default.debian.org/htdocs', '/srv/www/default.debian.org/htdocs-disabled' ]:
 		ensure  => directory,
 		mode    => '0755',
 	}
 
 	file { '/srv/www/default.debian.org/htdocs/index.html':
 		content => template('apache2/default-index.html'),
+	}
+
+	file { '/srv/www/default.debian.org/htdocs-disabled/index.html':
+		content => template('apache2/disabled-index.html'),
 	}
 
 	file { '/var/log/apache2/.nobackup':
