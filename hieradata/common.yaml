@@ -79,6 +79,7 @@ roles:
   packages:
     - picconi.debian.org
     - pkgmirror-1and1.debian.org
+    - pkgmirror-csail.debian.org
   packagesmaster:
     - picconi.debian.org
   packagesqamaster:

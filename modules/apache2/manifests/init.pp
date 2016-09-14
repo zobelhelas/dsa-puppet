@@ -139,7 +139,7 @@ class apache2 {
 		script => 'ps_',
 	}
 
-	if $::hostname in [beach,buxtehude,picconi,pkgmirror-1and1] {
+	if $::hostname in [beach,buxtehude,picconi,pkgmirror-1and1,pkgmirror-csail] {
 		include apache2::dynamic
 	} else {
 		@ferm::rule { 'dsa-http':
