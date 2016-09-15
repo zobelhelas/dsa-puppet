@@ -14,6 +14,9 @@ class multipath {
 		ubc-bl8,ubc-bl4,ubc-bl7,ubc-bl3,ubc-bl2,ubc-bl6: {
 			$conffile = 'multipath-ubc-ganeti.conf'
 		}
+		ubc-enc2bl1,ubc-enc2bl2,ubc-enc2bl9,ubc-enc2bl10: {
+			$conffile = 'multipath-ubc-ganeti2.conf'
+		}
 		default: {
 			$conffile = ''
 		}

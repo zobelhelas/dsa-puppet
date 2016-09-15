@@ -21,6 +21,9 @@ class dsa_lvm {
 		'clementi','czerny': {
 			$conffile = 'lvm-manda-ganeti.conf'
 		}
+		'ubc-enc2bl1','ubc-enc2bl2','ubc-enc2bl9','ubc-enc2bl10': {
+			$conffile = 'lvm-ubc-ganeti2.conf'
+		}
 		default: {
 			$conffile = ''
 		}
