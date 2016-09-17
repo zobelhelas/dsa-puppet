@@ -5,7 +5,6 @@ nameinfo:
   antheil.debian.org: George Antheil (1900 - 1959)
   arnold.debian.org: Malcolm Henry Arnold (1921 - 2006)
   asachi.debian.org: Elena Asachi (1789 - 1877)
-  babin.debian.org: Stanley Babin (1932 - 2010)
   barriere.debian.org: Jean-Baptiste Barrière (May 2nd, 1707 - June 6th, 1747)
   beach.debian.org: Amy Marcy Cheney Beach (September 5th, 1867 - December 27th, 1944)
   beethoven.debian.org: Ludwig van Beethoven (December 16th, 1770 - March 26th, 1827)
@@ -173,7 +172,6 @@ host_settings:
     - arm-linaro-01.debian.org
     - arm-linaro-03.debian.org
     - arnold.debian.org
-    - babin.debian.org
     - eberlin.debian.org
     - fano.debian.org
     - fayrfax.debian.org
