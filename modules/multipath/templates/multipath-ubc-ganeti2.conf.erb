@@ -15,6 +15,15 @@ blacklist {
         devnode "^sda[0-9]*$"
 }
 multipaths {
+        # finzi
+        multipath {
+                wwid 3600c0ff00027786cbe4cdd5701000000
+                alias finzi
+        }
+        multipath {
+                wwid 3600c0ff00027786c874edd5701000000
+                alias finzi-srv
+        }
         # rachmaninoff
         multipath {
                 wwid 3600c0ff000277c5f4505d15701000000
