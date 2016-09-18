@@ -15,6 +15,11 @@ blacklist {
         devnode "^sda[0-9]*$"
 }
 multipaths {
+        # elgar
+        multipath {
+                wwid 3600c0ff00027786c2ed8de5701000000
+                alias elgar
+        }
         # fano
         multipath {
                 wwid 3600c0ff00027786c54b7de5701000000
@@ -32,6 +37,11 @@ multipaths {
         multipath {
                 wwid 3600c0ff00027786c874edd5701000000
                 alias finzi-srv
+        }
+        # gombert
+        multipath {
+                wwid 3600c0ff00027786c9cd8de5701000000
+                alias gombert
         }
         # rachmaninoff
         multipath {
