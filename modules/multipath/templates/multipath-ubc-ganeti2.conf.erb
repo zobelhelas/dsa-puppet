@@ -15,6 +15,15 @@ blacklist {
         devnode "^sda[0-9]*$"
 }
 multipaths {
+        # fano
+        multipath {
+                wwid 3600c0ff00027786c54b7de5701000000
+                alias fano
+        }
+        multipath {
+                wwid 3600c0ff00027786c80b7de5701000000
+                alias fano-srv
+        }
         # finzi
         multipath {
                 wwid 3600c0ff00027786cbe4cdd5701000000
