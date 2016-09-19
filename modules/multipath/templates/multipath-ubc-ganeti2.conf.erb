@@ -15,6 +15,11 @@ blacklist {
         devnode "^sda[0-9]*$"
 }
 multipaths {
+        # diabelli
+        multipath {
+                wwid 3600c0ff00027786cba48e05701000000
+                alias diabelli
+        }
         # elgar
         multipath {
                 wwid 3600c0ff00027786c2ed8de5701000000
@@ -43,10 +48,33 @@ multipaths {
                 wwid 3600c0ff00027786c9cd8de5701000000
                 alias gombert
         }
+        # menotti
+        multipath {
+                wwid 3600c0ff00027786cec49e05701000000
+                alias menotti
+        }
+        multipath {
+                wwid 3600c0ff000277c5ff349e05701000000
+                alias menotti-srv
+        }
+        # nono
+        multipath {
+                wwid 3600c0ff00027786c0549e05701000000
+                alias nono
+        }
+        multipath {
+                wwid 3600c0ff00027786c0a49e05701000000
+                alias nono-lvm
+        }
         # rachmaninoff
         multipath {
                 wwid 3600c0ff000277c5f4505d15701000000
                 alias rachmaninoff
+        }
+        # reger
+        multipath {
+                wwid 3600c0ff00027786cc148e05701000000
+                alias reger
         }
         # x86-ubc-01
         multipath {
