@@ -45,6 +45,9 @@ server:
 	auto-trust-anchor-file: "/var/lib/unbound/debian.org.key"
 	auto-trust-anchor-file: "/var/lib/unbound/29.172.in-addr.arpa.key"
 
+	prefetch: yes
+	prefetch-key: yes
+
 local-zone: "29.172.in-addr.arpa" nodefault
 forward-zone:
 	name: "29.172.in-addr.arpa"
