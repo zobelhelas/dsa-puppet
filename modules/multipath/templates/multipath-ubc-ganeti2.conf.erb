@@ -15,6 +15,15 @@ blacklist {
         devnode "^sda[0-9]*$"
 }
 multipaths {
+        # danzi
+        multipath {
+                wwid 3600c0ff00027786ca059e15701000000
+                alias danzi
+        }
+        multipath {
+                wwid 3600c0ff000277c5fa859e15701000000
+                alias danzi-srv
+        }
         # diabelli
         multipath {
                 wwid 3600c0ff00027786cba48e05701000000
