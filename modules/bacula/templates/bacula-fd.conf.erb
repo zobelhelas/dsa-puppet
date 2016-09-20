@@ -36,7 +36,7 @@ FileDaemon {
   TLS Certificate = "<%= bacula_ssl_client_cert %>"
   TLS Key = "<%= bacula_ssl_client_key %>"
 
-<%- if hostname == "franck" -%>
+<%- if scope.lookupvar('site::nodeinfo')['hoster']['name'] == "brown" -%>
   # broken firewall
   Heartbeat Interval = 300
 <%- end -%>
