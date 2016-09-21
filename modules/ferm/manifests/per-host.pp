@@ -400,15 +400,15 @@ class ferm::per-host {
 
 			@ferm::rule { 'dsa-postgres2-danzi':
 				description     => 'Allow postgress access2',
-				rule            => '&SERVICE_RANGE(tcp, 5437, ( 206.12.19.0/24 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5437, ( 206.12.19.0/24 209.87.16.0/24 ))'
 			}
 			@ferm::rule { 'dsa-postgres3-danzi':
 				description     => 'Allow postgress access3',
-				rule            => '&SERVICE_RANGE(tcp, 5436, ( 206.12.19.0/24 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5436, ( 206.12.19.0/24 209.87.16.0/24 ))'
 			}
 			@ferm::rule { 'dsa-postgres4-danzi':
 				description     => 'Allow postgress access4',
-				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5438, ( 206.12.19.0/24 209.87.16.0/24 ))'
 			}
 
 			@ferm::rule { 'dsa-postgres-backup':
