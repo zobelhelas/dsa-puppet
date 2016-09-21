@@ -42,9 +42,9 @@ components:
   mozilla.debian.net:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/mozilla.debian.net/htdocs
-  micronews.debian.net:
+  micronews.debian.org:
     master: dillon.debian.org
-    source: dillon.debian.org:/srv/micronews.debian.net/htdocs
+    source: dillon.debian.org:/srv/micronews.debian.org/htdocs
   news.debian.net:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/news.debian.net/htdocs
