@@ -24,7 +24,7 @@ class nfs-server {
 			$client_range    = '172.29.122.0/24'
 		}
 		buxtehude,glinka: {
-			$client_range    = '(192.168.2.0/24 209.87.16.34/32 209.87.16.37/32)'
+			$client_range    = '(192.168.2.0/24 209.87.16.34/32 209.87.16.37/32 209.87.16.38/32)'
 		}
 		gretchaninov: {
 			$client_range    = '172.29.40.0/22'
