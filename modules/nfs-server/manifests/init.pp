@@ -26,6 +26,9 @@ class nfs-server {
 		buxtehude,glinka: {
 			$client_range    = '(192.168.2.0/24 209.87.16.34/32)'
 		}
+		gretchaninov: {
+			$client_range    = '172.29.40.0/22'
+		}
 		default: {
 			# Better than 0.0.0.0/0 - we really ought to configure a
 			# client range for them all instead of exporting to the world.
