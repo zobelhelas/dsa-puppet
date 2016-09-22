@@ -15,6 +15,15 @@ blacklist {
         devnode "^sda[0-9]*$"
 }
 multipaths {
+        # buxtehude
+        multipath {
+                wwid 3600c0ff00027786c0a0de45701000000
+                alias buxtehude
+        }
+        multipath {
+                wwid 3600c0ff000277c5f100de45701000000
+                alias buxtehude-lvm
+        }
         # danzi
         multipath {
                 wwid 3600c0ff00027786ca059e15701000000
