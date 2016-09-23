@@ -17,7 +17,7 @@ module Puppet::Parser::Functions
       pin_info = pin_info.map{ |x| x.gsub('"', '\"') }
       pin_info << "max-age=300"
       pin_str = pin_info.join("; ")
-      res << "  Header set Public-Key-Pins \"#{pin_str}\""
+      res << "  Header always set Public-Key-Pins \"#{pin_str}\""
     else
       res << "  # mod macro does not like empty macros, so here's some content:"
       res << "  <Directory /non-existant>"
