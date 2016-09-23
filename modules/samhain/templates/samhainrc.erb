@@ -110,6 +110,9 @@ file=/etc/static-clients.conf
 <% elsif classes.include?("roles::static_source") -%>
 file=/etc/static-clients.conf
 <% end -%>
+<% if classes.include?("apache2") -%>
+file=/etc/apache2/conf-available/puppet-ssl-key-pins.conf
+<% end -%>
 file=/etc/multipath/wwids
 
 #
