@@ -169,5 +169,7 @@ class apache2 {
 		mode    => '0644',
 		require =>  Package['apache2'],
 	}
-	apache2::config { 'puppet-ssl-key-pins': }
+	apache2::config { 'puppet-ssl-key-pins':
+		nocontentok => true,
+	}
 }
