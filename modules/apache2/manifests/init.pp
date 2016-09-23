@@ -168,12 +168,12 @@ class apache2 {
 		group   => root,
 		mode    => '0644',
 		require =>  Package['apache2'],
+		notify  => Exec['service apache2 reload'],
 	}
 	concat::fragment { 'puppet-ssl-key-pins-header':
 		target => '/etc/apache2/conf-available/puppet-ssl-key-pins.conf',
 		content => '',
 		order  => 00,
-		notify  => Exec['service apache2 reload'],
 	}
 	apache2::config { 'puppet-ssl-key-pins':
 		nocontentok => true,
