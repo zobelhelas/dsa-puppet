@@ -169,6 +169,11 @@ class apache2 {
 		mode    => '0644',
 		require =>  Package['apache2'],
 	}
+	concat::fragment { 'puppet-ssl-key-pins-header':
+		target => '/etc/apache2/conf-available/puppet-ssl-key-pins.conf',
+		content => '',
+		order  => 00,
+	}
 	apache2::config { 'puppet-ssl-key-pins':
 		nocontentok => true,
 	}
