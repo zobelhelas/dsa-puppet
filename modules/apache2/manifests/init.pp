@@ -173,6 +173,7 @@ class apache2 {
 		target => '/etc/apache2/conf-available/puppet-ssl-key-pins.conf',
 		content => '',
 		order  => 00,
+		notify  => Exec['service apache2 reload'],
 	}
 	apache2::config { 'puppet-ssl-key-pins':
 		nocontentok => true,
