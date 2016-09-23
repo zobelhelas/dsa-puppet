@@ -162,4 +162,12 @@ class apache2 {
 		refreshonly => true,
 		require =>  Package['apache2'],
 	}
+
+	concat { '/etc/apache2/conf-available/puppet-ssl-key-pins.conf':
+		owner   => root,
+		group   => root,
+		mode    => '0644',
+		require =>  Package['apache2'],
+	}
+	apache2::config { 'puppet-ssl-key-pins': }
 }
