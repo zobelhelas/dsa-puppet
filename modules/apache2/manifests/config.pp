@@ -1,6 +1,7 @@
 define apache2::config (
 	$source=undef,
 	$content=undef,
+	$nocontentok=undef,
 	$ensure=present
 ) {
 
@@ -8,7 +9,7 @@ define apache2::config (
 
 	case $ensure {
 		present: {
-			if ! ($source or $content) {
+			if ! ($source or $content or $nocontentok) {
 				fail ( "No configuration found for ${name}" )
 			}
 
@@ -19,7 +20,7 @@ define apache2::config (
 					require => Package['apache2'],
 					notify  => Exec['service apache2 reload'],
 				}
-			} else {
+			} elsif $source {
 				file { "/etc/apache2/conf-available/${name}.conf":
 					ensure  => $ensure,
 					source  => $source,
