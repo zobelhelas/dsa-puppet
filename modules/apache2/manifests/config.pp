@@ -11,27 +11,32 @@ define apache2::config (
 			if ! ($source or $content) {
 				fail ( "No configuration found for ${name}" )
 			}
+
+			if $content {
+				file { "/etc/apache2/conf-available/${name}.conf":
+					ensure  => $ensure,
+					content => $content,
+					require => Package['apache2'],
+					notify  => Exec['service apache2 reload'],
+				}
+			} else {
+				file { "/etc/apache2/conf-available/${name}.conf":
+					ensure  => $ensure,
+					source  => $source,
+					require => Package['apache2'],
+					notify  => Exec['service apache2 reload'],
+				}
+			}
 		}
-		absent:  {}
+		absent:  {
+			file { "/etc/apache2/conf-available/${name}.conf":
+				ensure  => $ensure,
+				require => Package['apache2'],
+				notify  => Exec['service apache2 reload'],
+			}
+		}
 		default: { fail ( "Unknown ensure value: '$ensure'" ) }
 	}
-
-	if $content {
-		file { "/etc/apache2/conf-available/${name}.conf":
-			ensure  => $ensure,
-			content => $content,
-			require => Package['apache2'],
-			notify  => Exec['service apache2 reload'],
-		}
-	} else {
-		file { "/etc/apache2/conf-available/${name}.conf":
-			ensure  => $ensure,
-			source  => $source,
-			require => Package['apache2'],
-			notify  => Exec['service apache2 reload'],
-		}
-	}
-
 	$link_ensure = $ensure ? {
 		present => link,
 		absent  => absent
