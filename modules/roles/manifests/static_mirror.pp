@@ -52,6 +52,9 @@ class roles::static_mirror {
 	}
 
 	apache2::config { 'local-static-vhost.conf':
+		ensure => absent,
+	}
+	apache2::config { 'local-static-vhost':
 		content => template('roles/static-mirroring/static-vhost.conf.erb'),
 	}
 
