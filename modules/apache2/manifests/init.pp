@@ -163,19 +163,8 @@ class apache2 {
 		require =>  Package['apache2'],
 	}
 
-	concat { '/etc/apache2/conf-available/puppet-ssl-key-pins.conf':
-		owner   => root,
-		group   => root,
-		mode    => '0644',
-		require =>  Package['apache2'],
-		notify  => Exec['service apache2 reload'],
-	}
-	concat::fragment { 'puppet-ssl-key-pins-header':
-		target => '/etc/apache2/conf-available/puppet-ssl-key-pins.conf',
-		content => '',
-		order  => 00,
-	}
 	apache2::config { 'puppet-ssl-key-pins':
-		nocontentok => true,
+		content => template('apache2/ssl-key-pins.erb'),
+		notify  => Exec['service apache2 reload'],
 	}
 }

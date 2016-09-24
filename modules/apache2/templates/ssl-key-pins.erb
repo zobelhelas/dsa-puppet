@@ -1,10 +1,16 @@
-module Puppet::Parser::Functions
-  newfunction(:gen_hpkp_pin, :type => :rvalue) do |args|
-    site = args.shift()
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
 
+<%=
+  $cert_dir_le = '/srv/puppet.debian.org/from-letsencrypt'
+  $cert_dir_backup = '/srv/puppet.debian.org/backup-keys'
+
+  def make_pin_macro(site)
     pin_info = []
-    pinfiles = [ "/srv/puppet.debian.org/from-letsencrypt/#{site}.pin",
-                 "/srv/puppet.debian.org/backup-keys/#{site}.pin" ]
+    pinfiles = [ "#{$cert_dir_le}/#{site}.pin",
+                 "#{$cert_dir_backup}/#{site}.pin" ]
     pinfiles.each do |fn|
       if File.exist?(fn)
         pin_info << File.read(fn).chomp()
@@ -27,4 +33,11 @@ module Puppet::Parser::Functions
     res << ""
     return res.join("\n")
   end
-end
+
+  macros = []
+  Dir.glob("#{$cert_dir_le}/*.pin") do |pinfile|
+    site = File.basename(pinfile, '.pin')
+    macros << make_pin_macro(site)
+  end
+  macros.join("\n")
+-%>
