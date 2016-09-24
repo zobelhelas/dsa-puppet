@@ -190,7 +190,7 @@ class ferm::per-host {
 		sonntag: {
 			@ferm::rule { 'dsa-bugs-search':
 				description  => 'port 1978 for bugs-search from bug web frontends',
-				rule         => '&SERVICE_RANGE(tcp, 1978, ( 140.211.166.26 206.12.19.140 ))'
+				rule         => '&SERVICE_RANGE(tcp, 1978, ( 140.211.166.26 209.87.16.39 ))'
 			}
 		}
 		default: {}
