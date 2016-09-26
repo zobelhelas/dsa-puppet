@@ -3,6 +3,8 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+<IfModule mod_macro.c>
+
 <%=
   $cert_dir_le = '/srv/puppet.debian.org/from-letsencrypt'
   $cert_dir_backup = '/srv/puppet.debian.org/backup-keys'
@@ -41,3 +43,5 @@
   end
   macros.join("\n")
 -%>
+
+</IfModule>
