@@ -11,7 +11,7 @@ nameservers:
   - 2607:f8f0:614:1::1274:10
 searchpaths:
   - debprivate-ubc.debian.org
-  - ubc.priv.debian.org
+  - priv.ubc.debian.org
 allow_dns_query:
   - 206.12.19.0/24
   - 209.87.16.0/24
