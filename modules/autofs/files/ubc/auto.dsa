@@ -1,0 +1,4 @@
+debian                  -fstype=nfs,ro,tcp     172.29.42.36:/srv/mirrors/debian
+debian-debug            -fstype=nfs,ro,tcp     172.29.42.36:/srv/mirrors/debian-debug
+debian-ports            -fstype=nfs,ro,tcp     172.29.42.36:/srv/mirrors/debian-ports
+debian-security         -fstype=nfs,ro,tcp     172.29.42.36:/srv/mirrors/debian-security
