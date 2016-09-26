@@ -129,9 +129,11 @@ file=/etc/init.d/.depend.start
 file=/etc/init.d/.depend.stop
 
 # These are the directories for the files we handle with puppet
-file=/etc/apache2/conf.d
+<% if classes.include?("apache2") -%>
+file=/etc/apache2/conf-available
 files=/etc/apache2/mods-enabled
 files=/etc/apache2/sites-available
+<% end -%>
 file=/etc/bacula
 file=/etc/samhain
 file=/etc/munin
