@@ -11,13 +11,10 @@
     - 195.20.242.64/26
     - 212.227.126.32/27
     - 2001:8d8:2:1::/64
-  searchpaths: [debprivate-oneandone.debian.org]
 accumu:
   netrange:
     - 130.236.0.0/14
     - 2001:06B0:000E::/48
-  searchpaths: [debprivate-accumu.debian.org]
-  nameservers: [130.239.18.251, 130.239.18.252, 130.239.1.90, 130.239.4.100]
 aql:
   netrange:
     - 141.170.6.144/28
@@ -31,7 +28,6 @@ brown:
   netrange:
     - 138.16.160.0/24
   # all hosts have their own recursor
-  nameservers: []
   #mirror-debian: file:///srv/ftp-master.debian.org/mirror/ftp-master/
   mirror-debian: http://ftp.us.debian.org/debian
 br:
@@ -39,15 +35,12 @@ br:
   # University Federal do Parana (.br)
   netrange:
     - 200.17.192.0/19
-  nameservers: [200.236.31.1, 200.17.202.3]
 bytemark:
   netrange:
     - 5.153.231.0/24
     - 89.16.160.112/29
     - 2001:41c8:1000::/48
     - 2001:41c8:61::/125
-  #searchpaths: [debprivate-bytemark.debian.org]
-  nameservers: [5.153.231.241, 5.153.231.242]
   mirror-debian: http://mirror.bm.debian.org/debian
 carnet:
   netrange:
@@ -56,19 +49,15 @@ anu:
   netrange:
     - 150.203.164.0/24
     - 2001:388:1034:2900::/64
-  nameservers: [150.203.1.10, 150.203.164.10, 150.203.164.9]
   #mirror-debian: http://mirror.linux.org.au/debian
   #mirror-debian: http://ftp.au.debian.org/debian
 conova:
   netrange:
     - 217.196.149.224/28
-  # nameservers: [217.196.144.129, 217.196.144.229]
   mirror-debian: http://ftp.at.debian.org/debian/
 csail:
   netrange:
     - 128.31.0.0/24
-  searchpaths: [debprivate-csail.debian.org]
-  nameservers: [128.30.2.24, 128.30.2.25, 128.30.0.125]
   mirror-debian: http://debian.csail.mit.edu/debian/
 dgi:
   netrange:
@@ -79,33 +68,25 @@ freenet:
 gatech:
   netrange:
     - 128.61.240.0/23
-  nameservers: [143.215.130.231 143.215.130.232]
   mirror-debian: http://debian.gtisc.gatech.edu/debian/
 grnet:
   netrange:
     - 194.177.211.192/27
     - 2001:648:2ffc:deb::/64
-  searchpaths: [debprivate-grnet.debian.org]
-  nameservers: [194.177.210.10, 194.177.210.210]
   mirror-debian: http://ftp.gr.debian.org/debian/
 helsinki:
   netrange:
     - 193.167.160.0/23
   # all hosts have their own recursor
-  nameservers: []
 isc:
   netrange:
     - 149.20.0.0/16
     - 2001:4F8::/32
-  #nameservers: [149.20.64.2, 204.152.184.67]
-  # sometimes very slow?
-  nameservers: []
 uni-karlsruhe:
   # rename to karlsruhe
   netrange:
     - 129.143.160.0/29
     - 2001:7c0:400:1337::/64
-  nameservers: []
   mirror-debian: http://ftp-stud.hs-esslingen.de/debian/
 linaro:
   netrange:
@@ -117,9 +98,6 @@ linaro:
   netrange:
     - 82.195.75.64/26
     - 2001:41b8:202:deb::/64
-  searchpaths: [debprivate-darmstadt.debian.org]
-  #nameservers: [82.195.77.77, 82.195.77.78]
-  nameservers: [82.195.75.109, 82.195.75.103]
   #mirror-debian: http://debian.netcologne.de/debian/ [currently unstable]
   mirror-debian: http://ftp.de.debian.org/debian/
 leaseweb:
@@ -130,7 +108,6 @@ marist:
   netrange:
     - 148.100.0.0/16
   mirror-debian: http://ftp.us.debian.org/debian/
-  nameservers: []
 osuosl:
   netrange:
     - 140.211.0.0/16
@@ -141,12 +118,8 @@ sakura:
 sanger:
   netrange:
     - 193.62.202.24/29
-  # broken with dnssec
-  # nameservers: [193.62.203.96, 193.62.203.97]
   #resolvoptions: [single-request]
   mirror-debian: http://mirror.bytemark.co.uk/debian/
-  nameservers: [193.62.202.28, 193.62.202.29]
-  searchpaths: [debprivate-sanger.debian.org]
 scanplus:
   netrange:
     - 212.211.132.0/26
@@ -156,31 +129,20 @@ sil:
   netrange:
     - 86.59.118.144/28
     - 2001:858:2:2::/64
-  searchpaths: [priv.sil.debian.org]
-  nameservers: []
   mirror-debian: http://ftp.at.debian.org/debian/
 ubc:
   netrange:
     - 209.87.16.0/24
     - 2607:F8F0:614:1::/64
-  searchpaths: [priv.ubc.debian.org, debprivate-ubc.debian.org]
   mirror-debian: http://mirror-ubc.debian.org/debian/
-  nameservers: ['206.12.19.212', '2607:f8f0:610:4000:6564:a62:ce0c:13d4', # ubc-bl2
-                '206.12.19.216', '2607:f8f0:610:4000:6564:a62:ce0c:13d8', # ubc-bl6
-                '206.12.19.218', '2607:f8f0:610:4000:224:81ff:fef8:7cb8'] # ubc-bl8
 ubcece:
   netrange:
     - 206.12.19.0/24
     - 2607:f8f0:610:4000::/64
-  searchpaths: [debprivate-ubc.debian.org, priv.ubc.debian.org]
   mirror-debian: http://mirror-ubc.debian.org/debian/
-  nameservers: ['206.12.19.212', '2607:f8f0:610:4000:6564:a62:ce0c:13d4', # ubc-bl2
-                '206.12.19.216', '2607:f8f0:610:4000:6564:a62:ce0c:13d8', # ubc-bl6
-                '206.12.19.218', '2607:f8f0:610:4000:224:81ff:fef8:7cb8'] # ubc-bl8
 ugent:
   netrange:
     - 157.193.0.0/16
-  nameservers: [157.193.40.42]
 umn:
   netrange:
     - 128.101.240.212
@@ -193,8 +155,6 @@ utwente:
     - 130.89.0.0/16
     - 2001:0610:1908::/48
   # broken with dnssec
-  #nameservers: [130.89.2.2, 130.89.2.3]
-  nameservers: []
 xs4all:
   # should be deleted
   netrange:
@@ -203,12 +163,10 @@ xs4all:
 ynic:
   netrange:
     - 144.32.168.64/28
-  nameservers: [144.32.169.74, 144.32.169.75, 144.32.169.76]
   mirror-debian: http://ftp.uk.debian.org/debian
 zivit:
   netrange:
     - 80.245.144.0/22
-  nameservers: [80.245.147.53, 80.245.147.54]
   mirror-debian: http://debian.netcologne.de/debian/
 
 # vim:set et sts=2 ts=2 sw=2:
