@@ -279,6 +279,11 @@ class debian-org {
 		target => '/dev/null',
 		notify => Exec['systemctl daemon-reload'],
 	}
+	file { '/etc/systemd/system/proc-sys-fs-binfmt_misc.automount':
+		ensure => 'link',
+		target => '/dev/null',
+		notify => Exec['systemctl daemon-reload'],
+	}
 
 	file { '/etc/cron.d/dsa-puppet-stuff':
 		content => template('debian-org/dsa-puppet-stuff.cron.erb'),
