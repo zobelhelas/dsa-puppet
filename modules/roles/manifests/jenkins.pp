@@ -9,6 +9,6 @@ class roles::jenkins {
 
 	ssl::service { 'jenkins.debian.org':
 		notify  => Exec['service apache2 reload'],
-		tlsaport => 0,
+		key => true,
 	}
 }
