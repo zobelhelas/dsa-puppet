@@ -6,6 +6,7 @@ Use common-debian-service-https-redirect * jenkins.debian.org
 
 	Use common-debian-service-ssl jenkins.debian.org
 	Use common-ssl-HSTS
+	Use http-pkp-jenkins.debian.org
 
 	SSLCACertificateFile /var/lib/dsa/sso/ca.crt
 	SSLCARevocationCheck chain
