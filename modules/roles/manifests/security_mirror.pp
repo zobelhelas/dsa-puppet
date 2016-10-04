@@ -11,6 +11,14 @@ class roles::security_mirror {
 		mirror-umn => '2607:ea00:101:3c0b::1deb:215',
 		default    => '',
 	}
+	$ftp_bind = $::hostname ? {
+		mirror-anu => '150.203.164.61',
+		default => '',
+	}
+	$ftp_bind6 = $::hostname ? {
+		mirror-anu => '2001:388:1034:2900::3d',
+		default => undef,
+	}
 
 	include apache2::cache
 	apache2::site { '010-security.debian.org':
@@ -24,6 +32,16 @@ class roles::security_mirror {
 		logfile      => '/var/log/ftp/vsftpd-security.debian.org.log',
 		max_clients  => 200,
 		root         => '/srv/ftp.root/',
+		bind         => $ftp_bind,
+	}
+	if ($ftp_bind6) {
+		vsftpd::site { 'security6':
+			banner       => 'security.debian.org FTP server (vsftpd)',
+			logfile      => '/var/log/ftp/vsftpd-security6.debian.org.log',
+			max_clients  => 200,
+			root         => '/srv/ftp.root/',
+			bind         => $ftp_bind6,
+		}
 	}
 
 	rsync::site { 'security':
