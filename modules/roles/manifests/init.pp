@@ -58,7 +58,7 @@ class roles {
 	if has_role('api.ftp-master') {
 		ssl::service { 'api.ftp-master.debian.org':
 			notify  => Exec['service apache2 reload'],
-			tlsaport => 0,
+			key => true,
 		}
 	}
 
