@@ -1,7 +1,7 @@
 class roles::lists {
 	ssl::service { 'lists.debian.org':
 		notify  => Exec['service apache2 reload'],
-		tlsaport => 0,
+		key => true,
 	}
 
 	dnsextras::tlsa_record{ 'tlsa-mailport':
