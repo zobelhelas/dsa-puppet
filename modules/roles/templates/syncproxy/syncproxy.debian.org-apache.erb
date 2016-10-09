@@ -15,6 +15,7 @@ Use common-debian-service-https-redirect "<%= vhost_listen %>" <%= syncproxy_nam
 
    Use common-debian-service-ssl <%= syncproxy_name %>
    Use common-ssl-HSTS
+   Use http-pkp-<%= syncproxy_name %>
 
    <Directory /srv/www/syncproxy.debian.org/htdocs>
       Require all granted
