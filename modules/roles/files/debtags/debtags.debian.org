@@ -18,6 +18,7 @@ WSGIDaemonProcess debtags.debian.org user=nobody group=debtags home=/ processes=
 
 	Use common-debian-service-ssl debtags.debian.org
 	Use common-ssl-HSTS
+	Use http-pkp-debtags.debian.org
 
 	SSLCACertificateFile /var/lib/dsa/sso/ca.crt
 	SSLCARevocationCheck chain
