@@ -9,6 +9,7 @@ Use common-debian-service-https-redirect * git.dgit.debian.org
 
 	Use common-debian-service-ssl git.dgit.debian.org
 	Use common-ssl-HSTS
+	Use http-pkp-git.dgit.debian.org
 
 	<IfModule mod_userdir.c>
 		UserDir disabled

@@ -9,6 +9,7 @@ Use common-debian-service-https-redirect * browse.dgit.debian.org
 
 	Use common-debian-service-ssl browse.dgit.debian.org
 	Use common-ssl-HSTS
+	Use http-pkp-browse.dgit.debian.org
 
 	<IfModule mod_userdir.c>
 		UserDir disabled
