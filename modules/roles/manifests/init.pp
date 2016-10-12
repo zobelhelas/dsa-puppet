@@ -20,7 +20,7 @@ class roles {
 	#	include nagios::server
 		ssl::service { 'nagios.debian.org':
 			notify  => Exec['service apache2 reload'],
-			tlsaport => 0,
+			key => true,
 		}
 	}
 
