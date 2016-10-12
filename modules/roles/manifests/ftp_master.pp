@@ -7,6 +7,6 @@ class roles::ftp_master {
 
 	ssl::service { 'ftp-master.debian.org':
 		notify  => Exec['service apache2 reload'],
-		tlsaport => 0,
+		key => true,
 	}
 }
