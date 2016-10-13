@@ -23,6 +23,12 @@
 
 <Macro vstatic-vhost-extra-metadata.ftp-master.debian.org>
 	AddDefaultCharset utf-8
+
+	# Rewrite away double slashes
+	RewriteEngine on
+	RewriteCond %{REQUEST_URI} ^(.*)//(.*)$ [NC]
+	RewriteRule . %1/%2 [R=301,L,NE]
+
 	<LocationMatch "/changelogs/(main|contrib|non-free)">
 		ForceType text/plain
 	</LocationMatch>
