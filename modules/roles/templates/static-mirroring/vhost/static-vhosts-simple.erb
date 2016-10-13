@@ -22,11 +22,6 @@
 </Macro>
 
 <Macro vstatic-vhost-extra-metadata.ftp-master.debian.org>
-	# Rewrite away double slashes
-	RewriteEngine on
-	RewriteCond %{THE_REQUEST} //
-	RewriteRule ^.*$ $0 [R=302,L,NE]
-
 	AddDefaultCharset utf-8
 	<LocationMatch "/changelogs/(main|contrib|non-free)">
 		ForceType text/plain
