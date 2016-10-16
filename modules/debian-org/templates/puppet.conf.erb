@@ -25,12 +25,6 @@ dbadapter=mysql
 dbuser=puppet
 dbpassword=<%= scope.lookupvar('dbpassword') %>
 dbserver=localhost
-<%- end -%>
-
-[agent]
-environments = development,testing,production,staging
-report = true
-configtimeout = 240
 
 [production]
 manifestdir=/srv/puppet.debian.org/stages/production/manifests
@@ -41,3 +35,9 @@ modulepath=/srv/puppet.debian.org/stages/production/modules:/srv/puppet.debian.o
 manifestdir=/srv/puppet.debian.org/stages/staging/manifests
 fileserverconfig=/srv/puppet.debian.org/stages/staging/fileserver.conf
 modulepath=/srv/puppet.debian.org/stages/staging/modules:/srv/puppet.debian.org/stages/staging/3rdparty/modules
+<%- end -%>
+
+[agent]
+environments = development,testing,production,staging
+report = true
+configtimeout = 240
