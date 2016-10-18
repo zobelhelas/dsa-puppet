@@ -404,6 +404,9 @@ class debian-org {
 	file { '/root/.profile':
 		source => 'puppet:///modules/debian-org/root-dotfiles/profile',
 	}
+	file { '/root/.selected_editor':
+		source => 'puppet:///modules/debian-org/root-dotfiles/selected_editor',
+	}
 	file { '/root/.screenrc':
 		source => 'puppet:///modules/debian-org/root-dotfiles/screenrc',
 	}
