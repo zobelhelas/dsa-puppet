@@ -9,6 +9,39 @@
 	Redirect /debian-ports/     http://cdn-fastly.deb.debian.org/debian-ports/
 	Redirect /debian-security/  http://cdn-fastly.deb.debian.org/debian-security/
 </Macro>
+
+<VirtualHost <%= vhost_listen_443 %> >
+	ServerName deb.debian.org
+
+	ErrorLog /var/log/apache2/deb.debian.org-error.log
+	CustomLog /var/log/apache2/deb.debian.org-access.log privacyssl
+
+	Use common-debian-service-ssl deb.debian.org
+	Use common-ssl-HSTS
+
+	ServerAdmin debian-admin@lists.debian.org
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+	ServerSignature On
+
+	DocumentRoot /srv/static.debian.org/mirrors/deb.debian.org/cur
+	<Directory /srv/static.debian.org/mirrors/deb.debian.org/cur>
+		AllowOverride FileInfo Indexes Options=Multiviews
+		Options Indexes SymLinksIfOwnerMatch
+		IndexOptions FancyIndexing NameWidth=*
+		Require all granted
+	</Directory>
+
+	Header set Surrogate-Key <%= hostname %>
+
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+
+	Redirect /debian/           https://cdn-aws.deb.debian.org/debian/
+	Redirect /debian-debug/     https://cdn-aws.deb.debian.org/debian-debug/
+	Redirect /debian-ports/     https://cdn-aws.deb.debian.org/debian-ports/
+	Redirect /debian-security/  https://cdn-aws.deb.debian.org/debian-security/
+</VirtualHost>
 <% end -%>
 
 <Macro vstatic-vhost-extra-network-test.debian.org>

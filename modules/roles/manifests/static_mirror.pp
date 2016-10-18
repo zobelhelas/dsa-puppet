@@ -89,6 +89,7 @@ class roles::static_mirror {
 	ssl::service { 'bits.debian.org'               : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'blends.debian.org'             : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'd-i.debian.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true }
+	ssl::service { 'deb.debian.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true }
 	ssl::service { 'dsa.debian.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true }
 	ssl::service { 'incoming.debian.org'           : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'incoming.ports.debian.org'     : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
