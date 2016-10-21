@@ -3,25 +3,7 @@
 # Stuff common to all debian.org servers
 #
 class debian-org {
-	if $::lsbmajdistrelease <= 8 {
-		$fallbackmirror = 'http://cdn-fastly.deb.debian.org/debian/'
-	} else {
-		$fallbackmirror = 'http://deb.debian.org/debian/'
-	}
-
-	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
-		$mirror = [ getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'), $fallbackmirror ]
-	} else {
-		$mirror = [ $fallbackmirror ]
-	}
-
-	if $::lsbmajdistrelease <= 7 {
-		$mungedcodename = $::lsbdistcodename
-	} elsif ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
-		$mungedcodename = "${::lsbdistcodename}-kfreebsd"
-	} else {
-		$mungedcodename = $::lsbdistcodename
-	}
+	include debian-org::apt
 
 	if $systemd {
 		include systemd
@@ -121,68 +103,6 @@ class debian-org {
 		require => Package['molly-guard'],
 	}
 
-	file { '/etc/apt/trusted-keys.d':
-		ensure => absent,
-		force  => true,
-	}
-
-	file { '/etc/apt/trusted.gpg':
-		mode    => '0600',
-		content => "",
-	}
-
-	if ($::lsbmajdistrelease >= 8) {
-		site::aptrepo { 'security':
-			url        => 'http://security-cdn.debian.org/',
-			suite      => "${mungedcodename}/updates",
-			components => ['main','contrib','non-free']
-		}
-	} else {
-		site::aptrepo { 'security':
-			ensure => absent,
-		}
-	}
-
-	site::aptrepo { 'debian-lts':
-		ensure => absent,
-	}
-
-	site::aptrepo { 'backports.debian.org':
-		url        => $mirror,
-		suite      => "${::lsbdistcodename}-backports",
-		components => ['main','contrib','non-free']
-	}
-
-	site::aptrepo { 'volatile':
-		url        => $mirror,
-		suite      => "${::lsbdistcodename}-updates",
-		components => ['main','contrib','non-free']
-	}
-
-	if ($::hostname in [] or $::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
-		site::aptrepo { 'proposed-updates':
-			url        => $mirror,
-			suite      => "${mungedcodename}-proposed-updates",
-			components => ['main','contrib','non-free']
-		}
-	} else {
-		site::aptrepo { 'proposed-updates':
-			ensure => absent,
-		}
-	}
-
-	site::aptrepo { 'db.debian.org':
-		url        => 'http://db.debian.org/debian-admin',
-		suite      => 'debian-all',
-		components => 'main',
-		key        => 'puppet:///modules/debian-org/db.debian.org.gpg',
-	}
-	site::aptrepo { 'db.debian.org-suite':
-		url        => 'http://db.debian.org/debian-admin',
-		suite      => $::lsbdistcodename,
-		components => 'main',
-	}
-
 	augeas { 'inittab_replicate':
 		context => '/files/etc/inittab',
 		changes => [
@@ -192,30 +112,6 @@ class debian-org {
 		],
 		notify  => Exec['init q'],
 	}
-
-	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
-		site::aptrepo { 'debian':
-			url        => getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'),
-			suite      => $mungedcodename,
-			components => ['main','contrib','non-free']
-		}
-	}
-
-	site::aptrepo { 'debian-cdn':
-		ensure => absent,
-	}
-	site::aptrepo { 'debian.org':
-		ensure => absent,
-	}
-	site::aptrepo { 'debian2':
-		url        => "http://cdn-fastly.deb.debian.org/debian",
-		ensure => absent,
-	}
-	site::aptrepo { 'backports2.debian.org':
-		ensure => absent,
-	}
-
-
 
 
 	file { '/etc/facter':
@@ -230,21 +126,6 @@ class debian-org {
 	}
 	file { '/etc/facter/facts.d/debian_facts.yaml':
 		content => template('debian-org/debian_facts.yaml.erb')
-	}
-	file { '/etc/apt/preferences':
-		source => 'puppet:///modules/debian-org/apt.preferences',
-	}
-	file { '/etc/apt/apt.conf.d/local-compression':
-		source => 'puppet:///modules/debian-org/apt.conf.d/local-compression',
-	}
-	file { '/etc/apt/apt.conf.d/local-recommends':
-		source => 'puppet:///modules/debian-org/apt.conf.d/local-recommends',
-	}
-	file { '/etc/apt/apt.conf.d/local-pdiffs':
-		source => 'puppet:///modules/debian-org/apt.conf.d/local-pdiffs',
-	}
-	file { '/etc/apt/apt.conf.d/local-langs':
-		source => 'puppet:///modules/debian-org/apt.conf.d/local-langs',
 	}
 	file { '/etc/timezone':
 		source => 'puppet:///modules/debian-org/timezone',
@@ -364,13 +245,6 @@ class debian-org {
 		owner  => root,
 		group  => root,
 	}
-
-	exec { 'apt-get update':
-		path    => '/usr/bin:/usr/sbin:/bin:/sbin',
-		onlyif  => '/usr/local/bin/check_for_updates',
-		require => File['/usr/local/bin/check_for_updates']
-	}
-	Exec['apt-get update']->Package<| tag == extra_repo |>
 
 	exec { 'dpkg-reconfigure tzdata -pcritical -fnoninteractive':
 		path        => '/usr/bin:/usr/sbin:/bin:/sbin',
