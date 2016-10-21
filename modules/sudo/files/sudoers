@@ -242,6 +242,7 @@ archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
 %sec_public	SECHOSTS=(dak)		NOPASSWD: /usr/local/bin/dak new-security-install -[AR]
 %sec_public	SECHOSTS=(dak)		NOPASSWD: /home/dak/trigger_mirror
 dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security
+dak		SECHOSTS=(archvsync)	NOPASSWD: /home/archvsync/signal_security-buildd-pool
 # web stuff
 debwww		WEBHOSTS=(archvsync)	NOPASSWD: /home/archvsync/webmirrors/runmirrors
 %publicity	WEBHOSTS=(debwww)	/srv/www.debian.org/update-part News
