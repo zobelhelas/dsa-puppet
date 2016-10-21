@@ -150,6 +150,11 @@ class debian-org {
 		suite      => "${::lsbdistcodename}-backports",
 		components => ['main','contrib','non-free']
 	}
+	site::aptrepo { 'backports2.debian.org':
+		url        => "http://cdn-fastly.deb.debian.org/debian",
+		suite      => "${::lsbdistcodename}-backports",
+		components => ['main','contrib','non-free']
+	}
 
 	site::aptrepo { 'volatile':
 		url        => $mirror,
