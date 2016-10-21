@@ -3,15 +3,16 @@
 # Stuff common to all debian.org servers
 #
 class debian-org {
-	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
-		$mirror = getfromhash($site::nodeinfo, 'hoster', 'mirror-debian')
+	if $::lsbmajdistrelease <= 8 {
+		$fallbackmirror = 'http://cdn-fastly.deb.debian.org/debian/'
 	} else {
-		#$mirror = 'http://ftp.debian.org/debian/'
-		if $::lsbmajdistrelease <= 8 {
-			$mirror = 'http://cdn-fastly.deb.debian.org/debian/'
-		} else {
-			$mirror = 'http://deb.debian.org/debian/'
-		}
+		$fallbackmirror = 'http://deb.debian.org/debian/'
+	}
+
+	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
+		$mirror = [ getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'), $fallbackmirror ]
+	} else {
+		$mirror = [ $fallbackmirror ]
 	}
 
 	if $::lsbmajdistrelease <= 7 {
@@ -141,17 +142,13 @@ class debian-org {
 			ensure => absent,
 		}
 	}
+
 	site::aptrepo { 'debian-lts':
 		ensure => absent,
 	}
 
 	site::aptrepo { 'backports.debian.org':
 		url        => $mirror,
-		suite      => "${::lsbdistcodename}-backports",
-		components => ['main','contrib','non-free']
-	}
-	site::aptrepo { 'backports2.debian.org':
-		url        => "http://cdn-fastly.deb.debian.org/debian",
 		suite      => "${::lsbdistcodename}-backports",
 		components => ['main','contrib','non-free']
 	}
@@ -172,10 +169,6 @@ class debian-org {
 		site::aptrepo { 'proposed-updates':
 			ensure => absent,
 		}
-	}
-
-	site::aptrepo { 'debian.org':
-		ensure => absent,
 	}
 
 	site::aptrepo { 'db.debian.org':
@@ -207,15 +200,23 @@ class debian-org {
 			components => ['main','contrib','non-free']
 		}
 	}
+
 	site::aptrepo { 'debian-cdn':
 		ensure => absent,
 	}
-
+	site::aptrepo { 'debian.org':
+		ensure => absent,
+	}
 	site::aptrepo { 'debian2':
 		url        => "http://cdn-fastly.deb.debian.org/debian",
-		suite      => $mungedcodename,
-		components => ['main','contrib','non-free']
+		ensure => absent,
 	}
+	site::aptrepo { 'backports2.debian.org':
+		ensure => absent,
+	}
+
+
+
 
 	file { '/etc/facter':
 		ensure  => directory,

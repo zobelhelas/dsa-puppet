@@ -3,4 +3,16 @@
 ### USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ###
 
-deb     <%= scope.lookupvar('url') %>	<%= scope.lookupvar('suite') %>	<%= [scope.lookupvar('components')].flatten.join(' ') %>
+<%=
+  url        = [scope.lookupvar('url')  ].flatten
+  suite      = [scope.lookupvar('suite')].flatten
+  components = [scope.lookupvar('components')].flatten.join(' ')
+
+  lines = []
+  url.each do |u|
+    suite.each do |s|
+      lines << "deb	#{u}	#{s}	#{components}"
+    end
+  end
+  lines.join("\n")
+%>
