@@ -39,6 +39,7 @@ roles:
   ftp.upload.d.o:
     - franck.debian.org
     - coccia.debian.org
+    - usper.debian.org
   api.ftp-master:
     - coccia.debian.org
   dgit_browse:
@@ -128,6 +129,7 @@ roles:
     - soriano.debian.org
   ssh.upload.d.o:
     - coccia.debian.org
+    - usper.debian.org
   sso:
     - diabelli.debian.org
   # single sign on relying party (host) - also required apache2 module enabled on that host via other means
