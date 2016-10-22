@@ -96,8 +96,6 @@ roles:
     - handel.debian.org
   qamaster:
     - quantz.debian.org
-  release:
-    - franck.debian.org
   rtmaster:
     - reger.debian.org
   rtc:

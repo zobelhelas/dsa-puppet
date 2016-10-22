@@ -206,10 +206,6 @@ class roles {
 		include roles::nm
 	}
 
-	if has_role('release') {
-		include roles::release
-	}
-
 	if has_role('rtc') {
 		include roles::rtc
 	}
