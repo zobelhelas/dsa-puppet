@@ -34,6 +34,7 @@ roles:
   ftp.d.o:
     - klecker.debian.org
   ftp_master:
+    - fasolo.debian.org
     - franck.debian.org
   ftp.upload.d.o:
     - franck.debian.org

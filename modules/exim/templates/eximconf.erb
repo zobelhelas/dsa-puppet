@@ -1026,6 +1026,7 @@ check_message:
 begin rewrite
 
 \N^buildd_(.*)@franck\.debian\.org$\N buildd_$1@buildd.debian.org T
+\N^buildd_(.*)@fasolo\.debian\.org$\N buildd_$1@buildd.debian.org T
 *@debian.org ${lookup{$1}cdb{/var/lib/misc/${primary_hostname}/mail-forward.cdb}{$value}fail} T
 *@people.debian.org ${lookup{$1}cdb{/var/lib/misc/${primary_hostname}/mail-forward.cdb}{$value}fail} T
 #*@${primary_hostname} "${if exists{/etc/exim4/email-addresses}{${lookup{$1}lsearch{/etc/exim4/email-addresses}{$value}fail}}fail}" fFs

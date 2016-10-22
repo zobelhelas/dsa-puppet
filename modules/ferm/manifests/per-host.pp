@@ -293,6 +293,27 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5452, ( 2001:41c8:1000:21::21:28/128 2001:41b8:202:deb:216:36ff:fe40:4001/128 2001:41c8:1000:21::21:11/32 2001:41c8:1000:21::21:21/128 ))'
 			}
 		}
+		fasolo: {
+			@ferm::rule { 'dsa-postgres-fasolo':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.10/32 ))'
+			}
+			@ferm::rule { 'dsa-postgres-fasolo6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
+			}
+
+			@ferm::rule { 'dsa-postgres-backup':
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V4 ))'
+			}
+			@ferm::rule { 'dsa-postgres-backup6':
+				domain          => 'ip6',
+				description     => 'Allow postgress access',
+				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V6 ))'
+			}
+		}
 		franck: {
 			@ferm::rule { 'dsa-postgres-franck':
 				description     => 'Allow postgress access',

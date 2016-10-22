@@ -25,7 +25,7 @@ Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
 Host_Alias	VOIPHOSTS	= vogler
 Host_Alias	WEBHOSTS	= wolkenstein
 Host_Alias	SECHOSTS	= seger
-Host_Alias	FTPHOSTS	= franck
+Host_Alias	FTPHOSTS	= franck, fasolo
 Host_Alias	ZIVITHOSTS	= zelenka, zandonai
 Host_Alias	AACRAIDHOSTS	= pettersson
 Host_Alias	MEGARAIDHOSTS	= rautavaara, sibelius
@@ -179,13 +179,13 @@ Defaults:buildd env_reset,env_keep+="APT_CONFIG DEBIAN_FRONTEND"
 buildd		ALL=(ALL)		NOPASSWD: ALL
 
 %appstream	mekeel=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component appstream.debian.org
-%backports	franck,coccia=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
+%backports	FTPHOSTS,coccia=(staticsync)	NOPASSWD: /usr/local/bin/static-update-component backports.debian.org
 %bootstrap	boott=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bootstrap.debian.net
 d-i		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component d-i.debian.org
 lucas		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debaday.debian.net
 dsa		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component dsa.debian.org
-dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component incoming.debian.org
-dak		franck=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component metadata.ftp-master.debian.org
+dak		FTPHOSTS=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component incoming.debian.org
+dak		FTPHOSTS=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component metadata.ftp-master.debian.org
 %publicity	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component bits.debian.org
 %publicity	dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component micronews.debian.org
 %debdelta	donizetti=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component debdeltas.debian.net
@@ -230,7 +230,7 @@ letsencrypt	denis=(dnsadm)			NOPASSWD: /srv/dns.debian.org/bin/update
 %wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
-dak		franck=(backports)	NOPASSWD: /home/backports/bin/update-archive
+dak		FTHOSTS=(backports)	NOPASSWD: /home/backports/bin/update-archive
 # archvsync triggers snapshot
 archvsync	sibelius=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
 archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
