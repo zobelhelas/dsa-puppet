@@ -3,7 +3,7 @@ nameservers:
   # ubc-enc2bl02
   - 209.87.16.2
   - 2607:f8f0:614:1::1274:2
-  # ubc-enc2bl9
+  # ubc-enc2bl09
   - 209.87.16.9
   - 2607:f8f0:614:1::1274:9
   # ubc-enc2bl10
