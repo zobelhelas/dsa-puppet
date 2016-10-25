@@ -23,7 +23,7 @@
     res << "<Macro http-pkp-#{site}>"
     if pin_info.size >= 2 then
       pin_info = pin_info.map{ |x| x.gsub('"', '\"') }
-      pin_info << "max-age=259200"
+      pin_info << "max-age=1209600"
       pin_str = pin_info.join("; ")
       res << "  Header always set Public-Key-Pins \"#{pin_str}\""
     else
