@@ -524,7 +524,7 @@ REJECT reject-with icmp-admin-prohibited
 				rule            => 'outerface !tun+ mod mark mark 1 MASQUERADE',
 			}
 		}
-		ubc-enc2bl1,ubc-enc2bl2,ubc-enc2bl9,ubc-enc2bl10: {
+		ubc-enc2bl01,ubc-enc2bl2,ubc-enc2bl9,ubc-enc2bl10: {
 			@ferm::rule { 'dsa-luca-fixme':
 				description     => 'Allow ssh access from mnt and vpn networks',
 				rule            => '&SERVICE_RANGE(tcp, 22, ( 172.29.40.0/22 172.29.203.0/24 ))',
