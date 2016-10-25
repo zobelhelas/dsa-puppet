@@ -1,6 +1,6 @@
 ---
 nodes:
   - 'ubc-enc2bl01.debian.org'
-  - 'ubc-enc2bl2.debian.org'
+  - 'ubc-enc2bl02.debian.org'
   - 'ubc-enc2bl9.debian.org'
   - 'ubc-enc2bl10.debian.org'
