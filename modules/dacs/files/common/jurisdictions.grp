@@ -1,9 +1,0 @@
-<groups xmlns="http://dss.ca/dacs/v1.4">
- <group_definition jurisdiction="DEBIAN" name="jurisdictions"
-     mod_date="Tue, 14-Jun-2005 16:06:00 GMT" type="public">
-   <group_member jurisdiction="DEBIAN" name="DEBIAN Jurisdiction" type="meta"
-     alt_name="Test Jurisdiction for DEBIAN"
-     dacs_url="http://sso.debian.org/cgi-bin/dacs"
-     authenticates="yes" prompts="no"/>
- </group_definition>
-</groups>
