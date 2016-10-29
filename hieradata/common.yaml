@@ -141,7 +141,7 @@ roles:
     - ticharich.debian.org
   static_master:
     - dillon.debian.org
-    - franck.debian.org
+    - fasolo.debian.org
     - porta.debian.org
   static_mirror:
     - busoni.debian.org
@@ -164,7 +164,7 @@ roles:
     - coccia.debian.org
     - dillon.debian.org
     - donizetti.debian.org
-    - franck.debian.org
+    - fasolo.debian.org
     - lindsay.debian.org
     - mekeel.debian.org
     - porta.debian.org
