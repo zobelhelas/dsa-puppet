@@ -73,14 +73,14 @@ components:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/timeline.debian.net/htdocs
   backports.debian.org:
-    master: franck.debian.org
-    source: franck.debian.org:/srv/backports.debian.org/htdocs
+    master: fasolo.debian.org
+    source: fasolo.debian.org:/srv/backports.debian.org/htdocs
   incoming.debian.org:
-    master: franck.debian.org
-    source: franck.debian.org:/srv/ftp-master.debian.org/public/incoming.debian.org/web
+    master: fasolo.debian.org
+    source: fasolo.debian.org:/srv/ftp-master.debian.org/public/incoming.debian.org/web
   metadata.ftp-master.debian.org:
-    master: franck.debian.org
-    source: franck.debian.org:/srv/ftp-master.debian.org/export
+    master: fasolo.debian.org
+    source: fasolo.debian.org:/srv/ftp-master.debian.org/export
   onion.debian.org:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/onion-master.debian.org/htdocs
