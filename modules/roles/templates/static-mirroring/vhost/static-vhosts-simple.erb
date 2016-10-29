@@ -306,4 +306,10 @@ lines.join("\n")
 	RedirectPermanent / http://metadata.ftp-master.debian.org/
 </VirtualHost>
 
+<VirtualHost <%= vhost_listen %> >
+	ServerName backports-master.debian.org
+	ServerAdmin debian-admin@debian.org
+	RedirectPermanent / https://backports.debian.org/
+</VirtualHost>
+
 # vim:ft=apache:
