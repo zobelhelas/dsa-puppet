@@ -347,7 +347,7 @@ class ferm::per-host {
 			}
 			@ferm::rule { 'dsa-postgres-dak':
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 5.153.231.28/32 209.87.16.26/32 5.153.231.21/32 5.153.231.18/32 5.153.231.29/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5434, ( 5.153.231.11/32 5.153.231.28/32 209.87.16.26/32 5.153.231.21/32 5.153.231.18/32 5.153.231.29/32 128.31.0.69/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-dak6':
 				domain          => 'ip6',
