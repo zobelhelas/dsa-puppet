@@ -10,7 +10,7 @@ class roles::weblog_provider {
 			mode   => '0755',
 		}
 		file { '/etc/cron.d/puppet-weblog-provider':
-			content => "SHELL=/bin/bash\n\n0 1 * * * weblogsync sleep $((RANDOM \% 1800)); rsync -a --delete-excluded --include 'www.debian.org-access.log-*gz' --exclude '**' /var/log/apache2/. weblogsync@wolkenstein.debian.org:-weblogs-incoming-\n",
+			content => "SHELL=/bin/bash\n\n0 1 * * * weblogsync sleep $((RANDOM \% 1800)); rsync -a --delete-excluded --include 'www.debian.org-access.log-*gz' --include '*-public-access.log-*gz' --exclude '**' /var/log/apache2/. weblogsync@wolkenstein.debian.org:-weblogs-incoming-\n",
 		}
 	}
 }
