@@ -290,6 +290,9 @@ class debian-org {
 	file { '/root/.screenrc':
 		source => 'puppet:///modules/debian-org/root-dotfiles/screenrc',
 	}
+	file { '/root/.tmux.conf':
+		source => 'puppet:///modules/debian-org/root-dotfiles/tmux.conf',
+	}
 	file { '/root/.vimrc':
 		source => 'puppet:///modules/debian-org/root-dotfiles/vimrc',
 	}
