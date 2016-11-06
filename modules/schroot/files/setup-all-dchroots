@@ -52,6 +52,9 @@ get_suites() {
       mips64el)
         echo "sid stretch"
         ;;
+      powerpc)
+        echo "sid         jessie"
+        ;;
       ppc64)
         echo "sid"
         ;;
