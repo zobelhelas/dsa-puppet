@@ -84,7 +84,6 @@ nagios		ALL=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=[0129] show statu
 nagios		franck=(ALL)	NOPASSWD: /usr/sbin/hpacucli controller slot=1 enclosure 1E\:1 show detail
 
 # other raid controllers
-nagios		powell=(ALL)	NOPASSWD: /usr/local/bin/tw_cli info c0 u0 status
 nagios		AACRAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/arcconf GETCONFIG 1 LD, /usr/local/bin/arcconf GETCONFIG 1 AD
 nagios		MEGARAIDHOSTS=(ALL)	NOPASSWD: /usr/local/bin/megarc -AllAdpInfo -nolog, /usr/local/bin/megarc -dispCfg -a0 -nolog
 # other nagios things
@@ -221,7 +220,6 @@ mini-dak	porta=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component in
 # The piuparts slave needs to handle chroots
 piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
 # trigger of mirror run for packages
-#pkg_user	powell=(archvsync)	NOPASSWD: /home/archvsync/bin/pushpdo
 dnsadm		denis=(root)			NOPASSWD: /usr/sbin/service bind9 reload
 letsencrypt	denis=(dnsadm)			NOPASSWD: /srv/dns.debian.org/bin/update
 %adm		draghi=(puppet)			NOPASSWD: /usr/bin/make -s -C /srv/db.debian.org/var/gitnagios/dsa-nagios/config install
