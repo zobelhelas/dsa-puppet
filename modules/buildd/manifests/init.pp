@@ -57,27 +57,16 @@ class buildd ($ensure=present) {
 			default => 'jessie'
 		}
 
-		$buildd_apt_url = $::debarchitecture ? {
-			/^sparc$/ => 'http://buildd.debian.org/apt/',
-			default   => 'https://buildd.debian.org/apt/',
-		}
-
 		site::aptrepo { 'buildd.debian.org':
 			key        => 'puppet:///modules/buildd/buildd.debian.org.gpg',
-			url        => $buildd_apt_url,
+			url        => 'https://apt.buildd.debian.org/'
 			suite      => $suite,
 			components => 'main',
 			require    => Package['apt-transport-https'],
 		}
 
-		if ($::lsbmajdistrelease >= 8) {
-			file { '/etc/apt/apt.conf.d/puppet-https-buildd':
-				content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/ca-debian/ca-certificates.crt\";\n",
-			}
-		} else {
-			file { '/etc/apt/apt.conf.d/puppet-https-buildd':
-				content => "Acquire::https::buildd.debian.org::CaInfo \"/etc/ssl/servicecerts/buildd.debian.org.crt\";\n",
-			}
+		file { '/etc/apt/apt.conf.d/puppet-https-buildd':
+			content => "Acquire::https::apt.buildd.debian.org::CaInfo \"/etc/ssl/ca-debian/ca-certificates.crt\";\n",
 		}
 
 		# 'bad' extension
