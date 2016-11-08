@@ -171,6 +171,7 @@ roles:
     - philp.debian.org
     - respighi.debian.org
     - wolkenstein.debian.org
+    - wuiet.debian.org
   syncproxy:
     - klecker.debian.org
     - milanollo.debian.org
