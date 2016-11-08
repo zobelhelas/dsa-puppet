@@ -85,6 +85,7 @@ class roles::static_mirror {
 
 	# do
 	ssl::service { 'appstream.debian.org'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
+	ssl::service { 'apt.buildd.debian.org'         : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'backports.debian.org'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'bits.debian.org'               : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'blends.debian.org'             : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
@@ -135,6 +136,7 @@ class roles::static_mirror {
 
 		# do
 		onion::service { 'appstream.debian.org'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'apt.buildd.debian.org'         : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'backports.debian.org'          : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'bits.debian.org'               : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'blends.debian.org'             : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }

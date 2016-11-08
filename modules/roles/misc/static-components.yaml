@@ -84,6 +84,9 @@ components:
   onion.debian.org:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/onion-master.debian.org/htdocs
+  apt.buildd.debian.org:
+    master: dillon.debian.org
+    source: wuiet.debian.org:/srv/buildd.debian.org/ftp-archive/archive
   10years.debconf.org   : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/10years.debconf.org' }
   debconf0.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf0.debconf.org' }
   debconf1.debconf.org  : { master: 'dillon.debian.org', source: 'dillon.debian.org:/srv/debconf-webpages/web/debconf1.debconf.org' }
