@@ -59,7 +59,7 @@ class buildd ($ensure=present) {
 
 		site::aptrepo { 'buildd.debian.org':
 			key        => 'puppet:///modules/buildd/buildd.debian.org.gpg',
-			url        => 'https://apt.buildd.debian.org/'
+			url        => 'https://apt.buildd.debian.org/',
 			suite      => $suite,
 			components => 'main',
 			require    => Package['apt-transport-https'],
