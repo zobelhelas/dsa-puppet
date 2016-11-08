@@ -22,10 +22,10 @@ config['components'].each_pair do |component, conf|
 	srchost, srcpath = conf['source'].split(':', 2)
 
 	config['mirrors'].each do |mirror, mc|
-		if mirrors.include?(mirror)
-			if mc.has_key?('components-include') and not mc['components-include'].include?(component)
-				conf['exclude-mirrors'] << mirror
-			end
+		next unless mirrors.include?(mirror)
+
+		if mc.has_key?('components-include') and not mc['components-include'].include?(component)
+			conf['exclude-mirrors'] << mirror
 		end
 	end
 
