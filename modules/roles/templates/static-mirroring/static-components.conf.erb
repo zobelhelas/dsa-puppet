@@ -15,7 +15,7 @@ config = YAML.load(File.open('/etc/puppet/modules/roles/misc/static-components.y
 mirrors = scope.lookupvar('site::roles')['static_mirror']
 
 config['components'].each_pair do |component, conf|
-	%w{exclude-mirrors extra-push}.each do |key|
+	%w{exclude-mirrors extra-push limit-mirrors}.each do |key|
 		conf[key] = [] unless conf.has_key?(key)
 	end
 
@@ -26,6 +26,14 @@ config['components'].each_pair do |component, conf|
 
 		if mc.has_key?('components-include') and not mc['components-include'].include?(component)
 			conf['exclude-mirrors'] << mirror
+		end
+	end
+	if conf['limit-mirrors'].size > 0
+		mirrors.each do |mirror|
+			if not conf['limit-mirrors'].include?(mirror)
+				next if conf['exclude-mirrors'].include?(mirror) # if it's already excluded, do not add it again
+				conf['exclude-mirrors'] << mirror
+			end
 		end
 	end
 
