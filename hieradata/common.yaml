@@ -139,6 +139,7 @@ roles:
     - quantz.debian.org
     - tate.debian.org
     - ticharich.debian.org
+    - wilder.debian.org
   static_master:
     - dillon.debian.org
     - fasolo.debian.org
