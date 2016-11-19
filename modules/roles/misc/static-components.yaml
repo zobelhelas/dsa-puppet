@@ -73,8 +73,8 @@ components:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/timeline.debian.net/htdocs
   backports.debian.org:
-    master: fasolo.debian.org
-    source: fasolo.debian.org:/srv/backports.debian.org/htdocs
+    master: dillon.debian.org
+    source: coccia.debian.org:/srv/backports.debian.org/htdocs
   incoming.debian.org:
     master: fasolo.debian.org
     source: fasolo.debian.org:/srv/ftp-master.debian.org/public/incoming.debian.org/web
