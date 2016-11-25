@@ -12,6 +12,18 @@
 
   <%- if has_variable?("apache2deb9") && apache2deb9 == "true" -%>
     SSLUseStapling On
-    SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(32768)
+
+    # the default size is 32k, but we make it 1M.
+    # | If more than a few SSL certificates are used for the server
+    # |
+    # | OCSP responses are stored in the SSL stapling cache. While the
+    # | responses are typically a few hundred to a few thousand bytes in size,
+    # | mod_ssl supports OCSP responses up to around 10K bytes in size. With more
+    # | than a few certificates, the stapling cache size (32768 bytes in the
+    # | example above) may need to be increased. Error message AH01929 will be
+    # | logged in case of an error storing a response.
+    # [ https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#ocspstapling ]
+
+    SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(1048576)
   <% end -%>
 </IfModule>
