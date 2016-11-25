@@ -35,9 +35,9 @@ class debian-org::apt {
 	}
 
 	if has_role('experimental_apache') {
-		dbdosuites = [ 'debian-all', $::lsbdistcodename, 'jessie-apache2' ]
+		$dbdosuites = [ 'debian-all', $::lsbdistcodename, 'jessie-apache2' ]
 	} else {
-		dbdosuites = [ 'debian-all', $::lsbdistcodename ]
+		$dbdosuites = [ 'debian-all', $::lsbdistcodename ]
 	}
 	site::aptrepo { 'db.debian.org':
 		url        => 'http://db.debian.org/debian-admin',
