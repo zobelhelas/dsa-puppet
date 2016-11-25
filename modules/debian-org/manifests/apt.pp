@@ -33,9 +33,15 @@ class debian-org::apt {
 		suite      => "${mungedcodename}/updates",
 		components => ['main','contrib','non-free']
 	}
+
+	if has_role('experimental_apache') {
+		dbdosuites = [ 'debian-all', $::lsbdistcodename, 'jessie-apache2' ]
+	else
+		dbdosuites = [ 'debian-all', $::lsbdistcodename ]
+	}
 	site::aptrepo { 'db.debian.org':
 		url        => 'http://db.debian.org/debian-admin',
-		suite      => [ 'debian-all', $::lsbdistcodename ],
+		suite      => $dbdosuites,
 		components => 'main',
 		key        => 'puppet:///modules/debian-org/db.debian.org.gpg',
 	}
