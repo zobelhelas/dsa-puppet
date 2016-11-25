@@ -240,3 +240,4 @@ roles:
     - olin.debian.org
   experimental_apache:
     - draghi.debian.org
+    - senfter.debian.org
