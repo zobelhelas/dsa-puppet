@@ -9,4 +9,9 @@
   <% else -%>
     SSLCipherSuite ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!eNULL:!LOW:!MD5:!EXP:!RC4:!SEED:!DSS
   <% end -%>
+
+  <%- if has_variable?("apache2deb9") && apache2deb9 == "true" -%>
+    SSLUseStapling On
+    SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(32768)
+  <% end -%>
 </IfModule>
