@@ -8,14 +8,14 @@ Facter.add("apache2") do
 	end
 end
 Facter.add("apache2deb9") do
-       setcode do
-               # jessie (deb8) has 2.4.10-.., stretch (deb9) will have 2.4.23 or later.
-               if FileTest.exist?("/usr/sbin/apache2") and system("dpkg --compare-versions $(dpkg-query -W -f='${Version}\n' apache2-bin) gt 2.4.15")
-                       true
-               else
-                       ''
-               end
-       end
+	setcode do
+		# jessie (deb8) has 2.4.10-.., stretch (deb9) will have 2.4.23 or later.
+		if FileTest.exist?("/usr/sbin/apache2") and system("dpkg --compare-versions $(dpkg-query -W -f='${Version}\n' apache2-bin) gt 2.4.15")
+			true
+		else
+			''
+		end
+	end
 end
 Facter.add("clamd") do
 	setcode do
