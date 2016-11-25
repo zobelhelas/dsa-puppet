@@ -25,5 +25,6 @@
     # [ https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#ocspstapling ]
 
     SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(1048576)
+    SSLStaplingReturnResponderErrors off
   <% end -%>
 </IfModule>
