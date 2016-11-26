@@ -16,7 +16,7 @@ class bacula {
 	$bacula_director_port     = 9101
 	$bacula_storage_address   = 'storace.debian.org'
 	$bacula_storage_port      = 9103
-	$bacula_client_port       = 9102
+	$bacula_client_port       = hiera('bacula_fd_port', 9102)
 	$bacula_db_address        = 'danzi.debian.org'
 	$bacula_db_port           = 5433
 
