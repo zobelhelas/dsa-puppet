@@ -1,4 +1,4 @@
-define bacula::node() {
+define bacula::node($bacula_client_port = $bacula::bacula_client_port) {
 
 	include bacula
 
@@ -9,7 +9,6 @@ define bacula::node() {
 	$bacula_storage_port      = $bacula::bacula_storage_port
 	$bacula_storage_secret    = $bacula::bacula_storage_secret
 
-	$bacula_client_port   = $bacula::bacula_client_port
 	$bacula_ca_path       = $bacula::bacula_ca_path
 	$bacula_ssl_client_cert = $bacula::bacula_ssl_client_cert
 	$bacula_ssl_client_key  = $bacula::bacula_ssl_client_key
