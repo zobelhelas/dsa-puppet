@@ -127,9 +127,7 @@ ubc:
   netrange:
     - 209.87.16.0/24
     - 2607:F8F0:614:1::/64
-  mirror-debian: http://mirror-ubc.debian.org/debian/
-ubcece:
-  netrange:
+    # old range:
     - 206.12.19.0/24
     - 2607:f8f0:610:4000::/64
   mirror-debian: http://mirror-ubc.debian.org/debian/
