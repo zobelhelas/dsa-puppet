@@ -52,7 +52,7 @@ class bacula::client inherits bacula {
 	@ferm::rule { 'dsa-bacula-fd-v4':
 		domain      => '(ip)',
 		description => 'Allow bacula access from storage and director',
-		rule        => "proto tcp mod state state (NEW) dport (bacula-fd) saddr (${bacula_director_ip}) ACCEPT",
+		rule        => "proto tcp mod state state (NEW) dport (${bacula_client_port}) saddr (${bacula_director_ip}) ACCEPT",
 	}
 
 	#@ferm::rule { 'dsa-bacula-fd-v6':
