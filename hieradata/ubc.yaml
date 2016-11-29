@@ -17,4 +17,4 @@ allow_dns_query:
   - 209.87.16.0/24
   - 2607:f8f0:610:4000::/64
   - 2607:F8F0:614:1::/64
-#bacula_fd_port: 19102
+bacula_fd_port: 19102
