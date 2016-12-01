@@ -10,10 +10,10 @@
 set -e
 
 if [ "$1" = "fd" ];then
-    PORT=9102
+    PORT=<%= bacula_client_port %>
     DIR="bacula-fd"
 elif [ "$1" = "sd" ]; then
-    PORT=9103
+    PORT=<%= bacula_storage_port %>
     DIR="bacula-sd"
 else
     # Usage
