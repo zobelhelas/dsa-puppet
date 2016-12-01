@@ -40,6 +40,7 @@ node default {
 	include dsa_lvm
 	include grub
 	include multipath
+	include popcon
 	if $::lsbdistcodename == squeeze {
 		include roles::udldap::client
 	} else {
