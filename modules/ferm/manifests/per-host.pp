@@ -284,8 +284,8 @@ class ferm::per-host {
 		ullmann: {
 			@ferm::rule { 'dsa-postgres-udd':
 				description     => 'Allow postgress access',
-				# quantz, moszumanska, master, coccia, franck
-				rule            => '&SERVICE_RANGE(tcp, 5452, ( 5.153.231.28/32 5.153.231.21/32 82.195.75.110/32 5.153.231.11/32 138.16.160.12/32 ))'
+				# quantz, moszumanska, master, coccia
+				rule            => '&SERVICE_RANGE(tcp, 5452, ( 5.153.231.28/32 5.153.231.21/32 82.195.75.110/32 5.153.231.11/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-udd6':
 				domain          => '(ip6)',
@@ -299,27 +299,6 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.10/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-fasolo6':
-				domain          => 'ip6',
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
-			}
-
-			@ferm::rule { 'dsa-postgres-backup':
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V4 ))'
-			}
-			@ferm::rule { 'dsa-postgres-backup6':
-				domain          => 'ip6',
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( $HOST_PGBACKUPHOST_V6 ))'
-			}
-		}
-		franck: {
-			@ferm::rule { 'dsa-postgres-franck':
-				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5433, ( 5.153.231.10/32 ))'
-			}
-			@ferm::rule { 'dsa-postgres-franck6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
 				rule            => '&SERVICE_RANGE(tcp, 5433, ( 2001:41c8:1000:21::21:10/128 ))'
@@ -355,9 +334,9 @@ class ferm::per-host {
 				rule            => '&SERVICE_RANGE(tcp, 5434, ( 2001:41c8:1000:21::21:11/128 2001:41c8:1000:21::21:28/128 2607:f8f0:614:1::1274:26/128 2001:41c8:1000:21::21:21/128 2001:41c8:1000:21::21:18/128 2001:41c8:1000:21::21:29/128 ))'
 			}
 			@ferm::rule { 'dsa-postgres-wannabuild':
-				# wuiet, ullmann, franck
+				# wuiet, ullmann
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, 5436, ( 5.153.231.18/32 209.87.16.38/32 138.16.160.12/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5436, ( 5.153.231.18/32 209.87.16.38/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-wannabuild6':
 				domain          => 'ip6',
