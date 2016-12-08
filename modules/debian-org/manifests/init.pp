@@ -137,6 +137,7 @@ class debian-org {
 	}
 	file { '/etc/puppet/puppet.conf':
 		content => template('debian-org/puppet.conf.erb'),
+		mode => 0440,
 	}
 	file { '/etc/default/puppet':
 		source => 'puppet:///modules/debian-org/puppet.default',
