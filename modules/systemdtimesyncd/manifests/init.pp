@@ -7,9 +7,16 @@ class systemdtimesyncd {
 		fail ( "No local timeservers configured for systemdtimesyncd." )
 	} else {
 		file { '/etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service':
-				ensure => 'link',
-				target => '/lib/systemd/system/systemd-timesyncd.service',
-				notify => Exec['systemctl daemon-reload'],
+			ensure => 'absent',
+			notify => Exec['systemctl daemon-reload'],
+		}
+		file { '/etc/systemd/system/multi-user.target.wants':
+			ensure => 'directory',
+		}
+		file { '/etc/systemd/system/multi-user.target.wants/systemd-timesyncd.service':
+			ensure => 'link',
+			target => '/lib/systemd/system/systemd-timesyncd.service',
+			notify => Exec['systemctl daemon-reload'],
 		}
 
 		service { 'systemd-timesyncd':
