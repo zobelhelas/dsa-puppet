@@ -26,8 +26,7 @@ node default {
 	include ssh
 	include debian-org
 	include monit
-	include ntp
-	include ntpdate
+	include time
 	include ssl
 	include hardware
 	include nagios::client
