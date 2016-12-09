@@ -71,8 +71,6 @@ class debian-org {
 			'irqstats',
 			'load',
 			'memory',
-			'ntp_offset',
-			'ntp_states',
 			'open_files',
 			'open_inodes',
 			'processes',

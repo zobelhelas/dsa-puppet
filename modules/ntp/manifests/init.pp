@@ -40,6 +40,12 @@ class ntp {
 		require => Package['ntp'],
 	}
 
+	munin::check { [
+			'ntp_offset',
+			'ntp_states',
+			]:
+	}
+
 	if getfromhash($site::nodeinfo, 'timeserver') {
 		include ntp::timeserver
 	} else {
