@@ -4,3 +4,7 @@ nameservers:
   - 5.153.231.242
 allow_dns_query:
   - 5.153.231.0/24
+# currently only used by VMs with systemd-timesync
+local-timeservers:
+  - bm-bl1.debian.org
+  - bm-bl2.debian.org

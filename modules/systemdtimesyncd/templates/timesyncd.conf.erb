@@ -1,0 +1,25 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+#
+# See timesyncd.conf(5) for details
+
+[Time]
+#Servers=0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
+<%=
+  servers = []
+  localtimeservers.each do |node|
+    scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |addr|
+        servers << addr
+    end
+  end
+  "Servers="+servers.join(",")
+%>
