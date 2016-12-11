@@ -266,6 +266,9 @@ class roles {
 	if has_role('veyepar.debian.org') {
 		ssl::service { 'veyepar.debian.org': notify  => Exec['service apache2 reload'], key => true, }
 	}
+	if has_role('sreview.debian.org') {
+		ssl::service { 'sreview.debian.net': notify  => Exec['service apache2 reload'], key => true, }
+	}
 
 	if has_role('httpredir') {
 		include roles::httpredir
