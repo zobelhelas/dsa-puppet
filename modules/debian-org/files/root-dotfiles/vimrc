@@ -10,7 +10,7 @@ set ai
 :syn on
 :set title
 :set pastetoggle=<F10>
-:set listchars=tab:»‐trail:·
+:set listchars=tab:»·,trail:·
 :set list
 :nmap <F11> :set invlist<return>
 :imap <F11> <C-O>:set invlist<return>
