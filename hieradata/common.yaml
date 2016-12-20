@@ -240,5 +240,10 @@ roles:
   onionbalance:
     - olin.debian.org
   experimental_apache:
+    - busoni.debian.org
     - draghi.debian.org
+    - klecker.debian.org
+    - mirror-anu.debian.org
+    - mirror-csail.debian.org
+    - mirror-isc.debian.org
     - senfter.debian.org
