@@ -243,7 +243,14 @@ roles:
     - busoni.debian.org
     - draghi.debian.org
     - klecker.debian.org
+    - lobos.debian.org
     - mirror-anu.debian.org
     - mirror-csail.debian.org
     - mirror-isc.debian.org
+    - mirror-umn.debian.org
+    - santoro.debian.org
+    - sechter.debian.org
     - senfter.debian.org
+    - setoguchi.debian.org
+    - villa.debian.org
+    - wieck.debian.org
