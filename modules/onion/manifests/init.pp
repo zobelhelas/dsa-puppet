@@ -27,6 +27,6 @@ class onion {
 	concat::fragment { 'onion::torrc_header':
 		target  => "/etc/tor/torrc",
 		order   => 05,
-		content => "SocksPort 0\nLog notice syslog\n\n",
+		content => template("onion/torrc-header.erb"),
 	}
 }
