@@ -155,7 +155,7 @@ Facter.add("systemd") do
 		end
 	end
 end
-Facter.add("tor_ge_0.2.9") do
+Facter.add("tor_ge_0_2_9") do
 	setcode do
 		system(%{dpkg -l tor 2>/dev/null && dpkg --compare-versions $(dpkg-query -W -f='${Version}' tor) ge 0.2.9})
 	end
