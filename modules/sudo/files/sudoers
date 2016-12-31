@@ -130,6 +130,7 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %list		master=(debian)	ALL
 %manpages	ALL=(manpages)	ALL
 %mirroradm	ALL=(archvsync)	ALL
+%mirroradm	melartin=(mirroradm)	ALL
 %nm		ALL=(nm)	ALL
 %patch-tracker	ALL=(patch-tracker)	ALL
 %pet-devel	ALL=(pet-devel)	ALL
