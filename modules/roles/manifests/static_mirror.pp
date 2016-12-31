@@ -81,7 +81,7 @@ class roles::static_mirror {
 		content => template('roles/apache-www.debian.org.erb'),
 	}
 
-	ssl::service { 'www.debian.org'      : ensure => "ifstatic", notify  => Exec['service apache2 reload'], }
+	ssl::service { 'www.debian.org'      : ensure => "ifstatic", notify  => Exec['service apache2 reload'], tlsaport => [], }
 
 	# do
 	ssl::service { 'appstream.debian.org'          : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }

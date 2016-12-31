@@ -45,6 +45,7 @@ class roles {
 	if has_role('bugs_base') {
 		ssl::service { 'bugs.debian.org':
 			notify  => Exec['service apache2 reload'],
+			tlsaport => [],
 		}
 	}
 	if has_role('bugs_master') {

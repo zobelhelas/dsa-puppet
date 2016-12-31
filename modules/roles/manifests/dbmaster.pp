@@ -14,6 +14,7 @@ class roles::dbmaster {
 
 	ssl::service { 'db.debian.org':
 		notify  => Exec['service apache2 reload'],
+		tlsaport => [],
 	}
 
 	roles::pubsub::config { 'generate':

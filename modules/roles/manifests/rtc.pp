@@ -6,6 +6,7 @@ class roles::rtc {
 	}
 
 	ssl::service { 'sip-ws.debian.org':
+		tlsaport => [],
 	}
 
 	dnsextras::tlsa_record{ 'tlsa-xmpp':
