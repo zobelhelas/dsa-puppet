@@ -5,3 +5,7 @@ nameservers:
   - 128.30.0.125
 searchpaths:
   - priv.csail.debian.org
+# currently only used by VMs with systemd-timesync
+local-timeservers:
+  - csail-node01.debian.org
+  - csail-node02.debian.org
