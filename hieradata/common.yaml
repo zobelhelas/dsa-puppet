@@ -248,6 +248,7 @@ roles:
     - mirror-csail.debian.org
     - mirror-isc.debian.org
     - mirror-umn.debian.org
+    - picconi.debian.org
     - pkgmirror-csail.debian.org
     - santoro.debian.org
     - sechter.debian.org
