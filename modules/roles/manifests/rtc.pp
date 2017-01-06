@@ -1,12 +1,13 @@
 class roles::rtc {
 
-	ssl::service { 'www.debian.org':
+	ssl::service { 'debian.org':
 		tlsaport => [],
 		notify  => Service['repro'],
+		key => true,
 	}
 
 	ssl::service { 'sip-ws.debian.org':
-		tlsaport => [],
+		key => true,
 	}
 
 	dnsextras::tlsa_record{ 'tlsa-xmpp':
