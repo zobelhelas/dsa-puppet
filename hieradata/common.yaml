@@ -240,6 +240,7 @@ roles:
   onionbalance:
     - olin.debian.org
   experimental_apache:
+    - beach.debian.org
     - busoni.debian.org
     - draghi.debian.org
     - klecker.debian.org
