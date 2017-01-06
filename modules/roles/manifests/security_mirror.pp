@@ -1,13 +1,13 @@
 class roles::security_mirror {
 	$rsync_bind = $::hostname ? {
 		mirror-anu => '150.203.164.61',
-		mirror-isc => '149.20.20.19',
+		mirror-isc => '149.20.4.14',
 		mirror-umn => '128.101.240.215',
 		default    => '',
 	}
 	$rsync_bind6 = $::hostname ? {
 		mirror-anu => '2001:388:1034:2900::3d',
-		mirror-isc => '2001:4f8:8:36::1deb:19',
+		mirror-isc => '2001:4f8:1:c::14',
 		mirror-umn => '2607:ea00:101:3c0b::1deb:215',
 		default    => '',
 	}
@@ -54,7 +54,7 @@ class roles::security_mirror {
 
 	$onion_v4_addr = $::hostname ? {
 		mirror-anu => '150.203.164.61',
-		mirror-isc => '149.20.20.19',
+		mirror-isc => '149.20.4.14',
 		mirror-umn => '128.101.240.215',
 		villa      => '212.211.132.32',
 		lobos      => '212.211.132.250',

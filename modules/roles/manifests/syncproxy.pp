@@ -2,7 +2,7 @@ class roles::syncproxy {
 	$bind = $::hostname ? {
 		'milanollo' => '5.153.231.9',
 		'mirror-anu' => '150.203.164.60',
-		'mirror-isc' => '149.20.20.21',
+		'mirror-isc' => '149.20.4.16',
 		'mirror-umn' => '128.101.240.216',
 		'klecker' => '130.89.148.10',
 		default => ''
@@ -10,7 +10,7 @@ class roles::syncproxy {
 	$bind6 = $::hostname ? {
 		'milanollo' => '2001:41c8:1000:21::21:9',
 		'mirror-anu' => '2001:388:1034:2900::3c',
-		'mirror-isc' => '2001:4f8:8:36::1deb:21',
+		'mirror-isc' => '2001:4f8:1:c::16',
 		'mirror-umn' => '2607:ea00:101:3c0b::1deb:216',
 		'klecker' => '2001:610:1908:b000::148:10',
 		default => ''
