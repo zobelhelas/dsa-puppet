@@ -14,7 +14,16 @@ class roles::dbmaster {
 
 	ssl::service { 'db.debian.org':
 		notify  => Exec['service apache2 reload'],
-		tlsaport => [],
+		key => true,
+		tlsaport => [443, 389, 636],
+	}
+
+	file { "/etc/ldap/db.debian.org.key":
+	       ensure => present,
+	       mode   => '0440',
+	       group  => 'openldap',
+	       source => 'puppet:///modules/ssl/from-letsencrypt/db.debian.org.key',
+	       links  => follow,
 	}
 
 	roles::pubsub::config { 'generate':
