@@ -34,7 +34,6 @@ Host_Alias	BUILDD_MASTER	= wuiet
 Host_Alias	PORTERBOXES	= abel, asachi, barriere, eller, falla, fischer, harris, minkus, partch, plummer, pizzetti, zelenka
 Host_Alias	PIUPARTS_SLAVE_HOSTS	= piu-slave-bm-a
 Host_Alias	MQ_HOSTS	= rainier, rapoport
-Host_Alias	NOVAHOSTS	= oyens
 Host_Alias	JENKINSHOSTS	= jerea
 
 # Cmnd alias specification

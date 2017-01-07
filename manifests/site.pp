@@ -89,9 +89,7 @@ node default {
 	}
 
 	if $::apache2 {
-		if !($::hostname in [oyens]) {
-			include apache2
-		}
+		include apache2
 	}
 
 	if $::hostname in [geo1,geo2,geo3] {
