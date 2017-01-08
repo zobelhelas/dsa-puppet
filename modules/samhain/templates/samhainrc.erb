@@ -180,6 +180,11 @@ file=/etc/ssh/userkeys
 file=/etc/ssh/userkeys/staticsync
 <% end -%>
 file=/etc/rsyncd
+<%- if hostname == "sibelius" then -%>
+file=/etc/tsm
+file=/etc/tsm/TSM.PWD
+<% end -%>
+
 
 [LogFiles]
 ##
