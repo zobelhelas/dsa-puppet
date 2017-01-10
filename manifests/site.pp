@@ -129,5 +129,8 @@ node default {
 			include lldp
 		}
 	}
-}
 
+	if $::hostname == 'pkgmirror-csail' {
+		include varnish
+	}
+}
