@@ -9,10 +9,6 @@ backend default {
 	.port = "80";
 }
 
-sub vcl_recv {
-        set req.grace = 600s;
-}
-
 sub vcl_backend_response {
 /*        if (beresp.status != 200 && beresp.status != 403 && beresp.status != 404 && beresp.status != 301 && beresp.status != 302) {
                 return(restart);
