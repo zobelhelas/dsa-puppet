@@ -35,6 +35,15 @@ define ssl::service($ensure = present, $tlsaport = 443, $notify = [], $key = fal
 			notify => [ $notify ],
 			links  => follow,
 		}
+
+		file { "/etc/ssl/private/$name.key-certchain":
+			ensure => $ssl_ensure,
+			mode   => '0440',
+			group => 'ssl-cert',
+			content => template('ssl/key-chained.erb'),
+			notify => [ $notify ],
+			links  => follow,
+		}
 	}
 
 	if (size($tlsaports) > 0 and $ssl_ensure == "present") {
