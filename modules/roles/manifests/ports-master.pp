@@ -9,16 +9,6 @@ class roles::ports-master {
 		key => true,
 	}
 
-	file { '/etc/rsyncd':
-		ensure => 'directory'
-	}
-
-	file { '/etc/rsyncd/debian.secrets':
-		owner => 'root',
-		group => 'mirroradm',
-		mode => 0660,
-	}
-
 	include ferm::ftp_conntrack
 
 	vsftpd::site { 'ports-master':
