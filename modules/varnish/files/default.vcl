@@ -2,52 +2,30 @@
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
+vcl 4.0;
 
-
-director packages_debian_org random {
-	{
-		.backend = {
-			.host = "5.153.231.3";
-			.port = "80";
-		}
-		.weight = 1;
-	}
-	{
-		.backend = {
-			.host = "213.165.95.4";
-			.port = "80";
-		}
-		.weight = 1;
-	}
+backend default {
+	.host = "127.0.0.1";
+	.port = "80";
 }
-
 
 sub vcl_recv {
-
-        # Add a unique header containing the client address
-        remove req.http.X-Forwarded-For;
-        set    req.http.X-Forwarded-For = req.http.rlnclientipaddr;
-
-        set req.backend = packages_debian_org;
-
-        return(lookup);
+        set req.grace = 600s;
 }
 
-sub vcl_fetch {
-        if (beresp.status != 200 && beresp.status != 403 && beresp.status != 404 && beresp.status != 301 && beresp.status != 302) {
+sub vcl_backend_response {
+/*        if (beresp.status != 200 && beresp.status != 403 && beresp.status != 404 && beresp.status != 301 && beresp.status != 302) {
                 return(restart);
-        }
+        }*/
 
-        # if i cant connect to the backend, ill set the grace period to be 600 seconds to hold onto content
+        # if I cant connect to the backend, ill set the grace period to be 600 seconds to hold onto content
         set beresp.ttl = 600s;
         set beresp.grace = 600s;
 
         if (beresp.status >= 500) {
-                set beresp.ttl = 0s;
+                set beresp.ttl = 0.1s;
         }
-
-        set beresp.http.X-Cacheable = "YES";
-        return(deliver);
+        unset beresp.http.Set-Cookie;
 }
 
 
@@ -63,4 +41,3 @@ sub vcl_deliver {
 
         return(deliver);
 }
-
