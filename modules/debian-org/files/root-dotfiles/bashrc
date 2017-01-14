@@ -5,6 +5,7 @@
 
 if [ "$PS1" ]; then
   typeset HISTCONTROL=ignoreboth
+  typeset HISTSIZE=50000
 
   export LS_OPTIONS='--color=auto'
   eval "`dircolors`"
