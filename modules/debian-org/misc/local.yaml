@@ -141,8 +141,6 @@ host_settings:
     - vento.debian.org
     - wuiet.debian.org
   not-bacula-client:
-    # mirrors, secondaries, syncproxies
-    - pkgmirror-csail.debian.org
     # porterbox
     - abel.debian.org
     - asachi.debian.org
