@@ -131,6 +131,10 @@ class apache2 {
 	munin::check { 'ps_apache2':
 		script => 'ps_',
 	}
+	# The munin script needs this
+	package { 'libwww-perl':
+		ensure => installed,
+	}
 
 	if $::hostname in [beach,buxtehude,picconi,pkgmirror-csail] {
 		include apache2::dynamic
