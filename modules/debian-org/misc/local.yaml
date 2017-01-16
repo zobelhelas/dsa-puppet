@@ -82,7 +82,6 @@ nameinfo:
   prokofiev.debian.org: Sergei Sergeyevich Prokofiev (April 27th, 1891 - March 5th, 1953)
   quantz.debian.org: Johann Joachim Quantz (January 30th, 1697 - July 12th, 1773)
   rachmaninoff: Sergei Vasilievich Rachmaninoff (1 April 1873 - 28 March 1943)
-  rautavaara.debian.org: Einojuhani Rautavaara (b. October 9th, 1928)
   rainier.debian.org: Ivy Priaulx Rainier (February 3rd, 1903 - October 10th, 1986)
   rapoport.debian.org: Eda Rothstein Rapoport (December 25th, 1890 - May 9th, 1968)
   reger.debian.org: Johann Baptist Joseph Maximilian Reger (March 19th, 1873 - May 11th, 1916)
@@ -143,8 +142,6 @@ host_settings:
     - vento.debian.org
     - wuiet.debian.org
   not-bacula-client:
-    # decommissioning
-    - rautavaara.debian.org
     # mirrors, secondaries, syncproxies
     - pkgmirror-csail.debian.org
     - steffani.debian.org
@@ -243,7 +240,6 @@ host_settings:
     - fano.debian.org
   entropy_key:
     - czerny.debian.org
-    # - rautavaara.debian.org
     - grnet-node01.debian.org
     - ubc-bl2.debian.org
     - storace.debian.org
