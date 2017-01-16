@@ -111,7 +111,6 @@ roles:
     - santoro.debian.org
     - setoguchi.debian.org
     - sechter.debian.org
-    - steffani.debian.org
     - villa.debian.org
     - wieck.debian.org
   security_mirror_onion:
