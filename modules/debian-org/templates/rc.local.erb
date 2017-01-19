@@ -12,6 +12,13 @@
     mkswap /dev/dasdc1 && swapon -p 30 /dev/dasdc1
   fi
 <%- end -%>
+<% if scope.lookupvar('site::nodeinfo')['ldap'].has_key?('architecture') and scope.lookupvar('site::nodeinfo')['ldap']['architecture'][0].start_with?('kfreebsd') -%>
+  ( sleep 120;
+    service syslog-ng restart;
+    sleep 5;
+    init q
+  ) & disown
+<%- end -%>
 
 if [ -e /proc/sys/kernel/modules_disabled ]; then
 	( sleep 60;
