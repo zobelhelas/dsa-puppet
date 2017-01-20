@@ -4,3 +4,7 @@ nameservers:
   - 194.177.210.210
 searchpaths:
   - debprivate-grnet.debian.org
+# currently only used by VMs with systemd-timesync
+local-timeservers:
+  - grnet-node01.debian.org
+  - grnet-node02.debian.org
