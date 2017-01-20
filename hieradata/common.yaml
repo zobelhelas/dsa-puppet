@@ -237,19 +237,25 @@ roles:
   experimental_apache:
     - beach.debian.org
     - busoni.debian.org
+    - coccia.debian.org
     - draghi.debian.org
     - klecker.debian.org
     - lobos.debian.org
     - manziarly.debian.org
+    - milanollo.debian.org
     - mirror-anu.debian.org
     - mirror-csail.debian.org
     - mirror-isc.debian.org
     - mirror-umn.debian.org
+    - pejacevic.debian.org
+    - petrova.debian.org
+    - philp.debian.org
     - picconi.debian.org
     - pkgmirror-csail.debian.org
     - santoro.debian.org
     - sechter.debian.org
     - senfter.debian.org
     - setoguchi.debian.org
+    - ticharich.debian.org
     - villa.debian.org
     - wieck.debian.org
