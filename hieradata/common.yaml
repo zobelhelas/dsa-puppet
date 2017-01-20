@@ -240,6 +240,7 @@ roles:
     - draghi.debian.org
     - klecker.debian.org
     - lobos.debian.org
+    - manziarly.debian.org
     - mirror-anu.debian.org
     - mirror-csail.debian.org
     - mirror-isc.debian.org
