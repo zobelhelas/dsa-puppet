@@ -184,6 +184,7 @@ file=/etc/rsyncd
 file=/etc/tsm
 file=/etc/tsm/TSM.PWD
 <% end -%>
+file=/etc/ssl/private
 
 
 [LogFiles]
@@ -497,6 +498,7 @@ dir=1/usr/share/puppet-dashboard/tmp/pids
 <% if classes.include?("porterbox") %>
 file=/etc/cron.weekly/puppet-mail-big-homedirs
 <% end -%>
+file=/etc/ssl/private/*.key-certchain
 
 [IgnoreNone]
 ##
