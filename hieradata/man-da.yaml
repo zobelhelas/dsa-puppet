@@ -4,5 +4,8 @@ nameservers:
   - 82.195.75.103
 allow_dns_query:
   - 82.195.75.64/26
+  - 172.29.180.0/24
 searchpaths:
+  - manda.debian.org
+  - priv.manda.debian.org
   - debprivate-darmstadt.debian.org
