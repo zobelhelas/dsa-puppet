@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PATH=/usr/sbin:/usr/bin:/sbin:/bin
+
 [ -e /usr/lib/nagios/plugins/dsa-check-timedatectl ] || exit
 
 /usr/lib/nagios/plugins/dsa-check-timedatectl -s >/dev/null 2>/dev/null
