@@ -2,7 +2,7 @@
 
 [ -e /usr/lib/nagios/plugins/dsa-check-timedatectl ] || exit
 
-/usr/lib/nagios/plugins/dsa-check-timedatectl -s 2>/dev/null
+/usr/lib/nagios/plugins/dsa-check-timedatectl -s >/dev/null 2>/dev/null
 rc=$?
 
 case "$rc" in
