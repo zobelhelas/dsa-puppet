@@ -7,7 +7,7 @@ rc=$?
 
 case "$rc" in
   1|2)
-    pid=$(pgrep -u ntp ntp)
+    pid=$(pgrep -u ntp ntpd)
     if [ -z "$pid" ]; then
       service ntp restart
       exit
