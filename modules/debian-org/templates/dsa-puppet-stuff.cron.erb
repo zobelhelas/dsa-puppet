@@ -16,3 +16,5 @@ SHELL=/bin/bash
 @daily munin-async [ -d /var/lib/munin-async ] && find /var/lib/munin-async -maxdepth 1 -type f -mtime +30 -delete
 
 @daily root [ -d /var/lib/puppet/clientbucket ] && find /var/lib/puppet/clientbucket -type f -mtime +60 -delete && find /var/lib/puppet/clientbucket -type d -empty -delete
+
+@hourly root ! [ -x /usr/local/sbin/ntp-restart-if-required ] || /usr/local/sbin/ntp-restart-if-required

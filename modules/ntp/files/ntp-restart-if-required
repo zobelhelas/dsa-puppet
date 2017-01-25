@@ -1,0 +1,23 @@
+#!/bin/bash
+
+[ -e /usr/lib/nagios/plugins/dsa-check-timedatectl ] || exit
+
+/usr/lib/nagios/plugins/dsa-check-timedatectl -s 2>/dev/null
+rc=$?
+
+case "$rc" in
+  1|2)
+    pid=$(pgrep -u ntp ntp)
+    if [ -z "$pid" ]; then
+      service ntp restart
+      exit
+    fi
+
+    age=$(ps -ho etimes "$pid")
+    if [ "$age" -gt 3600 ]; then
+      service ntp restart
+    fi
+    ;;
+  *)
+    ;;
+esac

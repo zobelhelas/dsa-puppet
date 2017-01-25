@@ -34,4 +34,8 @@ class ntp::client {
 	file { '/etc/ntp.keys.d/ntpkey_iff_busoni':
 		ensure => absent,
 	}
+	file { '/usr/local/sbin/ntp-restart-if-required':
+		source => 'puppet:///modules/ntp/ntp-restart-if-required',
+		mode    => '0555',
+	}
 }
