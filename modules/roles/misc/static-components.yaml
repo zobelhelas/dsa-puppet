@@ -39,6 +39,9 @@ components:
   lintian.debian.org:
     master: dillon.debian.org
     source: lindsay.debian.org:/srv/lintian.debian.org/reports-directory/www
+  manpages.debian.org:
+    master: dillon.debian.org
+    source: manziarly.debian.org:/srv/manpages.debian.org/www
   mozilla.debian.net:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/mozilla.debian.net/htdocs
