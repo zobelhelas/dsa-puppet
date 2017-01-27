@@ -47,7 +47,7 @@ anu:
 conova:
   netrange:
     - 217.196.149.224/28
-  mirror-debian: http://ftp.at.debian.org/debian/
+  mirror-debian: http://mirror.netcologne.de/debian/
 csail:
   netrange:
     - 128.31.0.0/24
