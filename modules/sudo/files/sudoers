@@ -273,20 +273,6 @@ nagiosadm	tchaikovsky=(root)		NOPASSWD: /usr/sbin/service icinga reload
 %Debian,%guest,%d-i	PORTERBOXES=(root)	NOPASSWD: /usr/local/bin/dd-schroot-cmd
 
 
-# Openstack stuff
-Defaults:neutron !requiretty
-nova		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/nova-rootwrap *
-neutron		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf *
-cinder		NOVAHOSTS=(root)	NOPASSWD: /usr/bin/cinder-rootwrap /etc/cinder/rootwrap.conf *
-%openstack	NOVAHOSTS=(keystone)	ALL
-%openstack	NOVAHOSTS=(memcache)	ALL
-%openstack	NOVAHOSTS=(ceilometer)	ALL
-%openstack	NOVAHOSTS=(cinder)	ALL
-%openstack	NOVAHOSTS=(glance)	ALL
-%openstack	NOVAHOSTS=(heat)	ALL
-%openstack	NOVAHOSTS=(neutron)	ALL
-%openstack	NOVAHOSTS=(nova)	ALL
-
 # ports stuff
 mini-dak	porta=(archvsync)	NOPASSWD: /home/archvsync/signal_ports
 mini-dak	porta=(archvsync)	NOPASSWD: /home/archvsync/signal_ports-cd
