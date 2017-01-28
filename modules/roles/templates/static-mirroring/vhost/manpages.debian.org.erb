@@ -1,0 +1,100 @@
+<Macro vstatic-vhost-extra-manpages.debian.org>
+	RequestHeader set Accept-Encoding "expr=gzip,%{req:Accept-Encoding}" early
+	AddDefaultCharset utf-8
+
+	# Replace e.g. pt-BR with pt_BR.
+	RequestHeader edit Accept-Language "-" "_" early
+
+	# Only SetEnvIf gets called _before_ RewriteRule.
+	SetEnvIf Accept-Language "^(.*)$" ACCLANG=$1 INITIAL=t
+	SetEnvIf Accept-Language "^$" ACCLANG=en INITIAL=t
+
+	RewriteEngine on
+	RewriteMap manpagesall dbm:/srv/manpages.debian.org/www/rwmap.dbm
+	RewriteMap lc int:tolower
+
+	# URLs which end in a slash do not need to be rewritten
+	RewriteRule /$ - [last]
+
+	# Redirect old CGI paths, keeping at least the manpage (the other
+	# parameters are left out for simplicity).
+	RewriteCond %{QUERY_STRING} ^$
+	RewriteRule ^/cgi-bin/man.cgi$ / [redirect=301,last]
+	RewriteCond %{QUERY_STRING} (?:.*(?:^|&))query=([^&]+)
+	RewriteRule ^/cgi-bin/man.cgi /%1 [redirect=307,qsdiscard,last]
+
+	# legacy manpages.debian.org patterns
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man/0/(.*$) /$1
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man/([0-9ln]p?m?)/(.*$) /$2.$1
+
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man0/(.*$) /$1
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man([0-9ln]p?m?)/(.*$) /$2.$1
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/([^/]+)/man0/(.*$) /$2.$1
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/([^/]+)/man([0-9ln]p?m?)/(.*$) /$3.$2.$1
+
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man/([a-z]*)/([^/]+)/0/(.*$) /$1/$3.$2
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man/([a-z]*)/([^/]+)/([0-9ln]p?m?)/(.*$) /$1/$4.$3.$2
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man/([a-z]*)/0/(.*$) /$1/$2
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man/([a-z]*)/([0-9ln]p?m?)/(.*$) /$1/$3.$2
+
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/0/(.*$) /$1
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/([0-9ln]p?m?)/(.*$) /$2.$1
+
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man/([^/]+)/(.*$) /$2.$1
+	RewriteCond "%{env:INITIAL}" "=t"
+	RewriteRule ^/man/(.*$) /$1
+
+	# chomp off the first language tag for use in the following rules
+	RewriteCond "%{env:ACCLANG}" "^([^,;]+)"
+	RewriteRule .* - [E=ACCTOK:%1]
+
+	RewriteCond "${manpagesall:${lc:$1}.%{env:ACCTOK}}" "^(.+)$"
+	RewriteRule ^(.+)$ %1 [redirect=307,last]
+
+	# Example Accept-Language header:
+	# en-US,en;q=0.8,de-CH;q=0.6,de;q=0.4
+
+	RewriteRule .* - [E=!INITIAL]
+
+	# while ACCLANG is non-empty, repeat
+	RewriteCond "%{env:ACCLANG}" "^(?:[^,]+),(.+)"
+	RewriteRule .* - [E=ACCLANG:%1,N]
+
+	# fallback: maybe the language is already present?
+	RewriteCond "${manpagesall:${lc:$1}}" "^(.+)$"
+	RewriteRule ^(.+)$ %1 [redirect=307,last]
+
+	<Directory /srv/static.debian.org/mirrors/manpages.debian.org/cur>
+		ExpiresActive On
+		ExpiresDefault "access plus 1 hours"
+
+		<Files ~ "^rwmap">
+			Require all denied
+		</Files>
+
+		# To set the correct Content-Type (e.g. text/html).
+		RemoveType .gz
+		AddEncoding gzip gz
+		FilterDeclare gzip CONTENT_SET
+		FilterProvider gzip inflate "%{req:Accept-Encoding} !~ /gzip,.*gzip/"
+		FilterChain gzip
+		Options +Multiviews
+	</Directory>
+
+	ErrorDocument 404 https://dyn.manpages.debian.org%{REQUEST_URI}?%{QUERY_STRING}
+</Macro>
+
+# vim:ft=apache:
