@@ -70,6 +70,7 @@ class roles::static_mirror {
 	}
 
 	apache2::site { '010-static-vhosts-00-manpages':
+		site   => 'static-manpages.debian.org',
 		ensure  => has_static_component('manpages.debian.org') ? { true => "present", false => "absent" },
 		content => template('roles/static-mirroring/vhost/manpages.debian.org.erb'),
 	}
