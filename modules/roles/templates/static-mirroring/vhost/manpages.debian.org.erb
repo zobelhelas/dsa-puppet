@@ -10,7 +10,7 @@
 	SetEnvIf Accept-Language "^$" ACCLANG=en INITIAL=t
 
 	RewriteEngine on
-	RewriteMap manpagesall dbm:/srv/manpages.debian.org/www/rwmap.dbm
+	RewriteMap manpagesall dbm:/srv/static.debian.org/mirrors/manpages.debian.org/cur/rwmap.dbm
 	RewriteMap lc int:tolower
 
 	# URLs which end in a slash do not need to be rewritten
