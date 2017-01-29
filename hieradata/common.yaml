@@ -65,6 +65,9 @@ roles:
     - muffat.debian.org
   manpages:
     - manziarly.debian.org
+  manpages-dyn:
+    - manziarly.debian.org
+    - cgi-grnet-01.debian.org
   muninmaster:
     - menotti.debian.org
   nagiosmaster:
