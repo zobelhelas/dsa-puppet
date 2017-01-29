@@ -1,5 +1,9 @@
 For content which can be served via the Apache web server, possibly with a
-custom configuration, Debian runs its static mirroring infrastructure.
+custom configuration, Debian runs its static mirroring infrastructure. A key
+advantage of that infrastructure is the higher availability it provides:
+whereas individual virtual machines are power-cycled for scheduled maintenance
+(e.g. kernel upgrades), static mirroring machines are removed from the DNS
+entry static.debian.org during their maintenance.
 
 The term static mirroring infrastructure includes:
 
