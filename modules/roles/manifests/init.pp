@@ -64,8 +64,8 @@ class roles {
 		}
 	}
 
-	if has_role('manpages') {
-		ssl::service { 'dyn.manpages.debian.org': notify  => Exec['service apache2 reload'], key => true, }
+	if has_role('manpages-dyn') {
+		include roles::manpages_dyn
 	}
 
 	if has_role('security_mirror') {

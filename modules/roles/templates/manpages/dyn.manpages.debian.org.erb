@@ -1,0 +1,32 @@
+Use common-debian-service-https-redirect * dyn.manpages.debian.org
+
+<VirtualHost *:443>
+	ServerName dyn.manpages.debian.org
+	ServerAdmin debian-admin@lists.debian.org
+
+	Use common-debian-service-ssl dyn.manpages.debian.org
+	Use common-ssl-HSTS
+	Use http-pkp-dyn.manpages.debian.org
+
+	ErrorLog /var/log/apache2/dyn.manpages.debian.org-error.log
+	CustomLog /var/log/apache2/dyn.manpages.debian.org-access.log privacy
+
+	# URLs which end in a slash do not need to be rewritten
+	RewriteEngine on
+	RewriteRule ^(.*/)$ "https://manpages.debian.org$1" [R=307,L]
+
+	# Redirect fully qualified URLs to the correct host.
+	RewriteCond "/srv/manpages.debian.org/www/%{REQUEST_FILENAME}" "-f" [OR]
+	RewriteCond "/srv/manpages.debian.org/www/%{REQUEST_FILENAME}.gz" "-f"
+	RewriteRule "^/(.*)" "https://manpages.debian.org/$1" [R=307,L]
+
+	# Use the correct host in redirects
+	Header edit Location "^/" "https://manpages.debian.org/"
+
+	<Location />
+		ProxyPass "http://localhost:2431/"
+		ProxyPassReverse "http://localhost:2431/"
+	</Location>
+</VirtualHost>
+
+# vim:set syn=apache:
