@@ -64,7 +64,6 @@ roles:
     - mailly.debian.org
     - muffat.debian.org
   manpages:
-    - glinka.debian.org
     - manziarly.debian.org
   muninmaster:
     - menotti.debian.org
