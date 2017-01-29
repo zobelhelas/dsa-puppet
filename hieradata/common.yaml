@@ -238,6 +238,7 @@ roles:
   experimental_apache:
     - beach.debian.org
     - busoni.debian.org
+    - cgi-grnet-01.debian.org
     - coccia.debian.org
     - draghi.debian.org
     - klecker.debian.org
