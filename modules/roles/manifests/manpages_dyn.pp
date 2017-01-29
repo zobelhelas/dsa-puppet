@@ -1,6 +1,7 @@
 class roles::manpages_dyn {
 	include apache2::ssl
 	include apache2::proxy_http
+	include apache2::expires
 
 	ssl::service { 'dyn.manpages.debian.org': notify  => Exec['service apache2 reload'], key => true, }
 
