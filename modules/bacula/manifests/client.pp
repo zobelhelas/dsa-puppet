@@ -50,7 +50,7 @@ class bacula::client inherits bacula {
 		require => Package['bacula-fd'],
 		notify  => Service['bacula-fd'],
 	}
-	if $::lsbmajdistrelease >= 9 {
+	if ($::lsbmajdistrelease >= 9 and $systemd) {
 		file { '/etc/systemd/system/bacula-fd.service.d':
 			ensure	=> directory,
 			mode	=> '0755',
