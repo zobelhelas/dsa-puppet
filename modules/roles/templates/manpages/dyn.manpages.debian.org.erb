@@ -21,8 +21,7 @@ Use common-debian-service-https-redirect * dyn.manpages.debian.org
 		ExpiresDefault "access plus 1 hours"
 
 		<Files ~ "^rwmap">
-			Order allow,deny
-			Deny from all
+			Require all denied
 		</Files>
 
 		# To set the correct Content-Type (e.g. text/html).
