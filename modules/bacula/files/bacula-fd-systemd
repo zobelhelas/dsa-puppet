@@ -1,3 +1,3 @@
 [Service]
 ExecStart=
-ExecStart=/usr/sbin/bacula-fd -f -u bacula -k -c $CONFIG
+ExecStart=/usr/sbin/bacula-fd -f -c $CONFIG -u bacula -k

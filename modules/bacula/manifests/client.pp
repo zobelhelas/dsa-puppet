@@ -61,7 +61,7 @@ class bacula::client inherits bacula {
 		mode	=> '0400',
 		owner	=> root,
 		group	=> root,
-		notify	=> Service['bacula-fd'],
+		notify	=> Exec['systemctl daemon-reload'],
 	}
 
 	@ferm::rule { 'dsa-bacula-fd-v4':
