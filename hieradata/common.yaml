@@ -242,7 +242,7 @@ roles:
     - delfin.debian.org
   pet.d.n:
     - petrova.debian.org
-  ports-master:
+  ports_master:
     - porta.debian.org
   onionbalance:
     - olin.debian.org
