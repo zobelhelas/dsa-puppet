@@ -50,18 +50,24 @@ class bacula::client inherits bacula {
 		require => Package['bacula-fd'],
 		notify  => Service['bacula-fd'],
 	}
-	file { '/etc/systemd/system/bacula-fd.service.d':
-		ensure	=> directory,
-		mode	=> '0755',
-		owner	=> root,
-		group	=> root,
-	}
-	file { '/etc/systemd/system/bacula-fd.service.d/user.conf':
-		source	=> 'puppet:///modules/bacula/bacula-fd-systemd',
-		mode	=> '0400',
-		owner	=> root,
-		group	=> root,
-		notify	=> Exec['systemctl daemon-reload'],
+	if $::lsbmajdistrelease >= 9 {
+		file { '/etc/systemd/system/bacula-fd.service.d':
+			ensure	=> directory,
+			mode	=> '0755',
+			owner	=> root,
+			group	=> root,
+		}
+		file { '/etc/systemd/system/bacula-fd.service.d/user.conf':
+			source	=> 'puppet:///modules/bacula/bacula-fd-systemd',
+			mode	=> '0400',
+			owner	=> root,
+			group	=> root,
+			notify	=> Exec['systemctl daemon-reload'],
+		}
+	} else {
+		file { '/etc/systemd/system/bacula-fd.service.d/user.conf':
+			ensure	=> absent,
+		}
 	}
 
 	@ferm::rule { 'dsa-bacula-fd-v4':
