@@ -8,7 +8,9 @@
 
 # DAEMON_OPTS are any extra cmdline parameters you'd like to
 #             pass along to the nrpe daemon
+# It was renamed to NRPE_OPTS in stretch
 DAEMON_OPTS="--no-ssl"
+NRPE_OPTS="--no-ssl"
 
 # NICENESS is if you want to run the server at a different nice() priority
 #NICENESS=5
