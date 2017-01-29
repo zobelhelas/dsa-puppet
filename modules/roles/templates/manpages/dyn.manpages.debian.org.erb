@@ -11,22 +11,38 @@ Use common-debian-service-https-redirect * dyn.manpages.debian.org
 	ErrorLog /var/log/apache2/dyn.manpages.debian.org-error.log
 	CustomLog /var/log/apache2/dyn.manpages.debian.org-access.log privacy
 
-	# URLs which end in a slash do not need to be rewritten
-	RewriteEngine on
-	RewriteRule ^(.*/)$ "https://manpages.debian.org$1" [R=307,L]
+	DocumentRoot /srv/manpages.debian.org/www
 
-	# Redirect fully qualified URLs to the correct host.
-	RewriteCond "/srv/manpages.debian.org/www/%{REQUEST_FILENAME}" "-f" [OR]
-	RewriteCond "/srv/manpages.debian.org/www/%{REQUEST_FILENAME}.gz" "-f"
-	RewriteRule "^/(.*)" "https://manpages.debian.org/$1" [R=307,L]
+	<Directory /srv/manpages.debian.org/www>
+		Require all granted
+		AllowOverride none
 
-	# Use the correct host in redirects
-	Header edit Location "^/" "https://manpages.debian.org/"
+		ExpiresActive On
+		ExpiresDefault "access plus 1 hours"
 
-	<Location />
+		<Files ~ "^rwmap">
+			Order allow,deny
+			Deny from all
+		</Files>
+
+		# To set the correct Content-Type (e.g. text/html).
+		RemoveType .gz
+		AddEncoding gzip gz
+		FilterDeclare gzip CONTENT_SET
+		FilterProvider gzip inflate "%{req:Accept-Encoding} !~ /gzip,.*gzip/"
+		FilterChain gzip
+		Options +Multiviews
+	</Directory>
+
+	<Location /auxserver/>
 		ProxyPass "http://localhost:2431/"
 		ProxyPassReverse "http://localhost:2431/"
+
+		# Use the correct host in redirects
+		Header edit Location "^/" "https://manpages.debian.org/"
 	</Location>
+
+	ErrorDocument 404 /auxserver%{REQUEST_URI}?%{QUERY_STRING}
 </VirtualHost>
 
 # vim:set syn=apache:
