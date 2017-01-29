@@ -50,6 +50,13 @@ class bacula::client inherits bacula {
 		require => Package['bacula-fd'],
 		notify  => Service['bacula-fd'],
 	}
+	file { '/etc/systemd/system/bacula-fd.service.d/user.conf':
+		source	=> 'puppet:///modules/bacula/bacula-fd-systemd',
+		mode	=> '0400',
+		owner	=> root,
+		group	=> root,
+		notify	=> Service['bacula-fd'],
+	}
 
 	@ferm::rule { 'dsa-bacula-fd-v4':
 		domain      => '(ip)',

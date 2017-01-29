@@ -1,0 +1,2 @@
+[Service]
+ExecStart=/usr/sbin/bacula-fd -f -u bacula -k -c $CONFIG
