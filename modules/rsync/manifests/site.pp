@@ -3,7 +3,6 @@ define rsync::site (
 	$bind6='',
 	$source='',
 	$content='',
-	$fname='',
 	$max_clients=200,
 	$ensure=present,
 	$sslname='',
@@ -12,11 +11,7 @@ define rsync::site (
 
 	include rsync
 
-	if ! $fname {
-		$fname_real = "/etc/rsyncd-${name}.conf"
-	} else {
-		$fname_real = $fname
-	}
+	$fname_real = "/etc/rsyncd-${name}.conf"
 	case $ensure {
 		present,absent: {}
 		default: { fail ( "Invald ensure `${ensure}' for ${name}" ) }
