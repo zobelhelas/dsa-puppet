@@ -227,6 +227,10 @@ class debian-org {
 		key   => 'kernel.perf_event_paranoid',
 		value => '2',
 	}
+	site::sysctl { 'puppet-vfs_cache_pressure':
+		key   => 'vm.vfs_cache_pressure',
+		value => '10',
+	}
 	site::alternative { 'editor':
 		linkto => '/usr/bin/vim.basic',
 	}
