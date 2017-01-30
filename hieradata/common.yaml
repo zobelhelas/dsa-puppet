@@ -211,8 +211,10 @@ roles:
     - vittoria.debian.org
   debian_mirror:
     - bilbao.debian.org
+    - mirror-isc.debian.org
   debian_mirror_onion:
     - bilbao.debian.org
+    - mirror-isc.debian.org
   debug_mirror:
     - klecker.debian.org
     - mirror-isc.debian.org
