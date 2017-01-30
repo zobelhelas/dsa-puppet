@@ -7,4 +7,5 @@ nameservers:
   - 130.239.1.90
   - 130.239.4.100
 searchpaths:
+  - priv.accumu.debian.org
   - debprivate-accumu.debian.org
