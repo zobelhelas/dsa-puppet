@@ -11,7 +11,7 @@ class roles::debian_mirror {
 		default    => undef,
 	}
 	$archive_root = $::hostname ? {
-		default    => '/srv/mirrors/debian,
+		default    => '/srv/mirrors/debian',
 	}
 
 	apache2::site { '010-ftp.debian.org':
