@@ -234,7 +234,6 @@ letsencrypt	denis=(dnsadm)			NOPASSWD: /srv/dns.debian.org/bin/update
 %wbadm		BUILDD_MASTER=(root)		/usr/local/bin/update-buildd-sshkeys
 # mirror push
 dak		FTPHOSTS,SECHOSTS=(archvsync)	NOPASSWD:/home/archvsync/runmirrors
-dak		FTHOSTS=(backports)	NOPASSWD: /home/backports/bin/update-archive
 # archvsync triggers snapshot
 archvsync	sibelius=(snapshot)	NOPASSWD: /srv/snapshot.debian.org/bin/update-trigger
 archvsync	sibelius=(snapshot)	NOPASSWD: /srv/2ndsnapshot/bin/update-trigger
