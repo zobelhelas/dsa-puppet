@@ -10,6 +10,9 @@ class roles::debian_mirror {
 		mirror-isc => '149.20.4.15',
 		default    => undef,
 	}
+	$archive_root = $::hostname ? {
+		default    => '/srv/mirrors/debian,
+	}
 
 	apache2::site { '010-ftp.debian.org':
 		site   => 'ftp.debian.org',

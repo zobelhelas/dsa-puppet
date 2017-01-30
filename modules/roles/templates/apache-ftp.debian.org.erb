@@ -5,16 +5,18 @@
 
 <VirtualHost <%= vhost_listen %>>
         ServerAdmin webmaster@debian.org
-        DocumentRoot /srv/ftp.debian.org/ftp.root
         ServerName ftp.debian.org
         <% if scope.function_onion_global_service_hostname(['ftp.debian.org']) -%>
         ServerAlias <%= scope.function_onion_global_service_hostname(['ftp.debian.org']) %>
         <% end %>
 
+        RedirectMatch "^/$" /debian/
+        Alias /debian/ <%= archive_root >/
+
         ErrorLog /var/log/apache2/ftp.debian.org-error.log
         CustomLog /var/log/apache2/ftp.debian.org-access.log privacy
 
-        Use ftp-archive /srv/ftp.debian.org/ftp.root/debian
+        Use ftp-archive <%= archive_root >
 </VirtualHost>
 
 # vim:set syn=apache:
