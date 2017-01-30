@@ -71,6 +71,9 @@ class roles {
 	if has_role('security_mirror') {
 		include roles::security_mirror
 	}
+	if has_role('debian_mirror') {
+		include roles::debian_mirror
+	}
 	if has_role('debug_mirror') {
 		include roles::debug_mirror
 	}
