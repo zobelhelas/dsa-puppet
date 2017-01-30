@@ -44,10 +44,6 @@
    #<% end %>
    #RewriteRule ^/debian-security/(pool/updates/main/l/linux/.*) http://security-cdn.debian.org/$1 [L,R=302]
 
-   # Possible values include: debug, info, notice, warn, error, crit,
-   # alert, emerg.
-   LogLevel warn
-
    CustomLog /var/log/apache2/security.debian.org-access.log privacy
    ServerSignature On
 </VirtualHost>
