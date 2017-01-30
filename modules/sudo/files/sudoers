@@ -48,6 +48,7 @@ root	ALL=(ALL) ALL
 # XXX
 # until march 2017
 93sam		acker=(ALL)	ALL
+kibi		acker=(ALL)	ALL
 
 %adm		ALL=(ALL)	NOPASSWD: /usr/bin/apt-get update, /usr/bin/apt-get upgrade, /usr/bin/apt-get dist-upgrade, /usr/bin/apt-get clean, /usr/sbin/samhain -t check -i -p err -s none -l none -m none, /usr/sbin/upgrade-porter-chroots
 
