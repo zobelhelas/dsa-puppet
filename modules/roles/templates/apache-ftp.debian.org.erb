@@ -11,12 +11,12 @@
         <% end %>
 
         RedirectMatch "^/$" /debian/
-        Alias /debian/ <%= archive_root >/
+        Alias /debian/ <%= archive_root %>/
 
         ErrorLog /var/log/apache2/ftp.debian.org-error.log
         CustomLog /var/log/apache2/ftp.debian.org-access.log privacy
 
-        Use ftp-archive <%= archive_root >
+        Use ftp-archive <%= archive_root %>
 </VirtualHost>
 
 # vim:set syn=apache:
