@@ -310,9 +310,6 @@ class roles {
 		include roles::ports_mirror
 	}
 
-	if $::hostname in [klecker] {
-		onion::service { 'ftp.debian.org': port => 80, target_address => '130.89.148.12', target_port => 81, }
-	}
 	if has_role('onionbalance') {
 		include onion::balance
 	}
