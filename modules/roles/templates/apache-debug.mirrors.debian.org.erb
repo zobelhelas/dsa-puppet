@@ -17,11 +17,6 @@
         LogLevel warn
         CustomLog /var/log/apache2/debug.mirrors.debian.org-access.log privacy
 
-        <Directory /srv/mirrors/debian-debug>
-                Require all granted
-                IndexOptions NameWidth=* +SuppressDescription
-                Options +Indexes
-                Options +FollowSymLinks
-        </Directory>
         Use ftp-archive /srv/mirrors/debian-debug
 </VirtualHost>
+# vim:set syn=apache:

@@ -3,14 +3,6 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<Directory /srv/ftp.root/debian-security>
-   IndexOptions NameWidth=* +SuppressDescription
-   Options +FollowSymLinks
-   Options +Indexes
-   FileETag MTime Size
-   Require all granted
-</Directory>
-
 <VirtualHost *:80>
    ServerAdmin debian-admin@debian.org
    DocumentRoot /srv/ftp.root/debian-security
@@ -60,4 +52,4 @@
    ServerSignature On
 </VirtualHost>
 
-# vim: set ts=3 sw=3 et:
+# vim:set syn=apache:

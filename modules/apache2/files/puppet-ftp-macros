@@ -1,6 +1,12 @@
 <IfModule mod_headers.c>
   <IfModule mod_macro.c>
     <Macro ftp-archive $root>
+      <Directory $root>
+        Require all granted
+        IndexOptions NameWidth=* +SuppressDescription
+        Options +Indexes +FollowSymLinks
+        FileETag MTime Size
+      </Directory>
       <Directory $root/pool>
         <Files ?*>
           Header set Cache-Control "public, max-age=2592000"
@@ -19,3 +25,4 @@
     </Macro>
   </IfModule>
 </IfModule>
+# vim:set syn=apache:
