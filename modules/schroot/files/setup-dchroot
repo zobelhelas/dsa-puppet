@@ -294,7 +294,7 @@ if [ -z "${builddir:-}" ]; then
     fi
   done
 fi
-[ -d "$basedir" ] || die "Error: $basedir does not exist (or is not a directory)."
+[ -d "$basedir" ] || mkdir -p "$basedir"
 [ -d "$builddir" ] || die "Error: $builddir does not exist (or is not a directory)."
 
 target="$basedir/$tuple.tar.gz"
