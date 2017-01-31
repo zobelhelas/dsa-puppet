@@ -270,6 +270,5 @@ roles:
     - wieck.debian.org
   bgp:
     - bilbao.debian.org
-    - boman.debian.org
   cdimage-search:
     - cgi-grnet-01.debian.org
