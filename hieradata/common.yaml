@@ -267,3 +267,5 @@ roles:
     - ticharich.debian.org
     - villa.debian.org
     - wieck.debian.org
+  bgp:
+    - bilbao.debian.org

@@ -316,4 +316,7 @@ class roles {
 	if has_role('onionbalance') {
 		include onion::balance
 	}
+	if has_role('bgp') {
+		include roles::bgp
+	}
 }
