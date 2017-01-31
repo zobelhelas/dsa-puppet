@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+	ServerAdmin debian-cd@lists.debian.org
+	DocumentRoot /srv/cdimage-search.debian.org/htdocs
+	ServerName cdimage-search.debian.org
+	ErrorLog /var/log/apache2/cdimage-search.debian.org-error.log
+	CustomLog /var/log/apache2/cdimage-search.debian.org-access.log combined
+
+	ScriptAlias /cgi-bin/ /srv/cdimage-search.debian.org/cgi-bin/
+	<Directory "/srv/cdimage-search.debian.org/cgi-bin">
+		AllowOverride None
+		Options +ExecCGI -MultiViews +SymlinksIfOwnerMatch
+		Require all granted
+	</Directory>
+
+	<Directory /srv/cdimage-search.debian.org/htdocs>
+		Require all granted
+		AllowOverride none
+	</Directory>
+
+	RewriteEngine On
+	RewriteRule ^/$ /cgi-bin/find_file.cgi [PT]
+</VirtualHost>
+
+# vim:set syn=apache:

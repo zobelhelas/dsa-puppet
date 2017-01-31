@@ -319,4 +319,7 @@ class roles {
 	if has_role('bgp') {
 		include roles::bgp
 	}
+	if has_role('cdimage-search') {
+		include roles::cdimage_search
+	}
 }
