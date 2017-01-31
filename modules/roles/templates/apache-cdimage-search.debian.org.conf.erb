@@ -1,9 +1,14 @@
-<VirtualHost *:80>
+##
+### THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+### USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+###
+
+<Macro vhost-inner-cdimage-search.debian.org>
 	ServerAdmin debian-cd@lists.debian.org
 	DocumentRoot /srv/cdimage-search.debian.org/htdocs
-	ServerName cdimage-search.debian.org
+
 	ErrorLog /var/log/apache2/cdimage-search.debian.org-error.log
-	CustomLog /var/log/apache2/cdimage-search.debian.org-access.log combined
+	CustomLog /var/log/apache2/cdimage-search.debian.org-access.log privacy
 
 	ScriptAlias /cgi-bin/ /srv/cdimage-search.debian.org/cgi-bin/
 	<Directory "/srv/cdimage-search.debian.org/cgi-bin">
@@ -19,6 +24,25 @@
 
 	RewriteEngine On
 	RewriteRule ^/$ /cgi-bin/find_file.cgi [PT]
+</Macro>
+
+Use common-debian-service-https-redirect * cdimage-search.debian.org
+
+<VirtualHost *:443>
+	ServerName cdimage-search.debian.org
+	Use common-debian-service-ssl cdimage-search.debian.org
+	Use common-ssl-HSTS
+	Use http-pkp-cdimage-search.debian.org
+	Use vhost-inner-cdimage-search.debian.org
 </VirtualHost>
+
+<% if scope.function_onion_global_service_hostname(['cdimage-search.debian.org']) -%>
+<Virtualhost *:80>
+	ServerName <%= scope.function_onion_global_service_hostname(['cdimage-search.debian.org']) %>
+	Use vhost-inner-cdimage-search.debian.org
+</VirtualHost>
+
+<% end %>
+
 
 # vim:set syn=apache:
