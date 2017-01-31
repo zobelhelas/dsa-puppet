@@ -1,4 +1,6 @@
 class roles::cdimage_search {
+	include apache2::proxy_http
+
 	package { 'debian.org-cdimage-search.debian.org': ensure => installed, }
 
 	apache2::site { '010-cdimage-search.debian.org':
