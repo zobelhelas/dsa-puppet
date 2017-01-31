@@ -11,6 +11,6 @@ class roles::bgp {
 	@ferm::rule { 'dsa-bgp':
 		description => 'Allow BGP from peers',
 		domain      => '(ip ip6)',
-		rule        => '&SERVICE_RANGE(tcp, ssh, $bgp_peers)'
+		rule        => "&SERVICE_RANGE(tcp, bgp, ($bgp_peers))"
 	}
 }
