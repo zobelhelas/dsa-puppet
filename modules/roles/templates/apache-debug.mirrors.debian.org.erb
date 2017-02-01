@@ -17,5 +17,9 @@
 	CustomLog /var/log/apache2/debug.mirrors.debian.org-access.log privacy
 
 	Use ftp-archive /srv/mirrors/debian-debug
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
 </VirtualHost>
 # vim:set syn=apache:

@@ -25,5 +25,9 @@
 		Options +Indexes
 		Options +FollowSymLinks
 	</Directory>
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
 </VirtualHost>
 # vim:set syn=apache:

@@ -17,6 +17,10 @@
 	CustomLog /var/log/apache2/ftp.debian.org-access.log privacy
 
 	Use ftp-archive <%= archive_root %>
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
 </VirtualHost>
 
 # vim:set syn=apache:

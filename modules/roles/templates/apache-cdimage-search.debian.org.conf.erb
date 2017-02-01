@@ -24,6 +24,10 @@
 
 	RewriteEngine On
 	RewriteRule ^/$ /cgi-bin/find_file.cgi [PT]
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
 </Macro>
 
 Use common-debian-service-https-redirect * cdimage-search.debian.org
