@@ -4,7 +4,7 @@
 ##
 
 <VirtualHost <%= vhost_listen %>>
-	ServerAdmin webmaster@debian.org
+	ServerAdmin debian-admin@debian.org
 	ServerName ftp.debian.org
 	<% if scope.function_onion_global_service_hostname(['ftp.debian.org']) -%>
 	ServerAlias <%= scope.function_onion_global_service_hostname(['ftp.debian.org']) %>
