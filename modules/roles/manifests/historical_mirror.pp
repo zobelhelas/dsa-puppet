@@ -1,4 +1,6 @@
 class roles::historical_mirror {
+	include apache2::expires
+
 	$vhost_listen = $::hostname ? {
 		default => '*:80',
 	}
