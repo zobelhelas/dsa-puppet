@@ -1,0 +1,26 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
+##
+
+<VirtualHost <%= vhost_listen %>>
+	ServerAdmin debian-admin@debian.org
+	ServerName archive.debian.org
+	<% if scope.function_onion_global_service_hostname(['archive.debian.org']) -%>
+	ServerAlias <%= scope.function_onion_global_service_hostname(['archive.debian.org']) %>
+	<% end %>
+
+	RedirectMatch "^/$" /debian-archive/
+	Alias /debian-archive/ <%= archive_root %>/
+
+	ErrorLog /var/log/apache2/archive.debian.org-error.log
+	CustomLog /var/log/apache2/archive.debian.org-access.log privacy
+
+	Use ftp-archive <%= archive_root %>
+
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+</VirtualHost>
+
+# vim:set syn=apache:
