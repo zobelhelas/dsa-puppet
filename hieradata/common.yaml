@@ -218,6 +218,7 @@ roles:
     - mirror-isc.debian.org
   historical_mirror:
     - gretchaninov.debian.org
+    - klecker.debian.org
   debug_mirror:
     - klecker.debian.org
     - mirror-isc.debian.org
