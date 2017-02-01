@@ -10,7 +10,8 @@
 	ServerAlias <%= scope.function_onion_global_service_hostname(['archive.debian.org']) %>
 	<% end %>
 
-	RedirectMatch "^/$" /debian-archive/
+	#RedirectMatch "^/$" /debian-archive/
+	DocumentRoot <%= archive_root %>/
 	Alias /debian-archive/ <%= archive_root %>/
 
 	ErrorLog /var/log/apache2/archive.debian.org-error.log
