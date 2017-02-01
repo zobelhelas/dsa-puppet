@@ -16,7 +16,14 @@
 	ErrorLog /var/log/apache2/archive.debian.org-error.log
 	CustomLog /var/log/apache2/archive.debian.org-access.log privacy
 
-	Use ftp-archive <%= archive_root %>
+	<Directory <%= archive_root %>>
+		Require all granted
+		IndexOptions NameWidth=* +SuppressDescription
+		Options +Indexes +FollowSymLinks
+	</Directory>
+
+	ExpiresActive On
+	ExpiresDefault "access plus 1 day"
 
 	<IfModule mod_userdir.c>
 		UserDir disabled
