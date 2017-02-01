@@ -20,7 +20,9 @@ class roles::security_mirror {
 		default => undef,
 	}
 
-	include apache2::cache
+	include apache2::expires
+	include apache2::rewrite
+
 	apache2::site { '010-security.debian.org':
 		site   => 'security.debian.org',
 		content => template('roles/security_mirror/security.debian.org.erb')

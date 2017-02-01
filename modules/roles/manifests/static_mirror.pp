@@ -1,7 +1,8 @@
 class roles::static_mirror {
 
 	include roles::static_source
-	include apache2::cache
+	include apache2::expires
+	include apache2::rewrite
 
 	package { 'libapache2-mod-geoip': ensure => installed, }
 	package { 'geoip-database': ensure => installed, }
