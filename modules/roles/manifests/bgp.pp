@@ -13,4 +13,9 @@ class roles::bgp {
 		domain      => '(ip ip6)',
 		rule        => "&SERVICE_RANGE(tcp, bgp, ($bgp_peers))"
 	}
+
+	file { '/etc/network/interfaces.d/anycasted':
+		content => template('roles/anycast/interfaces.erb')
+	}
+
 }
