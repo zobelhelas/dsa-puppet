@@ -2,6 +2,7 @@ class roles::historical_mirror {
 	include apache2::expires
 
 	$vhost_listen = $::hostname ? {
+		klecker => '130.89.148.13:80 2001:610:1908:b000::148:13:80',
 		default => '*:80',
 	}
 	$onion_v4_addr = $::hostname ? {
