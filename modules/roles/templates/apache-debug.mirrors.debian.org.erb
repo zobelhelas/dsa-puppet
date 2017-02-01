@@ -4,18 +4,18 @@
 ##
 
 <VirtualHost <%= vhost_listen %> >
-        ServerAdmin debian-admin@debian.org
-        ServerName debug.mirrors.debian.org
-        <% if scope.function_onion_global_service_hostname(['debug.mirrors.debian.org']) -%>
-        ServerAlias <%= scope.function_onion_global_service_hostname(['debug.mirrors.debian.org']) %>
-        <% end %>
+	ServerAdmin debian-admin@debian.org
+	ServerName debug.mirrors.debian.org
+	<% if scope.function_onion_global_service_hostname(['debug.mirrors.debian.org']) -%>
+	ServerAlias <%= scope.function_onion_global_service_hostname(['debug.mirrors.debian.org']) %>
+	<% end %>
 
-        RedirectMatch "^/$" /debian-debug/
-        Alias /debian-debug /srv/mirrors/debian-debug
+	RedirectMatch "^/$" /debian-debug/
+	Alias /debian-debug /srv/mirrors/debian-debug
 
-        ErrorLog /var/log/apache2/debug.mirrors.debian.org-error.log
-        CustomLog /var/log/apache2/debug.mirrors.debian.org-access.log privacy
+	ErrorLog /var/log/apache2/debug.mirrors.debian.org-error.log
+	CustomLog /var/log/apache2/debug.mirrors.debian.org-access.log privacy
 
-        Use ftp-archive /srv/mirrors/debian-debug
+	Use ftp-archive /srv/mirrors/debian-debug
 </VirtualHost>
 # vim:set syn=apache:
