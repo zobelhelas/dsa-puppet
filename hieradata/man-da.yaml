@@ -8,4 +8,3 @@ allow_dns_query:
 searchpaths:
   - manda.debian.org
   - priv.manda.debian.org
-  - debprivate-darmstadt.debian.org
