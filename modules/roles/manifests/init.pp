@@ -306,8 +306,8 @@ class roles {
 		ssl::service { 'pet-devel.debian.net': notify  => Exec['service apache2 reload'], key => true, }
 	}
 
-	if has_role('ports-master') {
-		include roles::ports-master
+	if has_role('ports_master') {
+		include roles::ports_master
 	}
 	if has_role('ports_mirror') {
 		include roles::ports_mirror
