@@ -8,6 +8,10 @@ timeout = 7200
 # weasel 2007-11-19
 log file =  /var/log/rsyncd/rsyncd-syncproxy.log
 
+read only = true
+ignore nonreadable = true
+strict modes = false
+
 [debian]
   path = /srv/mirrors/debian/
 <%- unless has_variable?("has_srv_mirrors_debian") && has_srv_mirrors_debian == "true" -%>
@@ -15,7 +19,6 @@ log file =  /var/log/rsyncd/rsyncd-syncproxy.log
 <%- end -%>
   comment = Full Debian FTP Archive (contact mirrors@debian.org for access; see https://www.debian.org/mirror/size for size)
   auth users = *
-  read only = true
   secrets file = /etc/rsyncd/debian.secrets
 
 [debian-debug]
@@ -25,7 +28,6 @@ log file =  /var/log/rsyncd/rsyncd-syncproxy.log
 <%- end -%>
   comment = Debug packages.  Probably large.  Starting end of 2015.
   auth users = *
-  read only = true
   secrets file = /etc/rsyncd/debian.secrets
 
 [debian-ports]
@@ -35,7 +37,6 @@ log file =  /var/log/rsyncd/rsyncd-syncproxy.log
 <%- end -%>
   comment = debian-ports tree - see https://www.ports.debian.org/
   auth users = *
-  read only = true
   secrets file = /etc/rsyncd/debian.secrets
 
 [debian-security]
@@ -45,6 +46,5 @@ log file =  /var/log/rsyncd/rsyncd-syncproxy.log
 <%- end -%>
   comment = Debian security archive (~100 GB; contact mirrors@debian.org for access)
   auth users = *
-  read only = true
   secrets file = /etc/rsyncd/debian.secrets
 
