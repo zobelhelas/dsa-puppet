@@ -1,0 +1,12 @@
+[Unit]
+Description=rsync daemon <%= @name %>
+
+[Service]
+ExecStart=-/usr/bin/rsync --daemon --config=<%= @fname_real_rsync %>
+StandardInput=socket
+StandardError=journal
+CapabilityBoundingSet=CAP_SYS_CHROOT CAP_SETUID CAP_SETGID
+PrivateDevices=true
+PrivateNetwork=true
+ProtectHome=true
+ProtectSystem=full

@@ -1,0 +1,14 @@
+[Unit]
+Description=stunnel for rsync daemon <%= @name %>
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/stunnel4 <%= @fname_real_stunnel %>
+StandardInput=socket
+StandardError=journal
+User=stunnel4
+SupplementaryGroups=ssl-cert
+NoNewPrivileges=true
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=full

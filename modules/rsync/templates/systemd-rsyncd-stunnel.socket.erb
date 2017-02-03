@@ -1,0 +1,13 @@
+[Unit]
+Description=stunnel for rsync daemon <%= @name %> (socket)
+
+[Socket]
+<% @binds.each do |bind| -%>
+ListenStream=<%= bind %>:1873
+<% end -%>
+Accept=true
+FreeBind=true
+MaxConnections=<%= @max_clients %>
+
+[Install]
+WantedBy=sockets.target

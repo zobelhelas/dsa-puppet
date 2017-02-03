@@ -1,0 +1,14 @@
+[Unit]
+Description=rsync daemon <%= @name %> (socket)
+
+[Socket]
+<% @binds.each do |bind| -%>
+ListenStream=<%= bind %>:873
+<% end -%>
+ListenStream=/run/rsyncd/<%= @name %>.socket
+Accept=true
+FreeBind=true
+MaxConnections=<%= @max_clients %>
+
+[Install]
+WantedBy=sockets.target
