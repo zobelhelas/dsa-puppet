@@ -17,7 +17,7 @@ strict modes = false
 <%- unless has_variable?("has_srv_mirrors_debian") && has_srv_mirrors_debian == "true" -%>
   list = no
 <%- end -%>
-  comment = Full Debian FTP Archive (contact mirrors@debian.org for access; see https://www.debian.org/mirror/size for size)
+  comment = Debian archive (contact mirrors@debian.org for access; see https://www.debian.org/mirror/size for size)
   auth users = *
   secrets file = /etc/rsyncd/debian.secrets
 
@@ -26,7 +26,7 @@ strict modes = false
 <%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug == "true" -%>
   list = no
 <%- end -%>
-  comment = Debug packages.  Probably large.  Starting end of 2015.
+  comment = Debug packages for Debian archive (contact mirrors@debian.org for access)
   auth users = *
   secrets file = /etc/rsyncd/debian.secrets
 
@@ -35,7 +35,7 @@ strict modes = false
 <%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug == "true" -%>
   list = no
 <%- end -%>
-  comment = debian-ports tree - see https://www.ports.debian.org/
+  comment = Debian ports archive (contact mirrors@debian.org for access)
   auth users = *
   secrets file = /etc/rsyncd/debian.secrets
 
@@ -44,7 +44,7 @@ strict modes = false
 <%- unless has_variable?("has_srv_mirrors_debian_security") && has_srv_mirrors_debian_security == "true" -%>
   list = no
 <%- end -%>
-  comment = Debian security archive (~100 GB; contact mirrors@debian.org for access)
+  comment = Debian security archive (contact mirrors@debian.org for access)
   auth users = *
   secrets file = /etc/rsyncd/debian.secrets
 
