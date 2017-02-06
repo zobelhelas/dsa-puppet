@@ -243,7 +243,7 @@ host_settings:
   entropy_key:
     - czerny.debian.org
     - grnet-node01.debian.org
-    - ubc-bl2.debian.org
+    # - ubc-bl2.debian.org
     - storace.debian.org
   buildd_master:
     - wuiet.debian.org
