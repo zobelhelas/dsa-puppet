@@ -72,7 +72,7 @@ case `hostname` in
     pizzetti)
         archs="ppc64"
         extra="$extra -m http://ftp.de.debian.org/debian-ports"
-        extra="$extra -k /root/debian-ports-archive-2016.gpg"
+        extra="$extra -k /root/debian-ports-archive-2017.gpg"
         extra="$extra -I debian-ports-archive-keyring"
         ;;
     *)
