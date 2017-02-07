@@ -19,10 +19,11 @@ define xinetd::service (
 	$ensure=present,
 	$ferm=true
 ) {
-	include xinetd
-
 	case $ensure {
-		present,absent,file: {}
+		present,file: {
+			include xinetd
+		}
+		absent: {}
 		default: { fail("Invalid ensure for '$name'") }
 	}
 
