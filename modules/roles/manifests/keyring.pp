@@ -1,5 +1,5 @@
 class roles::keyring {
-	rsync::site { 'keyring':
+	rsync::site_systemd { 'keyring':
 		source  => 'puppet:///modules/roles/keyring/rsyncd.conf',
 		sslname => 'keyring.debian.org',
 	}
