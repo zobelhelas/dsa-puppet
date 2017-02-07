@@ -6,6 +6,7 @@
 <VirtualHost <%= vhost_listen %>>
 	ServerAdmin debian-admin@debian.org
 	ServerName ftp.debian.org
+	ServerAlias debian.testing-anycast.mirrors.debian.org
 	<% if scope.function_onion_global_service_hostname(['ftp.debian.org']) -%>
 	ServerAlias <%= scope.function_onion_global_service_hostname(['ftp.debian.org']) %>
 	<% end %>
