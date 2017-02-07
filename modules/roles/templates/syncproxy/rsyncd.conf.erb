@@ -19,7 +19,7 @@ strict modes = false
 <%- end -%>
   comment = Debian archive (contact mirrors@debian.org for access; see https://www.debian.org/mirror/size for size)
   auth users = *
-  secrets file = /etc/rsyncd/debian.secrets
+  secrets file = /home/archvsync/rsyncd/debian.secrets
 
 [debian-debug]
   path = /srv/mirrors/debian-debug/
@@ -28,7 +28,7 @@ strict modes = false
 <%- end -%>
   comment = Debug packages for Debian archive (contact mirrors@debian.org for access)
   auth users = *
-  secrets file = /etc/rsyncd/debian.secrets
+  secrets file = /home/archvsync/rsyncd/debian-debug.secrets
 
 [debian-ports]
   path = /srv/mirrors/debian-ports/
@@ -37,7 +37,7 @@ strict modes = false
 <%- end -%>
   comment = Debian ports archive (contact mirrors@debian.org for access)
   auth users = *
-  secrets file = /etc/rsyncd/debian.secrets
+  secrets file = /home/archvsync/rsyncd/debian-ports.secrets
 
 [debian-security]
   path = /srv/mirrors/debian-security/
@@ -46,5 +46,5 @@ strict modes = false
 <%- end -%>
   comment = Debian security archive (contact mirrors@debian.org for access)
   auth users = *
-  secrets file = /etc/rsyncd/debian.secrets
+  secrets file = /home/archvsync/rsyncd/debian-security.secrets
 
