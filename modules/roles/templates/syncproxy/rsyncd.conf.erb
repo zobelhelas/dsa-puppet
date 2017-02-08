@@ -8,43 +8,43 @@ timeout = 7200
 # weasel 2007-11-19
 log file =  /var/log/rsyncd/rsyncd-syncproxy.log
 
+read only = true
+ignore nonreadable = true
+strict modes = false
+
 [debian]
   path = /srv/mirrors/debian/
 <%- unless has_variable?("has_srv_mirrors_debian") && has_srv_mirrors_debian == "true" -%>
   list = no
 <%- end -%>
-  comment = Full Debian FTP Archive (contact mirrors@debian.org for access; see https://www.debian.org/mirror/size for size)
+  comment = Debian archive (contact mirrors@debian.org for access; see https://www.debian.org/mirror/size for size)
   auth users = *
-  read only = true
-  secrets file = /etc/rsyncd/debian.secrets
+  secrets file = /home/archvsync/rsyncd/debian.secrets
 
 [debian-debug]
   path = /srv/mirrors/debian-debug/
 <%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug == "true" -%>
   list = no
 <%- end -%>
-  comment = Debug packages.  Probably large.  Starting end of 2015.
+  comment = Debug packages for Debian archive (contact mirrors@debian.org for access)
   auth users = *
-  read only = true
-  secrets file = /etc/rsyncd/debian.secrets
+  secrets file = /home/archvsync/rsyncd/debian-debug.secrets
 
 [debian-ports]
   path = /srv/mirrors/debian-ports/
 <%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug == "true" -%>
   list = no
 <%- end -%>
-  comment = debian-ports tree - see https://www.ports.debian.org/
+  comment = Debian ports archive (contact mirrors@debian.org for access)
   auth users = *
-  read only = true
-  secrets file = /etc/rsyncd/debian.secrets
+  secrets file = /home/archvsync/rsyncd/debian-ports.secrets
 
 [debian-security]
   path = /srv/mirrors/debian-security/
 <%- unless has_variable?("has_srv_mirrors_debian_security") && has_srv_mirrors_debian_security == "true" -%>
   list = no
 <%- end -%>
-  comment = Debian security archive (~100 GB; contact mirrors@debian.org for access)
+  comment = Debian security archive (contact mirrors@debian.org for access)
   auth users = *
-  read only = true
-  secrets file = /etc/rsyncd/debian.secrets
+  secrets file = /home/archvsync/rsyncd/debian-security.secrets
 

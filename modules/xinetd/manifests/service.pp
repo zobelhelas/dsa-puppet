@@ -19,10 +19,21 @@ define xinetd::service (
 	$ensure=present,
 	$ferm=true
 ) {
-	include xinetd
-
 	case $ensure {
-		present,absent,file: {}
+		present,file: {
+			include xinetd
+			file { "/etc/xinetd.d/${name}":
+				ensure  => $ensure,
+				content => template('xinetd/service.erb'),
+				notify  => Service['xinetd'],
+				require => Package['xinetd'],
+			}
+		}
+		absent: {
+			file { "/etc/xinetd.d/${name}":
+				ensure  => $ensure,
+			}
+		}
 		default: { fail("Invalid ensure for '$name'") }
 	}
 
@@ -36,12 +47,5 @@ define xinetd::service (
 			description => "Allow traffic to ${service}",
 			rule        => "&SERVICE(${protocol}, ${fermport})"
 		}
-	}
-
-	file { "/etc/xinetd.d/${name}":
-		ensure  => $ensure,
-		content => template('xinetd/service.erb'),
-		notify  => Service['xinetd'],
-		require => Package['xinetd'],
 	}
 }
