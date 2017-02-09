@@ -32,7 +32,7 @@ lines = []
     lines << "  Alias /#{archive}/project/trace/ /srv/mirrors/#{archive}/project/trace/"
     lines << "  <Directory /srv/mirrors/#{archive}/project/trace/>"
     lines << "    Require all granted"
-    lines << "    IndexOptions NameWidth=* +SuppressDescription"
+    lines << "    IndexOptions NameWidth=*"
     lines << "    Options +Indexes"
     lines << "  </Directory>"
   end
