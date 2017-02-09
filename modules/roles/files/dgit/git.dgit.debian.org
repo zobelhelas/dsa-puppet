@@ -19,7 +19,6 @@ Use common-debian-service-https-redirect * git.dgit.debian.org
 	<Directory /srv/dgit.debian.org/unpriv/repos>
 		AllowOverride None
 		Options SymlinksIfOwnerMatch Indexes
-		IndexOptions FancyIndexing NameWidth=*
 	</Directory>
 
 	SetEnv GIT_PROJECT_ROOT /srv/dgit.debian.org/unpriv/repos

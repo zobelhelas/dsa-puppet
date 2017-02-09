@@ -32,7 +32,6 @@
 	<Directory /srv/static.debian.org/mirrors/deb.debian.org/cur>
 		AllowOverride FileInfo Indexes Options=Multiviews
 		Options Indexes SymLinksIfOwnerMatch
-		IndexOptions FancyIndexing NameWidth=*
 		Require all granted
 	</Directory>
 
@@ -82,7 +81,6 @@
 	<Directory /srv/static.debian.org/mirrors/release.debian.org-pu/cur>
 		Require all granted
 		Options Indexes SymLinksIfOwnerMatch MultiViews
-		IndexOptions FancyIndexing NameWidth=*
 
 		AddEncoding gzip .gz
 		FilterDeclare gzip CONTENT_SET
@@ -103,7 +101,6 @@
 	<Directory /srv/static.debian.org/mirrors/www.ports.debian.org/cur>
 		AllowOverride FileInfo Indexes Options=Multiviews
 		Options Multiviews Indexes FollowSymLinks Includes
-		IndexOptions FancyIndexing NameWidth=*
 		Require all granted
 	</Directory>
 

@@ -3,7 +3,6 @@
     <Macro ftp-archive $root>
       <Directory $root>
         Require all granted
-        IndexOptions NameWidth=*
         Options +Indexes +FollowSymLinks
         FileETag MTime Size
       </Directory>
