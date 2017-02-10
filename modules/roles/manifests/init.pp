@@ -34,10 +34,6 @@ class roles {
 		include porterbox
 	}
 
-	if has_role('historical_master') {
-		include historical_master
-	}
-
 	if has_role('bugs_mirror') {
 		include roles::bugs_mirror
 	}
@@ -52,45 +48,54 @@ class roles {
 		ssl::service { 'bugs-master.debian.org': notify  => Exec['service apache2 reload'], key => true, }
 	}
 
+	if has_role('manpages-dyn') {
+		include roles::manpages_dyn
+	}
+
+	# archive.debian.org
+	if has_role('historical_master') {
+		include historical_master
+	}
+	if has_role('historical_mirror') {
+		include roles::historical_mirror
+	}
+
+	# debug archive
+	if has_role('debug_mirror') {
+		include roles::debug_mirror
+	}
+
+	# ftp.debian.org and its ecosystem
+	if has_role('debian_mirror') {
+		include roles::debian_mirror
+	}
+	if has_role('ftp.d.o') {
+		include roles::ftp
+	}
 	if has_role('ftp_master') {
 		include roles::ftp_master
 		include roles::dakmaster
 	}
-
+	if has_role('ftp.upload.d.o') {
+		include roles::ftp_upload
+	}
+	if has_role('ssh.upload.d.o') {
+		include roles::ssh_upload
+	}
 	if has_role('api.ftp-master') {
 		ssl::service { 'api.ftp-master.debian.org':
 			notify  => Exec['service apache2 reload'],
 			key => true,
 		}
 	}
-
-	if has_role('manpages-dyn') {
-		include roles::manpages_dyn
+	#
+	# security.debian.org
+	if has_role('security_master') {
+		include roles::security_master
+		include roles::dakmaster
 	}
-
 	if has_role('security_mirror') {
 		include roles::security_mirror
-	}
-	if has_role('historical_mirror') {
-		include roles::historical_mirror
-	}
-	if has_role('debian_mirror') {
-		include roles::debian_mirror
-	}
-	if has_role('debug_mirror') {
-		include roles::debug_mirror
-	}
-
-	if has_role('ftp.d.o') {
-		include roles::ftp
-	}
-
-	if has_role('ftp.upload.d.o') {
-		include roles::ftp_upload
-	}
-
-	if has_role('ssh.upload.d.o') {
-		include roles::ssh_upload
 	}
 
 	if has_role('git_master') {
@@ -100,11 +105,6 @@ class roles {
 	if has_role('people') {
 		ssl::service { 'people.debian.org': notify  => Exec['service apache2 reload'], key => true, }
 		onion::service { 'people.debian.org': port => 80, target_address => 'people.debian.org', target_port => 80, direct => true }
-	}
-
-	if has_role('security_master') {
-		include roles::security_master
-		include roles::dakmaster
 	}
 
 	if has_role('www_master') {
