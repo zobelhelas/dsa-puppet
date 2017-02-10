@@ -22,6 +22,11 @@ class roles::security_mirror {
 		default => undef,
 	}
 
+	file { '/srv/mirrors/debian-security':
+		ensure => link,
+		target => '../ftp.root/debian-security',
+	}
+
 	include apache2::expires
 	include apache2::rewrite
 
