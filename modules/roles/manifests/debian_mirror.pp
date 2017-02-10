@@ -1,4 +1,6 @@
 class roles::debian_mirror {
+	include roles::archvsync_base
+
 	$vhost_listen = $::hostname ? {
 		klecker    => '130.89.148.12:80 2001:610:1908:b000::148:12:80',
 		mirror-isc => '149.20.4.15:80 [2001:4f8:1:c::15]:80',

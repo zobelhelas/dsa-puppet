@@ -1,7 +1,6 @@
 class roles::ftp {
 	# this is the FTP part of the roles::debian_mirror class
 
-	include roles::archvsync_base
 	include ferm::ftp_conntrack
 
 	$bind = $::hostname ? {
