@@ -1,4 +1,6 @@
 class roles::security_mirror {
+	include roles::archvsync_base
+
 	$rsync_bind = $::hostname ? {
 		mirror-anu => '150.203.164.61',
 		mirror-isc => '149.20.4.14',
@@ -18,6 +20,11 @@ class roles::security_mirror {
 	$ftp_bind6 = $::hostname ? {
 		mirror-anu => '2001:388:1034:2900::3d',
 		default => undef,
+	}
+
+	file { '/srv/mirrors/debian-security':
+		ensure => link,
+		target => '../ftp.root/debian-security',
 	}
 
 	include apache2::expires
@@ -52,7 +59,6 @@ class roles::security_mirror {
 		bind        => $rsync_bind,
 		bind6       => $rsync_bind6,
 	}
-
 
 	$onion_v4_addr = $::hostname ? {
 		mirror-anu => '150.203.164.61',

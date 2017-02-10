@@ -1,4 +1,5 @@
 class roles::historical_mirror {
+	include roles::archvsync_base
 	include apache2::expires
 
 	$vhost_listen = $::hostname ? {
