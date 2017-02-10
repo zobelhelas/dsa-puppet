@@ -4,8 +4,6 @@ searchpaths: []
 resolvoptions: []
 allow_dns_query: []
 roles:
-  archive_master:
-    - sibelius.debian.org
   bugsmx:
     - buxtehude.debian.org
   bugs_master:
@@ -218,6 +216,8 @@ roles:
   debian_mirror_onion:
     - bilbao.debian.org
     - mirror-isc.debian.org
+  historical_master:
+    - sibelius.debian.org
   historical_mirror:
     - gretchaninov.debian.org
     - klecker.debian.org

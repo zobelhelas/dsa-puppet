@@ -34,8 +34,8 @@ class roles {
 		include porterbox
 	}
 
-	if has_role('archive_master') {
-		include archive_master
+	if has_role('historical_master') {
+		include historical_master
 	}
 
 	if has_role('bugs_mirror') {
