@@ -9,6 +9,6 @@ class roles::archive_master {
 
 	ssl::service { $sslname:
 		key      => true,
-		tlsaport => [1873],
+		tlsaport => [],
 	}
 }
