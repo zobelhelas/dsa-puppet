@@ -1,4 +1,6 @@
 class roles::syncproxy {
+	include roles::archvsync_base
+
 	$bind = $::hostname ? {
 		'milanollo' => '5.153.231.9',
 		'mirror-anu' => '150.203.164.60',

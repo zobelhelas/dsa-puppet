@@ -1,5 +1,5 @@
 class roles::ftp {
-
+	include roles::archvsync_base
 	include ferm::ftp_conntrack
 
 	$bind = $::hostname ? {
