@@ -32,6 +32,7 @@ roles:
   extranrpeclient:
     - denis.debian.org
   ftp.d.o:
+    # also see debian_mirror
     - klecker.debian.org
   ftp_master:
     - fasolo.debian.org
@@ -210,6 +211,7 @@ roles:
   sreview.debian.org:
     - vittoria.debian.org
   debian_mirror:
+    # - klecker.debian.org
     - bilbao.debian.org
     - boman.debian.org
     - mirror-isc.debian.org
