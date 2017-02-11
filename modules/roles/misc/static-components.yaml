@@ -48,6 +48,9 @@ components:
   micronews.debian.org:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/micronews.debian.org/htdocs
+  mirror-master.debian.org:
+    master: dillon.debian.org
+    source: melartin.debian.org:/srv/mirror-team.debian.org/htdocs
   news.debian.net:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/news.debian.net/htdocs
