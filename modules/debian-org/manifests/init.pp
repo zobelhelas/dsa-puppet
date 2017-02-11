@@ -58,6 +58,7 @@ class debian-org {
 			'mtr-tiny',
 			'nload',
 			'pciutils',
+			'lldpd',
 		]:
 		ensure => installed,
 	}
