@@ -5,7 +5,7 @@
 
 <%
   vhost_listen = [ (bind != '') ? "#{bind}:80" : "*:80",  (bind6 != '') ? "#{bind6}:80" : "*:80"].uniq.join(' ')
-  vhost_listen_443 = [ (bind != '') ? "#{bind}:443" : "*:443",  (bind6 != '') ? "#{bind6}:443" : "*:443"].uniq.join(' ')
+  vhost_listen_443 = [ (bind != '') ? "#{bind}:443" : "*:443",  (bind6 != '') ? "[#{bind6}]:443" : "*:443"].uniq.join(' ')
 %>
 
 Use common-debian-service-https-redirect "<%= vhost_listen %>" <%= syncproxy_name %>
