@@ -19,12 +19,10 @@ module Puppet::Parser::Functions
 
       if cfg.include?('components')
         if cfg['components'].include?(static_component)
-          if cfg['components'][static_component].include?('exclude-mirrors')
-            if cfg['components'][static_component]['exclude-mirrors'].include?(fqdn)
-              return false
-            else
-              return true
-            end
+          if cfg['components'][static_component].include?('limit-mirrors')
+            return (cfg['components'][static_component]['limit-mirrors'].include?(fqdn))
+          elsif cfg['components'][static_component].include?('exclude-mirrors')
+            return (not cfg['components'][static_component]['exclude-mirrors'].include?(fqdn))
           else
             return true
           end
