@@ -4,12 +4,19 @@
 ##
 
 <%
-  vhost_listen = [ (bind != '') ? "#{bind}:80" : "*:80",  (bind6 != '') ? "#{bind6}:80" : "*:80"].uniq.join(' ')
-  vhost_listen_443 = [ (bind != '') ? "#{bind}:443" : "*:443",  (bind6 != '') ? "[#{bind6}]:443" : "*:443"].uniq.join(' ')
+  vhost_listen = [ (bind != '') ? "#{bind}" : "*",  (bind6 != '') ? "#{bind6}" : "*"].uniq
+  vhost_listen_443 = [ (bind != '') ? "#{bind}:443" : "*:443",  (bind6 != '') ? "[#{bind6}]:443" : "*:443"].uniq
 %>
 
-Use common-debian-service-https-redirect "<%= vhost_listen %>" <%= syncproxy_name %>
-<Virtualhost <%= vhost_listen_443 %> >
+<%=
+lines = []
+vhost_listen.each do |bind|
+   lines << "Use common-debian-service-https-redirect \"#{bind}\" \"#{syncproxy_name}\""
+end
+lines.join("\n")
+
+%>
+<Virtualhost <%= vhost_listen_443.join(' ') %> >
    ServerName <%= syncproxy_name %>
    DocumentRoot /srv/www/syncproxy.debian.org/htdocs
 
