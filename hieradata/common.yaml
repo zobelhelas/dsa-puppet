@@ -169,6 +169,7 @@ roles:
     - wolkenstein.debian.org
     - wuiet.debian.org
   syncproxy:
+    - gretchaninov.debian.org
     - klecker.debian.org
     - milanollo.debian.org
     - mirror-anu.debian.org

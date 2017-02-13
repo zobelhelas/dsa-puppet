@@ -23,6 +23,7 @@ class roles::syncproxy {
 		'mirror-isc' => 'syncproxy2.wna.debian.org',
 		'mirror-umn' => 'syncproxy.cna.debian.org',
 		'klecker' => 'syncproxy2.eu.debian.org',
+		'gretchaninov' => 'gretchaninov.debian.org',
 		default => 'unknown'
 	}
 
