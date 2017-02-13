@@ -316,4 +316,10 @@ lines.join("\n")
 	RedirectPermanent / https://backports.debian.org/
 </VirtualHost>
 
+<VirtualHost <%= vhost_listen %> >
+	ServerName manpages.debian.net
+	ServerAdmin debian-admin@debian.org
+	Redirect / https://manpages.debian.org/
+</VirtualHost>
+
 # vim:ft=apache:
