@@ -7,6 +7,7 @@ class roles::syncproxy {
 		'mirror-isc' => '149.20.4.16',
 		'mirror-umn' => '128.101.240.216',
 		'klecker' => '130.89.148.10',
+		'gretchaninov' => '209.87.16.40',
 		default => ''
 	}
 	$bind6 = $::hostname ? {
@@ -15,6 +16,7 @@ class roles::syncproxy {
 		'mirror-isc' => '2001:4f8:1:c::16',
 		'mirror-umn' => '2607:ea00:101:3c0b::1deb:216',
 		'klecker' => '2001:610:1908:b000::148:10',
+		'gretchaninov' => '2607:f8f0:614:1::1274:40',
 		default => ''
 	}
 	$syncproxy_name = $::hostname ? {
