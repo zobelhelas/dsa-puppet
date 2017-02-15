@@ -33,7 +33,7 @@ class roles::static_mirror {
 	}
 
 	$onion_v4_addr = $::hostname ? {
-		busoni     => '140.211.15.34',
+		busoni     => '140.211.166.202',
 		klecker    => '130.89.148.14',
 		mirror-isc => '149.20.4.15',
 		senfter    => '5.153.231.4',
