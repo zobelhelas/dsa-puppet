@@ -142,8 +142,9 @@
    ServerAlias newwww.deb.at
 
    DocumentRoot <%= wwwdo_document_root %>/
+   LogFormat "0.0.0.0 - %u %{[%d/%b/%Y:00:00:00 %z]}t \"%r\" %>s %b \"%{Referer}i\" \"-\" %V" privacy+host
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
-   CustomLog /var/log/apache2/www-other.debian.org-access.log privacy
+   CustomLog /var/log/apache2/www-other.debian.org-access.log privacy+host
 </Macro>
 
 <Macro common-www.d.o>
