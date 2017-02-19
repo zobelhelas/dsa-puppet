@@ -192,7 +192,7 @@ class debian-org {
 	file { '/etc/rc.local':
 		mode   => '0755',
 		content => template('debian-org/rc.local.erb'),
-		notify => Exec['service rc.local start'],
+		notify => Exec['service rc.local restart'],
 	}
 	file { '/etc/dsa':
 		ensure => directory,
@@ -258,7 +258,7 @@ class debian-org {
 	exec { 'service puppetmaster restart':
 		refreshonly => true
 	}
-	exec { 'service rc.local start':
+	exec { 'service rc.local restart':
 		refreshonly => true
 	}
 	exec { 'init q':
