@@ -11,4 +11,9 @@ class roles::archvsync_base {
 		ensure  => present,
 		content => '',
 	}
+
+	file { '/etc/ssh/userkeys/archvsync':
+		ensure => 'link',
+		target => '/home/archvsync/.ssh/authorized_keys',
+	}
 }
