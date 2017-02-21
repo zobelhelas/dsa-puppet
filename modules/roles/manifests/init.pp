@@ -52,6 +52,10 @@ class roles {
 		include roles::manpages_dyn
 	}
 
+	if has_role('archvsync_base_additional') {
+		include archvsync_base
+	}
+
 	# archive.debian.org
 	if has_role('historical_master') {
 		include historical_master

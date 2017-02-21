@@ -99,6 +99,9 @@ roles:
     - wolkenstein.debian.org
   search_frontend:
     - cgi-grnet-01.debian.org
+  archvsync_base_additional:
+  # this is usually pulled in by *-mirror or syncproxy roles
+    - mirror-conova.debian.org
   security_master:
     - seger.debian.org
   security_mirror:
