@@ -15,14 +15,8 @@ class roles::security_mirror {
 		mirror-umn => '2607:ea00:101:3c0b::1deb:215',
 		default    => '',
 	}
-	$ftp_bind = $::hostname ? {
-		mirror-anu => '150.203.164.61',
-		default => '',
-	}
-	$ftp_bind6 = $::hostname ? {
-		mirror-anu => '2001:388:1034:2900::3d',
-		default => undef,
-	}
+	$ftp_bind = $rsync_bind
+	$ftp_bind6 = $rsync_bind6
 
 	file { '/srv/mirrors/debian-security':
 		ensure => link,
