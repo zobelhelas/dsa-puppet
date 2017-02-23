@@ -124,12 +124,6 @@ node default {
 		munin::check { 'spamassassin': }
 	}
 
-	if $::hoster {
-		if $::hoster in [ynic] {
-			include lldp
-		}
-	}
-
 	if $::hostname == 'pkgmirror-csail' {
 		include varnish
 	}
