@@ -215,7 +215,7 @@ roles:
   sreview.debian.org:
     - vittoria.debian.org
   debian_mirror:
-    # - klecker.debian.org
+    - klecker.debian.org
     - bilbao.debian.org
     - boman.debian.org
     - mirror-conova.debian.org
