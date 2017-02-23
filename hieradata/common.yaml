@@ -221,6 +221,7 @@ roles:
     - mirror-conova.debian.org
     - mirror-isc.debian.org
   debian_mirror_onion:
+    - klecker.debian.org
     - bilbao.debian.org
     - mirror-isc.debian.org
   historical_master:
