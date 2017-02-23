@@ -8,7 +8,7 @@ class roles::debian_mirror {
 		default => '*:80',
 	}
 	$onion_v4_addr = $::hostname ? {
-		bilbao     => '5.153.231.37',
+		mirror-bytemark => '5.153.231.37',
 		klecker    => '130.89.148.12',
 		mirror-isc => '149.20.4.15',
 		default    => undef,

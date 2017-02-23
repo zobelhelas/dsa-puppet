@@ -1,6 +1,6 @@
 class roles::bgp {
 	$bgp_peers = $::hostname ? {
-		bilbao        => '2001:41c9:2:13c::2/128 89.16.162.2/32',
+		mirror-bytemark => '2001:41c9:2:13c::2/128 89.16.162.2/32',
 		mirror-conova => '2a02:16a8:5404:199::25/128 217.196.157.53/32',
 		default       => undef,
 	}

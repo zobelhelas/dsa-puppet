@@ -216,13 +216,13 @@ roles:
     - vittoria.debian.org
   debian_mirror:
     - klecker.debian.org
-    - bilbao.debian.org
+    - mirror-bytemark.debian.org
     - boman.debian.org
     - mirror-conova.debian.org
     - mirror-isc.debian.org
   debian_mirror_onion:
     - klecker.debian.org
-    - bilbao.debian.org
+    - mirror-bytemark.debian.org
     - mirror-isc.debian.org
   historical_master:
     - sibelius.debian.org
@@ -284,7 +284,7 @@ roles:
     - villa.debian.org
     - wieck.debian.org
   bgp:
-    - bilbao.debian.org
+    - mirror-bytemark.debian.org
     - mirror-conova.debian.org
   cdimage-search:
     - cgi-grnet-01.debian.org
