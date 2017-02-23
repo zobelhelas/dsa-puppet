@@ -28,6 +28,10 @@ class roles::security_mirror {
 		ensure => link,
 		target => '../ftp.root/debian-security',
 	}
+	file { '/srv/ftp.root/.nobackup':
+		ensure  => present,
+		content => '',
+	}
 
 	include apache2::expires
 	include apache2::rewrite
