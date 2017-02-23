@@ -4,6 +4,7 @@ class roles::debian_mirror {
 	$vhost_listen = join([
 		$::hostname ? {
 			klecker    => '130.89.148.12:80 [2001:610:1908:b000::148:12]:80',
+			mirror-bytemark => '5.153.231.45:80 [2001:41c8:1000:21::21:45]:80',
 			mirror-isc => '149.20.4.15:80 [2001:4f8:1:c::15]:80',
 			mirror-conova => '217.196.149.232:80 [2a02:16a8:dc41:100::232]:80',
 			default => '*:80',
@@ -13,7 +14,7 @@ class roles::debian_mirror {
 			default => '',
 		}], ' ')
 	$onion_v4_addr = $::hostname ? {
-		mirror-bytemark => '5.153.231.37',
+		mirror-bytemark => '5.153.231.45',
 		klecker    => '130.89.148.12',
 		mirror-isc => '149.20.4.15',
 		default    => undef,

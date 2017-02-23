@@ -106,6 +106,7 @@ roles:
     - seger.debian.org
   security_mirror:
     - mirror-anu.debian.org
+    - mirror-bytemark.debian.org
     - mirror-conova.debian.org
     - mirror-csail.debian.org
     - mirror-isc.debian.org
@@ -121,6 +122,10 @@ roles:
     - mirror-umn.debian.org
     - lobos.debian.org
     - villa.debian.org
+  security_mirror_no_ftp:
+    # hosts that are not part of security.debian.org but
+    # only participiate in the anycast do not need ftp
+    - mirror-bytemark.debian.org
   security_tracker:
     - soriano.debian.org
   ssh.upload.d.o:
