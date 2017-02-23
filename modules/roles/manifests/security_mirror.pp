@@ -10,7 +10,7 @@ class roles::security_mirror {
 	}
 	$rsync_bind6 = $::hostname ? {
 		mirror-anu => '2001:388:1034:2900::3d',
-		mirror-conova => '2a02:16a8:dc41:100::233'
+		mirror-conova => '2a02:16a8:dc41:100::233',
 		mirror-isc => '2001:4f8:1:c::14',
 		mirror-umn => '2607:ea00:101:3c0b::1deb:215',
 		default    => '',
