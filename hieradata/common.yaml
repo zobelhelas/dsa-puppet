@@ -231,6 +231,7 @@ roles:
     - sibelius.debian.org
   debug_mirror:
     - klecker.debian.org
+    - mirror-conova.debian.org
     - mirror-isc.debian.org
   debug_mirror_onion:
     - klecker.debian.org
