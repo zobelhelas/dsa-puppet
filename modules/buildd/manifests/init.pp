@@ -107,7 +107,7 @@ class buildd ($ensure=present) {
 		}
 
 		service { 'buildd':
-			enable = false,
+			enable => false,
 			ensure => 'stopped',
 		}
 
