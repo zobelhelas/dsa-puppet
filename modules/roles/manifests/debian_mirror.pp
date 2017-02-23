@@ -4,6 +4,7 @@ class roles::debian_mirror {
 	$vhost_listen = $::hostname ? {
 		klecker    => '130.89.148.12:80 2001:610:1908:b000::148:12:80',
 		mirror-isc => '149.20.4.15:80 [2001:4f8:1:c::15]:80',
+		mirror-conova => '217.196.149.232:80 [2a02:16a8:dc41:100::232]:80',
 		default => '*:80',
 	}
 	$onion_v4_addr = $::hostname ? {
