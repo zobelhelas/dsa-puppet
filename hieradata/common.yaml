@@ -222,7 +222,7 @@ roles:
   debian_mirror:
     - klecker.debian.org
     - mirror-bytemark.debian.org
-    - boman.debian.org
+    - mirror-accumu.debian.org
     - mirror-conova.debian.org
     - mirror-isc.debian.org
   debian_mirror_onion:
