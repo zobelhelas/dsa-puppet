@@ -10,6 +10,7 @@
 	<% if scope.function_onion_global_service_hostname(['ftp.debian.org']) -%>
 	ServerAlias <%= scope.function_onion_global_service_hostname(['ftp.debian.org']) %>
 	<% end %>
+	ServerAlias *.debian.backend.mirrors.debian.org
 
 	RedirectMatch "^/$" /debian/
 	Alias /debian/ <%= archive_root %>/

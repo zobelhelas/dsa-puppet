@@ -9,6 +9,7 @@
 	<% if scope.function_onion_global_service_hostname(['debug.mirrors.debian.org']) -%>
 	ServerAlias <%= scope.function_onion_global_service_hostname(['debug.mirrors.debian.org']) %>
 	<% end %>
+	ServerAlias *.debug.backend.mirrors.debian.org
 
 	RedirectMatch "^/$" /debian-debug/
 	Alias /debian-debug /srv/mirrors/debian-debug

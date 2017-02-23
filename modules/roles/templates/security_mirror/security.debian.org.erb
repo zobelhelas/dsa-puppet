@@ -20,6 +20,7 @@
    <% if scope.function_onion_global_service_hostname(['security.debian.org']) -%>
    ServerAlias <%= scope.function_onion_global_service_hostname(['security.debian.org']) %>
    <% end %>
+   ServerAlias *.security.backend.mirrors.debian.org
 
 
    ExpiresActive On
