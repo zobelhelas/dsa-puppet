@@ -57,9 +57,6 @@ class roles {
 	}
 
 	# archive.debian.org
-	if has_role('historical_master') {
-		include historical_master
-	}
 	if has_role('historical_mirror') {
 		include roles::historical_mirror
 	}
