@@ -3,6 +3,15 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
+<%
+  if not binds.kind_of?(Array)
+    raise Puppet::Error, "binds variable is not an array"
+  end
+
+  vhost_listen = binds.map{|x| x+":80" }.join(' ')
+%>
+
+
 <VirtualHost <%= vhost_listen %>>
 	ServerAdmin debian-admin@debian.org
 	ServerName archive.debian.org
