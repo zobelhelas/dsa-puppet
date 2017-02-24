@@ -18,6 +18,8 @@
 	<% if scope.function_onion_global_service_hostname(['archive.debian.org']) -%>
 	ServerAlias <%= scope.function_onion_global_service_hostname(['archive.debian.org']) %>
 	<% end %>
+	ServerAlias archive.backend.mirrors.debian.org
+	ServerAlias *.archive.backend.mirrors.debian.org
 
 	#RedirectMatch "^/$" /debian-archive/
 	DocumentRoot <%= archive_root %>/
