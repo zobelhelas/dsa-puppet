@@ -3,6 +3,9 @@
 <%- elsif has_variable?("syslogversion") and @syslogversion.to_s == "3.5" -%>
 @version: 3.5
 @include "scl.conf"
+<%- elsif has_variable?("syslogversion") and @syslogversion.to_s == "3.8" -%>
+@version: 3.8
+@include "scl.conf"
 <%- else -%>
 @version: 3.3
 @include "scl.conf"
