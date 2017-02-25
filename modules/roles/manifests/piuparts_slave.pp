@@ -1,4 +1,4 @@
-class roles::piuparts-slave {
+class roles::piuparts_slave {
 	package { 'debian.org-piuparts-slave.debian.org': ensure => installed, }
 
 	file { [ '/srv/piuparts.debian.org', '/srv/piuparts.debian.org/home-slave']:
