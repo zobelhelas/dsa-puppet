@@ -6,7 +6,7 @@ class autofs {
 		lw07,lw08: {
 			include autofs::leaseweb
 		}
-		tye,ullmann: {
+		tye,ullmann,piu-slave-ubc-01: {
 			include autofs::ubc
 		}
 	}
