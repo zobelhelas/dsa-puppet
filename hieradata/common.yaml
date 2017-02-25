@@ -82,6 +82,9 @@ roles:
     - paradis.debian.org
   piuparts:
     - pejacevic.debian.org
+  piuparts_slave:
+    - piu-slave-bm-a.debian.org
+    - piu-slave-ubc-01.debian.org
   popcon:
     - pinel.debian.org
   pubsub:

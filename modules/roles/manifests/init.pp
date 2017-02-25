@@ -205,6 +205,9 @@ class roles {
 	if has_role('piuparts') {
 		include roles::piuparts
 	}
+	if has_role('piuparts_slave') {
+		include roles::piuparts_slave
+	}
 
 	if has_role('contributors') {
 		include roles::contributors
