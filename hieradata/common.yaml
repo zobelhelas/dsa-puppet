@@ -296,3 +296,8 @@ roles:
     - mirror-conova.debian.org
   cdimage-search:
     - cgi-grnet-01.debian.org
+  apache_prefork:
+    # php needs this
+    - quantz.debian.org
+    - tchaikovsky.debian.org
+    - wuiet.debian.org
