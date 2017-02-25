@@ -92,6 +92,8 @@ class apache2 {
 		source => 'puppet:///modules/apache2/pratchett',
 	}
 
+	apache2::module { 'mpm_event': ensure => absent }
+	apache2::module { 'mpm_worker': }
 	if $::lsbmajdistrelease > 7 {
 		file { '/etc/apache2/mods-available/mpm_worker.conf':
 			content => template('apache2/mpm_worker.erb'),
