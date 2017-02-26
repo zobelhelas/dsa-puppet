@@ -326,4 +326,8 @@ class roles {
 	if has_role('cdimage-search') {
 		include roles::cdimage_search
 	}
+
+	if has_role('postgresql_server') {
+		include roles::postgresql_server
+	}
 }

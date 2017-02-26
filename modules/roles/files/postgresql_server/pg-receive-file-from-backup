@@ -1,0 +1,161 @@
+#!/usr/bin/python
+
+# Copyright (c) 2010 Peter Palfrader
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# copy a file from the backup server, where the server runs debbackup-ssh-wrap
+
+import sys
+import os
+import optparse
+import re
+import subprocess
+import syslog
+import tempfile
+import stat
+import hashlib
+
+backuphost="debbackup@storace.debian.org"
+block_size = 4096
+
+syslog.openlog(sys.argv[0], syslog.LOG_PID, syslog.LOG_DAEMON)
+
+def info(m):
+    syslog.syslog(syslog.LOG_INFO, m)
+def croak(m):
+    syslog.syslog(syslog.LOG_WARNING, m)
+    print >> sys.stderr, m
+    sys.exit(1)
+
+sys.stdin.close()
+
+parser = optparse.OptionParser()
+parser.set_usage("%prog [<options>] <from_host> <filename> <target>")
+(options, args) = parser.parse_args()
+
+if len(args) != 3:
+    parser.print_help()
+    sys.exit(1)
+
+from_host = args.pop(0)
+filename = args.pop(0)
+target = args.pop(0)
+
+hostname = os.uname()[1]
+
+# open pipe to backup server
+p = subprocess.Popen(["ssh", "-C", backuphost, hostname, "retrieve-file", "pg", from_host, filename], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+p.stdin.close()
+f = p.stdout
+
+# read Format line
+line = f.readline().rstrip('\n')
+if line != "Format: 1":
+    croak("Uknown format in line 1 (%s) when getting %s:%s from backup host"%(line, from_host, filename))
+
+# read Status line
+line = f.readline().rstrip('\n')
+s = line.split(':', 1)
+if len(s) != 2:
+    croak("Protocol violation when getting %s:%s from backup host (line 2)"%(from_host, filename))
+key = s[0]
+if key != "Status":
+    croak("Protocol violation when getting %s:%s from backup host"%(from_host, filename))
+first = s[1].split()[0]
+try:
+    code = int(first)
+except ValueError:
+    croak("Invalid code '%s'"%(first))
+
+if code == 404:
+    info("Wanted to get %s:%s from backup host, but file does not exist."%(from_host, filename))
+    sys.exit(1)
+elif code != 200:
+    info("Unknown code %d when trying to get %s:%s from backup host"%(code, from_host, filename))
+
+# get rest of the headers
+metadata = {}
+while True:
+    line = f.readline().rstrip('\n')
+    if line == "": break
+    line = line.strip()
+    s = line.split(':', 1)
+    if len(s) != 2:
+        croak("Protocol violation when getting %s:%s from backup host"%(from_host, filename))
+    key = s[0]
+    value = s[1].lstrip()
+    metadata[key] = value
+
+# verify we like them
+for k in ['Size', 'SHA-512']:
+    if not k in metadata:
+        croak("Key %s not found in metadata when getting %s:%s from backup host"%(k, from_host, filename))
+try:
+    size = int(metadata['Size'])
+except ValueError:
+    croak("Invalid size '%s'"%(size))
+checksum = metadata['SHA-512']
+
+info("Getting %s:%s from backup host (size %d)."%(from_host, filename, size))
+
+target=os.path.abspath(target)
+targetdir=os.path.dirname(target)
+tmp = tempfile.NamedTemporaryFile(dir=targetdir, prefix=".tmp.pg-receive-file-from-backup-%s:%s."%(from_host, filename))
+
+# read file
+running_size = 0
+digest = hashlib.sha512()
+while True:
+    buf = f.read(block_size)
+    if not buf: break
+    digest.update(buf)
+    tmp.write(buf)
+
+    running_size += len(buf)
+    if running_size > size:
+        croak("Size mismatch")
+f.close()
+p.wait()
+tmp.flush()
+
+file_size = os.stat(tmp.name)[stat.ST_SIZE]
+
+# check size and checksum
+if file_size != size:
+    croak("Size mismatch")
+if file_size != running_size:
+    croak("Size mismatch. WTF.")
+if checksum != digest.hexdigest():
+    croak("Checksum mismatch. WTF.")
+
+# and try to link
+try:
+    os.link(tmp.name, target)
+except Exception, e:
+    croak("Failed at linking to target: %s"%(e))
+
+tmp.close()
+info("Successfully stored %s."%(target))
+
+
+# vim:set et:
+# vim:set ts=4:
+# vim:set shiftwidth=4:

@@ -304,3 +304,11 @@ roles:
     - quantz.debian.org
     - tchaikovsky.debian.org
     - wuiet.debian.org
+  postgresql_server:
+    - bmdb1.debian.org
+    - danzi.debian.org
+    - fasolo.debian.org
+    - melartin.debian.org
+    - seger.debian.org
+    - sibelius.debian.org
+    - vittoria.debian.org

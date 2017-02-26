@@ -1,0 +1,5 @@
+<%- if hostname == "sibelius" then -%>
+# use ipv4
+ssh_options="-oAddressFamily=inet"
+<%- end %>
+backuphost="debbackup@backuphost debbackup@storace"
