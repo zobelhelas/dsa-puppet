@@ -15,9 +15,5 @@ when /(storace|backuphost).debian.org/ then                    ignore << %w{post
 when /(sompek|stadler).debian.org/ then                        ignore << %w{libsbuild-perl buildd sbuild}
 end
 
-if @lsbmajdistrelease >= '9'
-ignore << %w{puppet-common}
-end
-
 ignore.flatten.join("\n")
 %>
