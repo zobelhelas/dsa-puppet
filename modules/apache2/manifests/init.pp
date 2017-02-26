@@ -16,6 +16,7 @@ class apache2 {
 		require => Package['apache2'],
 	}
 
+	apache2::module { 'reqtimeout': }
 	apache2::module { 'info': }
 	apache2::module { 'status': }
 	apache2::module { 'headers': }
