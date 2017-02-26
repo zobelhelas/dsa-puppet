@@ -234,14 +234,13 @@ class ferm::per-host {
 			}
 
 			@ferm::rule { 'dsa-postgres-backup':
-				# ubc, wuit
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, (5435 5436), ( $HOST_PGBACKUPHOST_V4 ))'
+				rule            => '&SERVICE_RANGE(tcp, (5435 5436 5440), ( $HOST_PGBACKUPHOST_V4 ))'
 			}
 			@ferm::rule { 'dsa-postgres-backup6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access',
-				rule            => '&SERVICE_RANGE(tcp, (5435 5436), ( $HOST_PGBACKUPHOST_V6 ))'
+				rule            => '&SERVICE_RANGE(tcp, (5435 5436) 5440, ( $HOST_PGBACKUPHOST_V6 ))'
 			}
 
 			@ferm::rule { 'dsa-postgres-dedup':
