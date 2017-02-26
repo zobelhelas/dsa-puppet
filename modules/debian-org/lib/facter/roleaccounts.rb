@@ -1,6 +1,17 @@
 begin
     require 'etc'
 
+    Facter.add("postgresql_key") do
+        setcode do
+            key = nil
+            keyfile = '/var/lib/postgresql/.ssh/id_rsa.pub'
+            if FileTest.exist?(keyfile)
+                key = File.open(keyfile).read.chomp
+            end
+            key
+        end
+    end
+
     Facter.add("staticsync_key") do
         setcode do
             key = nil
