@@ -44,6 +44,10 @@ class vsftpd {
 		rule        => '&SERVICE(tcp, 21)',
 	}
 
+	file { '/srv/ftp':
+		ensure => directory,
+		mode   => '0755'
+	}
 	file { '/var/log/ftp':
 		ensure => directory,
 		mode   => '0755'
