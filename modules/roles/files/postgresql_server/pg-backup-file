@@ -69,7 +69,7 @@ for target in $backuphost; do
 		[ -n "$checksum" ] || checksum="`sha512sum "$file" | awk '{print $1}'`"
 		info "Archiving to $target: ($myhost,$targetname,$size,$checksum)"
 
-		ssh -C "$target" $ssh_options $myhost store-file pg "$targetname" "$size" "$checksum" < "$file"
+		ssh -C "$target" $ssh_options -o BatchMode=yes -o ServerAliveInterval=90 $myhost store-file pg "$targetname" "$size" "$checksum" < "$file"
 		if [ "$?" != 0 ]; then
 			croak "remote store for $logtuple failed."
 		fi
