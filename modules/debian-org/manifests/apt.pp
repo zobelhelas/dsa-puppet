@@ -18,9 +18,9 @@ class debian-org::apt {
 	}
 
 	if getfromhash($site::nodeinfo, 'hoster', 'mirror-debian') {
-		$mirror = [ getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'), $fallbackmirror ]
+		$mirror = [ getfromhash($site::nodeinfo, 'hoster', 'mirror-debian'), $fallbackmirror, 'http://debian.anycast-test.mirrors.debian.org/debian/' ]
 	} else {
-		$mirror = [ $fallbackmirror ]
+		$mirror = [ $fallbackmirror, 'http://debian.anycast-test.mirrors.debian.org/debian/' ]
 	}
 
 	site::aptrepo { 'debian':
@@ -29,7 +29,7 @@ class debian-org::apt {
 		components => ['main','contrib','non-free']
 	}
 	site::aptrepo { 'security':
-		url        => [ 'http://security-cdn.debian.org/', 'http://security.debian.org/' ],
+		url        => [ 'http://security-cdn.debian.org/', 'http://security.anycast-test.mirrors.debian.org/debian-security/', 'http://security.debian.org/' ],
 		suite      => "${mungedcodename}/updates",
 		components => ['main','contrib','non-free']
 	}
