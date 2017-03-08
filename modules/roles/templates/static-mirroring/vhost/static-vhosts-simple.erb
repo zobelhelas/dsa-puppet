@@ -149,6 +149,9 @@
 	RewriteRule ^/source/([a-z0-9-]+)/([a-zA-Z0-9.+:~-]+)$ /${source-map:$1/$2} [L,R,NE]
 
 	Header always set Content-Security-Policy "default-src 'self'; media-src 'none'; object-src 'none';"
+	<FilesMatch "\.(svg)$">
+		Header always set Content-Security-Policy "default-src 'none'; frame-ancestors 'none'; style-src 'self' 'unsafe-inline';"
+	</FilesMatch>
 </Macro>
 
 <%=
