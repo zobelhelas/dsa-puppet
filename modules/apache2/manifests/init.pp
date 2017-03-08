@@ -90,7 +90,11 @@ class apache2 {
 	}
 
 	apache2::config { 'pratchett':
-		source => 'puppet:///modules/apache2/pratchett',
+		ensure => 'absent',
+	}
+
+	apache2::config { 'headers':
+		source => 'puppet:///modules/apache2/headers',
 	}
 
 	apache2::module { 'mpm_event': ensure => absent }
