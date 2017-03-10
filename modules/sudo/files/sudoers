@@ -109,6 +109,7 @@ nagios		storace=(debbackup)	NOPASSWD: /usr/lib/nagios/plugins/dsa-check-backuppg
 %debian-r	ALL=(debian-r)	ALL
 %debian-r	ALL=(debian-r-wb-buildd)	ALL
 %debian-release	ALL=(release)	ALL
+%debsources	ALL=(debsources)	ALL
 %debtags	ALL=(debtags)	ALL
 %debwww		ALL=(debwww)	ALL
 %dedup		ALL=(dedup)	ALL
