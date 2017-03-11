@@ -15,5 +15,11 @@ when /(storace|backuphost).debian.org/ then                    ignore << %w{post
 when /(sompek|stadler).debian.org/ then                        ignore << %w{libsbuild-perl buildd sbuild}
 end
 
+if @lsbmajdistrelease <= '8'
+  case fqdn
+    when /(acker|aagaard).debian.org/ then                     ignore << %w{qemu-efi}
+  end
+end
+
 ignore.flatten.join("\n")
 %>
