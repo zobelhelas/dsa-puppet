@@ -94,11 +94,9 @@ nameinfo:
   setoguchi.debian.org: 瀬戸口藤吉, Tokichi Setoguchi (June 28th, 1868 - November 8th, 1941)
   sibelius.debian.org: Jean Sibelius (December 8th, 1865 - September 20th, 1957)
   smetana.debian.org: Bedřich Smetana (March 2nd, 1824 - May 12th, 1884)
-  sompek.debian.org: Ernst Sompek (Juni 11th 1876 - August 2nd 1954)
   sonntag.debian.org: Brunhilde Sonntag (September 27th, 1936 - December 18th, 2002)
   sor.debian.org: Fernando Sor (February 14th, 1778 - July 10th, 1839)
   soriano.debian.org: Francesco Soriano (1548 or 1549 - July 19th, 1621)
-  stadler.debian.org: Maximilian Johann Karl Dominik Stadler, Abbé Stadler (August 4th 1748 - November 8th 1833)
   stockhausen.debian.org: Karlheinz Stockhausen (August 22nd, 1928 - December 5th, 2007)
   storace.debian.org: Stephen Storace (April 4th, 1762 - March 19th, 1796)
   spontini.debian.org: Gaspare Luigi Pacifico Spontini (November 14th, 1774 - January 24th, 1851)
@@ -198,9 +196,7 @@ host_settings:
     - ppc64el-osuosl-01.debian.org
     - ppc64el-unicamp-01.debian.org
     - praetorius.debian.org
-    - sompek.debian.org
     - spontini.debian.org
-    - stadler.debian.org
     - x86-grnet-01.debian.org
     - zandonai.debian.org
     - zani.debian.org
@@ -231,7 +227,6 @@ host_settings:
     - mipsel-aql-03.debian.org
     - mipsel-manda-03.debian.org
     - mipsel-sil-01.debian.org
-    - sompek.debian.org
   mail_port:
     klecker.debian.org: 2025
     zani.debian.org: 587
