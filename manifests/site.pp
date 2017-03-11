@@ -96,7 +96,7 @@ node default {
 		include named::geodns
 	}
 
-	if $::hostname in [buxtehude,glinka,milanollo,lw01,lw02,lw03,lw04,senfter,gretchaninov] {
+	if $::hostname in [buxtehude,milanollo,lw01,lw02,lw03,lw04,senfter,gretchaninov] {
 		include nfs-server
 	}
 
