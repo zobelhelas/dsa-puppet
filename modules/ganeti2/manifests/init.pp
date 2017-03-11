@@ -17,6 +17,10 @@ class ganeti2 {
 		ensure => installed
 	}
 
-
 	site::linux_module { 'tun': }
+
+	file { '/etc/cron.hourly/puppet-cleanup-watcher-pause-file':
+		source => 'puppet:///modules/ganeti2/cleanup-watcher-pause-file',
+		mode    => '0555',
+	}
 }
