@@ -1,53 +1,54 @@
 Use common-debian-service-https-redirect * debtags.debian.org
 <VirtualHost *:80>
-  ServerName debtags.debian.net
-  ServerAdmin debian-admin@lists.debian.org
+    ServerName debtags.debian.net
+    ServerAdmin debian-admin@lists.debian.org
 
-  CustomLog /var/log/apache2/debtags.debian.org-access.log privacy
-  ErrorLog /var/log/apache2/debtags.debian.org-error.log
+    CustomLog /var/log/apache2/debtags.debian.org-access.log privacy
+    ErrorLog /var/log/apache2/debtags.debian.org-error.log
 
-  Redirect permanent / https://debtags.debian.org/
+    Redirect permanent / https://debtags.debian.org/
 </VirtualHost>
 
 
 WSGIDaemonProcess debtags.debian.org user=nobody group=debtags home=/ processes=2 threads=5 maximum-requests=5000 inactivity-timeout=1800 umask=0077 display-name=wsgi-debtags.debian.org
 
 <VirtualHost *:443>
-	ServerName debtags.debian.org
-	ServerAdmin debian-admin@lists.debian.org
+    ServerName debtags.debian.org
+    ServerAdmin debian-admin@lists.debian.org
 
-	Use common-debian-service-ssl debtags.debian.org
-	Use common-ssl-HSTS
-	Use http-pkp-debtags.debian.org
+    Use common-debian-service-ssl debtags.debian.org
+    Use common-ssl-HSTS
+    Use http-pkp-debtags.debian.org
 
-	SSLCACertificateFile /var/lib/dsa/sso/ca.crt
-	SSLCARevocationCheck chain
-	SSLCARevocationFile /var/lib/dsa/sso/ca.crl
-	SSLVerifyClient optional
+    SSLCACertificateFile /var/lib/dsa/sso/ca.crt
+    SSLCARevocationCheck chain
+    SSLCARevocationFile /var/lib/dsa/sso/ca.crl
+    SSLVerifyClient optional
 
-	SSLOptions +StdEnvVars
+    SSLOptions +StdEnvVars
 
-	<IfModule mod_userdir.c>
-		UserDir disabled
-	</IfModule>
-	ErrorLog /var/log/apache2/debtags.debian.org-error.log
-	CustomLog /var/log/apache2/debtags.debian.org-access.log privacy
-	ServerSignature On
+    <IfModule mod_userdir.c>
+        UserDir disabled
+    </IfModule>
+    ErrorLog /var/log/apache2/debtags.debian.org-error.log
+    CustomLog /var/log/apache2/debtags.debian.org-access.log privacy
+    ServerSignature On
 
 
-	<Directory /srv/debtags.debian.org/htdocs>
-		Require all granted
-	</Directory>
-	Alias /static/ /srv/debtags.debian.org/htdocs/
+    <Directory /srv/debtags.debian.org/htdocs>
+        Require all granted
+    </Directory>
+    Alias /static/ /srv/debtags.debian.org/htdocs/
 
-	<Directory /srv/debtags.debian.org/debtagsd/debtagsd>
-		<Files wsgi.py>
-			Require all granted
-		</Files>
-	</Directory>
+    <Directory /srv/debtags.debian.org/debtagsd/debtagsd>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
 
-	WSGIScriptAlias / /srv/debtags.debian.org/debtagsd/debtagsd/wsgi.py
-	WSGIProcessGroup debtags.debian.org
-	WSGIPassAuthorization On
+    WSGIScriptAlias / /srv/debtags.debian.org/debtagsd/debtagsd/wsgi.py
+    WSGIProcessGroup debtags.debian.org
+    WSGIPassAuthorization On
 </VirtualHost>
 
+# vim: syntax=apache ts=4 sw=4 sts=4 sr et
