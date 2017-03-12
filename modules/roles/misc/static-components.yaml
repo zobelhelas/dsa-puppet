@@ -33,6 +33,9 @@ components:
     source: donizetti.debian.org:/srv/debdelta.debian.org/www/debdeltas
     exclude-mirrors:
       - busoni.debian.org
+  dpl.debian.org:
+    master: dillon.debian.org
+    source: dillon.debian.org:/srv/dpl.debian.org/htdocs
   dsa.debian.org:
     master: dillon.debian.org
     source: dillon.debian.org:/srv/dsa.debian.org/htdocs

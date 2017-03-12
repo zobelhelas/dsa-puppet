@@ -102,6 +102,7 @@ class roles::static_mirror {
 	ssl::service { 'blends.debian.org'             : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'd-i.debian.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true }
 	ssl::service { 'deb.debian.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true }
+	ssl::service { 'dpl.debian.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true }
 	ssl::service { 'dsa.debian.org'                : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true }
 	ssl::service { 'incoming.debian.org'           : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
 	ssl::service { 'incoming.ports.debian.org'     : ensure => "ifstatic", notify  => Exec['service apache2 reload'], key => true, }
@@ -143,6 +144,7 @@ class roles::static_mirror {
 		}
 
 		onion::service { 'd-i.debian.org'      : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
+		onion::service { 'dpl.debian.org'      : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'dsa.debian.org'      : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'rtc.debian.org'      : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'www.debian.org'      : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
