@@ -219,6 +219,7 @@ pabs		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component time
 mini-dak	porta=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component incoming.ports.debian.org
 %wbadm		wuiet=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component apt.buildd.debian.org
 %manpages	manziarly=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component manpages.debian.org
+%dpl		dillon=(staticsync)		NOPASSWD: /usr/local/bin/static-update-component dpl.debian.org
 
 # The piuparts slave needs to handle chroots
 piupartss	PIUPARTS_SLAVE_HOSTS=(ALL)		NOPASSWD: ALL
