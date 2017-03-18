@@ -1,7 +1,7 @@
 SocksPort 0
 Log notice syslog
 
-<%- if has_variable?("tor_ge_0_2_9") && tor_ge_0_2_9 == "true" -%>
+<%- if has_variable?("tor_ge_0_2_9") && tor_ge_0_2_9 -%>
 #HiddenServiceSingleHopMode 1
 #HiddenServiceNonAnonymousMode 1
 <%- end -%>
