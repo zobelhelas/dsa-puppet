@@ -37,7 +37,7 @@ class ssh {
 		content => template('ssh/authorized_keys.erb'),
 	}
 
-	if ($::lsbmajdistrelease >= 8) {
+	if ($::lsbmajdistrelease >= '8') {
 		if ! $has_etc_ssh_ssh_host_ed25519_key {
 			exec { 'create-ed25519-host-key':
 				command => 'ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -q -P "" -t ed25519',

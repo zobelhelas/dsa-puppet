@@ -180,7 +180,7 @@ file=/etc/ssh/userkeys
 file=/etc/ssh/userkeys/staticsync
 <% end -%>
 file=/etc/rsyncd
-<%- if hostname == "sibelius" then -%>
+<%- if @hostname == "sibelius" then -%>
 file=/etc/tsm
 file=/etc/tsm/TSM.PWD
 <% end -%>
@@ -945,7 +945,7 @@ SetMailNum = 10
 
 ## Recipient (max. 8)
 #
-SetMailAddress=samhain-reports@<%= fqdn -%>
+SetMailAddress=samhain-reports@<%= @fqdn -%>
 
 SetMailRelay = localhost
 

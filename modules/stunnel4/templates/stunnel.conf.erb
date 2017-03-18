@@ -3,7 +3,7 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<%- if client -%>
+<%- if @client -%>
 cert = /etc/ssl/debian/certs/thishost.crt
 key = /etc/ssl/private/thishost.key
 <%- else -%>
@@ -16,11 +16,11 @@ chroot = /var/run/stunnel4
 setuid = stunnel4
 setgid = stunnel4
 ; PID is created inside chroot jail
-pid = /stunnel-<%= name %>.pid
+pid = /stunnel-<%= @name %>.pid
 
-verify = <%= verify %>
-CAfile = <%= cafile %>
-<%- if crlfile -%>
+verify = <%= @verify %>
+CAfile = <%= @cafile %>
+<%- if @crlfile -%>
 CRLfile = /etc/exim4/ssl/ca.crl
 <%- end -%>
 
@@ -29,16 +29,16 @@ debug = notice
 ; don't use a file, use syslog
 ; output = /var/log/stunnel4/stunnel.log
 
-client = <%= client ? "yes" : "no" %>
+client = <%= @client ? "yes" : "no" %>
 
 socket = a:SO_LINGER=1:60
 socket = a:SO_KEEPALIVE=1
 
-[<%= name %>-server]
-accept = <%= accept =~ /:/ ? accept : ":::#{accept}" %>
-connect = <%= connect %>
-<%- if local -%>
-local = <%= local %>
+[<%= @name %>-server]
+accept = <%= @accept =~ /:/ ? @accept : ":::#{accept}" %>
+connect = <%= @connect %>
+<%- if @local -%>
+local = <%= @local %>
 <%- end -%>
 
 ; vim:ft=dosini

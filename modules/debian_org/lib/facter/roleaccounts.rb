@@ -25,7 +25,7 @@ begin
 
     Facter.add("staticsync_user_exists") do
         setcode do
-            result = ''
+            result = false
             begin
                 if Etc.getpwnam('staticsync')
                     result = true
@@ -50,7 +50,7 @@ begin
 
     Facter.add("weblogsync_user_exists") do
         setcode do
-            result = ''
+            result = false
             begin
                 if Etc.getpwnam('weblogsync')
                     result = true
@@ -75,7 +75,7 @@ begin
 
     Facter.add("buildd_user_exists") do
         setcode do
-            result = ''
+            result = false
             begin
                 if Etc.getpwnam('buildd')
                     result = true
@@ -99,7 +99,7 @@ begin
 
     Facter.add("portforwarder_user_exists") do
         setcode do
-            result = ''
+            result = false
             begin
                 if Etc.getpwnam('portforwarder')
                     result = true

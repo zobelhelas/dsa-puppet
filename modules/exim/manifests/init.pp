@@ -54,7 +54,7 @@ class exim {
 	}
 	file { '/etc/exim4/ssl':
 		ensure  => directory,
-		group   => Debian-exim,
+		group   => 'Debian-exim',
 		mode    => '0750',
 		purge   => true,
 	}
@@ -110,28 +110,28 @@ class exim {
 	}
 	file { '/etc/exim4/ssl/thishost.crt':
 		source  => "puppet:///modules/exim/certs/${::fqdn}.crt",
-		group   => Debian-exim,
+		group   => 'Debian-exim',
 		mode    => '0640',
 	}
 	file { '/etc/exim4/ssl/thishost.key':
 		source  => "puppet:///modules/exim/certs/${::fqdn}.key",
-		group   => Debian-exim,
+		group   => 'Debian-exim',
 		mode    => '0640',
 	}
 	file { '/etc/exim4/ssl/ca.crt':
 		source  => 'puppet:///modules/exim/certs/ca.crt',
-		group   => Debian-exim,
+		group   => 'Debian-exim',
 		mode    => '0640',
 	}
 	file { '/etc/exim4/ssl/ca.crl':
 		source  => 'puppet:///modules/exim/certs/ca.crl',
-		group   => Debian-exim,
+		group   => 'Debian-exim',
 		mode    => '0640',
 	}
 	file { '/var/log/exim4':
 		ensure  => directory,
 		mode    => '2750',
-		owner   => Debian-exim,
+		owner   => 'Debian-exim',
 		group   => maillog,
 	}
 

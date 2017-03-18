@@ -14,7 +14,7 @@ Facter.add("brokenhosts") do
 		if brokenhosts
 			true
 		else
-			''
+			false
 		end
 	end
 end

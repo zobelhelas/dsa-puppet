@@ -4,7 +4,7 @@
 %>
 
 # local admin
-<%= localkeys = case fqdn
+<%= localkeys = case @fqdn
          when "pettersson.debian.org" then "from=\"nixon.acc.umu.se\" ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAwDw56/XK0/uQB+ZIOZIfZ3vpz9zLRuv6G0U4eU4VavqvaL0dXSNhGJLBDLlfpxtJYwYf/mSoK4WZasbbfHxz8jtIxK9c9aGkVA0GKT+xiHWB3J1SlwJaA7S7Ed8nNcG5PNOVd30BD5LimkS53Nz841e+MgZRuL9SfLALq7er03U= root@nixon"
 end
 localkeys
@@ -46,7 +46,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAEAQDJp6ryOTW7VgqEa+n6uKpi/bh2PO4P9Z/voz0zPYtP
 <%=
 
 machine_keys = []
-case fqdn
+case @fqdn
   when "storace.debian.org" then
     roles['dabackup_client'].each do |node|
       if allnodeinfo.has_key?(node)

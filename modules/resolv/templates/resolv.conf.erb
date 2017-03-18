@@ -10,7 +10,7 @@ searchpaths << "debian.org" -%>
 search <%= searchpaths.to_a.flatten.join(" ") %>
 <%
 nameservers = []
-if %w{draghi}.include?(hostname)
+if %w{draghi}.include?(@hostname)
   nameservers << "127.0.0.1"
 end
 nameservers += @ns

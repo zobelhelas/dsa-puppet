@@ -7,10 +7,10 @@ PARTICIPATE="yes"
 USEHTTP="yes"
 <%=
 # hostids are 32 hexchars long
-id_short = popcon_host_id[0,32]
+id_short = @popcon_host_id[0,32]
 
 # slightly biased, but meh
-day = (popcon_host_id[0].ord + 256*popcon_host_id[1].ord) % 7
+day = (@popcon_host_id[0].ord + 256*@popcon_host_id[1].ord) % 7
 
 conf = []
 conf << "MY_HOSTID=\"#{id_short}\""

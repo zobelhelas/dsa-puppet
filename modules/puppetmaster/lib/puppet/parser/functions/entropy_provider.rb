@@ -22,7 +22,7 @@ module Puppet::Parser::Functions
         next unless  localinfo[node]['entropy_key']
 
         addresses = allnodeinfo[node]['ipHostNumber']
-        thishoster = function_whohosts([addresses, "/etc/puppet/modules/debian-org/misc/hoster.yaml"])
+        thishoster = function_whohosts([addresses, "/etc/puppet/modules/debian_org/misc/hoster.yaml"])
         name = thishoster['name']
 
         provider << node

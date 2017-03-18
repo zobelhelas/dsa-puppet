@@ -1,5 +1,5 @@
 class bacula::client inherits bacula {
-	@@bacula::storage-per-node { $::fqdn: }
+	@@bacula::storage_per_node { $::fqdn: }
 
 	if ! getfromhash($site::nodeinfo, 'not-bacula-client') {
 		@@bacula::node { $::fqdn:
@@ -50,7 +50,7 @@ class bacula::client inherits bacula {
 		require => Package['bacula-fd'],
 		notify  => Service['bacula-fd'],
 	}
-	if ($::lsbmajdistrelease >= 9 and $systemd) {
+	if ($::lsbmajdistrelease >= '9' and $systemd) {
 		file { '/etc/systemd/system/bacula-fd.service.d':
 			ensure	=> directory,
 			mode	=> '0755',

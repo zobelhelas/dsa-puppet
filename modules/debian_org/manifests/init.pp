@@ -1,9 +1,9 @@
-# == Class: debian-org
+# == Class: debian_org
 #
 # Stuff common to all debian.org servers
 #
-class debian-org {
-	include debian-org::apt
+class debian_org {
+	include debian_org::apt
 
 	if $systemd {
 		include systemd
@@ -40,10 +40,10 @@ class debian-org {
 		ensure  => present,
 		replace => false,
 		mode    => '0644',
-		source  => 'puppet:///modules/debian-org/basic-ssh_known_hosts'
+		source  => 'puppet:///modules/debian_org/basic-ssh_known_hosts'
 	}
 
-	if ($::lsbmajdistrelease >= 8) {
+	if ($::lsbmajdistrelease >= '8') {
 		$rubyfs_package = 'ruby-filesystem'
 	} else {
 		$rubyfs_package = 'libfilesystem-ruby1.9'
@@ -93,12 +93,12 @@ class debian-org {
 	}
 	file { '/etc/molly-guard/run.d/10-check-kvm':
 		mode    => '0755',
-		source  => 'puppet:///modules/debian-org/molly-guard/10-check-kvm',
+		source  => 'puppet:///modules/debian_org/molly-guard/10-check-kvm',
 		require => Package['molly-guard'],
 	}
 	file { '/etc/molly-guard/run.d/15-acquire-reboot-lock':
 		mode    => '0755',
-		source  => 'puppet:///modules/debian-org/molly-guard/15-acquire-reboot-lock',
+		source  => 'puppet:///modules/debian_org/molly-guard/15-acquire-reboot-lock',
 		require => Package['molly-guard'],
 	}
 
@@ -124,10 +124,10 @@ class debian-org {
 		ensure => directory,
 	}
 	file { '/etc/facter/facts.d/debian_facts.yaml':
-		content => template('debian-org/debian_facts.yaml.erb')
+		content => template('debian_org/debian_facts.yaml.erb')
 	}
 	file { '/etc/timezone':
-		source => 'puppet:///modules/debian-org/timezone',
+		source => 'puppet:///modules/debian_org/timezone',
 		notify => Exec['dpkg-reconfigure tzdata -pcritical -fnoninteractive'],
 	}
 	if $::hostname == handel {
@@ -135,12 +135,12 @@ class debian-org {
 		$dbpassword = $puppetmaster::db::password
 	}
 	file { '/etc/puppet/puppet.conf':
-		content => template('debian-org/puppet.conf.erb'),
+		content => template('debian_org/puppet.conf.erb'),
 		mode => 0440,
 		group => 'puppet',
 	}
 	file { '/etc/default/puppet':
-		source => 'puppet:///modules/debian-org/puppet.default',
+		source => 'puppet:///modules/debian_org/puppet.default',
 	}
 	file { '/etc/systemd':
 		ensure  => directory,
@@ -152,7 +152,7 @@ class debian-org {
 	}
 	file { '/etc/systemd/system/ud-replicated.service':
 		ensure => $servicefiles,
-		source => 'puppet:///modules/debian-org/ud-replicated.service',
+		source => 'puppet:///modules/debian_org/ud-replicated.service',
 		notify => Exec['systemctl daemon-reload'],
 	}
 	if $systemd {
@@ -174,24 +174,24 @@ class debian-org {
 	}
 
 	file { '/etc/cron.d/dsa-puppet-stuff':
-		content => template('debian-org/dsa-puppet-stuff.cron.erb'),
+		content => template('debian_org/dsa-puppet-stuff.cron.erb'),
 		require => Package['debian.org'],
 	}
 	file { '/etc/ldap/ldap.conf':
 		require => Package['debian.org'],
-		content  => template('debian-org/ldap.conf.erb'),
+		content  => template('debian_org/ldap.conf.erb'),
 	}
 	file { '/etc/pam.d/common-session':
 		require => Package['debian.org'],
-		content => template('debian-org/pam.common-session.erb'),
+		content => template('debian_org/pam.common-session.erb'),
 	}
 	file { '/etc/pam.d/common-session-noninteractive':
 		require => Package['debian.org'],
-		content => template('debian-org/pam.common-session-noninteractive.erb'),
+		content => template('debian_org/pam.common-session-noninteractive.erb'),
 	}
 	file { '/etc/rc.local':
 		mode   => '0755',
-		content => template('debian-org/rc.local.erb'),
+		content => template('debian_org/rc.local.erb'),
 		notify => Exec['service rc.local restart'],
 	}
 	file { '/etc/dsa':
@@ -199,24 +199,24 @@ class debian-org {
 		mode   => '0755',
 	}
 	file { '/etc/dsa/cron.ignore.dsa-puppet-stuff':
-		source  => 'puppet:///modules/debian-org/dsa-puppet-stuff.cron.ignore',
+		source  => 'puppet:///modules/debian_org/dsa-puppet-stuff.cron.ignore',
 		require => Package['debian.org']
 	}
 	file { '/etc/nsswitch.conf':
 		mode   => '0755',
-		source => 'puppet:///modules/debian-org/nsswitch.conf',
+		source => 'puppet:///modules/debian_org/nsswitch.conf',
 	}
 
 	file { '/etc/profile.d/timeout.sh':
 		mode   => '0555',
-		source => 'puppet:///modules/debian-org/etc.profile.d/timeout.sh',
+		source => 'puppet:///modules/debian_org/etc.profile.d/timeout.sh',
 	}
 	file { '/etc/zsh':
 		ensure => directory,
 	}
 	file { '/etc/zsh/zprofile':
 		mode   => '0444',
-		source => 'puppet:///modules/debian-org/etc.zsh/zprofile',
+		source => 'puppet:///modules/debian_org/etc.zsh/zprofile',
 	}
 
 	# set mmap_min_addr to 4096 to mitigate
@@ -245,7 +245,7 @@ class debian-org {
 	}
 
 	file { '/usr/local/bin/check_for_updates':
-		source => 'puppet:///modules/debian-org/check_for_updates',
+		source => 'puppet:///modules/debian_org/check_for_updates',
 		mode   => '0755',
 		owner  => root,
 		group  => root,
@@ -284,21 +284,21 @@ class debian-org {
 	}
 
 	file { '/root/.bashrc':
-		source => 'puppet:///modules/debian-org/root-dotfiles/bashrc',
+		source => 'puppet:///modules/debian_org/root-dotfiles/bashrc',
 	}
 	file { '/root/.profile':
-		source => 'puppet:///modules/debian-org/root-dotfiles/profile',
+		source => 'puppet:///modules/debian_org/root-dotfiles/profile',
 	}
 	file { '/root/.selected_editor':
-		source => 'puppet:///modules/debian-org/root-dotfiles/selected_editor',
+		source => 'puppet:///modules/debian_org/root-dotfiles/selected_editor',
 	}
 	file { '/root/.screenrc':
-		source => 'puppet:///modules/debian-org/root-dotfiles/screenrc',
+		source => 'puppet:///modules/debian_org/root-dotfiles/screenrc',
 	}
 	file { '/root/.tmux.conf':
-		source => 'puppet:///modules/debian-org/root-dotfiles/tmux.conf',
+		source => 'puppet:///modules/debian_org/root-dotfiles/tmux.conf',
 	}
 	file { '/root/.vimrc':
-		source => 'puppet:///modules/debian-org/root-dotfiles/vimrc',
+		source => 'puppet:///modules/debian_org/root-dotfiles/vimrc',
 	}
 }
