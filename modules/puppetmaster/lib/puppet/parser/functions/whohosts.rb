@@ -5,8 +5,6 @@ module Puppet::Parser::Functions
 
     ipAddrs = args[0]
     yamlfile = args[1]
-    parser = Puppet::Parser::Parser.new(environment)
-    parser.watch_file(yamlfile)
 
     ans = {"name" => "unknown"}
     yaml = YAML.load_file(yamlfile)
