@@ -13,7 +13,7 @@ restrict_ssh = %w{tchaikovsky draghi adayevskaya}
 if (nodeinfo['ldap'].has_key?('purpose')) then
 	nodeinfo['ldap']['purpose'].each do |purp|
 		if restricted_purposes.include?(purp) then
-			restrict_ssh << hostname
+			restrict_ssh << @hostname
 		end
 	end
 end
