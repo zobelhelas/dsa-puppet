@@ -7,8 +7,5 @@ class hardware::raid {
 		include hardware::raid::megactl
 	}
 
-	if $::mptraid {
-		include hardware::raid::raidmpt
-	}
-
+	include hardware::raid::raidmpt
 }
