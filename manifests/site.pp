@@ -100,7 +100,7 @@ node default {
 	}
 
 	if $::hostname in [buxtehude,milanollo,lw01,lw02,lw03,lw04,senfter,gretchaninov] {
-		include nfs-server
+		include nfs_server
 	}
 
 	if $::brokenhosts {
