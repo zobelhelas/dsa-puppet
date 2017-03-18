@@ -68,11 +68,9 @@ class munin {
 		notarule        => true,
 	}
 
-	@@munin::master-per-node {
-		$::fqdn:
+	@@munin::master_per_node { $::fqdn:
 			ipaddress   => $::ipaddress,
 			munin_async => $::munin_async,
-			;
 	}
 
 	#if $::munin_async and str2bool($::munin_async) == true {
