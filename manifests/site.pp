@@ -41,6 +41,7 @@ node default {
 	include multipath
 	include popcon
 	include portforwarder
+	include postgres
 
 	if $::lsbdistcodename == squeeze {
 		include roles::udldap::client
@@ -112,10 +113,6 @@ node default {
 
 	if $::hostname in [geo3,wieck] {
 		include debian_org::radvd
-	}
-
-	if ($::postgres) {
-		include postgres
 	}
 
 	if $::spamd {
