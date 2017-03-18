@@ -4,7 +4,7 @@
 
   # this is a list that seems suitable as of 2014-10, when running wheezy.  It
   # probably requires re-visiting regularly.
-  <% if @lsbmajdistrelease <= '7' -%>
+  <% if scope.call_function('versioncmp', [@lsbmajdistrelease, '7']) <= 0 -%>
     SSLCipherSuite ECDH+AESGCM:ECDH+AES256:ECDH+AES128:ECDH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!eNULL:!LOW:!MD5:!EXP:!RC4:!SEED:!DSS
   <% else -%>
     SSLCipherSuite ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!eNULL:!LOW:!MD5:!EXP:!RC4:!SEED:!DSS

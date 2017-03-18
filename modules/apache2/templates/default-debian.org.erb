@@ -10,7 +10,7 @@
 	CustomLog /var/log/apache2/access.log privacy
 
 	DocumentRoot /srv/www/default.debian.org/htdocs
-	<% if @lsbmajdistrelease > '7' -%>
+	<% if scope.call_function('versioncmp', [@lsbmajdistrelease, '7']) > 0 -%>
 	<Directory /srv/www/default.debian.org/htdocs>
 		Require all granted
 	</Directory>

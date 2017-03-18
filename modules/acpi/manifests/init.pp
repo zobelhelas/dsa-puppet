@@ -1,6 +1,6 @@
 class acpi {
 	if ! ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
-		if ($::lsbmajdistrelease >= '8') {
+		if (versioncmp($::lsbmajdistrelease, '8') >= 0) {
 			package { 'acpid':
 				ensure => purged
 			}

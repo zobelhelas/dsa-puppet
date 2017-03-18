@@ -16,7 +16,7 @@ class ferm {
 	package { 'ferm':
 		ensure => installed
 	}
-	if ($::lsbmajdistrelease >= '8') {
+	if (versioncmp($::lsbmajdistrelease, '8') >= 0) {
 		package { 'ulogd2':
 			ensure => installed
 		}
@@ -92,7 +92,7 @@ class ferm {
 		content => template('ferm/interfaces.conf.erb'),
 		notify  => Service['ferm'],
 	}
-	if ($::lsbmajdistrelease >= '8') {
+	if (versioncmp($::lsbmajdistrelease, '8') >= 0) {
 		augeas { 'logrotate_ulogd2':
 			context => '/files/etc/logrotate.d/ulogd2',
 			changes => [

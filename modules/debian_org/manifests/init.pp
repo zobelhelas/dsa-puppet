@@ -43,7 +43,7 @@ class debian_org {
 		source  => 'puppet:///modules/debian_org/basic-ssh_known_hosts'
 	}
 
-	if ($::lsbmajdistrelease >= '8') {
+	if versioncmp($::lsbmajdistrelease, '8') >= 0 {
 		$rubyfs_package = 'ruby-filesystem'
 	} else {
 		$rubyfs_package = 'libfilesystem-ruby1.9'

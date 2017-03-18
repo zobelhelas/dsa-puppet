@@ -835,7 +835,7 @@ SyslogSeverity=alert
 #
 # SetDefault = no
 
-<% if @lsbmajdistrelease >= '9' -%>
+<% if scope.call_function('versioncmp', [@lsbmajdistrelease, '9']) >= 0 -%>
 [PortCheck]
 PortCheckActive=0
 <% end -%>

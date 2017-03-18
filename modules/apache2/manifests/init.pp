@@ -105,7 +105,7 @@ class apache2 {
 		apache2::module { 'mpm_prefork': ensure => absent }
 		apache2::module { 'mpm_worker': }
 	}
-	if $::lsbmajdistrelease > '7' {
+	if versioncmp($::lsbmajdistrelease, '7') > 0 {
 		file { '/etc/apache2/mods-available/mpm_worker.conf':
 			content => template('apache2/mpm_worker.erb'),
 		}
