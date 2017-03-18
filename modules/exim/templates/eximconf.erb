@@ -211,7 +211,7 @@ queue_only_load = 8
 <%- end -%>
 queue_list_requires_admin = false
 
-<%- if has_variable?("clamd") && clamd == "true" -%>
+<%- if has_variable?("clamd") && @clamd == "true" -%>
 av_scanner = clamd:/var/run/clamav/clamd.ctl
 <%- end -%>
 
@@ -663,7 +663,7 @@ check_recipient:
           ratelimit      = 10 / 60m / per_rcpt / $sender_host_address
           message        = slow down (no reverse dns, mismatched ehlo, dialup, or in blacklists)
 
-<%- if has_variable?("policydweight") && policydweight == "true" -%>
+<%- if has_variable?("policydweight") && @policydweight == "true" -%>
   # Check with policyd-weight - this only works with a version after etch's,
   # sadly.  etch's version attempts to hold the socket open, since that's what
   # postfix expects.  Exim, on the other hand, expects the remote side to close
@@ -734,7 +734,7 @@ check_recipient:
 
 
 <%- end -%>
-<%- if has_variable?("greylistd") && greylistd == "true" -%>
+<%- if has_variable?("greylistd") && @greylistd == "true" -%>
   defer
     message  = $sender_host_address is not yet authorized to deliver mail from <$sender_address> to <$local_part@$domain>.
     log_message = greylisted.
@@ -759,7 +759,7 @@ check_recipient:
                                   $local_part@$domain}\
                                  {5s}{}{false}}
 
-<%- elsif has_variable?("postgrey") && postgrey == "true" -%>
+<%- elsif has_variable?("postgrey") && @postgrey == "true" -%>
   # next three are greylisting, inspired by http://www.bebt.de/blog/debian/archives/2006/07/30/T06_12_27/index.html
   # this adds acl_m_grey if there isn't one (so unique per message)
   warn
@@ -956,7 +956,7 @@ check_message:
           condition       = ${if eq {$acl_m_prf}{PopconMail}{no}{yes}}
 	  message         = Your mailer is not RFC 2047 compliant: message rejected
 
-<%- if has_variable?("clamd") && clamd == "true" -%>
+<%- if has_variable?("clamd") && @clamd == "true" -%>
   discard condition       = ${if eq {$acl_m_prf}{blackhole}}
           demime          = *
           malware         = */defer_ok

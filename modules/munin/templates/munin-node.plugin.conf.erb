@@ -19,7 +19,7 @@ group adm, maillog
 user root
 <%=
 out = ""
-if has_variable?("mta") and mta == "exim4"
+if has_variable?("mta") and @mta == "exim4"
   out="
 [exim_mail*]
 user Debian-exim
@@ -63,7 +63,7 @@ env.critical 98
 
 <%=
 out = ""
-if has_variable?("mta") and mta == "postfix"
+if has_variable?("mta") and @mta == "postfix"
   out="
 [postfix_mailqueue]
 user postfix

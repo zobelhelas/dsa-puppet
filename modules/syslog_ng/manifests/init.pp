@@ -1,4 +1,4 @@
-class syslog-ng {
+class syslog_ng {
 	package { 'syslog-ng':
 		ensure => installed
 	}
@@ -10,22 +10,22 @@ class syslog-ng {
 	}
 
 	file { '/etc/syslog-ng/syslog-ng.conf':
-		content => template('syslog-ng/syslog-ng.conf.erb'),
+		content => template('syslog_ng/syslog-ng.conf.erb'),
 		require => Package['syslog-ng'],
 		notify  => Service['syslog-ng']
 	}
 	file { '/etc/default/syslog-ng':
-		source  => 'puppet:///modules/syslog-ng/syslog-ng.default',
+		source  => 'puppet:///modules/syslog_ng/syslog-ng.default',
 		require => Package['syslog-ng'],
 		notify  => Service['syslog-ng']
 	}
 	file { '/etc/logrotate.d/syslog-ng':
-		source  => 'puppet:///modules/syslog-ng/syslog-ng.logrotate',
+		source  => 'puppet:///modules/syslog_ng/syslog-ng.logrotate',
 		require => Package['syslog-ng']
 	}
 	if $::hostname in [lotty,lully,loghost-grnet-01] {
 		file { '/etc/logrotate.d/syslog-ng-loggers':
-			source  => 'puppet:///modules/syslog-ng/syslog-ng.logrotate.loggers',
+			source  => 'puppet:///modules/syslog_ng/syslog-ng.logrotate.loggers',
 			require => Package['syslog-ng']
 		}
 	}
@@ -34,7 +34,7 @@ class syslog-ng {
 	if $systemd {
 		file { '/etc/systemd/system/syslog-ng.service':
 			ensure => $servicefiles,
-			source => 'puppet:///modules/syslog-ng/syslog-ng.service',
+			source => 'puppet:///modules/syslog_ng/syslog-ng.service',
 			notify => Exec['systemctl daemon-reload'],
 		}
 

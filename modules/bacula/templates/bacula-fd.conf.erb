@@ -6,35 +6,35 @@
 
 # List Directors who are permitted to contact this File daemon
 Director {
-  Name = <%= bacula_director_name %>
-  Password = "<%= bacula_client_secret %>"
+  Name = <%= @bacula_director_name %>
+  Password = "<%= @bacula_client_secret %>"
 
   TLS Enable = yes
   TLS Require = yes
   TLS Verify Peer = yes
-  TLS Allowed CN = "clientcerts/<%= bacula_director_address %>"
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  TLS Allowed CN = "clientcerts/<%= @bacula_director_address %>"
+  TLS CA Certificate File = "<%= @bacula_ca_path %>"
   # This is a server certificate, used for incoming director connections.
-  TLS Certificate = "<%= bacula_ssl_server_cert %>"
-  TLS Key = "<%= bacula_ssl_server_key %>"
+  TLS Certificate = "<%= @bacula_ssl_server_cert %>"
+  TLS Key = "<%= @bacula_ssl_server_key %>"
 }
 
 # "Global" File daemon configuration specifications
 FileDaemon {
-  Name = <%= bacula_client_name %>
-  FDport = <%= bacula_client_port %>
+  Name = <%= @bacula_client_name %>
+  FDport = <%= @bacula_client_port %>
   WorkingDirectory = /var/lib/bacula
   Pid Directory = /var/run/bacula
   Maximum Concurrent Jobs = 20
-  FDAddress = <%= fqdn %>
+  FDAddress = <%= @fqdn %>
   #Maximum Network Buffer Size = 524288
 
   TLS Enable = yes
   TLS Require = yes
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  TLS CA Certificate File = "<%= @bacula_ca_path %>"
   # This is a client certificate, used by the client to connect to the storage daemon
-  TLS Certificate = "<%= bacula_ssl_client_cert %>"
-  TLS Key = "<%= bacula_ssl_client_key %>"
+  TLS Certificate = "<%= @bacula_ssl_client_cert %>"
+  TLS Key = "<%= @bacula_ssl_client_key %>"
 
 <%- if scope.lookupvar('site::nodeinfo')['hoster']['name'] == "brown" -%>
   # broken firewall
@@ -45,5 +45,5 @@ FileDaemon {
 # Send all messages except skipped files back to Director
 Messages {
   Name = Standard
-  director = <%=bacula_director_name%> = all, !skipped, !restored
+  director = <%= @bacula_director_name %> = all, !skipped, !restored
 }

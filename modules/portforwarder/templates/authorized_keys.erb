@@ -30,7 +30,7 @@ config.each_pair do |sourcehost, services|
 	##lines << "# sourcehost is #{sourcehost}"
 	services.each do |service|
 		##lines << "# targethost is #{service['target_host']}, my hostname #{hostname}, fqdn is #{fqdn}"
-		next if service['target_host'] != fqdn
+		next if service['target_host'] != @fqdn
 		allowed_ports << service['target_port'] if service['target_port']
 	end
 

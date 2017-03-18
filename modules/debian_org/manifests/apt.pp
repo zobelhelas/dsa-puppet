@@ -1,9 +1,9 @@
-# == Class: debian-org
+# == Class: debian_org
 #
 # Stuff common to all debian.org servers
 #
-class debian-org::apt {
-	if $::lsbmajdistrelease <= 7 {
+class debian_org::apt {
+	if $::lsbmajdistrelease <= '7' {
 		$mungedcodename = $::lsbdistcodename
 	} elsif ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
 		$mungedcodename = "${::lsbdistcodename}-kfreebsd"
@@ -11,7 +11,7 @@ class debian-org::apt {
 		$mungedcodename = $::lsbdistcodename
 	}
 
-	if $::lsbmajdistrelease <= 8 {
+	if $::lsbmajdistrelease <= '8' {
 		$fallbackmirror = 'http://cdn-fastly.deb.debian.org/debian/'
 	} else {
 		$fallbackmirror = 'http://deb.debian.org/debian/'
@@ -43,7 +43,7 @@ class debian-org::apt {
 		url        => 'http://db.debian.org/debian-admin',
 		suite      => $dbdosuites,
 		components => 'main',
-		key        => 'puppet:///modules/debian-org/db.debian.org.gpg',
+		key        => 'puppet:///modules/debian_org/db.debian.org.gpg',
 	}
 
 	if ($::hostname in [] or $::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
@@ -97,19 +97,19 @@ class debian-org::apt {
 	}
 
 	file { '/etc/apt/preferences':
-		source => 'puppet:///modules/debian-org/apt.preferences',
+		source => 'puppet:///modules/debian_org/apt.preferences',
 	}
 	file { '/etc/apt/apt.conf.d/local-compression':
-		source => 'puppet:///modules/debian-org/apt.conf.d/local-compression',
+		source => 'puppet:///modules/debian_org/apt.conf.d/local-compression',
 	}
 	file { '/etc/apt/apt.conf.d/local-recommends':
-		source => 'puppet:///modules/debian-org/apt.conf.d/local-recommends',
+		source => 'puppet:///modules/debian_org/apt.conf.d/local-recommends',
 	}
 	file { '/etc/apt/apt.conf.d/local-pdiffs':
-		source => 'puppet:///modules/debian-org/apt.conf.d/local-pdiffs',
+		source => 'puppet:///modules/debian_org/apt.conf.d/local-pdiffs',
 	}
 	file { '/etc/apt/apt.conf.d/local-langs':
-		source => 'puppet:///modules/debian-org/apt.conf.d/local-langs',
+		source => 'puppet:///modules/debian_org/apt.conf.d/local-langs',
 	}
 
 	exec { 'apt-get update':

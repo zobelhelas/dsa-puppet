@@ -21,10 +21,10 @@ Service {
 node default {
 	include site
 	include munin
-	include syslog-ng
+	include syslog_ng
 	include sudo
 	include ssh
-	include debian-org
+	include debian_org
 	include monit
 	include time
 	include ssl
@@ -69,7 +69,7 @@ node default {
 		include bacula::storage
 	}
 
-	if $::kernel == Linux {
+	if $::kernel == 'Linux' {
 		include linux
 		include acpi
 	} elsif $::kernel == 'GNU/kFreeBSD' {
@@ -113,7 +113,7 @@ node default {
 	}
 
 	if $::hostname in [geo3,wieck] {
-		include debian-org::radvd
+		include debian_org::radvd
 	}
 
 	if ($::postgres) {

@@ -54,7 +54,7 @@ Host *
     GSSAPIAuthentication no
     GSSAPIDelegateCredentials no
     VerifyHostKeyDNS yes
-<%- if (hostname == "sibelius") -%>
+<%- if (@hostname == "sibelius") -%>
     ServerAliveInterval 450
 <%- end -%>
 # Used for the email-virtualdomains setup

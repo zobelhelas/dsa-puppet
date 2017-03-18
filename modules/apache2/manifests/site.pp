@@ -46,7 +46,7 @@ define apache2::site (
 		}
 	}
 
-	if $::lsbmajdistrelease <= 7 {
+	if $::lsbmajdistrelease <= '7' {
 		$symlink = "/etc/apache2/sites-enabled/${name}"
 	} else {
 		$symlink = "/etc/apache2/sites-enabled/${name}.conf"

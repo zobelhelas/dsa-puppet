@@ -8,7 +8,7 @@
 
 # What ports, IPs and protocols we listen for
 Port 22
-<%= extraports = case fqdn
+<%= extraports = case @fqdn
                         when "paradis.debian.org" then "
 ListenAddress 0.0.0.0:22
 ListenAddress [::]:22
@@ -24,7 +24,7 @@ extraports
 Protocol 2
 # HostKeys for protocol version 2
 HostKey /etc/ssh/ssh_host_rsa_key
-<%- if has_variable?("has_etc_ssh_ssh_host_ed25519_key") && has_etc_ssh_ssh_host_ed25519_key == "true" -%>
+<%- if has_variable?("has_etc_ssh_ssh_host_ed25519_key") && @has_etc_ssh_ssh_host_ed25519_key == "true" -%>
 HostKey /etc/ssh/ssh_host_ed25519_key
 <% end %>
 #Privilege Separation is turned on for security

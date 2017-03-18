@@ -1,4 +1,4 @@
-define bacula::storage-per-node() {
+define bacula::storage_per_node() {
 
 	include bacula
 

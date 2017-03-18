@@ -14,7 +14,7 @@ define ferm::rule (
 		"/etc/ferm/dsa.d/${prio}_${name}":
 			ensure  => present,
 			mode    => '0400',
-			content => template('ferm/ferm-rule.erb'),
+			content => template('ferm/ferm_rule.erb'),
 			notify  => Service['ferm'],
 	}
 }

@@ -3,10 +3,10 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-domain <%= domain %> {
-	table <%= table %> {
-		chain <%= chain %> {
-			<%= rule %><% unless notarule -%>;<% end -%>
+domain <%= @domain %> {
+	table <%= @table %> {
+		chain <%= @chain %> {
+			<%= @rule %><% unless @notarule -%>;<% end -%>
 
 		}
 	}

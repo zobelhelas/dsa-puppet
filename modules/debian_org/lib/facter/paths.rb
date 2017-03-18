@@ -13,7 +13,7 @@
 			if FileTest.exist?(path)
 				true
 			else
-				''
+				false
 			end
 		end
 	end

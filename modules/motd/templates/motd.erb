@@ -40,7 +40,7 @@ end
 
 ninfo = scope.lookupvar('site::nodeinfo')
 
-extra = 'Welcome to ' + fqdn
+extra = 'Welcome to ' + @fqdn
 if (scope.lookupvar('site::nodeinfo')['ldap'].has_key?('purpose'))
   p = scope.lookupvar('site::nodeinfo')['ldap']['purpose'].clone()
   entries = ""
@@ -84,7 +84,7 @@ end
 
 vms = []
 scope.lookupvar('site::allnodeinfo').keys.sort.each do |node|
-  if scope.lookupvar('site::allnodeinfo')[node]['physicalHost'] and scope.lookupvar('site::allnodeinfo')[node]['physicalHost'].include?(fqdn)
+  if scope.lookupvar('site::allnodeinfo')[node]['physicalHost'] and scope.lookupvar('site::allnodeinfo')[node]['physicalHost'].include?(@fqdn)
     vms << node
   end
 end

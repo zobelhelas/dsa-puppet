@@ -21,7 +21,7 @@ end
 ssh4allowed = []
 ssh6allowed = []
 
-should_restrict = restrict_ssh.include?(hostname)
+should_restrict = restrict_ssh.include?(@hostname)
 %w{dns_primary dns_geo}.each do |role_restrict|
 	if scope.function_has_role([role_restrict]) then
 		should_restrict = true
@@ -29,16 +29,16 @@ should_restrict = restrict_ssh.include?(hostname)
 end
 
 
-if restrict_ssh.include?(hostname) then
+if restrict_ssh.include?(@hostname) then
 	ssh4allowed << %w{$DSA_IPS    $HOST_NAGIOS_V4 $HOST_MUNIN_V4 $HOST_DB_V4}
 	ssh6allowed << %w{$DSA_V6_IPS $HOST_NAGIOS_V6 $HOST_MUNIN_V6 $HOST_DB_V6}
 
-	if %w{draghi}.include?(hostname) then
+	if %w{draghi}.include?(@hostname) then
 		ssh4allowed << '$HOST_DEBIAN_V4'
 		ssh6allowed << '$HOST_DEBIAN_V6'
 	end
 
-	if %w{adayevskaya}.include?(hostname) then
+	if %w{adayevskaya}.include?(@hostname) then
                 out << '@def $MFL_LOCAL = ( 130.83.226.60 );' # Michael Fladerer
                 ssh4allowed << '$MFL_LOCAL'
 		ssh4allowed << %w{$HOST_DEBIAN_V4}

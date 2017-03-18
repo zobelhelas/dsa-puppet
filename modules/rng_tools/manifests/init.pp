@@ -1,4 +1,4 @@
-class rng-tools {
+class rng_tools {
 	if $has_dev_hwrng {
 		package { 'rng-tools':
 			ensure => installed

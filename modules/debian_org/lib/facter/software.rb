@@ -3,7 +3,7 @@ Facter.add("apache2") do
 		if FileTest.exist?("/usr/sbin/apache2")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -13,7 +13,7 @@ Facter.add("apache2deb9") do
 		if FileTest.exist?("/usr/sbin/apache2") and system("dpkg --compare-versions $(dpkg-query -W -f='${Version}\n' apache2-bin) gt 2.4.15")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -22,7 +22,7 @@ Facter.add("clamd") do
 		if FileTest.exist?("/usr/sbin/clamd")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -31,7 +31,7 @@ Facter.add("exim4") do
 		if FileTest.exist?("/usr/sbin/exim4")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -40,7 +40,7 @@ Facter.add("postfix") do
 		if FileTest.exist?("/usr/sbin/postfix")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -55,7 +55,7 @@ Facter.add("postgres") do
 		if pg
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -64,7 +64,7 @@ Facter.add("postgrey") do
 		if FileTest.exist?("/usr/sbin/postgrey")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -78,7 +78,7 @@ Facter.add("policydweight") do
 		if FileTest.exist?("/usr/sbin/policyd-weight")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -87,7 +87,7 @@ Facter.add("spamd") do
 		if FileTest.exist?("/usr/sbin/spamd")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -100,7 +100,7 @@ Facter.add("php5") do
 		if php
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -111,7 +111,7 @@ Facter.add("php5suhosin") do
 		if suhosin
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -127,7 +127,7 @@ Facter.add("unbound") do
 		if unbound
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -141,7 +141,7 @@ Facter.add("samhain") do
 		if FileTest.exist?("/usr/sbin/samhain")
 			true
 		else
-			''
+			false
 		end
 	end
 end
@@ -151,7 +151,7 @@ Facter.add("systemd") do
 		if File.symlink?(init) and File.readlink(init) == "/lib/systemd/systemd"
 			true
 		else
-			''
+			false
 		end
 	end
 end

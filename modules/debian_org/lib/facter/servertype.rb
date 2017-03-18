@@ -1,6 +1,6 @@
 Facter.add("kvmdomain") do
 	setcode do
-		result = ''
+		result = false
 		if File.new('/proc/cpuinfo').read().index('QEMU Virtual CPU')
 			result = true
 		end

@@ -42,3 +42,6 @@ modulepath=/srv/puppet.debian.org/stages/staging/modules:/srv/puppet.debian.org/
 environments = development,testing,production,staging
 report = true
 configtimeout = 240
+<%- if has_variable?("puppetversion") and @puppetversion.to_s == "3.7.2" -%>
+stringify_facts = false
+<%- end -%>

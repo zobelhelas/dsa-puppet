@@ -1,4 +1,4 @@
-class ferm::per-host {
+class ferm::per_host {
 	if $::hostname in [zandonai,zelenka] {
 		include ferm::zivit
 	}

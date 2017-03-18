@@ -1,6 +1,6 @@
 class linux {
 	include ferm
-	include ferm::per-host
+	include ferm::per_host
 	include entropykey
-	include rng-tools
+	include rng_tools
 }

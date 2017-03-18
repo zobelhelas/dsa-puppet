@@ -1,18 +1,18 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
 <HTML>
 <HEAD>
-   <TITLE>Welcome to <%= hostname %>!</TITLE>
+   <TITLE>Welcome to <%= @hostname %>!</TITLE>
 </HEAD>
 <BODY>
 
-<H1>Welcome to <%= hostname %>!</H1>
+<H1>Welcome to <%= @hostname %>!</H1>
 
-This is <%= hostname %>, a system run by and for the <a href="https://www.debian.org/">Debian Project</a>.
+This is <%= @hostname %>, a system run by and for the <a href="https://www.debian.org/">Debian Project</a>.
 <P>
 The service you have requested is currently disabled.
 <P>
 The reason for that and who our kind sponsors are you might learn on
-<a href="https://db.debian.org/machines.cgi?host=<%= hostname %>">db.debian.org</a>.
+<a href="https://db.debian.org/machines.cgi?host=<%= @hostname %>">db.debian.org</a>.
 
 <P>
 <HR NOSHADE />
