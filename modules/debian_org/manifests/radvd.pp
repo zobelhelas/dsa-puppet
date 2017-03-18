@@ -1,4 +1,4 @@
-class debian-org::radvd {
+class debian_org::radvd {
 	site::sysctl { 'dsa-accept-ra-default':
 		key   => 'net.ipv6.conf.default.accept_ra',
 		value => 0,
