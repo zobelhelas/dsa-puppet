@@ -90,7 +90,7 @@ group maillog
 [bind*]
 group bind
 <%=
-out = case hostname
+out = case @hostname
   when "geo1","geo2","geo3" then "env.logfile /var/log/bind9/geoip-query.log"
   else "env.logfile /var/log/bind9/named-query.log"
 end
