@@ -24,7 +24,7 @@ class exim {
 	concat::fragment { 'virtual_domain_template':
 		target  => '/etc/exim4/virtualdomains',
 		content => template('exim/virtualdomains.erb'),
-		order   => 05,
+		order   => '05',
 	}
 
 	service { 'exim4':

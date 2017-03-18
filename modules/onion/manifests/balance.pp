@@ -21,7 +21,7 @@ class onion::balance {
 
 	concat::fragment { 'onion::torrc_control_header':
 		target  => "/etc/tor/torrc",
-		order   => 10,
+		order   => '10',
 		content => "ControlPort 9051\n\n",
 	}
 
