@@ -40,6 +40,8 @@ node default {
 	include grub
 	include multipath
 	include popcon
+	include portforwarder
+
 	if $::lsbdistcodename == squeeze {
 		include roles::udldap::client
 	} else {
@@ -102,10 +104,6 @@ node default {
 
 	if $::brokenhosts {
 		include hosts
-	}
-
-	if $::portforwarder_user_exists {
-		include portforwarder
 	}
 
 	if $::samhain {
