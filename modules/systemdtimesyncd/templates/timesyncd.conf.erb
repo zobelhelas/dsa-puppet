@@ -16,7 +16,7 @@
 #Servers=0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
 <%=
   servers = []
-  localtimeservers.each do |node|
+  @localtimeservers.each do |node|
     scope.lookupvar('site::allnodeinfo')[node]['ipHostNumber'].each do |addr|
         servers << addr
     end
