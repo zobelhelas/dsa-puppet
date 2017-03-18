@@ -41,8 +41,8 @@ module Puppet::Parser::Functions
         end
       end
 
-      ns = function_hiera(['nameservers'])
-      allow_dns_q = function_hiera(['allow_dns_query'])
+      ns = call_function('hiera',['nameservers'])
+      allow_dns_q = call_function('hiera',['allow_dns_query'])
       if ns.empty?
         # no nameservers known for this hoster
         nodeinfo['misc']['resolver-recursive'] = true
