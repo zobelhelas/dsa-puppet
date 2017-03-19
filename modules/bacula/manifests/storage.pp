@@ -66,6 +66,5 @@ class bacula::storage inherits bacula {
 		;
 	}
 
-	Bacula::Storage-per-Node<<| |>>
-
+	Bacula::Storage_per_node<<| |>>
 }
