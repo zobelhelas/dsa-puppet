@@ -26,7 +26,7 @@ class onion {
 	}
 	concat::fragment { 'onion::torrc_header':
 		target  => "/etc/tor/torrc",
-		order   => 05,
+		order   => '05',
 		content => template("onion/torrc-header.erb"),
 	}
 }
