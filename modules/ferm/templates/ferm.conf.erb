@@ -7,7 +7,7 @@
 
 @include 'conf.d/';
 
-<% if @lsbmajdistrelease >= '8' -%>
+<% if scope.call_function('versioncmp', [@lsbmajdistrelease, '8']) >= 0 -%>
 domain (ip ip6) {
         table filter {
               chain log_and_reject {

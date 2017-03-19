@@ -31,16 +31,9 @@ class buildd ($ensure=present) {
 				source  => 'puppet:///modules/buildd/buildd.conf',
 				require => Package['buildd'],
 			}
-			if ($::lsbmajdistrelease >= 8) {
-				file { '/etc/sbuild/sbuild.conf':
-					source  => 'puppet:///modules/buildd/sbuild.conf',
-					require => Package['sbuild'],
-				}
-			} else {
-				file { '/etc/sbuild/sbuild.conf':
-					source  => 'puppet:///modules/buildd/sbuild.conf.wheezy',
-					require => Package['sbuild'],
-				}
+			file { '/etc/sbuild/sbuild.conf':
+				source  => 'puppet:///modules/buildd/sbuild.conf',
+				require => Package['sbuild'],
 			}
 			include ferm::ftp_conntrack
 		}
@@ -85,16 +78,9 @@ class buildd ($ensure=present) {
 			package { 'python-psutil':
 				ensure => installed,
 			}
-			if ($::lsbmajdistrelease >= 8) {
-				file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
-					source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill',
-					mode    => '0555',
-				}
-			} else {
-				file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
-					source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill.wheezy',
-					mode    => '0555',
-				}
+			file { '/usr/local/sbin/buildd-schroot-aptitude-kill':
+				source  => 'puppet:///modules/buildd/buildd-schroot-aptitude-kill',
+				mode    => '0555',
 			}
 		} else {
 			file { '/usr/local/sbin/buildd-schroot-aptitude-kill':

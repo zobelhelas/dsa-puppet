@@ -14,7 +14,7 @@ when "sibelius.debian.org" then                                ignore << %w{tivs
 when /(storace|backuphost).debian.org/ then                    ignore << %w{postgresql-client-9.1}
 end
 
-if @lsbmajdistrelease <= '8'
+if scope.call_function('versioncmp', [@lsbmajdistrelease, '8']) <= 0
   case @fqdn
     when /(acker|aagaard).debian.org/ then                     ignore << %w{qemu-efi}
   end

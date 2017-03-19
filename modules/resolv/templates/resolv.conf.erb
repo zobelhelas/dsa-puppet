@@ -15,7 +15,7 @@ if %w{draghi}.include?(@hostname)
 end
 nameservers += @ns
 
-if @unbound && @unbound == "true"
+if @unbound
   nameservers = ['127.0.0.1']
 end
 

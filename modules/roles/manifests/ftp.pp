@@ -21,7 +21,7 @@ class roles::ftp {
 		root         => '/srv/ftp.debian.org/ftp.root',
 	}
 
-	if $bind6 {
+	if $bind6 != '' {
 		vsftpd::site { 'ftp-v6':
 			banner       => 'ftp.debian.org FTP server',
 			logfile      => '/var/log/ftp/vsftpd-ftp.debian.org.log',

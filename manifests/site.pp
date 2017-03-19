@@ -40,6 +40,9 @@ node default {
 	include grub
 	include multipath
 	include popcon
+	include portforwarder
+	include postgres
+
 	if $::lsbdistcodename == squeeze {
 		include roles::udldap::client
 	} else {
@@ -97,15 +100,11 @@ node default {
 	}
 
 	if $::hostname in [buxtehude,milanollo,lw01,lw02,lw03,lw04,senfter,gretchaninov] {
-		include nfs-server
+		include nfs_server
 	}
 
 	if $::brokenhosts {
 		include hosts
-	}
-
-	if $::portforwarder_user_exists {
-		include portforwarder
 	}
 
 	if $::samhain {
@@ -114,10 +113,6 @@ node default {
 
 	if $::hostname in [geo3,wieck] {
 		include debian_org::radvd
-	}
-
-	if ($::postgres) {
-		include postgres
 	}
 
 	if $::spamd {

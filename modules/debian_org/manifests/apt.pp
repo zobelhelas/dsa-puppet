@@ -3,7 +3,7 @@
 # Stuff common to all debian.org servers
 #
 class debian_org::apt {
-	if $::lsbmajdistrelease <= '7' {
+	if versioncmp($::lsbmajdistrelease, '7') <= 0 {
 		$mungedcodename = $::lsbdistcodename
 	} elsif ($::debarchitecture in ['kfreebsd-amd64', 'kfreebsd-i386']) {
 		$mungedcodename = "${::lsbdistcodename}-kfreebsd"
@@ -11,7 +11,7 @@ class debian_org::apt {
 		$mungedcodename = $::lsbdistcodename
 	}
 
-	if $::lsbmajdistrelease <= '8' {
+	if versioncmp($::lsbmajdistrelease, '8') <= 0 {
 		$fallbackmirror = 'http://cdn-fastly.deb.debian.org/debian/'
 	} else {
 		$fallbackmirror = 'http://deb.debian.org/debian/'

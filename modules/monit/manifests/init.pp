@@ -7,7 +7,7 @@
 #   include monit
 #
 class monit {
-	if $::lsbmajdistrelease <= '7' {
+	if versioncmp($::lsbmajdistrelease, '7') <= 0 {
 		package { 'monit':
 			ensure => installed
 		}

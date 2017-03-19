@@ -1,7 +1,7 @@
 define munin::conf (
 	$ensure=present,
-	$content='',
-	$source=''
+	$content=false,
+	$source=false
 ) {
 
 	include munin

@@ -35,7 +35,7 @@ socket = a:SO_LINGER=1:60
 socket = a:SO_KEEPALIVE=1
 
 [<%= @name %>-server]
-accept = <%= @accept =~ /:/ ? @accept : ":::#{accept}" %>
+accept = <%= @accept =~ /:/ ? @accept : ":::#{@accept}" %>
 connect = <%= @connect %>
 <%- if @local -%>
 local = <%= @local %>

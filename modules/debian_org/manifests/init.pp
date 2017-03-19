@@ -43,7 +43,7 @@ class debian_org {
 		source  => 'puppet:///modules/debian_org/basic-ssh_known_hosts'
 	}
 
-	if ($::lsbmajdistrelease >= '8') {
+	if versioncmp($::lsbmajdistrelease, '8') >= 0 {
 		$rubyfs_package = 'ruby-filesystem'
 	} else {
 		$rubyfs_package = 'libfilesystem-ruby1.9'
@@ -136,7 +136,7 @@ class debian_org {
 	}
 	file { '/etc/puppet/puppet.conf':
 		content => template('debian_org/puppet.conf.erb'),
-		mode => 0440,
+		mode => '0440',
 		group => 'puppet',
 	}
 	file { '/etc/default/puppet':
@@ -144,11 +144,11 @@ class debian_org {
 	}
 	file { '/etc/systemd':
 		ensure  => directory,
-		mode => 0755,
+		mode => '0755',
 	}
 	file { '/etc/systemd/system':
 		ensure  => directory,
-		mode => 0755,
+		mode => '0755',
 	}
 	file { '/etc/systemd/system/ud-replicated.service':
 		ensure => $servicefiles,

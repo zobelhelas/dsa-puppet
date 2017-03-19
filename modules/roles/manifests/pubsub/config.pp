@@ -55,7 +55,7 @@ define roles::pubsub::config (
 	$exchange=dsa,
 	$username=$::fqdn,
 	$queue=undef,
-	$order=00
+	$order='00'
 ){
 	include roles::pubsub::config::setup
 

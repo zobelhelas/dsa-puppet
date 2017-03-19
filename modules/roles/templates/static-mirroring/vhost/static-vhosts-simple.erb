@@ -14,7 +14,7 @@
 	Redirect /debian-security/  http://cdn-fastly.deb.debian.org/debian-security/
 </Macro>
 
-<VirtualHost <%= vhost_listen_443 %> >
+<VirtualHost <%= @vhost_listen_443 %> >
 	ServerName deb.debian.org
 
 	ErrorLog /var/log/apache2/deb.debian.org-error.log
@@ -36,7 +36,7 @@
 		Require all granted
 	</Directory>
 
-	Header set Surrogate-Key <%= hostname %>
+	Header set Surrogate-Key <%= @hostname %>
 
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
 
@@ -240,7 +240,7 @@ lines.join("\n")
 # www.backports.org is the historical place for the backports
 # website and archive.  It is now a CNAME to backports.debian.org:
 # redirect http requests.
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName www.backports.org
 	ServerAlias lists.backports.org
 	ServerAdmin debian-admin@debian.org
@@ -248,27 +248,27 @@ lines.join("\n")
 </VirtualHost>
 
 ######################
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName www.debian-ports.org
 	ServerAlias debian-ports.org
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / https://www.ports.debian.org/
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName ports.debian.org
 	ServerAlias ports.debian.net
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / https://www.ports.debian.org/
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName incoming.debian-ports.org
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://incoming.ports.debian.org/
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName ftp.debian-ports.org
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent /archive http://www.ports.debian.org
@@ -277,7 +277,7 @@ lines.join("\n")
 	RedirectPermanent / http://ftp.ports.debian.org/
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName video.debian.net
 	ServerAdmin debian-admin@debian.org
 	Redirect / http://meetings-archive.debian.net/pub/debian-meetings/
@@ -286,7 +286,7 @@ lines.join("\n")
 # historical sites
 ##################
 # now only redirects remain
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName women.debian.org
 	ServerAdmin debian-admin@debian.org
 
@@ -303,26 +303,26 @@ lines.join("\n")
 	RedirectPermanent /profiles/ http://www.debian.org/women/profiles/
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName volatile.debian.org
 	ServerAlias volatile-master.debian.org
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://www.debian.org/volatile/
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName ftp-master.metadata.debian.org
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / http://metadata.ftp-master.debian.org/
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName backports-master.debian.org
 	ServerAdmin debian-admin@debian.org
 	RedirectPermanent / https://backports.debian.org/
 </VirtualHost>
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
 	ServerName manpages.debian.net
 	ServerAdmin debian-admin@debian.org
 	Redirect / https://manpages.debian.org/

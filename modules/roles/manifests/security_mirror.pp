@@ -48,7 +48,7 @@ class roles::security_mirror {
 			root         => '/srv/ftp.root/',
 			bind         => $ftp_bind,
 		}
-		if ($ftp_bind6) {
+		if ($ftp_bind6 != '') {
 			vsftpd::site { 'security6':
 				banner       => 'security.debian.org FTP server (vsftpd)',
 				logfile      => '/var/log/ftp/vsftpd-security6.debian.org.log',

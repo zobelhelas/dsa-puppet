@@ -29,7 +29,7 @@ class roles::historical_mirror {
 			tlsaport => [],
 		}
 	} else {
-		$sslname = ''
+		$sslname = undef
 	}
 
 	rsync::site_systemd { 'archive':

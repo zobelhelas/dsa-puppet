@@ -3,7 +3,7 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<VirtualHost <%= vhost_listen %>>
+<VirtualHost <%= @vhost_listen %>>
 	ServerAdmin debian-admin@debian.org
 	ServerName ftp.debian.org
 	ServerAlias debian.anycast-test.mirrors.debian.org
@@ -14,12 +14,12 @@
 	ServerAlias *.debian.backend.mirrors.debian.org
 
 	RedirectMatch "^/$" /debian/
-	Alias /debian/ <%= archive_root %>/
+	Alias /debian/ <%= @archive_root %>/
 
 	ErrorLog /var/log/apache2/ftp.debian.org-error.log
 	CustomLog /var/log/apache2/ftp.debian.org-access.log privacy
 
-	Use ftp-archive <%= archive_root %>
+	Use ftp-archive <%= @archive_root %>
 
 	<IfModule mod_userdir.c>
 		UserDir disabled

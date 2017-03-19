@@ -19,7 +19,7 @@ define onion::service (
 
 		concat::fragment { "onion::torrc_onionservice::${name}":
 			target  => "/etc/tor/torrc",
-			order   => 50,
+			order   => '50',
 			content => "HiddenServiceDir /var/lib/tor/onion/${name}\nHiddenServicePort ${port} ${target_address}:${target_port}\n\n",
 		}
 

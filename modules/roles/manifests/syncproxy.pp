@@ -36,7 +36,7 @@ class roles::syncproxy {
 	file { '/etc/rsyncd/debian.secrets':
 		owner => 'root',
 		group => 'mirroradm',
-		mode => 0660,
+		mode => '0660',
 	}
 
 	if $::apache2 and $syncproxy_name != 'unknown' {

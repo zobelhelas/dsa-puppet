@@ -4,7 +4,7 @@
 ##
 
 # Need to turn on negotiation_module
-<Directory <%= wwwdo_document_root %>/>
+<Directory <%= @wwwdo_document_root %>/>
   Options +MultiViews +FollowSymLinks +Indexes
   AddHandler type-map var
   # Make sure that the srm.conf directive is commented out.
@@ -141,7 +141,7 @@
    ServerAlias www.debian.de
    ServerAlias newwww.deb.at
 
-   DocumentRoot <%= wwwdo_document_root %>/
+   DocumentRoot <%= @wwwdo_document_root %>/
    LogFormat "0.0.0.0 - %u %{[%d/%b/%Y:00:00:00 %z]}t \"%r\" %>s %b \"%{Referer}i\" \"-\" %V" privacy+host
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
    CustomLog /var/log/apache2/www-other.debian.org-access.log privacy+host
@@ -155,7 +155,7 @@
    ServerAlias <%= scope.function_onion_global_service_hostname(['www.debian.org']) %>
    <% end %>
 
-   DocumentRoot <%= wwwdo_document_root %>/
+   DocumentRoot <%= @wwwdo_document_root %>/
 
    # CacheNegotiatedDocs: By default, Apache sends Pragma: no-cache with each
    # document that was negotiated on the basis of content. This asks proxy
@@ -253,12 +253,12 @@
    RewriteRule ^/devel/debian-volatile/.* /volatile/ [R=301]
 
 # Offer a Redirect to DSA without knowing year #474730
-   RewriteMap dsa txt:<%= wwwdo_document_root %>/security/map-dsa.txt
+   RewriteMap dsa txt:<%= @wwwdo_document_root %>/security/map-dsa.txt
    RewriteRule ^/security/dsa-(\d+)(\..*)? /security/${dsa:$1}$2 [R=301]
 
 # Compatibility after SGML -> DocBook
 # Debian Reference #624239
-   RewriteMap reference txt:<%= wwwdo_document_root %>/doc/map-reference.txt
+   RewriteMap reference txt:<%= @wwwdo_document_root %>/doc/map-reference.txt
    RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/ch-support$1 !-f
    RewriteRule ^/doc/manuals/debian-reference/ch-support(.*)  /support$1 [L,R=301]
    RewriteCond %{DOCUMENT_ROOT}/doc/manuals/debian-reference/${reference:$1}$2 -f
@@ -284,13 +284,13 @@
 </Macro>
 
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
    ErrorLog /var/log/apache2/www.debian.org-error.log
    CustomLog /var/log/apache2/www.debian.org-access.log privacy
 
    Use common-www.d.o
 </VirtualHost>
-<VirtualHost <%= vhost_listen_443 %> >
+<VirtualHost <%= @vhost_listen_443 %> >
    ErrorLog /var/log/apache2/www.debian.org-error.log
    CustomLog /var/log/apache2/www.debian.org-access.log privacyssl
 
@@ -301,7 +301,7 @@
 </VirtualHost>
 
 
-<VirtualHost <%= vhost_listen %> >
+<VirtualHost <%= @vhost_listen %> >
    Use common-www-other.d.o
 
    ErrorLog /var/log/apache2/www-other.debian.org-error.log
@@ -309,7 +309,7 @@
 
    Redirect permanent / http://www.debian.org/
 </VirtualHost>
-<VirtualHost <%= vhost_listen_443 %> >
+<VirtualHost <%= @vhost_listen_443 %> >
    Use common-www-other.d.o
 
    CustomLog /var/log/apache2/www-other-access.log privacyssl
@@ -320,3 +320,4 @@
    Use common-debian-service-ssl debian.org
    Use common-ssl-HSTS
 </VirtualHost>
+# vim:set syn=apache:

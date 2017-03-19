@@ -7,5 +7,9 @@ class rng_tools {
 			ensure  => running,
 			require => Package['rng-tools']
 		}
+	} else {
+		package { 'rng-tools':
+			ensure => purged
+		}
 	}
 }

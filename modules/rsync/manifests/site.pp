@@ -1,11 +1,11 @@
 define rsync::site (
 	$bind='',
 	$bind6='',
-	$source='',
-	$content='',
+	$source=undef,
+	$content=undef,
 	$max_clients=200,
 	$ensure=present,
-	$sslname='',
+	$sslname=undef,
 	$sslport=1873
 ){
 
@@ -62,7 +62,7 @@ define rsync::site (
 		}
 	}
 
-	if $sslname != '' {
+	if $sslname {
 		file { "/etc/rsyncd-${name}-stunnel.conf":
 			content => template('rsync/rsyncd-stunnel.conf.erb'),
 			require => File["/etc/ssl/debian/certs/${sslname}.crt-chained"],
