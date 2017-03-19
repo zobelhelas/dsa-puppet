@@ -4,11 +4,11 @@
 ##
 
 <%
-  if not binds.kind_of?(Array)
+  if not @binds.kind_of?(Array)
     raise Puppet::Error, "binds variable is not an array"
   end
 
-  vhost_listen = binds.map{|x| x+":80" }.join(' ')
+  vhost_listen = @binds.map{|x| x+":80" }.join(' ')
 %>
 
 
@@ -22,13 +22,13 @@
 	ServerAlias *.archive.backend.mirrors.debian.org
 
 	#RedirectMatch "^/$" /debian-archive/
-	DocumentRoot <%= archive_root %>/
-	Alias /debian-archive/ <%= archive_root %>/
+	DocumentRoot <%= @archive_root %>/
+	Alias /debian-archive/ <%= @archive_root %>/
 
 	ErrorLog /var/log/apache2/archive.debian.org-error.log
 	CustomLog /var/log/apache2/archive.debian.org-access.log privacy
 
-	<Directory <%= archive_root %>>
+	<Directory <%= @archive_root %>>
 		Require all granted
 		Options +Indexes +FollowSymLinks
 	</Directory>
