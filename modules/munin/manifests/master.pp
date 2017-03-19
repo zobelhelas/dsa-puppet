@@ -22,7 +22,7 @@ class munin::master {
 		source  => 'puppet:///files/empty/',
 	}
 
-	Munin::Master-per-node<<| |>>
+	Munin::Master_per_node<<| |>>
 
 	file { '/etc/cron.d/puppet-munin-cleanup':
 		source => 'puppet:///modules/munin/master-cleanup-cron',
