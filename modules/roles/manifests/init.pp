@@ -257,21 +257,21 @@ class roles {
 	}
 
 	if has_role('search_backend') {
-		include search_backend
+		include roles::search_backend
 	}
 	if has_role('search_frontend') {
-		include search_frontend
+		include roles::search_frontend
 	}
 
 	if has_role('dgit_browse') {
-		include dgit_browse
+		include roles::dgit_browse
 	}
 	if has_role('dgit_git') {
-		include dgit_git
+		include roles::dgit_git
 	}
 
 	if $::hostname in [lw01, lw02, lw03, lw04] {
-		include snapshot
+		include roles::snapshot
 	}
 
 	if has_role('veyepar.debian.org') {
