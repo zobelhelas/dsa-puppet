@@ -20,7 +20,7 @@ class roles::ports_master {
 		root           => '/srv/ports-master.debian.org/ftp.upload',
 	}
 
-	if $bind6 {
+	if $bind6 != '' {
 		vsftpd::site { 'ports-master-v6':
 			banner         => 'ports-master.debian.org FTP server',
 			logfile        => '/var/log/ftp/vsftpd-ports-master.debian.org.log',
