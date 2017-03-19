@@ -46,12 +46,9 @@ Facter.add("postfix") do
 end
 Facter.add("postgres") do
 	setcode do
-		pg = (FileTest.exist?("/usr/lib/postgresql/8.1/bin/postgres") or
-		FileTest.exist?("/usr/lib/postgresql/8.3/bin/postgres") or
-		FileTest.exist?("/usr/lib/postgresql/8.4/bin/postgres") or
-		FileTest.exist?("/usr/lib/postgresql/9.0/bin/postgres") or
-		FileTest.exist?("/usr/lib/postgresql/9.1/bin/postgres") or
-		FileTest.exist?("/usr/lib/postgresql/9.2/bin/postgres"))
+		pg = (FileTest.exist?("/usr/lib/postgresql/9.1/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/9.4/bin/postgres") or
+		FileTest.exist?("/usr/lib/postgresql/9.6/bin/postgres"))
 		if pg
 			true
 		else
