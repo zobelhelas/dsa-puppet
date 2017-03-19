@@ -1,8 +1,8 @@
 define rsync::site (
 	$bind='',
 	$bind6='',
-	$source='',
-	$content='',
+	$source=undef,
+	$content=undef,
 	$max_clients=200,
 	$ensure=present,
 	$sslname='',
