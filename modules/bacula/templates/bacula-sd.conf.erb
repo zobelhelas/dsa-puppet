@@ -5,38 +5,38 @@
 #  For Bacula release 5.0.1 (24 February 2010) -- debian 5.0.4
 
 Storage {
-  Name = <%= bacula_storage_name %>
-  SDPort = <%= bacula_storage_port %>
+  Name = <%= @bacula_storage_name %>
+  SDPort = <%= @bacula_storage_port %>
   WorkingDirectory = "/var/lib/bacula"
   Pid Directory = "/var/run/bacula"
   Maximum Concurrent Jobs = 21
-  SDAddress = <%= bacula_storage_address %>
+  SDAddress = <%= @bacula_storage_address %>
   Heartbeat Interval = 180
 
   TLS Enable = yes
   TLS Require = yes
   TLS Verify Peer = yes
-  # TLS Allowed CN = "clientcerts/<%= bacula_director_address %>"
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  # TLS Allowed CN = "clientcerts/<%= @bacula_director_address %>"
+  TLS CA Certificate File = "<%= @bacula_ca_path %>"
   # This is a server certificate, used for incoming connections.
-  TLS Certificate = "<%= bacula_ssl_server_cert %>"
-  TLS Key = "<%= bacula_ssl_server_key %>"
+  TLS Certificate = "<%= @bacula_ssl_server_cert %>"
+  TLS Key = "<%= @bacula_ssl_server_key %>"
 }
 
 # List Directors who are permitted to contact Storage daemon
 #
 Director {
-  Name = <%= bacula_director_name %>
-  Password = "<%= bacula_storage_secret %>"
+  Name = <%= @bacula_director_name %>
+  Password = "<%= @bacula_storage_secret %>"
 
   TLS Enable = yes
   TLS Require = yes
   TLS Verify Peer = yes
-  TLS Allowed CN = "clientcerts/<%= bacula_director_address %>"
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  TLS Allowed CN = "clientcerts/<%= @bacula_director_address %>"
+  TLS CA Certificate File = "<%= @bacula_ca_path %>"
   # This is a server certificate, used for incoming director connections.
-  TLS Certificate = "<%= bacula_ssl_server_cert %>"
-  TLS Key = "<%= bacula_ssl_server_key %>"
+  TLS Certificate = "<%= @bacula_ssl_server_cert %>"
+  TLS Key = "<%= @bacula_ssl_server_key %>"
 }
 
 # Send all messages to the Director,
@@ -44,13 +44,13 @@ Director {
 #
 Messages {
   Name = Standard
-  director = <%= bacula_director_name %> = all
+  director = <%= @bacula_director_name %> = all
 }
 
 Device {
-  Name = "<%= bacula_filestor_device %>-catalog"
-  Media Type = "<%= bacula_filestor_name %>-catalog"
-  Archive Device = "<%= bacula_backup_path %>/Catalog"
+  Name = "<%= @bacula_filestor_device %>-catalog"
+  Media Type = "<%= @bacula_filestor_name %>-catalog"
+  Archive Device = "<%= @bacula_backup_path %>/Catalog"
   LabelMedia = yes;
   Random Access = Yes;
   AutomaticMount = yes;
