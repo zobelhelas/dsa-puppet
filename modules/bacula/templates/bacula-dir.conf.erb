@@ -10,28 +10,28 @@
 ########################################################################
 
 Director {
-  Name = <%= bacula_director_name %>
-  Description = <%= hostname %> - <%= domain %> Bacula Director
+  Name = <%= @bacula_director_name %>
+  Description = <%= @hostname %> - <%= @domain %> Bacula Director
   QueryFile = "/etc/bacula/scripts/query.sql"
   WorkingDirectory = "/var/lib/bacula"
   PidDirectory = "/var/run/bacula"
   Maximum Concurrent Jobs = 20
-  Password = "<%= bacula_director_secret %>"
+  Password = "<%= @bacula_director_secret %>"
   Messages = Daemon
   DirAddresses = {
      # Always have localhost in, then the configured IP
      ip = { addr = 127.0.0.1; port = 9101 }
-	 ip = { addr = <%=bacula_director_address%>; port = <%=bacula_director_port%> }
+	 ip = { addr = <%=@bacula_director_address%>; port = <%=@bacula_director_port%> }
   }
 
   TLS Enable = yes
   TLS Require = yes
   TLS Verify Peer = yes
-  TLS Allowed CN = "clientcerts/<%= bacula_director_address %>"
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  TLS Allowed CN = "clientcerts/<%= @bacula_director_address %>"
+  TLS CA Certificate File = "<%= @bacula_ca_path %>"
   # This is a server certificate, used for incoming console connections.
-  TLS Certificate = "<%= bacula_ssl_server_cert %>"
-  TLS Key = "<%= bacula_ssl_server_key %>"
+  TLS Certificate = "<%= @bacula_ssl_server_cert %>"
+  TLS Key = "<%= @bacula_ssl_server_key %>"
 }
 
 ########################################################################
@@ -120,10 +120,10 @@ Schedule {
 Catalog {
   Name = MyCatalog
   dbname = "service = bacula";
-  #DB Address = "<%= bacula_db_address %>";
-  #DB Port = <%= bacula_db_port %>;
+  #DB Address = "<%= @bacula_db_address %>";
+  #DB Port = <%= @bacula_db_port %>;
   dbuser = "bacula";
-  dbpassword = "<%= bacula_db_secret %>"
+  dbpassword = "<%= @bacula_db_secret %>"
 }
 
 ########################################################################
@@ -133,9 +133,9 @@ Messages {
   Name = Standard
   mailcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula: %t %e of %c %l\" %r"
   operatorcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula: Intervention needed for %j\" %r"
-  #mail on error = <%= bacula_operator_email %> = all, !skipped
-  mail = <%= bacula_operator_email %> = all
-  operator = <%= bacula_operator_email %> = mount
+  #mail on error = <%= @bacula_operator_email %> = all, !skipped
+  mail = <%= @bacula_operator_email %> = all
+  operator = <%= @bacula_operator_email %> = mount
   console = all, !skipped, !saved
   append = "/var/lib/bacula/log" = all
   catalog = all
@@ -145,7 +145,7 @@ Messages {
 Messages {
   Name = Daemon
   mailcommand = "/usr/lib/bacula/bsmtp -h localhost -f \"\(Bacula\) %r\" -s \"Bacula daemon message\" %r"
-  mail = <%= bacula_operator_email %> = all
+  mail = <%= @bacula_operator_email %> = all
   console = all, !skipped, !saved
   append = "/var/lib/bacula/log" = all
 }
@@ -154,8 +154,8 @@ Messages {
 # Console, limited                                                     #
 ########################################################################
 Console {
-  Name = <%= bacula_monitor_name %>
-  Password = "<%= bacula_monitor_secret %>"
+  Name = <%= @bacula_monitor_name %>
+  Password = "<%= @bacula_monitor_secret %>"
   CommandACL = status, .status
 }
 
@@ -184,9 +184,9 @@ JobDefs {
 Job {
   Name = "RestoreFiles"
   Type = Restore
-  Client = <%=bacula_director_address%>-fd
+  Client = <%=@bacula_director_address%>-fd
   FileSet = "Standard Set"
-  Pool = poolfull-<%=bacula_pool_name%>-<%=bacula_director_address%>
+  Pool = poolfull-<%=@bacula_pool_name%>-<%=@bacula_director_address%>
   Messages = Standard
   Where = /var/tmp/bacula-restores
 }
@@ -203,47 +203,47 @@ Pool {
 ########################################################################
 # Backup the catalog database (after the nightly save)
 Storage {
-  Name = "<%= bacula_filestor_name %>-catalog"
-  Address = <%= bacula_storage_address %>
-  SDPort = <%= bacula_storage_port %>
-  Password = "<%= bacula_storage_secret %>"
-  Device = "<%= bacula_filestor_device %>-catalog"
-  Media Type = "<%= bacula_filestor_name %>-catalog"
+  Name = "<%= @bacula_filestor_name %>-catalog"
+  Address = <%= @bacula_storage_address %>
+  SDPort = <%= @bacula_storage_port %>
+  Password = "<%= @bacula_storage_secret %>"
+  Device = "<%= @bacula_filestor_device %>-catalog"
+  Media Type = "<%= @bacula_filestor_name %>-catalog"
   Maximum Concurrent Jobs = 10
 
   TLS Enable = yes
   TLS Require = yes
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  TLS CA Certificate File = "<%= @bacula_ca_path %>"
   # This is a client certificate, used by the director to connect to the storage daemon
-  TLS Certificate = "<%= bacula_ssl_client_cert %>"
-  TLS Key = "<%= bacula_ssl_client_key %>"
+  TLS Certificate = "<%= @bacula_ssl_client_cert %>"
+  TLS Key = "<%= @bacula_ssl_client_key %>"
 }
 Pool {
-  Name = "poolcatalog-<%=bacula_pool_name%>"
+  Name = "poolcatalog-<%=@bacula_pool_name%>"
   Pool Type = Backup
-  Storage = "<%=bacula_filestor_name%>-catalog"
+  Storage = "<%=@bacula_filestor_name%>-catalog"
   AutoPrune = yes
   Volume Retention = 2 months
-  Label Format = "<%= bacula_pool_name %>-catalog.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Label Format = "<%= @bacula_pool_name %>-catalog.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
   Maximum Volume Bytes = 50G
   Action On Purge = Truncate
   Recycle = yes
-  RecyclePool = "poolcataloggraveyard-<%=bacula_pool_name%>"
+  RecyclePool = "poolcataloggraveyard-<%=@bacula_pool_name%>"
 }
 Pool {
-  Name = "poolcataloggraveyard-<%=bacula_pool_name%>"
+  Name = "poolcataloggraveyard-<%=@bacula_pool_name%>"
   Pool Type = Backup
-  Storage = "<%=bacula_filestor_name%>-catalog"
+  Storage = "<%=@bacula_filestor_name%>-catalog"
   Recycle = yes
-  RecyclePool = "poolcataloggraveyard-<%=bacula_pool_name%>"
+  RecyclePool = "poolcataloggraveyard-<%=@bacula_pool_name%>"
 }
 
 Job {
   Name = "BackupCatalog"
   JobDefs = "Standardbackup"
-  Client = <%=bacula_director_address%>-fd
+  Client = <%=@bacula_director_address%>-fd
   Level = Full
   FileSet = "Catalog"
   Schedule = "WeeklyCycleAfterBackup"
@@ -255,7 +255,7 @@ Job {
   RunAfterJob  = "/etc/bacula/scripts/delete_catalog_backup"
   Write Bootstrap = "/var/lib/bacula/%n.bsr"
   Priority = 15    # run after main backup
-  Pool = "poolcatalog-<%=bacula_pool_name%>"
+  Pool = "poolcatalog-<%=@bacula_pool_name%>"
 }
 
 ########################################################################
