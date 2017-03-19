@@ -1,6 +1,6 @@
 class postgres {
 	$ensure = ($::postgres) ? {
-		true    => 'ensure',
+		true    => 'present',
 		default => 'absent'
 	}
 
