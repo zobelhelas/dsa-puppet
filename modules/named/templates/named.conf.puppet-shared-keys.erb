@@ -14,10 +14,10 @@ pairs = [
 lines = []
 
 pairs.each do |pair|
-	next unless pair.include?(fqdn)
+	next unless pair.include?(@fqdn)
 	pair.sort!
 	keyname = "tsig-#{pair.join('-')}"
-	pair.delete(fqdn)
+	pair.delete(@fqdn)
 	other = pair[0]
 
 	key = scope.function_hkdf(['/etc/puppet/secret', "puppet-key-#{keyname}"])
