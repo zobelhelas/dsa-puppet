@@ -26,7 +26,7 @@ template = 'service @@TARGET_HOST@@@@TARGET_PORT@@
 
 config = YAML.load(File.open('/etc/puppet/modules/portforwarder/misc/config.yaml').read)
 if config[@fqdn]
-	config[fqdn].each do |service|
+	config[@fqdn].each do |service|
 		target_port = service['target_port']
 		target_host = service['target_host']
 		local_bind = service['source_bind_port']
