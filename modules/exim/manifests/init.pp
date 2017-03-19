@@ -136,6 +136,7 @@ class exim {
 	}
 
 	case getfromhash($site::nodeinfo, 'mail_port') {
+                Numeric: { $mail_port = sprintf("%d", getfromhash($site::nodeinfo, 'mail_port')) }
 		/^(\d+)$/: { $mail_port = $1 }
 		default: { $mail_port = '25' }
 	}
