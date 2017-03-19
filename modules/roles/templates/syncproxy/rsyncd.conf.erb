@@ -14,7 +14,7 @@ strict modes = false
 
 [debian]
   path = /srv/mirrors/debian/
-<%- unless has_variable?("has_srv_mirrors_debian") && has_srv_mirrors_debian -%>
+<%- unless has_variable?("has_srv_mirrors_debian") && @has_srv_mirrors_debian -%>
   list = no
 <%- end -%>
   comment = Debian archive (contact mirrors@debian.org for access; see https://www.debian.org/mirror/size for size)
@@ -23,7 +23,7 @@ strict modes = false
 
 [debian-debug]
   path = /srv/mirrors/debian-debug/
-<%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug -%>
+<%- unless has_variable?("has_srv_mirrors_debian_debug") && @has_srv_mirrors_debian_debug -%>
   list = no
 <%- end -%>
   comment = Debug packages for Debian archive (contact mirrors@debian.org for access)
@@ -32,7 +32,7 @@ strict modes = false
 
 [debian-ports]
   path = /srv/mirrors/debian-ports/
-<%- unless has_variable?("has_srv_mirrors_debian_debug") && has_srv_mirrors_debian_debug -%>
+<%- unless has_variable?("has_srv_mirrors_debian_debug") && @has_srv_mirrors_debian_debug -%>
   list = no
 <%- end -%>
   comment = Debian ports archive (contact mirrors@debian.org for access)
@@ -41,7 +41,7 @@ strict modes = false
 
 [debian-security]
   path = /srv/mirrors/debian-security/
-<%- unless has_variable?("has_srv_mirrors_debian_security") && has_srv_mirrors_debian_security -%>
+<%- unless has_variable?("has_srv_mirrors_debian_security") && @has_srv_mirrors_debian_security -%>
   list = no
 <%- end -%>
   comment = Debian security archive (contact mirrors@debian.org for access)

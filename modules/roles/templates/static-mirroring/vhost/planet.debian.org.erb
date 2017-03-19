@@ -1,6 +1,6 @@
 <% if scope.function_has_static_component(['planet.debian.org']) -%>
 
-<Virtualhost <%= vhost_listen %> >
+<Virtualhost <%= @vhost_listen %> >
 	ServerName planet.debian.org
 	ServerAlias planet.debian.net planeta.debian.net planet-backend.debian.org planet-fastly.debian.org planet-maxcdn.debian.org
 	<% if scope.function_onion_global_service_hostname(['planet.debian.org']) -%>
