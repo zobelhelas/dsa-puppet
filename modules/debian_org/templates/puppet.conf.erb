@@ -14,28 +14,16 @@ pluginsync=true
 environment=production
 
 <%- if scope.lookupvar('::hostname') == 'handel' -%>
-modulepath=/etc/puppet/modules:/etc/puppet/3rdparty/modules:/usr/share/puppet/modules
 
 [master]
-environments = production,staging
-reports = store
-config_version = cat /etc/puppet/.config-version
+environmentpath=/srv/puppet.debian.org/stages
+cadir  = /var/lib/puppet/ssl/ca
 storeconfigs = true
 thin_storeconfigs = true
 dbadapter=mysql
 dbuser=puppet
 dbpassword=<%= scope.lookupvar('dbpassword') %>
 dbserver=localhost
-
-[production]
-manifestdir=/srv/puppet.debian.org/stages/production/manifests
-fileserverconfig=/srv/puppet.debian.org/stages/production/fileserver.conf
-modulepath=/srv/puppet.debian.org/stages/production/modules:/srv/puppet.debian.org/stages/production/3rdparty/modules
-
-[staging]
-manifestdir=/srv/puppet.debian.org/stages/staging/manifests
-fileserverconfig=/srv/puppet.debian.org/stages/staging/fileserver.conf
-modulepath=/srv/puppet.debian.org/stages/staging/modules:/srv/puppet.debian.org/stages/staging/3rdparty/modules
 <%- end -%>
 
 [agent]
