@@ -4,9 +4,9 @@
 ##
 
 Device {
-  Name = "<%= bacula_filestor_device %>-<%= client %>"
-  Media Type = "<%= bacula_filestor_name %>-<%= client %>"
-  Archive Device = "<%= bacula_backup_path %>/<%= client %>"
+  Name = "<%= @bacula_filestor_device %>-<%= @client %>"
+  Media Type = "<%= @bacula_filestor_name %>-<%= @client %>"
+  Archive Device = "<%= @bacula_backup_path %>/<%= @client %>"
   LabelMedia = yes;
   Random Access = Yes;
   AutomaticMount = yes;
