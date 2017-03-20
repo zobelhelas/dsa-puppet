@@ -5,13 +5,13 @@
 #  For Bacula release 5.0.1 (24 February 2010) -- debian 5.0.4
 
 Job {
-  Name = "<%= client %>"
+  Name = "<%= @client %>"
   JobDefs = "Standardbackup"
-  Client = <%= bacula_client_name %>
+  Client = <%= @bacula_client_name %>
 
-  Pool = "poolfull-<%= bacula_pool_name %>-<%= client %>"
-  Differential Backup Pool = "pooldiff-<%= bacula_pool_name %>-<%= client %>"
-  Incremental Backup Pool = "poolinc-<%= bacula_pool_name %>-<%= client %>"
+  Pool = "poolfull-<%= @bacula_pool_name %>-<%= @client %>"
+  Differential Backup Pool = "pooldiff-<%= @bacula_pool_name %>-<%= @client %>"
+  Incremental Backup Pool = "poolinc-<%= @bacula_pool_name %>-<%= @client %>"
 
   #Rerun Failed Levels = yes
   Reschedule On Error = yes
@@ -24,11 +24,11 @@ Job {
 
 # Client (File Services) to backup
 Client {
-  Name = <%= bacula_client_name %>
-  Address = <%= client %>
-  FDPort = <%= bacula_client_port %>
+  Name = <%= @bacula_client_name %>
+  Address = <%= @client %>
+  FDPort = <%= @bacula_client_port %>
   Catalog = MyCatalog
-  Password = "<%= bacula_client_secret %>"
+  Password = "<%= @bacula_client_secret %>"
   File Retention = 30 days
   Job Retention = 3 months
   AutoPrune = yes
@@ -37,10 +37,10 @@ Client {
 
   TLS Enable = yes
   TLS Require = yes
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  TLS CA Certificate File = "<%= @bacula_ca_path %>"
   # This is a client certificate, used by the director to connect to the client's file daemon
-  TLS Certificate = "<%= bacula_ssl_client_cert %>"
-  TLS Key = "<%= bacula_ssl_client_key %>"
+  TLS Certificate = "<%= @bacula_ssl_client_cert %>"
+  TLS Key = "<%= @bacula_ssl_client_key %>"
 }
 
 ########################################################################
@@ -48,74 +48,74 @@ Client {
 ########################################################################
 
 Storage {
-  Name = "<%= bacula_filestor_name %>-<%= client %>"
-  Address = <%= bacula_storage_address %>
-  SDPort = <%= bacula_storage_port %>
-  Password = "<%= bacula_storage_secret %>"
-  Device = "<%= bacula_filestor_device %>-<%= client %>"
-  Media Type = "<%= bacula_filestor_name %>-<%= client %>"
+  Name = "<%= @bacula_filestor_name %>-<%= @client %>"
+  Address = <%= @bacula_storage_address %>
+  SDPort = <%= @bacula_storage_port %>
+  Password = "<%= @bacula_storage_secret %>"
+  Device = "<%= @bacula_filestor_device %>-<%= @client %>"
+  Media Type = "<%= @bacula_filestor_name %>-<%= @client %>"
   Maximum Concurrent Jobs = 10
 
   TLS Enable = yes
   TLS Require = yes
-  TLS CA Certificate File = "<%= bacula_ca_path %>"
+  TLS CA Certificate File = "<%= @bacula_ca_path %>"
   # This is a client certificate, used by the director to connect to the storage daemon
-  TLS Certificate = "<%= bacula_ssl_client_cert %>"
-  TLS Key = "<%= bacula_ssl_client_key %>"
+  TLS Certificate = "<%= @bacula_ssl_client_cert %>"
+  TLS Key = "<%= @bacula_ssl_client_key %>"
 }
 
 ########################################################################
 # Pool definition                                                      #
 ########################################################################
 Pool {
-  Name = "poolfull-<%=bacula_pool_name%>-<%= client %>"
+  Name = "poolfull-<%=@bacula_pool_name%>-<%= @client %>"
   Pool Type = Backup
-  Storage = "<%=bacula_filestor_name%>-<%= client %>"
+  Storage = "<%=@bacula_filestor_name%>-<%= @client %>"
   AutoPrune = yes
   Volume Retention = 3 months
-  Label Format = "<%= bacula_pool_name %>-full-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Label Format = "<%= @bacula_pool_name %>-full-<%= @client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
   Maximum Volume Bytes = 50G
   Action On Purge = Truncate
   Recycle = yes
-  RecyclePool = "poolgraveyard-<%=bacula_pool_name%>-<%= client %>"
+  RecyclePool = "poolgraveyard-<%=@bacula_pool_name%>-<%= @client %>"
 }
 
 Pool {
-  Name = "pooldiff-<%=bacula_pool_name%>-<%= client %>"
+  Name = "pooldiff-<%=@bacula_pool_name%>-<%= @client %>"
   Pool Type = Backup
-  Storage = "<%=bacula_filestor_name%>-<%= client %>"
+  Storage = "<%=@bacula_filestor_name%>-<%= @client %>"
   AutoPrune = yes
   Volume Retention = 2 months
-  Label Format = "<%= bacula_pool_name %>-diff-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Label Format = "<%= @bacula_pool_name %>-diff-<%= @client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
   Maximum Volume Bytes = 50G
   Action On Purge = Truncate
   Recycle = yes
-  RecyclePool = "poolgraveyard-<%=bacula_pool_name%>-<%= client %>"
+  RecyclePool = "poolgraveyard-<%=@bacula_pool_name%>-<%= @client %>"
 }
 
 Pool {
-  Name = "poolinc-<%=bacula_pool_name%>-<%= client %>"
+  Name = "poolinc-<%=@bacula_pool_name%>-<%= @client %>"
   Pool Type = Backup
-  Storage = "<%=bacula_filestor_name%>-<%= client %>"
+  Storage = "<%=@bacula_filestor_name%>-<%= @client %>"
   AutoPrune = yes
   Volume Retention = 30 days
-  Label Format = "<%= bacula_pool_name %>-inc-<%= client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
+  Label Format = "<%= @bacula_pool_name %>-inc-<%= @client %>.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
   Maximum Volume Bytes = 50G
   Action On Purge = Truncate
   Recycle = yes
-  RecyclePool = "poolgraveyard-<%=bacula_pool_name%>-<%= client %>"
+  RecyclePool = "poolgraveyard-<%=@bacula_pool_name%>-<%= @client %>"
 }
 
 Pool {
-  Name = "poolgraveyard-<%=bacula_pool_name%>-<%= client %>"
+  Name = "poolgraveyard-<%=@bacula_pool_name%>-<%= @client %>"
   Pool Type = Backup
-  Storage = "<%=bacula_filestor_name%>-<%= client %>"
+  Storage = "<%=@bacula_filestor_name%>-<%= @client %>"
   Recycle = yes
-  RecyclePool = "poolgraveyard-<%=bacula_pool_name%>-<%= client %>"
+  RecyclePool = "poolgraveyard-<%=@bacula_pool_name%>-<%= @client %>"
 }
