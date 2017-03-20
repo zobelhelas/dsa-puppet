@@ -77,4 +77,7 @@ class nagios::client inherits nagios {
 		mode    => '0555',
 	}
 
+	file { '/etc/cron.d/puppet-nagios-wraps':
+		content  => "47 * * * * root /usr/sbin/dsa-wrap-nagios-check -s puppet-agent /usr/lib/nagios/plugins/dsa-check_puppet_agent -d0 -c 28800 -w 18000\n",
+	}
 }
