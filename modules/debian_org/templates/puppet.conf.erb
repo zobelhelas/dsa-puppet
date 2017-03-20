@@ -13,8 +13,7 @@ pluginsync=true
 # This is the default environment for all clients
 environment=production
 
-<%- if scope.lookupvar('::hostname') == 'handel' -%>
-
+<% if scope.function_has_role(['puppetmaster']) %>
 [master]
 environmentpath=/srv/puppet.debian.org/stages
 cadir  = /var/lib/puppet/ssl/ca
