@@ -73,8 +73,7 @@ class nagios::client inherits nagios {
 		require => Package['dsa-nagios-checks'],
 	}
 	file { '/usr/local/sbin/dsa-check-libs':
-		source  => 'puppet:///modules/nagios/dsa-check-libs',
-		mode    => '0555',
+		ensure => absent,
 	}
 
 	file { '/etc/cron.d/puppet-nagios-wraps':
