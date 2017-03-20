@@ -6,6 +6,9 @@ class puppetmaster {
 	file { '/etc/puppet/hiera.yaml':
 		source => 'puppet:///modules/puppetmaster/hiera.yaml'
 	}
+	file { '/etc/puppet/puppetdb.conf':
+		source => 'puppet:///modules/puppetmaster/puppetdb.conf'
+	}
 
 	@ferm::rule { 'dsa-puppet':
 		description     => 'Allow puppet access',
