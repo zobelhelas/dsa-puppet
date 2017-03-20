@@ -2,14 +2,14 @@
 ### THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
 ##
 
-[<%= client_fqdn %>]
+[<%= @client_fqdn %>]
 <%
 # variables are different whether or not they go via the stored config thing.
 #  on the host that actually gets the config, client_munin_async is a String, saying "true",
 #  from other hosts it's an actual boolean, i.e. an instance of either FalseClass or TrueClass
 %>
-<%- if has_variable?('client_munin_async') and ((client_munin_async.kind_of?(String) and client_munin_async == "true") or (client_munin_async.kind_of?(TrueClass))) %>
-    address ssh://munin-async@<%= client_fqdn %>/set-in-authkeys
+<%- if has_variable?('client_munin_async') and ((@client_munin_async.kind_of?(String) and @client_munin_async == "true") or (@client_munin_async.kind_of?(TrueClass))) %>
+    address ssh://munin-async@<%= @client_fqdn %>/set-in-authkeys
 <%- else %>
-    address <%= client_ipaddress %>
+    address <%= @client_ipaddress %>
 <%- end %>
