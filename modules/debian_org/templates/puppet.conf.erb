@@ -19,11 +19,7 @@ environment=production
 environmentpath=/srv/puppet.debian.org/stages
 cadir  = /var/lib/puppet/ssl/ca
 storeconfigs = true
-thin_storeconfigs = true
-dbadapter=mysql
-dbuser=puppet
-dbpassword=<%= scope.lookupvar('dbpassword') %>
-dbserver=localhost
+storeconfigs_backend = puppetdb
 <%- end -%>
 
 [agent]
