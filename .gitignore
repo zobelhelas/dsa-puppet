@@ -15,4 +15,4 @@ modules/roles/manifests/openstack/params.pp
 /secret
 /*.dpkg-dist
 modules/ssl/files/from-letsencrypt
-puppetdb.conf
+/puppetdb.conf
