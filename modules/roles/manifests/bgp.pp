@@ -2,6 +2,7 @@ class roles::bgp {
 	$bgp_peers = $::hostname ? {
 		mirror-bytemark => '2001:41c9:2:13c::2/128 89.16.162.2/32',
 		mirror-conova => '2a02:16a8:5404:199::25/128 217.196.157.53/32',
+		mirror-accumu => '2001:6b0:1e:2::1c6/128 130.242.6.198/32',
 		default       => undef,
 	}
 
