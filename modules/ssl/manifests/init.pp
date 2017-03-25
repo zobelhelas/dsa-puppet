@@ -19,9 +19,14 @@ class ssl {
 		source => 'puppet:///modules/ssl/ca-certificates.conf',
 		notify  => Exec['refresh_normal_hashes'],
 	}
+	if (versioncmp($::lsbmajdistrelease, '8') >= 0) {
+		$ca_debian_conf_suffix = ''
+	} else {
+		$ca_debian_conf_suffix = 'wheezy'
+	}
 	file { '/etc/ca-certificates-debian.conf':
 		mode    => '0444',
-		source => 'puppet:///modules/ssl/ca-certificates-debian.conf',
+		source => "puppet:///modules/ssl/ca-certificates-debian${ca_debian_conf_suffix}.conf",
 		notify  => Exec['refresh_ca_debian_hashes'],
 	}
 	file { '/etc/ca-certificates-global.conf':
