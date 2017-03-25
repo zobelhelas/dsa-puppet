@@ -22,7 +22,7 @@ class ssl {
 	if (versioncmp($::lsbmajdistrelease, '8') >= 0) {
 		$ca_debian_conf_suffix = ''
 	} else {
-		$ca_debian_conf_suffix = 'wheezy'
+		$ca_debian_conf_suffix = '-wheezy'
 	}
 	file { '/etc/ca-certificates-debian.conf':
 		mode    => '0444',
