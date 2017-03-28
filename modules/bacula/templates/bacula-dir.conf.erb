@@ -227,7 +227,7 @@ Pool {
   Label Format = "<%= @bacula_pool_name %>-catalog.${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}_${Hour:p/2/0/r}:${Minute:p/2/0/r}"
   Volume Use Duration = 23h
   Maximum Volume Jobs = 1
-  Maximum Volume Bytes = 50G
+  Maximum Volume Bytes = 500G
   Action On Purge = Truncate
   Recycle = yes
   RecyclePool = "poolcataloggraveyard-<%=@bacula_pool_name%>"
