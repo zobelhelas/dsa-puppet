@@ -26,6 +26,7 @@ class debian_org {
 			'rsyslog',
 			'os-prober',
 			'apt-listchanges',
+			'mlocate',
 		]:
 		ensure => purged,
 	}
