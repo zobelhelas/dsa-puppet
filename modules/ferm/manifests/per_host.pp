@@ -225,12 +225,12 @@ class ferm::per_host {
 			@ferm::rule { 'dsa-postgres-bacula':
 				# dinis
 				description     => 'Allow postgress access1',
-				rule            => '&SERVICE_RANGE(tcp, 5437, ( 5.153.231.19/32 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5437, ( 5.153.231.19/32 93.94.130.161/32 ))'
 			}
 			@ferm::rule { 'dsa-postgres-bacula6':
 				domain          => 'ip6',
 				description     => 'Allow postgress access1',
-				rule            => '&SERVICE_RANGE(tcp, 5437, ( 2001:41c8:1000:21::21:19/128 ))'
+				rule            => '&SERVICE_RANGE(tcp, 5437, ( 2001:41c8:1000:21::21:19/128 2a02:158:380:280::161/128 ))'
 			}
 
 			@ferm::rule { 'dsa-postgres-backup':
