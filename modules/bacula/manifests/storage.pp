@@ -66,5 +66,13 @@ class bacula::storage inherits bacula {
 		;
 	}
 
+	file { '/usr/local/bin/bacula-unlink-removed-volumes':
+		source  => 'puppet:///modules/bacula/bacula-unlink-removed-volumes',
+		mode    => '0555',
+	}
+	file { "/etc/cron.d/puppet-bacula-storage-stuff":
+		content => "MAILTO=root\n@daily bacula chronic /usr/local/bin/bacula-unlink-removed-volumes -v\n";
+	}
+
 	Bacula::Storage_per_node<<| |>>
 }
