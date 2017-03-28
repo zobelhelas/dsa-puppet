@@ -66,6 +66,7 @@ class bacula::storage inherits bacula {
 		;
 	}
 
+	package { 'python3-psycopg2': ensure => installed }
 	file { '/usr/local/bin/bacula-unlink-removed-volumes':
 		source  => 'puppet:///modules/bacula/bacula-unlink-removed-volumes',
 		mode    => '0555',
