@@ -213,6 +213,10 @@ roles:
   postgres_backup_server:
     - backuphost.debian.org
     - storace.debian.org
+  bacula_director:
+    - dinis.debian.org
+  bacula_storage:
+    - storace.debian.org
   dabackup_client:
     - moszumanska.debian.org
     - lw03.debian.org

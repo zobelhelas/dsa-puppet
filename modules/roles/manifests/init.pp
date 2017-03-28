@@ -330,4 +330,14 @@ class roles {
 	if has_role('postgresql_server') {
 		include roles::postgresql_server
 	}
+
+	if has_role('bacula_director') {
+		include bacula::director
+	} else {
+		package { 'bacula-console': ensure => purged; }
+		file { '/etc/bacula/bconsole.conf': ensure => absent; }
+	}
+	if has_role('bacula_storage') {
+		include bacula::storage
+	}
 }

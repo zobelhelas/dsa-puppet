@@ -56,22 +56,6 @@ node default {
 		include ganeti2
 	}
 
-	if $::hostname == 'dinis' {
-		include bacula::director
-	} else {
-		package { 'bacula-console':
-			ensure => purged;
-		}
-
-		file { '/etc/bacula/bconsole.conf':
-			ensure => absent;
-		}
-	}
-
-	if $::hostname == 'storace' {
-		include bacula::storage
-	}
-
 	if $::kernel == 'Linux' {
 		include linux
 		include acpi
