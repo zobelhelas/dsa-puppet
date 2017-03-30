@@ -114,6 +114,7 @@ roles:
     - mirror-csail.debian.org
     - mirror-isc.debian.org
     - mirror-umn.debian.org
+    - mirror-accumu.debian.org
     - lobos.debian.org
     - santoro.debian.org
     - setoguchi.debian.org
