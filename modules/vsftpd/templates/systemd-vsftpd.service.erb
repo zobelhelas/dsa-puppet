@@ -1,0 +1,11 @@
+[Unit]
+Description=vsftpd <%= @name %>
+
+[Service]
+ExecStart=-/usr/sbin/vsftpd <%= @fname %>
+StandardInput=socket
+StandardError=journal
+CapabilityBoundingSet=CAP_SYS_CHROOT CAP_SETUID CAP_SETGID
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=full
