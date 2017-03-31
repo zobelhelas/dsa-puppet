@@ -1,0 +1,13 @@
+[Unit]
+Description=vsftpd <%= @name %> (socket)
+
+[Socket]
+<% @binds.each do |bind| -%>
+ListenStream=<%= bind %>:21
+<% end -%>
+Accept=true
+FreeBind=true
+MaxConnections=<%= @max_clients %>
+
+[Install]
+WantedBy=sockets.target
