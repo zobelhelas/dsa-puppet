@@ -24,9 +24,18 @@ class roles::security_mirror {
 		ensure => link,
 		target => '../ftp.root/debian-security',
 	}
+	file { '/srv/ftp.root':
+		ensure  => directory,
+	}
 	file { '/srv/ftp.root/.nobackup':
 		ensure  => present,
 		content => '',
+	}
+	file { '/srv/ftp.root/debian-security':
+		ensure => directory,
+		owner  => 1176, # archvsync
+		group  => 1176, # archvsync
+		mode   => '0755',
 	}
 
 	include apache2::expires
