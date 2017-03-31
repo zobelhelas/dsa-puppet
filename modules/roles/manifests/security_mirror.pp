@@ -49,6 +49,7 @@ class roles::security_mirror {
 	if has_role('security_mirror_no_ftp') {
 		vsftpd::site { [ 'security', 'security6' ]:
 			ensure => absent,
+			root   => '/nonexistent',
 		}
 	} else {
 		include ferm::ftp_conntrack
