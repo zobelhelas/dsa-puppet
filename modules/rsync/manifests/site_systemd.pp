@@ -135,5 +135,6 @@ define rsync::site_systemd (
 		server  => 'unused',
 		service => 'unused',
 		ferm    => false,
+		before  => Service["rsyncd-${name}.socket"],
 	}
 }
