@@ -10,6 +10,7 @@ define vsftpd::site_systemd (
 	$ensure=present,
 ) {
 	include vsftpd
+	include ferm::ftp_conntrack
 
 	case $ensure {
 		present,absent: {}

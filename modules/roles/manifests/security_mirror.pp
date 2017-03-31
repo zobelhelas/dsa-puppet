@@ -42,7 +42,6 @@ class roles::security_mirror {
 			root   => '/nonexistent',
 		}
 	} else {
-		include ferm::ftp_conntrack
 		vsftpd::site_systemd { 'security':
 			banner       => 'security.debian.org FTP server (vsftpd)',
 			logfile      => '/var/log/ftp/vsftpd-security.debian.org.log',

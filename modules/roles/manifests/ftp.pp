@@ -1,8 +1,6 @@
 class roles::ftp {
 	# this is the FTP part of the roles::debian_mirror class
 
-	include ferm::ftp_conntrack
-
 	$binds = $::hostname ? {
 		klecker => [ '130.89.148.12', '[2001:610:1908:b000::148:12]' ],
 		default => [ '[::]' ],
