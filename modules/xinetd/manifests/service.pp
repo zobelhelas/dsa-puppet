@@ -19,22 +19,13 @@ define xinetd::service (
 	$ensure=present,
 	$ferm=true
 ) {
-	case $ensure {
-		present,file: {
-			include xinetd
-			file { "/etc/xinetd.d/${name}":
-				ensure  => $ensure,
-				content => template('xinetd/service.erb'),
-				notify  => Service['xinetd'],
-				require => Package['xinetd'],
-			}
-		}
-		absent: {
-			file { "/etc/xinetd.d/${name}":
-				ensure  => $ensure,
-			}
-		}
-		default: { fail("Invalid ensure for '$name'") }
+	include xinetd
+
+	file { "/etc/xinetd.d/${name}":
+		ensure  => $ensure,
+		content => template('xinetd/service.erb'),
+		notify  => Service['xinetd'],
+		require => Package['xinetd'],
 	}
 
 	if $ferm {
