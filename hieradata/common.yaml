@@ -129,6 +129,7 @@ roles:
   security_mirror_no_ftp:
     # hosts that are not part of security.debian.org but
     # only participiate in the anycast do not need ftp
+    - mirror-accumu.debian.org
     - mirror-bytemark.debian.org
   security_tracker:
     - soriano.debian.org
