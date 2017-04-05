@@ -34,7 +34,7 @@ except OSError, e:
 	if e.errno == errno.ENOENT:
 		sys.exit(0)
 
-total_mem = psutil.phymem_usage().total
+total_mem = psutil.virtual_memory().total
 cutoff_time = 60*10
 
 for p in psutil.process_iter():
