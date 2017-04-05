@@ -59,6 +59,7 @@ do_rsync() {
 	if [ -d "$RSYNCDIR" ]; then
 		allowed_rsyncs+=("--server -vlogDtprxze.iLsf --partial . $RSYNCDIR") # wheezy
 		allowed_rsyncs+=("--server -vlogDtprxze.iLsfx --partial . $RSYNCDIR") # jessie
+		allowed_rsyncs+=("--server -vlogDtprxze.iLsfxC --partial . $RSYNCDIR") # stretch
 	fi
 	for cmd_idx in ${!allowed_rsyncs[*]}; do
 		allowed="${allowed_rsyncs[$cmd_idx]}"
