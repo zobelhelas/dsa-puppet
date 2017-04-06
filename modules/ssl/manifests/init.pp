@@ -131,9 +131,18 @@ class ssl {
 		require => Package['ssl-cert'],
 	}
 
-	file { '/usr/local/sbin/update-ca-certificates-dsa':
-		mode   => '0555',
-		source => 'puppet:///modules/ssl/update-ca-certificates-dsa',
+	$updatecacertsdsa = '/usr/local/sbin/update-ca-certificates-dsa'
+	if (versioncmp($::lsbmajdistrelease, '9') >= 0) {
+		file { $updatecacertsdsa:
+			ensure => absent,
+		}
+		$updatecacerts = '/usr/sbin/update-ca-certificates'
+	} else {
+		file { $updatecacertsdsa:
+			mode   => '0555',
+			source => 'puppet:///modules/ssl/update-ca-certificates-dsa',
+		}
+		$updatecacerts = $updatecacertsdsa
 	}
 
 	exec { 'retire_debian_links':
@@ -158,23 +167,23 @@ class ssl {
 		require     => Package['ca-certificates'],
 	}
 	exec { 'refresh_ca_debian_hashes':
-		command     => '/usr/local/sbin/update-ca-certificates-dsa --fresh --certsconf /etc/ca-certificates-debian.conf --localcertsdir /dev/null --etccertsdir /etc/ssl/ca-debian --hooksdir /dev/null',
+		command     => "${updatecacerts} --fresh --certsconf /etc/ca-certificates-debian.conf --localcertsdir /dev/null --etccertsdir /etc/ssl/ca-debian --hooksdir /dev/null",
 		refreshonly => true,
 		require     => [
 			Package['ca-certificates'],
 			File['/etc/ssl/ca-debian'],
 			File['/etc/ca-certificates-debian.conf'],
-			File['/usr/local/sbin/update-ca-certificates-dsa'],
+			File[$updatecacerts],
 		]
 	}
 	exec { 'refresh_ca_global_hashes':
-		command     => '/usr/local/sbin/update-ca-certificates-dsa --fresh --default --certsconf /etc/ca-certificates-global.conf --etccertsdir /etc/ssl/ca-global --hooksdir /dev/null',
+		command     => "${updatecacerts} --fresh --default --certsconf /etc/ca-certificates-global.conf --etccertsdir /etc/ssl/ca-global --hooksdir /dev/null",
 		refreshonly => true,
 		require     => [
 			Package['ca-certificates'],
 			File['/etc/ssl/ca-global'],
 			File['/etc/ca-certificates-global.conf'],
-			File['/usr/local/sbin/update-ca-certificates-dsa'],
+			File[$updatecacerts],
 		]
 	}
 
