@@ -392,6 +392,7 @@ tartmp=$(tempfile --directory "$basedir" --suffix=".tar.gz")
 cleanup+=("rm -f $tartmp")
 (
   cd "$rootdir"
+  chmod 0755 "$rootdir"
   tar caf "$tartmp" .
   if ! [ -z "$keep" ]; then
     savelog -l -c 4 "$target"
