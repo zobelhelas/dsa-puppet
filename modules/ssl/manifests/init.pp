@@ -173,7 +173,7 @@ class ssl {
 			Package['ca-certificates'],
 			File['/etc/ssl/ca-debian'],
 			File['/etc/ca-certificates-debian.conf'],
-			File[$updatecacerts],
+			File[$updatecacertsdsa],
 		]
 	}
 	exec { 'refresh_ca_global_hashes':
@@ -183,7 +183,7 @@ class ssl {
 			Package['ca-certificates'],
 			File['/etc/ssl/ca-global'],
 			File['/etc/ca-certificates-global.conf'],
-			File[$updatecacerts],
+			File[$updatecacertsdsa],
 		]
 	}
 
