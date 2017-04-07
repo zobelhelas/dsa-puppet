@@ -1,5 +1,5 @@
 class rng_tools {
-	if $has_dev_hwrng and !($::kvmdomain and versioncmp($::lsbmajdistrelease, '9') >= 0) {
+	if $has_dev_hwrng and !($::kvmdomain and (versioncmp($::lsbmajdistrelease, '9') >= 0)) {
 		package { 'rng-tools':
 			ensure => installed
 		}
