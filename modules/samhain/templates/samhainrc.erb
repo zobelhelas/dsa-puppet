@@ -665,7 +665,7 @@ SyslogSeverity=alert
 #
 #####################################################
 
-# [SuidCheck]
+[SuidCheck]
 ##
 ## --- Check the filesystem for SUID/SGID binaries
 ## 
@@ -684,7 +684,13 @@ SyslogSeverity=alert
  
 ## Directory to exclude 
 #
+<% if scope.lookupvar('site::nodeinfo')['buildd'] -%>
+SuidCheckExclude = /srv/buildd/unpack
+<% elsif scope.lookupvar('site::nodeinfo')['porterbox'] -%>
+SuidCheckExclude = /srv/chroot/schroot-unpack
+<% else -%>
 # SuidCheckExclude = NULL
+<% end -%>
 
 ## Limit on files per second (0 == no limit)
 #
