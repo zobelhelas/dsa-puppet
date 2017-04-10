@@ -5,7 +5,7 @@ class roles::security_master {
 		tlsaport => [443, 1873],
 	}
 
-	vsftpd::site { 'security':
+	vsftpd::site_systemd { 'security':
 		banner     => 'security-master.debian.org FTP server (vsftpd)',
 		logfile    => '/var/log/ftp/vsftpd-security-master.debian.org.log',
 		writable   => true,
