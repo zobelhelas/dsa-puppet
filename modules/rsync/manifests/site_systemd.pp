@@ -64,6 +64,7 @@ define rsync::site_systemd (
 			Exec['systemctl daemon-reload'],
 			File["/etc/systemd/system/rsyncd-${name}@.service"],
 			File["/etc/systemd/system/rsyncd-${name}.socket"],
+			Service['xinetd'],
 		],
 		provider => systemd,
 	}
@@ -108,6 +109,7 @@ define rsync::site_systemd (
 				File["/etc/systemd/system/rsyncd-${name}-stunnel@.service"],
 				File["/etc/systemd/system/rsyncd-${name}-stunnel.socket"],
 				Service["rsyncd-${name}.socket"],
+				Service['xinetd'],
 			],
 			provider => systemd,
 		}

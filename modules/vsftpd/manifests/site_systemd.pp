@@ -70,6 +70,7 @@ define vsftpd::site_systemd (
 			Exec['systemctl daemon-reload'],
 			File["/etc/systemd/system/vsftpd-${name}@.service"],
 			File["/etc/systemd/system/vsftpd-${name}.socket"],
+			Service['xinetd'],
 		],
 		provider => systemd,
 	}
