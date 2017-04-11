@@ -6,7 +6,7 @@ class roles::ftp {
 		default => [ '[::]' ],
 	}
 
-	vsftpd::site_systemd { 'ftp':
+	vsftpd::site { 'ftp':
 		banner       => 'ftp.debian.org FTP server',
 		logfile      => '/var/log/ftp/vsftpd-ftp.debian.org.log',
 		binds        => $binds,

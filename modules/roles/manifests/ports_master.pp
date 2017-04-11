@@ -9,7 +9,7 @@ class roles::ports_master {
 		key => true,
 	}
 
-	vsftpd::site_systemd { 'ports-master':
+	vsftpd::site { 'ports-master':
 		banner         => 'ports-master.debian.org FTP server',
 		logfile        => '/var/log/ftp/vsftpd-ports-master.debian.org.log',
 		writable       => true,

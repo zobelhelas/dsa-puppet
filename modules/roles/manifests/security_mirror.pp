@@ -37,12 +37,12 @@ class roles::security_mirror {
 	}
 
 	if has_role('security_mirror_no_ftp') {
-		vsftpd::site_systemd { 'security':
+		vsftpd::site { 'security':
 			ensure => absent,
 			root   => '/nonexistent',
 		}
 	} else {
-		vsftpd::site_systemd { 'security':
+		vsftpd::site { 'security':
 			banner       => 'security.debian.org FTP server (vsftpd)',
 			logfile      => '/var/log/ftp/vsftpd-security.debian.org.log',
 			max_clients  => 200,

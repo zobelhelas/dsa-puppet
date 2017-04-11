@@ -1,4 +1,4 @@
-define vsftpd::site_systemd (
+define vsftpd::site (
 	$root,
 	$binds=['[::]'],
 	$chown_user='',
