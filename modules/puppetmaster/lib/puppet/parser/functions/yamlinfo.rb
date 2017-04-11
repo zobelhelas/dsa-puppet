@@ -1,8 +1,9 @@
+require 'puppet/file_system'
+
 module Puppet::Parser::Functions
   newfunction(:yamlinfo, :type => :rvalue) do |args|
 
     host = args[0]
-    yamlfile = args[1]
 
     read_yaml = lambda { |yaml, host|
       results = {}
@@ -41,6 +42,7 @@ module Puppet::Parser::Functions
 
     require 'yaml'
 
+    yamlfile = Puppet::Parser::Files.find_file('debian_org/misc/local.yaml', compiler.environment)
     yaml = YAML.load_file(yamlfile)
     ret = {}
 

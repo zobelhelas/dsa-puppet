@@ -1,12 +1,14 @@
+require 'puppet/file_system'
+
 module Puppet::Parser::Functions
   newfunction(:whohosts, :type => :rvalue) do |args|
     require 'ipaddr'
     require 'yaml'
 
     ipAddrs = args[0]
-    yamlfile = args[1]
 
     ans = {"name" => "unknown"}
+    yamlfile = Puppet::Parser::Files.find_file('debian_org/misc/hoster.yaml', compiler.environment)
     yaml = YAML.load_file(yamlfile)
 
     ipAddrs.each do |addr|
