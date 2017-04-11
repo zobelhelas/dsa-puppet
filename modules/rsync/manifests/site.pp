@@ -1,4 +1,4 @@
-define rsync::site_systemd (
+define rsync::site (
 	$binds=['[::]'],
 	$source=undef,
 	$content=undef,

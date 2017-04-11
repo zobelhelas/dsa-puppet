@@ -51,7 +51,7 @@ class roles::security_mirror {
 		}
 	}
 
-	rsync::site_systemd { 'security':
+	rsync::site { 'security':
 		source      => 'puppet:///modules/roles/security_mirror/rsyncd.conf',
 		max_clients => 100,
 		binds       => $binds,

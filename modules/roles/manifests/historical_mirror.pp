@@ -32,7 +32,7 @@ class roles::historical_mirror {
 		$sslname = undef
 	}
 
-	rsync::site_systemd { 'archive':
+	rsync::site { 'archive':
 		source      => 'puppet:///modules/roles/historical_mirror/rsyncd.conf',
 		max_clients => 100,
 		sslname     => $sslname,

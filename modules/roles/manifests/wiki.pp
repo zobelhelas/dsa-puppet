@@ -3,7 +3,7 @@ class roles::wiki {
 		notify  => Exec['service apache2 reload'],
 		key => true,
 	}
-	rsync::site_systemd { 'wiki':
+	rsync::site { 'wiki':
 		source => 'puppet:///modules/roles/wiki/rsyncd.conf',
 	}
 }

@@ -13,7 +13,7 @@ class roles::security_master {
 		root       => '/srv/ftp.root/',
 	}
 
-	rsync::site_systemd { 'security_master':
+	rsync::site { 'security_master':
 		source      => 'puppet:///modules/roles/security_master/rsyncd.conf',
 		max_clients => 100,
 		sslname     => 'security-master.debian.org',

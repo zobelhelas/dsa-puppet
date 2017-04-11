@@ -49,13 +49,13 @@ class roles::syncproxy {
 			content => template('roles/syncproxy/syncproxy.debian.org-index.html.erb')
 		}
 
-		rsync::site_systemd { 'syncproxy':
+		rsync::site { 'syncproxy':
 			content => template('roles/syncproxy/rsyncd.conf.erb'),
 			binds   => $binds,
 			sslname => "$syncproxy_name",
 		}
 	} else {
-		rsync::site_systemd { 'syncproxy':
+		rsync::site { 'syncproxy':
 			content => template('roles/syncproxy/rsyncd.conf.erb'),
 			binds   => $binds,
 		}

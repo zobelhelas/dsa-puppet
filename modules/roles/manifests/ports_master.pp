@@ -1,5 +1,5 @@
 class roles::ports_master {
-	rsync::site_systemd { 'ports-master':
+	rsync::site { 'ports-master':
 		source      => 'puppet:///modules/roles/ports_master/rsyncd.conf',
 		max_clients => 100,
 		sslname     => 'ports-master.debian.org',
