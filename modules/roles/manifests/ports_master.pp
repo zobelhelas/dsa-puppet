@@ -9,8 +9,6 @@ class roles::ports_master {
 		key => true,
 	}
 
-	include ferm::ftp_conntrack
-
 	vsftpd::site_systemd { 'ports-master':
 		banner         => 'ports-master.debian.org FTP server',
 		logfile        => '/var/log/ftp/vsftpd-ports-master.debian.org.log',

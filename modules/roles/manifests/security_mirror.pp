@@ -1,24 +1,14 @@
 class roles::security_mirror {
 	include roles::archvsync_base
 
-	$rsync_bind = $::hostname ? {
-		mirror-anu => '150.203.164.61',
-		mirror-bytemark => '5.153.231.46',
-		mirror-conova => '217.196.149.233',
-		mirror-isc => '149.20.4.14',
-		mirror-umn => '128.101.240.215',
-		default    => '',
+	$binds = $::hostname ? {
+		mirror-anu      => [ '150.203.164.61', '[2001:388:1034:2900::3d]' ],
+		mirror-bytemark => [ '5.153.231.46', '[2001:41c8:1000:21::21:46]' ],
+		mirror-conova   => [ '217.196.149.233', '[2a02:16a8:dc41:100::233]' ],
+		mirror-isc      => [ '149.20.4.14', '[2001:4f8:1:c::14]' ],
+		mirror-umn      => [ '128.101.240.215', '[2607:ea00:101:3c0b::1deb:215]' ],
+		default         => [ '[::]' ],
 	}
-	$rsync_bind6 = $::hostname ? {
-		mirror-anu => '2001:388:1034:2900::3d',
-		mirror-bytemark => '2001:41c8:1000:21::21:46',
-		mirror-conova => '2a02:16a8:dc41:100::233',
-		mirror-isc => '2001:4f8:1:c::14',
-		mirror-umn => '2607:ea00:101:3c0b::1deb:215',
-		default    => '',
-	}
-	$ftp_bind = $rsync_bind
-	$ftp_bind6 = $rsync_bind6
 
 	file { '/srv/mirrors/debian-security':
 		ensure => link,
@@ -47,35 +37,24 @@ class roles::security_mirror {
 	}
 
 	if has_role('security_mirror_no_ftp') {
-		vsftpd::site { [ 'security', 'security6' ]:
+		vsftpd::site_systemd { 'security':
 			ensure => absent,
 			root   => '/nonexistent',
 		}
 	} else {
-		include ferm::ftp_conntrack
-		vsftpd::site { 'security':
+		vsftpd::site_systemd { 'security':
 			banner       => 'security.debian.org FTP server (vsftpd)',
 			logfile      => '/var/log/ftp/vsftpd-security.debian.org.log',
 			max_clients  => 200,
 			root         => '/srv/ftp.root/',
-			bind         => $ftp_bind,
-		}
-		if ($ftp_bind6 != '') {
-			vsftpd::site { 'security6':
-				banner       => 'security.debian.org FTP server (vsftpd)',
-				logfile      => '/var/log/ftp/vsftpd-security6.debian.org.log',
-				max_clients  => 200,
-				root         => '/srv/ftp.root/',
-				bind         => $ftp_bind6,
-			}
+			binds        => $binds,
 		}
 	}
 
-	rsync::site { 'security':
+	rsync::site_systemd { 'security':
 		source      => 'puppet:///modules/roles/security_mirror/rsyncd.conf',
 		max_clients => 100,
-		bind        => $rsync_bind,
-		bind6       => $rsync_bind6,
+		binds       => $binds,
 	}
 
 	$onion_v4_addr = $::hostname ? {
