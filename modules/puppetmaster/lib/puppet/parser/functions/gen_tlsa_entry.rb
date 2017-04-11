@@ -22,7 +22,11 @@ module Puppet::Parser::Functions
       ports.each do |port|
         if File.exist?(certfile)
           cmd = ['swede', 'create', '--usage=3', '--selector=1', '--mtype=1', '--certificate', certfile, '--port', port.to_s, hostname]
-          IO.popen(cmd, "r") {|i| res << i.read }
+          begin
+            IO.popen(cmd, "r") {|i| res << i.read }
+          rescue Errno::ENOENT
+            res << "; Failed to find swede"
+          end
         else
           res << "; certfile #{certfile} did not exist to create TLSA record for #{hostname}:#{port}."
         end
