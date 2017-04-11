@@ -29,7 +29,7 @@ report = true
 <%- if has_variable?("puppetversion") and (scope.call_function('versioncmp', [@puppetversion.to_s, '4.1.0']) >= 0) -%>
 http_connect_timeout = 10
 http_read_timeout = 240
-<%- else -%
+<%- else -%>
 configtimeout = 240
 <%- end -%>
 <%- if has_variable?("puppetversion") and @puppetversion.to_s == "3.7.2" -%>
