@@ -9,9 +9,11 @@ vardir=/var/lib/puppet
 ssldir=/var/lib/puppet/ssl
 rundir=/var/run/puppet
 factpath=$vardir/lib/facter
-pluginsync=true
 # This is the default environment for all clients
 environment=production
+<%- if has_variable?("puppetversion") and (scope.call_function('versioncmp', [@puppetversion.to_s, '4.4.0']) < 0) -%>
+pluginsync=true
+<%- end -%>
 
 <% if scope.function_has_role(['puppetmaster']) %>
 [master]
