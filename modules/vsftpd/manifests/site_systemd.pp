@@ -27,6 +27,8 @@ define vsftpd::site_systemd (
 		absent  => false,
 	}
 
+	$ftpsite = $name
+
 	$fname = "/etc/vsftpd-${name}.conf"
 
 	file { $fname:
