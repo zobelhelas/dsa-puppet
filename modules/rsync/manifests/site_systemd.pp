@@ -64,7 +64,6 @@ define rsync::site_systemd (
 			Exec['systemctl daemon-reload'],
 			File["/etc/systemd/system/rsyncd-${name}@.service"],
 			File["/etc/systemd/system/rsyncd-${name}.socket"],
-			Service['xinetd'],
 		],
 		provider => systemd,
 	}
@@ -109,7 +108,6 @@ define rsync::site_systemd (
 				File["/etc/systemd/system/rsyncd-${name}-stunnel@.service"],
 				File["/etc/systemd/system/rsyncd-${name}-stunnel.socket"],
 				Service["rsyncd-${name}.socket"],
-				Service['xinetd'],
 			],
 			provider => systemd,
 		}
@@ -129,14 +127,5 @@ define rsync::site_systemd (
 			port     => 1873,
 			hostname => $sslname,
 		}
-	}
-
-	xinetd::service { [ "rsync-${name}", "rsync-${name}6", "rsync-${name}-ssl", "rsync-${name}-ssl6" ]:
-		ensure  => absent,
-		id      => 'unused',
-		server  => 'unused',
-		service => 'unused',
-		ferm    => false,
-		before  => Service["rsyncd-${name}.socket"],
 	}
 }
