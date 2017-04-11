@@ -17,6 +17,7 @@
     - echo -n "$R10K" > r10k.yaml
     - bundle exec r10k deploy environment --verbose debug base test
     - spec/octocatalog/init-system
+    - spec/octocatalog/init-env base test
     - spec/octocatalog/run-octocatalog base test
 
 test-octocatalog/master:

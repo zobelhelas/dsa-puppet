@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euE
+
+for env in "$@"; do
+  mkdir -p environments/$env/modules/nagios/files/dsa-nagios/generated/
+  touch environments/$env/modules/nagios/files/dsa-nagios/generated/nrpe_dsa.cfg
+
+  ln -fs /etc/puppet/modules/exim/files/certs environments/$env/modules/exim/files/
+  ln -fs /etc/puppet/modules/ssl/files/clientcerts environments/$env/modules/ssl/files/
+done
