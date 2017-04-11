@@ -1,7 +1,6 @@
 module Puppet::Parser::Functions
   newfunction(:entropy_provider, :type => :rvalue) do |args|
     begin
-      require '/var/lib/puppet/lib/puppet/parser/functions/whohosts.rb'
       require 'digest/sha1'
 
       fqdn = args[0]

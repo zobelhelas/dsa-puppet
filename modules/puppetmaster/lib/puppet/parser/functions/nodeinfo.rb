@@ -3,10 +3,6 @@ module Puppet::Parser::Functions
     host = args[0]
     yamlfile = args[1]
     begin
-
-      require '/var/lib/puppet/lib/puppet/parser/functions/ldapinfo.rb'
-      require '/var/lib/puppet/lib/puppet/parser/functions/whohosts.rb'
-
       nodeinfo         = function_yamlinfo([host, yamlfile])
       nodeinfo['ldap'] = function_ldapinfo([host, '*'])
       unless nodeinfo['ldap']['ipHostNumber']
