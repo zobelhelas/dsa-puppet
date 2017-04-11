@@ -72,18 +72,8 @@ define vsftpd::site_systemd (
 			Exec['systemctl daemon-reload'],
 			File["/etc/systemd/system/vsftpd-${name}@.service"],
 			File["/etc/systemd/system/vsftpd-${name}.socket"],
-			Service['xinetd'],
 		],
 		provider => systemd,
-	}
-
-	xinetd::service { [ "vsftpd-${name}", "vsftpd-${name}6", "vsftpd-${name}-v6" ]:
-		ensure  => absent,
-		id      => 'unused',
-		server  => 'unused',
-		service => 'unused',
-		ferm    => false,
-		before  => Service["vsftpd-${name}.socket"],
 	}
 
 	munin::check { "vsftpd-${name}":
