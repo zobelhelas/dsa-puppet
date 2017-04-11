@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euE
+
+ENV_BASE=$1
+ENV_TEST=$2
+
+for fact in spec/octocatalog/facts/*; do
+  hostname=$(basename $fact .json)
+  bundle exec octocatalog-diff \
+    --no-parallel \
+    --bootstrapped-from-dir environments/$ENV_BASE/ \
+    --bootstrapped-to-dir environments/$ENV_TEST/ \
+    --hostname $hostname \
+    --fact-file $fact \
+    --puppet-binary $CI_PROJECT_DIR/bin/puppet \
+    --display-source || [ $? == 2 ]
+done

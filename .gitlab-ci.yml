@@ -1,0 +1,34 @@
+.test-octocatalog: &test-octocatalog
+  image: ruby:2.3
+
+  script:
+    - unset BUNDLER_VERSION BUNDLE_APP_CONFIG BUNDLE_BIN BUNDLE_PATH GEM_HOME
+
+    - git config --global user.name "Your Name"
+    - git config --global user.email "you@example.com"
+
+    - apt-get update
+    - apt-get install -y cmake libldap-dev libsasl2-dev
+    - bundle install --binstubs bin --with octocatalog
+
+    - git branch -f base $REF_BASE
+    - git branch -f test $CI_BUILD_REF
+
+    - echo -n "$R10K" > r10k.yaml
+    - bundle exec r10k deploy environment --verbose debug base test
+    - spec/octocatalog/run-octocatalog base test
+
+test-octocatalog/master:
+  <<: *test-octocatalog
+
+  except:
+    - master
+
+  variables:
+    REF_BASE: origin/master
+    R10K: |
+      cachedir: 'cache'
+      sources:
+        plain:
+          remote: '$CI_PROJECT_DIR'
+          basedir: 'environments'
