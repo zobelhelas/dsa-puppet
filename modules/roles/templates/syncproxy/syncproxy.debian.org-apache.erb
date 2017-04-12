@@ -11,7 +11,7 @@
 <%=
 lines = []
 vhost_listen.each do |bind|
-   lines << "Use common-debian-service-https-redirect \"#{bind}\" \"#{@syncproxy_name}\""
+   lines << "Use common-debian-service-https-redirect \"#{@bind}\" \"#{@syncproxy_name}\""
 end
 lines.join("\n")
 
