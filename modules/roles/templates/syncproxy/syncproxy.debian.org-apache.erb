@@ -3,20 +3,11 @@
 ## USE: git clone git+ssh://$USER@puppet.debian.org/srv/puppet.debian.org/git/dsa-puppet.git
 ##
 
-<%
-  vhost_listen = [ (@bind != '') ? "#{@bind}" : "*",  (@bind6 != '') ? "#{@bind6}" : "*"].uniq
-  vhost_listen_443 = [ (@bind != '') ? "#{@bind}:443" : "*:443",  (@bind6 != '') ? "[#{@bind6}]:443" : "*:443"].uniq
-%>
+<% @binds.each do |bind| -%>
+  Use common-debian-service-https-redirect "<%= bind %>" "<%= @syncproxy_name %>"
+<% end -%>
 
-<%=
-lines = []
-vhost_listen.each do |bind|
-   lines << "Use common-debian-service-https-redirect \"#{@bind}\" \"#{@syncproxy_name}\""
-end
-lines.join("\n")
-
-%>
-<Virtualhost <%= vhost_listen_443.join(' ') %> >
+<Virtualhost <%= @binds.map { |bind| "#{bind}:443" }.join(' ') %> >
    ServerName <%= @syncproxy_name %>
    DocumentRoot /srv/www/syncproxy.debian.org/htdocs
 
