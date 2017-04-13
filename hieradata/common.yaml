@@ -115,6 +115,7 @@ roles:
     - mirror-isc.debian.org
     - mirror-umn.debian.org
     - mirror-accumu.debian.org
+    - mirror-skroutz.debian.org
     - lobos.debian.org
     - santoro.debian.org
     - setoguchi.debian.org
@@ -130,6 +131,7 @@ roles:
     # hosts that are not part of security.debian.org but
     # only participiate in the anycast do not need ftp
     - mirror-accumu.debian.org
+    - mirror-skroutz.debian.org
     - mirror-bytemark.debian.org
   security_tracker:
     - soriano.debian.org
@@ -232,6 +234,7 @@ roles:
     - klecker.debian.org
     - mirror-bytemark.debian.org
     - mirror-accumu.debian.org
+    - mirror-skroutz.debian.org
     - mirror-conova.debian.org
     - mirror-isc.debian.org
   debian_mirror_onion:
@@ -304,6 +307,7 @@ roles:
     - mirror-bytemark.debian.org
     - mirror-conova.debian.org
     - mirror-accumu.debian.org
+    - mirror-skroutz.debian.org
   cdimage-search:
     - cgi-grnet-01.debian.org
   apache_prefork:

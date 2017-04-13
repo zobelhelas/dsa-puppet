@@ -125,6 +125,11 @@ sil:
     - 86.59.118.144/28
     - 2001:858:2:2::/64
   mirror-debian: http://ftp.at.debian.org/debian/
+skroutz:
+  netrange:
+    - 154.57.0.248/29
+    - 2a03:e40:42:200::151::/112
+  mirror-debian: http://ftp.debian.org/debian
 ubc:
   netrange:
     - 209.87.16.0/24
