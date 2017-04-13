@@ -128,7 +128,7 @@ sil:
 skroutz:
   netrange:
     - 154.57.0.248/29
-    - 2a03:e40:42:200::151::/112
+    - 2a03:e40:42:200::151:/112
   mirror-debian: http://ftp.debian.org/debian
 ubc:
   netrange:
