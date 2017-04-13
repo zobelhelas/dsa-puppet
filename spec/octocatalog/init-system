@@ -1,0 +1,25 @@
+#!/bin/bash
+set -euE
+
+function puppetfile() {
+  for i in "$@"; do
+    f="/etc/puppet/$i"
+    mkdir -p $(dirname $f)
+    echo "file $i" > $f
+  done
+}
+
+mkdir -p /etc/puppet /var/lib/puppet/yaml/node/
+touch /etc/puppet/secret
+
+puppetfile modules/exim/files/certs/ca.{crl,crt}
+puppetfile modules/ssl/files/clientcerts/ca.{crl,crt}
+
+for fact in spec/octocatalog/facts/*; do
+  hostname=$(basename $fact .json)
+
+  puppetfile modules/exim/files/certs/$hostname.{crt,key}
+  puppetfile modules/ssl/files/clientcerts/$hostname.{client.crt,key}
+
+  touch /var/lib/puppet/yaml/node/$hostname.yaml
+done
