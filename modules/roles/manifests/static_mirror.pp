@@ -193,6 +193,7 @@ class roles::static_mirror {
 		onion::service { 'planet.debian.org'             : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 	}
 
+	ssl::service { 'archive.debian.net': ensure => present, notify  => Exec['service apache2 reload'], key => true, }
 	file { '/srv/static.debian.org/puppet':
 		ensure => directory,
 		mode   => '02755'
