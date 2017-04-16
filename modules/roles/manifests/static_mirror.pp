@@ -192,4 +192,17 @@ class roles::static_mirror {
 		onion::service { 'metadata.ftp-master.debian.org': ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 		onion::service { 'planet.debian.org'             : ensure => "ifstatic", port => 80, target_port => 80, target_address => $onion_v4_addr }
 	}
+
+	file { '/srv/static.debian.org/puppet':
+		ensure => directory,
+		mode   => '02755'
+	}
+	file { '/srv/static.debian.org/archive.debian.net':
+		ensure => directory,
+		mode   => '02755'
+	}
+	file { '/srv/static.debian.org/archive.debian.net/503.html':
+		source => 'puppet:///modules/roles/static-htdocs/archive.debian.net/503.html',
+	}
+
 }
