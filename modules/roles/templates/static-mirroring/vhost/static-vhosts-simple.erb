@@ -332,7 +332,7 @@ lines.join("\n")
 #############
 
 Use common-dsa-vhost-https-redirect archive.debian.net
-<VirtualHost <%= @vhost_listen %> >
+<VirtualHost <%= @vhost_listen_443 %> >
 	ServerName archive.debian.net
 	ServerAdmin debian-admin@debian.org
 	ErrorLog /var/log/apache2/archive.debian.net-error.log
