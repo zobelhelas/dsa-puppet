@@ -197,11 +197,11 @@ class roles::static_mirror {
 		ensure => directory,
 		mode   => '02755'
 	}
-	file { '/srv/static.debian.org/archive.debian.net':
+	file { '/srv/static.debian.org/puppet/archive.debian.net':
 		ensure => directory,
 		mode   => '02755'
 	}
-	file { '/srv/static.debian.org/archive.debian.net/503.html':
+	file { '/srv/static.debian.org/puppet/archive.debian.net/503.html':
 		source => 'puppet:///modules/roles/static-htdocs/archive.debian.net/503.html',
 	}
 
