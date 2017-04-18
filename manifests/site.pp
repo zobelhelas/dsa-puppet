@@ -83,7 +83,7 @@ node default {
 		include named::geodns
 	}
 
-	if $::hostname in [buxtehude,milanollo,lw01,lw02,lw03,lw04,senfter,gretchaninov] {
+	if $::hostname in [buxtehude,milanollo,lw01,lw02,lw03,lw04,senfter,gretchaninov,sibelius] {
 		include nfs_server
 	}
 

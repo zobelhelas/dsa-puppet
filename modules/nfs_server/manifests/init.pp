@@ -29,6 +29,9 @@ class nfs_server {
 		gretchaninov: {
 			$client_range    = '172.29.40.0/22'
 		}
+		sibelius: {
+			$client_range    = '192.168.0.14/32'
+		}
 		default: {
 			# Better than 0.0.0.0/0 - we really ought to configure a
 			# client range for them all instead of exporting to the world.
