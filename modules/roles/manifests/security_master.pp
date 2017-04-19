@@ -15,7 +15,8 @@ class roles::security_master {
 
 	rsync::site { 'security_master':
 		source      => 'puppet:///modules/roles/security_master/rsyncd.conf',
-		max_clients => 100,
+		# Needs to be at least twice the number of direct mirrors (currently 15) plus some spare
+		max_clients => 50,
 		sslname     => 'security-master.debian.org',
 	}
 }

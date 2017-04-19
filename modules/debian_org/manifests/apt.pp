@@ -28,10 +28,17 @@ class debian_org::apt {
 		suite      => [ $mungedcodename, "${::lsbdistcodename}-backports", "${::lsbdistcodename}-updates" ],
 		components => ['main','contrib','non-free']
 	}
-	site::aptrepo { 'security':
-		url        => [ 'http://security-cdn.debian.org/', 'http://security.anycast-test.mirrors.debian.org/debian-security/', 'http://security.debian.org/' ],
-		suite      => "${mungedcodename}/updates",
-		components => ['main','contrib','non-free']
+
+	if ($::hostname in [smetana]) {
+		site::aptrepo { 'security':
+			ensure => absent,
+		}
+	} else {
+		site::aptrepo { 'security':
+			url        => [ 'http://security-cdn.debian.org/', 'http://security.anycast-test.mirrors.debian.org/debian-security/', 'http://security.debian.org/' ],
+			suite      => "${mungedcodename}/updates",
+			components => ['main','contrib','non-free']
+		}
 	}
 
 	if has_role('experimental_apache') {

@@ -1,7 +1,8 @@
 class roles::ports_master {
 	rsync::site { 'ports-master':
 		source      => 'puppet:///modules/roles/ports_master/rsyncd.conf',
-		max_clients => 100,
+		# Needs to be at least number of direct mirrors plus some spare
+		max_clients => 50,
 		sslname     => 'ports-master.debian.org',
 	}
 

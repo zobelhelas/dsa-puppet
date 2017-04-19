@@ -1,7 +1,8 @@
 class roles::ftp_master {
 	rsync::site { 'dakmaster':
 		source      => 'puppet:///modules/roles/dakmaster/rsyncd.conf',
-		max_clients => 100,
+		# Needs to be at least number of direct mirrors plus some spare
+		max_clients => 50,
 		sslname     => 'ftp-master.debian.org',
 	}
 
