@@ -3,8 +3,8 @@ class ferm::per_host {
 		include ferm::zivit
 	}
 
-	if (scope.lookupvar('site::nodeinfo')['hoster']['name'] == "aql") {
-		include ferm::aq
+	if (getfromhash($site::nodeinfo, 'hoster', 'name') == "aql") {
+		include ferm::aql
 	}
 
 	case $::hostname {
