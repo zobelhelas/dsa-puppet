@@ -89,6 +89,7 @@ genschrootconf() {
         local name="${suite}_${arch}-dchroot"
     fi
 
+    local fullname="$name"
     case "$arch" in
         kfreebsd-*)
             aliases="$name"
@@ -101,7 +102,7 @@ genschrootconf() {
 
 cat << EOF
 [${name}]
-description=[${name}] Debian $suite chroot for $arch
+description=[${fullname}] Debian $suite chroot for $arch
 type=file
 file=$target
 EOF

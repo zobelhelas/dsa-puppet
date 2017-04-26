@@ -141,9 +141,15 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
             domirror "http://security-master.debian.org/debian-security-buildd buildd-${SUITE_BASE}/updates COMPONENT" ${APT_LIST}
 
         elif [ "${SUITE_VARIANT%%-sloppy}" = 'backports' ]; then
-            SUITES="${SUITE_BASE}"
+            # Hack: for kfreebsd-* the base suite for jessie-backports and jessie-backports-sloppy is jessie-kfreebsd (and not jessie)
+            if echo "${CHROOT_ALIAS}" | grep -q 'kfreebsd-\w\+-sbuild$' ; then
+                SUITES="${SUITE_BASE}-kfreebsd"
+            else
+                SUITES="${SUITE_BASE}"
+            fi
             [ -n "${debian_mirror}" ] && domirror "${debian_mirror} SUITE COMPONENT" ${APT_LIST}
             domirror "http://ftp.debian.org/debian SUITE COMPONENT" ${APT_LIST}
+            SUITES="${SUITE_BASE}"
             [ -n "${debian_mirror}" ] && domirror "${debian_mirror} SUITE-backports COMPONENT" ${APT_LIST}
             domirror "http://ftp.debian.org/debian SUITE-backports COMPONENT" ${APT_LIST}
             if [ "${debian_incoming}" != 'no' ]; then

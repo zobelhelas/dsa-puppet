@@ -3,6 +3,10 @@ class ferm::per_host {
 		include ferm::zivit
 	}
 
+	if (getfromhash($site::nodeinfo, 'hoster', 'name') == "aql") {
+		include ferm::aql
+	}
+
 	case $::hostname {
 		czerny,clementi: {
 			@ferm::rule { 'dsa-upsmon':

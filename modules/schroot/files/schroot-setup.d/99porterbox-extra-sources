@@ -92,8 +92,8 @@ if [ "$1" = "setup-start" ] || [ "$1" = "setup-recover" ]; then
 
       case "${SUITE_VARIANT:-}" in
         backports)
-          echo "deb     $mirror ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
-          echo "deb-src $mirror ${suite_alias}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb     $mirror ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
+          echo "deb-src $mirror ${SUITE_BASE}-${SUITE_VARIANT} main" >> "$SRCL"
           ;;
       esac
       ;;
